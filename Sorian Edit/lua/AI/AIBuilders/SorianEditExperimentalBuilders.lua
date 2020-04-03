@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianExperimentalBuilders.lua
+#**  File     :  /lua/ai/SorianEditExperimentalBuilders.lua
 #**
 #**  Summary  : Default experimental builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,8 +19,8 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local IBC = '/lua/editor/InstantBuildConditions.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
@@ -31,7 +28,7 @@ local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
 
 function T4LandAttackCondition(aiBrain, locationType, targetNumber)
     local UC = import('/lua/editor/UnitCountBuildConditions.lua')
-    local SInBC = import('/lua/editor/SorianInstantBuildConditions.lua')
+    local SInBC = import('/lua/editor/SorianEditInstantBuildConditions.lua')
     local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
     local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
     if not engineerManager then
@@ -66,7 +63,7 @@ end
 
 function T4AirAttackCondition(aiBrain, locationType, targetNumber)
     local UC = import('/lua/editor/UnitCountBuildConditions.lua')
-    local SInBC = import('/lua/editor/SorianInstantBuildConditions.lua')
+    local SInBC = import('/lua/editor/SorianEditInstantBuildConditions.lua')
     local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
     local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
     if not engineerManager then
@@ -96,11 +93,11 @@ function T4AirAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileExperimentalEngineersGroup',
+    BuilderGroupName = 'SorianEditMobileExperimentalEngineersGroup',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Land Exp1 Engineer 1 Group',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 Group',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 952,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -131,8 +128,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp2 Engineer 1 Group',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 Group',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 952,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -164,8 +161,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Exp1 Engineer 1 Group',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 Group',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 952,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -196,12 +193,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileLandExperimentalEngineers',
+    BuilderGroupName = 'SorianEditMobileLandExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
     #Land T4 builders for 10x10 and smaller maps
     Builder {
-        BuilderName = 'Sorian T3 Land Exp1 Engineer 1',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -231,8 +228,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp2 Engineer 1',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -264,8 +261,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp3 Engineer 1',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -296,8 +293,8 @@ BuilderGroup {
     },
     #Land T4 builders for 20x20 and larger maps
     Builder {
-        BuilderName = 'Sorian T3 Land Exp1 Engineer 1 - Large Map',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - Large Map',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -327,8 +324,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp2 Engineer 1 - Large Map',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 - Large Map',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -360,8 +357,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp3 Engineer 1 - Large Map',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1 - Large Map',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -391,8 +388,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Experimental Mobile Land',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Land',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
         InstanceCount = 5,
         BuilderConditions = {
@@ -412,8 +409,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Mobile Land',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Land',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
         InstanceCount = 5,
         BuilderConditions = {
@@ -436,12 +433,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileLandExperimentalForm',
+    BuilderGroupName = 'SorianEditMobileLandExperimentalForm',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Exp Land',
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'T4ExperimentalLandSorian',
+        BuilderName = 'SorianEdit T4 Exp Land',
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 250,
         InstanceCount = 50,
@@ -462,9 +459,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T4 Exp Land - Scathis',
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'T4ExperimentalScathisSorian',
+        BuilderName = 'SorianEdit T4 Exp Land - Scathis',
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonTemplate = 'T4ExperimentalScathisSorianEdit',
         Priority = 10000,
         FormRadius = 250,
         InstanceCount = 50,
@@ -485,9 +482,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T4 Exp Land Unit Cap',
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonTemplate = 'T4ExperimentalLandSorian',
+        BuilderName = 'SorianEdit T4 Exp Land Unit Cap',
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 250,
         InstanceCount = 50,
@@ -510,12 +507,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileAirExperimentalEngineers',
+    BuilderGroupName = 'SorianEditMobileAirExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
     #Air T4 builders for 20x20 and larger maps
     Builder {
-        BuilderName = 'Sorian T3 Air Exp1 Engineer 1',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -544,8 +541,8 @@ BuilderGroup {
     },
     #Air T4 builders for 10x10 and smaller maps
     Builder {
-        BuilderName = 'Sorian T3 Air Exp1 Engineer 1 - Small Map',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Small Map',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
@@ -573,8 +570,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Experimental Mobile Air',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Air',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
         InstanceCount = 5,
         BuilderConditions = {
@@ -595,8 +592,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Mobile Air',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Air',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
         InstanceCount = 5,
         BuilderConditions = {
@@ -619,12 +616,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileAirExperimentalForm',
+    BuilderGroupName = 'SorianEditMobileAirExperimentalForm',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Exp Air',
-        PlatoonTemplate = 'T4ExperimentalAirSorian',
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        BuilderName = 'SorianEdit T4 Exp Air',
+        PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
         Priority = 800,
         InstanceCount = 50,
         FormRadius = 250,
@@ -645,9 +642,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T4 Exp Air Unit Cap',
-        PlatoonTemplate = 'T4ExperimentalAirSorian',
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        BuilderName = 'SorianEdit T4 Exp Air Unit Cap',
+        PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
         Priority = 800,
         InstanceCount = 50,
         FormRadius = 250,
@@ -670,10 +667,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileNavalExperimentalEngineers',
+    BuilderGroupName = 'SorianEditMobileNavalExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Sea Exp1 Engineer',
+        BuilderName = 'SorianEdit T4 Sea Exp1 Engineer',
         PlatoonTemplate = 'T3EngineerBuilder',
         Priority = 949,
         BuilderConditions = {
@@ -702,8 +699,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Experimental Mobile Naval',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Naval',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 799,
         InstanceCount = 5,
         BuilderConditions = {
@@ -723,8 +720,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Mobile Naval',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Naval',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 849,
         InstanceCount = 5,
         BuilderConditions = {
@@ -746,13 +743,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMobileNavalExperimentalForm',
+    BuilderGroupName = 'SorianEditMobileNavalExperimentalForm',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Exp Sea',
-        PlatoonTemplate = 'T4ExperimentalSeaSorian',
-        #PlatoonAddBehaviors = { 'TempestBehaviorSorian' },
-        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        BuilderName = 'SorianEdit T4 Exp Sea',
+        PlatoonTemplate = 'T4ExperimentalSeaSorianEdit',
+        #PlatoonAddBehaviors = { 'TempestBehaviorSorianEdit' },
+        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
         #PlatoonAIPlan = 'AttackForceAI',
         Priority = 1300,
         BuilderConditions = {
@@ -772,11 +769,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSatelliteExperimentalEngineers',
+    BuilderGroupName = 'SorianEditSatelliteExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Satellite Exp Engineer',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Satellite Exp Engineer',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
@@ -806,8 +803,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Experimental Satellite',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Experimental Satellite',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
         InstanceCount = 5,
         BuilderConditions = {
@@ -827,8 +824,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Satellite',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Satellite',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
         InstanceCount = 5,
         BuilderConditions = {
@@ -850,12 +847,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSatelliteExperimentalForm',
+    BuilderGroupName = 'SorianEditSatelliteExperimentalForm',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Exp Satellite',
-        PlatoonTemplate = 'T4SatelliteExperimentalSorian',
-        PlatoonAddPlans = {'NameUnitsSorian'},
+        BuilderName = 'SorianEdit T4 Exp Satellite',
+        PlatoonTemplate = 'T4SatelliteExperimentalSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit'},
         Priority = 800,
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},
@@ -871,10 +868,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEconomicExperimentalEngineers',
+    BuilderGroupName = 'SorianEditEconomicExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian Econ Exper Engineer',
+        BuilderName = 'SorianEdit Econ Exper Engineer',
         PlatoonTemplate = 'AeonT3EngineerBuilder',
         Priority = 950,
         InstanceCount = 1,
@@ -905,8 +902,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Experimental Economic',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Experimental Economic',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
         InstanceCount = 5,
         BuilderConditions = {
@@ -925,8 +922,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Economic',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Economic',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
         InstanceCount = 5,
         BuilderConditions = {

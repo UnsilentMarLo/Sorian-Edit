@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianIntelBuilders.lua
+#**  File     :  /lua/ai/SorianEditIntelBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,14 +19,14 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 BuilderGroup {
-    BuilderGroupName = 'SorianAirScoutFactoryBuilders',
+    BuilderGroupName = 'SorianEditAirScoutFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Scout - Init',
+        BuilderName = 'SorianEdit T1 Air Scout - Init',
         PlatoonTemplate = 'T1AirScout',
         Priority = 600, #700,
         BuilderConditions = {
@@ -46,7 +43,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Scout',
+        BuilderName = 'SorianEdit T1 Air Scout',
         PlatoonTemplate = 'T1AirScout',
         Priority = 700, #700,
         BuilderConditions = {
@@ -62,7 +59,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Scout - Lower Pri',
+        BuilderName = 'SorianEdit T1 Air Scout - Lower Pri',
         PlatoonTemplate = 'T1AirScout',
         Priority = 501, #500,
         BuilderConditions = {
@@ -79,7 +76,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Scout',
+        BuilderName = 'SorianEdit T2 Air Scout',
         PlatoonTemplate = 'T2AirScout',
         Priority = 800, #601,
         BuilderConditions = {
@@ -95,7 +92,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Scout - Lower Pri',
+        BuilderName = 'SorianEdit T2 Air Scout - Lower Pri',
         PlatoonTemplate = 'T2AirScout',
         Priority = 601, #500,
         BuilderConditions = {
@@ -112,7 +109,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Scout',
+        BuilderName = 'SorianEdit T3 Air Scout',
         PlatoonTemplate = 'T3AirScout',
         Priority = 900, #701,
         BuilderConditions = {
@@ -126,7 +123,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Scout - Lower Pri',
+        BuilderName = 'SorianEdit T3 Air Scout - Lower Pri',
         PlatoonTemplate = 'T3AirScout',
         Priority = 701, #700,
         BuilderConditions = {
@@ -143,38 +140,38 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianAirScoutFormBuilders',
+    BuilderGroupName = 'SorianEditAirScoutFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Scout - No Build',
-        PlatoonTemplate = 'T1AirScoutFormSorian',
+        BuilderName = 'SorianEdit T1 Air Scout - No Build',
+        PlatoonTemplate = 'T1AirScoutFormSorianEdit',
         Priority = 650,
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Scout - No Build',
-        PlatoonTemplate = 'T3AirScoutFormSorian',
+        BuilderName = 'SorianEdit T3 Air Scout - No Build',
+        PlatoonTemplate = 'T3AirScoutFormSorianEdit',
         Priority = 750,
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianLandScoutFactoryBuilders',
+    BuilderGroupName = 'SorianEditLandScoutFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Land Scout Initial',
+        BuilderName = 'SorianEdit T1 Land Scout Initial',
         PlatoonTemplate = 'T1LandScout',
         Priority = 875,
         BuilderConditions = {
@@ -191,7 +188,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Scout Initial - 10 x 10',
+        BuilderName = 'SorianEdit T1 Land Scout Initial - 10 x 10',
         PlatoonTemplate = 'T1LandScout',
         Priority = 875,
         BuilderConditions = {
@@ -209,7 +206,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
         Builder {
-        BuilderName = 'Sorian T1 Land Scout Initial - 5 x 5',
+        BuilderName = 'SorianEdit T1 Land Scout Initial - 5 x 5',
         PlatoonTemplate = 'T1LandScout',
         Priority = 875,
         BuilderConditions = {
@@ -226,7 +223,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     #Builder {
-    #    BuilderName = 'Sorian T1 Land Scout',
+    #    BuilderName = 'SorianEdit T1 Land Scout',
     #    PlatoonTemplate = 'T1LandScout',
     #    Priority = 850,
     #    BuilderConditions = {
@@ -239,7 +236,7 @@ BuilderGroup {
     #    BuilderType = 'Land',
     #},
     Builder {
-        BuilderName = 'Sorian T1 Land Scout Ratio Build',
+        BuilderName = 'SorianEdit T1 Land Scout Ratio Build',
         PlatoonTemplate = 'T1LandScout',
         Priority = 827,
         BuilderConditions = {
@@ -256,16 +253,16 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianLandScoutFormBuilders',
+    BuilderGroupName = 'SorianEditLandScoutFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Land Scout Form init',
+        BuilderName = 'SorianEdit T1 Land Scout Form init',
         BuilderConditions = {
             #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
             { SBC, 'LessThanGameTime', { 300 } },
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        PlatoonTemplate = 'T1LandScoutFormSorian',
+        PlatoonTemplate = 'T1LandScoutFormSorianEdit',
         Priority = 10000, #725,
         InstanceCount = 30,
         BuilderData = {
@@ -275,13 +272,13 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Scout Form',
+        BuilderName = 'SorianEdit T1 Land Scout Form',
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY * categories.AIR * categories.TECH3 }},
             { SBC, 'GreaterThanGameTime', { 300 } },
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        PlatoonTemplate = 'T1LandScoutFormSorian',
+        PlatoonTemplate = 'T1LandScoutFormSorianEdit',
         Priority = 10000, #725,
         InstanceCount = 30,
         BuilderData = {
@@ -293,11 +290,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianRadarEngineerBuilders',
+    BuilderGroupName = 'SorianEditRadarEngineerBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Radar Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Radar Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 960,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.COMMAND - categories.TECH1 } },
@@ -317,8 +314,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Radar Engineer - T2',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Radar Engineer - T2',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 960,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 } },
@@ -339,8 +336,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Radar Engineer - T3',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Radar Engineer - T3',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 960,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
@@ -360,8 +357,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Radar Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Radar Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.TECH3 } },
@@ -382,8 +379,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Omni Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Omni Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
@@ -406,10 +403,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianRadarUpgradeBuildersMain',
+    BuilderGroupName = 'SorianEditRadarUpgradeBuildersMain',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Radar Upgrade',
+        BuilderName = 'SorianEdit T1 Radar Upgrade',
         PlatoonTemplate = 'T1RadarUpgrade',
         Priority = 200,
         BuilderConditions = {
@@ -426,7 +423,7 @@ BuilderGroup {
         end,
     },
     Builder {
-        BuilderName = 'Sorian T2 Radar Upgrade',
+        BuilderName = 'SorianEdit T2 Radar Upgrade',
         PlatoonTemplate = 'T2RadarUpgrade',
         Priority = 300,
         BuilderConditions = {
@@ -443,11 +440,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSonarEngineerBuilders',
+    BuilderGroupName = 'SorianEditSonarEngineerBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Sonar Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Sonar Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.COMMAND - categories.TECH1} },
@@ -468,8 +465,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Sonar Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Sonar Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 } },
@@ -493,11 +490,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianCounterIntelBuilders',
+    BuilderGroupName = 'SorianEditCounterIntelBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Counter Intel Near Factory',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Counter Intel Near Factory',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2}},
@@ -521,10 +518,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianRadarUpgradeBuildersExpansion',
+    BuilderGroupName = 'SorianEditRadarUpgradeBuildersExpansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Radar Upgrade Expansion',
+        BuilderName = 'SorianEdit T1 Radar Upgrade Expansion',
         PlatoonTemplate = 'T1RadarUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -540,7 +537,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Radar Upgrade Expansion',
+        BuilderName = 'SorianEdit T2 Radar Upgrade Expansion',
         PlatoonTemplate = 'T2RadarUpgrade',
         Priority = 300,
         BuilderConditions = {
@@ -557,10 +554,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSonarUpgradeBuilders',
+    BuilderGroupName = 'SorianEditSonarUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Sonar Upgrade',
+        BuilderName = 'SorianEdit T1 Sonar Upgrade',
         PlatoonTemplate = 'T1SonarUpgrade',
         Priority = 200,
         BuilderConditions = {
@@ -572,7 +569,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Sonar Upgrade',
+        BuilderName = 'SorianEdit T2 Sonar Upgrade',
         PlatoonTemplate = 'T2SonarUpgrade',
         Priority = 300,
         BuilderConditions = {
@@ -588,10 +585,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSonarUpgradeBuildersSmall',
+    BuilderGroupName = 'SorianEditSonarUpgradeBuildersSmall',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Sonar Upgrade Small',
+        BuilderName = 'SorianEdit T1 Sonar Upgrade Small',
         PlatoonTemplate = 'T1SonarUpgrade',
         Priority = 200,
         BuilderConditions = {
@@ -604,7 +601,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Sonar Upgrade Small',
+        BuilderName = 'SorianEdit T2 Sonar Upgrade Small',
         PlatoonTemplate = 'T2SonarUpgrade',
         Priority = 300,
         BuilderConditions = {

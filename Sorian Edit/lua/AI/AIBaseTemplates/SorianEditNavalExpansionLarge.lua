@@ -1,7 +1,7 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/AIBaseTemplates/SorianNavalExpansionSmall.lua
-#**  Author(s): Michael Robbins aka Sorian
+#**  File     :  /lua/ai/AIBaseTemplates/SorianEditNavalExpansionSmall.lua
+#**  Author(s): Michael Robbins aka SorianEdit
 #**
 #**  Summary  : Manage engineers for a location
 #**
@@ -9,63 +9,63 @@
 #****************************************************************************
 
 BaseBuilderTemplate {
-    BaseTemplateName = 'SorianNavalExpansionLarge',
+    BaseTemplateName = 'SorianEditNavalExpansionLarge',
     Builders = {
         # ==== ECONOMY ==== #
         # Factory upgrades
-        'SorianT1NavalUpgradeBuilders',
-        'SorianT2NavalUpgradeBuilders',
+        'SorianEditT1NavalUpgradeBuilders',
+        'SorianEditT2NavalUpgradeBuilders',
 
         # Pass engineers to main as needed
         #'Engineer Transfers',
 
         # Engineer Builders
-        'SorianEngineerFactoryBuilders',
-        'SorianT1EngineerBuilders',
-        'SorianT2EngineerBuilders',
-        'SorianT3EngineerBuilders',
-        'SorianEngineerNavalFactoryBuilder',
+        'SorianEditEngineerFactoryBuilders',
+        'SorianEditT1EngineerBuilders',
+        'SorianEditT2EngineerBuilders',
+        'SorianEditT3EngineerBuilders',
+        'SorianEditEngineerNavalFactoryBuilder',
 
         # Mass
-        'SorianEngineerMassBuildersLowerPri',
+        'SorianEditEngineerMassBuildersLowerPri',
 
         # ==== EXPANSION ==== #
-        'SorianEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFull',
 
         # ==== DEFENSES ==== #
-        'SorianT1NavalDefenses',
-        'SorianT2NavalDefenses',
-        'SorianT3NavalDefenses',
+        'SorianEditT1NavalDefenses',
+        'SorianEditT2NavalDefenses',
+        'SorianEditT3NavalDefenses',
 
         # ==== ATTACKS ==== #
-        'SorianT1SeaFactoryBuilders',
-        'SorianT2SeaFactoryBuilders',
-        'SorianT3SeaFactoryBuilders',
+        'SorianEditT1SeaFactoryBuilders',
+        'SorianEditT2SeaFactoryBuilders',
+        'SorianEditT3SeaFactoryBuilders',
 
-        'SorianT2SeaStrikeForceBuilders',
+        'SorianEditT2SeaStrikeForceBuilders',
 
-        'SorianSeaHunterFormBuilders',
-        'SorianBigSeaAttackFormBuilders',
-        'SorianMassHunterSeaFormBuilders',
+        'SorianEditSeaHunterFormBuilders',
+        'SorianEditBigSeaAttackFormBuilders',
+        'SorianEditMassHunterSeaFormBuilders',
 
         # ===== STRATEGIES ====== #
 
-        'SorianParagonStrategyExp',
+        'SorianEditParagonStrategyExp',
 
         # == STRATEGY PLATOONS == #
 
-        'SorianBalancedUpgradeBuildersExpansionStrategy',
+        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
 
         # ==== NAVAL EXPANSION ==== #
-        'SorianNavalExpansionBuildersFast',
+        'SorianEditNavalExpansionBuildersFast',
 
         # ==== EXPERIMENTALS ==== #
-        #'SorianMobileNavalExperimentalEngineers',
-        #'SorianMobileNavalExperimentalForm',
+        #'SorianEditMobileNavalExperimentalEngineers',
+        #'SorianEditMobileNavalExperimentalForm',
     },
     NonCheatBuilders = {
-        'SorianSonarEngineerBuilders',
-        'SorianSonarUpgradeBuilders',
+        'SorianEditSonarEngineerBuilders',
+        'SorianEditSonarUpgradeBuilders',
     },
     BaseSettings = {
         EngineerCount = {
@@ -87,7 +87,7 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        if not aiBrain.Sorian then
+        if not aiBrain.SorianEdit then
             return -1
         end
         if markerType != 'Naval Area' then
@@ -104,7 +104,7 @@ BaseBuilderTemplate {
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         local base = ScenarioInfo.ArmySetup[aiBrain.Name].AIBase
 
-        if personality == 'sorianadaptive' and base == 'SorianMainWater' then
+        if personality == 'sorianadaptive' and base == 'SorianEditMainWater' then
             return 250
         end
 

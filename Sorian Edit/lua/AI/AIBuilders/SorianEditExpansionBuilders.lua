@@ -1,16 +1,13 @@
 #****************************************************************************
 #**
-#**  File     :  /lua/AI/AIBuilders/SorianExpansionBuilders.lua
+#**  File     :  /lua/AI/AIBuilders/SorianEditExpansionBuilders.lua
 #**
 #**  Summary  : Builder definitions for expansion bases
 #**
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -21,13 +18,13 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local ExtractorToFactoryRatio = 3
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerExpansionBuildersFull',
+    BuilderGroupName = 'SorianEditEngineerExpansionBuildersFull',
     BuildersType = 'EngineerBuilder',
 
     ########################################
@@ -35,8 +32,8 @@ BuilderGroup {
     ########################################
     ### Start the Factories in the expansion
     Builder {
-        BuilderName = 'Sorian T1VacantStartingAreaEngineer - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 985,
         InstanceCount = 2,
         BuilderConditions = {
@@ -78,8 +75,8 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T1VacantStartingAreaEngineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1VacantStartingAreaEngineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 932,
         InstanceCount = 2,
         BuilderConditions = {
@@ -118,8 +115,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2VacantStartingAreaEngineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2VacantStartingAreaEngineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -159,8 +156,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3VacantStartingAreaEngineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3VacantStartingAreaEngineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -199,7 +196,7 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerExpansionBuildersFull - Naval',
+    BuilderGroupName = 'SorianEditEngineerExpansionBuildersFull - Naval',
     BuildersType = 'EngineerBuilder',
 
     ########################################
@@ -207,8 +204,8 @@ BuilderGroup {
     ########################################
     ### Start the Factories in the expansion
     Builder {
-        BuilderName = 'Sorian T1VacantStartingAreaEngineer - Naval',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Naval',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -247,8 +244,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2VacantStartingAreaEngineer - Naval',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2VacantStartingAreaEngineer - Naval',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -288,8 +285,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3VacantStartingAreaEngineer - Naval',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3VacantStartingAreaEngineer - Naval',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -328,15 +325,15 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerExpansionBuildersSmall',
+    BuilderGroupName = 'SorianEditEngineerExpansionBuildersSmall',
     BuildersType = 'EngineerBuilder',
 
     ########################################
     ## Builds expansion bases
     ########################################
     Builder {
-        BuilderName = 'Sorian T1 Vacant Expansion Area Engineer(Full Base)',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Full Base)',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 2,
         BuilderConditions = {
@@ -376,8 +373,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Vacant Expansion Area Engineer(Fire base)',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Fire base)',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0, #850,
         InstanceCount = 2,
         BuilderConditions = {
@@ -412,8 +409,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2VacantExpansiongAreaEngineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2VacantExpansiongAreaEngineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 2,
         BuilderConditions = {
@@ -451,8 +448,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3VacantExpansionAreaEngineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3VacantExpansionAreaEngineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 2,
         BuilderConditions = {
@@ -493,15 +490,15 @@ BuilderGroup {
 
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFirebaseBuilders',
+    BuilderGroupName = 'SorianEditEngineerFirebaseBuilders',
     BuildersType = 'EngineerBuilder',
 
     ########################################
     ## Builds fire bases
     ########################################
     Builder {
-        BuilderName = 'Sorian T2 Expansion Area Firebase Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Expansion Area Firebase Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 851,
         InstanceCount = 1,
         BuilderConditions = {
@@ -545,8 +542,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Cybran',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Cybran',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -595,8 +592,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Aeon',
-        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Aeon',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -644,8 +641,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - UEF',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - UEF',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -694,8 +691,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Seraphim',
-        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Seraphim',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -743,8 +740,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Cybran - DP',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Cybran - DP',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -792,8 +789,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Aeon - DP',
-        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Aeon - DP',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -841,8 +838,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - UEF - DP',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - UEF - DP',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -890,8 +887,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Seraphim - DP',
-        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Seraphim - DP',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {

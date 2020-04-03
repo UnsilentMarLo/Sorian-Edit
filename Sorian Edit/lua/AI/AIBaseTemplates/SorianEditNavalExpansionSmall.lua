@@ -1,7 +1,7 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/AIBaseTemplates/SorianNavalExpansionSmall.lua
-#**  Author(s): Michael Robbins aka Sorian
+#**  File     :  /lua/ai/AIBaseTemplates/SorianEditNavalExpansionSmall.lua
+#**  Author(s): Michael Robbins aka SorianEdit
 #**
 #**  Summary  : Manage engineers for a location
 #**
@@ -9,60 +9,60 @@
 #****************************************************************************
 
 BaseBuilderTemplate {
-    BaseTemplateName = 'SorianNavalExpansionSmall',
+    BaseTemplateName = 'SorianEditNavalExpansionSmall',
     Builders = {
         # ==== ECONOMY ==== #
         # Factory upgrades
-        'SorianT1BalancedUpgradeBuilders',
-        'SorianT2BalancedUpgradeBuilders',
+        'SorianEditT1BalancedUpgradeBuilders',
+        'SorianEditT2BalancedUpgradeBuilders',
 
         # Engineer Builders
-        'SorianEngineerFactoryBuilders',
-        'SorianT1EngineerBuilders',
-        'SorianT2EngineerBuilders',
-        'SorianT3EngineerBuilders',
-        'SorianEngineerNavalFactoryBuilder',
+        'SorianEditEngineerFactoryBuilders',
+        'SorianEditT1EngineerBuilders',
+        'SorianEditT2EngineerBuilders',
+        'SorianEditT3EngineerBuilders',
+        'SorianEditEngineerNavalFactoryBuilder',
 
         # Mass
-        'SorianEngineerMassBuildersLowerPri',
+        'SorianEditEngineerMassBuildersLowerPri',
 
         # ==== EXPANSION ==== #
-        'SorianEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFull',
 
         # ==== DEFENSES ==== #
-        'SorianT1NavalDefenses',
-        'SorianT2NavalDefenses',
-        'SorianT3NavalDefenses',
+        'SorianEditT1NavalDefenses',
+        'SorianEditT2NavalDefenses',
+        'SorianEditT3NavalDefenses',
 
         # ==== ATTACKS ==== #
-        'SorianT1SeaFactoryBuilders',
-        'SorianT2SeaFactoryBuilders',
-        'SorianT3SeaFactoryBuilders',
+        'SorianEditT1SeaFactoryBuilders',
+        'SorianEditT2SeaFactoryBuilders',
+        'SorianEditT3SeaFactoryBuilders',
 
-        'SorianT2SeaStrikeForceBuilders',
+        'SorianEditT2SeaStrikeForceBuilders',
 
-        'SorianSeaHunterFormBuilders',
-        'SorianFrequentSeaAttackFormBuilders',
-        'SorianMassHunterSeaFormBuilders',
+        'SorianEditSeaHunterFormBuilders',
+        'SorianEditFrequentSeaAttackFormBuilders',
+        'SorianEditMassHunterSeaFormBuilders',
 
         # ===== STRATEGIES ====== #
 
-        'SorianParagonStrategyExp',
+        'SorianEditParagonStrategyExp',
 
         # == STRATEGY PLATOONS == #
 
-        'SorianBalancedUpgradeBuildersExpansionStrategy',
+        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
 
         # ==== NAVAL EXPANSION ==== #
-        'SorianNavalExpansionBuilders',
+        'SorianEditNavalExpansionBuilders',
 
         # ==== EXPERIMENTALS ==== #
-        #'SorianMobileNavalExperimentalEngineers',
-        #'SorianMobileNavalExperimentalForm',
+        #'SorianEditMobileNavalExperimentalEngineers',
+        #'SorianEditMobileNavalExperimentalForm',
     },
     NonCheatBuilders = {
-        'SorianSonarEngineerBuilders',
-        'SorianSonarUpgradeBuildersSmall',
+        'SorianEditSonarEngineerBuilders',
+        'SorianEditSonarUpgradeBuildersSmall',
     },
     BaseSettings = {
         EngineerCount = {
@@ -84,7 +84,7 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        if not aiBrain.Sorian then
+        if not aiBrain.SorianEdit then
             return -1
         end
         if markerType != 'Naval Area' then

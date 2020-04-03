@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianFactoryConstructionBuilders.lua
+#**  File     :  /lua/ai/SorianEditFactoryConstructionBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,20 +19,20 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 local ExtractorToFactoryRatio = 2.2
 
 BuilderGroup {
-    BuilderGroupName = 'SorianLandInitialFactoryConstruction',
+    BuilderGroupName = 'SorianEditLandInitialFactoryConstruction',
     BuildersType = 'EngineerBuilder',
     # =======================================
     #     Land Factory Builders - Initial
     # =======================================
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Builder - Initial',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Builder - Initial',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -56,11 +53,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryConstructionLandHigherPriority',
+    BuilderGroupName = 'SorianEditEngineerFactoryConstructionLandHigherPriority',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'SorianT2 Land Factory Builder Higher Pri',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEditT2 Land Factory Builder Higher Pri',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -84,8 +81,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianT3 Land Factory Builder Higher Pri',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEditT3 Land Factory Builder Higher Pri',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -108,8 +105,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianCDR T1 Land Factory Higher Pri - Init',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEditCDR T1 Land Factory Higher Pri - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -131,8 +128,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Higher Pri - Init',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Higher Pri - Init',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, #950,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -154,8 +151,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Higher Pri',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Higher Pri',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, #950,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -179,8 +176,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Higher Pri',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Higher Pri',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, #950,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -202,8 +199,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianCDR T1 Land Factory Higher Pri',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEditCDR T1 Land Factory Higher Pri',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -227,8 +224,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianCDR T1 Air Factory Higher Pri',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEditCDR T1 Air Factory Higher Pri',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -252,14 +249,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryConstruction Balance',
+    BuilderGroupName = 'SorianEditEngineerFactoryConstruction Balance',
     BuildersType = 'EngineerBuilder',
     # =============================
     #     Land Factory Builders
     # =============================
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Builder Balance',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Builder Balance',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -282,8 +279,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR T1 Land Factory Balance',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Land Factory Balance',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -308,8 +305,8 @@ BuilderGroup {
     #     Air Factory Builders
     # ============================
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Builder Balance',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Builder Balance',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 906,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -333,8 +330,8 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian CDR T1 Air Factory Balance',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Air Factory Balance',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 906,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -357,11 +354,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryConstruction Air',
+    BuilderGroupName = 'SorianEditEngineerFactoryConstruction Air',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Builder - Air',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Builder - Air',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -384,8 +381,8 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian CDR T1 Air Factory - Air',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Air Factory - Air',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -407,14 +404,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryConstruction',
+    BuilderGroupName = 'SorianEditEngineerFactoryConstruction',
     BuildersType = 'EngineerBuilder',
     # =============================
     #     Land Factory Builders
     # =============================
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Builder',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -436,8 +433,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian CDR T1 Land Factory',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Land Factory',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -457,8 +454,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Factory Builder - Dead ACU',
-        PlatoonTemplate = 'AnyEngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Land Factory Builder - Dead ACU',
+        PlatoonTemplate = 'AnyEngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -485,8 +482,8 @@ BuilderGroup {
     #     Air Factory Builders
     # ============================
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Builder',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -508,8 +505,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR T1 Air Factory',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Air Factory',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
@@ -529,8 +526,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Builder - Dead ACU',
-        PlatoonTemplate = 'AnyEngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Builder - Dead ACU',
+        PlatoonTemplate = 'AnyEngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -557,8 +554,8 @@ BuilderGroup {
     #     Air Factories + Transport Need
     # ====================================== #
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Transport Needed',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Transport Needed',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3, ENGINEER TECH2' } },
@@ -587,8 +584,8 @@ BuilderGroup {
     #     Quantum Gate Builders
     # =============================
     Builder {
-        BuilderName = 'Sorian T3 Gate Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Gate Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950, #850,
         BuilderConditions = {
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3' }},

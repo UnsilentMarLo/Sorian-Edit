@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianStrategyPlatoonBuilders.lua
+#**  File     :  /lua/ai/SorianEditStrategyPlatoonBuilders.lua
 #**
 #**  Summary  : Default Naval structure builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -21,15 +18,15 @@ local EBC = '/lua/editor/EconomyBuildConditions.lua'
 local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/SorianEdit edit/lua/editor/SorianEditEditBuildConditions.lua'
+local SIBC = '/mods/SorianEdit edit/lua/editor/SorianEditEditInstantBuildConditions.lua'
 
 BuilderGroup {
-    BuilderGroupName = 'SorianExcessMassBuilders',
+    BuilderGroupName = 'SorianEditExcessMassBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Land Exp1 Engineer - Excess Mass',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer - Excess Mass',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 5,
@@ -62,8 +59,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Land Exp1 Engineer - Large Map - Excess Mass',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer - Large Map - Excess Mass',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 979,
         InstanceCount = 5,
@@ -96,8 +93,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Mobile Land - Excess Mass',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Land - Excess Mass',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
         ActivePriority = 981,
         InstanceCount = 15,
@@ -119,8 +116,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Exp1 Engineer 1 - Excess Mass',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Excess Mass',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 5,
@@ -151,8 +148,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Exp1 Engineer 1 - Small Map - Excess Mass',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Small Map - Excess Mass',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 979,
         InstanceCount = 5,
@@ -183,8 +180,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Experimental Mobile Air - Excess Mass',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Air - Excess Mass',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
         Priority = 981,
         InstanceCount = 15,
@@ -207,10 +204,10 @@ BuilderGroup {
     },
 }
 BuilderGroup {
-    BuilderGroupName = 'SorianT1BomberHighPrio',
+    BuilderGroupName = 'SorianEditT1BomberHighPrio',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Bomber - High Prio',
+        BuilderName = 'SorianEdit T1 Air Bomber - High Prio',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 0.1,
         ActivePriority = 549,
@@ -227,10 +224,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1Transport - GG',
+    BuilderGroupName = 'SorianEditT1Transport - GG',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Transport - GG',
+        BuilderName = 'SorianEdit T1 Air Transport - GG',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 0.1,
         ActivePriority = 1500,
@@ -241,7 +238,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Bot - GG',
+        BuilderName = 'SorianEdit T1 Bot - GG',
         PlatoonTemplate = 'T1LandDFBot',
         Priority = 0.1,
         ActivePriority = 825,
@@ -253,11 +250,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianAirFactoryHighPrio',
+    BuilderGroupName = 'SorianEditAirFactoryHighPrio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Factory Builder - High Prio',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Air Factory Builder - High Prio',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 1500,
         BuilderConditions = {
@@ -275,8 +272,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR T1 Air Factory Builder - High Prio',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Air Factory Builder - High Prio',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 1500,
         BuilderConditions = {
@@ -296,10 +293,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianGGFormBuilders',
+    BuilderGroupName = 'SorianEditGGFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian GG Force',
+        BuilderName = 'SorianEdit GG Force',
         PlatoonTemplate = 'T1GhettoSquad',
         Priority = 0.1,
         ActivePriority = 1500,
@@ -331,11 +328,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2BomberHighPrio',
+    BuilderGroupName = 'SorianEditT2BomberHighPrio',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Air Bomber - High Prio',
-        PlatoonTemplate = 'T2BomberSorian',
+        BuilderName = 'SorianEdit T2 Air Bomber - High Prio',
+        PlatoonTemplate = 'T2BomberSorianEdit',
         Priority = 0.1,
         ActivePriority = 649,
         BuilderType = 'Air',
@@ -351,10 +348,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3BomberHighPrio',
+    BuilderGroupName = 'SorianEditT3BomberHighPrio',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber - High Prio',
+        BuilderName = 'SorianEdit T3 Air Bomber - High Prio',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 0.1,
         ActivePriority = 754,
@@ -369,11 +366,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3BomberSpecialHighPrio',
+    BuilderGroupName = 'SorianEditT3BomberSpecialHighPrio',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber Special - High Prio',
-        PlatoonTemplate = 'T3AirBomberSpecialSorian',
+        BuilderName = 'SorianEdit T3 Air Bomber Special - High Prio',
+        PlatoonTemplate = 'T3AirBomberSpecialSorianEdit',
         Priority = 0.1,
         ActivePriority = 754,
         BuilderType = 'Air',
@@ -387,10 +384,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1GunshipHighPrio',
+    BuilderGroupName = 'SorianEditT1GunshipHighPrio',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1Gunship - High Prio',
+        BuilderName = 'SorianEdit T1Gunship - High Prio',
         PlatoonTemplate = 'T1Gunship',
         Priority = 0.1,
         ActivePriority = 549,
@@ -407,12 +404,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianBomberLarge',
+    BuilderGroupName = 'SorianEditBomberLarge',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Bomber Attack - Large',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit Bomber Attack - Large',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -439,9 +436,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Bomber Attack - Large T1',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit Bomber Attack - Large T1',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -470,12 +467,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianBomberBig',
+    BuilderGroupName = 'SorianEditBomberBig',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Bomber Attack - Big',
-        PlatoonTemplate = 'BomberAttackSorianBig',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit Bomber Attack - Big',
+        PlatoonTemplate = 'BomberAttackSorianEditBig',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -504,12 +501,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianGunShipLarge',
+    BuilderGroupName = 'SorianEditGunShipLarge',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian GunShip Attack - Large',
-        PlatoonTemplate = 'GunshipSFSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit GunShip Attack - Large',
+        PlatoonTemplate = 'GunshipSFSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -542,11 +539,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3ArtyBuildersHighPrio',
+    BuilderGroupName = 'SorianEditT3ArtyBuildersHighPrio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Arty Engineer - High Prio',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Arty Engineer - High Prio',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         BuilderConditions = {
@@ -567,8 +564,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Build Arty - High Prio',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Build Arty - High Prio',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
         ActivePriority = 981,
         InstanceCount = 3,
@@ -590,11 +587,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3FBBuildersHighPrio',
+    BuilderGroupName = 'SorianEditT3FBBuildersHighPrio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Cybran - HP',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Cybran - HP',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -637,8 +634,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Aeon - HP',
-        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Aeon - HP',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -680,8 +677,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - UEF - HP',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - UEF - HP',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -724,8 +721,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Seraphim - HP',
-        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Seraphim - HP',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -767,8 +764,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -810,8 +807,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
-        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -853,8 +850,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - UEF - DP - HP',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - UEF - DP - HP',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -896,8 +893,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
-        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -941,11 +938,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2FirebaseBuildersHighPrio',
+    BuilderGroupName = 'SorianEditT2FirebaseBuildersHighPrio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Firebase Engineer - High Prio',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Firebase Engineer - High Prio',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -988,11 +985,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianNukeBuildersHighPrio',
+    BuilderGroupName = 'SorianEditNukeBuildersHighPrio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Nuke Engineer - High Prio',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Nuke Engineer - High Prio',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         BuilderConditions = {
@@ -1013,8 +1010,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Build Nuke - High Prio',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Build Nuke - High Prio',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
         ActivePriority = 981,
         InstanceCount = 3,
@@ -1034,8 +1031,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Build Nuke Missile - High Prio',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Build Nuke Missile - High Prio',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
         ActivePriority = 981,
         InstanceCount = 3,
@@ -1057,10 +1054,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Extractor Upgrades Strategy',
+    BuilderGroupName = 'SorianEdit Extractor Upgrades Strategy',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Strategy',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Strategy',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 5,
         Priority = 0.1,
@@ -1072,7 +1069,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Strategy',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Strategy',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 0.1,
         ActivePriority = 200,
@@ -1086,10 +1083,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianBalancedUpgradeBuildersExpansionStrategy',
+    BuilderGroupName = 'SorianEditBalancedUpgradeBuildersExpansionStrategy',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Balanced T1 Land Factory Upgrade Expansion Strategy',
+        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Expansion Strategy',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 200,
@@ -1103,7 +1100,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BalancedT1AirFactoryUpgrade Expansion Strategy',
+        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade Expansion Strategy',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 200,
@@ -1118,7 +1115,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T1 Sea Factory Upgrade Expansion Strategy',
+        BuilderName = 'SorianEdit Balanced T1 Sea Factory Upgrade Expansion Strategy',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 200,
@@ -1131,7 +1128,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Land Factory Upgrade Expansion Strategy',
+        BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade Expansion Strategy',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 300,
@@ -1146,7 +1143,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Air Factory Upgrade Expansion Strategy',
+        BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade Expansion Strategy',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 300,
@@ -1160,7 +1157,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Sea Factory Upgrade Expansion Strategy',
+        BuilderName = 'SorianEdit Balanced T2 Sea Factory Upgrade Expansion Strategy',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 0.1,
         ActivePriority = 300,
@@ -1175,11 +1172,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerExpansionBuildersStrategy',
+    BuilderGroupName = 'SorianEditEngineerExpansionBuildersStrategy',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1VacantStartingAreaEngineer - HP Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - HP Strategy',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 985,
         InstanceCount = 2,
@@ -1221,8 +1218,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1VacantStartingAreaEngineer Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1VacantStartingAreaEngineer Strategy',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 932,
         InstanceCount = 2,
@@ -1264,8 +1261,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 922,
         InstanceCount = 2,
@@ -1309,11 +1306,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1DefensivePoints - High Prio',
+    BuilderGroupName = 'SorianEditT1DefensivePoints - High Prio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 - High Prio Defensive Point Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 - High Prio Defensive Point Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         BuilderConditions = {
@@ -1354,11 +1351,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2DefensivePoints - High Prio',
+    BuilderGroupName = 'SorianEditT2DefensivePoints - High Prio',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T2 - High Prio Defensive Point Engineer UEF',
-        PlatoonTemplate = 'UEFT2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 - High Prio Defensive Point Engineer UEF',
+        PlatoonTemplate = 'UEFT2EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -1403,8 +1400,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 - High Prio Defensive Point Engineer Cybran',
-        PlatoonTemplate = 'CybranT2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 - High Prio Defensive Point Engineer Cybran',
+        PlatoonTemplate = 'CybranT2EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -1449,8 +1446,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 - High Prio Defensive Point Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 - High Prio Defensive Point Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0.1,
         ActivePriority = 980,
         InstanceCount = 1,
@@ -1497,12 +1494,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUUpgrades - Rush',
+    BuilderGroupName = 'SorianEditACUUpgrades - Rush',
     BuildersType = 'EngineerBuilder', #'PlatoonFormBuilder',
     # UEF
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade - Rush - Gun',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit UEF CDR Upgrade - Rush - Gun',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
@@ -1522,8 +1519,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade - Rush - Eng',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit UEF CDR Upgrade - Rush - Eng',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1543,8 +1540,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade - Rush - Shield',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit UEF CDR Upgrade - Rush - Shield',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1566,8 +1563,8 @@ BuilderGroup {
 
     # Aeon
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade - Rush - Gun',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Aeon CDR Upgrade - Rush - Gun',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
@@ -1587,8 +1584,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade - Rush - Eng',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Aeon CDR Upgrade - Rush - Eng',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1608,8 +1605,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade T3 - Rush - Shield',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Aeon CDR Upgrade T3 - Rush - Shield',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1631,8 +1628,8 @@ BuilderGroup {
 
     # Cybran
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade - Rush - Gun',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Cybran CDR Upgrade - Rush - Gun',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
@@ -1652,8 +1649,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade - Rush - Eng',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Cybran CDR Upgrade - Rush - Eng',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1673,8 +1670,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade - Rush - Laser',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Cybran CDR Upgrade - Rush - Laser',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1695,8 +1692,8 @@ BuilderGroup {
 
     # Seraphim
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade - Rush - Gun',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Seraphim CDR Upgrade - Rush - Gun',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
@@ -1716,8 +1713,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade - Rush - Eng',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Seraphim CDR Upgrade - Rush - Eng',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1737,8 +1734,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade - Rush - Regen',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Seraphim CDR Upgrade - Rush - Regen',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},

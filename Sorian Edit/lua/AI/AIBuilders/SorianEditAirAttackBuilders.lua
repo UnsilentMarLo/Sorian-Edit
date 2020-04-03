@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianAirAttackBuilders.lua
+#**  File     :  /lua/ai/SorianEditAirAttackBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,8 +19,8 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
@@ -63,10 +60,10 @@ function AirAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1AirFactoryBuilders',
+    BuilderGroupName = 'SorianEditT1AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Bomber',
+        BuilderName = 'SorianEdit T1 Air Bomber',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 500,
         BuilderType = 'Air',
@@ -80,7 +77,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Bomber - Stomp Enemy',
+        BuilderName = 'SorianEdit T1 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 549,
         BuilderType = 'Air',
@@ -95,7 +92,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1Gunship',
+        BuilderName = 'SorianEdit T1Gunship',
         PlatoonTemplate = 'T1Gunship',
         Priority = 500,
         BuilderType = 'Air',
@@ -109,7 +106,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Fighter',
+        BuilderName = 'SorianEdit T1 Air Fighter',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #500,
         BuilderConditions = {
@@ -125,7 +122,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Bomber 2',
+        BuilderName = 'SorianEdit T1 Air Bomber 2',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 500,
         BuilderType = 'Air',
@@ -140,7 +137,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1Gunship2',
+        BuilderName = 'SorianEdit T1Gunship2',
         PlatoonTemplate = 'T1Gunship',
         Priority = 500,
         BuilderType = 'Air',
@@ -156,10 +153,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1AntiAirBuilders',
+    BuilderGroupName = 'SorianEditT1AntiAirBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Interceptors',
+        BuilderName = 'SorianEdit T1 Interceptors',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 555,
         BuilderConditions = {
@@ -177,7 +174,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Interceptors - Enemy Air',
+        BuilderName = 'SorianEdit T1 Interceptors - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 560,
         BuilderConditions = {
@@ -195,7 +192,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Interceptors - Enemy Air Extra',
+        BuilderName = 'SorianEdit T1 Interceptors - Enemy Air Extra',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #560,
         BuilderConditions = {
@@ -212,7 +209,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Interceptors - Enemy Air Extra 2',
+        BuilderName = 'SorianEdit T1 Interceptors - Enemy Air Extra 2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #560,
         BuilderConditions = {
@@ -232,10 +229,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2AirFactoryBuilders',
+    BuilderGroupName = 'SorianEditT2AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Air Gunship',
+        BuilderName = 'SorianEdit T2 Air Gunship',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 600,
         BuilderType = 'Air',
@@ -248,7 +245,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Gunship - Anti Navy',
+        BuilderName = 'SorianEdit T2 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 605,
         BuilderType = 'Air',
@@ -262,8 +259,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Gunship - Stomp Enemy',
-        PlatoonTemplate = 'T2BomberSorian',
+        BuilderName = 'SorianEdit T2 Air Gunship - Stomp Enemy',
+        PlatoonTemplate = 'T2BomberSorianEdit',
         Priority = 649,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -276,7 +273,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2FighterBomber',
+        BuilderName = 'SorianEdit T2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 600,
         BuilderType = 'Air',
@@ -289,7 +286,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Fighter - T2',
+        BuilderName = 'SorianEdit T1 Air Fighter - T2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #600,
         BuilderConditions = {
@@ -306,7 +303,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Gunship2',
+        BuilderName = 'SorianEdit T2 Air Gunship2',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 600,
         BuilderType = 'Air',
@@ -319,7 +316,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2FighterBomber2',
+        BuilderName = 'SorianEdit T2FighterBomber2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 600,
         BuilderType = 'Air',
@@ -332,7 +329,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2FighterBomber2 - Exp Response',
+        BuilderName = 'SorianEdit T2FighterBomber2 - Exp Response',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 661,
         BuilderType = 'Air',
@@ -349,7 +346,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2FighterBomber2 - Exp Response 2',
+        BuilderName = 'SorianEdit T2FighterBomber2 - Exp Response 2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 661,
         BuilderType = 'Air',
@@ -366,7 +363,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Torpedo Bomber',
+        BuilderName = 'SorianEdit T2 Torpedo Bomber',
         PlatoonTemplate = 'T2AirTorpedoBomber',
         Priority = 649,
         BuilderType = 'Air',
@@ -383,10 +380,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2AntiAirBuilders',
+    BuilderGroupName = 'SorianEditT2AntiAirBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2AntiAirPlanes Initial Higher Pri',
+        BuilderName = 'SorianEdit T2AntiAirPlanes Initial Higher Pri',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 655,
         BuilderConditions = {
@@ -404,7 +401,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2AntiAirPlanes - Enemy Air',
+        BuilderName = 'SorianEdit T2AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 660,
         BuilderConditions = {
@@ -422,7 +419,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2AntiAirPlanes - Enemy Air Extra',
+        BuilderName = 'SorianEdit T2AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #660,
         BuilderConditions = {
@@ -439,7 +436,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2AntiAirPlanes - Enemy Air Extra 2',
+        BuilderName = 'SorianEdit T2AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 0, #660,
         BuilderConditions = {
@@ -459,10 +456,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3AirFactoryBuilders',
+    BuilderGroupName = 'SorianEditT3AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Air Gunship',
+        BuilderName = 'SorianEdit T3 Air Gunship',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 700,
         BuilderType = 'Air',
@@ -474,7 +471,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Gunship - Anti Navy',
+        BuilderName = 'SorianEdit T3 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 705,
         BuilderType = 'Air',
@@ -487,7 +484,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber',
+        BuilderName = 'SorianEdit T3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 700,
         BuilderType = 'Air',
@@ -499,7 +496,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber - Exp Response',
+        BuilderName = 'SorianEdit T3 Air Bomber - Exp Response',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 761,
         BuilderType = 'Air',
@@ -515,7 +512,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber - Stomp Enemy',
+        BuilderName = 'SorianEdit T3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 754,
         BuilderType = 'Air',
@@ -529,7 +526,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Gunship2',
+        BuilderName = 'SorianEdit T3 Air Gunship2',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 700,
         BuilderType = 'Air',
@@ -541,7 +538,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Bomber2',
+        BuilderName = 'SorianEdit T3 Air Bomber2',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 700,
         BuilderType = 'Air',
@@ -553,7 +550,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Fighter',
+        BuilderName = 'SorianEdit T3 Air Fighter',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 0, #700,
         BuilderConditions = {
@@ -567,7 +564,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Torpedo Bomber',
+        BuilderName = 'SorianEdit T3 Torpedo Bomber',
         PlatoonTemplate = 'T3TorpedoBomber',
         Priority = 754,
         BuilderType = 'Air',
@@ -582,10 +579,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3AntiAirBuilders',
+    BuilderGroupName = 'SorianEditT3AntiAirBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3AntiAirPlanes Initial',
+        BuilderName = 'SorianEdit T3AntiAirPlanes Initial',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 755,
         BuilderConditions = {
@@ -601,7 +598,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3AntiAirPlanes - Enemy Air',
+        BuilderName = 'SorianEdit T3AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 760,
         BuilderConditions = {
@@ -617,7 +614,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3AntiAirPlanes - Enemy Air Extra',
+        BuilderName = 'SorianEdit T3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 0, #760,
         BuilderConditions = {
@@ -632,7 +629,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3AntiAirPlanes - Enemy Air Extra 2',
+        BuilderName = 'SorianEdit T3AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 0, #760,
         BuilderConditions = {
@@ -648,7 +645,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3AntiAirPlanes - Exp Response',
+        BuilderName = 'SorianEdit T3AntiAirPlanes - Exp Response',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 761,
         BuilderConditions = {
@@ -667,10 +664,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTransportFactoryBuilders - Rush',
+    BuilderGroupName = 'SorianEditTransportFactoryBuilders - Rush',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Transport - Rush',
+        BuilderName = 'SorianEdit T1 Air Transport - Rush',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 558,
         BuilderConditions = {
@@ -690,7 +687,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport - Rush',
+        BuilderName = 'SorianEdit T2 Air Transport - Rush',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 658,
         BuilderConditions = {
@@ -710,7 +707,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport - Rush',
+        BuilderName = 'SorianEdit T3 Air Transport - Rush',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 758,
         BuilderConditions = {
@@ -729,7 +726,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport Default - Rush',
+        BuilderName = 'SorianEdit T1 Air Transport Default - Rush',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 500,
         BuilderConditions = {
@@ -743,7 +740,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport Default - Rush',
+        BuilderName = 'SorianEdit T2 Air Transport Default - Rush',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 600,
         BuilderConditions = {
@@ -757,7 +754,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport Default - Rush',
+        BuilderName = 'SorianEdit T3 Air Transport Default - Rush',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 700,
         BuilderConditions = {
@@ -773,10 +770,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTransportFactoryBuilders - Air',
+    BuilderGroupName = 'SorianEditTransportFactoryBuilders - Air',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Transport - Air',
+        BuilderName = 'SorianEdit T1 Air Transport - Air',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 558,
         BuilderConditions = {
@@ -795,7 +792,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport - Air',
+        BuilderName = 'SorianEdit T2 Air Transport - Air',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 658,
         BuilderConditions = {
@@ -814,7 +811,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport - Air',
+        BuilderName = 'SorianEdit T3 Air Transport - Air',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 758,
         BuilderConditions = {
@@ -832,7 +829,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport Default - Air - init',
+        BuilderName = 'SorianEdit T1 Air Transport Default - Air - init',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 701,
         BuilderConditions = {
@@ -847,7 +844,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport Default - Air',
+        BuilderName = 'SorianEdit T1 Air Transport Default - Air',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 500,
         BuilderConditions = {
@@ -860,7 +857,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport Default - Air',
+        BuilderName = 'SorianEdit T2 Air Transport Default - Air',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 600,
         BuilderConditions = {
@@ -873,7 +870,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport Default - Air',
+        BuilderName = 'SorianEdit T3 Air Transport Default - Air',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 700,
         BuilderConditions = {
@@ -888,10 +885,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTransportFactoryBuilders',
+    BuilderGroupName = 'SorianEditTransportFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Air Transport',
+        BuilderName = 'SorianEdit T1 Air Transport',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 558,
         BuilderConditions = {
@@ -910,7 +907,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport',
+        BuilderName = 'SorianEdit T2 Air Transport',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 658,
         BuilderConditions = {
@@ -929,7 +926,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport',
+        BuilderName = 'SorianEdit T3 Air Transport',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 758,
         BuilderConditions = {
@@ -947,7 +944,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport Default - init',
+        BuilderName = 'SorianEdit T1 Air Transport Default - init',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 701,
         BuilderConditions = {
@@ -962,7 +959,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport Default',
+        BuilderName = 'SorianEdit T1 Air Transport Default',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 500,
         BuilderConditions = {
@@ -975,7 +972,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport Default',
+        BuilderName = 'SorianEdit T2 Air Transport Default',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 600,
         BuilderConditions = {
@@ -988,7 +985,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport Default',
+        BuilderName = 'SorianEdit T3 Air Transport Default',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 700,
         BuilderConditions = {
@@ -1001,7 +998,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Transport HighNeed',
+        BuilderName = 'SorianEdit T1 Air Transport HighNeed',
         PlatoonTemplate = 'T1AirTransport',
         Priority = 700,
         BuilderConditions = {
@@ -1016,7 +1013,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Transport HighNeed',
+        BuilderName = 'SorianEdit T2 Air Transport HighNeed',
         PlatoonTemplate = 'T2AirTransport',
         Priority = 800,
         BuilderConditions = {
@@ -1031,7 +1028,7 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Transport HighNeed',
+        BuilderName = 'SorianEdit T3 Air Transport HighNeed',
         PlatoonTemplate = 'T3AirTransport',
         Priority = 900,
         BuilderConditions = {
@@ -1048,13 +1045,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianUnitCapAirAttackFormBuilders',
+    BuilderGroupName = 'SorianEditUnitCapAirAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Unit Cap Default Bomber Attack',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit Unit Cap Default Bomber Attack',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -1080,10 +1077,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian GunshipAttackT1Cap',
-        PlatoonTemplate = 'GunshipAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit GunshipAttackT1Cap',
+        PlatoonTemplate = 'GunshipAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -1099,13 +1096,13 @@ BuilderGroup {
 
 
 BuilderGroup {
-    BuilderGroupName = 'SorianFrequentAirAttackFormBuilders',
+    BuilderGroupName = 'SorianEditFrequentAirAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian BomberAttackT1Frequent',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT1Frequent',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1135,10 +1132,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT1Frequent - Anti-Land',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1168,10 +1165,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT1Frequent - Anti-Resource',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT1Frequent - Anti-Resource',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 101,
         InstanceCount = 6,
         BuilderType = 'Any',
@@ -1202,10 +1199,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT1Frequent - Extra',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT1Frequent - Extra',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 95,
         InstanceCount = 10,
         BuilderType = 'Any',
@@ -1235,10 +1232,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian GunshipAttackT1Frequent',
-        PlatoonTemplate = 'GunshipAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit GunshipAttackT1Frequent',
+        PlatoonTemplate = 'GunshipAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 6, #2
         BuilderType = 'Any',
@@ -1253,9 +1250,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Torpedo Bombers',
-        PlatoonTemplate = 'TorpedoBomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit Torpedo Bombers',
+        PlatoonTemplate = 'TorpedoBomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         Priority = 100,
         InstanceCount = 5,
         BuilderConditions = {
@@ -1265,10 +1262,10 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT2Frequent',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT2Frequent',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1298,10 +1295,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT2Frequent - Anti-Land',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT2Frequent - Anti-Land',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1331,10 +1328,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT2Frequent - Anti-Resource',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT2Frequent - Anti-Resource',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 101,
         InstanceCount = 6,
         BuilderType = 'Any',
@@ -1366,10 +1363,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT2Frequent - Extra',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT2Frequent - Extra',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 95,
         InstanceCount = 10,
         BuilderType = 'Any',
@@ -1399,10 +1396,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian GunshipAttackT2Frequent',
-        PlatoonTemplate = 'GunshipAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit GunshipAttackT2Frequent',
+        PlatoonTemplate = 'GunshipAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 6, #2
         BuilderType = 'Any',
@@ -1417,10 +1414,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT3Frequent',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT3Frequent',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1449,10 +1446,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT3Frequent - Anti-Land',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1481,10 +1478,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackT3Frequent - Anti-Resource',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttackT3Frequent - Anti-Resource',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 101,
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -1515,10 +1512,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian GunshipAttackT3Frequent',
-        PlatoonTemplate = 'GunshipAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit GunshipAttackT3Frequent',
+        PlatoonTemplate = 'GunshipAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 6, #2
         BuilderType = 'Any',
@@ -1534,12 +1531,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianExpResponseFormBuilders',
+    BuilderGroupName = 'SorianEditExpResponseFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian BomberAttackExpResponse',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit BomberAttackExpResponse',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 5,
@@ -1570,9 +1567,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian FighterAttackExpResponse',
-        PlatoonTemplate = 'AirAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit FighterAttackExpResponse',
+        PlatoonTemplate = 'AirAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 10,
@@ -1596,9 +1593,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian BomberAttackThreatResponse',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit BomberAttackThreatResponse',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 5,
@@ -1630,9 +1627,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2/T3 Bomber Attack Weak Enemy Response',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1668,9 +1665,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Bomber Attack Weak Enemy Response',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit T1 Bomber Attack Weak Enemy Response',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1705,9 +1702,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2/T3 GunShip Attack Weak Enemy Response',
-        PlatoonTemplate = 'GunshipSFSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit T2/T3 GunShip Attack Weak Enemy Response',
+        PlatoonTemplate = 'GunshipSFSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1743,9 +1740,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 GunShip Attack Weak Enemy Response',
-        PlatoonTemplate = 'GunshipSFSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit T1 GunShip Attack Weak Enemy Response',
+        PlatoonTemplate = 'GunshipSFSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1780,9 +1777,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Air Attack Threat',
+        BuilderName = 'SorianEdit T1 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1799,9 +1796,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Air Attack Threat',
+        BuilderName = 'SorianEdit T2 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1818,9 +1815,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Air Attack Threat',
+        BuilderName = 'SorianEdit T3 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1838,12 +1835,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianAntiNavyAirFormBuilders',
+    BuilderGroupName = 'SorianEditAntiNavyAirFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T2/T3 GunShip Attack Anti Navy',
-        PlatoonTemplate = 'GunshipSFSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit T2/T3 GunShip Attack Anti Navy',
+        PlatoonTemplate = 'GunshipSFSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 105,
         InstanceCount = 1,
@@ -1865,13 +1862,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMassHunterAirFormBuilders',
+    BuilderGroupName = 'SorianEditMassHunterAirFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian BomberAttack Mass Hunter',
-        PlatoonTemplate = 'BomberAttackSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit BomberAttack Mass Hunter',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         Priority = 100,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -1900,10 +1897,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Mass Hunter Gunships',
-        PlatoonTemplate = 'GunshipMassHunterSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
-        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        BuilderName = 'SorianEdit Mass Hunter Gunships',
+        PlatoonTemplate = 'GunshipMassHunterSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorianEdit' },
         # Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
         #PlatoonTemplate = 'EarlyGameMassHuntersCategory',
         Priority = 950,
@@ -1935,12 +1932,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianBaseGuardAirFormBuilders',
+    BuilderGroupName = 'SorianEditBaseGuardAirFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian AntiAirHunt',
-        PlatoonTemplate = 'AntiAirHuntSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit AntiAirHunt',
+        PlatoonTemplate = 'AntiAirHuntSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #1,
         InstanceCount = 30,
@@ -1955,9 +1952,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian AntiAirBaseGuard',
-        PlatoonTemplate = 'AntiAirBaseGuardSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit AntiAirBaseGuard',
+        PlatoonTemplate = 'AntiAirBaseGuardSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #1,
         InstanceCount = 15,
@@ -1972,9 +1969,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian AntiAirHunt - Extra',
-        PlatoonTemplate = 'AntiAirHuntSorian',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        BuilderName = 'SorianEdit AntiAirHunt - Extra',
+        PlatoonTemplate = 'AntiAirHuntSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1,
         InstanceCount = 100,
@@ -1989,9 +1986,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian AntiAirT4Guard',
+        BuilderName = 'SorianEdit AntiAirT4Guard',
         PlatoonTemplate = 'AntiAirT4Guard',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1,
         InstanceCount = 10,
@@ -2006,9 +2003,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian GunshipBaseGuard',
+        BuilderName = 'SorianEdit GunshipBaseGuard',
         PlatoonTemplate = 'GunshipBaseGuard',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #10
         InstanceCount = 2,
@@ -2024,6 +2021,6 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUHunterAirFormBuilders',
+    BuilderGroupName = 'SorianEditACUHunterAirFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
 }

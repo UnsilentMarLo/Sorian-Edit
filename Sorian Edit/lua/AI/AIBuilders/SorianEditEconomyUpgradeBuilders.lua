@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianEconomyUpgradeBuilders.lua
+#**  File     :  /lua/ai/SorianEditEconomyUpgradeBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,14 +19,14 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTime Exempt Extractor Upgrades Expansion',
+    BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades Expansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Single Expansion',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single Expansion',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 2,
         Priority = 200,
@@ -44,7 +41,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Single Expansion',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Single Expansion',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 2,
         Priority = 200,
@@ -60,7 +57,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Multiple Expansion',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple Expansion',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         InstanceCount = 4,
         Priority = 200,
@@ -78,7 +75,7 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTime Exempt Extractor Upgrades',
+    BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Storage Based',
@@ -113,7 +110,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Single',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
         Priority = 200,
@@ -129,7 +126,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Two',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 2,
         Priority = 200,
@@ -145,7 +142,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless LOTS',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless LOTS',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 4,
         Priority = 200,
@@ -192,7 +189,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -209,7 +206,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Multiple',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 3,
@@ -226,7 +223,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless - Later',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -242,7 +239,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Multiple - Later',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Later',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 3,
@@ -260,7 +257,7 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianTime Exempt Extractor Upgrades - Rush',
+    BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades - Rush',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Storage Based - Rush',
@@ -295,7 +292,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Single - Rush',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 1,
         Priority = 200,
@@ -312,7 +309,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless Two - Rush',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 2,
         Priority = 200,
@@ -329,7 +326,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T1 Mass Extractor Upgrade Timeless LOTS - Rush',
+        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless LOTS - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
         InstanceCount = 4,
         Priority = 200,
@@ -377,7 +374,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless - Rush',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -394,7 +391,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Multiple - Rush',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 3,
@@ -411,7 +408,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless - Later - Rush',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -427,7 +424,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mass Extractor Upgrade Timeless Multiple - Later - Rush',
+        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Later - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
         InstanceCount = 3,
@@ -448,10 +445,10 @@ BuilderGroup {
 #     EMERGENCY FACTORY UPGRADES
 # ================================= #
 BuilderGroup {
-    BuilderGroupName = 'SorianEmergencyUpgradeBuilders',
+    BuilderGroupName = 'SorianEditEmergencyUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Emergency T1 Factory Upgrade',
+        BuilderName = 'SorianEdit Emergency T1 Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -466,7 +463,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Emergency T2 Factory Upgrade',
+        BuilderName = 'SorianEdit Emergency T2 Factory Upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -486,10 +483,10 @@ BuilderGroup {
 #     RUSH FACTORY UPGRADES
 # ================================= #
 BuilderGroup {
-    BuilderGroupName = 'SorianT1RushUpgradeBuilders',
+    BuilderGroupName = 'SorianEditT1RushUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Rush T1 Land Factory Upgrade Initial',
+        BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -503,7 +500,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian RushT1AirFactoryUpgradeInitial',
+        BuilderName = 'SorianEdit RushT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -518,7 +515,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Rush T1 Land Factory Upgrade',
+        BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -536,7 +533,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian RushT1AirFactoryUpgrade',
+        BuilderName = 'SorianEdit RushT1AirFactoryUpgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -555,7 +552,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Rush T1 Sea Factory Upgrade',
+        BuilderName = 'SorianEdit Rush T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -576,10 +573,10 @@ BuilderGroup {
 #     BALANCED FACTORY UPGRADES
 # ================================= #
 BuilderGroup {
-    BuilderGroupName = 'SorianT1BalancedUpgradeBuilders',
+    BuilderGroupName = 'SorianEditT1BalancedUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Balanced T1 Land Factory Upgrade Initial',
+        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -593,7 +590,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BalancedT1AirFactoryUpgradeInitial',
+        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -608,7 +605,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T1 Land Factory Upgrade',
+        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -626,7 +623,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BalancedT1AirFactoryUpgrade',
+        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -645,7 +642,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T1 Sea Factory Upgrade',
+        BuilderName = 'SorianEdit Balanced T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -663,10 +660,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2BalancedUpgradeBuilders',
+    BuilderGroupName = 'SorianEditT2BalancedUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Balanced T1 Land Factory Upgrade - T3',
+        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade - T3',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 0, #250,
         InstanceCount = 1,
@@ -683,7 +680,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BalancedT1AirFactoryUpgrade - T3',
+        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade - T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 0, #250,
         InstanceCount = 1,
@@ -701,7 +698,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Land Factory Upgrade - initial',
+        BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - initial',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -722,7 +719,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Air Factory Upgrade - initial',
+        BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - initial',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -742,7 +739,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Land Factory Upgrade - Large Map',
+        BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - Large Map',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -764,7 +761,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Air Factory Upgrade - Large Map',
+        BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - Large Map',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -785,7 +782,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Land Factory Upgrade - Rush',
+        BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - Rush',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -807,7 +804,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Air Factory Upgrade - Small Map',
+        BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - Small Map',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -828,7 +825,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Sea Factory Upgrade',
+        BuilderName = 'SorianEdit Balanced T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -850,13 +847,13 @@ BuilderGroup {
 #     NAVAL FACTORY UPGRADES
 # ================================= #
 BuilderGroup {
-    BuilderGroupName = 'SorianT1NavalUpgradeBuilders',
+    BuilderGroupName = 'SorianEditT1NavalUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     # ================================= #
     #     INITIAL FACTORY UPGRADES
     # ================================= #
     Builder {
-        BuilderName = 'Sorian Naval T1 Land Factory Upgrade Initial',
+        BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -871,7 +868,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T1 Air Factory Upgrade Initial',
+        BuilderName = 'SorianEdit Naval T1 Air Factory Upgrade Initial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -888,7 +885,7 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian Naval T1 Naval Factory Upgrade Initial',
+        BuilderName = 'SorianEdit Naval T1 Naval Factory Upgrade Initial',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 210,
         InstanceCount = 1,
@@ -905,7 +902,7 @@ BuilderGroup {
     #     FACTORY UPGRADES AFTER INITIAL
     # ================================= #
     Builder {
-        BuilderName = 'Sorian Naval T1 Land Factory Upgrade',
+        BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 205,
         InstanceCount = 1,
@@ -920,7 +917,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T1 AirFactory Upgrade',
+        BuilderName = 'SorianEdit Naval T1 AirFactory Upgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -938,7 +935,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T1 Sea Factory Upgrade',
+        BuilderName = 'SorianEdit Naval T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 210,
         InstanceCount = 1,
@@ -956,10 +953,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2NavalUpgradeBuilders',
+    BuilderGroupName = 'SorianEditT2NavalUpgradeBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Naval T1 Land Factory Upgrade - T3',
+        BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade - T3',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 250,
         InstanceCount = 1,
@@ -976,7 +973,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T1AirFactoryUpgrade - T3',
+        BuilderName = 'SorianEdit Naval T1AirFactoryUpgrade - T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 250,
         InstanceCount = 1,
@@ -994,7 +991,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T2 Land Factory Upgrade',
+        BuilderName = 'SorianEdit Naval T2 Land Factory Upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 310,
         InstanceCount = 1,
@@ -1012,7 +1009,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T2 Air Factory Upgrade',
+        BuilderName = 'SorianEdit Naval T2 Air Factory Upgrade',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1029,7 +1026,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Naval T2 Sea Factory Upgrade',
+        BuilderName = 'SorianEdit Naval T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 305,
         InstanceCount = 1,
@@ -1047,10 +1044,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1FastUpgradeBuildersExpansion',
+    BuilderGroupName = 'SorianEditT1FastUpgradeBuildersExpansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Fast T1 Land Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Fast T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1069,7 +1066,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian FastT1AirFactoryUpgrade Expansion',
+        BuilderName = 'SorianEdit FastT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1089,7 +1086,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Fast T1 Sea Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Fast T1 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1110,10 +1107,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2FastUpgradeBuildersExpansion',
+    BuilderGroupName = 'SorianEditT2FastUpgradeBuildersExpansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Fast T2 Land Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Fast T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1132,7 +1129,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Fast T2 Air Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Fast T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1150,7 +1147,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Fast T2 Sea Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Fast T2 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1173,10 +1170,10 @@ BuilderGroup {
 #     BALANCED FACTORY UPGRADES EXPANSIONS
 # ============================================ #
 BuilderGroup {
-    BuilderGroupName = 'SorianT1BalancedUpgradeBuildersExpansion',
+    BuilderGroupName = 'SorianEditT1BalancedUpgradeBuildersExpansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Balanced T1 Land Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1196,7 +1193,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian BalancedT1AirFactoryUpgrade Expansion',
+        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1217,7 +1214,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T1 Sea Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Balanced T1 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
         InstanceCount = 1,
@@ -1238,10 +1235,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2BalancedUpgradeBuildersExpansion',
+    BuilderGroupName = 'SorianEditT2BalancedUpgradeBuildersExpansion',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Balanced T2 Land Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1261,7 +1258,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Air Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,
@@ -1280,7 +1277,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Balanced T2 Sea Factory Upgrade Expansion',
+        BuilderName = 'SorianEdit Balanced T2 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
         InstanceCount = 1,

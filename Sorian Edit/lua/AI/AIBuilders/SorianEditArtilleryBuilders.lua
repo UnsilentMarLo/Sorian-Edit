@@ -7,10 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,16 +19,16 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 # T3 Artillery/Rapid Fire Artillery
 BuilderGroup {
-    BuilderGroupName = 'SorianT3ArtilleryGroup',
+    BuilderGroupName = 'SorianEditT3ArtilleryGroup',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Artillery Engineer - In range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Artillery Engineer - In range',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 951,
         BuilderConditions = {
             #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
@@ -60,8 +57,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Artillery Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Artillery Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
@@ -91,8 +88,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Artillery Engineer - 5x5+',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Artillery Engineer - 5x5+',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
             #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
@@ -123,8 +120,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian Rapid T3 Artillery Engineer',
-        PlatoonTemplate = 'AeonT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit Rapid T3 Artillery Engineer',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
@@ -155,8 +152,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3EngineerAssistBuildHLRA',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3EngineerAssistBuildHLRA',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 850,
         InstanceCount = 4,
         BuilderConditions = {
@@ -178,11 +175,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3ArtilleryGroupExp',
+    BuilderGroupName = 'SorianEditT3ArtilleryGroupExp',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Artillery Engineer Expansion - In range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Artillery Engineer Expansion - In range',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 951,
         BuilderConditions = {
             #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
@@ -213,12 +210,12 @@ BuilderGroup {
 
 # T3 Artillery/Rapid Fire Artillery
 BuilderGroup {
-    BuilderGroupName = 'SorianExperimentalArtillery',
+    BuilderGroupName = 'SorianEditExperimentalArtillery',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Artillery Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        PlatoonAddPlans = {'NameUnitsSorian'},
+        BuilderName = 'SorianEdit T4 Artillery Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit'},
         Priority = 949,
         InstanceCount = 1,
         BuilderConditions = {
@@ -252,9 +249,9 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T4 Artillery Engineer - Cybran',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
-        PlatoonAddPlans = {'NameUnitsSorian'},
+        BuilderName = 'SorianEdit T4 Artillery Engineer - Cybran',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit'},
         Priority = 949,
         InstanceCount = 1,
         BuilderConditions = {
@@ -290,8 +287,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T4EngineerAssistBuildHLRA',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T4EngineerAssistBuildHLRA',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 850,
         InstanceCount = 8,
         BuilderConditions = {
@@ -313,11 +310,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3ArtilleryFormBuilders',
+    BuilderGroupName = 'SorianEditT3ArtilleryFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Artillery',
-        PlatoonTemplate = 'T3ArtilleryStructureSorian',
+        BuilderName = 'SorianEdit T3 Artillery',
+        PlatoonTemplate = 'T3ArtilleryStructureSorianEdit',
         Priority = 1,
         InstanceCount = 1000,
         FormRadius = 10000,
@@ -326,12 +323,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT4ArtilleryFormBuilders',
+    BuilderGroupName = 'SorianEditT4ArtilleryFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T4 Artillery',
-        PlatoonTemplate = 'T4ArtilleryStructureSorian',
-        PlatoonAddPlans = {'NameUnitsSorian'},
+        BuilderName = 'SorianEdit T4 Artillery',
+        PlatoonTemplate = 'T4ArtilleryStructureSorianEdit',
+        PlatoonAddPlans = {'NameUnitsSorianEdit'},
         Priority = 1,
         InstanceCount = 1000,
         FormRadius = 10000,
@@ -341,11 +338,11 @@ BuilderGroup {
 
 # Nukes
 BuilderGroup {
-    BuilderGroupName = 'SorianNukeBuildersEngineerBuilders',
+    BuilderGroupName = 'SorianEditNukeBuildersEngineerBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian Seraphim Exp Nuke Engineer',
-        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit Seraphim Exp Nuke Engineer',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
         Priority = 949,
         InstanceCount = 1,
         BuilderConditions = {
@@ -378,8 +375,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Nuke Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Nuke Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -407,8 +404,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Nuke Engineer - 10x10',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Nuke Engineer - 10x10',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
@@ -437,8 +434,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Build Nuke',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Build Nuke',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 850,
         InstanceCount = 4,
         BuilderConditions = {
@@ -458,8 +455,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Build Nuke Missile',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Build Nuke Missile',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 850,
         InstanceCount = 3,
         BuilderConditions = {
@@ -481,18 +478,18 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianNukeFormBuilders',
+    BuilderGroupName = 'SorianEditNukeFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Nuke Silo',
-        PlatoonTemplate = 'T3NukeSorian',
+        BuilderName = 'SorianEdit T3 Nuke Silo',
+        PlatoonTemplate = 'T3NukeSorianEdit',
         Priority = 1,
         InstanceCount = 10,
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T4 Nuke Silo',
-        PlatoonTemplate = 'T4NukeSorian',
+        BuilderName = 'SorianEdit T4 Nuke Silo',
+        PlatoonTemplate = 'T4NukeSorianEdit',
         Priority = 1,
         InstanceCount = 10,
         BuilderType = 'Any',

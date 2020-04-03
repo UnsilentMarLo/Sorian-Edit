@@ -7,10 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,8 +19,8 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
@@ -65,10 +62,10 @@ function SeaAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1SeaFactoryBuilders',
+    BuilderGroupName = 'SorianEditT1SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Sea Sub',
+        BuilderName = 'SorianEdit T1 Sea Sub',
         PlatoonTemplate = 'T1SeaSub',
         Priority = 500,
         BuilderConditions = {
@@ -81,7 +78,7 @@ BuilderGroup {
         BuilderType = 'Sea',
     },
     Builder {
-        BuilderName = 'Sorian T1 Sea Frigate',
+        BuilderName = 'SorianEdit T1 Sea Frigate',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 500,
         BuilderType = 'Sea',
@@ -94,7 +91,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T1 Naval Anti-Air',
+        BuilderName = 'SorianEdit T1 Naval Anti-Air',
         PlatoonTemplate = 'T1SeaAntiAir',
         Priority = 0,
         BuilderConditions = {
@@ -110,10 +107,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2SeaFactoryBuilders',
+    BuilderGroupName = 'SorianEditT2SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Naval Destroyer',
+        BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
         BuilderType = 'Sea',
@@ -125,9 +122,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Cruiser',
+        BuilderName = 'SorianEdit T2 Naval Cruiser',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 600,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -138,7 +135,7 @@ BuilderGroup {
         BuilderType = 'Sea',
     },
     Builder {
-        BuilderName = 'Sorian T2SubKiller',
+        BuilderName = 'SorianEdit T2SubKiller',
         PlatoonTemplate = 'T2SubKiller',
         Priority = 600,
         BuilderType = 'Sea',
@@ -150,7 +147,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2ShieldBoat',
+        BuilderName = 'SorianEdit T2ShieldBoat',
         PlatoonTemplate = 'T2ShieldBoat',
         Priority = 600,
         BuilderType = 'Sea',
@@ -163,7 +160,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2CounterIntelBoat',
+        BuilderName = 'SorianEdit T2CounterIntelBoat',
         PlatoonTemplate = 'T2CounterIntelBoat',
         Priority = 0,
         BuilderType = 'Sea',
@@ -178,10 +175,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2SeaStrikeForceBuilders',
+    BuilderGroupName = 'SorianEditT2SeaStrikeForceBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Naval Destroyer - SF',
+        BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 705,
         BuilderType = 'Sea',
@@ -194,9 +191,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Cruiser - SF',
+        BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 705,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -210,10 +207,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3SeaFactoryBuilders',
+    BuilderGroupName = 'SorianEditT3SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Naval Destroyer - T3',
+        BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 700,
         BuilderType = 'Sea',
@@ -225,9 +222,9 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Cruiser - T3',
+        BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 700,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -238,7 +235,7 @@ BuilderGroup {
         BuilderType = 'Sea',
     },
     Builder {
-        BuilderName = 'Sorian T3 Naval Battleship',
+        BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
         Priority = 700,
         BuilderType = 'Sea',
@@ -251,7 +248,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Naval Nuke Sub',
+        BuilderName = 'SorianEdit T3 Naval Nuke Sub',
         PlatoonTemplate = 'T3SeaNukeSub',
         Priority = 0, #700,
         BuilderConditions = {
@@ -263,7 +260,7 @@ BuilderGroup {
         BuilderType = 'Sea',
     },
     Builder {
-        BuilderName = 'Sorian T3MissileBoat',
+        BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
         Priority = 700,
         BuilderType = 'Sea',
@@ -276,7 +273,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3Battlecruiser',
+        BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
         Priority = 700,
         BuilderType = 'Sea',
@@ -292,13 +289,13 @@ BuilderGroup {
 
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSeaHunterFormBuilders',
+    BuilderGroupName = 'SorianEditSeaHunterFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Sea Hunters T1',
-        PlatoonTemplate = 'SeaHuntSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Sea Hunters T1',
+        PlatoonTemplate = 'SeaHuntSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -312,10 +309,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Sea Hunters T2',
-        PlatoonTemplate = 'SeaHuntSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Sea Hunters T2',
+        PlatoonTemplate = 'SeaHuntSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -329,10 +326,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Sea Hunters T3',
-        PlatoonTemplate = 'SeaHuntSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Sea Hunters T3',
+        PlatoonTemplate = 'SeaHuntSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -345,10 +342,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Sea StrikeForce T2',
-        PlatoonTemplate = 'SeaStrikeSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Sea StrikeForce T2',
+        PlatoonTemplate = 'SeaStrikeSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 100,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -374,13 +371,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianFrequentSeaAttackFormBuilders',
+    BuilderGroupName = 'SorianEditFrequentSeaAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Frequent Sea Attack T1',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Frequent Sea Attack T1',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -405,10 +402,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Frequent Sea Attack T2',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Frequent Sea Attack T2',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -433,10 +430,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Frequent Sea Attack T3',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Frequent Sea Attack T3',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -462,13 +459,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianBigSeaAttackFormBuilders',
+    BuilderGroupName = 'SorianEditBigSeaAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Big Sea Attack T1',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Big Sea Attack T1',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -493,10 +490,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Big Sea Attack T2',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Big Sea Attack T2',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -521,10 +518,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Big Sea Attack T3',
-        PlatoonTemplate = 'SeaAttackSorian',
-        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
+        BuilderName = 'SorianEdit Big Sea Attack T3',
+        PlatoonTemplate = 'SeaAttackSorianEdit',
+        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -550,6 +547,6 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMassHunterSeaFormBuilders',
+    BuilderGroupName = 'SorianEditMassHunterSeaFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
 }

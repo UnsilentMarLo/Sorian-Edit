@@ -1,16 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianNavalBuilders.lua
+#**  File     :  /lua/ai/SorianEditNavalBuilders.lua
 #**
 #**  Summary  : Default Naval structure builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -21,16 +18,16 @@ local EBC = '/lua/editor/EconomyBuildConditions.lua'
 local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 
 BuilderGroup {
-    BuilderGroupName = 'SorianNavalExpansionBuildersFast',
+    BuilderGroupName = 'SorianEditNavalExpansionBuildersFast',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Naval Builder Fast - initial',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Naval Builder Fast - initial',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 985,
         InstanceCount = 1,
         BuilderConditions = {
@@ -67,8 +64,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Naval Builder Fast',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Naval Builder Fast',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -105,8 +102,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Builder Fast',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Naval Builder Fast',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -142,8 +139,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Naval Builder Fast',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Naval Builder Fast',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -182,11 +179,11 @@ BuilderGroup {
 
 # For everything but Naval Rush
 BuilderGroup {
-    BuilderGroupName = 'SorianNavalExpansionBuilders',
+    BuilderGroupName = 'SorianEditNavalExpansionBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Naval Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Naval Builder',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -221,8 +218,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Builder',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Naval Builder',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -257,8 +254,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Naval Builder',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Naval Builder',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -295,11 +292,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerNavalFactoryBuilder',
+    BuilderGroupName = 'SorianEditEngineerNavalFactoryBuilder',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Naval Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Naval Factory Builder',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
@@ -321,8 +318,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Naval Factory Builder',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Naval Factory Builder',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
@@ -344,8 +341,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Naval Factory Builder',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Naval Factory Builder',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed

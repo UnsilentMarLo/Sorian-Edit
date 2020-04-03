@@ -7,10 +7,7 @@
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
+local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,17 +19,17 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryBuilders',
+    BuilderGroupName = 'SorianEditEngineerFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     # ============
     #    TECH 1
     # ============
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Init',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Init',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -45,7 +42,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Filler 1',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Filler 1',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 825, #800,
         BuilderConditions = {
@@ -59,7 +56,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Filler 2',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Filler 2',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 700,
         BuilderConditions = {
@@ -79,7 +76,7 @@ BuilderGroup {
     #    TECH 2
     # ============
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Init',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Init',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 925,
         BuilderConditions = {
@@ -91,7 +88,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Filler 1',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Filler 1',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 800,
         BuilderConditions = {
@@ -106,7 +103,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Filler 2',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Filler 2',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 700,
         BuilderConditions = {
@@ -126,7 +123,7 @@ BuilderGroup {
     #    TECH 3
     # ============
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Init',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Init',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 950,
         BuilderConditions = {
@@ -137,7 +134,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 925,
         BuilderConditions = {
@@ -150,7 +147,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 2',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 2',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -166,7 +163,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 3',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 3',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -181,7 +178,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 3 Econ',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 3 Econ',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 960,
         BuilderConditions = {
@@ -199,7 +196,7 @@ BuilderGroup {
     #    SUB COMMANDERS
     # ====================
     Builder {
-        BuilderName = 'Sorian T3 Sub Commander',
+        BuilderName = 'SorianEdit T3 Sub Commander',
         PlatoonTemplate = 'T3LandSubCommander',
         Priority = 950,
         BuilderConditions = {
@@ -213,13 +210,13 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerFactoryBuilders - Rush',
+    BuilderGroupName = 'SorianEditEngineerFactoryBuilders - Rush',
     BuildersType = 'FactoryBuilder',
     # ============
     #    TECH 1
     # ============
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Init - Rush',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Init - Rush',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -232,7 +229,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Filler 1 - Rush',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Filler 1 - Rush',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 825, #800,
         BuilderConditions = {
@@ -246,7 +243,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Disband - Filler 2 - Rush',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Filler 2 - Rush',
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 700,
         BuilderConditions = {
@@ -266,7 +263,7 @@ BuilderGroup {
     #    TECH 2
     # ============
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Init - Rush',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Init - Rush',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 925,
         BuilderConditions = {
@@ -278,7 +275,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Filler 1 - Rush',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Filler 1 - Rush',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 800,
         BuilderConditions = {
@@ -292,7 +289,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Disband - Filler 2 - Rush',
+        BuilderName = 'SorianEdit T2 Engineer Disband - Filler 2 - Rush',
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 700,
         BuilderConditions = {
@@ -311,7 +308,7 @@ BuilderGroup {
     #    TECH 3
     # ============
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Init - Rush',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Init - Rush',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 950,
         BuilderConditions = {
@@ -322,7 +319,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler - Rush',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler - Rush',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 925,
         BuilderConditions = {
@@ -334,7 +331,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 2 - Rush',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 2 - Rush',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -349,7 +346,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 3 - Rush',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 3 - Rush',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 900,
         BuilderConditions = {
@@ -363,7 +360,7 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Disband - Filler 3 Econ - Rush',
+        BuilderName = 'SorianEdit T3 Engineer Disband - Filler 3 Econ - Rush',
         PlatoonTemplate = 'T3BuildEngineer',
         Priority = 0, #950,
         BuilderConditions = {
@@ -381,7 +378,7 @@ BuilderGroup {
     #    SUB COMMANDERS
     # ====================
     Builder {
-        BuilderName = 'Sorian T3 Sub Commander - Rush',
+        BuilderName = 'SorianEdit T3 Sub Commander - Rush',
         PlatoonTemplate = 'T3LandSubCommander',
         Priority = 950,
         BuilderConditions = {
@@ -395,14 +392,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Initial ACU Builders',
+    BuilderGroupName = 'SorianEdit Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
 
     # Initial builder
     Builder {
-        BuilderName = 'Sorian CDR Initial Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial Balanced',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'NotPreBuilt', {}},
@@ -427,9 +424,9 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Initial PreBuilt Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial PreBuilt Balanced',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'PreBuiltBase', {}},
@@ -456,14 +453,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Air Initial ACU Builders',
+    BuilderGroupName = 'SorianEdit Air Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
 
     # Initial builder
     Builder {
-        BuilderName = 'Sorian CDR Initial Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial Air',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'NotPreBuilt', {}},
@@ -488,9 +485,9 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Initial PreBuilt Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial PreBuilt Air',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'PreBuiltBase', {}},
@@ -517,14 +514,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Naval Initial ACU Builders',
+    BuilderGroupName = 'SorianEdit Naval Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
 
     # Initial builder
     Builder {
-        BuilderName = 'Sorian CDR Initial Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial Naval',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'NotPreBuilt', {}},
@@ -549,9 +546,9 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Initial PreBuilt Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial PreBuilt Naval',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'PreBuiltBase', {}},
@@ -577,14 +574,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Rush Initial ACU Builders',
+    BuilderGroupName = 'SorianEdit Rush Initial ACU Builders',
     BuildersType = 'EngineerBuilder',
 
     # Initial builder
     Builder {
-        BuilderName = 'Sorian CDR Initial Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial Land Rush',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'NotPreBuilt', {}},
@@ -611,9 +608,9 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Initial PreBuilt Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Initial PreBuilt Land Rush',
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
                 { IBC, 'PreBuiltBase', {}},
@@ -641,11 +638,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUAttack',
+    BuilderGroupName = 'SorianEditACUAttack',
     BuildersType = 'EngineerBuilder',
     Builder {    
-        BuilderName = 'Sorian CDR Attack',
-        PlatoonTemplate = 'CommanderAttackSorian',
+        BuilderName = 'SorianEdit CDR Attack',
+        PlatoonTemplate = 'CommanderAttackSorianEdit',
         Priority = 875,
         BuilderConditions = {
             { SBC, 'GreaterThanGameTime', { 165 }},
@@ -660,14 +657,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUBuilders',
+    BuilderGroupName = 'SorianEditACUBuilders',
     BuildersType = 'EngineerBuilder',
 
     # After initial
     # Build on nearby mass locations
     Builder {
-        BuilderName = 'Sorian CDR Single T1Resource',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Single T1Resource',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 0, #950, Probably unneeded, removed for testing
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 40, -500, 0, 0, 'AntiSurface', 1 }},
@@ -684,8 +681,8 @@ BuilderGroup {
         }
     },
     Builder {    
-        BuilderName = 'Sorian CDR T1 Power',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR T1 Power',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 875,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
@@ -705,8 +702,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Base D',
-        PlatoonTemplate = 'CommanderBuilderSorian',
+        BuilderName = 'SorianEdit CDR Base D',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 925,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 0, 'DEFENSE TECH1' }},
@@ -731,8 +728,8 @@ BuilderGroup {
     },
     # CDR Assisting
     Builder {
-        BuilderName = 'Sorian CDR Assist T2/T3 Power',
-        PlatoonTemplate = 'CommanderAssistSorian',
+        BuilderName = 'SorianEdit CDR Assist T2/T3 Power',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
         Priority = 700,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
@@ -751,8 +748,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Assist Engineer',
-        PlatoonTemplate = 'CommanderAssistSorian',
+        BuilderName = 'SorianEdit CDR Assist Engineer',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
         Priority = 500,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -771,8 +768,8 @@ BuilderGroup {
     },
     # CDR Assisting
     Builder {
-        BuilderName = 'Sorian CDR Assist T4',
-        PlatoonTemplate = 'CommanderAssistSorian',
+        BuilderName = 'SorianEdit CDR Assist T4',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
         Priority = 750,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'EXPERIMENTAL' }},
@@ -791,8 +788,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian CDR Assist Factory',
-        PlatoonTemplate = 'CommanderAssistSorian',
+        BuilderName = 'SorianEdit CDR Assist Factory',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
         Priority = 500,
         BuilderConditions = {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.05} },
@@ -810,8 +807,8 @@ BuilderGroup {
         }
     },
     #Builder {
-    #    BuilderName = 'Sorian CDR Assist Factory Upgrade Tech 2',
-    #    PlatoonTemplate = 'CommanderAssistSorian',
+    #    BuilderName = 'SorianEdit CDR Assist Factory Upgrade Tech 2',
+    #    PlatoonTemplate = 'CommanderAssistSorianEdit',
     #    Priority = 800,
     #    BuilderConditions = {
     #        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'TECH2 FACTORY' } },
@@ -831,8 +828,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian CDR Assist Factory Upgrade Tech 3',
-    #    PlatoonTemplate = 'CommanderAssistSorian',
+    #    BuilderName = 'SorianEdit CDR Assist Factory Upgrade Tech 3',
+    #    PlatoonTemplate = 'CommanderAssistSorianEdit',
     #    Priority = 800,
     #    BuilderConditions = {
     #        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'TECH3 FACTORY' } },
@@ -852,8 +849,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian CDR Assist Mass Extractor Upgrade',
-    #    PlatoonTemplate = 'CommanderAssistSorian',
+    #    BuilderName = 'SorianEdit CDR Assist Mass Extractor Upgrade',
+    #    PlatoonTemplate = 'CommanderAssistSorianEdit',
     #    Priority = 0,
     #    BuilderConditions = {
     #        { UCBC, 'BuildingGreaterAtLocation', { 'LocationType', 0, 'TECH2 MASSEXTRACTION' } },
@@ -873,11 +870,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianSCUUpgrades',
+    BuilderGroupName = 'SorianEditSCUUpgrades',
     BuildersType = 'EngineerBuilder',
     # UEF
     Builder {
-        BuilderName = 'Sorian UEF SCU Upgrade',
+        BuilderName = 'SorianEdit UEF SCU Upgrade',
         PlatoonTemplate = 'SCUEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -896,7 +893,7 @@ BuilderGroup {
     },
     # Aeon
     Builder {
-        BuilderName = 'Sorian Aeon SCU Upgrade',
+        BuilderName = 'SorianEdit Aeon SCU Upgrade',
         PlatoonTemplate = 'SCUEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -915,7 +912,7 @@ BuilderGroup {
     },
     # Cybran
     Builder {
-        BuilderName = 'Sorian Cybran SCU Upgrade',
+        BuilderName = 'SorianEdit Cybran SCU Upgrade',
         PlatoonTemplate = 'SCUEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -934,7 +931,7 @@ BuilderGroup {
     },
     # Seraphim
     Builder {
-        BuilderName = 'Sorian Seraphim SCU Upgrade',
+        BuilderName = 'SorianEdit Seraphim SCU Upgrade',
         PlatoonTemplate = 'SCUEnhance',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -954,12 +951,12 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianACUUpgrades',
+    BuilderGroupName = 'SorianEditACUUpgrades',
     BuildersType = 'EngineerBuilder', #'PlatoonFormBuilder',
     # UEF
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade AdvEng - Pods',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit UEF CDR Upgrade AdvEng - Pods',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -978,8 +975,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian UEF CDR Upgrade T3 Eng - Shields',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit UEF CDR Upgrade T3 Eng - Shields',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1000,8 +997,8 @@ BuilderGroup {
 
     # Aeon
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Aeon CDR Upgrade AdvEng - Resource - Crysalis',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1020,8 +1017,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1042,8 +1039,8 @@ BuilderGroup {
 
     # Cybran
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade AdvEng - Laser Gen',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Cybran CDR Upgrade AdvEng - Laser Gen',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1062,8 +1059,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Cybran CDR Upgrade T3 Eng - Resource',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Cybran CDR Upgrade T3 Eng - Resource',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1084,8 +1081,8 @@ BuilderGroup {
 
     # Seraphim
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
@@ -1104,8 +1101,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
-        PlatoonTemplate = 'CommanderEnhanceSorian',
+        BuilderName = 'SorianEdit Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+        PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1126,14 +1123,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1EngineerBuilders',
+    BuilderGroupName = 'SorianEditT1EngineerBuilders',
     BuildersType = 'EngineerBuilder',
     # =====================================
     #     T1 Engineer Resource Builders
     # =====================================
     Builder {
-        BuilderName = 'Sorian T1 Hydrocarbon Engineer - init',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Hydrocarbon Engineer - init',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 0, #1002, #980
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * (categories.TECH2 + categories.TECH3) } },
@@ -1152,8 +1149,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Hydrocarbon Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Hydrocarbon Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 980,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * (categories.TECH2 + categories.TECH3) } },
@@ -1172,8 +1169,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Reclaim',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Engineer Reclaim',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 900,
         InstanceCount = 3,
@@ -1189,8 +1186,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Reclaim Old Pgens',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Engineer Reclaim Old Pgens',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimStructuresAI',
         Priority = 900,
         InstanceCount = 1,
@@ -1205,8 +1202,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Find Unfinished',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Engineer Find Unfinished',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -1224,8 +1221,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Find Low Shield',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Engineer Find Low Shield',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
         InstanceCount = 3,
@@ -1243,8 +1240,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Repair',
-        PlatoonTemplate = 'EngineerRepairSorian',
+        BuilderName = 'SorianEdit T1 Engineer Repair',
+        PlatoonTemplate = 'EngineerRepairSorianEdit',
         PlatoonAIPlan = 'RepairAI',
         Priority = 900,
         InstanceCount = 1,
@@ -1257,8 +1254,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Engineer Reclaim Excess',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Engineer Reclaim Excess',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
         InstanceCount = 50,
@@ -1275,8 +1272,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mass Adjacency Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Mass Adjacency Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 925,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1301,8 +1298,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Energy Storage Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Energy Storage Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 925,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
@@ -1326,8 +1323,8 @@ BuilderGroup {
     #     T1 ENGINEER ASSIST
     # =========================
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist Factory',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist Factory',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 600,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
@@ -1346,8 +1343,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist FactoryLowerPri',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist FactoryLowerPri',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 500,
     #    InstanceCount = 50,
     #    BuilderConditions = {
@@ -1366,8 +1363,8 @@ BuilderGroup {
     #    }
     #},
     Builder {
-        BuilderName = 'Sorian T1 Engineer Assist Engineer',
-        PlatoonTemplate = 'EngineerAssistSorian',
+        BuilderName = 'SorianEdit T1 Engineer Assist Engineer',
+        PlatoonTemplate = 'EngineerAssistSorianEdit',
         Priority = 500,
         InstanceCount = 50,
         BuilderConditions = {
@@ -1386,8 +1383,8 @@ BuilderGroup {
         }
     },
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist Shield',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist Shield',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 825,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
@@ -1406,8 +1403,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist Mass Upgrade',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist Mass Upgrade',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 850,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
@@ -1428,8 +1425,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist Power',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist Power',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 900,
     #    BuilderConditions = {
     #        { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION' }},
@@ -1449,8 +1446,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist Transport',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist Transport',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 875,
     #    BuilderConditions = {
     #        { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'TRANSPORTFOCUS' } },
@@ -1469,8 +1466,8 @@ BuilderGroup {
     #    },
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist T2 Factory Upgrade',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist T2 Factory Upgrade',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 875,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
@@ -1491,8 +1488,8 @@ BuilderGroup {
     #    }
     #},
     #Builder {
-    #    BuilderName = 'Sorian T1 Engineer Assist T3 Factory Upgrade',
-    #    PlatoonTemplate = 'EngineerAssistSorian',
+    #    BuilderName = 'SorianEdit T1 Engineer Assist T3 Factory Upgrade',
+    #    PlatoonTemplate = 'EngineerAssistSorianEdit',
     #    Priority = 900,
     #    BuilderConditions = {
     #        { IBC, 'BrainNotLowPowerMode', {} },
@@ -1516,14 +1513,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT2EngineerBuilders',
+    BuilderGroupName = 'SorianEditT2EngineerBuilders',
     BuildersType = 'EngineerBuilder',
     # =====================================
     #     T2 Engineer Resource Builders
     # =====================================
     Builder {
-        BuilderName = 'Sorian T2 Mass Adjacency Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Mass Adjacency Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH1' }},
@@ -1548,8 +1545,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Energy Storage Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Energy Storage Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH2' }},
@@ -1569,8 +1566,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Reclaim',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineer Reclaim',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 750,
         InstanceCount = 3,
@@ -1587,8 +1584,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Reclaim Old Pgens',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineer Reclaim Old Pgens',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimStructuresAI',
         Priority = 900,
         InstanceCount = 1,
@@ -1603,8 +1600,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Find Unfinished',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineer Find Unfinished',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -1622,8 +1619,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Find Low Shield',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineer Find Low Shield',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
         InstanceCount = 3,
@@ -1641,8 +1638,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Repair',
-        PlatoonTemplate = 'T2EngineerRepairSorian',
+        BuilderName = 'SorianEdit T2 Engineer Repair',
+        PlatoonTemplate = 'T2EngineerRepairSorianEdit',
         PlatoonAIPlan = 'RepairAI',
         Priority = 925,
         InstanceCount = 1,
@@ -1655,8 +1652,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Reclaim Excess',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineer Reclaim Excess',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
         InstanceCount = 50,
@@ -1677,8 +1674,8 @@ BuilderGroup {
     #     T2 ENGINEER ASSIST
     # =========================
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Energy',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Energy',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 900,
         InstanceCount = 3,
         BuilderConditions = {
@@ -1699,8 +1696,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Factory',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Factory',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 500,
         InstanceCount = 50,
         BuilderType = 'Any',
@@ -1720,8 +1717,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Transport',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Transport',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 875,
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'TRANSPORTFOCUS' } },
@@ -1740,8 +1737,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist Engineer',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist Engineer',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 500,
         InstanceCount = 50,
         BuilderType = 'Any',
@@ -1761,8 +1758,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineer Assist T3 Factory Upgrade',
-        PlatoonTemplate = 'T2EngineerAssistSorian',
+        BuilderName = 'SorianEdit T2 Engineer Assist T3 Factory Upgrade',
+        PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 975,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENGINEER TECH1'}},
@@ -1785,14 +1782,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT3EngineerBuilders',
+    BuilderGroupName = 'SorianEditT3EngineerBuilders',
     BuildersType = 'EngineerBuilder',
     # =========================
     #     T3 ENGINEER BUILD
     # =========================
     Builder {
-        BuilderName = 'Sorian T3 Energy Storage Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Energy Storage Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
@@ -1812,8 +1809,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Reclaim',
-        PlatoonTemplate = 'T3EngineerBuilderOnlySorian',
+        BuilderName = 'SorianEdit T3 Engineer Reclaim',
+        PlatoonTemplate = 'T3EngineerBuilderOnlySorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 750,
         InstanceCount = 3,
@@ -1830,8 +1827,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Find Unfinished',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Engineer Find Unfinished',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
         InstanceCount = 1,
@@ -1849,8 +1846,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Find Low Shield',
-        PlatoonTemplate = 'T3EngineerBuilderOnlySorian',
+        BuilderName = 'SorianEdit T3 Engineer Find Low Shield',
+        PlatoonTemplate = 'T3EngineerBuilderOnlySorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindLowShield',
         Priority = 1801,
         InstanceCount = 3,
@@ -1868,8 +1865,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Repair',
-        PlatoonTemplate = 'T3EngineerRepairSorian',
+        BuilderName = 'SorianEdit T3 Engineer Repair',
+        PlatoonTemplate = 'T3EngineerRepairSorianEdit',
         PlatoonAIPlan = 'RepairAI',
         Priority = 925,
         InstanceCount = 1,
@@ -1882,8 +1879,8 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Reclaim Excess',
-        PlatoonTemplate = 'T3EngineerBuilderOnlySorian',
+        BuilderName = 'SorianEdit T3 Engineer Reclaim Excess',
+        PlatoonTemplate = 'T3EngineerBuilderOnlySorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
         InstanceCount = 50,
@@ -1903,8 +1900,8 @@ BuilderGroup {
     #     T3 ENGINEER ASSIST
     # =========================
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist T3 Energy Production',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist T3 Energy Production',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 947, #950,
         InstanceCount = 3,
         BuilderConditions = {
@@ -1924,8 +1921,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Transport',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Transport',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'TRANSPORTFOCUS' } },
@@ -1944,8 +1941,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Mass Fab',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Mass Fab',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 800,
         InstanceCount = 1,
         BuilderConditions = {
@@ -1966,8 +1963,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Defenses',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Defenses',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 750,
         InstanceCount = 1,
         BuilderConditions = {
@@ -1987,8 +1984,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Shields',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Shields',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 750,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2007,8 +2004,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Factory',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Factory',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 700,
         InstanceCount = 20,
         BuilderConditions = {
@@ -2027,8 +2024,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineer Assist Engineer',
-        PlatoonTemplate = 'T3EngineerAssistSorian',
+        BuilderName = 'SorianEdit T3 Engineer Assist Engineer',
+        PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 700,
         InstanceCount = 20,
         BuilderConditions = {
@@ -2051,11 +2048,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerMassBuilders - Naval',
+    BuilderGroupName = 'SorianEditEngineerMassBuilders - Naval',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 150 - Naval', #150
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 150 - Naval', #150
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2074,8 +2071,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 250 - Naval',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 250 - Naval',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 980,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2094,8 +2091,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 450 - Naval',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 450 - Naval',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 970,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2114,8 +2111,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 1500 - Naval',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 1500 - Naval',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2134,8 +2131,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 250 - Naval',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 250 - Naval',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 975,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2153,8 +2150,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 1500 - Naval',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 1500 - Naval',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0, #875,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2172,8 +2169,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 250 range - Naval',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 250 range - Naval',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 975,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2189,8 +2186,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 1500 range - Naval',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 1500 range - Naval',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0, #850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2206,8 +2203,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Mass Fab Engineer - Naval',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Mass Fab Engineer - Naval',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1200,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSFABRICATION' } },
@@ -2233,11 +2230,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerMassBuilders - Rush',
+    BuilderGroupName = 'SorianEditEngineerMassBuilders - Rush',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 100 - Rush', #150
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 100 - Rush', #150
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2256,8 +2253,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 250 - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 250 - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 970,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2276,8 +2273,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 450 - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 450 - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 800, #910,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2296,8 +2293,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 1500 - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 1500 - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2316,8 +2313,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 250 - Rush',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 250 - Rush',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 975,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2335,8 +2332,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 1500 - Rush',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 1500 - Rush',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0, #875,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2354,8 +2351,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 250 range - Rush',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 250 range - Rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 975,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2371,8 +2368,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 1500 range - Rush',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 1500 range - Rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0, #850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2388,8 +2385,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Mass Fab Engineer - Rush',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Mass Fab Engineer - Rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1200,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSFABRICATION' } },
@@ -2415,11 +2412,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerMassBuildersLowerPri - Rush',
+    BuilderGroupName = 'SorianEditEngineerMassBuildersLowerPri - Rush',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 100 Low - Rush', #150
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 100 Low - Rush', #150
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2438,8 +2435,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 350 Low - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 350 Low - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 700,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2458,8 +2455,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 1500 Low - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 1500 Low - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 650,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2478,8 +2475,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2ResourceEngineer 150 Low - Rush',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2ResourceEngineer 150 Low - Rush',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2498,8 +2495,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 350 Low - Rush',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 350 Low - Rush',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2517,8 +2514,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 1500 Low - Rush',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 1500 Low - Rush',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 750,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2536,8 +2533,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 350 range Low - Rush',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 350 range Low - Rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 350, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2553,8 +2550,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 1500 range Low - Rush',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 1500 range Low - Rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2572,11 +2569,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerMassBuildersHighPri',
+    BuilderGroupName = 'SorianEditEngineerMassBuildersHighPri',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 150', #150
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 150', #150
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2595,8 +2592,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 250',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 250',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 970,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2615,8 +2612,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 450',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 450',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 910,
         InstanceCount = 4,
         BuilderConditions = {
@@ -2635,8 +2632,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 1500',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 1500',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2655,8 +2652,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 250',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 250',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 975,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2674,8 +2671,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 1500',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 1500',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 0, #875,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2693,8 +2690,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 250 range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 250 range',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 975,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2710,8 +2707,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 1500 range',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 1500 range',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0, #850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2727,8 +2724,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Mass Fab Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Mass Fab Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1200,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSFABRICATION' } },
@@ -2754,11 +2751,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerMassBuildersLowerPri',
+    BuilderGroupName = 'SorianEditEngineerMassBuildersLowerPri',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 150 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 150 Low',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2777,8 +2774,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 350 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 350 Low',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 700,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2797,8 +2794,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1ResourceEngineer 1500 Low',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1ResourceEngineer 1500 Low',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 650,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2817,8 +2814,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2ResourceEngineer 150 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2ResourceEngineer 150 Low',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
@@ -2837,8 +2834,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 350 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 350 Low',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2856,8 +2853,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 T2Resource Engineer 1500 Low',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 T2Resource Engineer 1500 Low',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 750,
         InstanceCount = 1,
         BuilderConditions = {
@@ -2875,8 +2872,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 350 range Low',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 350 range Low',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 350, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2892,8 +2889,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 T3Resource Engineer 1500 range Low',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 T3Resource Engineer 1500 range Low',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1500, -500, 0, 0, 'AntiSurface', 1 }},
@@ -2911,14 +2908,14 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerEnergyBuilders',
+    BuilderGroupName = 'SorianEditEngineerEnergyBuilders',
     BuildersType = 'EngineerBuilder',
     # =====================================
     #     T2 Engineer Resource Builders
     # =====================================
     Builder {
-        BuilderName = 'Sorian T1 Power Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Power Engineer',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
@@ -2941,8 +2938,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Power Engineer - Rush Early',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Power Engineer - Rush Early',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
@@ -2966,8 +2963,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T1 Power Engineer - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Power Engineer - Rush',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
@@ -2991,8 +2988,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Power Engineer',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Power Engineer',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'TECH3 ENGINEER' }},
@@ -3017,8 +3014,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Power Engineer',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Power Engineer',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -3041,8 +3038,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Power Engineer - Emergency',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Power Engineer - Emergency',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 1050,
         BuilderConditions = {
             #{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'TECH3 ENGINEER' }},
@@ -3067,8 +3064,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Power Engineer - Emergency',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Power Engineer - Emergency',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -3091,8 +3088,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Power Engineer - init',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Power Engineer - init',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 1500,
         BuilderConditions = {
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2'}},
@@ -3108,8 +3105,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Power Engineer - init',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Power Engineer - init',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1500,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -3127,11 +3124,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineerEnergyBuildersExpansions',
+    BuilderGroupName = 'SorianEditEngineerEnergyBuildersExpansions',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Power Engineer Expansions',
-        PlatoonTemplate = 'EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T1 Power Engineer Expansions',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
                 { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ENERGYPRODUCTION' } },
@@ -3156,8 +3153,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Power Engineer Expansions',
-        PlatoonTemplate = 'T2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Power Engineer Expansions',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
                 { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, 'ENERGYPRODUCTION TECH2' } },
@@ -3179,8 +3176,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Power Engineer Expansions',
-        PlatoonTemplate = 'T3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Power Engineer Expansions',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -3202,11 +3199,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineeringSupportBuilder',
+    BuilderGroupName = 'SorianEditEngineeringSupportBuilder',
     BuildersType = 'EngineerBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Engineering Support UEF',
-        PlatoonTemplate = 'UEFT2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineering Support UEF',
+        PlatoonTemplate = 'UEFT2EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEERSTATION' }},
@@ -3229,8 +3226,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineering Support UEF',
-        PlatoonTemplate = 'UEFT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Engineering Support UEF',
+        PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'ENGINEERSTATION' }},
@@ -3253,8 +3250,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineering Support Cybran',
-        PlatoonTemplate = 'CybranT2EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T2 Engineering Support Cybran',
+        PlatoonTemplate = 'CybranT2EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEERSTATION' }},
@@ -3277,8 +3274,8 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Engineering Support Cybran',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorian',
+        BuilderName = 'SorianEdit T3 Engineering Support Cybran',
+        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'ENGINEERSTATION' }},
@@ -3303,10 +3300,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianEngineeringUpgrades',
+    BuilderGroupName = 'SorianEditEngineeringUpgrades',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Engineeering Support Upgrade 1',
+        BuilderName = 'SorianEdit T2 Engineeering Support Upgrade 1',
         PlatoonTemplate = 'T2Engineering1',
         Priority = 5,
         InstanceCount = 1,
@@ -3320,7 +3317,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineeering Support Upgrade 2',
+        BuilderName = 'SorianEdit T2 Engineeering Support Upgrade 2',
         PlatoonTemplate = 'T2Engineering2',
         Priority = 5,
         InstanceCount = 1,
@@ -3334,7 +3331,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Engineeering Support Upgrade',
+        BuilderName = 'SorianEdit T2 Engineeering Support Upgrade',
         PlatoonTemplate = 'T2Engineering',
         Priority = 5,
         InstanceCount = 1,
@@ -3350,11 +3347,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMassFabPause',
+    BuilderGroupName = 'SorianEditMassFabPause',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'Mass Fabricator Pause',
-        PlatoonTemplate = 'MassFabsSorian',
+        PlatoonTemplate = 'MassFabsSorianEdit',
         Priority = 300,
         InstanceCount = 3,
         BuilderConditions = {

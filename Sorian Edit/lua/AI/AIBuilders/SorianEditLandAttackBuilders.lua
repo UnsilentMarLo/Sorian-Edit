@@ -1,16 +1,12 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianLandAttackBuilders.lua
+#**  File     :  /lua/ai/SorianEditLandAttackBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local BBTmplFile = '/lua/basetemplates.lua'
-local BuildingTmpl = 'BuildingTemplates'
-local BaseTmpl = 'BaseTemplates'
-local ExBaseTmpl = 'ExpansionBaseTemplates'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,8 +18,8 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianBuildConditions.lua'
-local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
+local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
@@ -69,11 +65,11 @@ function LandAttackCondition(aiBrain, locationType, targetNumber)
 end
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1LandFactoryBuilders - Rush',
+    BuilderGroupName = 'SorianEditT1LandFactoryBuilders - Rush',
     BuildersType = 'FactoryBuilder',
     # Initial bots, built during early game for harrassment
     Builder {
-        BuilderName = 'Sorian T1 Bot - Early Game Rush',
+        BuilderName = 'SorianEdit T1 Bot - Early Game Rush',
         PlatoonTemplate = 'T1LandDFBot',
         Priority = 825,
         BuilderConditions = {
@@ -90,11 +86,11 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianT1LandFactoryBuilders',
+    BuilderGroupName = 'SorianEditT1LandFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     # Initial bots, built during early game for harrassment
     Builder {
-        BuilderName = 'Sorian T1 Bot - Early Game',
+        BuilderName = 'SorianEdit T1 Bot - Early Game',
         PlatoonTemplate = 'T1LandDFBot',
         Priority = 825,
         #Priority = 0,
@@ -112,7 +108,7 @@ BuilderGroup {
     # Priority of tanks at tech 1
     # Won't build if economy is hurting
     Builder {
-        BuilderName = 'Sorian T1 Light Tank - Tech 1',
+        BuilderName = 'SorianEdit T1 Light Tank - Tech 1',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 825,
         #Priority = 950,
@@ -130,7 +126,7 @@ BuilderGroup {
     # Priority of tanks at tech 2
     # Won't build if economy is hurting
     Builder {
-        BuilderName = 'Sorian T1 Light Tank - Tech 2',
+        BuilderName = 'SorianEdit T1 Light Tank - Tech 2',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 500,
         BuilderConditions = {
@@ -146,7 +142,7 @@ BuilderGroup {
     # Priority of tanks at tech 3
     # Won't build if economy is hurting
     Builder {
-        BuilderName = 'Sorian T1 Light Tank - Tech 3',
+        BuilderName = 'SorianEdit T1 Light Tank - Tech 3',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 0,
         BuilderConditions = {
@@ -162,7 +158,7 @@ BuilderGroup {
     },
     # T1 Artillery, built in a ratio to tanks before tech 3
     Builder {
-        BuilderName = 'Sorian T1 Mortar',
+        BuilderName = 'SorianEdit T1 Mortar',
         PlatoonTemplate = 'T1LandArtillery',
         Priority = 830,
         BuilderConditions = {
@@ -179,7 +175,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mortar - Not T1',
+        BuilderName = 'SorianEdit T1 Mortar - Not T1',
         PlatoonTemplate = 'T1LandArtillery',
         Priority = 500, #600,
         BuilderConditions = {
@@ -196,7 +192,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mortar - tough def',
+        BuilderName = 'SorianEdit T1 Mortar - tough def',
         PlatoonTemplate = 'T1LandArtillery',
         Priority = 0, #835,
         BuilderConditions = {
@@ -219,12 +215,12 @@ BuilderGroup {
 # T1 Mobile AA
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT1LandAA',
+    BuilderGroupName = 'SorianEditT1LandAA',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Mobile AA',
+        BuilderName = 'SorianEdit T1 Mobile AA',
         PlatoonTemplate = 'T1LandAA',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 830,
         BuilderConditions = {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -239,9 +235,9 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T1 Mobile AA - Response',
+        BuilderName = 'SorianEdit T1 Mobile AA - Response',
         PlatoonTemplate = 'T1LandAA',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 900,
         BuilderConditions = {
             { TBC, 'HaveLessThreatThanNearby', { 'LocationType', 'AntiAir', 'Air' } },
@@ -261,10 +257,10 @@ BuilderGroup {
 # Used to respond to the sight of tanks nearby
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT1ReactionDF',
+    BuilderGroupName = 'SorianEditT1ReactionDF',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Tank Enemy Nearby',
+        BuilderName = 'SorianEdit T1 Tank Enemy Nearby',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 900,
         BuilderConditions = {
@@ -285,11 +281,11 @@ BuilderGroup {
 # T2 Factories
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT2LandFactoryBuilders',
+    BuilderGroupName = 'SorianEditT2LandFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     # Tech 2 Priority
     Builder {
-        BuilderName = 'Sorian T2 Tank - Tech 2',
+        BuilderName = 'SorianEdit T2 Tank - Tech 2',
         PlatoonTemplate = 'T2LandDFTank',
         Priority = 600,
         BuilderType = 'Land',
@@ -303,7 +299,7 @@ BuilderGroup {
     },
     # Tech 3 Priority
     Builder {
-        BuilderName = 'Sorian T2 Tank 2 - Tech 3',
+        BuilderName = 'SorianEdit T2 Tank 2 - Tech 3',
         PlatoonTemplate = 'T2LandDFTank',
         Priority = 550,
         BuilderType = 'Land',
@@ -317,7 +313,7 @@ BuilderGroup {
     },
     # MML's, built in a ratio to directfire units
     Builder {
-        BuilderName = 'Sorian T2 MML',
+        BuilderName = 'SorianEdit T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
         Priority = 600,
         BuilderType = 'Land',
@@ -333,8 +329,8 @@ BuilderGroup {
     },
     # Tech 2 priority
     Builder {
-        BuilderName = 'Sorian T2AttackTank - Tech 2',
-        PlatoonTemplate = 'T2AttackTankSorian',
+        BuilderName = 'SorianEdit T2AttackTank - Tech 2',
+        PlatoonTemplate = 'T2AttackTankSorianEdit',
         Priority = 600,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -347,8 +343,8 @@ BuilderGroup {
     },
     # Tech 3 priority
     Builder {
-        BuilderName = 'Sorian T2AttackTank2 - Tech 3',
-        PlatoonTemplate = 'T2AttackTankSorian',
+        BuilderName = 'SorianEdit T2AttackTank2 - Tech 3',
+        PlatoonTemplate = 'T2AttackTankSorianEdit',
         Priority = 550,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -361,7 +357,7 @@ BuilderGroup {
     },
     # Tech 2 priority
     Builder {
-        BuilderName = 'Sorian T2 Amphibious Tank - Tech 2',
+        BuilderName = 'SorianEdit T2 Amphibious Tank - Tech 2',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 600,
         BuilderType = 'Land',
@@ -377,7 +373,7 @@ BuilderGroup {
     },
     # Tech 3 priority
     Builder {
-        BuilderName = 'Sorian T2 Amphibious Tank - Tech 3',
+        BuilderName = 'SorianEdit T2 Amphibious Tank - Tech 3',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 550,
         BuilderType = 'Land',
@@ -393,7 +389,7 @@ BuilderGroup {
     },
     # Tech 2 priority
     Builder {
-        BuilderName = 'Sorian T2 Amphibious Tank - Tech 2 Cybran',
+        BuilderName = 'SorianEdit T2 Amphibious Tank - Tech 2 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 600,
         BuilderType = 'Land',
@@ -408,7 +404,7 @@ BuilderGroup {
     },
     # Tech 3 priority
     Builder {
-        BuilderName = 'Sorian T2 Amphibious Tank - Tech 3 Cybran',
+        BuilderName = 'SorianEdit T2 Amphibious Tank - Tech 3 Cybran',
         PlatoonTemplate = 'T2LandAmphibious',
         Priority = 550,
         BuilderType = 'Land',
@@ -422,7 +418,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2MobileShields',
+        BuilderName = 'SorianEdit T2MobileShields',
         PlatoonTemplate = 'T2MobileShields',
         Priority = 600,
         BuilderType = 'Land',
@@ -436,7 +432,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2MobileShields - T3 Factories',
+        BuilderName = 'SorianEdit T2MobileShields - T3 Factories',
         PlatoonTemplate = 'T2MobileShields',
         Priority = 0,
         BuilderType = 'Land',
@@ -450,7 +446,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T2MobileBombs',
+        BuilderName = 'SorianEdit T2MobileBombs',
         PlatoonTemplate = 'T2MobileBombs',
         Priority = 0,
         BuilderType = 'Land',
@@ -467,11 +463,11 @@ BuilderGroup {
 # Used to respond to the sight of tanks nearby
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT2ReactionDF',
+    BuilderGroupName = 'SorianEditT2ReactionDF',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Tank Enemy Nearby',
-        PlatoonTemplate = 'T2AttackTankSorian',
+        BuilderName = 'SorianEdit T2 Tank Enemy Nearby',
+        PlatoonTemplate = 'T2AttackTankSorianEdit',
         Priority = 925,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
@@ -490,10 +486,10 @@ BuilderGroup {
 # T2 AA
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT2LandAA',
+    BuilderGroupName = 'SorianEditT2LandAA',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T2 Mobile Flak',
+        BuilderName = 'SorianEdit T2 Mobile Flak',
         PlatoonTemplate = 'T2LandAA',
         Priority = 600,
         BuilderConditions = {
@@ -508,7 +504,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T2 Mobile Flak Response',
+        BuilderName = 'SorianEdit T2 Mobile Flak Response',
         PlatoonTemplate = 'T2LandAA',
         Priority = 900,
         BuilderConditions = {
@@ -528,11 +524,11 @@ BuilderGroup {
 # T3 Land
 #----------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT3LandFactoryBuilders',
+    BuilderGroupName = 'SorianEditT3LandFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     # T3 Tank
     Builder {
-        BuilderName = 'Sorian T3 Siege Assault Bot',
+        BuilderName = 'SorianEdit T3 Siege Assault Bot',
         PlatoonTemplate = 'T3LandBot',
         Priority = 700,
         BuilderType = 'Land',
@@ -545,7 +541,7 @@ BuilderGroup {
     },
     # T3 Artilery
     Builder {
-        BuilderName = 'Sorian T3 Mobile Heavy Artillery',
+        BuilderName = 'SorianEdit T3 Mobile Heavy Artillery',
         PlatoonTemplate = 'T3LandArtillery',
         Priority = 700,
         BuilderType = 'Land',
@@ -559,7 +555,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Mobile Heavy Artillery - tough def',
+        BuilderName = 'SorianEdit T3 Mobile Heavy Artillery - tough def',
         PlatoonTemplate = 'T3LandArtillery',
         Priority = 725,
         BuilderType = 'Land',
@@ -574,7 +570,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3 Mobile Flak',
+        BuilderName = 'SorianEdit T3 Mobile Flak',
         PlatoonTemplate = 'T3LandAA',
         Priority = 700,
         BuilderConditions = {
@@ -589,7 +585,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T3SniperBots',
+        BuilderName = 'SorianEdit T3SniperBots',
         PlatoonTemplate = 'T3SniperBots',
         Priority = 700,
         BuilderType = 'Land',
@@ -601,8 +597,8 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3ArmoredAssault',
-        PlatoonTemplate = 'T3ArmoredAssaultSorian',
+        BuilderName = 'SorianEdit T3ArmoredAssault',
+        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
         Priority = 700,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -613,7 +609,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3MobileMissile',
+        BuilderName = 'SorianEdit T3MobileMissile',
         PlatoonTemplate = 'T3MobileMissile',
         Priority = 700,
         BuilderType = 'Land',
@@ -627,7 +623,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian T3MobileShields',
+        BuilderName = 'SorianEdit T3MobileShields',
         PlatoonTemplate = 'T3MobileShields',
         Priority = 700,
         BuilderType = 'Land',
@@ -645,10 +641,10 @@ BuilderGroup {
 # T3 AA
 #---------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT3LandResponseBuilders',
+    BuilderGroupName = 'SorianEditT3LandResponseBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Mobile AA Response',
+        BuilderName = 'SorianEdit T3 Mobile AA Response',
         PlatoonTemplate = 'T3LandAA',
         Priority = 900,
         BuilderConditions = {
@@ -667,11 +663,11 @@ BuilderGroup {
 # T3 Response
 #---------------------------------------
 BuilderGroup {
-    BuilderGroupName = 'SorianT3ReactionDF',
+    BuilderGroupName = 'SorianEditT3ReactionDF',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Assault Enemy Nearby',
-        PlatoonTemplate = 'T3ArmoredAssaultSorian',
+        BuilderName = 'SorianEdit T3 Assault Enemy Nearby',
+        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
         Priority = 945,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
@@ -684,7 +680,7 @@ BuilderGroup {
         BuilderType = 'Land',
     },
     Builder {
-        BuilderName = 'Sorian T3 SiegeBot Enemy Nearby',
+        BuilderName = 'SorianEdit T3 SiegeBot Enemy Nearby',
         PlatoonTemplate = 'T3LandBot',
         Priority = 935,
         BuilderConditions = {
@@ -703,13 +699,13 @@ BuilderGroup {
 #     Form Builders
 # ===================== #
 BuilderGroup {
-    BuilderGroupName = 'SorianUnitCapLandAttackFormBuilders',
+    BuilderGroupName = 'SorianEditUnitCapLandAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Unit Cap Default Land Attack',
-        PlatoonTemplate = 'LandAttackSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Unit Cap Default Land Attack',
+        PlatoonTemplate = 'LandAttackSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -731,10 +727,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian De-clutter Land Attack T1',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit De-clutter Land Attack T1',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -758,10 +754,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian De-clutter Land Attack T2',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit De-clutter Land Attack T2',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -785,10 +781,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian De-clutter Land Attack T3',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit De-clutter Land Attack T3',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -815,13 +811,13 @@ BuilderGroup {
 
 
 BuilderGroup {
-    BuilderGroupName = 'SorianFrequentLandAttackFormBuilders',
+    BuilderGroupName = 'SorianEditFrequentLandAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian Frequent Land Attack T1',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Frequent Land Attack T1',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 12,
         BuilderType = 'Any',
@@ -843,10 +839,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Frequent Land Attack T2',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Frequent Land Attack T2',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 13,
         BuilderType = 'Any',
@@ -869,10 +865,10 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'Sorian Frequent Land Attack T3',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Frequent Land Attack T3',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1,
         InstanceCount = 13,
         BuilderType = 'Any',
@@ -897,17 +893,17 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMassHunterLandFormBuilders',
+    BuilderGroupName = 'SorianEditMassHunterLandFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
 
     # Hunts for mass locations with Economic threat value of no more than 2 mass extractors
     Builder {
-        BuilderName = 'Sorian Mass Hunter Early Game',
-        PlatoonTemplate = 'T1MassHuntersCategorySorian',
+        BuilderName = 'SorianEdit Mass Hunter Early Game',
+        PlatoonTemplate = 'T1MassHuntersCategorySorianEdit',
         # Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
         #PlatoonTemplate = 'EarlyGameMassHuntersCategory',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 950,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 600 } },
@@ -939,10 +935,10 @@ BuilderGroup {
     # Mid Game Mass Hunter
     # Used after 10, goes after mass locations of no max threat
     Builder {
-        BuilderName = 'Sorian Mass Hunter Mid Game',
-        PlatoonTemplate = 'T2MassHuntersCategorySorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Mass Hunter Mid Game',
+        PlatoonTemplate = 'T2MassHuntersCategorySorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 950,
         BuilderConditions = {
                 { SBC, 'GreaterThanGameTime', { 600 } },
@@ -977,10 +973,10 @@ BuilderGroup {
     # The platoon then stays at that location and disbands after a certain amount of time
     # Also the platoon carries an engineer with it
     Builder {
-        BuilderName = 'Sorian Start Location Attack',
-        PlatoonTemplate = 'StartLocationAttack2Sorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Start Location Attack',
+        PlatoonTemplate = 'StartLocationAttack2SorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 960,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1011,10 +1007,10 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian Early Attacks Small',
-        PlatoonTemplate = 'LandAttackSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Early Attacks Small',
+        PlatoonTemplate = 'LandAttackSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1000,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1039,10 +1035,10 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian Early Attacks Medium',
-        PlatoonTemplate = 'LandAttackSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Early Attacks Medium',
+        PlatoonTemplate = 'LandAttackSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1000,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1069,10 +1065,10 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian Threat Response Strikeforce',
-        PlatoonTemplate = 'StrikeForceMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Threat Response Strikeforce',
+        PlatoonTemplate = 'StrikeForceMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 0, #1500,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'STRUCTURE STRATEGIC TECH3, STRUCTURE STRATEGIC EXPERIMENTAL, EXPERIMENTAL ARTILLERY OVERLAYINDIRECTFIRE', 'Enemy'}},
@@ -1101,11 +1097,11 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'Sorian T2/T3 Land Weak Enemy Response',
-        #PlatoonTemplate = 'StrikeForceMediumSorian',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit T2/T3 Land Weak Enemy Response',
+        #PlatoonTemplate = 'StrikeForceMediumSorianEdit',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1400,
         BuilderConditions = {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
@@ -1145,11 +1141,11 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T1 Land Weak Enemy Response',
-        #PlatoonTemplate = 'StrikeForceMediumSorian',
-        PlatoonTemplate = 'LandAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit T1 Land Weak Enemy Response',
+        #PlatoonTemplate = 'StrikeForceMediumSorianEdit',
+        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 1400,
         BuilderConditions = {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
@@ -1191,10 +1187,10 @@ BuilderGroup {
 
     # Small patrol that goes to expansion areas and attacks
     Builder {
-        BuilderName = 'Sorian Expansion Area Patrol - Small Map',
-        PlatoonTemplate = 'StartLocationAttack2Sorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Expansion Area Patrol - Small Map',
+        PlatoonTemplate = 'StartLocationAttack2SorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 925,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 300 } },
@@ -1223,10 +1219,10 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian Expansion Area Patrol',
-        PlatoonTemplate = 'StartLocationAttack2Sorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit Expansion Area Patrol',
+        PlatoonTemplate = 'StartLocationAttack2SorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 925,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 300 } },
@@ -1256,10 +1252,10 @@ BuilderGroup {
 
     # Seek and destroy
     Builder {
-        BuilderName = 'Sorian T1 Hunters',
-        PlatoonTemplate = 'HuntAttackSmallSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit T1 Hunters',
+        PlatoonTemplate = 'HuntAttackSmallSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 990,
         #Priority = 0,
         InstanceCount = 2,
@@ -1283,10 +1279,10 @@ BuilderGroup {
 
     # Seek and destroy
     Builder {
-        BuilderName = 'Sorian T2 Hunters',
-        PlatoonTemplate = 'HuntAttackMediumSorian',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        BuilderName = 'SorianEdit T2 Hunters',
+        PlatoonTemplate = 'HuntAttackMediumSorianEdit',
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
         Priority = 990,
         #Priority = 0,
         InstanceCount = 2,
@@ -1311,10 +1307,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'SorianMiscLandFormBuilders',
+    BuilderGroupName = 'SorianEditMiscLandFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Tanks - Engineer Guard',
+        BuilderName = 'SorianEdit T1 Tanks - Engineer Guard',
         PlatoonTemplate = 'T1EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',
         Priority = 750,
@@ -1332,7 +1328,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T2 Tanks - Engineer Guard',
+        BuilderName = 'SorianEdit T2 Tanks - Engineer Guard',
         PlatoonTemplate = 'T2EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',
         Priority = 0,
@@ -1349,7 +1345,7 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Tanks - Engineer Guard',
+        BuilderName = 'SorianEdit T3 Tanks - Engineer Guard',
         PlatoonTemplate = 'T3EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',
         Priority = 0,
@@ -1366,9 +1362,9 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'Sorian T3 Tanks - T4 Guard',
+        BuilderName = 'SorianEdit T3 Tanks - T4 Guard',
         PlatoonTemplate = 'T3ExpGuard',
-        PlatoonAIPlan = 'GuardExperimentalSorian',
+        PlatoonAIPlan = 'GuardExperimentalSorianEdit',
         Priority = 750,
         InstanceCount = 3,
         BuilderData = {
