@@ -224,36 +224,9 @@ BaseBuilderTemplate {
         if not aiBrain.SorianEdit then
             return -1
         end
-        local per = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if not per then
-            return 1, 'sorian'
-        end
 
-        if per != 'sorian' and per != 'sorianadaptive' and per != '' then
-            return 1, 'sorian'
-        end
-
-        local mapSizeX, mapSizeZ = GetMapSize()
-
-        local startX, startZ = aiBrain:GetArmyStartPos()
-        local isIsland = import('/lua/editor/SorianEditBuildConditions.lua').IsIslandMap(aiBrain)
-
-        if per == 'sorian' then
-            return 1000, 'sorian'
-        end
-
-        --If we're playing on an island map, do not use this plan often
-        if isIsland then
-            return Random(25, 50), 'sorian'
-
-        elseif mapSizeX > 256 and mapSizeZ > 256 and mapSizeX <= 512 and mapSizeZ <= 512 then
-            return Random(75, 100), 'sorian'
-
-        elseif mapSizeX >= 512 and mapSizeZ >= 512 and mapSizeX <= 1024 and mapSizeZ <= 1024 then
-            return Random(50, 100), 'sorian'
-
-        else
-            return Random(25, 75), 'sorian'
+        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
         end
     end,
 }

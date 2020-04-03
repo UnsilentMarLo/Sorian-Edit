@@ -25,7 +25,7 @@ local Behaviors = import('/lua/ai/aibehaviors.lua')
 local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemplates
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates
-local SUtils = import('/lua/AI/sorianutilities.lua')
+local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
 local econThread
 
 function EconWatch(aiBrain)

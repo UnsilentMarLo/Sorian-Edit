@@ -1,6 +1,6 @@
 ----------------------------------------------------------------------------
 --
---  File     :  /lua/AI/sorianutilities.lua
+--  File     :  /lua/AI/sorianeditutilities.lua
 --  Author(s): Michael Robbins aka Sorian
 --
 --  Summary  : Utility functions for the Sorian AIs
@@ -12,7 +12,6 @@ local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local Utils = import('/lua/utilities.lua')
 local Mods = import('/lua/mods.lua')
 
-local AIChatText = import('/lua/AI/sorianlang.lua').AIChatText
 
 -- Table of AI taunts orginized by faction
 local AITaunts = {
@@ -1507,23 +1506,23 @@ end
 
 -- Deprecated functions / unused
 function GiveAwayMyCrap(aiBrain)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function GiveAwayMyCrap() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function GiveAwayMyCrap() called.')
 end
 function AIMicro(aiBrain, platoon, target, threatatLocation, mySurfaceThreat)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function AIMicro() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function AIMicro() called.')
 end
 function CircleAround(aiBrain, platoon, target)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function CircleAround() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function CircleAround() called.')
 end
 function OrderedRetreat(aiBrain, platoon)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function OrderedRetreat() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function OrderedRetreat() called.')
 end
 function LeadTargetArtillery(platoon, unit, target)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function LeadTargetArtillery() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function LeadTargetArtillery() called.')
 end
 function MajorLandThreatExists(aiBrain)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function MajorLandThreatExists() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function MajorLandThreatExists() called.')
 end
 function MajorAirThreatExists(aiBrain)
-    WARN('[sorianutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function MajorAirThreatExists() called.')
+    WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function MajorAirThreatExists() called.')
 end

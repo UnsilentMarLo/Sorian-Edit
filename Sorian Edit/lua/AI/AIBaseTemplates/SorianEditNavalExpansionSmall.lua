@@ -90,12 +90,13 @@ BaseBuilderTemplate {
         if markerType != 'Naval Area' then
             return 0
         end
-
-        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'sorian' or personality == 'sorianrush' or personality == 'sorianair' or personality == 'sorianturtle' or personality == 'sorianadaptive' then
-            return 200
+        if markerType ~= 'Start Location' then
+            return -1
         end
 
+        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+        end
         return 0
     end,
 }

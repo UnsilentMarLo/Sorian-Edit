@@ -22,7 +22,7 @@ local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
-local SUtils = import('/lua/AI/sorianutilities.lua')
+local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
 
 function SeaAttackCondition(aiBrain, locationType, targetNumber)
     local UC = import('/lua/editor/UnitCountBuildConditions.lua')

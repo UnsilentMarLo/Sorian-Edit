@@ -93,25 +93,13 @@ BaseBuilderTemplate {
         if markerType != 'Naval Area' then
             return 0
         end
-
-        local isIsland = false
-        local startX, startZ = aiBrain:GetArmyStartPos()
-        local islandMarker = import('/lua/AI/AIUtilities.lua').AIGetClosestMarkerLocation(aiBrain, 'Island', startX, startZ)
-        if islandMarker then
-            isIsland = true
+        if markerType ~= 'Start Location' then
+            return -1
         end
-
+		
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        local base = ScenarioInfo.ArmySetup[aiBrain.Name].AIBase
-
-        if personality == 'sorianadaptive' and base == 'SorianEditMainWater' then
-            return 250
+        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
         end
-
-        if personality == 'sorianwater' then
-            return 200
-        end
-
         return 0
     end,
 }
