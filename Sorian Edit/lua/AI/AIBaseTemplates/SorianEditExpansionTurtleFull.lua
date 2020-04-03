@@ -1,6 +1,6 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/AIBaseTemplates/SorianEditExpansionTurtleFull.lua
+#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionTurtleFull.lua
 #**
 #**  Summary  : Manage engineers for a location
 #**
@@ -153,7 +153,7 @@ BaseBuilderTemplate {
         end
 
         local threatCutoff = 10 # value of overall threat that determines where enemy bases are
-        local distance = import('/lua/ai/AIUtilities.lua').GetThreatDistance(aiBrain, location, threatCutoff)
+        local distance = import('/mods/Sorian edit/lua/ai/AIUtilities.lua').GetThreatDistance(aiBrain, location, threatCutoff)
         if not distance or distance > 1000 then
             return 1000
         elseif distance > 500 then

@@ -1,6 +1,6 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/AIBaseTemplates/SorianEditMainRush.lua
+#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainRush.lua
 #**  Author(s): Michael Robbins aka SorianEdit
 #**
 #**  Summary  : Manage engineers for a location

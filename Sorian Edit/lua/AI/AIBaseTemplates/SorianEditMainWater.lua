@@ -1,6 +1,6 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/AIBaseTemplates/SorianEditMainWater.lua
+#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainWater.lua
 #**  Author(s): Michael Robbins aka SorianEdit
 #**
 #**  Summary  : Manage engineers for a location

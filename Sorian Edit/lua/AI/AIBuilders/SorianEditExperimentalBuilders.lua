@@ -1,13 +1,14 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianEditExperimentalBuilders.lua
+#**  File     :  /mods/Sorian edit/lua/ai/SorianEditExperimentalBuilders.lua
 #**
 #**  Summary  : Default experimental builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian edit/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -24,7 +25,7 @@ local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 
 local SUtils = import('/lua/AI/sorianutilities.lua')
 
-local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
+local AIAddBuilderTable = import('/mods/Sorian edit/lua/ai/AIAddBuilderTable.lua')
 
 function T4LandAttackCondition(aiBrain, locationType, targetNumber)
     local UC = import('/lua/editor/UnitCountBuildConditions.lua')

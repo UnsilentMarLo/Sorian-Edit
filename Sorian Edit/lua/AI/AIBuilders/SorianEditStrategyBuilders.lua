@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianStrategyBuilders.lua
+#**  File     :  /mods/Sorian edit/lua/ai/SorianStrategyBuilders.lua
 #**
 #**  Summary  : Default Naval structure builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -20,8 +20,8 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local AIUtils = import('/lua/ai/aiutilities.lua')
-local Behaviors = import('/lua/ai/aibehaviors.lua')
+local AIUtils = import('/mods/Sorian edit/lua/ai/aiutilities.lua')
+local Behaviors = import('/mods/Sorian edit/lua/ai/aibehaviors.lua')
 local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemplates
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates

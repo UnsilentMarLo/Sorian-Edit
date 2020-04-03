@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /lua/ai/SorianEditDefenseBuilders.lua
+#**  File     :  /mods/Sorian edit/lua/ai/SorianEditDefenseBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -22,7 +22,7 @@ local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
-local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
+local AIAddBuilderTable = import('/mods/Sorian edit/lua/ai/AIAddBuilderTable.lua')
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditMassAdjacencyDefenses',
