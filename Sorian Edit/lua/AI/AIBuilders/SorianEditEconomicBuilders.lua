@@ -3346,7 +3346,7 @@ BuilderGroup {
     },
 }
 
-BuilderGroup {
+--[[BuilderGroup {
     BuilderGroupName = 'SorianEditMassFabPause',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
@@ -3361,4 +3361,4 @@ BuilderGroup {
         BuilderType = 'Any',
         FormRadius = 10000,
     },
-}
+} ]]--

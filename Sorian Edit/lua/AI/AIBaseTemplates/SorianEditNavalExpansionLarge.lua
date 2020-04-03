@@ -1,43 +1,43 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditNavalExpansionSmall.lua
-#**  Author(s): Michael Robbins aka SorianEdit
-#**
-#**  Summary  : Manage engineers for a location
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditNavalExpansionSmall.lua
+--**  Author(s): Michael Robbins aka SorianEdit
+--**
+--**  Summary  : Manage engineers for a location
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 BaseBuilderTemplate {
     BaseTemplateName = 'SorianEditNavalExpansionLarge',
     Builders = {
-        # ==== ECONOMY ==== #
-        # Factory upgrades
+        -- ==== ECONOMY ==== --
+        -- Factory upgrades
         'SorianEditT1NavalUpgradeBuilders',
         'SorianEditT2NavalUpgradeBuilders',
 
-        # Pass engineers to main as needed
-        #'Engineer Transfers',
+        -- Pass engineers to main as needed
+        --'Engineer Transfers',
 
-        # Engineer Builders
+        -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
         'SorianEditEngineerNavalFactoryBuilder',
 
-        # Mass
+        -- Mass
         'SorianEditEngineerMassBuildersLowerPri',
 
-        # ==== EXPANSION ==== #
+        -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
 
-        # ==== DEFENSES ==== #
+        -- ==== DEFENSES ==== --
         'SorianEditT1NavalDefenses',
         'SorianEditT2NavalDefenses',
         'SorianEditT3NavalDefenses',
 
-        # ==== ATTACKS ==== #
+        -- ==== ATTACKS ==== --
         'SorianEditT1SeaFactoryBuilders',
         'SorianEditT2SeaFactoryBuilders',
         'SorianEditT3SeaFactoryBuilders',
@@ -48,20 +48,20 @@ BaseBuilderTemplate {
         'SorianEditBigSeaAttackFormBuilders',
         'SorianEditMassHunterSeaFormBuilders',
 
-        # ===== STRATEGIES ====== #
+        -- ===== STRATEGIES ====== --
 
-        'SorianEditParagonStrategyExp',
 
-        # == STRATEGY PLATOONS == #
+
+        -- == STRATEGY PLATOONS == --
 
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
 
-        # ==== NAVAL EXPANSION ==== #
+        -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuildersFast',
 
-        # ==== EXPERIMENTALS ==== #
-        #'SorianEditMobileNavalExperimentalEngineers',
-        #'SorianEditMobileNavalExperimentalForm',
+        -- ==== EXPERIMENTALS ==== --
+        --'SorianEditMobileNavalExperimentalEngineers',
+        --'SorianEditMobileNavalExperimentalForm',
     },
     NonCheatBuilders = {
         'SorianEditSonarEngineerBuilders',
@@ -81,9 +81,9 @@ BaseBuilderTemplate {
             Gate = 0,
         },
         MassToFactoryValues = {
-            T1Value = 8, #6
-            T2Value = 20, #15
-            T3Value = 30, #22.5
+            T1Value = 8, --6
+            T2Value = 20, --15
+            T3Value = 30, --22.5
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)

@@ -1,24 +1,24 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainBalanced.lua
-#**  Author(s): Michael Robbins aka SorianEdit
-#**
-#**  Summary  : Manage engineers for a location
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainBalanced.lua
+--**  Author(s): Michael Robbins aka SorianEdit
+--**
+--**  Summary  : Manage engineers for a location
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 BaseBuilderTemplate {
     BaseTemplateName = 'SorianEditMainBalanced',
     Builders = {
-        # ==== ECONOMY ==== #
-        # Factory upgrades
+        -- ==== ECONOMY ==== --
+        -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
-        'SorianEditMassFabPause',
 
-        # Engineer Builders
+
+        -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
@@ -26,39 +26,39 @@ BaseBuilderTemplate {
         'SorianEditEngineerFactoryConstruction Balance',
         'SorianEditEngineerFactoryConstruction',
 
-        # SCU Upgrades
+        -- SCU Upgrades
         'SorianEditSCUUpgrades',
 
-        # Engineer Support buildings
+        -- Engineer Support buildings
         'SorianEditEngineeringSupportBuilder',
 
-        # Build energy at this base
+        -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
 
-        # Build Mass high pri at this base
+        -- Build Mass high pri at this base
         'SorianEditEngineerMassBuildersHighPri',
 
-        # Extractors
+        -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
 
-        # ACU Builders
+        -- ACU Builders
         'SorianEdit Initial ACU Builders',
         'SorianEditACUBuilders',
         'SorianEditACUUpgrades',
 
-        # ACU Defense
+        -- ACU Defense
         'SorianEditT1ACUDefenses',
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
         'SorianEditT3ACUNukeDefenses',
 
-        # ==== EXPANSION ==== #
+        -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerFirebaseBuilders',
 
-        # ==== DEFENSES ==== #
+        -- ==== DEFENSES ==== --
         'SorianEditT1BaseDefenses',
         'SorianEditT2BaseDefenses',
         'SorianEditT3BaseDefenses',
@@ -80,10 +80,10 @@ BaseBuilderTemplate {
 
         'SorianEditMassAdjacencyDefenses',
 
-        # ==== NAVAL EXPANSION ==== #
+        -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
 
-        # ==== LAND UNIT BUILDERS ==== #
+        -- ==== LAND UNIT BUILDERS ==== --
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT3LandFactoryBuilders',
@@ -106,7 +106,7 @@ BaseBuilderTemplate {
         'SorianEditT3Shields',
         'SorianEditEngineeringUpgrades',
 
-        # ==== AIR UNIT BUILDERS ==== #
+        -- ==== AIR UNIT BUILDERS ==== --
         'SorianEditT1AirFactoryBuilders',
         'SorianEditT2AirFactoryBuilders',
         'SorianEditT3AirFactoryBuilders',
@@ -125,20 +125,20 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
-        # ==== EXPERIMENTALS ==== #
+        -- ==== EXPERIMENTALS ==== --
         'SorianEditMobileLandExperimentalEngineers',
         'SorianEditMobileLandExperimentalForm',
 
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        #'SorianEditMobileNavalExperimentalEngineers',
-        #'SorianEditMobileNavalExperimentalForm',
+        --'SorianEditMobileNavalExperimentalEngineers',
+        --'SorianEditMobileNavalExperimentalForm',
 
         'SorianEditEconomicExperimentalEngineers',
         'SorianEditMobileExperimentalEngineersGroup',
 
-        # ==== ARTILLERY BUILDERS ==== #
+        -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroup',
 
         'SorianEditExperimentalArtillery',
@@ -149,7 +149,7 @@ BaseBuilderTemplate {
         'SorianEditSatelliteExperimentalEngineers',
         'SorianEditSatelliteExperimentalForm',
 
-        # ======== Strategies ======== #
+ --[[   -- ======== Strategies ======== --
         'SorianEditHeavyAirStrategy',
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
@@ -157,7 +157,6 @@ BaseBuilderTemplate {
         'SorianEditT3ArtyRush',
         'SorianEditT2ACUSnipe',
         'SorianEditT3FBRush',
-        'SorianEditTeamLevelAdjustment',
         'SorianEditParagonStrategy',
         'SorianEdit Tele SCU Strategy',
         'SorianEditWaterMapLowLand',
@@ -165,9 +164,9 @@ BaseBuilderTemplate {
         'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',
         'SorianEditEnemyTurtle - Out of Range',
-        'SorianEdit Excess Mass Strategy',
+        'SorianEdit Excess Mass Strategy', ]]--
 
-        # ===== Strategy Platoons ===== #
+        -- ===== Strategy Platoons ===== --
         'SorianEditT1BomberHighPrio',
         'SorianEditT2BomberHighPrio',
         'SorianEditT3BomberHighPrio',
@@ -203,7 +202,7 @@ BaseBuilderTemplate {
         EngineerCount = {
             Tech1 = 15,
             Tech2 = 10,
-            Tech3 = 45, #30,
+            Tech3 = 45, --30,
             SCU = 8,
         },
         FactoryCount = {
@@ -213,9 +212,9 @@ BaseBuilderTemplate {
             Gate = 1,
         },
         MassToFactoryValues = {
-            T1Value = 6, #8
-            T2Value = 15, #20
-            T3Value = 22.5, #27.5
+            T1Value = 6, --8
+            T2Value = 15, --20
+            T3Value = 22.5, --27.5
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
@@ -243,7 +242,7 @@ BaseBuilderTemplate {
             return 1000, 'sorian'
         end
 
-        #If we're playing on an island map, do not use this plan often
+        --If we're playing on an island map, do not use this plan often
         if isIsland then
             return Random(25, 50), 'sorian'
 

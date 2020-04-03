@@ -1,24 +1,24 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainRush.lua
-#**  Author(s): Michael Robbins aka SorianEdit
-#**
-#**  Summary  : Manage engineers for a location
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainRush.lua
+--**  Author(s): Michael Robbins aka SorianEdit
+--**
+--**  Summary  : Manage engineers for a location
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 BaseBuilderTemplate {
     BaseTemplateName = 'SorianEditMainRush',
     Builders = {
-        # ==== ECONOMY ==== #
-        # Factory upgrades
+        -- ==== ECONOMY ==== --
+        -- Factory upgrades
         'SorianEditT1RushUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
-        'SorianEditMassFabPause',
 
-        # Engineer Builders
+
+        -- Engineer Builders
         'SorianEditEngineerFactoryBuilders - Rush',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
@@ -26,48 +26,48 @@ BaseBuilderTemplate {
         'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
 
-        # SCU Upgrades
+        -- SCU Upgrades
         'SorianEditSCUUpgrades',
 
-        # Engineer Support buildings
+        -- Engineer Support buildings
         'SorianEditEngineeringSupportBuilder',
 
-        # Build energy at this base
+        -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
 
-        # Build Mass high pri at this base
-        #'SorianEditEngineerMassBuilders - Rush',
+        -- Build Mass high pri at this base
+        --'SorianEditEngineerMassBuilders - Rush',
         'SorianEditEngineerMassBuildersHighPri',
 
-        # Extractors
+        -- Extractors
         'SorianEditTime Exempt Extractor Upgrades - Rush',
 
-        # ACU Builders
+        -- ACU Builders
         'SorianEdit Rush Initial ACU Builders',
         'SorianEditACUBuilders',
         'SorianEditACUUpgrades',
         'SorianEditACUAttack',
 
-        # ACU Defense
+        -- ACU Defense
         'SorianEditT1ACUDefenses',
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
         'SorianEditT3ACUNukeDefenses',
 
-        # ==== EXPANSION ==== #
+        -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerFirebaseBuilders',
 
-        # ==== DEFENSES ==== #
+        -- ==== DEFENSES ==== --
         'SorianEditT1BaseDefenses',
         'SorianEditT2BaseDefenses - Emerg',
         'SorianEditT3BaseDefenses - Emerg',
 
         'SorianEditT1DefensivePoints',
         'SorianEditT2DefensivePoints',
-        #'SorianEditT3DefensivePoints',
+        --'SorianEditT3DefensivePoints',
 
         'SorianEditT2ArtilleryFormBuilders',
         'SorianEditT3ArtilleryFormBuilders',
@@ -79,10 +79,10 @@ BaseBuilderTemplate {
 
         'SorianEditMassAdjacencyDefenses',
 
-        # ==== NAVAL EXPANSION ==== #
+        -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
 
-        # ==== LAND UNIT BUILDERS ==== #
+        -- ==== LAND UNIT BUILDERS ==== --
         'SorianEditT1LandFactoryBuilders - Rush',
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
@@ -106,7 +106,7 @@ BaseBuilderTemplate {
         'SorianEditT3Shields',
         'SorianEditEngineeringUpgrades',
 
-        # ==== AIR UNIT BUILDERS ==== #
+        -- ==== AIR UNIT BUILDERS ==== --
         'SorianEditT1AirFactoryBuilders',
         'SorianEditT2AirFactoryBuilders',
         'SorianEditT3AirFactoryBuilders',
@@ -125,20 +125,20 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
-        # ==== EXPERIMENTALS ==== #
+        -- ==== EXPERIMENTALS ==== --
         'SorianEditMobileLandExperimentalEngineers',
         'SorianEditMobileLandExperimentalForm',
 
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        #'SorianEditMobileNavalExperimentalEngineers',
-        #'SorianEditMobileNavalExperimentalForm',
+        --'SorianEditMobileNavalExperimentalEngineers',
+        --'SorianEditMobileNavalExperimentalForm',
 
         'SorianEditEconomicExperimentalEngineers',
         'SorianEditMobileExperimentalEngineersGroup',
 
-        # ==== ARTILLERY BUILDERS ==== #
+        -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroup',
 
         'SorianEditExperimentalArtillery',
@@ -149,7 +149,7 @@ BaseBuilderTemplate {
         'SorianEditSatelliteExperimentalEngineers',
         'SorianEditSatelliteExperimentalForm',
 
-        # ======== Strategies ======== #
+ --[[   -- ======== Strategies ======== --
         'SorianEditHeavyAirStrategy',
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
@@ -158,17 +158,15 @@ BaseBuilderTemplate {
         'SorianEditT2ACUSnipe',
         'SorianEditT3FBRush',
         'SorianEditParagonStrategy',
-        'SorianEditSmallMapRush',
         'SorianEdit Tele SCU Strategy',
         'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
         'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',
         'SorianEditEnemyTurtle - Out of Range',
-        'SorianEdit Excess Mass Strategy',
-        'SorianEditRushGunUpgrades',
+        'SorianEdit Excess Mass Strategy', ]]--
 
-        # ===== Strategy Platoons ===== #
+        -- ===== Strategy Platoons ===== --
         'SorianEditT1BomberHighPrio',
         'SorianEditT2BomberHighPrio',
         'SorianEditT3BomberHighPrio',
@@ -206,7 +204,7 @@ BaseBuilderTemplate {
         EngineerCount = {
             Tech1 = 15,
             Tech2 = 10,
-            Tech3 = 25, #15,
+            Tech3 = 25, --15,
             SCU = 2,
         },
         FactoryCount = {

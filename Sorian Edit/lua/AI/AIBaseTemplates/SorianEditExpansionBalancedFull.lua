@@ -1,21 +1,21 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua
-#**
-#**  Summary  : Manage engineers for a location
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua
+--**
+--**  Summary  : Manage engineers for a location
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 BaseBuilderTemplate {
     BaseTemplateName = 'SorianEditExpansionBalancedFull',
     Builders = {
-        # ==== ECONOMY ==== #
-        # Factory upgrades
+        -- ==== ECONOMY ==== --
+        -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuildersExpansion',
         'SorianEditT2BalancedUpgradeBuildersExpansion',
 
-        # Engineer Builders
+        -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
@@ -23,20 +23,20 @@ BaseBuilderTemplate {
         'SorianEditEngineerFactoryConstruction',
         'SorianEditEngineerFactoryConstruction Balance',
 
-        # SCU Upgrades
+        -- SCU Upgrades
         'SorianEditSCUUpgrades',
 
-        # Build Mass low pri at this base
+        -- Build Mass low pri at this base
         'SorianEditEngineerMassBuildersLowerPri',
 
-        # Build some power, but not much
+        -- Build some power, but not much
         'SorianEditEngineerEnergyBuildersExpansions',
 
-        # ==== EXPANSION ==== #
+        -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersSmall',
 
-        # ==== DEFENSES ==== #
+        -- ==== DEFENSES ==== --
         'SorianEditT1LightDefenses',
         'SorianEditT2LightDefenses',
         'SorianEditT3LightDefenses',
@@ -54,10 +54,10 @@ BaseBuilderTemplate {
 
         'SorianEditMassAdjacencyDefenses',
 
-        # ==== NAVAL EXPANSION ==== #
+        -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
 
-        # ==== LAND UNIT BUILDERS ==== #
+        -- ==== LAND UNIT BUILDERS ==== --
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT3LandFactoryBuilders',
@@ -70,7 +70,7 @@ BaseBuilderTemplate {
         'SorianEditT2ReactionDF',
         'SorianEditT3ReactionDF',
 
-        # ==== AIR UNIT BUILDERS ==== #
+        -- ==== AIR UNIT BUILDERS ==== --
         'SorianEditT1AirFactoryBuilders',
         'SorianEditT2AirFactoryBuilders',
         'SorianEditT3AirFactoryBuilders',
@@ -80,7 +80,7 @@ BaseBuilderTemplate {
         'SorianEditUnitCapAirAttackFormBuilders',
         'SorianEditACUHunterAirFormBuilders',
 
-        #'SorianEditTransportFactoryBuilders',
+        --'SorianEditTransportFactoryBuilders',
 
         'SorianEditExpResponseFormBuilders',
 
@@ -89,28 +89,27 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
-        # ===== STRATEGIES ====== #
+        -- ===== STRATEGIES ====== --
 
-        'SorianEditParagonStrategyExp',
-        'SorianEditWaterMapLowLand',
 
-        # == STRATEGY PLATOONS == #
+
+        -- == STRATEGY PLATOONS == --
 
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
 
-        # ==== EXPERIMENTALS ==== #
+        -- ==== EXPERIMENTALS ==== --
         'SorianEditMobileLandExperimentalEngineers',
         'SorianEditMobileLandExperimentalForm',
 
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        # ==== ARTILLERY BUILDERS ==== #
+        -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroupExp',
     },
     NonCheatBuilders = {
-        #'SorianEditAirScoutFactoryBuilders',
-        #'SorianEditAirScoutFormBuilders',
+        --'SorianEditAirScoutFactoryBuilders',
+        --'SorianEditAirScoutFormBuilders',
 
         'SorianEditLandScoutFactoryBuilders',
         'SorianEditLandScoutFormBuilders',
@@ -131,12 +130,12 @@ BaseBuilderTemplate {
             Land = 3,
             Air = 1,
             Sea = 0,
-            Gate = 0, #1,
+            Gate = 0, --1,
         },
         MassToFactoryValues = {
-            T1Value = 6, #8
-            T2Value = 15, #20
-            T3Value = 22.5, #27.5
+            T1Value = 6, --8
+            T2Value = 15, --20
+            T3Value = 22.5, --27.5
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
@@ -152,7 +151,7 @@ BaseBuilderTemplate {
             return 0
         end
 
-        local threatCutoff = 10 # value of overall threat that determines where enemy bases are
+        local threatCutoff = 10 -- value of overall threat that determines where enemy bases are
         local distance = import('/lua/ai/AIUtilities.lua').GetThreatDistance(aiBrain, location, threatCutoff)
         if not distance or distance > 1000 then
             return 500
@@ -160,7 +159,7 @@ BaseBuilderTemplate {
             return 750
         elseif distance > 250 then
             return 1000
-        else # within 250
+        else -- within 250
             return 250
         end
 
