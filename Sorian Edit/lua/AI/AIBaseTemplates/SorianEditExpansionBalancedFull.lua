@@ -142,25 +142,13 @@ BaseBuilderTemplate {
         if not aiBrain.SorianEdit then
             return -1
         end
-        if markerType != 'Start Location' and markerType != 'Expansion Area' then
-            return 0
+        if markerType ~= 'Start Location' then
+            return -1
         end
 
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if not (personality == 'sorian' or personality == 'sorianadaptive') then
-            return 0
-        end
-
-        local threatCutoff = 10 -- value of overall threat that determines where enemy bases are
-        local distance = import('/lua/ai/AIUtilities.lua').GetThreatDistance(aiBrain, location, threatCutoff)
-        if not distance or distance > 1000 then
-            return 500
-        elseif distance > 500 then
-            return 750
-        elseif distance > 250 then
-            return 1000
-        else -- within 250
-            return 250
+        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+            return 250, 'sorianedit'
         end
 
         return 0

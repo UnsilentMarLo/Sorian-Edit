@@ -99,6 +99,7 @@ BaseBuilderTemplate {
 		
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+            return 200, 'sorianedit'
         end
         return 0
     end,

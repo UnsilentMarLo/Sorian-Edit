@@ -12,6 +12,7 @@ local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local Utils = import('/lua/utilities.lua')
 local Mods = import('/lua/mods.lua')
 
+local AIChatText = import('/mods/Sorian edit/lua/AI/sorianeditlang.lua').AIChatText
 
 -- Table of AI taunts orginized by faction
 local AITaunts = {
