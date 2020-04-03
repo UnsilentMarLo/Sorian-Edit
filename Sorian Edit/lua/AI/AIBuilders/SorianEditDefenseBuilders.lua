@@ -22,7 +22,7 @@ local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
-local AIAddBuilderTable = import('/mods/Sorian edit/lua/ai/AIAddBuilderTable.lua')
+local AIAddBuilderTable = import('/lua/AI/AIAddBuilderTable.lua')
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditMassAdjacencyDefenses',
