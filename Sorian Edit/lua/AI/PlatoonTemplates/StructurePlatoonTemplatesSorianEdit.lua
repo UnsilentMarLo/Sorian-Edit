@@ -8,7 +8,7 @@
 #****************************************************************************
 
 PlatoonTemplate {
-    Name = 'MassFabsSorian',
+    Name = 'MassFabsSorianEdit',
     Plan = 'PauseAI',
     GlobalSquads = {
         { categories.STRUCTURE * categories.MASSFABRICATION, 1, 1, 'support', 'none' },
@@ -17,8 +17,8 @@ PlatoonTemplate {
 
 # ==== Missile systems ==== #
 PlatoonTemplate {
-    Name = 'T2TacticalLauncherSorian',
-    Plan = 'TacticalAISorian',
+    Name = 'T2TacticalLauncherSorianEdit',
+    Plan = 'TacticalAISorianEdit',
     GlobalSquads = {
         { categories.STRUCTURE * categories.TACTICALMISSILEPLATFORM, 1, 1, 'attack', 'none' },
     }
@@ -26,31 +26,31 @@ PlatoonTemplate {
 
 # ==== Artillery platoons ==== #
 PlatoonTemplate {
-    Name = 'T2ArtilleryStructureSorian',
-    Plan = 'ArtilleryAISorian',
+    Name = 'T2ArtilleryStructureSorianEdit',
+    Plan = 'ArtilleryAISorianEdit',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH2, 1, 1, 'artillery', 'None' }
     }
 }
 
 PlatoonTemplate {
-    Name = 'T3ArtilleryStructureSorian',
-    Plan = 'ArtilleryAISorian',
+    Name = 'T3ArtilleryStructureSorianEdit',
+    Plan = 'ArtilleryAISorianEdit',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH3, 1, 1, 'artillery', 'None' }
     }
 }
 
 PlatoonTemplate {
-    Name = 'T4ArtilleryStructureSorian',
-    Plan = 'ArtilleryAISorian',
+    Name = 'T4ArtilleryStructureSorianEdit',
+    Plan = 'ArtilleryAISorianEdit',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'artillery', 'None' }
     }
 }
 
 PlatoonTemplate {
-    Name = 'T3NukeSorian',
+    Name = 'T3NukeSorianEdit',
     Plan = 'NukeAI',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.TECH3, 1, 1, 'attack', 'none' },
@@ -58,7 +58,7 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'T4NukeSorian',
+    Name = 'T4NukeSorianEdit',
     Plan = 'NukeAISAI',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'attack', 'none' },
@@ -96,8 +96,8 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'T4SatelliteExperimentalSorian',
-    Plan = 'SatelliteAISorian',
+    Name = 'T4SatelliteExperimentalSorianEdit',
+    Plan = 'SatelliteAISorianEdit',
     GlobalSquads = {
         { categories.SATELLITE, 1, 1, 'attack', 'none' },
     }

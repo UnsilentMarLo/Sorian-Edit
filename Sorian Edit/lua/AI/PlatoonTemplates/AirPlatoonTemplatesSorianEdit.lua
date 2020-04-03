@@ -1,6 +1,6 @@
 PlatoonTemplate {
-    Name = 'AirAttackSorian',
-    Plan = 'StrikeForceAISorian',
+    Name = 'AirAttackSorianEdit',
+    Plan = 'StrikeForceAISorianEdit',
     GlobalSquads = {
         #{ categories.MOBILE * categories.AIR - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS - categories.ANTINAVY, 1, 100, 'Attack', 'GrowthFormation' }
         { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, 1, 10, 'Attack', 'GrowthFormation' },
@@ -8,8 +8,8 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'BomberAttackSorian',
-    Plan = 'StrikeForceAISorian',
+    Name = 'BomberAttackSorianEdit',
+    Plan = 'StrikeForceAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.BOMBER - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 100, 'Attack', 'GrowthFormation' },
         #{ categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.EXPERIMENTAL - categories.BOMBER - categories.TRANSPORTFOCUS, 0, 10, 'Attack', 'GrowthFormation' },
@@ -18,15 +18,15 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'ThreatAirAttack',
-    Plan = 'ThreatStrikeSorian',
+    Plan = 'ThreatStrikeSorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 100, 'Attack', 'GrowthFormation' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'BomberAttackSorianBig',
-    Plan = 'StrikeForceAISorian',
+    Name = 'BomberAttackSorianEditBig',
+    Plan = 'StrikeForceAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.EXPERIMENTAL - categories.ANTINAVY, 10, 100, 'Attack', 'GrowthFormation' },
         #{ categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.EXPERIMENTAL - categories.BOMBER - categories.TRANSPORTFOCUS, 1, 10, 'Attack', 'GrowthFormation' },
@@ -34,7 +34,7 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'TorpedoBomberAttackSorian',
+    Name = 'TorpedoBomberAttackSorianEdit',
     Plan = 'AirHuntAI',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.ANTINAVY - categories.EXPERIMENTAL, 1, 100, 'Attack', 'GrowthFormation' },
@@ -43,15 +43,15 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'AntiAirBaseGuardSorian',
-    Plan = 'GuardBaseSorian',
+    Name = 'AntiAirBaseGuardSorianEdit',
+    Plan = 'GuardBaseSorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, 1, 100, 'attack', 'none' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'GunshipAttackSorian',
+    Name = 'GunshipAttackSorianEdit',
     Plan = 'AirHuntAI',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS, 1, 100, 'Attack', 'GrowthFormation' },
@@ -60,32 +60,32 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'GunshipSFSorian',
-    Plan = 'StrikeForceAISorian',
+    Name = 'GunshipSFSorianEdit',
+    Plan = 'StrikeForceAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS, 1, 100, 'Attack', 'GrowthFormation' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'GunshipMassHunterSorian',
-    Plan = 'GuardMarkerSorian',
+    Name = 'GunshipMassHunterSorianEdit',
+    Plan = 'GuardMarkerSorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTFOCUS, 1, 5, 'Attack', 'GrowthFormation' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'T1AirScoutFormSorian',
-    Plan = 'ScoutingAISorian',
+    Name = 'T1AirScoutFormSorianEdit',
+    Plan = 'ScoutingAISorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.SCOUT * categories.TECH1, 1, 1, 'scout', 'None' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'AntiAirHuntSorian',
-    Plan = 'FighterDistributionHubSorian', #'FighterHuntAI',
+    Name = 'AntiAirHuntSorianEdit',
+    Plan = 'FighterDistributionHubSorianEdit', #'FighterHuntAI',
     GlobalSquads = {
         { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, 1, 10, 'attack', 'none' },
     }
@@ -93,23 +93,23 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'AntiAirT4Guard',
-    Plan = 'GuardExperimentalSorian',
+    Plan = 'GuardExperimentalSorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, 1, 10, 'attack', 'none' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'T3AirScoutFormSorian',
-    Plan = 'ScoutingAISorian',
+    Name = 'T3AirScoutFormSorianEdit',
+    Plan = 'ScoutingAISorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.INTELLIGENCE * categories.TECH3, 1, 1, 'scout', 'None' },
     }
 }
 
 PlatoonTemplate {
-    Name = 'T4ExperimentalAirSorian',
-    Plan = 'ExperimentalAIHubSorian',
+    Name = 'T4ExperimentalAirSorianEdit',
+    Plan = 'ExperimentalAIHubSorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 1, 10, 'attack', 'none' },
     },
@@ -117,14 +117,14 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalAirLate',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'ExperimentalAIHubSorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 2, 5, 'attack', 'GrowthFormation' },
     },
 }
 
 PlatoonTemplate {
-    Name = 'T2BomberSorian',
+    Name = 'T2BomberSorianEdit',
     FactionSquads = {
         UEF = {
             { 'dea0202', 1, 1, 'attack', 'None' },
@@ -142,7 +142,7 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'T3AirBomberSpecialSorian',
+    Name = 'T3AirBomberSpecialSorianEdit',
     FactionSquads = {
         UEF = {
             { 'uea0304', 1, 1, 'attack', 'None' },
