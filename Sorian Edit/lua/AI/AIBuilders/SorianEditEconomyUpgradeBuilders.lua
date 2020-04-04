@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /mods/Sorian edit/lua/ai/SorianEditEconomyUpgradeBuilders.lua
+#**  File     :  /mods/Sorian Edit/lua/ai/SorianEditEconomyUpgradeBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -19,8 +19,8 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades Expansion',

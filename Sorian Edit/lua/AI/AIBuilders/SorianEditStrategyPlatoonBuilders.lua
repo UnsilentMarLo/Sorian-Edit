@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /mods/Sorian edit/lua/ai/SorianEditStrategyPlatoonBuilders.lua
+#**  File     :  /mods/Sorian Edit/lua/ai/SorianEditStrategyPlatoonBuilders.lua
 #**
 #**  Summary  : Default Naval structure builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'

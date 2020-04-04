@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /mods/Sorian edit/lua/ai/AIEconomicBuilders.lua
+#**  File     :  /mods/Sorian Edit/lua/ai/AIEconomicBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -19,8 +19,8 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditEngineerFactoryBuilders',
@@ -398,7 +398,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -425,7 +425,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -459,7 +459,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -486,7 +486,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -520,7 +520,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -547,7 +547,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -580,7 +580,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -609,7 +609,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {

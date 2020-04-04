@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /mods/Sorian edit/lua/ai/SorianStrategyBuilders.lua
+#**  File     :  /mods/Sorian Edit/lua/ai/SorianStrategyBuilders.lua
 #**
 #**  Summary  : Default Naval structure builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -20,12 +20,12 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/lua/editor/SorianBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
-local AIUtils = import('/lua/ai/aiutilities.lua')
+local AIUtils = import('/mods/Sorian Edit/lua/ai/aiutilities.lua')
 local Behaviors = import('/lua/ai/aibehaviors.lua')
-local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
+local AIAttackUtils = import('/mods/Sorian Edit/lua/ai/aiattackutilities.lua')
 local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemplates
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates
-local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
+local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local econThread
 
 function EconWatch(aiBrain)
@@ -72,10 +72,10 @@ function EconWatch(aiBrain)
 end
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Excess Mass Strategy',
+    BuilderGroupName = 'Sorian Edit Excess Mass Strategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Excess Mass Strategy',
+        BuilderName = 'Sorian Edit Excess Mass Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -113,22 +113,22 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Land Exp1 Engineer - Excess Mass',
-                'Sorian T3 Land Exp1 Engineer - Large Map - Excess Mass',
-                'Sorian T3 Engineer Assist Experimental Mobile Land - Excess Mass',
-                'Sorian T3 Air Exp1 Engineer 1 - Excess Mass',
-                'Sorian T3 Air Exp1 Engineer 1 - Small Map - Excess Mass',
-                'Sorian T3 Engineer Assist Experimental Mobile Air - Excess Mass',
+                'Sorian Edit T3 Land Exp1 Engineer - Excess Mass',
+                'Sorian Edit T3 Land Exp1 Engineer - Large Map - Excess Mass',
+                'Sorian Edit T3 Engineer Assist Experimental Mobile Land - Excess Mass',
+                'Sorian Edit T3 Air Exp1 Engineer 1 - Excess Mass',
+                'Sorian Edit T3 Air Exp1 Engineer 1 - Small Map - Excess Mass',
+                'Sorian Edit T3 Engineer Assist Experimental Mobile Air - Excess Mass',
             },
         }
     },
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Tele SCU Strategy',
+    BuilderGroupName = 'Sorian Edit Tele SCU Strategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Tele SCU Strategy',
+        BuilderName = 'Sorian Edit Tele SCU Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -260,10 +260,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian Engy Drop Strategy',
+    BuilderGroupName = 'Sorian Edit Engy Drop Strategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Engy Drop Strategy',
+        BuilderName = 'Sorian Edit Engy Drop Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, #100,
         InstanceCount = 1,
@@ -271,7 +271,7 @@ BuilderGroup {
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
             Builders[self.BuilderName].Running = true
-            LOG('*AI DEBUG: Sorian Engy Drop Strategy Activated by '..aiBrain.Nickname..'!')
+            LOG('*AI DEBUG: Sorian Edit Engy Drop Strategy Activated by '..aiBrain.Nickname..'!')
             local x,z = aiBrain:GetArmyStartPos()
             local count = 0
             repeat
@@ -408,7 +408,7 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Transport - GG',
+                'Sorian Edit T1 Air Transport - GG',
             },
             EngineerManager = {
                 'SorianAirFactoryHighPrio',
@@ -418,10 +418,10 @@ BuilderGroup {
 }
 
 BuilderGroup {
-    BuilderGroupName = 'Sorian PD Creep Strategy',
+    BuilderGroupName = 'Sorian Edit PD Creep Strategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian PD Creep Strategy',
+        BuilderName = 'Sorian Edit PD Creep Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -475,10 +475,10 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T1 - High Prio Defensive Point Engineer',
-                'Sorian T2 - High Prio Defensive Point Engineer UEF',
-                'Sorian T2 - High Prio Defensive Point Engineer Cybran',
-                'Sorian T2 - High Prio Defensive Point Engineer',
+                'Sorian Edit T1 - High Prio Defensive Point Engineer',
+                'Sorian Edit T2 - High Prio Defensive Point Engineer UEF',
+                'Sorian Edit T2 - High Prio Defensive Point Engineer Cybran',
+                'Sorian Edit T2 - High Prio Defensive Point Engineer',
             }
         }
     },
@@ -488,7 +488,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianWaterMapLowLand',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Water Map Low Land',
+        BuilderName = 'Sorian Edit Water Map Low Land',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -501,41 +501,41 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Bot - Early Game Rush',
-                'Sorian T1 Bot - Early Game',
-                'Sorian T1 Light Tank - Tech 1',
-                'Sorian T1 Light Tank - Tech 2',
-                'Sorian T1 Light Tank - Tech 3',
-                'Sorian T1 Mortar',
-                'Sorian T1 Mortar - Not T1',
-                'Sorian T1 Mortar - tough def',
-                'Sorian T1 Mobile AA',
-                'Sorian T1 Mobile AA - Response',
-                'Sorian T1 Tank Enemy Nearby',
-                'Sorian T2 Tank - Tech 2',
-                'Sorian T2 Tank 2 - Tech 3',
-                'Sorian T2 MML',
-                'Sorian T2AttackTank - Tech 2',
-                'Sorian T2AttackTank2 - Tech 3',
-                #'Sorian T2 Amphibious Tank - Tech 2',
-                #'Sorian T2 Amphibious Tank - Tech 3',
-                #'Sorian T2 Amphibious Tank - Tech 2 Cybran',
-                #'Sorian T2 Amphibious Tank - Tech 3 Cybran',
-                'Sorian T2MobileShields',
-                'Sorian T2 Tank Enemy Nearby',
-                'Sorian T2 Mobile Flak',
-                'Sorian T2 Mobile Flak Response',
-                'Sorian T3 Siege Assault Bot',
-                'Sorian T3 Mobile Heavy Artillery',
-                'Sorian T3 Mobile Heavy Artillery - tough def',
-                'Sorian T3 Mobile Flak',
-                'Sorian T3SniperBots',
-                #'Sorian T3ArmoredAssault',
-                'Sorian T3MobileMissile',
-                'Sorian T3MobileShields',
-                'Sorian T3 Mobile AA Response',
-                'Sorian T3 Assault Enemy Nearby',
-                'Sorian T3 SiegeBot Enemy Nearby',
+                'Sorian Edit T1 Bot - Early Game Rush',
+                'Sorian Edit T1 Bot - Early Game',
+                'Sorian Edit T1 Light Tank - Tech 1',
+                'Sorian Edit T1 Light Tank - Tech 2',
+                'Sorian Edit T1 Light Tank - Tech 3',
+                'Sorian Edit T1 Mortar',
+                'Sorian Edit T1 Mortar - Not T1',
+                'Sorian Edit T1 Mortar - tough def',
+                'Sorian Edit T1 Mobile AA',
+                'Sorian Edit T1 Mobile AA - Response',
+                'Sorian Edit T1 Tank Enemy Nearby',
+                'Sorian Edit T2 Tank - Tech 2',
+                'Sorian Edit T2 Tank 2 - Tech 3',
+                'Sorian Edit T2 MML',
+                'Sorian Edit T2AttackTank - Tech 2',
+                'Sorian Edit T2AttackTank2 - Tech 3',
+                #'Sorian Edit T2 Amphibious Tank - Tech 2',
+                #'Sorian Edit T2 Amphibious Tank - Tech 3',
+                #'Sorian Edit T2 Amphibious Tank - Tech 2 Cybran',
+                #'Sorian Edit T2 Amphibious Tank - Tech 3 Cybran',
+                'Sorian Edit T2MobileShields',
+                'Sorian Edit T2 Tank Enemy Nearby',
+                'Sorian Edit T2 Mobile Flak',
+                'Sorian Edit T2 Mobile Flak Response',
+                'Sorian Edit T3 Siege Assault Bot',
+                'Sorian Edit T3 Mobile Heavy Artillery',
+                'Sorian Edit T3 Mobile Heavy Artillery - tough def',
+                'Sorian Edit T3 Mobile Flak',
+                'Sorian Edit T3SniperBots',
+                #'Sorian Edit T3ArmoredAssault',
+                'Sorian Edit T3MobileMissile',
+                'Sorian Edit T3MobileShields',
+                'Sorian Edit T3 Mobile AA Response',
+                'Sorian Edit T3 Assault Enemy Nearby',
+                'Sorian Edit T3 SiegeBot Enemy Nearby',
             },
         },
         AddBuilders = {}
@@ -546,7 +546,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianBigAirGroup',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Big Air Strategy',
+        BuilderName = 'Sorian Edit Big Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -581,45 +581,45 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                'Sorian T2 Air Gunship',
-                'Sorian T2 Air Gunship - Anti Navy',
-                'Sorian T2 Air Gunship - Stomp Enemy',
-                'Sorian T2FighterBomber',
-                'Sorian T2 Air Gunship2',
-                'Sorian T2FighterBomber2',
-                'Sorian T3 Air Gunship',
-                'Sorian T3 Air Gunship - Anti Navy',
-                'Sorian T3 Air Bomber',
-                'Sorian T3 Air Bomber - Stomp Enemy',
-                'Sorian T3 Air Gunship2',
-                'Sorian T3 Air Bomber2',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                'Sorian Edit T2 Air Gunship',
+                'Sorian Edit T2 Air Gunship - Anti Navy',
+                'Sorian Edit T2 Air Gunship - Stomp Enemy',
+                'Sorian Edit T2FighterBomber',
+                'Sorian Edit T2 Air Gunship2',
+                'Sorian Edit T2FighterBomber2',
+                'Sorian Edit T3 Air Gunship',
+                'Sorian Edit T3 Air Gunship - Anti Navy',
+                'Sorian Edit T3 Air Bomber',
+                'Sorian Edit T3 Air Bomber - Stomp Enemy',
+                'Sorian Edit T3 Air Gunship2',
+                'Sorian Edit T3 Air Bomber2',
             },
             PlatoonFormManager = {
-                'Sorian BomberAttackT1Frequent',
-                'Sorian BomberAttackT1Frequent - Anti-Land',
-                #'Sorian BomberAttackT1Frequent - Anti-Resource',
-                'Sorian BomberAttackT2Frequent',
-                'Sorian BomberAttackT2Frequent - Anti-Land',
-                #'Sorian BomberAttackT2Frequent - Anti-Resource',
-                'Sorian BomberAttackT3Frequent',
-                'Sorian BomberAttackT3Frequent - Anti-Land',
-                #'Sorian BomberAttackT3Frequent - Anti-Resource',
-                'Sorian T1 Bomber Attack Weak Enemy Response',
-                #'Sorian BomberAttack Mass Hunter',
+                'Sorian Edit BomberAttackT1Frequent',
+                'Sorian Edit BomberAttackT1Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT2Frequent',
+                'Sorian Edit BomberAttackT2Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT3Frequent',
+                'Sorian Edit BomberAttackT3Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                'Sorian Edit T1 Bomber Attack Weak Enemy Response',
+                #'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
             FactoryManager = {
-                'Sorian T2 Air Bomber - High Prio',
-                'Sorian T3 Air Bomber Special - High Prio',
+                'Sorian Edit T2 Air Bomber - High Prio',
+                'Sorian Edit T3 Air Bomber Special - High Prio',
             },
             PlatoonFormManager = {
-                'Sorian Bomber Attack - Big',
+                'Sorian Edit Bomber Attack - Big',
             }
         }
     },
@@ -629,7 +629,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianJesterRush',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Jester Rush Strategy',
+        BuilderName = 'Sorian Edit Jester Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -674,48 +674,48 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Fighter',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                #'Sorian T1 Interceptors',
-                #'Sorian T1 Interceptors - Enemy Air',
-                #'Sorian T1 Interceptors - Enemy Air Extra',
-                #'Sorian T1 Interceptors - Enemy Air Extra 2',
-                'Sorian T2 Air Gunship',
-                'Sorian T2 Air Gunship - Anti Navy',
-                'Sorian T2 Air Gunship - Stomp Enemy',
-                'Sorian T2FighterBomber',
-                'Sorian T1 Air Fighter - T2',
-                'Sorian T2 Air Gunship2',
-                'Sorian T2FighterBomber2',
-                #'Sorian T2AntiAirPlanes Initial Higher Pri',
-                #'Sorian T2AntiAirPlanes - Enemy Air',
-                #'Sorian T2AntiAirPlanes - Enemy Air Extra',
-                #'Sorian T2AntiAirPlanes - Enemy Air Extra 2',
-                'Sorian T3 Air Gunship',
-                'Sorian T3 Air Gunship - Anti Navy',
-                'Sorian T3 Air Bomber',
-                'Sorian T3 Air Bomber - Stomp Enemy',
-                'Sorian T3 Air Gunship2',
-                'Sorian T3 Air Bomber2',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Fighter',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                #'Sorian Edit T1 Interceptors',
+                #'Sorian Edit T1 Interceptors - Enemy Air',
+                #'Sorian Edit T1 Interceptors - Enemy Air Extra',
+                #'Sorian Edit T1 Interceptors - Enemy Air Extra 2',
+                'Sorian Edit T2 Air Gunship',
+                'Sorian Edit T2 Air Gunship - Anti Navy',
+                'Sorian Edit T2 Air Gunship - Stomp Enemy',
+                'Sorian Edit T2FighterBomber',
+                'Sorian Edit T1 Air Fighter - T2',
+                'Sorian Edit T2 Air Gunship2',
+                'Sorian Edit T2FighterBomber2',
+                #'Sorian Edit T2AntiAirPlanes Initial Higher Pri',
+                #'Sorian Edit T2AntiAirPlanes - Enemy Air',
+                #'Sorian Edit T2AntiAirPlanes - Enemy Air Extra',
+                #'Sorian Edit T2AntiAirPlanes - Enemy Air Extra 2',
+                'Sorian Edit T3 Air Gunship',
+                'Sorian Edit T3 Air Gunship - Anti Navy',
+                'Sorian Edit T3 Air Bomber',
+                'Sorian Edit T3 Air Bomber - Stomp Enemy',
+                'Sorian Edit T3 Air Gunship2',
+                'Sorian Edit T3 Air Bomber2',
             },
             PlatoonFormManager = {
-                'Sorian GunshipAttackT1Frequent',
-                'Sorian GunshipAttackT2Frequent',
-                'Sorian GunshipAttackT3Frequent',
-                'Sorian T1 GunShip Attack Weak Enemy Response',
-                'Sorian Mass Hunter Gunships',
+                'Sorian Edit GunshipAttackT1Frequent',
+                'Sorian Edit GunshipAttackT2Frequent',
+                'Sorian Edit GunshipAttackT3Frequent',
+                'Sorian Edit T1 GunShip Attack Weak Enemy Response',
+                'Sorian Edit Mass Hunter Gunships',
             }
         },
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1Gunship - High Prio',
+                'Sorian Edit T1Gunship - High Prio',
             },
             PlatoonFormManager = {
-                'Sorian GunShip Attack - Large',
+                'Sorian Edit GunShip Attack - Large',
             }
         }
     },
@@ -725,7 +725,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianRushGunUpgrades',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Rush Gun Upgrades',
+        BuilderName = 'Sorian Edit Rush Gun Upgrades',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -758,30 +758,30 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             EngineerManager = {
-                'Sorian UEF CDR Upgrade AdvEng - Pods',
-                'Sorian UEF CDR Upgrade T3 Eng - Shields',
-                'Sorian Aeon CDR Upgrade AdvEng - Resource - Crysalis',
-                'Sorian Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
-                'Sorian Cybran CDR Upgrade AdvEng - Laser Gen',
-                'Sorian Cybran CDR Upgrade T3 Eng - Resource',
-                'Sorian Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
-                'Sorian Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+                'Sorian Edit UEF CDR Upgrade AdvEng - Pods',
+                'Sorian Edit UEF CDR Upgrade T3 Eng - Shields',
+                'Sorian Edit Aeon CDR Upgrade AdvEng - Resource - Crysalis',
+                'Sorian Edit Aeon CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
+                'Sorian Edit Cybran CDR Upgrade AdvEng - Laser Gen',
+                'Sorian Edit Cybran CDR Upgrade T3 Eng - Resource',
+                'Sorian Edit Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
+                'Sorian Edit Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
             },
         },
         AddBuilders = {
             EngineerManager = {
-                'Sorian UEF CDR Upgrade - Rush - Gun',
-                'Sorian UEF CDR Upgrade - Rush - Eng',
-                'Sorian UEF CDR Upgrade - Rush - Shield',
-                'Sorian Aeon CDR Upgrade - Rush - Gun',
-                'Sorian Aeon CDR Upgrade - Rush - Eng',
-                'Sorian Aeon CDR Upgrade T3 - Rush - Shield',
-                'Sorian Cybran CDR Upgrade - Rush - Gun',
-                'Sorian Cybran CDR Upgrade - Rush - Eng',
-                'Sorian Cybran CDR Upgrade - Rush - Laser',
-                'Sorian Seraphim CDR Upgrade - Rush - Gun',
-                'Sorian Seraphim CDR Upgrade - Rush - Eng',
-                'Sorian Seraphim CDR Upgrade - Rush - Regen',
+                'Sorian Edit UEF CDR Upgrade - Rush - Gun',
+                'Sorian Edit UEF CDR Upgrade - Rush - Eng',
+                'Sorian Edit UEF CDR Upgrade - Rush - Shield',
+                'Sorian Edit Aeon CDR Upgrade - Rush - Gun',
+                'Sorian Edit Aeon CDR Upgrade - Rush - Eng',
+                'Sorian Edit Aeon CDR Upgrade T3 - Rush - Shield',
+                'Sorian Edit Cybran CDR Upgrade - Rush - Gun',
+                'Sorian Edit Cybran CDR Upgrade - Rush - Eng',
+                'Sorian Edit Cybran CDR Upgrade - Rush - Laser',
+                'Sorian Edit Seraphim CDR Upgrade - Rush - Gun',
+                'Sorian Edit Seraphim CDR Upgrade - Rush - Eng',
+                'Sorian Edit Seraphim CDR Upgrade - Rush - Regen',
             },
         }
     },
@@ -791,7 +791,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianGhettoGunship',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Ghetto Gunship Strategy',
+        BuilderName = 'Sorian Edit Ghetto Gunship Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, #100,
         InstanceCount = 1,
@@ -840,11 +840,11 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Transport - GG',
-                'Sorian T1 Bot - GG',
+                'Sorian Edit T1 Air Transport - GG',
+                'Sorian Edit T1 Bot - GG',
             },
             PlatoonFormManager = {
-                'Sorian GG Force',
+                'Sorian Edit GG Force',
             }
         }
     },
@@ -854,7 +854,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianSmallMapRush',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Small Map Rush Strategy',
+        BuilderName = 'Sorian Edit Small Map Rush Strategy',
         StrategyType = 'Overall',
         Priority = 100,
         InstanceCount = 1,
@@ -887,16 +887,16 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             EngineerManager = {
-                'Sorian T1VacantStartingAreaEngineer - Rush',
-                'Sorian T1VacantStartingAreaEngineer',
-                'Sorian T1 Vacant Expansion Area Engineer(Full Base)',
+                'Sorian Edit T1VacantStartingAreaEngineer - Rush',
+                'Sorian Edit T1VacantStartingAreaEngineer',
+                'Sorian Edit T1 Vacant Expansion Area Engineer(Full Base)',
             },
         },
         AddBuilders = {
             EngineerManager = {
-                'Sorian T1VacantStartingAreaEngineer - HP Strategy',
-                'Sorian T1VacantStartingAreaEngineer Strategy',
-                'Sorian T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
+                'Sorian Edit T1VacantStartingAreaEngineer - HP Strategy',
+                'Sorian Edit T1VacantStartingAreaEngineer Strategy',
+                'Sorian Edit T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
             },
         }
     },
@@ -906,7 +906,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianT3ArtyRush',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian T3 Arty Rush Strategy',
+        BuilderName = 'Sorian Edit T3 Arty Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -943,8 +943,8 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Arty Engineer - High Prio',
-                'Sorian T3 Engineer Assist Build Arty - High Prio',
+                'Sorian Edit T3 Arty Engineer - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Arty - High Prio',
             }
         }
     },
@@ -954,7 +954,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianT3FBRush',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian T3 FB Rush Strategy',
+        BuilderName = 'Sorian Edit T3 FB Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -991,14 +991,14 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Expansion Area Firebase Engineer - Cybran - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Aeon - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - UEF - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Seraphim - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - UEF - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Cybran - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Aeon - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - UEF - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Seraphim - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - UEF - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
             }
         }
     },
@@ -1038,26 +1038,26 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             PlatoonFormManager = {
-                'Sorian Frequent Land Attack T1',
-                'Sorian Frequent Land Attack T2',
-                'Sorian Frequent Land Attack T3',
-                'Sorian Start Location Attack',
-                'Sorian Early Attacks Small',
-                'Sorian Early Attacks Medium',
-                'Sorian T2/T3 Land Weak Enemy Response',
-                'Sorian T1 Land Weak Enemy Response',
-                'Sorian T1 Hunters',
-                'Sorian T2 Hunters',
-                'Sorian T4 Exp Land',
+                'Sorian Edit Frequent Land Attack T1',
+                'Sorian Edit Frequent Land Attack T2',
+                'Sorian Edit Frequent Land Attack T3',
+                'Sorian Edit Start Location Attack',
+                'Sorian Edit Early Attacks Small',
+                'Sorian Edit Early Attacks Medium',
+                'Sorian Edit T2/T3 Land Weak Enemy Response',
+                'Sorian Edit T1 Land Weak Enemy Response',
+                'Sorian Edit T1 Hunters',
+                'Sorian Edit T2 Hunters',
+                'Sorian Edit T4 Exp Land',
             }
         },
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Arty Engineer - High Prio',
-                'Sorian T3 Engineer Assist Build Arty - High Prio',
-                'Sorian T3 Nuke Engineer - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke Missile - High Prio',
+                'Sorian Edit T3 Arty Engineer - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Arty - High Prio',
+                'Sorian Edit T3 Nuke Engineer - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke Missile - High Prio',
             }
         }
     },
@@ -1097,32 +1097,32 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             PlatoonFormManager = {
-                'Sorian Frequent Land Attack T1',
-                'Sorian Frequent Land Attack T2',
-                'Sorian Frequent Land Attack T3',
-                'Sorian Start Location Attack',
-                'Sorian Early Attacks Small',
-                'Sorian Early Attacks Medium',
-                'Sorian T2/T3 Land Weak Enemy Response',
-                'Sorian T1 Land Weak Enemy Response',
-                'Sorian T1 Hunters',
-                'Sorian T2 Hunters',
-                'Sorian T4 Exp Land',
+                'Sorian Edit Frequent Land Attack T1',
+                'Sorian Edit Frequent Land Attack T2',
+                'Sorian Edit Frequent Land Attack T3',
+                'Sorian Edit Start Location Attack',
+                'Sorian Edit Early Attacks Small',
+                'Sorian Edit Early Attacks Medium',
+                'Sorian Edit T2/T3 Land Weak Enemy Response',
+                'Sorian Edit T1 Land Weak Enemy Response',
+                'Sorian Edit T1 Hunters',
+                'Sorian Edit T2 Hunters',
+                'Sorian Edit T4 Exp Land',
             }
         },
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Expansion Area Firebase Engineer - Cybran - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Aeon - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - UEF - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Seraphim - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - UEF - DP - HP',
-                'Sorian T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
-                'Sorian T3 Nuke Engineer - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke Missile - High Prio',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Cybran - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Aeon - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - UEF - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Seraphim - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Cybran - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Aeon - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - UEF - DP - HP',
+                'Sorian Edit T3 Expansion Area Firebase Engineer - Seraphim - DP - HP',
+                'Sorian Edit T3 Nuke Engineer - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke Missile - High Prio',
             }
         }
     },
@@ -1132,7 +1132,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianNukeRush',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Nuke Rush Strategy',
+        BuilderName = 'Sorian Edit Nuke Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1175,9 +1175,9 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T3 Nuke Engineer - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke - High Prio',
-                'Sorian T3 Engineer Assist Build Nuke Missile - High Prio',
+                'Sorian Edit T3 Nuke Engineer - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke - High Prio',
+                'Sorian Edit T3 Engineer Assist Build Nuke Missile - High Prio',
             }
         }
     },
@@ -1187,7 +1187,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianStopNukes',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Stop Nukes Strategy',
+        BuilderName = 'Sorian Edit Stop Nukes Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1215,8 +1215,8 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             EngineerManager = {
-                'Sorian T3 Nuke Engineer',
-                'Sorian T3 Nuke Engineer - 10x10',
+                'Sorian Edit T3 Nuke Engineer',
+                'Sorian Edit T3 Nuke Engineer - 10x10',
             }
         },
         AddBuilders = {}
@@ -1227,7 +1227,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianT2ACUSnipe',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian T2 ACU Snipe Strategy',
+        BuilderName = 'Sorian Edit T2 ACU Snipe Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1268,7 +1268,7 @@ BuilderGroup {
         RemoveBuilders = {},
         AddBuilders = {
             EngineerManager = {
-                'Sorian T2 Firebase Engineer - High Prio',
+                'Sorian Edit T2 Firebase Engineer - High Prio',
             }
         }
     },
@@ -1278,7 +1278,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianHeavyAirStrategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian T1 Heavy Air Strategy',
+        BuilderName = 'Sorian Edit T1 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1319,51 +1319,51 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                'Sorian T2 Air Gunship',
-                'Sorian T2 Air Gunship - Anti Navy',
-                'Sorian T2 Air Gunship - Stomp Enemy',
-                'Sorian T2FighterBomber',
-                'Sorian T2 Air Gunship2',
-                'Sorian T2FighterBomber2',
-                'Sorian T3 Air Gunship',
-                'Sorian T3 Air Gunship - Anti Navy',
-                'Sorian T3 Air Bomber',
-                'Sorian T3 Air Bomber - Stomp Enemy',
-                'Sorian T3 Air Gunship2',
-                'Sorian T3 Air Bomber2',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                'Sorian Edit T2 Air Gunship',
+                'Sorian Edit T2 Air Gunship - Anti Navy',
+                'Sorian Edit T2 Air Gunship - Stomp Enemy',
+                'Sorian Edit T2FighterBomber',
+                'Sorian Edit T2 Air Gunship2',
+                'Sorian Edit T2FighterBomber2',
+                'Sorian Edit T3 Air Gunship',
+                'Sorian Edit T3 Air Gunship - Anti Navy',
+                'Sorian Edit T3 Air Bomber',
+                'Sorian Edit T3 Air Bomber - Stomp Enemy',
+                'Sorian Edit T3 Air Gunship2',
+                'Sorian Edit T3 Air Bomber2',
             },
             PlatoonFormManager = {
-                'Sorian BomberAttackT1Frequent',
-                'Sorian BomberAttackT1Frequent - Anti-Land',
-                #'Sorian BomberAttackT1Frequent - Anti-Resource',
-                'Sorian BomberAttackT2Frequent',
-                'Sorian BomberAttackT2Frequent - Anti-Land',
-                #'Sorian BomberAttackT2Frequent - Anti-Resource',
-                'Sorian BomberAttackT3Frequent',
-                'Sorian BomberAttackT3Frequent - Anti-Land',
-                #'Sorian BomberAttackT3Frequent - Anti-Resource',
-                'Sorian T1 Bomber Attack Weak Enemy Response',
-                #'Sorian BomberAttack Mass Hunter',
+                'Sorian Edit BomberAttackT1Frequent',
+                'Sorian Edit BomberAttackT1Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT2Frequent',
+                'Sorian Edit BomberAttackT2Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT3Frequent',
+                'Sorian Edit BomberAttackT3Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                'Sorian Edit T1 Bomber Attack Weak Enemy Response',
+                #'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber - High Prio',
-                'Sorian T2 Air Bomber - High Prio',
-                'Sorian T3 Air Bomber - High Prio',
+                'Sorian Edit T1 Air Bomber - High Prio',
+                'Sorian Edit T2 Air Bomber - High Prio',
+                'Sorian Edit T3 Air Bomber - High Prio',
             },
             PlatoonFormManager = {
-                'Sorian Bomber Attack - Large T1',
+                'Sorian Edit Bomber Attack - Large T1',
             }
         }
     },
     Builder {
-        BuilderName = 'Sorian T2 Heavy Air Strategy',
+        BuilderName = 'Sorian Edit T2 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1405,51 +1405,51 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                'Sorian T2 Air Gunship',
-                'Sorian T2 Air Gunship - Anti Navy',
-                'Sorian T2 Air Gunship - Stomp Enemy',
-                'Sorian T2FighterBomber',
-                'Sorian T2 Air Gunship2',
-                'Sorian T2FighterBomber2',
-                'Sorian T3 Air Gunship',
-                'Sorian T3 Air Gunship - Anti Navy',
-                'Sorian T3 Air Bomber',
-                'Sorian T3 Air Bomber - Stomp Enemy',
-                'Sorian T3 Air Gunship2',
-                'Sorian T3 Air Bomber2',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                'Sorian Edit T2 Air Gunship',
+                'Sorian Edit T2 Air Gunship - Anti Navy',
+                'Sorian Edit T2 Air Gunship - Stomp Enemy',
+                'Sorian Edit T2FighterBomber',
+                'Sorian Edit T2 Air Gunship2',
+                'Sorian Edit T2FighterBomber2',
+                'Sorian Edit T3 Air Gunship',
+                'Sorian Edit T3 Air Gunship - Anti Navy',
+                'Sorian Edit T3 Air Bomber',
+                'Sorian Edit T3 Air Bomber - Stomp Enemy',
+                'Sorian Edit T3 Air Gunship2',
+                'Sorian Edit T3 Air Bomber2',
             },
             PlatoonFormManager = {
-                'Sorian BomberAttackT1Frequent',
-                'Sorian BomberAttackT1Frequent - Anti-Land',
-                #'Sorian BomberAttackT1Frequent - Anti-Resource',
-                'Sorian BomberAttackT2Frequent',
-                'Sorian BomberAttackT2Frequent - Anti-Land',
-                #'Sorian BomberAttackT2Frequent - Anti-Resource',
-                'Sorian BomberAttackT3Frequent',
-                'Sorian BomberAttackT3Frequent - Anti-Land',
-                #'Sorian BomberAttackT3Frequent - Anti-Resource',
-                'Sorian T2/T3 Bomber Attack Weak Enemy Response',
-                #'Sorian BomberAttack Mass Hunter',
+                'Sorian Edit BomberAttackT1Frequent',
+                'Sorian Edit BomberAttackT1Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT2Frequent',
+                'Sorian Edit BomberAttackT2Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT3Frequent',
+                'Sorian Edit BomberAttackT3Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                'Sorian Edit T2/T3 Bomber Attack Weak Enemy Response',
+                #'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber - High Prio',
-                'Sorian T2 Air Bomber - High Prio',
-                'Sorian T3 Air Bomber - High Prio',
+                'Sorian Edit T1 Air Bomber - High Prio',
+                'Sorian Edit T2 Air Bomber - High Prio',
+                'Sorian Edit T3 Air Bomber - High Prio',
             },
             PlatoonFormManager = {
-                'Sorian Bomber Attack - Large',
+                'Sorian Edit Bomber Attack - Large',
             }
         }
     },
     Builder {
-        BuilderName = 'Sorian T3 Heavy Air Strategy',
+        BuilderName = 'Sorian Edit T3 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
         InstanceCount = 1,
@@ -1488,46 +1488,46 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                'Sorian T2 Air Gunship',
-                'Sorian T2 Air Gunship - Anti Navy',
-                'Sorian T2 Air Gunship - Stomp Enemy',
-                'Sorian T2FighterBomber',
-                'Sorian T2 Air Gunship2',
-                'Sorian T2FighterBomber2',
-                'Sorian T3 Air Gunship',
-                'Sorian T3 Air Gunship - Anti Navy',
-                'Sorian T3 Air Bomber',
-                'Sorian T3 Air Bomber - Stomp Enemy',
-                'Sorian T3 Air Gunship2',
-                'Sorian T3 Air Bomber2',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                'Sorian Edit T2 Air Gunship',
+                'Sorian Edit T2 Air Gunship - Anti Navy',
+                'Sorian Edit T2 Air Gunship - Stomp Enemy',
+                'Sorian Edit T2FighterBomber',
+                'Sorian Edit T2 Air Gunship2',
+                'Sorian Edit T2FighterBomber2',
+                'Sorian Edit T3 Air Gunship',
+                'Sorian Edit T3 Air Gunship - Anti Navy',
+                'Sorian Edit T3 Air Bomber',
+                'Sorian Edit T3 Air Bomber - Stomp Enemy',
+                'Sorian Edit T3 Air Gunship2',
+                'Sorian Edit T3 Air Bomber2',
             },
             PlatoonFormManager = {
-                'Sorian BomberAttackT1Frequent',
-                'Sorian BomberAttackT1Frequent - Anti-Land',
-                #'Sorian BomberAttackT1Frequent - Anti-Resource',
-                'Sorian BomberAttackT2Frequent',
-                'Sorian BomberAttackT2Frequent - Anti-Land',
-                #'Sorian BomberAttackT2Frequent - Anti-Resource',
-                'Sorian BomberAttackT3Frequent',
-                'Sorian BomberAttackT3Frequent - Anti-Land',
-                #'Sorian BomberAttackT3Frequent - Anti-Resource',
-                'Sorian T2/T3 Bomber Attack Weak Enemy Response',
-                #'Sorian BomberAttack Mass Hunter',
+                'Sorian Edit BomberAttackT1Frequent',
+                'Sorian Edit BomberAttackT1Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT2Frequent',
+                'Sorian Edit BomberAttackT2Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                'Sorian Edit BomberAttackT3Frequent',
+                'Sorian Edit BomberAttackT3Frequent - Anti-Land',
+                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                'Sorian Edit T2/T3 Bomber Attack Weak Enemy Response',
+                #'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber - High Prio',
-                'Sorian T2 Air Bomber - High Prio',
-                'Sorian T3 Air Bomber - High Prio',
+                'Sorian Edit T1 Air Bomber - High Prio',
+                'Sorian Edit T2 Air Bomber - High Prio',
+                'Sorian Edit T3 Air Bomber - High Prio',
             },
             PlatoonFormManager = {
-                'Sorian Bomber Attack - Large',
+                'Sorian Edit Bomber Attack - Large',
             }
         }
     },
@@ -1537,7 +1537,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianParagonStrategy',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Paragon Strategy',
+        BuilderName = 'Sorian Edit Paragon Strategy',
         StrategyType = 'Overall',
         Priority = 100,
         InstanceCount = 1,
@@ -1548,46 +1548,46 @@ BuilderGroup {
         RemoveBuilders = {
             PlatoonFormManager = {
                 'T1 Mass Extractor Upgrade Storage Based',
-                'Sorian T1 Mass Extractor Upgrade Timeless Single',
-                'Sorian T1 Mass Extractor Upgrade Timeless Two',
-                'Sorian T1 Mass Extractor Upgrade Timeless LOTS',
-                'Sorian T2 Mass Extractor Upgrade Timeless',
-                'Sorian T2 Mass Extractor Upgrade Timeless Multiple',
-                'Sorian Balanced T1 Land Factory Upgrade Initial',
-                'Sorian BalancedT1AirFactoryUpgradeInitial',
-                'Sorian Balanced T1 Land Factory Upgrade',
-                'Sorian BalancedT1AirFactoryUpgrade',
-                'Sorian Balanced T1 Sea Factory Upgrade',
-                'Sorian Balanced T1 Land Factory Upgrade - T3',
-                'Sorian BalancedT1AirFactoryUpgrade - T3',
-                'Sorian Balanced T2 Land Factory Upgrade - initial',
-                'Sorian Balanced T2 Air Factory Upgrade - initial',
-                'Sorian Balanced T2 Land Factory Upgrade',
-                'Sorian Balanced T2 Air Factory Upgrade',
-                'Sorian Balanced T2 Sea Factory Upgrade',
-                'Sorian Naval T1 Land Factory Upgrade Initial',
-                'Sorian Naval T1 Air Factory Upgrade Initial',
-                'Sorian Naval T1 Naval Factory Upgrade Initial',
-                'Sorian Naval T1 Land Factory Upgrade',
-                'Sorian Naval T1 AirFactory Upgrade',
-                'Sorian Naval T1 Sea Factory Upgrade',
-                'Sorian Naval T1 Land Factory Upgrade - T3',
-                'Sorian Naval T1AirFactoryUpgrade - T3',
-                'Sorian Naval T2 Land Factory Upgrade',
-                'Sorian Naval T2 Air Factory Upgrade',
-                'Sorian Naval T2 Sea Factory Upgrade',
+                'Sorian Edit T1 Mass Extractor Upgrade Timeless Single',
+                'Sorian Edit T1 Mass Extractor Upgrade Timeless Two',
+                'Sorian Edit T1 Mass Extractor Upgrade Timeless LOTS',
+                'Sorian Edit T2 Mass Extractor Upgrade Timeless',
+                'Sorian Edit T2 Mass Extractor Upgrade Timeless Multiple',
+                'Sorian Edit Balanced T1 Land Factory Upgrade Initial',
+                'Sorian Edit BalancedT1AirFactoryUpgradeInitial',
+                'Sorian Edit Balanced T1 Land Factory Upgrade',
+                'Sorian Edit BalancedT1AirFactoryUpgrade',
+                'Sorian Edit Balanced T1 Sea Factory Upgrade',
+                'Sorian Edit Balanced T1 Land Factory Upgrade - T3',
+                'Sorian Edit BalancedT1AirFactoryUpgrade - T3',
+                'Sorian Edit Balanced T2 Land Factory Upgrade - initial',
+                'Sorian Edit Balanced T2 Air Factory Upgrade - initial',
+                'Sorian Edit Balanced T2 Land Factory Upgrade',
+                'Sorian Edit Balanced T2 Air Factory Upgrade',
+                'Sorian Edit Balanced T2 Sea Factory Upgrade',
+                'Sorian Edit Naval T1 Land Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Air Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Naval Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Land Factory Upgrade',
+                'Sorian Edit Naval T1 AirFactory Upgrade',
+                'Sorian Edit Naval T1 Sea Factory Upgrade',
+                'Sorian Edit Naval T1 Land Factory Upgrade - T3',
+                'Sorian Edit Naval T1AirFactoryUpgrade - T3',
+                'Sorian Edit Naval T2 Land Factory Upgrade',
+                'Sorian Edit Naval T2 Air Factory Upgrade',
+                'Sorian Edit Naval T2 Sea Factory Upgrade',
             },
         },
         AddBuilders = {
             PlatoonFormManager = {
-                'Sorian T1 Mass Extractor Upgrade Timeless Strategy',
-                'Sorian T2 Mass Extractor Upgrade Timeless Strategy',
-                'Sorian Balanced T1 Land Factory Upgrade Expansion Strategy',
-                'Sorian BalancedT1AirFactoryUpgrade Expansion Strategy',
-                'Sorian Balanced T1 Sea Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Land Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Air Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Sea Factory Upgrade Expansion Strategy',
+                'Sorian Edit T1 Mass Extractor Upgrade Timeless Strategy',
+                'Sorian Edit T2 Mass Extractor Upgrade Timeless Strategy',
+                'Sorian Edit Balanced T1 Land Factory Upgrade Expansion Strategy',
+                'Sorian Edit BalancedT1AirFactoryUpgrade Expansion Strategy',
+                'Sorian Edit Balanced T1 Sea Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Land Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Air Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Sea Factory Upgrade Expansion Strategy',
             },
         }
     },
@@ -1597,7 +1597,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianParagonStrategyExp',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian Paragon Strategy Expansion',
+        BuilderName = 'Sorian Edit Paragon Strategy Expansion',
         StrategyType = 'Overall',
         Priority = 100,
         InstanceCount = 1,
@@ -1607,33 +1607,33 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             PlatoonFormManager = {
-                'Sorian Balanced T1 Land Factory Upgrade Expansion',
-                'Sorian BalancedT1AirFactoryUpgrade Expansion',
-                'Sorian Balanced T1 Sea Factory Upgrade Expansion',
-                'Sorian Balanced T2 Land Factory Upgrade Expansion',
-                'Sorian Balanced T2 Air Factory Upgrade Expansion',
-                'Sorian Balanced T2 Sea Factory Upgrade Expansion',
-                'Sorian Naval T1 Land Factory Upgrade Initial',
-                'Sorian Naval T1 Air Factory Upgrade Initial',
-                'Sorian Naval T1 Naval Factory Upgrade Initial',
-                'Sorian Naval T1 Land Factory Upgrade',
-                'Sorian Naval T1 AirFactory Upgrade',
-                'Sorian Naval T1 Sea Factory Upgrade',
-                'Sorian Naval T1 Land Factory Upgrade - T3',
-                'Sorian Naval T1AirFactoryUpgrade - T3',
-                'Sorian Naval T2 Land Factory Upgrade',
-                'Sorian Naval T2 Air Factory Upgrade',
-                'Sorian Naval T2 Sea Factory Upgrade',
+                'Sorian Edit Balanced T1 Land Factory Upgrade Expansion',
+                'Sorian Edit BalancedT1AirFactoryUpgrade Expansion',
+                'Sorian Edit Balanced T1 Sea Factory Upgrade Expansion',
+                'Sorian Edit Balanced T2 Land Factory Upgrade Expansion',
+                'Sorian Edit Balanced T2 Air Factory Upgrade Expansion',
+                'Sorian Edit Balanced T2 Sea Factory Upgrade Expansion',
+                'Sorian Edit Naval T1 Land Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Air Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Naval Factory Upgrade Initial',
+                'Sorian Edit Naval T1 Land Factory Upgrade',
+                'Sorian Edit Naval T1 AirFactory Upgrade',
+                'Sorian Edit Naval T1 Sea Factory Upgrade',
+                'Sorian Edit Naval T1 Land Factory Upgrade - T3',
+                'Sorian Edit Naval T1AirFactoryUpgrade - T3',
+                'Sorian Edit Naval T2 Land Factory Upgrade',
+                'Sorian Edit Naval T2 Air Factory Upgrade',
+                'Sorian Edit Naval T2 Sea Factory Upgrade',
             },
         },
         AddBuilders = {
             PlatoonFormManager = {
-                'Sorian Balanced T1 Land Factory Upgrade Expansion Strategy',
-                'Sorian BalancedT1AirFactoryUpgrade Expansion Strategy',
-                'Sorian Balanced T1 Sea Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Land Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Air Factory Upgrade Expansion Strategy',
-                'Sorian Balanced T2 Sea Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T1 Land Factory Upgrade Expansion Strategy',
+                'Sorian Edit BalancedT1AirFactoryUpgrade Expansion Strategy',
+                'Sorian Edit Balanced T1 Sea Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Land Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Air Factory Upgrade Expansion Strategy',
+                'Sorian Edit Balanced T2 Sea Factory Upgrade Expansion Strategy',
             },
         }
     },
@@ -1643,7 +1643,7 @@ BuilderGroup {
     BuilderGroupName = 'SorianTeamLevelAdjustment',
     BuildersType = 'StrategyBuilder',
     Builder {
-        BuilderName = 'Sorian AI Outnumbered',
+        BuilderName = 'Sorian Edit AI Outnumbered',
         StrategyType = 'Overall',
         Priority = 100,
         InstanceCount = 1,
@@ -1654,27 +1654,27 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'Sorian T1 Air Bomber',
-                'Sorian T1 Air Bomber - Stomp Enemy',
-                'Sorian T1Gunship',
-                'Sorian T1 Air Fighter',
-                'Sorian T1 Air Bomber 2',
-                'Sorian T1Gunship2',
-                'Sorian T1 Bot - Early Game Rush',
-                'Sorian T1 Bot - Early Game',
-                'Sorian T1 Light Tank - Tech 1',
-                'Sorian T1 Mortar',
-                'Sorian T1 Mortar - tough def',
+                'Sorian Edit T1 Air Bomber',
+                'Sorian Edit T1 Air Bomber - Stomp Enemy',
+                'Sorian Edit T1Gunship',
+                'Sorian Edit T1 Air Fighter',
+                'Sorian Edit T1 Air Bomber 2',
+                'Sorian Edit T1Gunship2',
+                'Sorian Edit T1 Bot - Early Game Rush',
+                'Sorian Edit T1 Bot - Early Game',
+                'Sorian Edit T1 Light Tank - Tech 1',
+                'Sorian Edit T1 Mortar',
+                'Sorian Edit T1 Mortar - tough def',
             },
             StrategyManager = {
-                'Sorian T1 Heavy Air Strategy',
-                'Sorian Jester Rush Strategy',
+                'Sorian Edit T1 Heavy Air Strategy',
+                'Sorian Edit Jester Rush Strategy',
             }
         },
         AddBuilders = {}
     },
     Builder {
-        BuilderName = 'Sorian AI Outnumbers Enemies',
+        BuilderName = 'Sorian Edit AI Outnumbers Enemies',
         StrategyType = 'Overall',
         Priority = 100,
         InstanceCount = 1,
@@ -1685,9 +1685,9 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             EngineerManager = {
-                'Sorian T1 Mass Adjacency Defense Engineer',
-                'Sorian T1 Base D Engineer - Perimeter',
-                'Sorian T1 Defensive Point Engineer',
+                'Sorian Edit T1 Mass Adjacency Defense Engineer',
+                'Sorian Edit T1 Base D Engineer - Perimeter',
+                'Sorian Edit T1 Defensive Point Engineer',
             }
         },
         AddBuilders = {}

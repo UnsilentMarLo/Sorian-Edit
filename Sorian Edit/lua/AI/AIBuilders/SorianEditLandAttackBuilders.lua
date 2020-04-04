@@ -1,13 +1,13 @@
 #***************************************************************************
 #*
-#**  File     :  /mods/Sorian edit/lua/ai/SorianEditLandAttackBuilders.lua
+#**  File     :  /mods/Sorian Edit/lua/ai/SorianEditLandAttackBuilders.lua
 #**
 #**  Summary  : Default economic builders for skirmish
 #**
 #**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
@@ -19,10 +19,10 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua'
-local SIBC = '/mods/Sorian edit/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
-local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
+local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
 function LandAttackCondition(aiBrain, locationType, targetNumber)
     local UC = import('/lua/editor/UnitCountBuildConditions.lua')

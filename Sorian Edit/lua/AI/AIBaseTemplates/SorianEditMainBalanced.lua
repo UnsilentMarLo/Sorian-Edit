@@ -1,6 +1,6 @@
 --***************************************************************************
 --*
---**  File     :  /mods/Sorian edit/lua/ai/AIBaseTemplates/SorianEditMainBalanced.lua
+--**  File     :  /mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditMainBalanced.lua
 --**  Author(s): Michael Robbins aka SorianEdit
 --**
 --**  Summary  : Manage engineers for a location
@@ -224,7 +224,7 @@ BaseBuilderTemplate {
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
             LOG('### M-FirstBaseFunction '..personality)
-            return 2000, 'sorianedit'
+            return 2000, 'sorianeditadaptive'
         end
         return -1
     end,
