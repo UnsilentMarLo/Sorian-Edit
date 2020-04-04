@@ -139,9 +139,7 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        if not aiBrain.SorianEdit then
-            return -1
-        end
+
         if markerType ~= 'Start Location' then
             return -1
         end

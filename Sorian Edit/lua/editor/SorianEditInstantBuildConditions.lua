@@ -11,7 +11,7 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 local ScenarioFramework = import('/lua/scenarioframework.lua')
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
 local Utils = import('/lua/utilities.lua')
-local SUtils = import('/lua/AI/sorianutilities.lua')
+local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
 
 function DefensivePointNeedsStructure(aiBrain, locationType, locationRadius, category, markerRadius, unitMax, threatMin, threatMax, threatRings, threatType)
     local pos, name = AIUtils.AIFindDefensivePointNeedsStructureSorian(aiBrain, locationType, locationRadius, category, markerRadius, unitMax, threatMin, threatMax, threatRings, threatType)
@@ -525,7 +525,7 @@ end
 function LessThanNavalBases(aiBrain)
     local expBaseCount = 0
     local checkNum = tonumber(ScenarioInfo.Options.NavalExpansionsAllowed) or 4
-    local isIsland = import('/lua/editor/SorianBuildConditions.lua').IsIslandMap(aiBrain)
+    local isIsland = import('/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua').IsIslandMap(aiBrain)
     expBaseCount = aiBrain:GetManagerCount('Naval Area')
     #LOG('*AI DEBUG: '.. aiBrain.Nickname ..' LessThanNavalBases Total = '..expBaseCount)
     if isIsland and expBaseCount < checkNum then

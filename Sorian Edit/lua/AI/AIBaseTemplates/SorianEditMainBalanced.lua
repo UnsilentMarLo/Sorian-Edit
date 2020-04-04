@@ -221,9 +221,7 @@ BaseBuilderTemplate {
         return -1
     end,
     FirstBaseFunction = function(aiBrain)
-        if not aiBrain.SorianEdit then
-            return -1
-        end
+
 
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
