@@ -19,7 +19,7 @@ local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/SorianEdit/lua/editor/SorianEditEditBuildConditions.lua'
-local SIBC = '/mods/SorianEdit/lua/editor/SorianEditEditInstantBuildConditions.lua'
+local SIBC = '/mods/SorianEdit/lua/editor/sorianeditinstantbuildconditions.lua'
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditExcessMassBuilders',

@@ -398,7 +398,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -425,7 +425,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Balanced',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -459,7 +459,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -486,7 +486,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Air',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -520,7 +520,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -547,7 +547,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Naval',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -580,7 +580,7 @@ BuilderGroup {
     # Initial builder
     Builder {
         BuilderName = 'SorianEdit CDR Initial Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
@@ -609,7 +609,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit CDR Initial PreBuilt Land Rush',
-        PlatoonAddBehaviors = { 'CommanderBehaviorSorianEdit', },
+        PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
