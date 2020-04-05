@@ -1972,7 +1972,7 @@ function CommanderThreadSorianEdit(cdr, platoon)
     SetCDRHome(cdr, platoon)
 
     local aiBrain = cdr:GetAIBrain()
-    aiBrain:BuildScoutLocationsSorianEdit()
+    aiBrain:BuildScoutLocations()
     if not SUtils.CheckForMapMarkers(aiBrain) then
         SUtils.AISendChat('all', ArmyBrains[aiBrain:GetArmyIndex()].Nickname, 'badmap')
     end

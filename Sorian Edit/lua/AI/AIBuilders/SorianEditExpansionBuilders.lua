@@ -7,7 +7,10 @@
 #**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
 #****************************************************************************
 
-local ExBaseTmpl = '/mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditExpansionBalancedFull.lua'
+local BBTmplFile = '/lua/basetemplates.lua'
+local ExBaseTmpl = 'ExpansionBaseTemplates'
+local BuildingTmpl = 'BuildingTemplates'
+local BaseTmpl = 'BaseTemplates'
 local Adj2x2Tmpl = 'Adjacency2x2'
 local UCBC = '/lua/editor/UnitCountBuildConditions.lua'
 local MIBC = '/lua/editor/MiscBuildConditions.lua'
