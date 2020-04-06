@@ -50,7 +50,7 @@ function EcoManagerThread(aiBrain)
         -- Cheatbuffs
         if personality == 'sorianeditadaptive' then
             -- Check every 30 seconds for new armyStats to change ECO
-            if (GetGameTimeSeconds() > 60 * 1) and lastCall+10 < GetGameTimeSeconds() then
+            if (GetGameTimeSeconds() > 1 * 1) and lastCall+10 < GetGameTimeSeconds() then
                 lastCall = GetGameTimeSeconds()
                 --score of all players (unitcount)
                 allyScore = 0
@@ -76,7 +76,7 @@ function EcoManagerThread(aiBrain)
                 end
 
                 -- Increase cheatfactor to +1.5 after 1 hour gametime
-                if GetGameTimeSeconds() > 5 * 60 then
+                if GetGameTimeSeconds() > 1 * 1 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
