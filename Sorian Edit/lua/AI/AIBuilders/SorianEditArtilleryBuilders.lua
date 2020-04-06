@@ -218,7 +218,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Artillery Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 949,
         InstanceCount = 1,
         BuilderConditions = {
@@ -254,7 +254,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Artillery Engineer - Cybran',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 949,
         InstanceCount = 1,
         BuilderConditions = {
@@ -331,7 +331,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Artillery',
         PlatoonTemplate = 'T4ArtilleryStructureSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 1,
         InstanceCount = 1000,
         FormRadius = 10000,

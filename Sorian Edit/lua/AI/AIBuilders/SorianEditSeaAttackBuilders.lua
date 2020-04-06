@@ -127,7 +127,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 600,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -196,7 +196,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 705,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -227,7 +227,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 700,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -297,8 +297,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Sea Hunters T1',
         PlatoonTemplate = 'SeaHuntSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -314,8 +314,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Sea Hunters T2',
         PlatoonTemplate = 'SeaHuntSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -331,8 +331,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Sea Hunters T3',
         PlatoonTemplate = 'SeaHuntSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
         InstanceCount = 2,
         BuilderType = 'Any',
@@ -347,8 +347,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Sea StrikeForce T2',
         PlatoonTemplate = 'SeaStrikeSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 100,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -379,8 +379,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Sea Attack T1',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -407,8 +407,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Sea Attack T2',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -435,8 +435,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Sea Attack T3',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -467,8 +467,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Big Sea Attack T1',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -495,8 +495,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Big Sea Attack T2',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -523,8 +523,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Big Sea Attack T3',
         PlatoonTemplate = 'SeaAttackSorianEdit',
-        #PlatoonAddPlans = {'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
-        PlatoonAddPlans = {'AirLandToggleSorianEdit'},
+        #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 1,
         InstanceCount = 5,
         BuilderType = 'Any',

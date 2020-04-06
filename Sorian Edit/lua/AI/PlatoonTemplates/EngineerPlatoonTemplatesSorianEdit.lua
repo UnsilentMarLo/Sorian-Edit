@@ -11,7 +11,7 @@
 
 PlatoonTemplate {
     Name = 'CommanderAssistSorianEdit',
-    Plan = 'SorianEditManagerEngineerAssistAI',
+    Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
         { categories.COMMAND, 1, 1, 'support', 'None' },
     },
@@ -19,7 +19,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'SCUEnhance',
-    Plan = 'EnhanceAISorianEdit',
+    Plan = 'EnhanceAISorian',
     GlobalSquads = {
         { categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
@@ -27,7 +27,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'CommanderEnhanceSorianEdit',
-    Plan = 'EnhanceAISorianEdit',
+    Plan = 'EnhanceAISorian',
     GlobalSquads = {
         { categories.COMMAND, 1, 1, 'support', 'None' }
     },
@@ -35,7 +35,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'EngineerAssistSorianEdit',
-    Plan = 'SorianEditManagerEngineerAssistAI',
+    Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH1, 1, 1, 'support', 'None' }
     },
@@ -43,7 +43,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3EngineerAssistSorianEdit',
-    Plan = 'SorianEditManagerEngineerAssistAI',
+    Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH3 + categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
@@ -51,7 +51,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'CommanderBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.COMMAND, 1, 1, 'support', 'None' }
     },
@@ -67,7 +67,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'AnyEngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { (categories.ENGINEER - categories.ENGINEERSTATION) + categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
@@ -75,7 +75,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH1, 1, 1, 'support', 'None' }
     },
@@ -83,7 +83,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T2EngineerAssistSorianEdit',
-    Plan = 'SorianEditManagerEngineerAssistAI',
+    Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH2 - categories.ENGINEERSTATION, 1, 1, 'support', 'None' }
     },
@@ -91,7 +91,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T2EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH2 - categories.ENGINEERSTATION, 1, 1, 'support', 'None' }
     },
@@ -99,7 +99,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'UEFT2EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.UEF * categories.ENGINEER * categories.TECH2 - categories.ENGINEERSTATION, 1, 1, 'support', 'None' }
     },
@@ -107,7 +107,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'CybranT2EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.CYBRAN * categories.ENGINEER * categories.TECH2 - categories.ENGINEERSTATION, 1, 1, 'support', 'None' }
     },
@@ -115,7 +115,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3EngineerBuilderOnlySorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
@@ -123,7 +123,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH3 + categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
@@ -131,7 +131,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'AeonT3EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.AEON * categories.ENGINEER * (categories.TECH3 + categories.SUBCOMMANDER), 1, 1, 'support', 'None' }
     },
@@ -139,7 +139,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'UEFT3EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.UEF * categories.ENGINEER * (categories.TECH3 + categories.SUBCOMMANDER), 1, 1, 'support', 'None' }
     },
@@ -147,7 +147,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'CybranT3EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.CYBRAN * categories.ENGINEER * (categories.TECH3 + categories.SUBCOMMANDER), 1, 1, 'support', 'None' }
     },
@@ -155,7 +155,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'SeraphimT3EngineerBuilderSorianEdit',
-    Plan = 'EngineerBuildAISorianEdit',
+    Plan = 'EngineerBuildAISorian',
     GlobalSquads = {
         { categories.SERAPHIM * categories.ENGINEER * (categories.TECH3 + categories.SUBCOMMANDER), 1, 1, 'support', 'None' }
     },

@@ -224,7 +224,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mobile AA',
         PlatoonTemplate = 'T1LandAA',
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 830,
         BuilderConditions = {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2, FACTORY TECH3' }},
@@ -241,7 +241,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mobile AA - Response',
         PlatoonTemplate = 'T1LandAA',
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 900,
         BuilderConditions = {
             { TBC, 'HaveLessThreatThanNearby', { 'LocationType', 'AntiAir', 'Air' } },
@@ -708,8 +708,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Unit Cap Default Land Attack',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -733,8 +733,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T1',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -760,8 +760,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T2',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -787,8 +787,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T3',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 100,
         BuilderType = 'Any',
@@ -820,8 +820,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack T1',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 12,
         BuilderType = 'Any',
@@ -845,8 +845,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack T2',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 13,
         BuilderType = 'Any',
@@ -871,8 +871,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack T3',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1,
         InstanceCount = 13,
         BuilderType = 'Any',
@@ -906,8 +906,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1MassHuntersCategorySorianEdit',
         # Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
         #PlatoonTemplate = 'EarlyGameMassHuntersCategory',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 950,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 600 } },
@@ -941,8 +941,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Mass Hunter Mid Game',
         PlatoonTemplate = 'T2MassHuntersCategorySorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 950,
         BuilderConditions = {
                 { SBC, 'GreaterThanGameTime', { 600 } },
@@ -979,8 +979,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Start Location Attack',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 960,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1013,8 +1013,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Early Attacks Small',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1041,8 +1041,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Early Attacks Medium',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
                 #{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
@@ -1071,8 +1071,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Threat Response Strikeforce',
         PlatoonTemplate = 'StrikeForceMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 0, #1500,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'STRUCTURE STRATEGIC TECH3, STRUCTURE STRATEGIC EXPERIMENTAL, EXPERIMENTAL ARTILLERY OVERLAYINDIRECTFIRE', 'Enemy'}},
@@ -1104,8 +1104,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2/T3 Land Weak Enemy Response',
         #PlatoonTemplate = 'StrikeForceMediumSorianEdit',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
@@ -1148,8 +1148,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Land Weak Enemy Response',
         #PlatoonTemplate = 'StrikeForceMediumSorianEdit',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
@@ -1193,8 +1193,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol - Small Map',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 300 } },
@@ -1225,8 +1225,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
                 { SBC, 'LessThanGameTime', { 300 } },
@@ -1258,8 +1258,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Hunters',
         PlatoonTemplate = 'HuntAttackSmallSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         #Priority = 0,
         InstanceCount = 2,
@@ -1285,8 +1285,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Hunters',
         PlatoonTemplate = 'HuntAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorianEdit', 'DistressResponseAISorianEdit'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorianEdit' },
+        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         #Priority = 0,
         InstanceCount = 2,

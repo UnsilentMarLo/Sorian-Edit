@@ -1,6 +1,6 @@
 --***************************************************************************
 --*
---**  File     :  /lua/basetemplates.lua
+--**  File     :  /lua/ai/aiattackutilities.lua
 --**
 --**  Summary  : Manage engineers for a location
 --**

@@ -10,7 +10,7 @@
 # ==== Global Form platoons ==== #
 PlatoonTemplate {
     Name = 'SeaAttackSorianEdit',
-    Plan = 'NavalForceAISorianEdit',
+    Plan = 'NavalForceAISorian',
     GlobalSquads = {
         { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 100, 'Attack', 'GrowthFormation' }
     },
@@ -26,7 +26,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'SeaStrikeSorianEdit',
-    Plan = 'StrikeForceAISorianEdit',
+    Plan = 'StrikeForceAISorian',
     GlobalSquads = {
         { categories.MOBILE * categories.NAVAL * categories.TECH2 - categories.EXPERIMENTAL - categories.CARRIER - categories.SUBMERSIBLE, 1, 100, 'Attack', 'GrowthFormation' }
     },
@@ -34,7 +34,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalSeaSorianEdit',
-    Plan = 'ExperimentalAIHubSorianEdit',
+    Plan = 'ExperimentalAIHubSorian',
     GlobalSquads = {
         { categories.NAVAL * categories.EXPERIMENTAL * categories.MOBILE, 1, 1, 'attack', 'none' },
     },

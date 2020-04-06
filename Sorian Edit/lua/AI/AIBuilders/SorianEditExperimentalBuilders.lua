@@ -440,7 +440,7 @@ BuilderGroup {
     BuildersType = 'PlatoonFormBuilder',
     Builder {
         BuilderName = 'SorianEdit T4 Exp Land',
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 250,
@@ -463,7 +463,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T4 Exp Land - Scathis',
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonTemplate = 'T4ExperimentalScathisSorianEdit',
         Priority = 10000,
         FormRadius = 250,
@@ -486,7 +486,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T4 Exp Land Unit Cap',
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 250,
@@ -624,7 +624,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Exp Air',
         PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         Priority = 800,
         InstanceCount = 50,
         FormRadius = 250,
@@ -647,7 +647,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Exp Air Unit Cap',
         PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         Priority = 800,
         InstanceCount = 50,
         FormRadius = 250,
@@ -752,7 +752,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T4 Exp Sea',
         PlatoonTemplate = 'T4ExperimentalSeaSorianEdit',
         #PlatoonAddBehaviors = { 'TempestBehaviorSorianEdit' },
-        PlatoonAddPlans = {'NameUnitsSorianEdit', 'DistressResponseAISorianEdit', 'PlatoonCallForHelpAISorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian', 'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         #PlatoonAIPlan = 'AttackForceAI',
         Priority = 1300,
         BuilderConditions = {
@@ -855,7 +855,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T4 Exp Satellite',
         PlatoonTemplate = 'T4SatelliteExperimentalSorianEdit',
-        PlatoonAddPlans = {'NameUnitsSorianEdit'},
+        PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 800,
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},

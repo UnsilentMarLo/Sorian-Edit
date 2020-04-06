@@ -7,8 +7,8 @@
 --
 ----------------------------------------------------------------------------
 
-local AIUtils = import('/mods/Sorian Edit/lua/ai/aiutilities.lua')
-local AIAttackUtils = import('/mods/Sorian Edit/lua/ai/aiattackutilities.lua')
+local AIUtils = import('/lua/ai/aiutilities.lua')
+local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
 local Utils = import('/lua/utilities.lua')
 local Mods = import('/lua/mods.lua')
 

@@ -18,7 +18,7 @@ PlatoonTemplate {
 # ==== Missile systems ==== #
 PlatoonTemplate {
     Name = 'T2TacticalLauncherSorianEdit',
-    Plan = 'TacticalAISorianEdit',
+    Plan = 'TacticalAISorian',
     GlobalSquads = {
         { categories.STRUCTURE * categories.TACTICALMISSILEPLATFORM, 1, 1, 'attack', 'none' },
     }
@@ -27,7 +27,7 @@ PlatoonTemplate {
 # ==== Artillery platoons ==== #
 PlatoonTemplate {
     Name = 'T2ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorianEdit',
+    Plan = 'ArtilleryAISorian',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH2, 1, 1, 'artillery', 'None' }
     }
@@ -35,7 +35,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorianEdit',
+    Plan = 'ArtilleryAISorian',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH3, 1, 1, 'artillery', 'None' }
     }
@@ -43,7 +43,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorianEdit',
+    Plan = 'ArtilleryAISorian',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'artillery', 'None' }
     }
@@ -97,7 +97,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4SatelliteExperimentalSorianEdit',
-    Plan = 'SatelliteAISorianEdit',
+    Plan = 'SatelliteAISorian',
     GlobalSquads = {
         { categories.SATELLITE, 1, 1, 'attack', 'none' },
     }
