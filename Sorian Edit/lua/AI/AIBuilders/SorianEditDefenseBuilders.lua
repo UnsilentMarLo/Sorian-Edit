@@ -35,7 +35,6 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 825,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
             { MABC, 'MarkerLessThanDistance',  { 'Mass', 600, -1, 0, 0}},
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -50,7 +49,7 @@ BuilderGroup {
                 AdjacencyDistance = 600,
                 BuildClose = false,
                 ThreatMin = -1,
-                ThreatMax = 0,
+                ThreatMax = 700,
                 ThreatRings = 0,
                 MinRadius = 250,
                 BuildStructures = {
@@ -80,7 +79,7 @@ BuilderGroup {
                 AdjacencyDistance = 600,
                 BuildClose = false,
                 ThreatMin = -1,
-                ThreatMax = 0,
+                ThreatMax = 700,
                 ThreatRings = 0,
                 MinRadius = 250,
                 BuildStructures = {
@@ -110,7 +109,7 @@ BuilderGroup {
                 AdjacencyDistance = 600,
                 BuildClose = false,
                 ThreatMin = -1,
-                ThreatMax = 0,
+                ThreatMax = 700,
                 ThreatRings = 0,
                 MinRadius = 250,
                 BuildStructures = {
@@ -129,10 +128,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Base D Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 0,
+        Priority = 1200,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'DEFENSE STRUCTURE'}},
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2'}},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH1 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
@@ -140,7 +138,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -156,17 +154,16 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, 'DEFENSE ANTIAIR STRUCTURE'}},
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2'}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'DEFENSE ANTIAIR STRUCTURE'}},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Air' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH1 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 5, categories.DEFENSE * categories.TECH1 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -181,8 +178,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, 'DEFENSE DIRECTFIRE STRUCTURE'}},
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2'}},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 7, 'DEFENSE DIRECTFIRE STRUCTURE'}},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Land' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -191,7 +187,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -212,15 +208,14 @@ BuilderGroup {
         Priority = 920,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 40, 'DEFENSE TECH2 STRUCTURE' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 10, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -238,21 +233,22 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Base D Engineer PD - Response',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 0, #925,
+        Priority = 925,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, 'DEFENSE TECH2 DIRECTFIRE STRUCTURE' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2'}},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 4, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
+                    'T2GroundDefense',
+                    'T2GroundDefense',
                     'T2GroundDefense',
                 },
                 Location = 'LocationType',
@@ -262,18 +258,17 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Base D Anti-TML Engineer - Response',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 0, #925,
+        Priority = 925,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ANTIMISSILE TECH2 STRUCTURE' }},
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Artillery' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, 'ANTIMISSILE TECH2 STRUCTURE' }},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
+            { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 7, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -288,9 +283,8 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 925,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 20, 'DEFENSE TECH2 ANTIAIR STRUCTURE' }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, 'DEFENSE TECH2 ANTIAIR STRUCTURE' }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.DEFENSE * categories.TECH3 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE}},
-            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Air' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 1, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE - categories.SHIELD - categories.ANTIMISSILE } },
@@ -298,7 +292,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -311,19 +305,16 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Base D Artillery',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 0, #925,
+        Priority = 925,
         BuilderType = 'Any',
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ARTILLERY TECH2 STRUCTURE' }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            #{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Structures' } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.DEFENSE * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            #{ UCBC, 'CheckUnitRange', { 'LocationType', 'T2Artillery', categories.STRUCTURE + (categories.LAND * (categories.TECH2 + categories.TECH3)) } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildStructures = {
                     'T2Artillery',
@@ -335,7 +326,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2TMLEngineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 0, #925,
+        Priority = 925,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.TACTICALMISSILEPLATFORM * categories.STRUCTURE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
@@ -395,10 +386,12 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
+                    'T3AADefense',
+                    'T3AADefense',
                     'T3AADefense',
                 },
                 Location = 'LocationType',
@@ -419,7 +412,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -444,7 +437,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -494,7 +487,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -519,7 +512,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -549,7 +542,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -573,7 +566,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -602,7 +595,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -627,7 +620,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -677,7 +670,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -706,7 +699,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearBasePatrolPoints = true,
@@ -740,7 +733,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearBasePatrolPoints = true,
@@ -775,7 +768,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearBasePatrolPoints = true,
@@ -816,7 +809,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -824,7 +817,7 @@ BuilderGroup {
                 LocationRadius = 350,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -860,7 +853,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -868,7 +861,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -903,7 +896,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -911,7 +904,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -947,7 +940,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -955,7 +948,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -994,7 +987,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1002,7 +995,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1037,7 +1030,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1045,7 +1038,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1081,7 +1074,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1089,7 +1082,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1129,7 +1122,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1137,7 +1130,7 @@ BuilderGroup {
                 LocationRadius = 350,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -1173,7 +1166,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1181,7 +1174,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -1218,7 +1211,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1226,7 +1219,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -1264,7 +1257,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1272,7 +1265,7 @@ BuilderGroup {
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 4,
@@ -1313,7 +1306,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1321,7 +1314,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1358,7 +1351,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1366,7 +1359,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1404,7 +1397,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             NeedGuard = true,
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Defensive Point',
@@ -1412,7 +1405,7 @@ BuilderGroup {
                 LocationRadius = 2000,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1450,7 +1443,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1458,7 +1451,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 3,
@@ -1484,7 +1477,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1492,7 +1485,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1522,7 +1515,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1530,7 +1523,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 3,
@@ -1557,7 +1550,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1565,7 +1558,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1595,7 +1588,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1603,7 +1596,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 3,
@@ -1630,7 +1623,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 NearMarkerType = 'Naval Defensive Point',
@@ -1638,7 +1631,7 @@ BuilderGroup {
                 LocationRadius = 300,
                 LocationType = 'LocationType',
                 ThreatMin = -10000,
-                ThreatMax = 5,
+                ThreatMax = 700,
                 ThreatRings = 1,
                 ThreatType = 'AntiSurface',
                 MarkerUnitCount = 2,
@@ -1670,7 +1663,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1702,7 +1695,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1811,7 +1804,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, STRUCTURE EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1839,7 +1832,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, STRUCTURE EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1873,7 +1866,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1902,7 +1895,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 AdjacencyCategory = 'FACTORY, ENERGYPRODUCTION EXPERIMENTAL, ENERGYPRODUCTION TECH3, ENERGYPRODUCTION TECH2',
                 AdjacencyDistance = 100,
@@ -1938,7 +1931,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 AdjacencyCategory = 'FACTORY -NAVAL',
@@ -1975,7 +1968,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 AdjacencyCategory = 'FACTORY -NAVAL',
@@ -2007,7 +2000,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 AdjacencyCategory = 'FACTORY -NAVAL',
@@ -2261,7 +2254,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildClose = false,
                 BuildStructures = {
@@ -2318,7 +2311,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 BuildStructures = {
                     'T2Artillery',
@@ -2591,7 +2584,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 NearUnitCategory = 'COMMAND',
                 NearUnitRadius = 32000,
@@ -2623,7 +2616,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 NearUnitCategory = 'COMMAND',
                 NearUnitRadius = 32000,
@@ -2655,7 +2648,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         BuilderData = {
-            NumAssistees = 2,
+            NumAssistees = 5,
             Construction = {
                 NearUnitCategory = 'COMMAND',
                 NearUnitRadius = 32000,

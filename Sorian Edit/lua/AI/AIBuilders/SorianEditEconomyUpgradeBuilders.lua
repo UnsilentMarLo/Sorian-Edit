@@ -31,7 +31,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single Expansion',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 2,
+        InstanceCount = 4,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -46,7 +46,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Single Expansion',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 2,
+        InstanceCount = 4,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -83,7 +83,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Storage Based',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 0, #200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -99,7 +99,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Bleed Off',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -115,7 +115,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -131,7 +131,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 2,
+        InstanceCount = 4,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -162,7 +162,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T2 Mass Extractor Upgrade Storage Based',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 0, #200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -178,7 +178,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T2 Mass Extractor Upgrade Bleed Off',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -195,7 +195,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION' } },
@@ -229,7 +229,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION' } },
@@ -265,7 +265,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Storage Based - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 0, #200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -281,7 +281,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T1 Mass Extractor Upgrade Bleed Off - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -297,7 +297,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -314,7 +314,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two - Rush',
         PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 2,
+        InstanceCount = 4,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -347,7 +347,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T2 Mass Extractor Upgrade Storage Based - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 0, #200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -363,7 +363,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'T2 Mass Extractor Upgrade Bleed Off - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
+        InstanceCount = 2,
         Priority = 200,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -380,7 +380,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION' } },
@@ -414,7 +414,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later - Rush',
         PlatoonTemplate = 'T2MassExtractorUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION' } },
@@ -454,7 +454,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Emergency T1 Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
@@ -469,7 +469,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Emergency T2 Factory Upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -492,7 +492,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
@@ -506,7 +506,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit RushT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
@@ -521,7 +521,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
@@ -539,7 +539,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit RushT1AirFactoryUpgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
@@ -558,7 +558,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Rush T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -582,7 +582,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
@@ -596,7 +596,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
@@ -611,7 +611,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
@@ -629,7 +629,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
@@ -648,7 +648,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3, FACTORY TECH2' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -669,7 +669,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade - T3',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 0, #250,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2' } },
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY LAND TECH1' }},
@@ -686,7 +686,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade - T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 0, #250,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2' } },
@@ -704,7 +704,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - initial',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -725,7 +725,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - initial',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -745,7 +745,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - Large Map',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -767,7 +767,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - Large Map',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -788,7 +788,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - Rush',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -810,7 +810,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - Small Map',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH3'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
@@ -831,7 +831,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3, FACTORY TECH2' } },
                 #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH3, FACTORY TECH2'}},
@@ -859,7 +859,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH2, LAND FACTORY TECH3' } },
@@ -874,7 +874,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Air Factory Upgrade Initial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
@@ -891,7 +891,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Naval Factory Upgrade Initial',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 210,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3'}},
@@ -908,7 +908,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 205,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH3, FACTORY LAND TECH2' } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -923,7 +923,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 AirFactory Upgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY AIR TECH3, FACTORY AIR TECH2' } },
@@ -941,7 +941,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 210,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH3, FACTORY NAVAL TECH2' } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -962,7 +962,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1 Land Factory Upgrade - T3',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 250,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2' } },
                 { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY LAND TECH1' }},
@@ -979,7 +979,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T1AirFactoryUpgrade - T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 250,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH2' } },
@@ -997,7 +997,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T2 Land Factory Upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 310,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY LAND TECH3' } },
                 #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3'}},
@@ -1015,7 +1015,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T2 Air Factory Upgrade',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3'} },
@@ -1032,7 +1032,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Naval T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 305,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 #{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH3' } },
@@ -1053,7 +1053,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Fast T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY LAND' }},
@@ -1072,7 +1072,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit FastT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
@@ -1092,7 +1092,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Fast T1 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1116,7 +1116,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Fast T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
@@ -1135,7 +1135,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Fast T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY TECH3 AIR, FACTORY TECH2 AIR' } },
@@ -1153,7 +1153,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Fast T2 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY TECH3 NAVAL, FACTORY TECH2 NAVAL' } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH3' } },
@@ -1179,7 +1179,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY LAND' }},
@@ -1199,7 +1199,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
@@ -1220,7 +1220,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T1 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
         Priority = 200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH2' } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
@@ -1244,7 +1244,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
@@ -1264,7 +1264,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY TECH3' } },
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY TECH3 AIR, FACTORY TECH2 AIR' } },
@@ -1283,7 +1283,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Balanced T2 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
         Priority = 300,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
                 #{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY TECH3 NAVAL, FACTORY TECH2 NAVAL' } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'FACTORY TECH3' } },

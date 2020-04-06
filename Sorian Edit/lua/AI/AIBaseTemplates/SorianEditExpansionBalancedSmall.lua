@@ -116,10 +116,10 @@ BaseBuilderTemplate {
     },
     ExpansionFunction = function(aiBrain, location, markerType)
 
-        if markerType ~= 'Start Location' then
+        if markerType ~= 'Expansion Area' then
             return -1
         end
-
+		
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
             return 250, 'sorianeditadaptive'

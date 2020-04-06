@@ -57,18 +57,34 @@ BaseBuilderTemplate {
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerFirebaseBuilders',
+        'SorianEditAirStagingExpansion',
 
         -- ==== DEFENSES ==== --
         'SorianEditT1BaseDefenses',
         'SorianEditT2BaseDefenses',
         'SorianEditT3BaseDefenses',
+		
+        'SorianEditT1LightDefenses',
+        'SorianEditT2LightDefenses',
+        'SorianEditT3LightDefenses',
 
+        'SorianEditT1PerimeterDefenses',
         'SorianEditT2PerimeterDefenses',
         'SorianEditT3PerimeterDefenses',
+		
+        'SorianEditT2BaseDefenses - Emerg',
+        'SorianEditT3BaseDefenses - Emerg',
+		
+        'SorianEditT2ShieldsExpansion',
+        'SorianEditShieldUpgrades',
+        'SorianEditT3ShieldsExpansion',
 
         'SorianEditT1DefensivePoints',
         'SorianEditT2DefensivePoints',
         'SorianEditT3DefensivePoints',
+        'SorianEditT1DefensivePoints Turtle',
+        'SorianEditT2DefensivePoints Turtle',
+        'SorianEditT3DefensivePoints Turtle',
 
         'SorianEditT2ArtilleryFormBuilders',
         'SorianEditT3ArtilleryFormBuilders',

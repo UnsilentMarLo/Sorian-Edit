@@ -58,6 +58,7 @@ BaseBuilderTemplate {
 
         -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuildersFast',
+        'SorianEditNavalExpansionBuilders',
 
         -- ==== EXPERIMENTALS ==== --
         --'SorianEditMobileNavalExperimentalEngineers',
@@ -69,29 +70,26 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 3,
-            Tech2 = 3,
-            Tech3 = 3,
+            Tech1 = 15,
+            Tech2 = 9,
+            Tech3 = 6,
             SCU = 0,
         },
         FactoryCount = {
             Land = 0,
             Air = 0,
-            Sea = 2,
+            Sea = 3,
             Gate = 0,
         },
         MassToFactoryValues = {
-            T1Value = 8, --6
-            T2Value = 20, --15
-            T3Value = 30, --22.5
+            T1Value = 4, --6
+            T2Value = 10, --15
+            T3Value = 20, --22.5
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
 
-        if markerType != 'Naval Area' then
-            return 0
-        end
-        if markerType ~= 'Start Location' then
+        if markerType ~= 'Naval Area' then
             return -1
         end
 		

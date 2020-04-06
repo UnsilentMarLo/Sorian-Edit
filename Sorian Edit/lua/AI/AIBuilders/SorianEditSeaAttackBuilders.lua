@@ -71,11 +71,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Sub',
         PlatoonTemplate = 'T1SeaSub',
         Priority = 500,
+		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
-            #{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY NAVAL TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderType = 'Sea',
@@ -83,7 +83,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Sea Frigate',
         PlatoonTemplate = 'T1SeaFrigate',
-        Priority = 500,
+        Priority = 600,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -96,13 +97,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Naval Anti-Air',
         PlatoonTemplate = 'T1SeaAntiAir',
-        Priority = 0,
+        Priority = 500,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY NAVAL TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY NAVAL TECH2' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderType = 'Sea',
@@ -116,6 +117,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -129,6 +131,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 600,
+		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
@@ -141,6 +144,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2SubKiller',
         PlatoonTemplate = 'T2SubKiller',
         Priority = 600,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -152,7 +156,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2ShieldBoat',
         PlatoonTemplate = 'T2ShieldBoat',
-        Priority = 600,
+        Priority = 400,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'SHIELD NAVAL MOBILE' } },
@@ -165,7 +170,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2CounterIntelBoat',
         PlatoonTemplate = 'T2CounterIntelBoat',
-        Priority = 0,
+        Priority = 400,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'COUNTERINTELLIGENCE NAVAL MOBILE' } },
@@ -183,7 +189,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 705,
+        Priority = 700,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -197,7 +204,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 705,
+        Priority = 700,
+		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
@@ -216,6 +224,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 700,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -229,6 +238,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 700,
+		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'NoRushTimeCheck', { 600 }},
@@ -241,6 +251,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
         Priority = 700,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -266,6 +277,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
         Priority = 700,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -279,6 +291,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
         Priority = 700,
+		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -300,7 +313,7 @@ BuilderGroup {
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 2,
+        InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
@@ -317,7 +330,7 @@ BuilderGroup {
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 2,
+        InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
@@ -334,7 +347,7 @@ BuilderGroup {
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 2,
+        InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
@@ -350,7 +363,7 @@ BuilderGroup {
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 100,
-        InstanceCount = 5,
+        InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
@@ -381,13 +394,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
@@ -409,13 +422,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 6,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
@@ -437,13 +450,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
@@ -469,13 +482,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
@@ -497,13 +510,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
@@ -525,13 +538,13 @@ BuilderGroup {
         PlatoonTemplate = 'SeaAttackSorianEdit',
         #PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 1,
-        InstanceCount = 5,
+        Priority = 10,
+        InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
         UseFormation = 'AttackFormation',
             ThreatWeights = {
-                #IgnoreStrongerTargetsRatio = 100.0,
+                #IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
                 SecondaryThreatTargetType = 'Economic',
                 SecondaryThreatWeight = 0.1,
