@@ -1053,7 +1053,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Unit Cap Default Bomber Attack',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 1,
         InstanceCount = 100,
@@ -1082,7 +1082,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunshipAttackT1Cap',
         PlatoonTemplate = 'GunshipAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 100,
@@ -1104,7 +1104,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT1Frequent',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1137,7 +1137,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT1Frequent - Anti-Land',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1170,7 +1170,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT1Frequent - Anti-Resource',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 101,
         InstanceCount = 6,
@@ -1204,7 +1204,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT1Frequent - Extra',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 95,
         InstanceCount = 10,
@@ -1237,7 +1237,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunshipAttackT1Frequent',
         PlatoonTemplate = 'GunshipAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 6, #2
@@ -1255,7 +1255,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Torpedo Bombers',
         PlatoonTemplate = 'TorpedoBomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         Priority = 100,
         InstanceCount = 5,
         BuilderConditions = {
@@ -1267,7 +1267,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT2Frequent',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1300,7 +1300,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT2Frequent - Anti-Land',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1333,7 +1333,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT2Frequent - Anti-Resource',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 101,
         InstanceCount = 6,
@@ -1368,7 +1368,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT2Frequent - Extra',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 95,
         InstanceCount = 10,
@@ -1401,7 +1401,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunshipAttackT2Frequent',
         PlatoonTemplate = 'GunshipAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 6, #2
@@ -1419,7 +1419,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT3Frequent',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1451,7 +1451,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT3Frequent - Anti-Land',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 3,
@@ -1483,7 +1483,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackT3Frequent - Anti-Resource',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 101,
         InstanceCount = 3,
@@ -1517,7 +1517,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunshipAttackT3Frequent',
         PlatoonTemplate = 'GunshipAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 6, #2
@@ -1539,7 +1539,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackExpResponse',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 5,
@@ -1572,7 +1572,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit FighterAttackExpResponse',
         PlatoonTemplate = 'AirAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 10,
@@ -1598,7 +1598,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttackThreatResponse',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1000,
         InstanceCount = 5,
@@ -1632,7 +1632,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1670,7 +1670,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Bomber Attack Weak Enemy Response',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1707,7 +1707,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2/T3 GunShip Attack Weak Enemy Response',
         PlatoonTemplate = 'GunshipSFSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1745,7 +1745,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 GunShip Attack Weak Enemy Response',
         PlatoonTemplate = 'GunshipSFSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #995,
         InstanceCount = 1,
@@ -1782,7 +1782,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1801,7 +1801,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1820,7 +1820,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Air Attack Threat',
         PlatoonTemplate = 'ThreatAirAttack',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
         InstanceCount = 3,
@@ -1843,7 +1843,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2/T3 GunShip Attack Anti Navy',
         PlatoonTemplate = 'GunshipSFSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 105,
         InstanceCount = 1,
@@ -1870,7 +1870,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BomberAttack Mass Hunter',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 100,
         InstanceCount = 2,
@@ -1902,7 +1902,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Mass Hunter Gunships',
         PlatoonTemplate = 'GunshipMassHunterSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         # Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
         #PlatoonTemplate = 'EarlyGameMassHuntersCategory',
@@ -1940,7 +1940,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit AntiAirHunt',
         PlatoonTemplate = 'AntiAirHuntSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #1,
         InstanceCount = 30,
@@ -1957,7 +1957,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit AntiAirBaseGuard',
         PlatoonTemplate = 'AntiAirBaseGuardSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #1,
         InstanceCount = 15,
@@ -1974,7 +1974,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit AntiAirHunt - Extra',
         PlatoonTemplate = 'AntiAirHuntSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1,
         InstanceCount = 100,
@@ -1991,7 +1991,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit AntiAirT4Guard',
         PlatoonTemplate = 'AntiAirT4Guard',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 1,
         InstanceCount = 10,
@@ -2008,7 +2008,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunshipBaseGuard',
         PlatoonTemplate = 'GunshipBaseGuard',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0, #10
         InstanceCount = 2,

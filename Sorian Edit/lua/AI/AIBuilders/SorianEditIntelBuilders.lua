@@ -152,7 +152,7 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },
@@ -164,7 +164,7 @@ BuilderGroup {
             { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonAddPlans = { 'AirIntelToggle' },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },

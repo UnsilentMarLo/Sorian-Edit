@@ -412,7 +412,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Bomber Attack - Large',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -441,7 +441,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Bomber Attack - Large T1',
         PlatoonTemplate = 'BomberAttackSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -475,7 +475,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Bomber Attack - Big',
         PlatoonTemplate = 'BomberAttackSorianEditBig',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
@@ -509,7 +509,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit GunShip Attack - Large',
         PlatoonTemplate = 'GunshipSFSorianEdit',
-        PlatoonAddBehaviors = { 'AirUnitRefitSorianEdit' },
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
         ActivePriority = 995,
