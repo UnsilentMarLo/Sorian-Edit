@@ -70,7 +70,6 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1200,
-		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -80,10 +79,22 @@ BuilderGroup {
         },
     },
     Builder {
+        BuilderName = 'SorianEditT1 Air Bomber4',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 900,
+		InstanceCount = 2,
+        BuilderType = 'Air',
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, 'BOMBER TECH1' }},
+        },
+    },
+    Builder {
         BuilderName = 'SorianEditT1 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 800,
-		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -99,8 +110,8 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 25, 'GROUNDATTACK TECH1' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR} },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, 'GROUNDATTACK TECH1' }},
         },
     },
     Builder {
@@ -123,6 +134,18 @@ BuilderGroup {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
+        BuilderName = 'SorianEditT1 Air Fighter2',
+        PlatoonTemplate = 'T1AirFighter',
+        Priority = 1100,
+		InstanceCount = 2,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         },
         BuilderType = 'Air',
     },
@@ -171,7 +194,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Interceptors - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1300,
+        Priority = 1200,
 		InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
@@ -205,8 +228,6 @@ BuilderGroup {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
-            { UCBC, 'UnitCapCheckLess', { .9 } },
         },
         BuilderType = 'Air',
     },
@@ -216,9 +237,22 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT2AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
+        BuilderName = 'SorianEditT2FighterBomber init2',
+        PlatoonTemplate = 'T2FighterBomber',
+        Priority = 1500,
+        BuilderType = 'Air',
+        BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
+        },
+    },
+    Builder {
         BuilderName = 'SorianEditT2 Air Gunship',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 800,
+        Priority = 900,
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -230,7 +264,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 700,
+        Priority = 800,
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -257,7 +291,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1100,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
@@ -273,7 +307,7 @@ BuilderGroup {
         Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -283,7 +317,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Fighter - T2',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 700,
+        Priority = 600,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.AIR * categories.ANTIAIR } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
@@ -306,7 +340,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
@@ -336,7 +369,6 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { SBC, 'T4ThreatExists', {{'Land', 'Naval', 'Structure'}, (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY)}},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND, EXPERIMENTAL NAVAL', 'Enemy'}},
         },
     },
     Builder {
@@ -352,13 +384,12 @@ BuilderGroup {
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Torpedo Bomber',
         PlatoonTemplate = 'T2AirTorpedoBomber',
-        Priority = 800,
+        Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -367,7 +398,6 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTINAVY * categories.TECH2 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Naval' } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
 }
@@ -378,11 +408,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes Initial Higher Pri',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 800,
+        Priority = 700,
         BuilderConditions = {
-            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
-            { SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 12, [512] = 15, [1024] = 20, [2048] = 30, [4096] = 30}, categories.AIR * categories.ANTIAIR * categories.TECH1}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
@@ -393,18 +420,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 800,
+        Priority = 700,
         BuilderConditions = {
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 9, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.ANTIAIR * categories.TECH1, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-																		  
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
-            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
     },
@@ -417,11 +440,8 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-											   
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
-            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
     },
@@ -442,24 +462,48 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT3AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
+        BuilderName = 'SorianEditT3 Air Fighter init',
+        PlatoonTemplate = 'T3AirFighter',
+        Priority = 1800,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
+            { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
+        BuilderName = 'SorianEditT3 Air Fighter spam',
+        PlatoonTemplate = 'T3AirFighter',
+        Priority = 1500,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
+            { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
         BuilderName = 'SorianEditT3 Air Gunship',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1100,
-        InstanceCount = 4,
+        Priority = 1400,
+        InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-            { MIBC, 'GreaterThanGameTime', { 2000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1000,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -469,10 +513,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1000,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -481,7 +524,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Exp Response',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1400,
+        Priority = 1300,
         InstanceCount = 4,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -496,26 +539,23 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1200,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 54 }},
-            { MIBC, 'GreaterThanGameTime', { 2000 } },
         },
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship2',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1200,
+        Priority = 1300,
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -524,10 +564,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber2',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1000,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -539,7 +578,6 @@ BuilderGroup {
         Priority = 1500,
         InstanceCount = 4,
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -549,10 +587,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Torpedo Bomber',
         PlatoonTemplate = 'T3TorpedoBomber',
-        Priority = 1000,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -567,12 +604,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes Initial',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1000,
-        InstanceCount = 5,
+        Priority = 1600,
+        InstanceCount = 2,
         BuilderConditions = {
-			{ MIBC, 'GreaterThanGameTime', { 2000 } },
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, categories.FACTORY * categories.AIR, 'Enemy'}},
-            { SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 12, [512] = 15, [1024] = 30, [2048] = 40, [4096] = 40}, categories.AIR * categories.ANTIAIR * categories.TECH3}},
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -587,11 +621,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
-																		  
-																													   
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.ANTIAIR * categories.TECH3, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            { MIBC, 'GreaterThanGameTime', { 2000 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
         },
         BuilderType = 'Air',
     },
@@ -1058,7 +1088,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
             { UCBC, 'UnitCapCheckGreater', { .95 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
             SearchRadius = 6000,
@@ -1087,7 +1117,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
             { UCBC, 'UnitCapCheckGreater', { .95 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
             DistressRange = 500,
@@ -1129,7 +1159,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 4 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1162,7 +1192,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 4 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1196,7 +1226,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 4 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1229,7 +1259,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 4 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1244,7 +1274,7 @@ BuilderGroup {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, 'AIR MOBILE GROUNDATTACK TECH1' } },
             --{ AirAttackCondition, { 'LocationType', 4 } },
 																										
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
             DistressRange = 500,
@@ -1258,7 +1288,7 @@ BuilderGroup {
         InstanceCount = 11,
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, 'ANTINAVY AIR MOBILE' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
     },
@@ -1292,7 +1322,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1325,7 +1355,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1360,7 +1390,7 @@ BuilderGroup {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1393,7 +1423,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1408,7 +1438,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'AIR MOBILE GROUNDATTACK' } },
             --{ AirAttackCondition, { 'LocationType', 18 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
             DistressRange = 500,
@@ -1443,7 +1473,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE BOMBER TECH3' } },
             --{ AirAttackCondition, { 'LocationType', 90 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1475,7 +1505,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE BOMBER TECH3' } },
             --{ AirAttackCondition, { 'LocationType', 90 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1509,7 +1539,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 2, categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'Enemy'}},
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE BOMBER TECH3' } },
             --{ AirAttackCondition, { 'LocationType', 90 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1523,7 +1553,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE GROUNDATTACK TECH3' } },
             --{ AirAttackCondition, { 'LocationType', 60 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
             DistressRange = 500,
@@ -1564,7 +1594,7 @@ BuilderGroup {
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL LAND, EXPERIMENTAL NAVAL', 'Enemy'}},
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'AIR MOBILE BOMBER TECH2, AIR MOBILE BOMBER TECH3' } },
             --{ SBC, 'T4ThreatExists', {{'Land', 'Naval', 'Structure'}, (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY)}},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1590,7 +1620,7 @@ BuilderGroup {
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'EXPERIMENTAL AIR', 'Enemy'}},
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'AIR MOBILE ANTIAIR TECH1, AIR MOBILE ANTIAIR TECH3' } },
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1624,7 +1654,7 @@ BuilderGroup {
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'STRUCTURE STRATEGIC TECH3, STRUCTURE STRATEGIC EXPERIMENTAL, EXPERIMENTAL ARTILLERY OVERLAYINDIRECTFIRE, EXPERIMENTAL ORBITALSYSTEM', 'Enemy'}},
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'AIR MOBILE BOMBER TECH2, AIR MOBILE BOMBER TECH3' } },
             --{ AirAttackCondition, { 'LocationType', 90 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1662,7 +1692,7 @@ BuilderGroup {
             --{ SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'AntiAir', 'AntiSurface', 1}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE BOMBER TECH2, AIR MOBILE BOMBER TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1699,7 +1729,7 @@ BuilderGroup {
             --{ SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'AntiAir', 'AntiSurface', 1}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER TECH1' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1737,7 +1767,7 @@ BuilderGroup {
             --{ SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'AntiAir', 'AntiSurface', 1}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE GROUNDATTACK TECH2, AIR MOBILE GROUNDATTACK TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1774,7 +1804,7 @@ BuilderGroup {
             --{ SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'AntiAir', 'AntiSurface', 1}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE GROUNDATTACK TECH1' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1792,7 +1822,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             { AirAttackCondition, { 'LocationType', 4 } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'AIThreatExists', { 100 } },
         },
     },
@@ -1811,7 +1841,7 @@ BuilderGroup {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'AIThreatExists', { 100 } },
         },
     },
@@ -1829,7 +1859,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 90 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'AIThreatExists', { 100 } },
         },
     },
@@ -1857,7 +1887,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE GROUNDATTACK TECH2, AIR MOBILE GROUNDATTACK TECH3' } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
 }
@@ -1894,7 +1924,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 6 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1911,7 +1941,7 @@ BuilderGroup {
                 --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
                 --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE GROUNDATTACK' } },
                 --{ AirAttackCondition, { 'LocationType', 6 } },
-                { SBC, 'NoRushTimeCheck', { 0 }},
+                --{ SBC, 'NoRushTimeCheck', { 0 }},
             },
         BuilderData = {
             MarkerType = 'Mass',
@@ -1951,7 +1981,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1968,7 +1998,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -1985,7 +2015,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -2002,7 +2032,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR * categories.MOBILE * (categories.TECH1 + categories.TECH2 + categories.TECH3) * categories.ANTIAIR } },
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL * categories.AIR}},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
     Builder {
@@ -2018,7 +2048,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.AIR * categories.MOBILE * (categories.TECH1 + categories.TECH2) * categories.GROUNDATTACK } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
 }
