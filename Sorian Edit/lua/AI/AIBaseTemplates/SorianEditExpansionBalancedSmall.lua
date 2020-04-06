@@ -15,6 +15,8 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuildersExpansion',
         'SorianEditT2BalancedUpgradeBuildersExpansion',
+        'SorianEditT1FastUpgradeBuildersExpansion',
+        'SorianEditT2FastUpgradeBuildersExpansion',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
@@ -103,7 +105,7 @@ BaseBuilderTemplate {
 
         FactoryCount = {
             Land = 4,
-            Air = 1,
+            Air = 2,
             Sea = 0,
             Gate = 0,
         },

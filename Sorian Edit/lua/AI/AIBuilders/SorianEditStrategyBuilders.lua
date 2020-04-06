@@ -1,11 +1,11 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian Edit/lua/ai/SorianStrategyBuilders.lua
-#**
-#**  Summary  : Default Naval structure builders for skirmish
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian Edit/lua/ai/SorianStrategyBuilders.lua
+--**
+--**  Summary  : Default Naval structure builders for skirmish
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local ExBaseTmpl = 'ExpansionBaseTemplates'
@@ -250,7 +250,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {2, 4}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'SUBCOMMANDER' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.3}},
@@ -268,7 +268,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian Edit Engy Drop Strategy',
         StrategyType = 'Intermediate',
-        Priority = 0, #100,
+        Priority = 0, --100,
         InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
@@ -383,8 +383,8 @@ BuilderGroup {
         PriorityFunction = function(self, aiBrain)
             if Builders[self.BuilderName].Running then
                 return 100
-            #elseif Builders[self.BuilderName].Done then
-            #	return 0
+            --elseif Builders[self.BuilderName].Done then
+            --	return 0
             end
             local enemyIndex
             local returnval = 0
@@ -394,14 +394,14 @@ BuilderGroup {
                 return returnval
             end
 
-            #if Random(1,100) == 100 then
+            --if Random(1,100) == 100 then
                 returnval = 100
-            #end
+            --end
 
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH1' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
@@ -470,7 +470,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' }},
             { SBC, 'MapLessThan', { 1000, 1000 }},
         },
@@ -497,7 +497,7 @@ BuilderGroup {
         InstanceCount = 1,
         StrategyTime = 300,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'IsIslandMap', { true } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 29, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER }},
         },
@@ -520,10 +520,10 @@ BuilderGroup {
                 'Sorian Edit T2 MML',
                 'Sorian Edit T2AttackTank - Tech 2',
                 'Sorian Edit T2AttackTank2 - Tech 3',
-                #'Sorian Edit T2 Amphibious Tank - Tech 2',
-                #'Sorian Edit T2 Amphibious Tank - Tech 3',
-                #'Sorian Edit T2 Amphibious Tank - Tech 2 Cybran',
-                #'Sorian Edit T2 Amphibious Tank - Tech 3 Cybran',
+                --'Sorian Edit T2 Amphibious Tank - Tech 2',
+                --'Sorian Edit T2 Amphibious Tank - Tech 3',
+                --'Sorian Edit T2 Amphibious Tank - Tech 2 Cybran',
+                --'Sorian Edit T2 Amphibious Tank - Tech 3 Cybran',
                 'Sorian Edit T2MobileShields',
                 'Sorian Edit T2 Tank Enemy Nearby',
                 'Sorian Edit T2 Mobile Flak',
@@ -533,7 +533,7 @@ BuilderGroup {
                 'Sorian Edit T3 Mobile Heavy Artillery - tough def',
                 'Sorian Edit T3 Mobile Flak',
                 'Sorian Edit T3SniperBots',
-                #'Sorian Edit T3ArmoredAssault',
+                --'Sorian Edit T3ArmoredAssault',
                 'Sorian Edit T3MobileMissile',
                 'Sorian Edit T3MobileShields',
                 'Sorian Edit T3 Mobile AA Response',
@@ -576,10 +576,10 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            #{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiAir', 55 }},
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiAir', 55 }},
+            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -605,15 +605,15 @@ BuilderGroup {
             PlatoonFormManager = {
                 'Sorian Edit BomberAttackT1Frequent',
                 'Sorian Edit BomberAttackT1Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT2Frequent',
                 'Sorian Edit BomberAttackT2Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT3Frequent',
                 'Sorian Edit BomberAttackT3Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
                 'Sorian Edit T1 Bomber Attack Weak Enemy Response',
-                #'Sorian Edit BomberAttack Mass Hunter',
+                --'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
@@ -666,13 +666,13 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
-            #{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
+            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
+            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -683,10 +683,10 @@ BuilderGroup {
                 'Sorian Edit T1 Air Fighter',
                 'Sorian Edit T1 Air Bomber 2',
                 'Sorian Edit T1Gunship2',
-                #'Sorian Edit T1 Interceptors',
-                #'Sorian Edit T1 Interceptors - Enemy Air',
-                #'Sorian Edit T1 Interceptors - Enemy Air Extra',
-                #'Sorian Edit T1 Interceptors - Enemy Air Extra 2',
+                --'Sorian Edit T1 Interceptors',
+                --'Sorian Edit T1 Interceptors - Enemy Air',
+                --'Sorian Edit T1 Interceptors - Enemy Air Extra',
+                --'Sorian Edit T1 Interceptors - Enemy Air Extra 2',
                 'Sorian Edit T2 Air Gunship',
                 'Sorian Edit T2 Air Gunship - Anti Navy',
                 'Sorian Edit T2 Air Gunship - Stomp Enemy',
@@ -694,10 +694,10 @@ BuilderGroup {
                 'Sorian Edit T1 Air Fighter - T2',
                 'Sorian Edit T2 Air Gunship2',
                 'Sorian Edit T2FighterBomber2',
-                #'Sorian Edit T2AntiAirPlanes Initial Higher Pri',
-                #'Sorian Edit T2AntiAirPlanes - Enemy Air',
-                #'Sorian Edit T2AntiAirPlanes - Enemy Air Extra',
-                #'Sorian Edit T2AntiAirPlanes - Enemy Air Extra 2',
+                --'Sorian Edit T2AntiAirPlanes Initial Higher Pri',
+                --'Sorian Edit T2AntiAirPlanes - Enemy Air',
+                --'Sorian Edit T2AntiAirPlanes - Enemy Air Extra',
+                --'Sorian Edit T2AntiAirPlanes - Enemy Air Extra 2',
                 'Sorian Edit T3 Air Gunship',
                 'Sorian Edit T3 Air Gunship - Anti Navy',
                 'Sorian Edit T3 Air Bomber',
@@ -796,7 +796,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian Edit Ghetto Gunship Strategy',
         StrategyType = 'Intermediate',
-        Priority = 0, #100,
+        Priority = 0, --100,
         InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
@@ -831,13 +831,13 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {1, 2, 3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
-            #{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
-            #{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
+            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
+            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {},
@@ -883,9 +883,9 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'IsIslandMap', { false } },
             { SBC, 'ClosestEnemyLessThan', { 750 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
-            #{ SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
-            #{ SBC, 'LessThanGameTime', { 1200 } },
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
+            --{ SBC, 'LessThanGameTime', { 1200 } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -916,7 +916,7 @@ BuilderGroup {
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'rush arty' then
                 return 100
             end
@@ -932,11 +932,11 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            #{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
+            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -964,7 +964,7 @@ BuilderGroup {
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'rush arty' then
                 return 100
             end
@@ -980,11 +980,11 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            #{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
+            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
             { SBC, 'MapGreaterThan', { 1000, 1000 }},
@@ -1029,13 +1029,13 @@ BuilderGroup {
             --local enemyThreat = aiBrain:GetThreatAtPosition({StartX, 0, StartZ}, 1, true, 'AntiSurface', enemyIndex)
             local enemyThreat = SUtils.GetThreatAtPosition(aiBrain, {StartX, 0, StartZ}, 1, 'AntiSurface', {'Commander', 'Air', 'Experimental'}, enemyIndex)
 
-            #If enemy base has more than 1750 anti-surface threat
-            #T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
+            --If enemy base has more than 1750 anti-surface threat
+            --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
         },
         BuilderType = 'Any',
@@ -1088,13 +1088,13 @@ BuilderGroup {
             --local enemyThreat = aiBrain:GetThreatAtPosition({StartX, 0, StartZ}, 1, true, 'AntiSurface', enemyIndex)
             local enemyThreat = SUtils.GetThreatAtPosition(aiBrain, {StartX, 0, StartZ}, 1, 'AntiSurface', {'Commander', 'Air', 'Experimental'}, enemyIndex)
 
-            #If enemy base has more than 1750 anti-surface threat
-            #T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
+            --If enemy base has more than 1750 anti-surface threat
+            --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
         },
         BuilderType = 'Any',
@@ -1142,7 +1142,7 @@ BuilderGroup {
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'rush nuke' then
                 return 100
             end
@@ -1165,11 +1165,11 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            #{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
+            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
             { SBC, 'MapGreaterThan', { 500, 500 }},
@@ -1258,14 +1258,14 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            { SBC, 'NoRushTimeCheck', { 600 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH2' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            #{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
+            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
             { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
-            #{ SBC, 'MapGreaterThan', { 500, 500 }},
+            --{ SBC, 'MapGreaterThan', { 500, 500 }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {},
@@ -1289,7 +1289,7 @@ BuilderGroup {
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'air' then
                 return 100
             end
@@ -1312,10 +1312,10 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            #{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH1' }},
         },
@@ -1343,15 +1343,15 @@ BuilderGroup {
             PlatoonFormManager = {
                 'Sorian Edit BomberAttackT1Frequent',
                 'Sorian Edit BomberAttackT1Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT2Frequent',
                 'Sorian Edit BomberAttackT2Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT3Frequent',
                 'Sorian Edit BomberAttackT3Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
                 'Sorian Edit T1 Bomber Attack Weak Enemy Response',
-                #'Sorian Edit BomberAttack Mass Hunter',
+                --'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
@@ -1374,7 +1374,7 @@ BuilderGroup {
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'air' then
                 return 100
             end
@@ -1398,10 +1398,10 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            #{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 19 }},
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            #{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 19 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH2' }},
         },
@@ -1429,15 +1429,15 @@ BuilderGroup {
             PlatoonFormManager = {
                 'Sorian Edit BomberAttackT1Frequent',
                 'Sorian Edit BomberAttackT1Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT2Frequent',
                 'Sorian Edit BomberAttackT2Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT3Frequent',
                 'Sorian Edit BomberAttackT3Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
                 'Sorian Edit T2/T3 Bomber Attack Weak Enemy Response',
-                #'Sorian Edit BomberAttack Mass Hunter',
+                --'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {
@@ -1460,7 +1460,7 @@ BuilderGroup {
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
-            #If activated by an ally
+            --If activated by an ally
             if aiBrain.Focus == 'air' then
                 return 100
             end
@@ -1483,9 +1483,9 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            #{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
-            { SBC, 'NoRushTimeCheck', { 600 }},
-            #{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
+            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH3' }},
         },
         BuilderType = 'Any',
@@ -1512,15 +1512,15 @@ BuilderGroup {
             PlatoonFormManager = {
                 'Sorian Edit BomberAttackT1Frequent',
                 'Sorian Edit BomberAttackT1Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT1Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT2Frequent',
                 'Sorian Edit BomberAttackT2Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT2Frequent - Anti-Resource',
                 'Sorian Edit BomberAttackT3Frequent',
                 'Sorian Edit BomberAttackT3Frequent - Anti-Land',
-                #'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
+                --'Sorian Edit BomberAttackT3Frequent - Anti-Resource',
                 'Sorian Edit T2/T3 Bomber Attack Weak Enemy Response',
-                #'Sorian Edit BomberAttack Mass Hunter',
+                --'Sorian Edit BomberAttack Mass Hunter',
             }
         },
         AddBuilders = {

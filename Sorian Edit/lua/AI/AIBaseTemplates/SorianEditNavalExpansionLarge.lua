@@ -15,6 +15,8 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1NavalUpgradeBuilders',
         'SorianEditT2NavalUpgradeBuilders',
+        'SorianEditT1FastUpgradeBuildersExpansion',
+        'SorianEditT2FastUpgradeBuildersExpansion',
 
         -- Pass engineers to main as needed
         --'Engineer Transfers',
@@ -78,7 +80,7 @@ BaseBuilderTemplate {
         FactoryCount = {
             Land = 0,
             Air = 0,
-            Sea = 3,
+            Sea = 4,
             Gate = 0,
         },
         MassToFactoryValues = {
@@ -95,7 +97,7 @@ BaseBuilderTemplate {
 		
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            return 200, 'sorianeditadaptive'
+            return 400, 'sorianeditadaptive'
         end
         return 0
     end,

@@ -14,6 +14,8 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuildersExpansion',
         'SorianEditT2BalancedUpgradeBuildersExpansion',
+        'SorianEditT1FastUpgradeBuildersExpansion',
+        'SorianEditT2FastUpgradeBuildersExpansion',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
@@ -108,8 +110,8 @@ BaseBuilderTemplate {
         'SorianEditT3ArtilleryGroupExp',
     },
     NonCheatBuilders = {
-        --'SorianEditAirScoutFactoryBuilders',
-        --'SorianEditAirScoutFormBuilders',
+        'SorianEditAirScoutFactoryBuilders',
+        'SorianEditAirScoutFormBuilders',
 
         'SorianEditLandScoutFactoryBuilders',
         'SorianEditLandScoutFormBuilders',
@@ -128,9 +130,9 @@ BaseBuilderTemplate {
         },
         FactoryCount = {
             Land = 3,
-            Air = 1,
+            Air = 2,
             Sea = 0,
-            Gate = 0, --1,
+            Gate = 1, --1,
         },
         MassToFactoryValues = {
             T1Value = 6, --8
@@ -146,7 +148,7 @@ BaseBuilderTemplate {
 
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            return 250, 'sorianedit'
+            return 400, 'sorianedit'
         end
 
         return 0

@@ -14,6 +14,7 @@ BaseBuilderTemplate {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
+        'SorianEditT1RushUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
 
@@ -24,6 +25,7 @@ BaseBuilderTemplate {
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
         'SorianEditEngineerFactoryConstruction Balance',
+		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
 
         -- SCU Upgrades
@@ -57,31 +59,18 @@ BaseBuilderTemplate {
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerFirebaseBuilders',
-        'SorianEditAirStagingExpansion',
+
 
         -- ==== DEFENSES ==== --
         'SorianEditT1BaseDefenses',
         'SorianEditT2BaseDefenses',
         'SorianEditT3BaseDefenses',
-		
-        'SorianEditT1LightDefenses',
-        'SorianEditT2LightDefenses',
-        'SorianEditT3LightDefenses',
-
-        'SorianEditT1PerimeterDefenses',
-        'SorianEditT2PerimeterDefenses',
-        'SorianEditT3PerimeterDefenses',
-		
         'SorianEditT2BaseDefenses - Emerg',
         'SorianEditT3BaseDefenses - Emerg',
 		
-        'SorianEditT2ShieldsExpansion',
-        'SorianEditShieldUpgrades',
-        'SorianEditT3ShieldsExpansion',
+        'SorianEditT2PerimeterDefenses',
+        'SorianEditT3PerimeterDefenses',
 
-        'SorianEditT1DefensivePoints',
-        'SorianEditT2DefensivePoints',
-        'SorianEditT3DefensivePoints',
         'SorianEditT1DefensivePoints Turtle',
         'SorianEditT2DefensivePoints Turtle',
         'SorianEditT3DefensivePoints Turtle',
@@ -100,6 +89,7 @@ BaseBuilderTemplate {
         'SorianEditNavalExpansionBuilders',
 
         -- ==== LAND UNIT BUILDERS ==== --
+        'SorianEditT1LandFactoryBuilders - Rush',												 
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT3LandFactoryBuilders',
@@ -133,7 +123,8 @@ BaseBuilderTemplate {
         'SorianEditACUHunterAirFormBuilders',
 
         'SorianEditTransportFactoryBuilders',
-
+        'SorianEditTransportFactoryBuilders - Rush',
+		
         'SorianEditExpResponseFormBuilders',
 
         'SorianEditT1AntiAirBuilders',
@@ -200,6 +191,8 @@ BaseBuilderTemplate {
         'SorianEditT3FBBuildersHighPrio',
         'SorianEdit Extractor Upgrades Strategy',
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
+        'SorianEditEngineerExpansionBuildersStrategy',
+        'SorianEditACUUpgrades - Rush',
         'SorianEditExcessMassBuilders',
     },
     NonCheatBuilders = {
@@ -217,12 +210,12 @@ BaseBuilderTemplate {
     BaseSettings = {
         EngineerCount = {
             Tech1 = 15,
-            Tech2 = 10,
-            Tech3 = 45, --30,
+            Tech2 = 20,
+            Tech3 = 35, --30,
             SCU = 8,
         },
         FactoryCount = {
-            Land = 4,
+            Land = 6,
             Air = 5,
             Sea = 0,
             Gate = 1,
@@ -239,7 +232,7 @@ BaseBuilderTemplate {
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            LOG('### M-FirstBaseFunction '..personality)
+            LOG('------ M-FirstBaseFunction '..personality)
             return 2000, 'sorianeditadaptive'
         end
         return -1

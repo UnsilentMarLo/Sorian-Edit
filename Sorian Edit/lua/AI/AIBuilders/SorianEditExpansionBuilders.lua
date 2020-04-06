@@ -1,11 +1,11 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/AI/AIBuilders/SorianEditExpansionBuilders.lua
-#**
-#**  Summary  : Builder definitions for expansion bases
-#**
-#**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /lua/AI/AIBuilders/SorianEditExpansionBuilders.lua
+--**
+--**  Summary  : Builder definitions for expansion bases
+--**
+--**  Copyright © 2007 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local ExBaseTmpl = 'ExpansionBaseTemplates'
@@ -30,10 +30,10 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditEngineerExpansionBuildersFull',
     BuildersType = 'EngineerBuilder',
 
-    ########################################
-    ## Builds expansion bases
-    ########################################
-    ### Start the Factories in the expansion
+    --------------------------------------------------------------------------------
+    ---- Builds expansion bases
+    --------------------------------------------------------------------------------
+    ------ Start the Factories in the expansion
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Rush',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
@@ -44,7 +44,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SBC, 'LessThanGameTime', { 600 } },
             { SIBC, 'LessThanExpansionBases', { 2 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -81,11 +81,11 @@ BuilderGroup {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'LessThanExpansionBases', { 4 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
-            #{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 6.5, '>=', 'FACTORY TECH1 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 14, '>=', 'FACTORY TECH2 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 19, '>=', 'FACTORY TECH3 STRUCTURE' } },
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
+            --{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 6.5, '>=', 'FACTORY TECH1 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 14, '>=', 'FACTORY TECH2 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 19, '>=', 'FACTORY TECH3 STRUCTURE' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -122,11 +122,11 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'LessThanExpansionBases', { 5 } },
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
-            #{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 6.5, '>=', 'FACTORY TECH1 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 14, '>=', 'FACTORY TECH2 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 19, '>=', 'FACTORY TECH3 STRUCTURE' } },
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
+            --{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 6.5, '>=', 'FACTORY TECH1 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 14, '>=', 'FACTORY TECH2 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 19, '>=', 'FACTORY TECH3 STRUCTURE' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -162,7 +162,7 @@ BuilderGroup {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'LessThanExpansionBases', { 8 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -197,9 +197,9 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditEngineerExpansionBuildersSmall',
     BuildersType = 'EngineerBuilder',
 
-    ########################################
-    ## Builds expansion bases
-    ########################################
+    --------------------------------------------------------------------------------
+    ---- Builds expansion bases
+    --------------------------------------------------------------------------------
     Builder {
         BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Full Base)',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
@@ -210,11 +210,11 @@ BuilderGroup {
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 100, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'LessThanExpansionBases', { 4 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
-            #{ EBC, 'MassIncomeToUnitRatio', { 10, '>=', 'FACTORY TECH1 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 20, '>=', 'FACTORY TECH2 STRUCTURE' } },
-            #{ EBC, 'MassIncomeToUnitRatio', { 30, '>=', 'FACTORY TECH3 STRUCTURE' } },
-            #{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
+            --{ EBC, 'MassIncomeToUnitRatio', { 10, '>=', 'FACTORY TECH1 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 20, '>=', 'FACTORY TECH2 STRUCTURE' } },
+            --{ EBC, 'MassIncomeToUnitRatio', { 30, '>=', 'FACTORY TECH3 STRUCTURE' } },
+            --{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -248,9 +248,9 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { SIBC, 'ExpansionPointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH1 STRUCTURE', 20, 3, 0, 1, 2, 'StructuresNotMex' } },
-            #{ UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
+            --{ UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
-            #{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
+            --{ UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -287,7 +287,7 @@ BuilderGroup {
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { SIBC, 'LessThanExpansionBases', { 6 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -326,7 +326,7 @@ BuilderGroup {
             { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { SIBC, 'LessThanExpansionBases', { 10 } },
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -362,9 +362,9 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditEngineerFirebaseBuilders',
     BuildersType = 'EngineerBuilder',
 
-    ########################################
-    ## Builds fire bases
-    ########################################
+    --------------------------------------------------------------------------------
+    ---- Builds fire bases
+    --------------------------------------------------------------------------------
     Builder {
         BuilderName = 'SorianEdit T2 Expansion Area Firebase Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
@@ -375,7 +375,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .85 } },
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -425,14 +425,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 700, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -486,14 +486,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 900, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -547,14 +547,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 750, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -608,14 +608,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 825, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -669,14 +669,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 700, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -729,14 +729,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 900, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -789,13 +789,13 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 900, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -845,14 +845,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 750, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -905,14 +905,14 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'CanBuildFirebase', { 'LocationType', 825, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
-            #{ UCBC, 'UnitCapCheckLess', { .85 } },
+            --{ UCBC, 'UnitCapCheckLess', { .85 } },
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
-            #{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
+            --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
             { SBC, 'MapGreaterThan', { 500, 500 }},
-            { SBC, 'NoRushTimeCheck', { 0 }},
+            --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
         BuilderData = {
