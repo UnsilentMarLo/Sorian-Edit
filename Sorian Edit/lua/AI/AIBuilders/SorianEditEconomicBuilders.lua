@@ -801,25 +801,6 @@ BuilderGroup {
             },
         }
     },
-    Builder {
-        BuilderName = 'SorianEdit CDR Assist Factory',
-        PlatoonTemplate = 'CommanderAssistSorianEdit',
-        Priority = 300,
-        BuilderConditions = {
-            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.05} },
-            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'MOBILE' }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Assist = {
-                AssistLocation = 'LocationType',
-                AssisteeType = 'Factory',
-                AssistRange = 100,
-                Time = 30,
-            },
-        }
-    },
     --Builder {
     --    BuilderName = 'SorianEdit CDR Assist Factory Upgrade Tech 2',
     --    PlatoonTemplate = 'CommanderAssistSorianEdit',
@@ -1867,7 +1848,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
         Priority = 1800,
-        InstanceCount = 2,
+        InstanceCount = 8,
         BuilderConditions = {
                 { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE + categories.EXPERIMENTAL}},
             },
@@ -3246,7 +3227,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEERSTATION' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
         },
@@ -3270,7 +3251,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'ENGINEERSTATION' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
         },
@@ -3294,7 +3275,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEERSTATION' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
         },
@@ -3318,7 +3299,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'ENGINEERSTATION' }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { UCBC, 'EngineerGreaterAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
         },
@@ -3345,7 +3326,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 2,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { MIBC, 'FactionIndex', {3}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -3359,7 +3340,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 2,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { MIBC, 'FactionIndex', {3}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -3373,7 +3354,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 2,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 10, 100}},
+            { SIBC, 'GreaterThanEconIncome',  { 1.0, 10.0}},
             { MIBC, 'FactionIndex', {1}},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},

@@ -1721,7 +1721,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 5, 150}},
+            { SIBC, 'GreaterThanEconIncome',  { 0.5, 15.0}},
             --{ MIBC, 'FactionIndex', {3}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -1735,7 +1735,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 5, 200}},
+            { SIBC, 'GreaterThanEconIncome',  { 0.5, 20.0}},
             --{ MIBC, 'FactionIndex', {3}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -1749,7 +1749,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 5, 300}},
+            { SIBC, 'GreaterThanEconIncome',  { 0.5, 30.0}},
             --{ MIBC, 'FactionIndex', {3}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -1763,7 +1763,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 5, 400}},
+            { SIBC, 'GreaterThanEconIncome',  { 0.5, 40.0}},
             --{ MIBC, 'FactionIndex', {3}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -1777,7 +1777,7 @@ BuilderGroup {
         Priority = 5,
         InstanceCount = 2,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconIncome',  { 7, 350}},
+            { SIBC, 'GreaterThanEconIncome',  { 0.7, 35.0}},
             --{ MIBC, 'FactionIndex', {1, 4}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
