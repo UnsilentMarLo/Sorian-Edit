@@ -57,7 +57,6 @@ BaseBuilderTemplate {
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
-        'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerFirebaseBuilders',
 
 
@@ -215,10 +214,10 @@ BaseBuilderTemplate {
             SCU = 8,
         },
         FactoryCount = {
-            Land = 6,
-            Air = 5,
+            Land = 13,
+            Air = 7,
             Sea = 0,
-            Gate = 1,
+            Gate = 2,
         },
         MassToFactoryValues = {
             T1Value = 6, --8
