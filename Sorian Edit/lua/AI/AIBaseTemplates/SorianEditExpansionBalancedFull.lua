@@ -22,6 +22,7 @@ BaseBuilderTemplate {
         'SorianEditTime Exempt Extractor Upgrades - Rush',
 		
         -- Engineer Builders
+        'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
@@ -45,6 +46,9 @@ BaseBuilderTemplate {
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
 
+        -- Extractors
+        'SorianEditTime Exempt Extractor Upgrades',
+		
         -- ==== DEFENSES ==== --
         'SorianEditT1LightDefenses',
         'SorianEditT2LightDefenses',

@@ -67,6 +67,42 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT1AirFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
+	BuilderName = 'SorianEditT1 Air Bomber Land spam reaction',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 1300,
+        BuilderConditions = {
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.ANTIAIR} },
+            { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 30, categories.LAND * categories.MOBILE, 'Enemy'}},
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
+	BuilderName = 'SorianEditT1 Air Bomber Land spam reaction 2',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 1300,
+		InstanceCount = 2,
+        BuilderConditions = {
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.ANTIAIR} },
+            { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 60, categories.LAND * categories.MOBILE, 'Enemy'}},
+        },
+        BuilderType = 'Air',
+    },
+    Builder { 
+	BuilderName = 'SorianEditT1 Air Bomber Extractor reaction',
+        PlatoonTemplate = 'T1AirBomber',
+        Priority = 500,
+        BuilderConditions = {
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.ANTIAIR} },
+            { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
         BuilderName = 'SorianEditT1 Air Bomber',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1200,
@@ -1156,6 +1192,44 @@ BuilderGroup {
             --{ AirAttackCondition, { 'LocationType', 4 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
+        },
+    },
+    Builder {
+        BuilderName = 'SorianEditBomberAttackT1ReactionSpam',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        Priority = 110,
+        InstanceCount = 20,
+        BuilderType = 'Any',
+        BuilderData = {
+            SearchRadius = 6000,
+            DistressRange = 500,
+            PrioritizedCategories = {
+                'MOBILE LAND',
+            },
+        },
+        BuilderConditions = {
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 30, categories.LAND * categories.MOBILE, 'Enemy'}},
+        },
+    },
+    Builder {
+        BuilderName = 'SorianEditBomberAttackT1ReactionSpam2',
+        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
+        Priority = 110,
+        InstanceCount = 20,
+        BuilderType = 'Any',
+        BuilderData = {
+            SearchRadius = 6000,
+            DistressRange = 500,
+            PrioritizedCategories = {
+                'MOBILE LAND',
+            },
+        },
+        BuilderConditions = {
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 60, categories.LAND * categories.MOBILE, 'Enemy'}},
         },
     },
     Builder {

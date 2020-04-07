@@ -79,7 +79,7 @@ BuilderGroup {
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -103,7 +103,7 @@ BuilderGroup {
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -277,7 +277,7 @@ BuilderGroup {
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -327,7 +327,7 @@ BuilderGroup {
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -378,7 +378,7 @@ BuilderGroup {
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -431,7 +431,7 @@ BuilderGroup {
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         },
     },
@@ -476,7 +476,7 @@ BuilderGroup {
                     'T1LandFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         },
     },
@@ -503,7 +503,7 @@ BuilderGroup {
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -548,7 +548,7 @@ BuilderGroup {
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -578,7 +578,7 @@ BuilderGroup {
                     'T1AirFactory',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },
@@ -607,7 +607,7 @@ BuilderGroup {
                     'T3QuantumGate',
                 },
                 Location = 'LocationType',
-                --AdjacencyCategory = 'ENERGYPRODUCTION',
+                --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
     },

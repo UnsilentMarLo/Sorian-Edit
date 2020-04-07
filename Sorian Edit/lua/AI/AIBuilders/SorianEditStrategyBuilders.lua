@@ -935,7 +935,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -983,7 +983,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1168,7 +1168,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { SIBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1260,7 +1260,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH2' }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH2 } },
             --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
             { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
@@ -1545,7 +1545,7 @@ BuilderGroup {
         Priority = 100,
         InstanceCount = 1,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE' }},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -1605,7 +1605,7 @@ BuilderGroup {
         Priority = 100,
         InstanceCount = 1,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE' }},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {

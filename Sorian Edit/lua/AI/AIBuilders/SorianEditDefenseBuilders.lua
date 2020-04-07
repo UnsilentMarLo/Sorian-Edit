@@ -130,7 +130,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1200,
         BuilderConditions = {
-			{ SBC, 'GreerThanGameTime', { 500 } },
+			{ SBC, 'GreaterThanGameTime', { 500 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 5, 'DEFENSE STRUCTURE'}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -155,7 +155,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-			{ SBC, 'GreerThanGameTime', { 500 } },
+			{ SBC, 'GreaterThanGameTime', { 500 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, 'DEFENSE ANTIAIR STRUCTURE'}},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Air' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
@@ -180,7 +180,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-			{ SBC, 'GreerThanGameTime', { 500 } },
+			{ SBC, 'GreaterThanGameTime', { 500 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 7, 'DEFENSE DIRECTFIRE STRUCTURE'}},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 1, 'Land' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
@@ -2177,7 +2177,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1001,
         BuilderConditions = {
-			{ SBC, 'GreerThanGameTime', { 300 } },
+			{ SBC, 'GreaterThanGameTime', { 300 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'DEFENSE ANTIAIR STRUCTURE'}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -2200,7 +2200,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1001,
         BuilderConditions = {
-			{ SBC, 'GreerThanGameTime', { 300 } },
+			{ SBC, 'GreaterThanGameTime', { 300 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'DEFENSE DIRECTFIRE STRUCTURE'}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},

@@ -14,8 +14,10 @@ BaseBuilderTemplate {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
-        'SorianEditT1RushUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
+        'SorianEditT1FastUpgradeBuildersExpansion',
+        'SorianEditT2FastUpgradeBuildersExpansion',
+        'SorianEditT1RushUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
         'SorianEditTime Exempt Extractor Upgrades Expansion',
         'SorianEditTime Exempt Extractor Upgrades - Rush',
@@ -41,8 +43,6 @@ BaseBuilderTemplate {
         -- Build Mass high pri at this base
         'SorianEditEngineerMassBuildersHighPri',
         'SorianEditEngineerMassBuildersLowerPri',
-        'SorianEditEngineerMassBuilders - Naval',
-        'SorianEditEngineerMassBuilders - Rush',
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',

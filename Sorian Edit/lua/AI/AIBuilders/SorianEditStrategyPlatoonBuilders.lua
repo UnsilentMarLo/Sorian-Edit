@@ -34,7 +34,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -68,7 +68,7 @@ BuilderGroup {
         ActivePriority = 979,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
@@ -125,7 +125,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
@@ -157,7 +157,7 @@ BuilderGroup {
         ActivePriority = 979,
         InstanceCount = 5,
         BuilderConditions = {
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3}},
             { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
@@ -309,7 +309,7 @@ BuilderGroup {
         BuilderData = {
             ThreatSupport = 750,
             PrioritizedCategories = {
-                'ENERGYPRODUCTION DRAGBUILD',
+                'PRODUCTSORIAN DRAGBUILD',
                 'HYDROCARBON',
                 'COMMAND',
                 'ENGINEER',
@@ -421,7 +421,7 @@ BuilderGroup {
         BuilderData = {
             SearchRadius = 6000,
             PrioritizedCategories = {
-                'ENERGYPRODUCTION DRAGBUILD',
+                'PRODUCTSORIAN DRAGBUILD',
                 'MASSEXTRACTION',
                 'MASSFABRICATION',
                 'COMMAND',
@@ -450,7 +450,7 @@ BuilderGroup {
         BuilderData = {
             SearchRadius = 6000,
             PrioritizedCategories = {
-                'ENERGYPRODUCTION DRAGBUILD',
+                'PRODUCTSORIAN DRAGBUILD',
                 'MASSEXTRACTION',
                 'MASSFABRICATION',
                 'COMMAND',
@@ -485,7 +485,7 @@ BuilderGroup {
             SearchRadius = 6000,
             PrioritizedCategories = {
                 'COMMAND',
-                'ENERGYPRODUCTION DRAGBUILD',
+                'PRODUCTSORIAN DRAGBUILD',
                 'MASSFABRICATION',
                 'MASSEXTRACTION',
                 'SHIELD',
@@ -518,7 +518,7 @@ BuilderGroup {
         BuilderData = {
             SearchRadius = 6000,
             PrioritizedCategories = {
-                'ENERGYPRODUCTION DRAGBUILD',
+                'PRODUCTSORIAN DRAGBUILD',
                 'HYDROCARBON',
                 'COMMAND',
                 'ENGINEER',
@@ -1364,7 +1364,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE STRUCTURE' } },
@@ -1410,7 +1410,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE STRUCTURE' } },
@@ -1456,7 +1456,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
+            { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ UCBC, 'LocationEngineersBuildingLess', { 'LocationType', 2, 'DEFENSE STRUCTURE' } },
@@ -1506,7 +1506,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
-                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'HeavyAntiMatterCannon', false }},
@@ -1527,7 +1527,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'HeavyAntiMatterCannon', true }},
@@ -1548,7 +1548,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN TECH3'}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'T3Engineering', true }},
@@ -1571,7 +1571,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
-                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'CrysalisBeam', false }},
@@ -1592,7 +1592,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'CrysalisBeam', true }},
@@ -1613,7 +1613,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN TECH3'}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'T3Engineering', true }},
@@ -1636,7 +1636,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
-                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'CoolingUpgrade', false }},
@@ -1657,7 +1657,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'CoolingUpgrade', true }},
@@ -1678,7 +1678,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN TECH3'}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'T3Engineering', true }},
@@ -1700,7 +1700,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION' }},
-                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 ----{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'RateOfFire', false }},
@@ -1721,7 +1721,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'PRODUCTSORIAN TECH2, PRODUCTSORIAN TECH3' }},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.25}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'AdvancedRegenAura', false }},
@@ -1742,7 +1742,7 @@ BuilderGroup {
         BuilderConditions = {
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
-                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
+                { SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN TECH3'}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5}},
                 --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
                 { SBC, 'CmdrHasUpgrade', { 'T3Engineering', true }},
