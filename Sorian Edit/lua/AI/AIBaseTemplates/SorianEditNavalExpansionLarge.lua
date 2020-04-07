@@ -17,6 +17,8 @@ BaseBuilderTemplate {
         'SorianEditT2NavalUpgradeBuilders',
         'SorianEditT1FastUpgradeBuildersExpansion',
         'SorianEditT2FastUpgradeBuildersExpansion',
+        'SorianEditT1BalancedUpgradeBuildersExpansion',
+        'SorianEditT2BalancedUpgradeBuildersExpansion',
 
         -- Pass engineers to main as needed
         --'Engineer Transfers',

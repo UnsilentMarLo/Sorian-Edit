@@ -91,8 +91,7 @@ BaseBuilderTemplate {
         -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
 
-        -- ==== LAND UNIT BUILDERS ==== --
-        'SorianEditT1LandFactoryBuilders - Rush',												 
+        -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT3LandFactoryBuilders',
@@ -159,7 +158,7 @@ BaseBuilderTemplate {
         'SorianEditSatelliteExperimentalEngineers',
         'SorianEditSatelliteExperimentalForm',
 
- --[[   -- ======== Strategies ======== --
+   -- ======== Strategies ======== --
         'SorianEditHeavyAirStrategy',
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
@@ -174,7 +173,7 @@ BaseBuilderTemplate {
         'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',
         'SorianEditEnemyTurtle - Out of Range',
-        'SorianEdit Excess Mass Strategy', ]]--
+        'SorianEdit Excess Mass Strategy', 
 
         -- ===== Strategy Platoons ===== --
         'SorianEditT1BomberHighPrio',

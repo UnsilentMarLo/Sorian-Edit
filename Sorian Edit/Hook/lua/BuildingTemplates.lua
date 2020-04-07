@@ -1,21 +1,21 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/basetemplates.lua
-#**  Author(s):  Dru Staltman
-#**
-#**  Summary  :
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
-########################################
-# Base Templates                       #
-########################################
+--#****************************************************************************
+--#**
+--#**  File     :  /lua/basetemplates.lua
+--#**  Author(s):  Dru Staltman
+--#**
+--#**  Summary  :
+--#**
+--#**  Copyright Â© 2005 Gas Powered Games, Inc.  All rights reserved.
+--#****************************************************************************
+--########################################
+--# Base Templates                       #
+--########################################
 
 BuildingTemplates =
 {
-    # UEF Building List
+    -- UEF Building List
     {
-        # Power Structures
+        -- Power Structures
         {
             'T1EnergyProduction',
             'ueb1101',
@@ -37,7 +37,7 @@ BuildingTemplates =
             'ueb1301',
         },
 
-        # Mass Structures
+        -- Mass Structures
         {
             'T1Resource',
             'ueb1103',
@@ -63,7 +63,7 @@ BuildingTemplates =
             'ueb1302',
         },
 
-        # Land Factory Structures
+        -- Land Factory Structures
         {
             'T1LandFactory',
             'ueb0101',
@@ -73,8 +73,16 @@ BuildingTemplates =
             'ueb0201',
         },
         {
+            'T2SupportLandFactory',
+            'zeb9501',
+        },
+        {
             'T3LandFactory',
             'ueb0301',
+        },
+        {
+            'T3SupportLandFactory',
+            'zeb9601',
         },
         {
             'T3QuantumGate',
@@ -82,7 +90,7 @@ BuildingTemplates =
         },
 
 
-        # Air Factory Structures
+        -- Air Factory Structures
         {
             'T1AirFactory',
             'ueb0102',
@@ -92,11 +100,19 @@ BuildingTemplates =
             'ueb0202',
         },
         {
+            'T2SupportAirFactory',
+            'zeb9502',
+        },
+        {
             'T3AirFactory',
             'ueb0302',
         },
+        {
+            'T3SupportAirFactory',
+            'zeb9602',
+        },
 
-        # Sea Factory Structures
+        -- Sea Factory Structures
         {
             'T1SeaFactory',
             'ueb0103',
@@ -106,11 +122,19 @@ BuildingTemplates =
             'ueb0203',
         },
         {
+            'T2SupportSeaFactory',
+            'zeb9503',
+        },
+        {
             'T3SeaFactory',
             'ueb0303',
         },
+        {
+            'T3SupportSeaFactory',
+            'zeb9603',
+        },
 
-        # Storage Structures
+        -- Storage Structures
         {
             'MassStorage',
             'ueb1106',
@@ -120,13 +144,13 @@ BuildingTemplates =
             'ueb1105',
         },
 
-        # Defense Structures
-        # -Wall
+        -- Defense Structures
+        -- -Wall
         {
             'Wall',
             'ueb5101',
         },
-        # -Ground Defense
+        -- -Ground Defense
         {
             'T1GroundDefense',
             'ueb2101',
@@ -136,7 +160,7 @@ BuildingTemplates =
             'ueb2301',
         },
 
-        # -Air Defense
+        -- -Air Defense
         {
             'T1AADefense',
             'ueb2104',
@@ -149,7 +173,7 @@ BuildingTemplates =
             'T3AADefense',
             'ueb2304',
         },
-        # -Naval Defense
+        -- -Naval Defense
         {
             'T1NavalDefense',
             'ueb2109',
@@ -158,7 +182,7 @@ BuildingTemplates =
             'T2NavalDefense',
             'ueb2205',
         },
-        # -Shield Defense
+        -- -Shield Defense
         {
             'T2ShieldDefense',
             'ueb4202',
@@ -167,13 +191,13 @@ BuildingTemplates =
             'T3ShieldDefense',
             'ueb4301',
         },
-        # -Missile Defense
+        -- -Missile Defense
         {
             'T2MissileDefense',
             'ueb4201',
         },
 
-        # Intelligence Strucutres
+        -- Intelligence Strucutres
         {
             'T1Radar',
             'ueb3101',
@@ -203,7 +227,7 @@ BuildingTemplates =
             'ues0305',
         },
 
-        # Artillery Structures
+        -- Artillery Structures
         {
             'T2Artillery',
             'ueb2303',
@@ -217,7 +241,7 @@ BuildingTemplates =
             'ueb2401',
         },
 
-        # Strategic Missile Structures
+        -- Strategic Missile Structures
         {
             'T2StrategicMissile',
             'ueb2108',
@@ -231,7 +255,7 @@ BuildingTemplates =
             'ueb4302',
         },
 
-        # Misc Structures
+        -- Misc Structures
         {
             '1x1Concrete',
             'ueb5204',
@@ -244,7 +268,7 @@ BuildingTemplates =
             'T2AirStagingPlatform',
             'ueb5202'
         },
-        #Experimental Structures
+        -- Experimental Structures
         {
             'T4LandExperimental1',
             'uel0401',
@@ -266,25 +290,25 @@ BuildingTemplates =
             'xeb2402',
         },
 
-        # UEF FA Specific
+        -- UEF FA Specific
         {
-            'T2EngineerSupport', 
+            'T2EngineerSupport',
             'xeb0104',
         },
         {
-            'T3GroundDefense', 
+            'T3GroundDefense',
             'xeb2306',
         },
     },
 
-    # Aeon Building List
+    -- Aeon Building List
     {
-        # Experimental Units
+        -- Experimental Units
         {
             'Experimental',
             'uaa0310',
         },
-        # Power Structures
+        -- Power Structures
         {
             'T1EnergyProduction',
             'uab1101',
@@ -306,7 +330,7 @@ BuildingTemplates =
             'uab1301',
         },
 
-        # Mass Structures
+        -- Mass Structures
         {
             'T1Resource',
             'uab1103',
@@ -332,7 +356,7 @@ BuildingTemplates =
             'uab1302',
         },
 
-        # Land Factory Structures
+        -- Land Factory Structures
         {
             'T1LandFactory',
             'uab0101',
@@ -342,15 +366,23 @@ BuildingTemplates =
             'uab0201',
         },
         {
+            'T2SupportLandFactory',
+            'zab9501',
+        },
+        {
             'T3LandFactory',
             'uab0301',
+        },
+        {
+            'T3SupportLandFactory',
+            'zab9601',
         },
         {
             'T3QuantumGate',
             'uab0304',
         },
 
-        # Air Factory Structures
+        -- Air Factory Structures
         {
             'T1AirFactory',
             'uab0102',
@@ -360,11 +392,19 @@ BuildingTemplates =
             'uab0202',
         },
         {
+            'T2SupportAirFactory',
+            'zab9502',
+        },
+        {
             'T3AirFactory',
             'uab0302',
         },
+        {
+            'T3SupportAirFactory',
+            'zab9602',
+        },
 
-        # Sea Factory Structures
+        -- Sea Factory Structures
         {
             'T1SeaFactory',
             'uab0103',
@@ -374,11 +414,19 @@ BuildingTemplates =
             'uab0203',
         },
         {
+            'T2SupportSeaFactory',
+            'zab9503',
+        },
+        {
             'T3SeaFactory',
             'uab0303',
         },
+        {
+            'T3SupportSeaFactory',
+            'zab9603',
+        },
 
-        # Storage Structures
+        -- Storage Structures
         {
             'MassStorage',
             'uab1106',
@@ -388,13 +436,13 @@ BuildingTemplates =
             'uab1105',
         },
 
-        # Defense Structures
-        # -Wall
+        -- Defense Structures
+        -- -Wall
         {
             'Wall',
             'uab5101',
         },
-        # -Ground Defense
+        -- -Ground Defense
         {
             'T1GroundDefense',
             'uab2101',
@@ -403,7 +451,7 @@ BuildingTemplates =
             'T2GroundDefense',
             'uab2301',
         },
-        # -Naval Defense
+        -- -Naval Defense
         {
             'T1NavalDefense',
             'uab2109',
@@ -412,7 +460,7 @@ BuildingTemplates =
             'T2NavalDefense',
             'uab2205',
         },
-        # -Air Defense
+        -- -Air Defense
         {
             'T1AADefense',
             'uab2104',
@@ -425,7 +473,7 @@ BuildingTemplates =
             'T3AADefense',
             'uab2304',
         },
-        # -Shield Defense
+        -- -Shield Defense
         {
             'T2ShieldDefense',
             'uab4202',
@@ -434,13 +482,13 @@ BuildingTemplates =
             'T3ShieldDefense',
             'uab4301',
         },
-        # -Missile Defense
+        -- -Missile Defense
         {
             'T2MissileDefense',
             'uab4201',
         },
 
-        # Intelligence Strucutres
+        -- Intelligence Strucutres
         {
             'T1Radar',
             'uab3101',
@@ -470,7 +518,7 @@ BuildingTemplates =
             'uas0305',
         },
 
-        # Artillery Structures
+        -- Artillery Structures
         {
             'T2Artillery',
             'uab2303',
@@ -484,7 +532,7 @@ BuildingTemplates =
             'uab2302',
         },
 
-        # Strategic Missile Structures
+        -- Strategic Missile Structures
         {
             'T2StrategicMissile',
             'uab2108',
@@ -498,7 +546,7 @@ BuildingTemplates =
             'uab4302',
         },
 
-        # Misc Structures
+        -- Misc Structures
         {
             '1x1Concrete',
             'uab5204',
@@ -511,7 +559,7 @@ BuildingTemplates =
             'T2AirStagingPlatform',
             'uab5202'
         },
-        #Experimental Structures
+        -- Experimental Structures
         {
             'T4LandExperimental1',
             'ual0401',
@@ -532,8 +580,8 @@ BuildingTemplates =
             'T4EconExperimental',
             'xab1401',
         },
-        
-        # FA Aeon specific
+
+        -- FA Aeon specific
         {
             'T3Optics',
             'xab3301',
@@ -544,9 +592,9 @@ BuildingTemplates =
         },
     },
 
-    # Cybran Building List
+    -- Cybran Building List
     {
-        # Power Structures
+        -- Power Structures
         {
             'T1EnergyProduction',
             'urb1101',
@@ -568,7 +616,7 @@ BuildingTemplates =
             'urb1301',
         },
 
-        # Mass Structures
+        -- Mass Structures
         {
             'T1Resource',
             'urb1103',
@@ -594,7 +642,7 @@ BuildingTemplates =
             'uab1302',
         },
 
-        # Land Factory Structures
+        -- Land Factory Structures
         {
             'T1LandFactory',
             'urb0101',
@@ -604,15 +652,23 @@ BuildingTemplates =
             'urb0201',
         },
         {
+            'T2SupportLandFactory',
+            'zrb9501',
+        },
+        {
             'T3LandFactory',
             'urb0301',
+        },
+        {
+            'T3SupportLandFactory',
+            'zrb9601',
         },
         {
             'T3QuantumGate',
             'urb0304',
         },
 
-        # Air Factory Structures
+        -- Air Factory Structures
         {
             'T1AirFactory',
             'urb0102',
@@ -622,11 +678,19 @@ BuildingTemplates =
             'urb0202',
         },
         {
+            'T2SupportAirFactory',
+            'zrb9502',
+        },
+        {
             'T3AirFactory',
             'urb0302',
         },
+        {
+            'T3SupportAirFactory',
+            'zrb9602',
+        },
 
-        # Sea Factory Structures
+        -- Sea Factory Structures
         {
             'T1SeaFactory',
             'urb0103',
@@ -636,11 +700,19 @@ BuildingTemplates =
             'urb0203',
         },
         {
+            'T2SupportSeaFactory',
+            'zrb9503',
+        },
+        {
             'T3SeaFactory',
             'urb0303',
         },
+        {
+            'T3SupportSeaFactory',
+            'zrb9603',
+        },
 
-        # Storage Structures
+        -- Storage Structures
         {
             'MassStorage',
             'urb1106',
@@ -650,13 +722,13 @@ BuildingTemplates =
             'urb1105',
         },
 
-        # Defense Structures
-        # -Wall
+        -- Defense Structures
+        -- -Wall
         {
             'Wall',
             'urb5101',
         },
-        # -Ground Defense
+        -- -Ground Defense
         {
             'T1GroundDefense',
             'urb2101',
@@ -665,7 +737,7 @@ BuildingTemplates =
             'T2GroundDefense',
             'urb2301',
         },
-        # -Naval Defense
+        -- -Naval Defense
         {
             'T1NavalDefense',
             'urb2109',
@@ -674,7 +746,7 @@ BuildingTemplates =
             'T2NavalDefense',
             'urb2205',
         },
-        # -Air Defense
+        -- -Air Defense
         {
             'T1AADefense',
             'urb2104',
@@ -687,7 +759,7 @@ BuildingTemplates =
             'T3AADefense',
             'urb2304',
         },
-        # -Shield Defense
+        -- -Shield Defense
         {
             'T2ShieldDefense',
             'urb4202',
@@ -696,13 +768,13 @@ BuildingTemplates =
             'T3ShieldDefense',
             'urb4202',
         },
-        # -Missile Defense
+        -- -Missile Defense
         {
             'T2MissileDefense',
             'urb4201',
         },
 
-        # Intelligence Strucutres
+        -- Intelligence Strucutres
         {
             'T1Radar',
             'urb3101',
@@ -732,7 +804,7 @@ BuildingTemplates =
             'urs0305',
         },
 
-        # Artillery Structures
+        -- Artillery Structures
         {
             'T2Artillery',
             'urb2303',
@@ -746,7 +818,7 @@ BuildingTemplates =
             'urb2302',
         },
 
-        # Strategic Missile Structures
+        -- Strategic Missile Structures
         {
             'T2StrategicMissile',
             'urb2108',
@@ -760,7 +832,7 @@ BuildingTemplates =
             'urb4302',
         },
 
-        # Misc Structures
+        -- Misc Structures
         {
             '1x1Concrete',
             'urb5204',
@@ -773,7 +845,7 @@ BuildingTemplates =
             'T2AirStagingPlatform',
             'urb5202'
         },
-        #Experimental Structures
+        -- Experimental Structures
         {
             'T4LandExperimental1',
             'url0402',
@@ -785,7 +857,7 @@ BuildingTemplates =
         {
             'T4LandExperimental3',
             'xrl0403',
-        },        
+        },
         {
             'T4AirExperimental1',
             'ura0401',
@@ -794,25 +866,25 @@ BuildingTemplates =
             'T4SeaExperimental1',
             'urb0101',
         },
-        
-        # Cybran FA Specific
+
+        -- Cybran FA Specific
         {
             'T3Optics',
             'xrb3301',
         },
         {
-            'T2EngineerSupport', 
+            'T2EngineerSupport',
             'xrb0104',
         },
         {
-            'T3NavalDefense', 
+            'T3NavalDefense',
             'xrb2308',
         },
     },
 
-    # Seraphim Building List
+    -- Seraphim Building List
     {
-        # Power Structures
+        -- Power Structures
         {
             'T1EnergyProduction',
             'xsb1101',
@@ -834,7 +906,7 @@ BuildingTemplates =
             'xsb1301',
         },
 
-        # Mass Structures
+        -- Mass Structures
         {
             'T1Resource',
             'xsb1103',
@@ -860,7 +932,7 @@ BuildingTemplates =
             'uab1302',
         },
 
-        # Land Factory Structures
+        -- Land Factory Structures
         {
             'T1LandFactory',
             'xsb0101',
@@ -870,15 +942,23 @@ BuildingTemplates =
             'xsb0201',
         },
         {
+            'T2SupportLandFactory',
+            'zsb9501',
+        },
+        {
             'T3LandFactory',
             'xsb0301',
+        },
+        {
+            'T3SupportLandFactory',
+            'zsb9601',
         },
         {
             'T3QuantumGate',
             'xsb0304',
         },
 
-        # Air Factory Structures
+        -- Air Factory Structures
         {
             'T1AirFactory',
             'xsb0102',
@@ -888,11 +968,19 @@ BuildingTemplates =
             'xsb0202',
         },
         {
+            'T2SupportAirFactory',
+            'zsb9502',
+        },
+        {
             'T3AirFactory',
             'xsb0302',
         },
+        {
+            'T3SupportAirFactory',
+            'zsb9602',
+        },
 
-        # Sea Factory Structures
+        -- Sea Factory Structures
         {
             'T1SeaFactory',
             'xsb0103',
@@ -902,11 +990,19 @@ BuildingTemplates =
             'xsb0203',
         },
         {
+            'T2SupportSeaFactory',
+            'zsb9503',
+        },
+        {
             'T3SeaFactory',
             'xsb0303',
         },
+        {
+            'T3SupportSeaFactory',
+            'zsb9603',
+        },
 
-        # Storage Structures
+        -- Storage Structures
         {
             'MassStorage',
             'xsb1106',
@@ -916,13 +1012,13 @@ BuildingTemplates =
             'xsb1105',
         },
 
-        # Defense Structures
-        # -Wall
+        -- Defense Structures
+        -- -Wall
         {
             'Wall',
             'xsb5101',
         },
-        # -Ground Defense
+        -- -Ground Defense
         {
             'T1GroundDefense',
             'xsb2101',
@@ -931,7 +1027,7 @@ BuildingTemplates =
             'T2GroundDefense',
             'xsb2301',
         },
-        # -Naval Defense
+        -- -Naval Defense
         {
             'T1NavalDefense',
             'xsb2109',
@@ -940,7 +1036,7 @@ BuildingTemplates =
             'T2NavalDefense',
             'xsb2205',
         },
-        # -Air Defense
+        -- -Air Defense
         {
             'T1AADefense',
             'xsb2104',
@@ -953,7 +1049,7 @@ BuildingTemplates =
             'T3AADefense',
             'xsb2304',
         },
-        # -Shield Defense
+        -- -Shield Defense
         {
             'T2ShieldDefense',
             'xsb4202',
@@ -962,13 +1058,13 @@ BuildingTemplates =
             'T3ShieldDefense',
             'xsb4301',
         },
-        # -Missile Defense
+        -- -Missile Defense
         {
             'T2MissileDefense',
             'xsb4201',
         },
 
-        # Intelligence Strucutres
+        -- Intelligence Strucutres
         {
             'T1Radar',
             'xsb3101',
@@ -998,7 +1094,7 @@ BuildingTemplates =
             'xrs0305',
         },
 
-        # Artillery Structures
+        -- Artillery Structures
         {
             'T2Artillery',
             'xsb2303',
@@ -1012,7 +1108,7 @@ BuildingTemplates =
             'xsb2401',
         },
 
-        # Strategic Missile Structures
+        -- Strategic Missile Structures
         {
             'T2StrategicMissile',
             'xsb2108',
@@ -1026,7 +1122,7 @@ BuildingTemplates =
             'xsb4302',
         },
 
-        # Misc Structures
+        -- Misc Structures
         {
             '1x1Concrete',
             'xsb5204',
@@ -1039,7 +1135,7 @@ BuildingTemplates =
             'T2AirStagingPlatform',
             'xsb5202'
         },
-        #Experimental Structures
+        -- Experimental Structures
         {
             'T4LandExperimental1',
             'xsl0401',
@@ -1060,70 +1156,75 @@ BuildingTemplates =
 }
 
 RebuildStructuresTemplate = {
-    # UEF
+    -- UEF
     {
-        # factories
+        -- factories
         {'ueb0201', 'ueb0101',},
         {'ueb0202', 'ueb0102',},
         {'ueb0203', 'ueb0103',},
         {'ueb0301', 'ueb0101',},
         {'ueb0302', 'ueb0102',},
         {'ueb0303', 'ueb0103',},
-        # extractors
+        -- extractors
         {'ueb1202', 'ueb1103',},
-        #radar
-#        {'ueb3104', 'ueb3101',},
-#        {'ueb3201', 'ueb3101',},
+        -- radar
+        -- {'ueb3104', 'ueb3101',},
+        -- {'ueb3201', 'ueb3101',},
+        -- engie stations
+        {'xeb0204', 'xeb0104',},
     },
-    # Aeon
+    -- Aeon
     {
-        # factories
+        -- factories
         {'uab0201', 'uab0101',},
         {'uab0202', 'uab0102',},
         {'uab0203', 'uab0103',},
         {'uab0301', 'uab0101',},
         {'uab0302', 'uab0102',},
         {'uab0303', 'uab0103',},
-        # extractors
+        -- extractors
         {'uab1202', 'uab1103',},
-        # radar
-#        {'uab3104', 'uab3101',},
-#        {'uab3201', 'uab3101',},
+        -- radar
+        -- {'uab3104', 'uab3101',},
+        -- {'uab3201', 'uab3101',},
     },
-    # Cybran
+    -- Cybran
     {
-        # factories
+        -- factories
         {'urb0201', 'urb0101',},
         {'urb0202', 'urb0102',},
         {'urb0203', 'urb0103',},
         {'urb0301', 'urb0101',},
         {'urb0302', 'urb0102',},
         {'urb0303', 'urb0103',},
-        # extractors
+        -- extractors
         {'urb1202', 'urb1103',},
-        # radar
-#        {'urb3104', 'urb3101',},
-#        {'urb3201', 'urb3101',},
-        # shields
+        -- radar
+        -- {'urb3104', 'urb3101',},
+        -- {'urb3201', 'urb3101',},
+        -- shields
         {'urb4204', 'urb4202',},
         {'urb4205', 'urb4202',},
         {'urb4206', 'urb4202',},
         {'urb4207', 'urb4202',},
+        -- engie stations
+        {'xrb0204', 'xrb0104',},
+        {'xrb0304', 'xrb0104',},
     },
 
-    # Seraphim
+    -- Seraphim
     {
-        # factories
+        -- factories
         {'xsb0201', 'xsb0101',},
         {'xsb0202', 'xsb0102',},
         {'xsb0203', 'xsb0103',},
         {'xsb0301', 'xsb0101',},
         {'xsb0302', 'xsb0102',},
         {'xsb0303', 'xsb0103',},
-        # extractors
+        -- extractors
         {'xsb1202', 'xsb1103',},
-        # radar
-#        {'xsb3104', 'xsb3101',},
-#        {'xsb3201', 'xsb3101',},
+        -- radar
+        -- {'xsb3104', 'xsb3101',},
+        -- {'xsb3201', 'xsb3101',},
     },
 }

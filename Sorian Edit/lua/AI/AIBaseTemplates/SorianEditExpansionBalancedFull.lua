@@ -70,18 +70,28 @@ BaseBuilderTemplate {
         -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
 
-        -- ==== LAND UNIT BUILDERS ==== --
+        -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT3LandFactoryBuilders',
+
         'SorianEditFrequentLandAttackFormBuilders',
         'SorianEditMassHunterLandFormBuilders',
         'SorianEditMiscLandFormBuilders',
         'SorianEditUnitCapLandAttackFormBuilders',
 
+        'SorianEditT1LandAA',
+        'SorianEditT2LandAA',
+        'SorianEditT3LandResponseBuilders',
+
         'SorianEditT1ReactionDF',
         'SorianEditT2ReactionDF',
         'SorianEditT3ReactionDF',
+
+        'SorianEditT2Shields',
+        'SorianEditShieldUpgrades',
+        'SorianEditT3Shields',
+        'SorianEditEngineeringUpgrades',
 
         -- ==== AIR UNIT BUILDERS ==== --
         'SorianEditT1AirFactoryBuilders',
@@ -93,6 +103,15 @@ BaseBuilderTemplate {
         'SorianEditUnitCapAirAttackFormBuilders',
         'SorianEditACUHunterAirFormBuilders',
 
+        'SorianEditTransportFactoryBuilders',
+        'SorianEditTransportFactoryBuilders - Rush',
+		
+        'SorianEditExpResponseFormBuilders',
+
+        'SorianEditT1AntiAirBuilders',
+        'SorianEditT2AntiAirBuilders',
+        'SorianEditT3AntiAirBuilders',
+        'SorianEditBaseGuardAirFormBuilders',
         --'SorianEditTransportFactoryBuilders',
 
         'SorianEditExpResponseFormBuilders',
@@ -102,11 +121,44 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
-        -- ===== STRATEGIES ====== --
+   -- ======== Strategies ======== --
+        'SorianEditHeavyAirStrategy',
+        'SorianEditBigAirGroup',
+        'SorianEditJesterRush',
+        'SorianEditNukeRush',
+        'SorianEditT3ArtyRush',
+        'SorianEditT2ACUSnipe',
+        'SorianEditT3FBRush',
+        'SorianEditParagonStrategy',
+        'SorianEdit Tele SCU Strategy',
+        'SorianEditWaterMapLowLand',
+        'SorianEdit PD Creep Strategy',
+        'SorianEditStopNukes',
+        'SorianEditEnemyTurtle - In Range',
+        'SorianEditEnemyTurtle - Out of Range',
+        'SorianEdit Excess Mass Strategy', 
 
+        -- ===== Strategy Platoons ===== --
+        'SorianEditT1BomberHighPrio',
+        'SorianEditT2BomberHighPrio',
+        'SorianEditT3BomberHighPrio',
+        'SorianEditT3BomberSpecialHighPrio',
+        'SorianEditT1GunshipHighPrio',
+        'SorianEditT1DefensivePoints - High Prio',
+        'SorianEditT2DefensivePoints - High Prio',
 
-
-        -- == STRATEGY PLATOONS == --
+        'SorianEditBomberLarge',
+        'SorianEditBomberBig',
+        'SorianEditGunShipLarge',
+        'SorianEditNukeBuildersHighPrio',
+        'SorianEditT3ArtyBuildersHighPrio',
+        'SorianEditT2FirebaseBuildersHighPrio',
+        'SorianEditT3FBBuildersHighPrio',
+        'SorianEdit Extractor Upgrades Strategy',
+        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
+        'SorianEditEngineerExpansionBuildersStrategy',
+        'SorianEditACUUpgrades - Rush',
+        'SorianEditExcessMassBuilders',
 
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
 
