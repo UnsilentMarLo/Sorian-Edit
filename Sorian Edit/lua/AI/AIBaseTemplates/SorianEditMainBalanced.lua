@@ -17,7 +17,8 @@ BaseBuilderTemplate {
         'SorianEditT1RushUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
-
+        'SorianEditTime Exempt Extractor Upgrades Expansion',
+        'SorianEditTime Exempt Extractor Upgrades - Rush',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
@@ -39,6 +40,9 @@ BaseBuilderTemplate {
 
         -- Build Mass high pri at this base
         'SorianEditEngineerMassBuildersHighPri',
+        'SorianEditEngineerMassBuildersLowerPri',
+        'SorianEditEngineerMassBuilders - Naval',
+        'SorianEditEngineerMassBuilders - Rush',
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',

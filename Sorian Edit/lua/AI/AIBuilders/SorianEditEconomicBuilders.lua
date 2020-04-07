@@ -413,7 +413,6 @@ BuilderGroup {
                     'T1Resource',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
-                    'T1Resource',
                     'T1EnergyProduction',
                     'T1LandFactory',
                     'T1EnergyProduction',
@@ -1126,13 +1125,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Hydrocarbon Engineer - init',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 700, --1002, --980
+        Priority = 1000,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * (categories.TECH2 + categories.TECH3) } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION } },
-                { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'HYDROCARBON'}},
-                { SBC, 'CanBuildOnHydroLessThanDistance', { 'LocationType', 200, -500, 0, 0, 'AntiSurface', 1 }},
-                --{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 200}},
+                { SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 500}},
             },
         BuilderType = 'Any',
         BuilderData = {
@@ -1148,11 +1144,8 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 980,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * (categories.TECH2 + categories.TECH3) } },
                 { SIBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION } },
-                --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
                 { SBC, 'CanBuildOnHydroLessThanDistance', { 'LocationType', 600, -500, 0, 0, 'AntiSurface', 1 }},
-                --{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 200}},
             },
         BuilderType = 'Any',
         BuilderData = {
@@ -2933,15 +2926,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Power Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 800,
+        Priority = 1100,
         BuilderConditions = {
             --{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 8, 'ENERGYPRODUCTION TECH1'}},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 20, 'ENERGYPRODUCTION TECH1'}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
-            { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
-            { SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
-            { SBC, 'AIType', {'sorianeditrush', false }},
+            ----{ SBC, 'AIType', {'sorianeditrush', false }},
             --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
         },
         --InstanceCount = 2,
@@ -2967,7 +2958,7 @@ BuilderGroup {
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
             { SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
             { SBC, 'LessThanGameTime', { 165 } },
-            { SBC, 'AIType', {'sorianeditrush', true }},
+            ----{ SBC, 'AIType', {'sorianeditrush', true }},
             --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
         },
         --InstanceCount = 2,
@@ -2993,7 +2984,7 @@ BuilderGroup {
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.3 }},
             { SIBC, 'LessThanEconEfficiency', { 2.0, 1.3 }},
             { SBC, 'GreaterThanGameTime', { 165 } },
-            { SBC, 'AIType', {'sorianeditrush', true }},
+            ----{ SBC, 'AIType', {'sorianeditrush', true }},
             --{ SIBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
         },
         InstanceCount = 2,

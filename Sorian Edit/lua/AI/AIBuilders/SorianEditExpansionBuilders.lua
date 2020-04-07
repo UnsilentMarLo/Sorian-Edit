@@ -37,8 +37,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Rush',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 985,
-        InstanceCount = 2,
+        Priority = 950,
+        InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 5, 0, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -70,6 +70,10 @@ BuilderGroup {
                     'T1AirFactory',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
+                    'T1LandFactory',
+                    'T1LandFactory',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                 }
             },
             NeedGuard = true,
@@ -79,8 +83,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 932,
-        InstanceCount = 2,
+        Priority = 950,
+        InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 0, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -109,10 +113,15 @@ BuilderGroup {
                 BuildStructures = {
                     'T1GroundDefense',
                     'T1LandFactory',
+                    'T1LandFactory',
                     'T1AADefense',
                     'T1Radar',
                     'T1LandFactory',
                     'T1AirFactory',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
+                    'T1LandFactory',
+                    'T1LandFactory',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
                 }
@@ -123,8 +132,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2VacantStartingAreaEngineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 922,
-        InstanceCount = 2,
+        Priority = 980,
+        InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -155,9 +164,18 @@ BuilderGroup {
                     'T2GroundDefense',
                     'T1LandFactory',
                     'T2AADefense',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                     'T2Radar',
                     'T1LandFactory',
+                    'T1LandFactory',
                     'T1AirFactory',
+                    'T2GroundDefense',
+                    'T2GroundDefense',
+                    'T1LandFactory',
+                    'T1EnergyProduction',
+                    'T1LandFactory',
+                    'T1EnergyProduction',
                     'T1EnergyProduction',
                     'T1EnergyProduction',
                 }
