@@ -461,6 +461,7 @@ BuilderGroup {
             Construction = {
                 BuildStructures = {
                     'T1LandFactory',
+                    'T1EnergyProductionSorian',
                     'T1Resource',
                     'T1Resource',
                     'T1LandFactory',
@@ -1207,7 +1208,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 900,
-        InstanceCount = 3,
+        InstanceCount = 8,
         BuilderConditions = {
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
@@ -1223,8 +1224,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Engineer Reclaim Old Pgens',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimStructuresAI',
-        Priority = 1200,
-        InstanceCount = 4,
+        Priority = 1000,
+        InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.TECH3 * categories.ENERGYPRODUCTION}},
                 { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.TECH1 * categories.ENERGYPRODUCTION * categories.DRAGBUILD }},
@@ -1292,7 +1293,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
-        InstanceCount = 50,
+        InstanceCount = 200,
         BuilderConditions = {
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
@@ -1626,7 +1627,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 750,
-        InstanceCount = 3,
+        InstanceCount = 7,
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'TECH2 ENERGYPRODUCTION'}},
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
@@ -1712,7 +1713,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 1,
-        InstanceCount = 50,
+        InstanceCount = 200,
         BuilderConditions = {
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},
             },
@@ -1869,7 +1870,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderOnlySorianEdit',
         PlatoonAIPlan = 'ReclaimAI',
         Priority = 750,
-        InstanceCount = 3,
+        InstanceCount = 7,
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'TECH3 ENERGYPRODUCTION'}},
                 { SBC, 'ReclaimablesInArea', { 'LocationType', 0, 'AntiSurface', 0 }},

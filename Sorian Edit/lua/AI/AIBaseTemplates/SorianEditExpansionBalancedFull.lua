@@ -16,54 +16,74 @@ BaseBuilderTemplate {
         'SorianEditT2BalancedUpgradeBuilders',
         'SorianEditT1FastUpgradeBuildersExpansion',
         'SorianEditT2FastUpgradeBuildersExpansion',
-        'SorianEditEmergencyUpgradeBuilders',
         'SorianEditT1RushUpgradeBuilders',
+        'SorianEditEmergencyUpgradeBuilders',
         'SorianEditTime Exempt Extractor Upgrades Expansion',
         'SorianEditTime Exempt Extractor Upgrades - Rush',
-		
+
         -- Engineer Builders
-        'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
-        'SorianEditEngineerFactoryConstruction',
         'SorianEditEngineerFactoryConstruction Balance',
+		'SorianEditEngineerFactoryConstructionLandHigherPriority',
+        'SorianEditEngineerFactoryConstruction',
 
         -- SCU Upgrades
         'SorianEditSCUUpgrades',
 
-        -- Build Mass low pri at this base
+        -- Engineer Support buildings
+        'SorianEditEngineeringSupportBuilder',
+
+        -- Build energy at this base
+        'SorianEditEngineerEnergyBuilders',
+
+        -- Build Mass high pri at this base
         'SorianEditEngineerMassBuildersHighPri',
         'SorianEditEngineerMassBuildersLowerPri',
-        'SorianEditEngineerMassBuilders - Naval',
-        'SorianEditEngineerMassBuilders - Rush',
-
-
-        -- Build some power, but not much
-        'SorianEditEngineerEnergyBuildersExpansions',
-
-        -- ==== EXPANSION ==== --
-        'SorianEditEngineerExpansionBuildersFull',
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
-		
+
+        -- ACU Builders
+        'SorianEdit Initial ACU Builders',
+        'SorianEditACUBuilders',
+        'SorianEditACUUpgrades',
+
+        -- ACU Defense
+        'SorianEditT1ACUDefenses',
+        'SorianEditT2ACUDefenses',
+        'SorianEditT2ACUShields',
+        'SorianEditT3ACUShields',
+        'SorianEditT3ACUNukeDefenses',
+
+        -- ==== EXPANSION ==== --
+        'SorianEditEngineerExpansionBuildersFull',
+        'SorianEditEngineerFirebaseBuilders',
+
+
         -- ==== DEFENSES ==== --
-        'SorianEditT1LightDefenses',
-        'SorianEditT2LightDefenses',
-        'SorianEditT3LightDefenses',
+        'SorianEditT1BaseDefenses',
+        'SorianEditT2BaseDefenses',
+        'SorianEditT3BaseDefenses',
+        'SorianEditT2BaseDefenses - Emerg',
+        'SorianEditT3BaseDefenses - Emerg',
+		
+        'SorianEditT2PerimeterDefenses',
+        'SorianEditT3PerimeterDefenses',
+
+        'SorianEditT1DefensivePoints Turtle',
+        'SorianEditT2DefensivePoints Turtle',
+        'SorianEditT3DefensivePoints Turtle',
 
         'SorianEditT2ArtilleryFormBuilders',
         'SorianEditT3ArtilleryFormBuilders',
         'SorianEditT4ArtilleryFormBuilders',
-        'SorianEditT3NukeDefensesExp',
-        'SorianEditT3NukeDefenseBehaviors',
-        'SorianEditT2ShieldsExpansion',
-        'SorianEditShieldUpgrades',
-        'SorianEditAirStagingExpansion',
-        'SorianEditT3ShieldsExpansion',
         'SorianEditT2MissileDefenses',
+        'SorianEditT3NukeDefenses',
+        'SorianEditT3NukeDefenseBehaviors',
+        'SorianEditMiscDefensesEngineerBuilders',
 
         'SorianEditMassAdjacencyDefenses',
 
@@ -112,24 +132,40 @@ BaseBuilderTemplate {
         'SorianEditT2AntiAirBuilders',
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
-        --'SorianEditTransportFactoryBuilders',
 
-        'SorianEditExpResponseFormBuilders',
+        -- ==== EXPERIMENTALS ==== --
+        'SorianEditMobileLandExperimentalEngineers',
+        'SorianEditMobileLandExperimentalForm',
 
-        'SorianEditT1AntiAirBuilders',
-        'SorianEditT2AntiAirBuilders',
-        'SorianEditT3AntiAirBuilders',
-        'SorianEditBaseGuardAirFormBuilders',
+        'SorianEditMobileAirExperimentalEngineers',
+        'SorianEditMobileAirExperimentalForm',
+
+        --'SorianEditMobileNavalExperimentalEngineers',
+        --'SorianEditMobileNavalExperimentalForm',
+
+        'SorianEditEconomicExperimentalEngineers',
+        'SorianEditMobileExperimentalEngineersGroup',
+
+        -- ==== ARTILLERY BUILDERS ==== --
+        'SorianEditT3ArtilleryGroup',
+
+        'SorianEditExperimentalArtillery',
+
+        'SorianEditNukeBuildersEngineerBuilders',
+        'SorianEditNukeFormBuilders',
+
+        'SorianEditSatelliteExperimentalEngineers',
+        'SorianEditSatelliteExperimentalForm',
 
    -- ======== Strategies ======== --
         'SorianEditHeavyAirStrategy',
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
         'SorianEditNukeRush',
-        'SorianEditT3ArtyRush',
-        'SorianEditT2ACUSnipe',
         'SorianEditT3FBRush',
+        'SorianEditT2ACUSnipe',
         'SorianEditParagonStrategy',
+        'SorianEditParagonStrategyExp',
         'SorianEdit Tele SCU Strategy',
         'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
@@ -159,18 +195,6 @@ BaseBuilderTemplate {
         'SorianEditEngineerExpansionBuildersStrategy',
         'SorianEditACUUpgrades - Rush',
         'SorianEditExcessMassBuilders',
-
-        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
-
-        -- ==== EXPERIMENTALS ==== --
-        'SorianEditMobileLandExperimentalEngineers',
-        'SorianEditMobileLandExperimentalForm',
-
-        'SorianEditMobileAirExperimentalEngineers',
-        'SorianEditMobileAirExperimentalForm',
-
-        -- ==== ARTILLERY BUILDERS ==== --
-        'SorianEditT3ArtilleryGroupExp',
     },
     NonCheatBuilders = {
         'SorianEditAirScoutFactoryBuilders',
@@ -180,22 +204,22 @@ BaseBuilderTemplate {
         'SorianEditLandScoutFormBuilders',
 
         'SorianEditRadarEngineerBuilders',
-        'SorianEditRadarUpgradeBuildersExpansion',
+        'SorianEditRadarUpgradeBuildersMain',
 
         'SorianEditCounterIntelBuilders',
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 10,
-            Tech2 = 15,
-            Tech3 = 20,
-            SCU = 2,
+            Tech1 = 15,
+            Tech2 = 20,
+            Tech3 = 35, --30,
+            SCU = 8,
         },
         FactoryCount = {
-            Land = 3,
-            Air = 2,
+            Land = 13,
+            Air = 7,
             Sea = 0,
-            Gate = 1, --1,
+            Gate = 2,
         },
         MassToFactoryValues = {
             T1Value = 6, --8
@@ -204,16 +228,14 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-	
-        if markerType ~= 'Large Expansion Area' then
-            return -1
-        end
-
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            return 400, 'sorianedit'
-        end
-
-        return 0
-    end,
+        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Start Location')
+        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+            LOG('--------------------- M-ExpansionFunction High Priority '..personality)
+            return 800, 'sorianeditadaptive'
+        else
+        LOG('--------------------- M-ExpansionFunction low Priority '..personality)
+		return 2
+		end
+	end,
 }

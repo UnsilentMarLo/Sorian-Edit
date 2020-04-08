@@ -163,10 +163,10 @@ BaseBuilderTemplate {
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
         'SorianEditNukeRush',
-        'SorianEditT3ArtyRush',
-        'SorianEditT2ACUSnipe',
         'SorianEditT3FBRush',
+        'SorianEditT2ACUSnipe',
         'SorianEditParagonStrategy',
+        'SorianEditParagonStrategyExp',
         'SorianEdit Tele SCU Strategy',
         'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
@@ -229,14 +229,21 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        return -1
-    end,
+        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Start Location')
+        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+            LOG('--------------------- M-ExpansionFunction High Priority '..personality)
+            return 800, 'sorianeditadaptive'
+        else
+        LOG('--------------------- M-ExpansionFunction low Priority '..personality)
+		return 2
+		end
+	end,
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
             LOG('------ M-FirstBaseFunction '..personality)
-            return 2000, 'sorianeditadaptive'
+            return 14000, 'sorianeditadaptive'
         end
-        return -1
     end,
 }

@@ -599,7 +599,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 700, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 700, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -643,7 +643,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 900, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 900, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -686,7 +686,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 750, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 750, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -730,7 +730,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 825, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 825, 'Expansion Area', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -773,7 +773,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 700, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 700, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -816,7 +816,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 900, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 900, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -859,7 +859,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 750, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 750, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',
@@ -902,7 +902,7 @@ BuilderGroup {
         ActivePriority = 980,
         InstanceCount = 1,
         BuilderConditions = {
-            { MABC, 'CanBuildFirebase', { 'LocationType', 825, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 825, 'Defensive Point', -10000, 5, 1, 'AntiSurface', 1, 'STRUCTURE ARTILLERY TECH3', 20} },
             { IBC, 'BrainNotLowPowerMode', {} },
         },
         BuilderType = 'Any',

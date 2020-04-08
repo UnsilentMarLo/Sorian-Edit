@@ -1,11 +1,11 @@
-#***************************************************************************
-#*
-#**  File     :  /mods/Sorian Edit/lua/ai/SorianEditNavalBuilders.lua
-#**
-#**  Summary  : Default Naval structure builders for skirmish
-#**
-#**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
-#****************************************************************************
+--***************************************************************************
+--*
+--**  File     :  /mods/Sorian Edit/lua/ai/SorianEditNavalBuilders.lua
+--**
+--**  Summary  : Default Naval structure builders for skirmish
+--**
+--**  Copyright © 2005 Gas Powered Games, Inc.  All rights reserved.
+--****************************************************************************
 
 local BBTmplFile = '/lua/basetemplates.lua'
 local ExBaseTmpl = 'ExpansionBaseTemplates'
@@ -190,7 +190,7 @@ BuilderGroup {
     },
 }
 
-# For everything but Naval Rush
+-- For everything but Naval Rush
 BuilderGroup {
     BuilderGroupName = 'SorianEditNavalExpansionBuilders',
     BuildersType = 'EngineerBuilder',

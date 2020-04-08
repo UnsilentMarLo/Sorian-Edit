@@ -21,8 +21,8 @@ local EBC = '/lua/editor/EconomyBuildConditions.lua'
 local PCBC = '/lua/editor/PlatoonCountBuildConditions.lua'
 local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
-local SBC = '/lua/editor/SorianEditBuildConditions.lua'
-local SIBC = '/lua/editor/SorianEditInstantBuildConditions.lua'
+local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
+local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local Behaviors = import('/lua/ai/aibehaviors.lua')
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
@@ -81,7 +81,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Excess Mass Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -134,7 +134,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Tele SCU Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -269,7 +269,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Engy Drop Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, --100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -427,7 +427,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit PD Creep Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -471,7 +471,6 @@ BuilderGroup {
         end,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' }},
             { SBC, 'MapLessThan', { 1000, 1000 }},
         },
         BuilderType = 'Any',
@@ -494,7 +493,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Water Map Low Land',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -552,7 +551,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Big Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
@@ -635,7 +634,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Jester Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         PriorityFunction = function(self, aiBrain)
@@ -731,7 +730,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Rush Gun Upgrades',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -797,7 +796,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Ghetto Gunship Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, --100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -860,7 +859,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Small Map Rush Strategy',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
             local enemies = 0
@@ -892,63 +891,15 @@ BuilderGroup {
             EngineerManager = {
                 'SorianEdit T1VacantStartingAreaEngineer - Rush',
                 'SorianEdit T1VacantStartingAreaEngineer',
-                'SorianEdit T1 Vacant Expansion Area Engineer(Full Base)',
+                'SorianEdit T1 Vacant Expansion Area EngineerFull Base',
             },
         },
         AddBuilders = {
             EngineerManager = {
                 'SorianEdit T1VacantStartingAreaEngineer - HP Strategy',
                 'SorianEdit T1VacantStartingAreaEngineer Strategy',
-                'SorianEdit T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
+                'SorianEdit T1 Vacant Expansion Area EngineerFull Base - Strategy',
             },
-        }
-    },
-}
-
-BuilderGroup {
-    BuilderGroupName = 'SorianEditT3ArtyRush',
-    BuildersType = 'StrategyBuilder',
-    Builder {
-        BuilderName = 'SorianEdit T3 Arty Rush Strategy',
-        StrategyType = 'Intermediate',
-        Priority = 100,
-        InstanceCount = 1,
-        StrategyTime = 300,
-        PriorityFunction = function(self, aiBrain)
-            local returnval = 1
-            --If activated by an ally
-            if aiBrain.Focus == 'rush arty' then
-                return 100
-            end
-            local arties = aiBrain:GetCurrentUnits(categories.ARTILLERY * categories.STRUCTURE * categories.TECH3)
-
-            local eUnits = aiBrain:GetNumUnitsAroundPoint(categories.SHIELD * categories.STRUCTURE * categories.TECH3, Vector(0,0,0), 100000, 'Enemy')
-
-            if arties - eUnits >= 3 then
-                return returnval
-            end
-
-            returnval = 70 + (arties * 5) - (eUnits * 5)
-            return returnval
-        end,
-        BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
-            { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
-            --CanBuildFirebase { 1000, 1000 }},
-            { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
-        },
-        BuilderType = 'Any',
-        RemoveBuilders = {},
-        AddBuilders = {
-            EngineerManager = {
-                'SorianEdit T3 Arty Engineer - High Prio',
-                'SorianEdit T3 Engineer Assist Build Arty - High Prio',
-            }
         }
     },
 }
@@ -960,7 +911,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 FB Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
@@ -983,7 +934,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1013,7 +964,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditEnemyTurtle - In Range',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1072,7 +1023,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditEnemyTurtle - Out of Range',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1138,7 +1089,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Nuke Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
@@ -1168,7 +1119,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1193,7 +1144,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Stop Nukes Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local antis = 99999
@@ -1233,7 +1184,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 ACU Snipe Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local enemyIndex
@@ -1260,10 +1211,10 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH2' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.PRODUCTSORIAN * categories.TECH2 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
-            { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
+            --{ MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             ----CanBuildFirebase { 500, 500 }},
         },
@@ -1284,7 +1235,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
@@ -1315,7 +1266,7 @@ BuilderGroup {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH1' }},
         },
@@ -1324,7 +1275,6 @@ BuilderGroup {
             FactoryManager = {
                 'SorianEdit T1 Air Bomber',
                 'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
                 'SorianEdit T1 Air Bomber 2',
                 'SorianEdit T1Gunship2',
                 'SorianEdit T2 Air Gunship',
@@ -1333,9 +1283,7 @@ BuilderGroup {
                 'SorianEdit T2FighterBomber',
                 'SorianEdit T2 Air Gunship2',
                 'SorianEdit T2FighterBomber2',
-                'SorianEdit T3 Air Gunship',
                 'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber',
                 'SorianEdit T3 Air Bomber - Stomp Enemy',
                 'SorianEdit T3 Air Gunship2',
                 'SorianEdit T3 Air Bomber2',
@@ -1343,12 +1291,15 @@ BuilderGroup {
             PlatoonFormManager = {
                 'SorianEdit BomberAttackT1Frequent',
                 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+                'SorianEdit T1Gunship',
                 --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
                 'SorianEdit BomberAttackT2Frequent',
                 'SorianEdit BomberAttackT2Frequent - Anti-Land',
                 --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
                 'SorianEdit BomberAttackT3Frequent',
                 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+                'SorianEdit T3 Air Bomber',
+                'SorianEdit T3 Air Gunship',
                 --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
                 'SorianEdit T1 Bomber Attack Weak Enemy Response',
                 --'SorianEdit BomberAttack Mass Hunter',
@@ -1369,7 +1320,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
@@ -1401,7 +1352,7 @@ BuilderGroup {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 19 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH2' }},
         },
@@ -1455,7 +1406,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         StrategyTime = 300,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
@@ -1485,7 +1436,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH3' }},
         },
         BuilderType = 'Any',
@@ -1543,7 +1494,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Paragon Strategy',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
@@ -1603,7 +1554,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Paragon Strategy Expansion',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
@@ -1649,7 +1600,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit AI Outnumbered',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             --CanBuildFirebase { 1000, 1000 }},
             { SBC, 'AIOutnumbered', { true }},
@@ -1680,7 +1631,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit AI Outnumbers Enemies',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 1,
+        InstanceCount = 2,
         BuilderConditions = {
             --CanBuildFirebase { 1000, 1000 }},
             { SBC, 'AIOutnumbered', { false }},
