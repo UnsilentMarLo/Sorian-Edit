@@ -501,7 +501,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Fighter init',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 1800,
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -549,9 +549,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1400,
+        Priority = 1700,
+        InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.AIR * categories.BOMBER * categories.TECH3 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -575,7 +577,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1300,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -1166,7 +1168,7 @@ BuilderGroup {
         PlatoonTemplate = 'BomberAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 100,
+        Priority = 300,
         InstanceCount = 14,
         BuilderType = 'Any',
         BuilderData = {
@@ -1367,7 +1369,7 @@ BuilderGroup {
         PlatoonTemplate = 'BomberAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 100,
+        Priority = 400,
         InstanceCount = 11,
         BuilderType = 'Any',
         BuilderData = {
@@ -1457,7 +1459,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 4, categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'Enemy'}},
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
             --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -1468,7 +1470,7 @@ BuilderGroup {
         PlatoonTemplate = 'BomberAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 95,
+        Priority = 300,
         InstanceCount = 10,
         BuilderType = 'Any',
         BuilderData = {
@@ -1797,8 +1799,8 @@ BuilderGroup {
         },
         BuilderConditions = {
             --{ SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.AIR - categories.SCOUT - categories.INTELLIGENCE, 'AntiAir', 'AntiSurface', 1}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER TECH1' } },
+            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR, FACTORY TECH3 AIR' }},
+            --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'AIR MOBILE BOMBER TECH1' } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
@@ -1879,30 +1881,30 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEditT1 Air Attack Threat',
-        PlatoonTemplate = 'ThreatAirAttack',
+        PlatoonTemplate = 'ThreatAirAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
-        InstanceCount = 7,
+        InstanceCount = 2,
         BuilderType = 'Any',
         BuilderData = {
             ThreatThreshold = 100,
         },
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
-            { AirAttackCondition, { 'LocationType', 4 } },
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
+            --{ AirAttackCondition, { 'LocationType', 4 } },
+            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH2, MOBILE AIR TECH3' } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'AIThreatExists', { 100 } },
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Attack Threat',
-        PlatoonTemplate = 'ThreatAirAttack',
+        PlatoonTemplate = 'ThreatAirAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
-        InstanceCount = 5,
+        InstanceCount = 2,
         BuilderType = 'Any',
         BuilderData = {
             ThreatThreshold = 100,
@@ -1910,18 +1912,18 @@ BuilderGroup {
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },
             --{ AirAttackCondition, { 'LocationType', 12 } },
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
+            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE TECH3' } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
             { SIBC, 'AIThreatExists', { 100 } },
         },
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Attack Threat',
-        PlatoonTemplate = 'ThreatAirAttack',
+        PlatoonTemplate = 'ThreatAirAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 200,
-        InstanceCount = 8,
+        InstanceCount = 2,
         BuilderType = 'Any',
         BuilderData = {
             ThreatThreshold = 100,
