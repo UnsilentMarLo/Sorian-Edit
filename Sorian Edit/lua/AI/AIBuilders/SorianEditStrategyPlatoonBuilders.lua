@@ -213,7 +213,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Air Bomber - High Prio',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 0.1,
-        ActivePriority = 549,
+        ActivePriority = 700,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -337,7 +337,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Air Bomber - High Prio',
         PlatoonTemplate = 'T2BomberSorianEdit',
         Priority = 0.1,
-        ActivePriority = 649,
+        ActivePriority = 900,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -357,7 +357,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Bomber - High Prio',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 0.1,
-        ActivePriority = 754,
+        ActivePriority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -375,7 +375,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Bomber Special - High Prio',
         PlatoonTemplate = 'T3AirBomberSpecialSorianEdit',
         Priority = 0.1,
-        ActivePriority = 754,
+        ActivePriority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -393,7 +393,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1Gunship - High Prio',
         PlatoonTemplate = 'T1Gunship',
         Priority = 0.1,
-        ActivePriority = 549,
+        ActivePriority = 700,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -415,7 +415,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
-        ActivePriority = 995,
+        ActivePriority = 1300,
         InstanceCount = 20,
         BuilderType = 'Any',
         BuilderData = {
@@ -444,7 +444,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
-        ActivePriority = 995,
+        ActivePriority = 1300,
         InstanceCount = 20,
         BuilderType = 'Any',
         BuilderData = {
@@ -478,7 +478,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
-        ActivePriority = 995,
+        ActivePriority = 1300,
         InstanceCount = 20,
         BuilderType = 'Any',
         BuilderData = {
@@ -512,7 +512,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 0.1,
-        ActivePriority = 995,
+        ActivePriority = 1300,
         InstanceCount = 20,
         BuilderType = 'Any',
         BuilderData = {
@@ -548,10 +548,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Arty Engineer - High Prio',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 0.1,
-        ActivePriority = 980,
+        ActivePriority = 1300,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
         },
         BuilderType = 'Any',
@@ -570,8 +570,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Build Arty - High Prio',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 0.1,
-        ActivePriority = 981,
-        InstanceCount = 3,
+        ActivePriority = 1300,
+        InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
         },

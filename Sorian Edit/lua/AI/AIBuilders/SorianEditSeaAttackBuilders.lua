@@ -316,7 +316,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL, MOBILE TECH3 NAVAL' } },
@@ -333,7 +333,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH3 NAVAL' } },
@@ -350,7 +350,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             --{ SeaAttackCondition, { 'LocationType', 180 } },
@@ -366,7 +366,7 @@ BuilderGroup {
         InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'MOBILE TECH2 NAVAL' } },
@@ -398,7 +398,7 @@ BuilderGroup {
         InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -426,7 +426,7 @@ BuilderGroup {
         InstanceCount = 6,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -454,7 +454,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -486,7 +486,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -514,7 +514,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -542,7 +542,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',

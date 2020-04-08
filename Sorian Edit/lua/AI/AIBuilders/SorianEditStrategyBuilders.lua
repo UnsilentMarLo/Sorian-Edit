@@ -100,8 +100,10 @@ BuilderGroup {
         end,
         PriorityFunction = function(self, aiBrain)
             if econThread or not (econThread and Builders[self.BuilderName].Running) then
+        LOG('--------------------- SorianEdit Excess Mass Strategy 100')
                 return 100
             elseif not econThread and Builders[self.BuilderName].Running then
+        LOG('--------------------- SorianEdit Excess Mass Strategy 0')
                 return 0
             end
         end,
@@ -246,6 +248,7 @@ BuilderGroup {
             if Random(1,10) == 7 then
                 returnval = 100
             end
+        LOG('--------------------- SorianEdit Tele SCU Strategy '..returnval)
 
             return returnval
         end,
@@ -397,6 +400,7 @@ BuilderGroup {
             --if Random(1,100) == 100 then
                 returnval = 100
             --end
+        LOG('--------------------- SorianEdit Engy Drop Strategy '..returnval)
 
             return returnval
         end,
@@ -466,6 +470,7 @@ BuilderGroup {
             end
 
             Builders[self.BuilderName].Done = true
+        LOG('--------------------- SorianEdit PD Creep Strategy '..returnval)
 
             return returnval
         end,
@@ -572,6 +577,7 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = (enemyThreat * 1.5) - numEUnits
+        LOG('--------------------- SorianEditBigAirGroup '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -662,6 +668,7 @@ BuilderGroup {
             end
 
             returnval = 74 + (myFacs * 5) - (count * 4)
+        LOG('--------------------- SorianEdit Jester Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -749,6 +756,7 @@ BuilderGroup {
             end
 
             Builders[self.BuilderName].Done = true
+        LOG('--------------------- SorianEdit Rush Gun Upgrades '..returnval)
 
             return returnval
         end,
@@ -827,6 +835,7 @@ BuilderGroup {
             end
 
             returnval = 69 + (myFacs * 5) - (count * 2)
+        LOG('--------------------- SorianEdit Ghetto Gunship Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -877,6 +886,7 @@ BuilderGroup {
             local gtime = GetGameTimeSeconds()
 
             returnval = 75 + (ratio * 5) - (gtime * .004)
+        LOG('--------------------- SorianEdit Small Map Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -928,6 +938,7 @@ BuilderGroup {
             end
 
             returnval = 70 + (arties * 5) - (eUnits * 5)
+        LOG('--------------------- SorianEdit T3 FB Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -983,6 +994,7 @@ BuilderGroup {
             --If enemy base has more than 1750 anti-surface threat
             --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
+        LOG('--------------------- SorianEditEnemyTurtle - In Range '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1042,6 +1054,7 @@ BuilderGroup {
             --If enemy base has more than 1750 anti-surface threat
             --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
+        LOG('--------------------- SorianEditEnemyTurtle - Out of Range '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1113,6 +1126,7 @@ BuilderGroup {
             end
 
             returnval = 70 + (nukes * 5) - (antis * 10)
+        LOG('--------------------- SorianEditNukeRush '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1161,6 +1175,7 @@ BuilderGroup {
             end
 
             returnval = (antis - nukes) * 20
+        LOG('--------------------- SorianEditStopNukes '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1206,6 +1221,7 @@ BuilderGroup {
             end
 
             returnval = 100 - (count * 6)
+        LOG('--------------------- SorianEditT2ACUSnipe '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1261,6 +1277,7 @@ BuilderGroup {
 
             returnval = 90 - enemyThreat - numEUnits
             return returnval
+        LOG('--------------------- SorianEditHeavyAirStrategy '..returnval)
         end,
         BuilderConditions = {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},
@@ -1346,6 +1363,7 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - (enemyThreat * 0.5) - numEUnits
+        LOG('--------------------- SorianEdit T2 Heavy Air Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1431,6 +1449,7 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - (enemyThreat * 0.15) - numEUnits
+        LOG('--------------------- SorianEdit T3 Heavy Air Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
