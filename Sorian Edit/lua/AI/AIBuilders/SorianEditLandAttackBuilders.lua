@@ -440,7 +440,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T3ArmoredAssault',
-        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
+        PlatoonTemplate = 'T3ArmoredAssault',
         Priority = 950,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -527,7 +527,7 @@ BuilderGroup {
             --{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 5, 'AntiSurface' } },
         },
     },
-    Builder {
+    --[[ Builder {
         BuilderName = 'SorianEdit T3MobileShields',
         PlatoonTemplate = 'T3MobileShields',
         Priority = 920,
@@ -540,7 +540,7 @@ BuilderGroup {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
         },
-    },
+    }, ]]--
 }
 
 ------------------------------------------
@@ -623,7 +623,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 500,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
@@ -648,7 +648,7 @@ BuilderGroup {
             { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
         },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 500,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
@@ -674,7 +674,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 500,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
@@ -700,7 +700,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 500,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
@@ -719,18 +719,18 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditFrequentLandAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'SorianEdit Frequent Land Attack T1',
-        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        BuilderName = 'SorianEdit Frequent Land Attack Default',
+        PlatoonTemplate = 'LandAttackSorianEdit',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
-        InstanceCount = 22,
+        InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 1000,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
-            UseFormation = 'AttackFormation',
+            UseFormation = 'None',
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
@@ -747,13 +747,13 @@ BuilderGroup {
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
-        InstanceCount = 23,
+        InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 1000,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
-            UseFormation = 'AttackFormation',
+            UseFormation = 'None',
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
@@ -761,7 +761,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH2 - categories.ENGINEER} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND * categories.TECH2 - categories.ENGINEER} },
             --{ LandAttackCondition, { 'LocationType', 50 } },
         },
     },
@@ -771,13 +771,13 @@ BuilderGroup {
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
-        InstanceCount = 23,
+        InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 1000,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
-            UseFormation = 'AttackFormation',
+            UseFormation = 'None',
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
@@ -786,8 +786,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER} },
-            --{ LandAttackCondition, { 'LocationType', 150 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER} },
         },
     },
 }
@@ -804,29 +803,29 @@ BuilderGroup {
         --PlatoonTemplate = 'EarlyGameMassHuntersCategory',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 950,
+        Priority = 1000,
         BuilderConditions = {
-                { SBC, 'LessThanGameTime', { 800 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
                 --{ LandAttackCondition, { 'LocationType', 10 } },
                 --{ SBC, 'NoRushTimeCheck', { 0 }},
             },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 750,
             LocationType = 'LocationType',
             MarkerType = 'Mass',
             MoveFirst = 'Random',
             MoveNext = 'Threat',
             ThreatType = 'Economy', 		    -- Type of threat to use for gauging attacks
             FindHighestThreat = false, 		-- Don't find high threat targets
-            MaxThreatThreshold = 3000, 		-- If threat is higher than this, do not attack
+            MaxThreatThreshold = 4000, 		-- If threat is higher than this, do not attack
             MinThreatThreshold = 1000, 		-- If threat is lower than this, do not attack
             AvoidBases = true,
-            AvoidBasesRadius = 75,
-            UseFormation = 'AttackFormation',
+            AvoidBasesRadius = 100,
+            UseFormation = 'None',
             AggressiveMove = false,
             AvoidClosestRadius = 50,
         },
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderType = 'Any',
     },
 
@@ -837,29 +836,29 @@ BuilderGroup {
         PlatoonTemplate = 'T2MassHuntersCategorySorianEdit',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 950,
+        Priority = 990,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
+                --{ UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
                 --{ LandAttackCondition, { 'LocationType', 50 } },
                 --CanBuildFirebase { 500, 500 }},
             },
         BuilderData = {
-            ThreatSupport = 250,
+            ThreatSupport = 750,
             MarkerType = 'Mass',
             LocationType = 'LocationType',
             MoveFirst = 'Random',
             MoveNext = 'Threat',
             ThreatType = 'Economy', 		    -- Type of threat to use for gauging attacks
             FindHighestThreat = false, 		-- Don't find high threat targets
-            MaxThreatThreshold = 9999999, 	-- If threat is higher than this, do not attack
+            MaxThreatThreshold = 20000, 	-- If threat is higher than this, do not attack
             MinThreatThreshold = 1000, 		-- If threat is lower than this, do not attack
             AvoidBases = true,
-            AvoidBasesRadius = 75,
-            UseFormation = 'AttackFormation',
+            AvoidBasesRadius = 100,
+            UseFormation = 'None',
             AggressiveMove = false,
             AvoidClosestRadius = 50,
         },
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderType = 'Any',
     },
 
@@ -873,9 +872,9 @@ BuilderGroup {
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
         PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 960,
+        Priority = 1000,
         BuilderConditions = {
-                { SBC, 'LessThanGameTime', { 720 } },
+                --{ SBC, 'LessThanGameTime', { 720 } },
                 --{ SBC, 'NoRushTimeCheck', { 0 }},
             },
         BuilderData = {
@@ -892,10 +891,10 @@ BuilderGroup {
             AvoidBasesRadius = 100,
             AggressiveMove = false,
             AvoidClosestRadius = 50,
-            GuardTimer = 30,
-            UseFormation = 'AttackFormation',
+            GuardTimer = 50,
+            UseFormation = 'None',
         },
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderType = 'Any',
     },
 
@@ -906,7 +905,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
-                { SBC, 'LessThanGameTime', { 720 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
             },
         BuilderData = {
             ThreatSupport = 250,
@@ -920,7 +919,7 @@ BuilderGroup {
             IgnoreStrongerTargetsRatio = 25.0,
             },
         },
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderType = 'Any',
     },
 
@@ -935,7 +934,7 @@ BuilderGroup {
                 { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
                 --{ LandAttackCondition, { 'LocationType', 50 } },
                 --{ SBC, 'NoRushTimeCheck', { 0 }},
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
+                --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
@@ -949,7 +948,7 @@ BuilderGroup {
             IgnoreStrongerTargetsRatio = 25.0,
             },
         },
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderType = 'Any',
     },
 
@@ -1081,7 +1080,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
-                { SBC, 'LessThanGameTime', { 300 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 540 } },
                 --{ SBC, 'NoRushTimeCheck', { 0 }},
                 { SBC, 'MapLessThan', {1000, 1000}},
                 --CanBuildFirebase {500, 500}},
@@ -1113,7 +1112,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
-                { SBC, 'LessThanGameTime', { 300 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 1200 } },
                 --{ SBC, 'NoRushTimeCheck', { 0 }},
                 --CanBuildFirebase {1000, 1000}},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
@@ -1146,7 +1145,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         --Priority = 0,
-        InstanceCount = 2,
+        InstanceCount = 6,
         BuilderType = 'Any',
         BuilderData = {
             ThreatSupport = 250,
@@ -1159,7 +1158,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 } },
+            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 } },
             --{ LandAttackCondition, { 'LocationType', 10 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -1173,7 +1172,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         --Priority = 0,
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderType = 'Any',
         BuilderData = {
             ThreatSupport = 250,
@@ -1186,7 +1185,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 - categories.TECH2 } },
+            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 - categories.TECH2 } },
             { SBC, 'MapLessThan', { 1000, 1000 }},
             --{ LandAttackCondition, { 'LocationType', 50 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -1215,7 +1214,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
     },
-    Builder {
+    --[[ Builder {
         BuilderName = 'SorianEdit T2 Tanks - Engineer Guard',
         PlatoonTemplate = 'T2EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',
@@ -1265,5 +1264,5 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         BuilderType = 'Any',
-    },
+    }, ]]--
 }
