@@ -1276,8 +1276,8 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - enemyThreat - numEUnits
-            return returnval
         LOG('--------------------- SorianEditHeavyAirStrategy '..returnval)
+            return returnval
         end,
         BuilderConditions = {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},

@@ -241,12 +241,8 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-<<<<<<< HEAD
             --{ SBC, 'MapLessThan', { 1000, 1000 }},
-=======
-            { SBC, 'MapLessThan', { 1000, 1000 }},
->>>>>>> origin/master
+
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             --{ SIBC, 'T4BuildingCheck', {} },
             { MIBC, 'FactionIndex', {1, 2, 4} },
@@ -278,11 +274,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { IBC, 'BrainNotLowPowerMode', {} },
-<<<<<<< HEAD
             --{ SBC, 'MapLessThan', { 1000, 1000 }},
-=======
-            { SBC, 'MapLessThan', { 1000, 1000 }},
->>>>>>> origin/master
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             --{ SIBC, 'T4BuildingCheck', {} },
             { SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 1, 'Air', 2 } },
