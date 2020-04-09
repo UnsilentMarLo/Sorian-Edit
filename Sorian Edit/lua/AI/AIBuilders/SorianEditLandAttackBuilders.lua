@@ -630,6 +630,7 @@ BuilderGroup {
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
                 IgnoreStrongerTargetsRatio = 100.0,
             },
@@ -655,6 +656,7 @@ BuilderGroup {
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
                 IgnoreStrongerTargetsRatio = 100.0,
             },
@@ -681,6 +683,7 @@ BuilderGroup {
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
                 IgnoreStrongerTargetsRatio = 100.0,
             },
@@ -707,6 +710,7 @@ BuilderGroup {
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
                 IgnoreStrongerTargetsRatio = 100.0,
             },
@@ -757,6 +761,7 @@ BuilderGroup {
             LocationType = 'LocationType',
             AggressiveMove = false,
             ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
             },
         },
@@ -782,7 +787,7 @@ BuilderGroup {
             AggressiveMove = false,
             ThreatWeights = {
             --SecondaryTargetThreatType = 'StructuresNotMex',
-                IgnoreStrongerTargetsRatio = 2.0,
+                IgnoreStrongerTargetsRatio = 500.0,
             },
         },
         BuilderConditions = {
@@ -915,8 +920,7 @@ BuilderGroup {
             --UseFormation = 'AttackFormation',
             AggressiveMove = false,
         ThreatWeights = {
-            --SecondaryTargetThreatType = 'StructuresNotMex',
-            IgnoreStrongerTargetsRatio = 25.0,
+                IgnoreStrongerTargetsRatio = 500.0,
             },
         },
         InstanceCount = 3,
@@ -944,8 +948,7 @@ BuilderGroup {
             --UseFormation = 'AttackFormation',
             AggressiveMove = false,
         ThreatWeights = {
-            --SecondaryTargetThreatType = 'StructuresNotMex',
-            IgnoreStrongerTargetsRatio = 25.0,
+                IgnoreStrongerTargetsRatio = 500.0,
             },
         },
         InstanceCount = 3,
@@ -1006,6 +1009,7 @@ BuilderGroup {
             UseFormation = 'AttackFormation',
             AggressiveMove = false,
         ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
             },
             PrioritizedCategories = {
@@ -1050,6 +1054,7 @@ BuilderGroup {
             UseFormation = 'AttackFormation',
             AggressiveMove = false,
         ThreatWeights = {
+                IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
             },
             PrioritizedCategories = {
