@@ -30,7 +30,7 @@ Platoon = Class(OldPlatoonClass) {
         local PlatoonFormation = self.PlatoonData.UseFormation or 'No Formation'
         self:SetPlatoonFormationOverride(PlatoonFormation)
         local maxRange, selectedWeaponArc, turretPitch = AIAttackUtils.GetLandPlatoonMaxRangeSorian(aiBrain, self)
-        --local quickReset = false
+        -- local quickReset = false
 
         while aiBrain:PlatoonExists(self) do
             local pos = self:GetPlatoonPosition() -- update positions; prev position done at end of loop so not done first time
@@ -38,11 +38,13 @@ Platoon = Class(OldPlatoonClass) {
             -- if we can't get a position, then we must be dead
             if not pos then
                 self:PlatoonDisband()
+				LOG('---------------------  We are dead, disbanding the platoon')
             end
 
 
             -- if we're using a transport, wait for a while
             if self.UsingTransport then
+				LOG('---------------------  We are awaiting a transport, please wait')
                 WaitSeconds(10)
                 continue
             end
@@ -50,11 +52,13 @@ Platoon = Class(OldPlatoonClass) {
             -- pick out the enemy
             if aiBrain:GetCurrentEnemy() and aiBrain:GetCurrentEnemy().Result == "defeat" then
                 aiBrain:PickEnemyLogicSorian()
+				LOG('---------------------  We are getting a new enemy, please wait')
             end
 
             -- merge with nearby platoons
             if aiBrain:PlatoonExists(self) then
                 self:MergeWithNearbyPlatoonsSorian('AttackForceAISorian', 10)
+				LOG('---------------------  We are merging with another platoon, please wait')
             end
 
             -- rebuild formation
@@ -66,6 +70,7 @@ Platoon = Class(OldPlatoonClass) {
                 self:StopAttack()
                 self:SetPlatoonFormationOverride(PlatoonFormation)
                 oldNumberOfUnitsInPlatoon = numberOfUnitsInPlatoon
+				LOG('---------------------  We are rebuilding the platoon, please wait')
             end
 
             -- deal with lost-puppy transports
@@ -117,6 +122,7 @@ Platoon = Class(OldPlatoonClass) {
                     local unitCmdQ = v:GetCommandQueue()
                     for cmdIdx,cmdVal in unitCmdQ do
                         table.insert(cmdQ, cmdVal)
+				LOG('---------------------  We are getting new orders')
                         break
                     end
                 end
@@ -135,6 +141,7 @@ Platoon = Class(OldPlatoonClass) {
             local oldPathSize = table.getn(self.LastAttackDestination)
             if self.LastAttackDestination then
                 nearDest = oldPathSize == 0 or VDist3(self.LastAttackDestination[oldPathSize], pos) < 20
+				LOG('---------------------  We are nearing our destination, found a unit closeby')
             end
 
             local inWater = AIAttackUtils.InWaterCheck(self)
@@ -144,38 +151,42 @@ Platoon = Class(OldPlatoonClass) {
                 self:StopAttack() 
                 if not inWater then
                     self:MoveToLocation(closestTarget:GetPosition(), false)
+				LOG('---------------------  moving normally')
                 else
                     self:AggressiveMoveToLocation(closestTarget:GetPosition())
+				LOG('---------------------  using aggressiveMove')
                 end
                 cmdQ = {1}
                 stuckCount = 0
---              quickReset = true
+				LOG('---------------------  near destination, enemy unit closeby, enganging. stuckcount:'..stuckCount)
+              -- quickReset = true
             -- if we have a target and can attack it, attack!
             elseif closestTarget then
                 self:StopAttack()
                 self:MoveToLocation(closestTarget:GetPosition(), false)
                 cmdQ = {1}
                 stuckCount = 0
---              quickReset = true
+				LOG('---------------------  nothing to do, returning to path stuck count:'..stuckCount)
+              --quickReset = true
             -- if we have nothing to do, but still have a path (because of one of the above)
             elseif table.getn(cmdQ) == 0 and oldPathSize > 0 then
                 self.LastAttackDestination = {}
                 self:StopAttack()
-                cmdQ = AIAttackUtils.AIPlatoonSquadAttackVectorSorian(aiBrain, self, bAggro)
+                cmdQ = AIAttackUtils.AIPlatoonSquadAttackVector( aiBrain, self )
                 stuckCount = 0
+				LOG('---------------------  nothing to do, returning to path stuck count:'..stuckCount)
             -- if we have nothing to do, try finding something to do
             elseif table.getn(cmdQ) == 0 then
                 self:StopAttack()
-                cmdQ = AIAttackUtils.AIPlatoonSquadAttackVectorSorian(aiBrain, self, bAggro)
-                stuckCount = 0
+                cmdQ = AIAttackUtils.AIPlatoonSquadAttackVector( aiBrain, self )
+                stuckCount = 1
+				LOG('---------------------  nothing to do, trying to find something to do stuck count:'..stuckCount)
             -- if we've been stuck and unable to reach next marker? Ignore nearby stuff and pick another target
             elseif self.LastPosition and VDist2Sq(self.LastPosition[1], self.LastPosition[3], pos[1], pos[3]) < (self.PlatoonData.StuckDistance or 8) then
                 stuckCount = stuckCount + 1
                 if stuckCount >= 1 then
-                    self:StopAttack()
-                    self.LastAttackDestination = {}
-                    cmdQ = AIAttackUtils.AIPlatoonSquadAttackVectorSorian(aiBrain, self, bAggro)
-                    stuckCount = 0
+                self:PlatoonDisband()
+				LOG('---------------------  We are stuck and are disbanding:'..stuckCount)
                 end
             else
                 stuckCount = 0
@@ -183,36 +194,78 @@ Platoon = Class(OldPlatoonClass) {
 
             self.LastPosition = pos
 
---[[            if table.getn(cmdQ) == 0 then --and mySurfaceThreat < 4 then
-                -- if we have a low threat value, then go and defend an engineer or a base
-                if mySurfaceThreat < platoonThreatTable[platoonTechLevel]
-                    and mySurfaceThreat > 0 and not self.PlatoonData.NeverGuard
-                    and not (self.PlatoonData.NeverGuardEngineers and self.PlatoonData.NeverGuardBases) then
-                    --LOG('*DEBUG: Trying to guard')
-                    --if platoonTechLevel > 1 then
-                    --  return self:GuardExperimentalSorian(self.AttackForceAISorian)
-                    --else
-                        return self:GuardEngineer(self.AttackForceAISorian)
-                    --end
-                end
-
+            if table.getn(cmdQ) == 0 then
                 -- we have nothing to do, so find the nearest base and disband
                 if not self.PlatoonData.NeverMerge then
-                    return self:ReturnToBaseAISorian()
+				LOG('---------------------  nothing to do, returning to base')
+                    return self:ReturnToBaseAI()
                 end
                 WaitSeconds(5)
             else
                 -- wait a little longer if we're stuck so that we have a better chance to move
-                if quickReset then
-                    quickReset = false
-                    WaitSeconds(6)
-                else ]]--
-                WaitSeconds(Random(5,11) + 2 * stuckCount)
-                self:PlatoonDisband()
---              end
---            end
+                WaitSeconds(Random(2,41) + 4 * stuckCount)
+				LOG('---------------------  we are stuck, standing by:'..stuckCount)
+            end
+        end
+		LOG('---------------------  We have tried everything, its all over now')
+    end,
+	
+    HuntAISorianEdit = function(self)
+	
+        self:Stop()
+        local aiBrain = self:GetBrain()
+        local armyIndex = aiBrain:GetArmyIndex()
+        local target
+        local blip
+        local platoonUnits = self:GetPlatoonUnits()
+        local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
+		
+        self:SetPlatoonFormationOverride(PlatoonFormation)
+        while aiBrain:PlatoonExists(self) do
+            local mySurfaceThreat = AIAttackUtils.GetSurfaceThreatOfUnits(self)
+            local inWater = AIAttackUtils.InWaterCheck(self)
+            local pos = self:GetPlatoonPosition()
+            local threatatLocation = aiBrain:GetThreatAtPosition(pos, 1, true, 'AntiSurface')
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.AIR - categories.NAVAL - categories.SCOUT)
+            if target then
+                blip = target:GetBlip(armyIndex)
+                self:Stop()
+                if not inWater then
+                    IssueAggressiveMove(platoonUnits, target:GetPosition())
+                else
+                    IssueMove(platoonUnits, target:GetPosition())
+                end
+            end
+            WaitSeconds(10)
         end
     end,
 
+    AmphibiousHuntAISorianEdit = function(self)
+	
+        self:Stop()
+        local aiBrain = self:GetBrain()
+        local armyIndex = aiBrain:GetArmyIndex()
+        local target
+        local blip
+        local platoonUnits = self:GetPlatoonUnits()
+        local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
+		
+        self:SetPlatoonFormationOverride(PlatoonFormation)
+        while aiBrain:PlatoonExists(self) do
+            local mySurfaceThreat = AIAttackUtils.GetSurfaceThreatOfUnits(self)
+            local inWater = AIAttackUtils.InWaterCheck(self)
+            local pos = self:GetPlatoonPosition()
+            local threatatLocation = aiBrain:GetThreatAtPosition(pos, 1, true, 'AntiSurface')
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS + categories.NAVAL - categories.AIR - categories.SCOUT)
+            if target then
+                blip = target:GetBlip(armyIndex)
+                self:Stop()
+                if not inWater then
+                    IssueAggressiveMove(platoonUnits, target:GetPosition())
+                end
+            end
+            WaitSeconds(10)
+        end
+    end,
 }
 end

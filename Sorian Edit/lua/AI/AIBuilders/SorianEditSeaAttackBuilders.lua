@@ -114,6 +114,20 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT2SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
+        BuilderName = 'SorianEdit T2 Naval Destroyer Landattack',
+        PlatoonTemplate = 'T2SeaDestroyer',
+        Priority = 600,
+		InstanceCount = 2,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
+            { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+        },
+    },
+    Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
@@ -307,6 +321,32 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditSeaHunterFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'SorianEdit LandAttack T2 Destroyers',
+        PlatoonTemplate = 'SeaAttackLandSorianEdit',
+        --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
+        Priority = 10,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
+            { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            },
+        InstanceCount = 4,
+        BuilderType = 'Any',
+        BuilderData = {
+            ThreatSupport = 1200,
+            MarkerType = 'Start Location',
+            MoveFirst = 'Random',
+            LocationType = 'LocationType',
+            MoveNext = 'Random',
+            AvoidBases = false,
+            AvoidBasesRadius = 100,
+            UseFormation = 'None',
+            AggressiveMove = false,
+            AvoidClosestRadius = 50,
+        },
+    },
+	
     Builder {
         BuilderName = 'SorianEdit Sea Hunters T1',
         PlatoonTemplate = 'SeaHuntSorianEdit',

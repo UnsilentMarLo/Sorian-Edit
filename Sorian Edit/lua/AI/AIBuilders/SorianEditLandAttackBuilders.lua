@@ -82,6 +82,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2, FACTORY TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
+            { MIBC, 'CanPathToCurrentEnemy', { true } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
         },
@@ -99,6 +101,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'FACTORY TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
         },
@@ -117,6 +120,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
         },
@@ -134,6 +138,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
         },
         BuilderType = 'Land',
@@ -149,7 +154,8 @@ BuilderGroup {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'UnitCapCheckLess', { .6 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
         },
         BuilderType = 'Land',
@@ -169,6 +175,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -191,10 +198,11 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.ANTIAIR * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'LAND ANTIAIR MOBILE' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'LAND ANTIAIR MOBILE' } },
             --{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'ANTIAIR' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -207,11 +215,12 @@ BuilderGroup {
         BuilderConditions = {
             { TBC, 'HaveLessThreatThanNearby', { 'LocationType', 'AntiAir', 'Air' } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH1 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'LAND ANTIAIR MOBILE' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'LAND ANTIAIR MOBILE' } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -236,6 +245,7 @@ BuilderGroup {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2, FACTORY TECH3' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH1 } },
         },
         BuilderType = 'Land',
@@ -261,6 +271,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 1200 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     -- Tech 3 Priority
@@ -274,14 +285,16 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'LAND TECH2 MOBILE' } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     -- MML's, built in a ratio to directfire units
     Builder {
         BuilderName = 'SorianEdit T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 700,
+        Priority = 800,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
@@ -289,8 +302,9 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { UCBC, 'HaveUnitRatio', { 0.35, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INDIRECTFIRE * categories.LAND * categories.TECH2 * categories.MOBILE } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.INDIRECTFIRE * categories.LAND * categories.TECH2 * categories.MOBILE } },
 			{ UCBC, 'LessThanGameTimeSeconds', { 1200 } },
         },
     },
@@ -307,6 +321,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 1200 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     -- Tech 3 priority
@@ -319,8 +334,10 @@ BuilderGroup {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'LAND TECH2 MOBILE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     -- Tech 2 priority
@@ -332,25 +349,28 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, 'LAND TECH2 MOBILE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'LessThanGameTimeSeconds', { 1200 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T2MobileShields - T3 Factories',
         PlatoonTemplate = 'T2MobileShields',
-        Priority = 700,
+        Priority = 900,
         BuilderType = 'Land',
         BuilderConditions = {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY - categories.TECH1 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 4, 'LAND TECH2 MOBILE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitRatio', { 0.05, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
+            { UCBC, 'HaveUnitRatio', { 0.1, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
         },
     },
 }
@@ -373,6 +393,7 @@ BuilderGroup {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
 			{ UCBC, 'LessThanGameTimeSeconds', { 1200 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE - categories.TECH1 } },
         },
@@ -398,6 +419,7 @@ BuilderGroup {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'LAND ANTIAIR MOBILE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -413,6 +435,7 @@ BuilderGroup {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'LAND ANTIAIR MOBILE' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -433,14 +456,16 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
+            { UCBC, 'HaveUnitRatio', { 0.25, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 * categories.PRODUCTFA}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     Builder {
         BuilderName = 'SorianEdit T3ArmoredAssault',
-        PlatoonTemplate = 'T3ArmoredAssault',
+        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
         Priority = 950,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -449,6 +474,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     -- T3 Artilery
@@ -463,6 +489,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
         },
@@ -479,6 +506,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitRatio', { 0.3, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
         },
@@ -492,9 +520,11 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.ANTIAIR * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'LAND ANTIAIR MOBILE' } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
             --{ TBC, 'HaveLessThreatThanNearby', { 'LocationType', 'AntiAir', 'Air' } },
         },
         BuilderType = 'Land',
@@ -510,6 +540,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
     },
     Builder {
@@ -522,6 +553,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
             --{ TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 5, 'AntiSurface' } },
@@ -537,6 +569,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { UCBC, 'HaveUnitRatio', { 0.15, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
         },
@@ -561,6 +594,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 1.05 }},
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
         },
         BuilderType = 'Land',
     },
@@ -581,6 +615,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH3 } },
@@ -596,6 +631,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.LAND * categories.FACTORY * categories.TECH3 } },
             { MIBC, 'CanPathToCurrentEnemy', { true } },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 1000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.05 }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.DIRECTFIRE * categories.LAND * categories.MOBILE * categories.TECH3 } },
@@ -613,7 +649,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Unit Cap Default Land Attack',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         InstanceCount = 100,
@@ -639,7 +675,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T1',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 800,
         InstanceCount = 100,
@@ -665,7 +701,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T2',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 800,
         InstanceCount = 100,
@@ -692,7 +728,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit De-clutter Land Attack T3',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 800,
         InstanceCount = 100,
@@ -725,7 +761,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack Default',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         InstanceCount = 7,
@@ -748,7 +784,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack T2',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         InstanceCount = 5,
@@ -773,7 +809,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack T3',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         InstanceCount = 5,
@@ -806,7 +842,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1MassHuntersCategorySorianEdit',
         -- Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
         --PlatoonTemplate = 'EarlyGameMassHuntersCategory',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
@@ -818,7 +854,7 @@ BuilderGroup {
             ThreatSupport = 750,
             LocationType = 'LocationType',
             MarkerType = 'Mass',
-            MoveFirst = 'Random',
+            MoveFirst = 'Threat',
             MoveNext = 'Threat',
             ThreatType = 'Economy', 		    -- Type of threat to use for gauging attacks
             FindHighestThreat = false, 		-- Don't find high threat targets
@@ -839,7 +875,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Mass Hunter Mid Game',
         PlatoonTemplate = 'T2MassHuntersCategorySorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         BuilderConditions = {
@@ -851,7 +887,7 @@ BuilderGroup {
             ThreatSupport = 750,
             MarkerType = 'Mass',
             LocationType = 'LocationType',
-            MoveFirst = 'Random',
+            MoveFirst = 'Threat',
             MoveNext = 'Threat',
             ThreatType = 'Economy', 		    -- Type of threat to use for gauging attacks
             FindHighestThreat = false, 		-- Don't find high threat targets
@@ -875,7 +911,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Start Location Attack',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
@@ -906,7 +942,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Early Attacks Small',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
@@ -930,7 +966,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Early Attacks Medium',
         PlatoonTemplate = 'LandAttackSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
@@ -958,7 +994,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Threat Response Strikeforce',
         PlatoonTemplate = 'StrikeForceMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 0, --1500,
         BuilderConditions = {
@@ -991,7 +1027,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2/T3 Land Weak Enemy Response',
         --PlatoonTemplate = 'StrikeForceMediumSorianEdit',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
@@ -1035,7 +1071,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Land Weak Enemy Response',
         --PlatoonTemplate = 'StrikeForceMediumSorianEdit',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
@@ -1081,7 +1117,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol - Small Map',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
@@ -1113,7 +1149,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 925,
         BuilderConditions = {
@@ -1146,7 +1182,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Hunters',
         PlatoonTemplate = 'HuntAttackSmallSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         --Priority = 0,
@@ -1173,7 +1209,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Hunters',
         PlatoonTemplate = 'HuntAttackMediumSorianEdit',
-        PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         --Priority = 0,

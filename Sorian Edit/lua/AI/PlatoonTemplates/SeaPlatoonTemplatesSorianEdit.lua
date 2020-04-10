@@ -13,6 +13,14 @@ PlatoonTemplate {
     Plan = 'NavalForceAISorian',
     GlobalSquads = {
         { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 100, 'Attack', 'GrowthFormation' }
+    }
+}
+	
+PlatoonTemplate {
+    Name = 'SeaAttackLandSorianEdit',
+    Plan = 'StrikeForceAISorian',
+    GlobalSquads = {
+        { categories.MOBILE * categories.NAVAL * categories.DESTROYER * categories.TECH2, 2, 5, 'attack', 'none' }
     },
 }
 

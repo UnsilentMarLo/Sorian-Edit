@@ -21,6 +21,8 @@ BaseBuilderTemplate {
         'SorianEditEmergencyUpgradeBuilders',
         'SorianEditTime Exempt Extractor Upgrades Expansion',
         'SorianEditTime Exempt Extractor Upgrades - Rush',
+        'SorianEditSupportFactoryUpgrades',
+        'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',
@@ -217,8 +219,8 @@ BaseBuilderTemplate {
             SCU = 8,
         },
         FactoryCount = {
-            Land = 13,
-            Air = 7,
+            Land = 7,
+            Air = 4,
             Sea = 0,
             Gate = 2,
         },

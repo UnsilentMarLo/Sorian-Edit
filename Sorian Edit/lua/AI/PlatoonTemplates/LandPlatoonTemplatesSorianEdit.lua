@@ -1,6 +1,6 @@
 PlatoonTemplate {
     Name = 'LandAttackSorianEdit',
-    Plan = 'HuntAISorian',
+    Plan = 'HuntAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 2, 30, 'Attack', 'none' }
     },
@@ -8,14 +8,14 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'LandAttackMediumSorianEdit',
-    Plan = 'HuntAISorian',
+    Plan = 'HuntAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 3, 30, 'Attack', 'none' }
     },
 }
 PlatoonTemplate {
     Name = 'LandAttackLargeSorianEdit',
-    Plan = 'HuntAISorian',
+    Plan = 'HuntAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 20, 30, 'Attack', 'none' }
     },
@@ -30,7 +30,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'HuntAttackMediumSorianEdit',
-    Plan = 'HuntAISorian',
+    Plan = 'HuntAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 3, 30, 'Attack', 'none' }
     },
@@ -114,23 +114,23 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T1MassHuntersCategorySorianEdit',
-    #Plan = 'HuntAISorian',
+    --Plan = 'HuntAISorianEdit',
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
         { categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE * categories.BOT - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 30, 'attack', 'none' },
-        #{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 12, 'attack', 'none' },
+        --{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 12, 'attack', 'none' },
         { categories.LAND * categories.SCOUT, 0, 1, 'attack', 'none' },
     }
 }
 
 PlatoonTemplate {
     Name = 'T2MassHuntersCategorySorianEdit',
-    #Plan = 'HuntAISorian',
+    --Plan = 'HuntAISorianEdit',
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
-        #{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE * categories.BOT - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 30, 'attack', 'none' },
+        --{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE * categories.BOT - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 30, 'attack', 'none' },
         { categories.LAND * categories.MOBILE * categories.DIRECTFIRE * categories.BOT - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 30, 'attack', 'none' },
-        #{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 22, 'attack', 'none' },
+        --{ categories.TECH1 * categories.LAND * categories.MOBILE * categories.DIRECTFIRE - categories.SCOUT - categories.ENGINEER - categories.EXPERIMENTAL, 3, 22, 'attack', 'none' },
         { categories.LAND * categories.SCOUT, 0, 1, 'attack', 'none' },
     }
 }
@@ -160,6 +160,24 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'T3ArmoredAssaultSorianEdit',
+    FactionSquads = {
+        UEF = {
+            { 'xel0305', 1, 1, 'attack', 'none' }, --DUNCAN - fixed typo
+        },
+        Aeon = {
+            { 'ual0303', 1, 1, 'attack', 'none' },
+        },
+        Cybran = {
+            { 'xrl0305', 1, 1, 'attack', 'none' },
+        },
+        Seraphim = {
+            { 'xsl0303', 1, 1, 'attack', 'none' },
+        },
+    }
+}
+
+PlatoonTemplate {
     Name = 'T2AttackTankSorianEdit',
     FactionSquads = {
         UEF = {
@@ -172,16 +190,4 @@ PlatoonTemplate {
             { 'drl0204', 1, 1, 'attack', 'None' },
         },
     },
-}
-
-PlatoonTemplate {
-    Name = 'T3ArmoredAssaultSorianEdit',
-    FactionSquads = {
-        UEF = {
-            { 'xel0302', 1, 1, 'attack', 'none' },
-        },
-        Cybran = {
-            { 'xrl0302', 1, 1, 'attack', 'none' },
-        },
-    }
 }

@@ -32,7 +32,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Naval Builder Fast - initial',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 985,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -71,7 +71,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Naval Builder Fast',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -112,7 +112,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Builder Fast',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -152,7 +152,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Naval Builder Fast',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -198,7 +198,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Naval Builder',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -237,7 +237,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Builder',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -276,7 +276,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Naval Builder',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
@@ -302,6 +302,10 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                 'T2NavalDefense',
+                'T2NavalDefense',
+                'T2NavalDefense',
+                'T3AADefense',
+                'T3AADefense',
                 'T3AADefense',
                 'T2Sonar',
                 }
@@ -317,7 +321,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Naval Factory Builder',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 905,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
@@ -334,6 +338,9 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                'T1NavalDefense',
+                'T1NavalDefense',
+                'T1AADefense',
                 },
             },
         },
@@ -342,7 +349,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Factory Builder',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 905,
-        InstanceCount = 2,
+        InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
@@ -359,6 +366,9 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                'T1NavalDefense',
+                'T1NavalDefense',
+                'T1AADefense',
                 },
             },
         },
@@ -381,6 +391,9 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1SeaFactory',
+                'T1NavalDefense',
+                'T1NavalDefense',
+                'T1AADefense',
                 },
             },
         },
