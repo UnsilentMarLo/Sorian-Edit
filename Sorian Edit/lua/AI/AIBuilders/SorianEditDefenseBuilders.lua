@@ -724,11 +724,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Base D Engineer - Perimeter',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
+        DelayEqualBuildPlattons = {'DefenseBuildings', 4},
         Priority = 930,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.DEFENSE * categories.TECH2 * categories.STRUCTURE}},
             --{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH3'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY TECH3' }},
+            { UCBC, 'CheckBuildPlattonDelay', { 'DefenseBuildings' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.45}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},

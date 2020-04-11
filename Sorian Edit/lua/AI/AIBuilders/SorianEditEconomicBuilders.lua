@@ -1357,9 +1357,11 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         InstanceCount = 4,
+        DelayEqualBuildPlattons = {'CheapEnergyBuilding', 4},
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'FACTORY TECH1', 100, 'UEB1101' } },
+            --{ UCBC, 'AdjacencyCheck', { 'LocationType', 'FACTORY TECH1', 100, 'UEB1101' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'CheapEnergyBuilding' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1418,13 +1420,15 @@ BuilderGroup {
     --    }
     --},
     Builder {
-        BuilderName = 'Sorian T1 Engineer Assist Engineer',
+        BuilderName = 'SorianEdit T1 Engineer Assist Engineer',
         PlatoonTemplate = 'EngineerAssistSorian',
         Priority = 500,
+        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
         InstanceCount = 50,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ALLUNITS' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'EngineerAssistDelays' }},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderType = 'Any',
@@ -1795,11 +1799,13 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Engineer',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 500,
+
         InstanceCount = 50,
         BuilderType = 'Any',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ALLUNITS' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'EngineerAssistDelays' }},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderData = {
@@ -2081,6 +2087,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Assist Engineer',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
+        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
         Priority = 700,
         InstanceCount = 20,
         BuilderConditions = {
