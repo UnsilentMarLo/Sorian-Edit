@@ -177,6 +177,22 @@ BaseBuilderTemplate {
         'SorianEditEnemyTurtle - Out of Range',
         'SorianEdit Excess Mass Strategy', 
 
+        -- ===== Intel ===== --
+		
+        'SorianEditLandScoutFactoryBuilders',
+        'SorianEditLandScoutFormBuilders',
+
+        'SorianEditAirScoutFactoryBuilders',
+        'SorianEditAirScoutFormBuilders',
+		
+        'SorianEditRadarEngineerBuilders',
+        'SorianEditRadarUpgradeBuildersMain',
+		
+        'SorianEditSonarEngineerBuilders',
+        'SorianEditSonarUpgradeBuilders',
+		
+        'SorianEditCounterIntelBuilders',
+		
         -- ===== Strategy Platoons ===== --
         'SorianEditT1BomberHighPrio',
         'SorianEditT2BomberHighPrio',
@@ -200,22 +216,12 @@ BaseBuilderTemplate {
         'SorianEditExcessMassBuilders',
     },
     NonCheatBuilders = {
-        'SorianEditAirScoutFactoryBuilders',
-        'SorianEditAirScoutFormBuilders',
-
-        'SorianEditLandScoutFactoryBuilders',
-        'SorianEditLandScoutFormBuilders',
-
-        'SorianEditRadarEngineerBuilders',
-        'SorianEditRadarUpgradeBuildersMain',
-
-        'SorianEditCounterIntelBuilders',
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 15,
-            Tech2 = 20,
-            Tech3 = 35, --30,
+            Tech1 = 10,
+            Tech2 = 15,
+            Tech3 = 25, --30,
             SCU = 8,
         },
         FactoryCount = {

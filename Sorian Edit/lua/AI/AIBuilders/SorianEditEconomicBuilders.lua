@@ -1334,9 +1334,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Energy Storage Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = -1,
+        Priority = 1200,
         BuilderConditions = {
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYSTORAGE } },
+            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 4, 'ENERGYPRODUCTION TECH1' }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
         },
@@ -1488,7 +1489,7 @@ BuilderGroup {
     --    PlatoonTemplate = 'EngineerAssistSorian',
     --    Priority = 900,
     --    BuilderConditions = {
-    --        { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'PRODUCTSORIAN' }},
+    --        { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION' }},
     --        --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
     --        { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.4 }},
     --    },
@@ -1498,7 +1499,7 @@ BuilderGroup {
     --        Assist = {
     --            AssistLocation = 'LocationType',
     --            PermanentAssist = false,
-    --            BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2', 'PRODUCTSORIAN'},
+    --            BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2', 'ENERGYPRODUCTION'},
     --            AssisteeType = 'Engineer',
     --            Time = 60,
     --        },
@@ -2100,7 +2101,7 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 PermanentAssist = false,
-                BeingBuiltCategories = { 'SHIELD STRUCTURE', 'DEFENSE ANTIAIR', 'DEFENSE DIRECTFIRE', 'DEFENSE ANTINAVY', 'PRODUCTSORIAN',
+                BeingBuiltCategories = { 'SHIELD STRUCTURE', 'DEFENSE ANTIAIR', 'DEFENSE DIRECTFIRE', 'DEFENSE ANTINAVY', 'ENERGYPRODUCTION',
                                         'EXPERIMENTAL', 'ALLUNITS', },
                 AssisteeType = 'Engineer',
                 Time = 60,
@@ -3251,7 +3252,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1200,
         BuilderConditions = {
-                { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'PRODUCTSORIAN' } },
+                { UCBC, 'UnitsLessAtLocation', { 'LocationType', 10, 'ENERGYPRODUCTION' } },
                 --{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
             },
         InstanceCount = 2,

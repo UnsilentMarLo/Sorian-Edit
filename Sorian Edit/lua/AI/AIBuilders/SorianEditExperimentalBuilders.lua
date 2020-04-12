@@ -102,7 +102,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -133,7 +135,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -165,7 +169,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -200,7 +206,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1050,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -232,7 +240,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1050,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -264,7 +274,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1',
         PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 1050,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -297,7 +309,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - Large Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -329,7 +343,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 - Large Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -363,7 +379,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1 - Large Map',
         PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -395,6 +413,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Land',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
+        InstanceCount = 2,
         InstanceCount = 12,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
@@ -459,7 +478,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
     },
     Builder {
@@ -482,7 +501,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
     },
     Builder {
@@ -505,7 +524,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
     },
 }
@@ -518,7 +537,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -549,7 +570,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Small Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -579,8 +602,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Air',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
+        InstanceCount = 2,
         InstanceCount = 5,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -601,8 +626,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Air',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
+        InstanceCount = 2,
         InstanceCount = 5,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
@@ -629,6 +656,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 800,
+        InstanceCount = 2,
         InstanceCount = 3,
         FormRadius = 450,
         BuilderType = 'Any',
@@ -644,7 +672,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'PRODUCTSORIAN', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'ENERGYPRODUCTION', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
         },
     },
     Builder {
@@ -652,6 +680,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 800,
+        InstanceCount = 2,
         InstanceCount = 3,
         FormRadius = 450,
         BuilderType = 'Any',
@@ -667,7 +696,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'PRODUCTSORIAN', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'ENERGYPRODUCTION', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
         },
     },
 }
@@ -679,7 +708,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T4 Sea Exp1 Engineer',
         PlatoonTemplate = 'T3EngineerBuilder',
         Priority = 949,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
@@ -711,6 +742,7 @@ BuilderGroup {
         Priority = 799,
         InstanceCount = 5,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
@@ -782,7 +814,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Satellite Exp Engineer',
         PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 950,
+        InstanceCount = 2,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
@@ -860,6 +894,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4SatelliteExperimentalSorianEdit',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 800,
+        InstanceCount = 2,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
@@ -882,6 +917,7 @@ BuilderGroup {
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'EXPERIMENTAL' } },
         { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
         --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
