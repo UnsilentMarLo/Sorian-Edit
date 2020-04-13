@@ -33,7 +33,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirScout',
         Priority = 1600, --700,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.FACTORY }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.TECH2 * categories.FACTORY }},
             { SBC, 'LessThanGameTime', { 500 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 8, 'SCOUT AIR, SCOUT AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
@@ -53,8 +53,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Scout - Lower Pri',
         PlatoonTemplate = 'T1AirScout',
-        Priority = 1000, --500,
+        Priority = 600, --500,
         BuilderConditions = {
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 13, 'SCOUT AIR, SCOUT AIR TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.SCOUT}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.FACTORY * categories.AIR } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
@@ -76,13 +77,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Scout - Lower Pri',
         PlatoonTemplate = 'T2AirScout',
-        Priority = 1000, --500,
+        Priority = 800, --500,
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.SCOUT}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.FACTORY * categories.AIR } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH2 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 13, 'SCOUT AIR, SCOUT AIR TECH3' }},
         },
         BuilderType = 'Air',
     },
@@ -93,6 +95,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 2, [512] = 4, [1024] = 6, [2048] = 8, [4096] = 8}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.SCOUT * categories.AIR } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
         },
         BuilderType = 'Air',
@@ -100,10 +103,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Air Scout - Lower Pri',
         PlatoonTemplate = 'T3AirScout',
-        Priority = 1800, --700,
+        Priority = 1600, --700,
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.SCOUT * categories.AIR } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
         },
         BuilderType = 'Air',
