@@ -219,25 +219,8 @@ Platoon = Class(OldPlatoonClass) {
         local blip
         local platoonUnits = self:GetPlatoonUnits()
         local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
-
-        self:SetPlatoonFormationOverride(PlatoonFormation)
-
-        if platoonUnits > 0 then
-            for k, v in platoonUnits do
-                if not v.Dead then
-                    if v:TestToggleCaps('RULEUTC_StealthToggle') then
-                        v:SetScriptBit('RULEUTC_StealthToggle', false)
-                    end
-                    if v:TestToggleCaps('RULEUTC_CloakToggle') then
-                        v:SetScriptBit('RULEUTC_CloakToggle', false)
-                    end
-                    -- prevent units from reclaiming while attack moving
-                    v:RemoveCommandCap('RULEUCC_Reclaim')
-                    v:RemoveCommandCap('RULEUCC_Repair')
-                end
-            end
-        end
 		
+        self:SetPlatoonFormationOverride(PlatoonFormation)
         while aiBrain:PlatoonExists(self) do
             local mySurfaceThreat = AIAttackUtils.GetSurfaceThreatOfUnits(self)
             local inWater = AIAttackUtils.InWaterCheck(self)
@@ -266,25 +249,8 @@ Platoon = Class(OldPlatoonClass) {
         local blip
         local platoonUnits = self:GetPlatoonUnits()
         local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
-
+		
         self:SetPlatoonFormationOverride(PlatoonFormation)
-
-        if platoonUnits > 0 then
-            for k, v in platoonUnits do
-                if not v.Dead then
-                    if v:TestToggleCaps('RULEUTC_StealthToggle') then
-                        v:SetScriptBit('RULEUTC_StealthToggle', false)
-                    end
-                    if v:TestToggleCaps('RULEUTC_CloakToggle') then
-                        v:SetScriptBit('RULEUTC_CloakToggle', false)
-                    end
-                    -- prevent units from reclaiming while attack moving
-                    v:RemoveCommandCap('RULEUCC_Reclaim')
-                    v:RemoveCommandCap('RULEUCC_Repair')
-                end
-            end
-        end
-        
         while aiBrain:PlatoonExists(self) do
             local mySurfaceThreat = AIAttackUtils.GetSurfaceThreatOfUnits(self)
             local inWater = AIAttackUtils.InWaterCheck(self)

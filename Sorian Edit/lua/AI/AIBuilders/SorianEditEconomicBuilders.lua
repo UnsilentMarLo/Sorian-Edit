@@ -1334,10 +1334,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Energy Storage Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 1200,
+        Priority = -1,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYSTORAGE } },
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 4, 'PRODUCTSORIAN' }},
+            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
         },
@@ -1358,9 +1357,11 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         InstanceCount = 4,
+        DelayEqualBuildPlattons = {'CheapEnergyBuilding', 4},
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'FACTORY TECH1', 100, 'UEB1101' } },
+            --{ UCBC, 'AdjacencyCheck', { 'LocationType', 'FACTORY TECH1', 100, 'UEB1101' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'CheapEnergyBuilding' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1422,10 +1423,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Engineer Assist Engineer',
         PlatoonTemplate = 'EngineerAssistSorian',
         Priority = 500,
+        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
         InstanceCount = 50,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ALLUNITS' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'EngineerAssistDelays' }},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderType = 'Any',
@@ -1485,7 +1488,7 @@ BuilderGroup {
     --    PlatoonTemplate = 'EngineerAssistSorian',
     --    Priority = 900,
     --    BuilderConditions = {
-    --        { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ENERGYPRODUCTION' }},
+    --        { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'PRODUCTSORIAN' }},
     --        --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
     --        { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.4 }},
     --    },
@@ -1495,7 +1498,7 @@ BuilderGroup {
     --        Assist = {
     --            AssistLocation = 'LocationType',
     --            PermanentAssist = false,
-    --            BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2', 'ENERGYPRODUCTION'},
+    --            BeingBuiltCategories = {'ENERGYPRODUCTION TECH3', 'ENERGYPRODUCTION TECH2', 'PRODUCTSORIAN'},
     --            AssisteeType = 'Engineer',
     --            Time = 60,
     --        },
@@ -1796,11 +1799,13 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Engineer',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 500,
+
         InstanceCount = 50,
         BuilderType = 'Any',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ALLUNITS' } },
+            { UCBC, 'CheckBuildPlattonDelay', { 'EngineerAssistDelays' }},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
         BuilderData = {
@@ -2082,6 +2087,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Assist Engineer',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
+        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
         Priority = 700,
         InstanceCount = 20,
         BuilderConditions = {
@@ -2094,8 +2100,8 @@ BuilderGroup {
             Assist = {
                 AssistLocation = 'LocationType',
                 PermanentAssist = false,
-                BeingBuiltCategories = { 'SHIELD STRUCTURE', 'DEFENSE ANTIAIR', 'DEFENSE DIRECTFIRE', 'DEFENSE ANTINAVY', 'ENERGYPRODUCTION',
-                'EXPERIMENTAL', 'ALLUNITS', },
+                BeingBuiltCategories = { 'SHIELD STRUCTURE', 'DEFENSE ANTIAIR', 'DEFENSE DIRECTFIRE', 'DEFENSE ANTINAVY', 'PRODUCTSORIAN',
+                                        'EXPERIMENTAL', 'ALLUNITS', },
                 AssisteeType = 'Engineer',
                 Time = 60,
             },

@@ -70,7 +70,6 @@ BuilderGroup {
 	BuilderName = 'SorianEditT1 Air Bomber Land spam reaction',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1300,
-		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.ANTIAIR} },
@@ -112,7 +111,7 @@ BuilderGroup {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 30, 'BOMBER TECH1' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, 'BOMBER TECH1' }},
         },
     },
     Builder {
@@ -125,7 +124,7 @@ BuilderGroup {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 40, 'BOMBER TECH1' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, 'BOMBER TECH1' }},
         },
     },
     Builder {
@@ -148,7 +147,7 @@ BuilderGroup {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR} },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.GROUNDATTACK }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, 'GROUNDATTACK TECH1' }},
         },
     },
     Builder {
@@ -177,23 +176,22 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Fighter2',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 800,
+        Priority = 1100,
 		InstanceCount = 2,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT1 Air Bomber 2',
         PlatoonTemplate = 'T1AirBomber',
-        Priority = 900,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -277,31 +275,32 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber init2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 2500,
+        Priority = 1500,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 1600,
+        Priority = 900,
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.GROUNDATTACK * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 1500,
+        Priority = 800,
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -315,7 +314,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Stomp Enemy',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1600,
+        Priority = 900,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -328,23 +327,23 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1700,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2FighterBomber Init',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 2400,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -361,7 +360,7 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
@@ -369,7 +368,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship2',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 1300,
+        Priority = 800,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -382,7 +381,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1400,
+        Priority = 900,
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -396,7 +395,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1700,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -411,7 +410,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response 2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1600,
+        Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -426,7 +425,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Torpedo Bomber',
         PlatoonTemplate = 'T2AirTorpedoBomber',
-        Priority = 1600,
+        Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -445,47 +444,47 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes Initial Higher Pri',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1800,
+        Priority = 700,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY TECH3' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1700,
+        Priority = 700,
         BuilderConditions = {
             { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.ANTIAIR * categories.TECH1, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1700, --660,
+        Priority = 700, --660,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1700, --660,
+        Priority = 700, --660,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -501,7 +500,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter init',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3800,
+        Priority = 1800,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
@@ -514,7 +513,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter spam',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3500,
+        Priority = 1500,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
@@ -528,7 +527,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 3400,
+        Priority = 1400,
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -539,7 +538,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 3400,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -551,7 +550,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 3700,
+        Priority = 1700,
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -565,7 +564,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Exp Response',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 3300,
+        Priority = 1300,
         InstanceCount = 4,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -580,7 +579,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 3400,
+        Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -593,7 +592,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship2',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 3300,
+        Priority = 1300,
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -605,7 +604,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber2',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 3300,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -616,7 +615,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3500,
+        Priority = 1500,
         InstanceCount = 4,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -629,7 +628,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Torpedo Bomber',
         PlatoonTemplate = 'T3TorpedoBomber',
-        Priority = 3300,
+        Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -646,7 +645,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes Initial',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3600,
+        Priority = 1600,
         InstanceCount = 2,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -659,7 +658,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3000,
+        Priority = 1000,
         BuilderConditions = {
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -672,7 +671,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3700, --760,
+        Priority = 700, --760,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 											   
@@ -688,7 +687,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 3700, --760,
+        Priority = 700, --760,
         BuilderConditions = {
 
 											   
@@ -707,14 +706,17 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Exp Response',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 4000,
+        Priority = 1000,
         BuilderConditions = {
+																								  
+																																						 
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
+																		  
             { UCBC, 'UnitCapCheckLess', { .9 } },
         },
         BuilderType = 'Air',
@@ -727,16 +729,19 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport - Rush',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1600,
+        Priority = 600,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
+																																					
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
+																											  
+																							  
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
         BuilderType = 'Air',
@@ -744,15 +749,17 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport - Rush',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2700,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 5, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+																																									   
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+												
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -763,14 +770,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport - Rush',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3900,
+        Priority = 900,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
 																																									   
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -782,7 +789,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - Rush',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1600,
+        Priority = 600,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -798,7 +805,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport Default - Rush',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2700,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -815,7 +822,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport Default - Rush',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3800,
+        Priority = 800,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -836,29 +843,33 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport - Air',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1558,
+        Priority = 558,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
+																																					
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
+																											  
+																							  
+																		
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Transport - Air',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2658,
+        Priority = 658,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -871,13 +882,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport - Air',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3758,
+        Priority = 758,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
@@ -889,7 +900,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - Air - init',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1701,
+        Priority = 701,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
@@ -904,7 +915,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - Air',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1500,
+        Priority = 500,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -917,7 +928,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport Default - Air',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2600,
+        Priority = 600,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -930,7 +941,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport Default - Air',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3700,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -949,18 +960,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1558,
+        Priority = 558,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK)} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 6, 'TRANSPORTFOCUS' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
         BuilderType = 'Air',
@@ -968,18 +979,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2658,
+        Priority = 658,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.TECH1} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 8, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 8, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
         BuilderType = 'Air',
@@ -987,13 +998,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3758,
+        Priority = 758,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
@@ -1005,7 +1016,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - init',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1701,
+        Priority = 701,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
@@ -1020,7 +1031,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1500,
+        Priority = 500,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -1033,7 +1044,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport Default',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2600,
+        Priority = 600,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
@@ -1046,7 +1057,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport Default',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3700,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -1060,41 +1071,41 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport HighNeed',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 1700,
+        Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
             { MIBC, 'TransportNeedGreater', { 7 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' } },
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Transport HighNeed',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 2800,
+        Priority = 800,
         BuilderConditions = {
             { MIBC, 'TransportNeedGreater', { 7 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY TECH3' } },
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Transport HighNeed',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 3900,
+        Priority = 900,
         BuilderConditions = {
             { MIBC, 'TransportNeedGreater', { 7 } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},

@@ -13,9 +13,6 @@ local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
 local Utils = import('/lua/utilities.lua')
 local SUtils = import('/mods/Sorian edit/lua/AI/sorianeditutilities.lua')
 
-local BASEPOSTITIONS = {}
-local mapSizeX, mapSizeZ = GetMapSize()
-
 function DefensivePointNeedsStructure(aiBrain, locationType, locationRadius, category, markerRadius, unitMax, threatMin, threatMax, threatRings, threatType)
     local pos, name = AIUtils.AIFindDefensivePointNeedsStructureSorian(aiBrain, locationType, locationRadius, category, markerRadius, unitMax, threatMin, threatMax, threatRings, threatType)
     if pos then

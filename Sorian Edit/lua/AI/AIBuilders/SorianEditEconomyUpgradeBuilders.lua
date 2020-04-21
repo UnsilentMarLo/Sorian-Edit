@@ -1226,9 +1226,7 @@ BuilderGroup {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-            -- Have we the eco to build it ?
             { EBC, 'GreaterThanEconStorageRatio', { 0.20, 0.50 } },
-            -- When do we want to build this ?
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.LAND - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -1346,7 +1344,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Navy Support Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 750,
+        Priority = 950,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9503', 'zab9503', 'zrb9503', 'zsb9503', 'znb9503' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
