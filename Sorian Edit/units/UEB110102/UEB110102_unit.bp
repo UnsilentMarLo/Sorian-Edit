@@ -84,12 +84,12 @@ UnitBlueprint {
         UniformScale = 0.04,
     },
     Economy = {
-        AdjacentStructureEnergyMod = -2,
+        AdjacentStructureEnergyMod = -20,
         BuildCostEnergy = 750,
         BuildCostMass = 75,
         BuildTime = 125,
-        ProductionPerSecondEnergy = 200,
-        ProductionPerSecondMass = 8,
+        ProductionPerSecondEnergy =100,
+        ProductionPerSecondMass = 4,
         RebuildBonusIds = {
             'ueb1101',
         },
