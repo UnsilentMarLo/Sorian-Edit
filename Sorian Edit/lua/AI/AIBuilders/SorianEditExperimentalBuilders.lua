@@ -102,14 +102,16 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
+        DelayEqualBuildPlattons = {'Experimental', 20},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -130,48 +132,18 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 Group',
-        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 1100,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 6,
-			NumAssistees = 25,
-            Construction = {
-                DesiresAssist = true,
-                BuildClose = false,
-                --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                --NearMarkerType = 'Rally Point',
-                BuildStructures = {
-                    'T4LandExperimental2',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    Builder {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1100,
+        DelayEqualBuildPlattons = {'Experimental', 20},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
             { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -195,109 +167,14 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditMobileLandExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
-    --Land T4 builders for 10x10 and smaller maps
-    Builder {
-        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1',
-        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 1050,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 6,
-			NumAssistees = 25,
-            Construction = {
-                DesiresAssist = true,
-                BuildClose = false,
-                --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                --NearMarkerType = 'Rally Point',
-                BuildStructures = {
-                    'T4LandExperimental1',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1',
-        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 1050,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            --{ SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
-            { MIBC, 'FactionIndex', {1, 2, 4} },
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 6,
-			NumAssistees = 25,
-            Construction = {
-                DesiresAssist = true,
-                BuildClose = false,
-                --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                --NearMarkerType = 'Rally Point',
-                BuildStructures = {
-                    'T4LandExperimental2',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1',
-        PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
-        Priority = 1050,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            MinNumAssistees = 6,
-			NumAssistees = 25,
-            Construction = {
-                DesiresAssist = true,
-                BuildClose = false,
-                --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                --NearMarkerType = 'Rally Point',
-                BuildStructures = {
-                    'T4LandExperimental3',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
     --Land T4 builders for 20x20 and larger maps
     Builder {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - Large Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
+        DelayEqualBuildPlattons = {'Experimental', 20},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -305,7 +182,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -319,7 +196,7 @@ BuilderGroup {
                 BaseTemplate = ExBaseTmpl,
                 --NearMarkerType = 'Rally Point',
                 BuildStructures = {
-                    'T4LandExperimental1',
+                    'T4LandExperimental4',
                 },
                 Location = 'LocationType',
             }
@@ -329,7 +206,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 - Large Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
+        DelayEqualBuildPlattons = {'Experimental', 20},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -338,7 +217,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             { MIBC, 'FactionIndex', {1, 2, 4} },
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
@@ -363,7 +242,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1 - Large Map',
         PlatoonTemplate = 'CybranT3EngineerBuilderSorianEdit',
         Priority = 950,
+        DelayEqualBuildPlattons = {'Experimental', 20},
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -371,7 +252,7 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -391,6 +272,11 @@ BuilderGroup {
             }
         }
     },
+	
+	
+	
+	
+	
     Builder {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Land',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
@@ -436,6 +322,9 @@ BuilderGroup {
     },
 }
 
+
+
+
 BuilderGroup {
     BuilderGroupName = 'SorianEditMobileLandExperimentalForm',
     BuildersType = 'PlatoonFormBuilder',
@@ -448,7 +337,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Any',
         BuilderConditions = {
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
+            --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2000, 'FACTORY TECH1, FACTORY TECH2' } },
             --{ T4LandAttackCondition, { 'LocationType', 250 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -471,7 +360,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderType = 'Any',
         BuilderConditions = {
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
+            --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2000, 'FACTORY TECH1, FACTORY TECH2' } },
             ----{ T4LandAttackCondition, { 'LocationType', 250 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -494,7 +383,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Any',
         BuilderConditions = {
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
+            --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2000, 'FACTORY TECH1, FACTORY TECH2' } },
             { UCBC, 'UnitCapCheckGreater', { .95 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -525,7 +414,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -556,7 +445,7 @@ BuilderGroup {
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -633,7 +522,7 @@ BuilderGroup {
         FormRadius = 450,
         BuilderType = 'Any',
         BuilderConditions = {
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
+            --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2000, 'FACTORY TECH1, FACTORY TECH2' } },
             --{ T4LandAttackCondition, { 'LocationType', 250 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -656,7 +545,7 @@ BuilderGroup {
         FormRadius = 450,
         BuilderType = 'Any',
         BuilderConditions = {
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
+            --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2000, 'FACTORY TECH1, FACTORY TECH2' } },
             { UCBC, 'UnitCapCheckGreater', { .95 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
@@ -683,10 +572,10 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.EXPERIMENTAL * categories.NAVAL}},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.EXPERIMENTAL * categories.NAVAL}},
             { MABC, 'MarkerLessThanDistance',  { 'Naval Area', 400}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -789,7 +678,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
             { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
@@ -888,7 +777,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SIBC, 'T4BuildingCheck', {} },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',

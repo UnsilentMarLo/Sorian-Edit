@@ -203,7 +203,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 700,
+        Priority = 600,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -218,7 +218,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 700,
+        Priority = 600,
 		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -237,7 +237,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -251,7 +251,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -264,7 +264,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -290,7 +290,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
-        Priority = 700,
+        Priority = 900,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -304,7 +304,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {

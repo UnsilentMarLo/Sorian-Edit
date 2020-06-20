@@ -118,8 +118,8 @@ UnitBlueprint {
         BuildCostEnergy = 750,
         BuildCostMass = 75,
         BuildTime = 125,
-        ProductionPerSecondEnergy =100,
-        ProductionPerSecondMass = 4,
+        ProductionPerSecondEnergy = 200,
+        ProductionPerSecondMass = 6,
         RebuildBonusIds = {
             'uab1101',
         },

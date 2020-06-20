@@ -19,7 +19,6 @@ BaseBuilderTemplate {
         'SorianEditT2FastUpgradeBuildersExpansion',
         'SorianEditT1RushUpgradeBuilders',
         'SorianEditEmergencyUpgradeBuilders',
-        'SorianEditTime Exempt Extractor Upgrades Expansion',
         'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgradesNAVY',
@@ -63,6 +62,7 @@ BaseBuilderTemplate {
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFulldrop',
         'SorianEditEngineerFirebaseBuilders',
 
 
@@ -213,14 +213,14 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 15,
+            Tech1 = 10,
             Tech2 = 20,
             Tech3 = 35, --30,
             SCU = 8,
         },
         FactoryCount = {
             Land = 7,
-            Air = 4,
+            Air = 6,
             Sea = 0,
             Gate = 2,
         },

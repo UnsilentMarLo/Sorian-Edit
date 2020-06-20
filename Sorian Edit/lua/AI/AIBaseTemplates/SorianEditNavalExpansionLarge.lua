@@ -37,6 +37,7 @@ BaseBuilderTemplate {
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFulldrop',
 
         -- ==== DEFENSES ==== --
         'SorianEditT1NavalDefenses',
@@ -76,7 +77,7 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 15,
+            Tech1 = 10,
             Tech2 = 9,
             Tech3 = 6,
             SCU = 0,

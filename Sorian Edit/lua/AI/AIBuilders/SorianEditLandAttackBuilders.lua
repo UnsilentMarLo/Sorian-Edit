@@ -465,7 +465,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T3ArmoredAssault',
-        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
+        PlatoonTemplate = 'T3ArmoredAssault',
         Priority = 950,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -608,7 +608,7 @@ BuilderGroup {
     BuildersType = 'FactoryBuilder',
     Builder {
         BuilderName = 'SorianEdit T3 Assault Enemy Nearby',
-        PlatoonTemplate = 'T3ArmoredAssaultSorianEdit',
+        PlatoonTemplate = 'T3ArmoredAssault',
         Priority = 945,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },

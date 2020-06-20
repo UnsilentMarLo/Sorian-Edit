@@ -731,9 +731,9 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirTransport',
         Priority = 600,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            --{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
 																																					
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
@@ -752,9 +752,9 @@ BuilderGroup {
         Priority = 700,
 		InstanceCount = 2,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            --{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
 																																									   
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -772,9 +772,9 @@ BuilderGroup {
         PlatoonTemplate = 'T3AirTransport',
         Priority = 900,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            --{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
 																																									   
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -792,9 +792,9 @@ BuilderGroup {
         Priority = 600,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            --{ SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            ----{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -809,9 +809,9 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            --{ SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            ----{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -825,9 +825,9 @@ BuilderGroup {
         Priority = 800,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            --{ SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            ----{ SBC, 'IsWaterMap', { true } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -843,10 +843,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport - Air',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 558,
+        Priority = 700,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
 																																					
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
@@ -864,10 +864,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport - Air',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 658,
+        Priority = 700,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
@@ -882,10 +882,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport - Air',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 758,
+        Priority = 700,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -900,13 +900,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - Air - init',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 701,
+        Priority = 700,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            --{ MIBC, 'ArmyNeedsTransports', {} },
+            ----{ MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             --{ IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -915,11 +915,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - Air',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 500,
+        Priority = 700,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -928,11 +928,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport Default - Air',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 600,
+        Priority = 700,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -945,8 +945,8 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -960,10 +960,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 558,
+        Priority = 1400,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 6, 'TRANSPORTFOCUS' } },
@@ -979,10 +979,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 658,
+        Priority = 1900,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.TECH1} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 8, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -998,10 +998,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 758,
+        Priority = 2400,
         BuilderConditions = {
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -1016,13 +1016,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default - init',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 701,
+        Priority = 1400,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            --{ MIBC, 'ArmyNeedsTransports', {} },
+            ----{ MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             --{ IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1031,11 +1031,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport Default',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 500,
+        Priority = 1400,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1044,11 +1044,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport Default',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 600,
+        Priority = 1900,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1057,12 +1057,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport Default',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 700,
+        Priority = 2400,
 		InstanceCount = 2,
         BuilderConditions = {
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH3' } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1071,10 +1071,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport HighNeed',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 700,
+        Priority = 1400,
 		InstanceCount = 2,
         BuilderConditions = {
-            { MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'TransportNeedGreater', { 7 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
@@ -1087,9 +1087,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Transport HighNeed',
         PlatoonTemplate = 'T2AirTransport',
-        Priority = 800,
+        Priority = 1900,
         BuilderConditions = {
-            { MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'TransportNeedGreater', { 7 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -1102,9 +1102,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Transport HighNeed',
         PlatoonTemplate = 'T3AirTransport',
-        Priority = 900,
+        Priority = 2400,
         BuilderConditions = {
-            { MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'TransportNeedGreater', { 7 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },

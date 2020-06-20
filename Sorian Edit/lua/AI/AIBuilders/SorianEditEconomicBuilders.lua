@@ -49,7 +49,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 825, --800,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 35, 'ENGINEER TECH1' }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 15, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'ENGINEER TECH1' } },
@@ -80,7 +80,7 @@ BuilderGroup {
         Priority = 1400,
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 250 }},
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 25, 'ENGINEER TECH1' }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 10, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 5, 'ENGINEER TECH1' } },
         },
