@@ -36,7 +36,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 900,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 15, 'ENGINEER TECH1' }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 20, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'ENGINEER TECH1' } },
@@ -49,7 +49,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 825, --800,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 15, 'ENGINEER TECH1' }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 20, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH3' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY TECH3' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'ENGINEER TECH1' } },
@@ -80,7 +80,7 @@ BuilderGroup {
         Priority = 1400,
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 250 }},
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 10, 'ENGINEER TECH1' }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 20, 'ENGINEER TECH1' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2' }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 5, 'ENGINEER TECH1' } },
         },
@@ -740,7 +740,7 @@ BuilderGroup {
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.4 }},
             --{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -3042,8 +3042,7 @@ BuilderGroup {
         Priority = 1000,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 45, 'ENERGYPRODUCTION TECH1'}},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 2, 'ENERGYPRODUCTION TECH3'}},
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
         },
         --InstanceCount = 2,
