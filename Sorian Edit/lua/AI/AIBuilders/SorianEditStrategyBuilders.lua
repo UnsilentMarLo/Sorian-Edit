@@ -81,7 +81,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Excess Mass Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -89,6 +89,7 @@ BuilderGroup {
             if econThread then
                 KillThread(econThread)
             end
+            LOG('*AI DEBUG: --------------  SorianEdit Excess Mass Strategy Activated by '..aiBrain.Nickname..'!')
             econThread = ForkThread(EconWatch, aiBrain)
         end,
         OnStrategyDeactivate = function(self, aiBrain)
@@ -100,8 +101,10 @@ BuilderGroup {
         end,
         PriorityFunction = function(self, aiBrain)
             if econThread or not (econThread and Builders[self.BuilderName].Running) then
+        LOG('---------------------  Excess Mass Strategy 100')
                 return 100
             elseif not econThread and Builders[self.BuilderName].Running then
+        LOG('---------------------  Excess Mass Strategy 0')
                 return 0
             end
         end,
@@ -134,7 +137,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Tele SCU Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -143,6 +146,7 @@ BuilderGroup {
             local faction = aiBrain:GetFactionIndex()
             local upgrades
             local removes
+            LOG('*AI DEBUG: --------------  SorianEdit Tele SCU Strategy Activated by '..aiBrain.Nickname..'!')
             if faction == 2 then
                 upgrades = {'StabilitySuppressant', 'Teleporter'}
             elseif faction == 4 then
@@ -246,6 +250,8 @@ BuilderGroup {
             if Random(1,10) == 7 then
                 returnval = 100
             end
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Tele SCU Strategy '..returnval)
 
             return returnval
         end,
@@ -269,12 +275,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit Engy Drop Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, --100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
             Builders[self.BuilderName].Running = true
-            LOG('*AI DEBUG: SorianEdit Engy Drop Strategy Activated by '..aiBrain.Nickname..'!')
+            LOG('*AI DEBUG: --------------  Engy Drop Strategy Activated by '..aiBrain.Nickname..'!')
             local x,z = aiBrain:GetArmyStartPos()
             local count = 0
             repeat
@@ -397,6 +403,8 @@ BuilderGroup {
             --if Random(1,100) == 100 then
                 returnval = 100
             --end
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Engy Drop Strategy '..returnval)
 
             return returnval
         end,
@@ -427,7 +435,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit PD Creep Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
@@ -435,6 +443,7 @@ BuilderGroup {
             local x,z = aiBrain:GetArmyStartPos()
             local ex, ez = aiBrain:GetCurrentEnemy():GetArmyStartPos()
             local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Land', {x,0,z}, {ex,0,ez}, 10)
+            LOG('*AI DEBUG: --------------  SorianEditRushGunUpgrades Activated by '..aiBrain.Nickname..'!')
             if path then
                 for pathnum,waypoint in path do
                     local nextbase = (table.getn(aiBrain.TacticalBases) + 1)
@@ -466,7 +475,9 @@ BuilderGroup {
             end
 
             Builders[self.BuilderName].Done = true
+        -- startTime = GetGameTimeSeconds(),
 
+        LOG('---------------------  PD Creep Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -493,7 +504,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Water Map Low Land',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -551,8 +562,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit Big Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditBigAirGroup Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -572,6 +586,8 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = (enemyThreat * 1.5) - numEUnits
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- BigAirGroup '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -634,9 +650,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit Jester Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditJesterRush Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemyIndex
             local returnval = 1
@@ -662,6 +681,8 @@ BuilderGroup {
             end
 
             returnval = 74 + (myFacs * 5) - (count * 4)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Jester Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -730,11 +751,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit Rush Gun Upgrades',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
             Builders[self.BuilderName].Running = true
+            LOG('*AI DEBUG: --------------  SorianEditRushGunUpgrades Activated by '..aiBrain.Nickname..'!')
         end,
         PriorityFunction = function(self, aiBrain)
             if Builders[self.BuilderName].Running then
@@ -749,6 +771,8 @@ BuilderGroup {
             end
 
             Builders[self.BuilderName].Done = true
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Rush Gun Upgrades '..returnval)
 
             return returnval
         end,
@@ -796,11 +820,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit Ghetto Gunship Strategy',
         StrategyType = 'Intermediate',
         Priority = 0, --100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
         InterruptStrategy = true,
         OnStrategyActivate = function(self, aiBrain)
-            LOG('*AI DEBUG: SorianEditGhettoGunship strat activated')
+            LOG('*AI DEBUG: --------------  SorianEditGhettoGunship Activated by '..aiBrain.Nickname..'!')
         end,
         PriorityFunction = function(self, aiBrain)
             local enemyIndex
@@ -827,6 +851,8 @@ BuilderGroup {
             end
 
             returnval = 69 + (myFacs * 5) - (count * 2)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Ghetto Gunship Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -859,7 +885,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit Small Map Rush Strategy',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditSmallMapRush Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
             local enemies = 0
@@ -877,6 +906,8 @@ BuilderGroup {
             local gtime = GetGameTimeSeconds()
 
             returnval = 75 + (ratio * 5) - (gtime * .004)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  Small Map Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -911,8 +942,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 FB Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditT3FBRush Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
             --If activated by an ally
@@ -928,13 +962,15 @@ BuilderGroup {
             end
 
             returnval = 70 + (arties * 5) - (eUnits * 5)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  T3 FB Rush Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -964,7 +1000,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditEnemyTurtle - In Range',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditEnemyTurtle - In Range Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -983,6 +1022,8 @@ BuilderGroup {
             --If enemy base has more than 1750 anti-surface threat
             --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- EnemyTurtle - In Range '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1023,7 +1064,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditEnemyTurtle - Out of Range',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditEnemyTurtle - Out of Range Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1042,6 +1086,8 @@ BuilderGroup {
             --If enemy base has more than 1750 anti-surface threat
             --T2 Arty, T1 PD, T2 PD, Bots, Tanks, Mobile Arty, Gunships, Bombers, ACU, SCUs.
             returnval = enemyThreat * 0.0429
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- EnemyTurtle - Out of Range '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1089,8 +1135,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit Nuke Rush Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditNukeRush Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local returnval = 1
             --If activated by an ally
@@ -1113,13 +1162,15 @@ BuilderGroup {
             end
 
             returnval = 70 + (nukes * 5) - (antis * 10)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- NukeRush '..returnval)
             return returnval
         end,
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
             --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1144,8 +1195,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit Stop Nukes Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditStopNukes Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local antis = 99999
             local returnval = 1
@@ -1161,6 +1215,8 @@ BuilderGroup {
             end
 
             returnval = (antis - nukes) * 20
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- StopNukes '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1184,8 +1240,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 ACU Snipe Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditT2ACUSnipe Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemyIndex
             local returnval = 1
@@ -1206,6 +1265,8 @@ BuilderGroup {
             end
 
             returnval = 100 - (count * 6)
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- T2ACUSnipe '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1235,8 +1296,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditHeavyAirStrategy Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1260,6 +1324,8 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - enemyThreat - numEUnits
+        -- startTime = GetGameTimeSeconds(),
+        LOG('--------------------- HeavyAirStrategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1320,8 +1386,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEdit T2 Heavy Air Strategy Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1346,6 +1415,8 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - (enemyThreat * 0.5) - numEUnits
+                -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  T2 Heavy Air Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1406,8 +1477,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Heavy Air Strategy',
         StrategyType = 'Intermediate',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         StrategyTime = 300,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEdit T3 Heavy Air Strategy Activated by '..aiBrain.Nickname..'!')
+        end,
         PriorityFunction = function(self, aiBrain)
             local enemy, enemyIndex
             local returnval = 1
@@ -1431,6 +1505,8 @@ BuilderGroup {
             local numEUnits = aiBrain:GetNumUnitsAroundPoint(categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, Vector(0,0,0), 100000, 'Enemy')
 
             returnval = 90 - (enemyThreat * 0.15) - numEUnits
+                -- startTime = GetGameTimeSeconds(),
+        LOG('---------------------  T3 Heavy Air Strategy '..returnval)
             return returnval
         end,
         BuilderConditions = {
@@ -1494,7 +1570,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit Paragon Strategy',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditParagonStrategy Activated by '..aiBrain.Nickname..'!')
+        end,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
@@ -1554,7 +1633,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit Paragon Strategy Expansion',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditParagonStrategyExp Activated by '..aiBrain.Nickname..'!')
+        end,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
         },
@@ -1600,7 +1682,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit AI Outnumbered',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
+        OnStrategyActivate = function(self, aiBrain)
+            LOG('*AI DEBUG: --------------  SorianEditTeamLevelAdjustment Activated by '..aiBrain.Nickname..'!')
+        end,
         BuilderConditions = {
             --CanBuildFirebase { 1000, 1000 }},
             { SBC, 'AIOutnumbered', { true }},
@@ -1631,7 +1716,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit AI Outnumbers Enemies',
         StrategyType = 'Overall',
         Priority = 100,
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderConditions = {
             --CanBuildFirebase { 1000, 1000 }},
             { SBC, 'AIOutnumbered', { false }},

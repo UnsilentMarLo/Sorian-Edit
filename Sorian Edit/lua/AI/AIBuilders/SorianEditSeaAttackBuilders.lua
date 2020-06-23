@@ -114,6 +114,20 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT2SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
+        BuilderName = 'SorianEdit T2 Naval Destroyer Landattack',
+        PlatoonTemplate = 'T2SeaDestroyer',
+        Priority = 600,
+		InstanceCount = 2,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
+            { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
+        },
+    },
+    Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
@@ -189,7 +203,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 700,
+        Priority = 600,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -204,7 +218,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 700,
+        Priority = 600,
 		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -223,7 +237,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -237,7 +251,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -250,7 +264,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -276,7 +290,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
-        Priority = 700,
+        Priority = 900,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -290,7 +304,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
-        Priority = 700,
+        Priority = 1000,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -308,6 +322,32 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditSeaHunterFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
+        BuilderName = 'SorianEdit LandAttack T2 Destroyers',
+        PlatoonTemplate = 'SeaAttackLandSorianEdit',
+        --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
+        PlatoonAddPlans = {'AirLandToggleSorian'},
+        Priority = 10,
+        BuilderConditions = {
+            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
+            { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            },
+        InstanceCount = 4,
+        BuilderType = 'Any',
+        BuilderData = {
+            ThreatSupport = 1200,
+            MarkerType = 'Start Location',
+            MoveFirst = 'Random',
+            LocationType = 'LocationType',
+            MoveNext = 'Random',
+            AvoidBases = false,
+            AvoidBasesRadius = 100,
+            UseFormation = 'None',
+            AggressiveMove = false,
+            AvoidClosestRadius = 50,
+        },
+    },
+	
+    Builder {
         BuilderName = 'SorianEdit Sea Hunters T1',
         PlatoonTemplate = 'SeaHuntSorianEdit',
         --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
@@ -316,7 +356,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL, MOBILE TECH3 NAVAL' } },
@@ -333,7 +373,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH3 NAVAL' } },
@@ -350,7 +390,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             --{ SeaAttackCondition, { 'LocationType', 180 } },
@@ -366,7 +406,7 @@ BuilderGroup {
         InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'MOBILE TECH2 NAVAL' } },
@@ -398,7 +438,7 @@ BuilderGroup {
         InstanceCount = 7,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -426,7 +466,7 @@ BuilderGroup {
         InstanceCount = 6,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -454,7 +494,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -486,7 +526,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -514,7 +554,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',
@@ -542,7 +582,7 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderData = {
-        UseFormation = 'AttackFormation',
+        --UseFormation = 'None',
             ThreatWeights = {
                 --IgnoreStrongerTargetsRatio = 25.0,
                 PrimaryThreatTargetType = 'Naval',

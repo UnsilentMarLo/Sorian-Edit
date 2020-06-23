@@ -19,7 +19,7 @@ function SetupCheat(aiBrain, cheatBool)
         buffDef = Buffs['CheatIncome']
         buffAffects = buffDef.Affects
         buffAffects.EnergyProduction.Mult = tonumber(ScenarioInfo.Options.CheatMult) * 2.5
-        buffAffects.MassProduction.Mult = tonumber(ScenarioInfo.Options.CheatMult) * 1.5
+        buffAffects.MassProduction.Mult = tonumber(ScenarioInfo.Options.CheatMult) * 1
 
         local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
         for _, v in pool:GetPlatoonUnits() do

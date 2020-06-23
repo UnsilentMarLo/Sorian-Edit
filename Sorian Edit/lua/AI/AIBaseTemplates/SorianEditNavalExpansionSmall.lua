@@ -30,6 +30,7 @@ BaseBuilderTemplate {
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFulldrop',
 
         -- ==== DEFENSES ==== --
         'SorianEditT1NavalDefenses',

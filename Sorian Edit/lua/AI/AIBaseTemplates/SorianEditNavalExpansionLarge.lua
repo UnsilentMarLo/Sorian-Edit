@@ -19,6 +19,8 @@ BaseBuilderTemplate {
         'SorianEditT2FastUpgradeBuildersExpansion',
         'SorianEditT1BalancedUpgradeBuildersExpansion',
         'SorianEditT2BalancedUpgradeBuildersExpansion',
+        'SorianEditSupportFactoryUpgrades',
+        'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Pass engineers to main as needed
         --'Engineer Transfers',
@@ -35,6 +37,7 @@ BaseBuilderTemplate {
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
+        'SorianEditEngineerExpansionBuildersFulldrop',
 
         -- ==== DEFENSES ==== --
         'SorianEditT1NavalDefenses',
@@ -74,7 +77,7 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 15,
+            Tech1 = 10,
             Tech2 = 9,
             Tech3 = 6,
             SCU = 0,
