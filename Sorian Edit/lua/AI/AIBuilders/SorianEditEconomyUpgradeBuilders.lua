@@ -25,394 +25,54 @@ local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 
+-------------------------------------
+-- NEW EXTRACTOR UPGRADE FUNCTION AND THREAD --
+
+-- The New Thread and Function are located in SorianEditUtilites.lua and Platoon.lua
+-- This New Thread and Function will auto upgrade mexes depending on the economy 
+-- This will elimate the need for Strategies to upgrade mexes as this will adapt to the economy itself and the situation
+-- This will also fix endless issues with Sorian's Mass Stalls
+-------------------------------------
+
 BuilderGroup {
     BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'T1 Mass Extractor Upgrade Storage Based',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
+        BuilderName = 'Sorian Extractor upgrade',
+        PlatoonTemplate = 'AddToMassExtractorUpgradePlatoon',
+        Priority = 18400,
         InstanceCount = 1,
-        Priority = 1000,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 600, 0 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH1' }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH3' } },
-
-        },
         FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'T1 Mass Extractor Upgrade Bleed Off',
-        PlatoonTemplate = 'T1MassExtractorUpgrade', 
-        InstanceCount = 1,
-        Priority = 990,
         BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH1' }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH3' } },
-
+            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.MASSEXTRACTION} },
+    
+            { UCBC, 'GreaterThanGameTimeSeconds', { 60 * 4 } },
         },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 980,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 22, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH3' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH1' }},
+        BuilderData = {
+            AIPlan = 'ExtractorUpgradeAISorian',
         },
-        FormRadius = 10000,
         BuilderType = 'Any',
     },
 
     Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 12, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH1, MASSEXTRACTION TECH2' }},
-        },
+        BuilderName = 'Sorian Extractor upgrade - Multiple',
+        PlatoonTemplate = 'AddToMassExtractorUpgradePlatoon',
+        Priority = 18400,
+        InstanceCount = 2,
         FormRadius = 10000,
-        BuilderType = 'Any',
-    },
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.MASSEXTRACTION} },
 
-    Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless LOTS',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 960,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 15, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2' } },
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH1, MASSEXTRACTION TECH2' }},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.15, 1.2 }},
+    
+            { UCBC, 'GreaterThanGameTimeSeconds', { 60 * 4 } },
         },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-	
-	
-	
-    Builder {
-        BuilderName = 'T2 Mass Extractor Upgrade Storage Based',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 955, --20,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 4600, 0 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'ENERGYPRODUCTION TECH2' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
+        BuilderData = {
+            AIPlan = 'ExtractorUpgradeAISorian',
         },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'T2 Mass Extractor Upgrade Bleed Off',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 950,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 940,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome', { 13, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-	
-	
-
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 930,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome',  { 20, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 920,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome', { 13, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Even Later',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 910,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome',  { 20, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
         BuilderType = 'Any',
     },
 }
-
---[[ BuilderGroup {
-    BuilderGroupName = 'SorianEditTime Exempt Extractor Upgrades - Rush',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'T1 Mass Extractor Upgrade Storage Based - Rush',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 960,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconStorageCurrent', { 600, 0 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2' }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'T1 Mass Extractor Upgrade Bleed Off - Rush',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconStorageRatio', { 1.0, 0 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2' }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Single - Rush',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 22, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY TECH2' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-
-    Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless Two - Rush',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 2,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 12, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY TECH2' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-
-    Builder {
-        BuilderName = 'SorianEdit T1 Mass Extractor Upgrade Timeless LOTS - Rush',
-        PlatoonTemplate = 'T1MassExtractorUpgrade',
-        InstanceCount = 2,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconIncome',  { 15, 0.10}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH2', 'MASSEXTRACTION TECH2' } },
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY TECH2' }},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-	
-	
-	
-    Builder {
-        BuilderName = 'T2 Mass Extractor Upgrade Storage Based - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 0, --20,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'T2 Mass Extractor Upgrade Bleed Off - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        InstanceCount = 1,
-        Priority = 970,
-        BuilderConditions = {
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { EBC, 'GreaterThanEconStorageRatio', { 1.0, 0 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH2' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 970,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome', { 13, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH2' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 970,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome',  { 20, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.90, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH2' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless - Later - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 970,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome', { 13, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple - Later - Rush',
-        PlatoonTemplate = 'T2MassExtractorUpgrade',
-        Priority = 970,
-        InstanceCount = 2,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'MASSEXTRACTION TECH3', 'MASSEXTRACTION TECH2' } },
-            { EBC, 'GreaterThanEconIncome',  { 20, 0.50 } },
-            { IBC, 'BrainNotLowMassMode', {} },
-            { IBC, 'BrainNotLowPowerMode', {} },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1, 1.2 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, 'MASSEXTRACTION TECH3' }},
-        },
-        FormRadius = 10000,
-        BuilderType = 'Any',
-    },
-} ]]--
 
 -- ================================= --
 --     EMERGENCY FACTORY UPGRADES

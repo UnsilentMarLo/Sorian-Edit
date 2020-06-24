@@ -8,6 +8,14 @@
 #****************************************************************************
 
 PlatoonTemplate {
+    Name = 'AddToMassExtractorUpgradePlatoon',
+    Plan = 'SorianPlatoonMerger',
+    GlobalSquads = {
+        { categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3) , 1, 800, 'support', 'none' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'MassFabsSorianEdit',
     Plan = 'PauseAI',
     GlobalSquads = {

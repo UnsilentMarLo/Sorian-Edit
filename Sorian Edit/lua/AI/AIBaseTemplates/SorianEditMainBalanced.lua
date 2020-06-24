@@ -40,8 +40,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuilders',
 
         -- Build Mass high pri at this base
-        'SorianEditEngineerMassBuildersHighPri',
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',

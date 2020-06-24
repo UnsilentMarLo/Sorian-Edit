@@ -23,7 +23,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerNavalFactoryBuilder',
 
         -- Mass
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',

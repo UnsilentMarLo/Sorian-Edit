@@ -120,7 +120,6 @@ PlatoonTemplate {
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 5, 10, 'Attack', 'none' }
-        { categories.LAND * categories.SCOUT, 0, 1, 'attack', 'none' },
     }
 }
 
@@ -129,7 +128,6 @@ PlatoonTemplate {
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 10, 25, 'Attack', 'none' }
-        { categories.LAND * categories.SCOUT, 0, 1, 'attack', 'none' },
     }
 }
 

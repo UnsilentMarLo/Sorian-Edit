@@ -780,6 +780,7 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 7,
         BuilderType = 'Any',
+        BuilderData = {
             ThreatSupport = 75,
             DistressRange = 50,
             NeverGuardBases = false,
@@ -803,6 +804,7 @@ BuilderGroup {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND - categories.ENGINEER } },
         },
     },
+
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack - Medium',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',

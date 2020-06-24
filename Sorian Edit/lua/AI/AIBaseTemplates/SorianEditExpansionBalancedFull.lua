@@ -40,8 +40,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuilders',
 
         -- Build Mass high pri at this base
-        'SorianEditEngineerMassBuildersHighPri',
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- ACU Builders
         'SorianEdit Initial ACU Builders',
