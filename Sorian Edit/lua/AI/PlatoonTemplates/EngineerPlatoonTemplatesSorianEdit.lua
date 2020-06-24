@@ -184,3 +184,11 @@ PlatoonTemplate {
         { categories.ENGINEER * categories.TECH3 + categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
     },
 }
+
+PlatoonTemplate {
+    Name = 'EngineerBuilderSorianEditALLTECH',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * (categories.TECH1 + categories.TECH2 + categories.TECH3), 1, 1, 'support', 'None' }
+    },
+}

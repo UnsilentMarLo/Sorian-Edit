@@ -15,8 +15,8 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
-        'SorianEditT1RushUpgradeBuilders',
-        'SorianEditEmergencyUpgradeBuilders',
+        --'SorianEditT1RushUpgradeBuilders',
+        --'SorianEditEmergencyUpgradeBuilders',
         --'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgradesNAVY',

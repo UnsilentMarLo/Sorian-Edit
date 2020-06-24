@@ -636,7 +636,7 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditUnitCapLandAttackFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
-    Builder {
+    --[[ Builder {
         BuilderName = 'SorianEdit Unit Cap Default Land Attack',
         PlatoonTemplate = 'LandAttackSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
@@ -741,8 +741,32 @@ BuilderGroup {
                 IgnoreStrongerTargetsRatio = 100.0,
             },
         },
-    },
+    }, ]]--
 }
+
+
+-----------------------------------------
+--DOCUMENTATION OF ATTACKFORCEAI FOR SORIANEDIT--
+
+-- The AttackForceAI at full use now. We are using all features of the threatweights.
+-- which includes very detailed information of what we are looking to attack and what we are not looking to attack.
+-- This will increase the effectiveness of AttackForceAI as most of this was on default settings before which were horrible
+-- The Intending effect of AttackForceAI was to be fully customizable but was never put into effect???
+-- Look at The File "AIAttackUtils.lua" in FAFDevelop for more information. 
+
+-- I will begin to look into {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'}, soon, but this will take time.
+-- I will also note that the AirLandToggleSorian is something We need to look into too. 
+-- Note That we can also include specific squads in these platoons as a future improvement.
+-- Also Drops will be much more specific in Targetting now. As they will listen to the Threatweights also.
+-- Notice Distress Range and Threat Support are both from {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},.
+-- These two guide these functions, DistressRange should allow this to work properly but This is up to Marlo to test.
+-- Threatsupport is when a DistressResponse is put out when a platoon feels that the threat is simply to high for them to engage according to their Threatweights.
+
+-- ALSO GROWTHFORMATION ALLOWS MOVEMENT AND FORMATION OF THE PLATOON AT THE SAME TIME, SO WE CAN KEEP FORMATION AND MOVE AT THE SAME TIME. 
+-- AttackFormation waited till the formation was completely formed to move at all, which was terrible.
+-----------------------------------------
+
+-- SorianEdit Documentation by Marlo and Azraeel.
 
 
 BuilderGroup {
@@ -756,23 +780,31 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 7,
         BuilderType = 'Any',
-        BuilderData = {
-            ThreatSupport = 1000,
-            NeverGuardBases = true,
+            ThreatSupport = 75,
+            DistressRange = 50,
+            NeverGuardBases = false,
             NeverGuardEngineers = true,
-            UseFormation = 'None',
-            LocationType = 'LocationType',
-            AggressiveMove = false,
+			UseFormation = 'GrowthFormation',
+			AggressiveMove = true,
             ThreatWeights = {
-            --SecondaryTargetThreatType = 'StructuresNotMex',
+                PrimaryTargetThreatType = 'Land',
+                PrimaryThreatWeight = 20,
+                SecondaryTargetThreatType = 'Economy',
+                SecondaryThreatWeight = 8.5,
+                WeakAttackThreatWeight = 2,
+                StrongAttackThreatWeight = 15,
+                IgnoreThreatLessThan = 3,
+                IgnoreCommanderStrength = false,
+                EnemyThreatRings = 1,
+                TargetCurrentEnemy = false,
             },
         },
         BuilderConditions = {
-            --{ LandAttackCondition, { 'LocationType', 10 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND - categories.ENGINEER } },
         },
     },
     Builder {
-        BuilderName = 'SorianEdit Frequent Land Attack T2',
+        BuilderName = 'SorianEdit Frequent Land Attack - Medium',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
@@ -780,44 +812,59 @@ BuilderGroup {
         InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatSupport = 1000,
-            NeverGuardBases = true,
+            ThreatSupport = 75,
+            DistressRange = 50,
+            NeverGuardBases = false,
             NeverGuardEngineers = true,
-            UseFormation = 'None',
-            LocationType = 'LocationType',
-            AggressiveMove = false,
+			UseFormation = 'GrowthFormation',
+			AggressiveMove = true,
             ThreatWeights = {
-                IgnoreStrongerTargetsRatio = 500.0,
-            --SecondaryTargetThreatType = 'StructuresNotMex',
+                PrimaryTargetThreatType = 'Land',
+                PrimaryThreatWeight = 16,
+                SecondaryTargetThreatType = 'Economy',
+                SecondaryThreatWeight = 12,
+                WeakAttackThreatWeight = 3.5,
+                StrongAttackThreatWeight = 13,
+                IgnoreThreatLessThan = 3,
+                IgnoreCommanderStrength = false,
+                EnemyThreatRings = 1,
+                TargetCurrentEnemy = false,
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND * categories.TECH2 - categories.ENGINEER} },
-            --{ LandAttackCondition, { 'LocationType', 50 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 20, categories.MOBILE * categories.LAND - categories.ENGINEER} },
         },
     },
     Builder {
-        BuilderName = 'SorianEdit Frequent Land Attack T3',
-        PlatoonTemplate = 'LandAttackMediumSorianEdit',
+        BuilderName = 'SorianEdit Frequent Land Attack - Large',
+        PlatoonTemplate = 'LandAttackLargeSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         InstanceCount = 5,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatSupport = 1000,
-            NeverGuardBases = true,
+            ThreatSupport = 75,
+            DistressRange = 50,
+            NeverGuardBases = false,
             NeverGuardEngineers = true,
-            UseFormation = 'None',
-            LocationType = 'LocationType',
-            AggressiveMove = false,
+			UseFormation = 'GrowthFormation',
+			AggressiveMove = true,
             ThreatWeights = {
-            --SecondaryTargetThreatType = 'StructuresNotMex',
-                IgnoreStrongerTargetsRatio = 500.0,
+                PrimaryTargetThreatType = 'Land',
+                PrimaryThreatWeight = 15,
+                SecondaryTargetThreatType = 'Economy',
+                SecondaryThreatWeight = 15,
+                WeakAttackThreatWeight = 5,
+                StrongAttackThreatWeight = 17,
+                IgnoreThreatLessThan = 5,
+                IgnoreCommanderStrength = false,
+                EnemyThreatRings = 1,
+                TargetCurrentEnemy = false,
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 35, categories.MOBILE * categories.LAND * categories.TECH3 - categories.ENGINEER} },
         },
     },
 }
@@ -829,16 +876,13 @@ BuilderGroup {
     -- Hunts for mass locations with Economic threat value of no more than 2 mass extractors
     Builder {
         BuilderName = 'SorianEdit Mass Hunter Early Game',
-        PlatoonTemplate = 'T1MassHuntersCategorySorianEdit',
-        -- Commented out as the platoon doesn't exist in AILandAttackBuilders.lua
-        --PlatoonTemplate = 'EarlyGameMassHuntersCategory',
+        PlatoonTemplate = 'MassHuntersCategorySorianEditSmall',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
-                --{ LandAttackCondition, { 'LocationType', 10 } },
-                --{ SBC, 'NoRushTimeCheck', { 0 }},
+                { UCBC, 'LessThanGameTimeSeconds', { 420 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 750,
@@ -853,7 +897,7 @@ BuilderGroup {
             AvoidBases = true,
             AvoidBasesRadius = 100,
             UseFormation = 'None',
-            AggressiveMove = false,
+            AggressiveMove = true,
             AvoidClosestRadius = 50,
         },
         InstanceCount = 3,
@@ -864,14 +908,13 @@ BuilderGroup {
     -- Used after 10, goes after mass locations of no max threat
     Builder {
         BuilderName = 'SorianEdit Mass Hunter Mid Game',
-        PlatoonTemplate = 'T2MassHuntersCategorySorianEdit',
+        PlatoonTemplate = 'MassHuntersCategorySorianEditLarge',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 990,
         BuilderConditions = {
-                --{ UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
-                --{ LandAttackCondition, { 'LocationType', 50 } },
-                --CanBuildFirebase { 500, 500 }},
+                { UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 15, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 750,
@@ -886,7 +929,7 @@ BuilderGroup {
             AvoidBases = true,
             AvoidBasesRadius = 100,
             UseFormation = 'None',
-            AggressiveMove = false,
+            AggressiveMove = true,
             AvoidClosestRadius = 50,
         },
         InstanceCount = 3,
@@ -905,8 +948,8 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
-                --{ SBC, 'LessThanGameTime', { 720 } },
-                --{ SBC, 'NoRushTimeCheck', { 0 }},
+                { UCBC, 'LessThanGameTimeSeconds', { 720 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
@@ -920,10 +963,10 @@ BuilderGroup {
             --ThreatThreshold = '',
             AvoidBases = true,
             AvoidBasesRadius = 100,
-            AggressiveMove = false,
+            AggressiveMove = true,
             AvoidClosestRadius = 50,
             GuardTimer = 50,
-            UseFormation = 'None',
+            UseFormation = 'GrowthFormation',
         },
         InstanceCount = 3,
         BuilderType = 'Any',
@@ -936,17 +979,18 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
             NeverGuardBases = true,
             NeverGuardEngineers = true,
             LocationType = 'LocationType',
-            --UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            UseFormation = 'AttackFormation',
+            AggressiveMove = true,
         ThreatWeights = {
-                IgnoreStrongerTargetsRatio = 500.0,
+                IgnoreStrongerTargetsRatio = 100.0,
             },
         },
         InstanceCount = 3,
@@ -960,56 +1004,21 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
-                --{ UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 0, 2, 'StructuresNotMex' } },
-                { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
-                --{ LandAttackCondition, { 'LocationType', 50 } },
-                --{ SBC, 'NoRushTimeCheck', { 0 }},
-                --{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 20, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
             NeverGuardBases = true,
             LocationType = 'LocationType',
             NeverGuardEngineers = true,
-            --UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            UseFormation = 'AttackFormation',
+            AggressiveMove = true,
         ThreatWeights = {
-                IgnoreStrongerTargetsRatio = 500.0,
+                IgnoreStrongerTargetsRatio = 100.0,
             },
         },
         InstanceCount = 3,
-        BuilderType = 'Any',
-    },
-
-    Builder {
-        BuilderName = 'SorianEdit Threat Response Strikeforce',
-        PlatoonTemplate = 'StrikeForceMediumSorianEdit',
-        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 0, --1500,
-        BuilderConditions = {
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'STRUCTURE STRATEGIC TECH3, STRUCTURE STRATEGIC EXPERIMENTAL, EXPERIMENTAL ARTILLERY OVERLAYINDIRECTFIRE', 'Enemy'}},
-            --{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        BuilderData = {
-            ThreatSupport = 250,
-            PrioritizedCategories = {
-                'STRUCTURE STRATEGIC EXPERIMENTAL',
-                'EXPERIMENTAL ARTILLERY OVERLAYINDIRECTFIRE',
-                'STRUCTURE STRATEGIC TECH3',
-                'COMMAND',
-                'MASSEXTRACTION',
-                'ENERGYPRODUCTION DRAGBUILD',
-                'MASSFABRICATION',
-                'SHIELD',
-                'ANTIAIR STRUCTURE',
-                'DEFENSE STRUCTURE',
-                'STRUCTURE',
-                'MOBILE ANTIAIR',
-                'ALLUNITS',
-            },
-        },
-        InstanceCount = 1,
         BuilderType = 'Any',
     },
 
@@ -1021,19 +1030,18 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
-            { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY TECH2 LAND, FACTORY TECH3 LAND' }},
-            { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
-            --{ LandAttackCondition, { 'LocationType', 50 } },
+            { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND * (categories.TECH2 + categories.TECH3) - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1000}},
+            { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 13, categories.MOBILE * categories.LAND * (categories.TECH2 + categories.TECH3)  - categories.ENGINEER } },
         },
         BuilderData = {
             ThreatSupport = 250,
-            SearchRadius = 6000,
+            SearchRadius = 513,
             NeverGuardBases = true,
             LocationType = 'LocationType',
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            AggressiveMove = true,
         ThreatWeights = {
                 IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
@@ -1058,27 +1066,24 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'SorianEdit T1 Land Weak Enemy Response',
-        --PlatoonTemplate = 'StrikeForceMediumSorianEdit',
+        BuilderName = 'SorianEdit Land Weak Enemy Response - T1',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1400,
         BuilderConditions = {
-            { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 LAND, FACTORY TECH3 LAND' }},
-            { UCBC, 'GreaterThanGameTimeSeconds', { 720 } },
-            --{ SBC, 'NoRushTimeCheck', { 0 }},
-            --{ LandAttackCondition, { 'LocationType', 10 } },
+            { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND * categories.TECH1 - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 350}},
+            { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 13, categories.MOBILE * categories.LAND * categories.TECH1  - categories.ENGINEER } },
         },
         BuilderData = {
             ThreatSupport = 250,
-            SearchRadius = 6000,
+            SearchRadius = 513,
             NeverGuardBases = true,
             LocationType = 'LocationType',
             NeverGuardEngineers = true,
             UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            AggressiveMove = true,
         ThreatWeights = {
                 IgnoreStrongerTargetsRatio = 500.0,
             --SecondaryTargetThreatType = 'StructuresNotMex',
@@ -1103,19 +1108,17 @@ BuilderGroup {
         BuilderType = 'Any',
     },
 
-    -- Small patrol that goes to expansion areas and attacks
+
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol - Small Map',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 925,
+        Priority = 850,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 540 } },
-                --{ SBC, 'NoRushTimeCheck', { 0 }},
+                { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
                 { SBC, 'MapLessThan', {1000, 1000}},
-                --CanBuildFirebase {500, 500}},
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
@@ -1130,23 +1133,22 @@ BuilderGroup {
             AvoidBases = true,
             AvoidBasesRadius = 75,
             UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            AggressiveMove = true,
             AvoidClosestRadius = 50,
         },
         InstanceCount = 1,
         BuilderType = 'Any',
     },
+
     Builder {
         BuilderName = 'SorianEdit Expansion Area Patrol',
         PlatoonTemplate = 'StartLocationAttack2SorianEdit',
-        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'}, 
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 925,
+        Priority = 825,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 1200 } },
-                --{ SBC, 'NoRushTimeCheck', { 0 }},
-                --CanBuildFirebase {1000, 1000}},
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH2 * categories.MOBILE * categories.LAND - categories.ENGINEER } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             ThreatSupport = 250,
@@ -1161,73 +1163,18 @@ BuilderGroup {
             AvoidBases = true,
             AvoidBasesRadius = 75,
             UseFormation = 'AttackFormation',
-            AggressiveMove = false,
+            AggressiveMove = true,
             AvoidClosestRadius = 50,
         },
         InstanceCount = 2,
         BuilderType = 'Any',
-    },
-
-    -- Seek and destroy
-    Builder {
-        BuilderName = 'SorianEdit T1 Hunters',
-        PlatoonTemplate = 'HuntAttackSmallSorianEdit',
-        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 990,
-        --Priority = 0,
-        InstanceCount = 6,
-        BuilderType = 'Any',
-        BuilderData = {
-            ThreatSupport = 250,
-            LocationType = 'LocationType',
-            NeverGuardBases = true,
-            NeverGuardEngineers = true,
-            --UseFormation = 'AttackFormation',
-            ThreatWeights = {
-                IgnoreStrongerTargetsRatio = 100.0,
-            },
-        },
-        BuilderConditions = {
-            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 } },
-            --{ LandAttackCondition, { 'LocationType', 10 } },
-            --{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
-    },
-
-    -- Seek and destroy
-    Builder {
-        BuilderName = 'SorianEdit T2 Hunters',
-        PlatoonTemplate = 'HuntAttackMediumSorianEdit',
-        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 990,
-        --Priority = 0,
-        InstanceCount = 1,
-        BuilderType = 'Any',
-        BuilderData = {
-            ThreatSupport = 250,
-            NeverGuardBases = true,
-            LocationType = 'LocationType',
-            NeverGuardEngineers = true,
-            --UseFormation = 'AttackFormation',
-            ThreatWeights = {
-                IgnoreStrongerTargetsRatio = 100.0,
-            },
-        },
-        BuilderConditions = {
-            --{ UCBC, 'PoolLessAtLocation', { 'LocationType', 10, categories.MOBILE * categories.LAND - categories.ENGINEER - categories.TECH1 - categories.TECH2 } },
-            { SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ LandAttackCondition, { 'LocationType', 50 } },
-            --{ SBC, 'NoRushTimeCheck', { 0 }},
-        },
     },
 }
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditMiscLandFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
-    Builder {
+    --[[ Builder {
         BuilderName = 'SorianEdit T1 Tanks - Engineer Guard',
         PlatoonTemplate = 'T1EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',
@@ -1245,7 +1192,7 @@ BuilderGroup {
         },
         BuilderType = 'Any',
     },
-    --[[ Builder {
+    Builder {
         BuilderName = 'SorianEdit T2 Tanks - Engineer Guard',
         PlatoonTemplate = 'T2EngineerGuard',
         PlatoonAIPlan = 'GuardEngineer',

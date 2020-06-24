@@ -13,10 +13,7 @@ BaseBuilderTemplate {
     Builders = {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
-        'SorianEditT1BalancedUpgradeBuilders',
-        'SorianEditT2BalancedUpgradeBuilders',
-        'SorianEditT1FastUpgradeBuildersExpansion',
-        'SorianEditT2FastUpgradeBuildersExpansion',
+        'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',

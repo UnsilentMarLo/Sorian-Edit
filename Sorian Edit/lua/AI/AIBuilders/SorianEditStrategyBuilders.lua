@@ -593,8 +593,8 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             --{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiAir', 55 }},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 5, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2' }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -690,9 +690,9 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
-            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
+            { SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -860,9 +860,9 @@ BuilderGroup {
             { MIBC, 'FactionIndex', {1, 2, 3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
-            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 3, categories.AIR * categories.FACTORY, 'Enemy'}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
+            { SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {},
@@ -915,7 +915,7 @@ BuilderGroup {
             { SBC, 'ClosestEnemyLessThan', { 750 } },
             --{ SBC, 'NoRushTimeCheck', { 0 }},
             --{ SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
-            --{ SBC, 'LessThanGameTime', { 1200 } },
+            { SBC, 'LessThanGameTime', { 420 } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -969,12 +969,12 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
-            --CanBuildFirebase { 1000, 1000 }},
+            -- CanBuildFirebase { 1000, 1000 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
         },
         BuilderType = 'Any',
@@ -1169,11 +1169,10 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
-            --{ SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
-            { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 1, categories.ANTIMISSILE * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.35, 1.35}},
             --CanBuildFirebase { 500, 500 }},
         },
         BuilderType = 'Any',
@@ -1274,7 +1273,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH2' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
-            --{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
             --{ MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
             ----CanBuildFirebase { 500, 500 }},
@@ -1329,11 +1328,11 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 7 }},
+            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 150 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
+            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH1' }},
         },
         BuilderType = 'Any',
@@ -1512,7 +1511,7 @@ BuilderGroup {
         BuilderConditions = {
             --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
             --{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
+            { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH3' }},
         },
         BuilderType = 'Any',
@@ -1563,7 +1562,7 @@ BuilderGroup {
     },
 }
 
-BuilderGroup {
+--[[ BuilderGroup {
     BuilderGroupName = 'SorianEditParagonStrategy',
     BuildersType = 'StrategyBuilder',
     Builder {
@@ -1673,7 +1672,7 @@ BuilderGroup {
             },
         }
     },
-}
+} ]]--
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditTeamLevelAdjustment',
