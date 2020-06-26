@@ -15,11 +15,9 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
-        'SorianEditT1FastUpgradeBuildersExpansion',
-        'SorianEditT2FastUpgradeBuildersExpansion',
-        'SorianEditT1RushUpgradeBuilders',
-        'SorianEditEmergencyUpgradeBuilders',
-        'SorianEditTime Exempt Extractor Upgrades - Rush',
+        --'SorianEditT1RushUpgradeBuilders',
+        --'SorianEditEmergencyUpgradeBuilders',
+        --'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgradesNAVY',
 
@@ -42,8 +40,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuilders',
 
         -- Build Mass high pri at this base
-        'SorianEditEngineerMassBuildersHighPri',
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
@@ -95,7 +92,9 @@ BaseBuilderTemplate {
 
         -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
+        'SorianEditT1Land - water map',
         'SorianEditT2LandFactoryBuilders',
+        'SorianEditT2LandFactoryBuilders - water map',
         'SorianEditT3LandFactoryBuilders',
 
         'SorianEditFrequentLandAttackFormBuilders',
@@ -170,7 +169,7 @@ BaseBuilderTemplate {
         'SorianEditParagonStrategy',
         'SorianEditParagonStrategyExp',
         'SorianEdit Tele SCU Strategy',
-        'SorianEditWaterMapLowLand',
+        --'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
         'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',

@@ -208,8 +208,8 @@ BuilderGroup {
                     'T2Radar',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1EnergyProductionSorian',
-                    'T1EnergyProductionSorian',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                 }
             },
             NeedGuard = true,
@@ -399,8 +399,8 @@ BuilderGroup {
                     'T2Radar',
                     'T1LandFactory',
                     'T1AirFactory',
-                    'T1EnergyProductionSorian',
-                    'T1EnergyProductionSorian',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                 }
             },
             NeedGuard = true,

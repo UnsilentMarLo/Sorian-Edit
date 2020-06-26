@@ -70,9 +70,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Sea Sub',
         PlatoonTemplate = 'T1SeaSub',
-        Priority = 500,
+        Priority = 400,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
@@ -83,13 +84,15 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Sea Frigate',
         PlatoonTemplate = 'T1SeaFrigate',
-        Priority = 600,
+        Priority = 500,
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
+            { UCBC, 'HaveUnitRatio', { 0.75, categories.NAVAL * categories.TECH1 * categories.MOBILE, '<=', categories.NAVAL * categories.TECH2 * categories.MOBILE}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY NAVAL TECH3' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
@@ -97,9 +100,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Naval Anti-Air',
         PlatoonTemplate = 'T1SeaAntiAir',
-        Priority = 500,
+        Priority = 400,
         BuilderConditions = {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
@@ -122,6 +126,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
             { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
@@ -134,6 +139,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -147,8 +153,10 @@ BuilderGroup {
         Priority = 600,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
+            { UCBC, 'HaveUnitRatio', { 0.35, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.INDIRECTFIRE, '<=', categories.NAVAL * categories.TECH2 * categories.MOBILE}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 }},
         },
@@ -161,6 +169,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -175,6 +184,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'SHIELD NAVAL MOBILE' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -189,6 +199,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'COUNTERINTELLIGENCE NAVAL MOBILE' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -207,6 +218,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -221,6 +233,7 @@ BuilderGroup {
         Priority = 600,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH2 } },
@@ -241,6 +254,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },
@@ -254,6 +268,7 @@ BuilderGroup {
         Priority = 1000,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },
@@ -268,6 +283,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },
@@ -280,6 +296,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3SeaNukeSub',
         Priority = 0, --700,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },
@@ -294,6 +311,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },
@@ -308,6 +326,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH3 } },

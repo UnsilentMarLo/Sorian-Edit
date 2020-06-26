@@ -38,6 +38,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1000,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -63,6 +64,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'LAND' } },
@@ -88,6 +90,7 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 750,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'LAND' } },
@@ -112,7 +115,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -135,7 +140,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, --950,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -158,7 +165,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, --950,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -183,12 +192,14 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 975, --950,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'LAND FACTORY'}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY LAND' }},
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 4, 'FACTORY LAND' }},
             { UCBC, 'GreaterThanGameTimeSeconds', { 165 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
         },
@@ -206,7 +217,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -231,12 +244,14 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'LAND FACTORY'}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY LAND' }},
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 6, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
@@ -262,6 +277,8 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
@@ -286,7 +303,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 905,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -312,9 +331,10 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 906,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { UCBC, 'FactoryRatioLessAtLocation', { 'LocationType', 'AIR', 'LAND' } },
@@ -337,7 +357,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 906,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -364,9 +386,10 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
@@ -388,7 +411,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -417,6 +442,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
@@ -440,7 +466,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.1} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -461,6 +489,7 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Land' } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
@@ -489,9 +518,10 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
@@ -512,7 +542,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.25} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
@@ -533,9 +565,10 @@ BuilderGroup {
         PlatoonTemplate = 'AnyEngineerBuilderSorianEdit',
         Priority = 900,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.1} },
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.25} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
@@ -556,7 +589,7 @@ BuilderGroup {
     -- ====================================== --
     --     Air Factories + Transport Need
     -- ====================================== --
-    Builder {
+    --[[ Builder {
         BuilderName = 'SorianEdit T1 Air Factory Transport Needed',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
@@ -564,7 +597,8 @@ BuilderGroup {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3, ENGINEER TECH2' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'AIR FACTORY' } },
-            { MIBC, 'ArmyNeedsTransports', {} },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { UCBC, 'HaveUnitRatio', { ExtractorToFactoryRatio, 'MASSEXTRACTION', '>=','FACTORY' } },
@@ -581,7 +615,7 @@ BuilderGroup {
                 --AdjacencyCategory = 'PRODUCTSORIAN',
             }
         }
-    },
+    }, --]]
 
     -- =============================
     --     Quantum Gate Builders
@@ -596,6 +630,7 @@ BuilderGroup {
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'GATE TECH3 STRUCTURE' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Gate' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { .85 } },
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },

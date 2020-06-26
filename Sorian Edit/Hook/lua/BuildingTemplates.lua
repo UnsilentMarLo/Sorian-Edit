@@ -21,7 +21,7 @@ BuildingTemplates =
             'ueb1101',
         },
         {
-            'T1EnergyProductionSorian',
+            'T1EnergyProduction',
             'ueb110102',
         },
         {
@@ -314,7 +314,7 @@ BuildingTemplates =
             'uab1101',
         },
         {
-            'T1EnergyProductionSorian',
+            'T1EnergyProduction',
             'uab110102',
         },
         {
@@ -600,7 +600,7 @@ BuildingTemplates =
             'urb1101',
         },
         {
-            'T1EnergyProductionSorian',
+            'T1EnergyProduction',
             'urb110102',
         },
         {
@@ -890,7 +890,7 @@ BuildingTemplates =
             'xsb1101',
         },
         {
-            'T1EnergyProductionSorian',
+            'T1EnergyProduction',
             'xsb110102',
         },
         {

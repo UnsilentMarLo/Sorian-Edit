@@ -15,11 +15,6 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1NavalUpgradeBuilders',
         'SorianEditT2NavalUpgradeBuilders',
-        'SorianEditT1FastUpgradeBuildersExpansion',
-        'SorianEditT2FastUpgradeBuildersExpansion',
-        'SorianEditT1BalancedUpgradeBuildersExpansion',
-        'SorianEditT2BalancedUpgradeBuildersExpansion',
-        'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Pass engineers to main as needed
@@ -33,7 +28,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerNavalFactoryBuilder',
 
         -- Mass
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',

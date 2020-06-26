@@ -14,10 +14,10 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
-        'SorianEditT1FastUpgradeBuildersExpansion',
-        'SorianEditT2FastUpgradeBuildersExpansion',
-        'SorianEditT1RushUpgradeBuilders',
-        'SorianEditEmergencyUpgradeBuilders',
+        --'SorianEditT1FastUpgradeBuildersExpansion',
+        --'SorianEditT2FastUpgradeBuildersExpansion',
+        --'SorianEditT1RushUpgradeBuilders',
+        --'SorianEditEmergencyUpgradeBuilders',
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgradesNAVY',
 
@@ -40,8 +40,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuilders',
 
         -- Build Mass high pri at this base
-        'SorianEditEngineerMassBuildersHighPri',
-        'SorianEditEngineerMassBuildersLowerPri',
+        'Sorian Mass Builders', 
 
         -- ACU Builders
         'SorianEdit Initial ACU Builders',
@@ -89,8 +88,10 @@ BaseBuilderTemplate {
         'SorianEditNavalExpansionBuilders',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
-        'SorianEditT1LandFactoryBuilders',
+        'SorianEditT1LandFactoryBuilders',									 
+        'SorianEditT1Land - water map',
         'SorianEditT2LandFactoryBuilders',
+        'SorianEditT2LandFactoryBuilders - water map',
         'SorianEditT3LandFactoryBuilders',
 
         'SorianEditFrequentLandAttackFormBuilders',

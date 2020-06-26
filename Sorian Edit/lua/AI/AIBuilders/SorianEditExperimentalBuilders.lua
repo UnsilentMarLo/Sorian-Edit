@@ -109,6 +109,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
@@ -142,6 +144,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
@@ -179,6 +183,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
@@ -214,6 +220,8 @@ BuilderGroup {
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
@@ -249,6 +257,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
@@ -284,6 +294,8 @@ BuilderGroup {
         InstanceCount = 12,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -305,6 +317,8 @@ BuilderGroup {
         InstanceCount = 7,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -412,6 +426,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 1000, 1000 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
@@ -443,6 +459,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'MapLessThan', { 1000, 1000 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
@@ -472,6 +490,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -493,6 +513,8 @@ BuilderGroup {
         InstanceCount = 5,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -677,6 +699,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
@@ -705,6 +729,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -726,6 +752,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ORBITALSYSTEM }},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2} },
         },
@@ -776,6 +804,8 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.2}},
+            { IBC, 'BrainNotLowMassMode', {} },
+ 
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
             --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },

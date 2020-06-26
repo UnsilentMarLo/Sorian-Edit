@@ -721,7 +721,7 @@ function AIOutnumbered(aiBrain, bool)
     local teams = {0,0,0,0,0,0,0,0}
 
     if aiBrain.CheatEnabled then
-        teams[myTeam] = teams[myTeam] + (1 * (cheatAdjustment * 0.5) )
+        teams[myTeam] = teams[myTeam] + (1 * cheatAdjustment)
     else
         teams[myTeam] = teams[myTeam] + 1
     end
@@ -731,7 +731,7 @@ function AIOutnumbered(aiBrain, bool)
             local armyTeam = ScenarioInfo.ArmySetup[v.Name].Team
             --LOG('*AI DEBUG: '..v.Nickname..' is on team '..armyTeam)
             if v.CheatEnabled then
-                teams[armyTeam] = teams[armyTeam] + (1 * (cheatAdjustment * 0.5) )
+                teams[armyTeam] = teams[armyTeam] + (1 * cheatAdjustment)
             else
                 teams[armyTeam] = teams[armyTeam] + 1
             end

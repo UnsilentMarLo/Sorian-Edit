@@ -71,6 +71,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1300,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.ANTIAIR} },
             { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
@@ -84,6 +86,8 @@ BuilderGroup {
         Priority = 1300,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.ANTIAIR} },
             { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
@@ -96,6 +100,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirBomber',
         Priority = 500,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 15, categories.AIR * categories.ANTIAIR} },
             { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
@@ -108,6 +114,8 @@ BuilderGroup {
         Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
@@ -121,6 +129,8 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
@@ -133,6 +143,8 @@ BuilderGroup {
         Priority = 800,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -144,6 +156,8 @@ BuilderGroup {
         Priority = 1100,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR} },
@@ -155,9 +169,11 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 1300,
         BuilderConditions = {
+            --{ IBC, 'BrainNotLowMassMode', {} },
+            --{ IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         },
         BuilderType = 'Air',
     },
@@ -167,6 +183,8 @@ BuilderGroup {
         Priority = 1100,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
@@ -179,6 +197,8 @@ BuilderGroup {
         Priority = 1100,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
@@ -192,6 +212,8 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -203,6 +225,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -221,6 +244,8 @@ BuilderGroup {
         Priority = 900,
 		InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -233,6 +258,8 @@ BuilderGroup {
         Priority = 1200,
 		InstanceCount = 3,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.TECH1, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -246,6 +273,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700, --560,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
@@ -259,6 +288,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 560,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 19, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
@@ -278,6 +309,7 @@ BuilderGroup {
         Priority = 1500,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -292,6 +324,8 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
@@ -304,6 +338,7 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -317,6 +352,7 @@ BuilderGroup {
         Priority = 900,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -330,6 +366,7 @@ BuilderGroup {
         Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -343,6 +380,7 @@ BuilderGroup {
         Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -355,6 +393,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 600,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.AIR * categories.ANTIAIR } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -371,6 +410,7 @@ BuilderGroup {
         Priority = 800,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -385,6 +425,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -399,6 +440,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -413,6 +455,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -428,6 +471,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -446,6 +490,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY TECH3' }},
@@ -458,6 +504,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.ANTIAIR * categories.TECH1, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -472,6 +520,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700, --660,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
@@ -486,6 +536,8 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700, --660,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -503,6 +555,8 @@ BuilderGroup {
         Priority = 1800,
         InstanceCount = 1,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -516,6 +570,8 @@ BuilderGroup {
         Priority = 1500,
         InstanceCount = 2,
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
@@ -531,6 +587,7 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 }},
         },
@@ -541,7 +598,8 @@ BuilderGroup {
         Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
@@ -555,7 +613,8 @@ BuilderGroup {
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.AIR * categories.BOMBER * categories.TECH3 } },
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -570,7 +629,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.TECH3 * categories.AIR * categories.BOMBER } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.BOMBER * categories.TECH3 } },
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { SBC, 'T4ThreatExists', {{'Land', 'Naval', 'Structure'}, (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY)}},
@@ -582,7 +642,8 @@ BuilderGroup {
         Priority = 1400,
         BuilderType = 'Air',
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
@@ -596,7 +657,8 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
         },
@@ -607,7 +669,8 @@ BuilderGroup {
         Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
         },
@@ -618,7 +681,8 @@ BuilderGroup {
         Priority = 1500,
         InstanceCount = 4,
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -631,7 +695,8 @@ BuilderGroup {
         Priority = 1300,
         BuilderType = 'Air',
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Naval' } },
@@ -648,7 +713,8 @@ BuilderGroup {
         Priority = 1600,
         InstanceCount = 2,
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -660,7 +726,8 @@ BuilderGroup {
         PlatoonTemplate = 'T3AirFighter',
         Priority = 1000,
         BuilderConditions = {
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
@@ -676,7 +743,8 @@ BuilderGroup {
             { IBC, 'BrainNotLowPowerMode', {} },
 											   
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 1.05 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
@@ -692,7 +760,8 @@ BuilderGroup {
 
 											   
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 19, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
@@ -711,7 +780,8 @@ BuilderGroup {
 																								  
 																																						 
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 60, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
@@ -738,6 +808,7 @@ BuilderGroup {
 																																					
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
 																											  
@@ -761,7 +832,8 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
 												
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
         },
@@ -779,7 +851,8 @@ BuilderGroup {
 																																									   
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
@@ -795,6 +868,7 @@ BuilderGroup {
             --{ MIBC, 'ArmyNeedsTransports', {} },
             ----{ SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -810,8 +884,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
-            ----{ SBC, 'IsWaterMap', { true } },
+            --{ SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -826,8 +901,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
-            ----{ SBC, 'IsWaterMap', { true } },
+            --{ SBC, 'IsWaterMap', { true } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -851,7 +927,8 @@ BuilderGroup {
 																																					
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
-            --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
@@ -871,6 +948,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -890,6 +968,7 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
@@ -903,11 +982,12 @@ BuilderGroup {
         Priority = 700,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            ----{ MIBC, 'ArmyNeedsTransports', {} },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            --{ IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
         BuilderType = 'Air',
@@ -920,6 +1000,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -933,6 +1014,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -947,6 +1029,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -968,6 +1051,7 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 6, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
@@ -987,6 +1071,7 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.TECH1} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 8, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
@@ -1006,6 +1091,7 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.FACTORY * categories.AIR } },
@@ -1019,11 +1105,12 @@ BuilderGroup {
         Priority = 1400,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            ----{ MIBC, 'ArmyNeedsTransports', {} },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
-            --{ IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
         BuilderType = 'Air',
@@ -1036,6 +1123,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1049,6 +1137,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1063,6 +1152,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH3' } },
             --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
         },
@@ -1075,7 +1165,9 @@ BuilderGroup {
 		InstanceCount = 2,
         BuilderConditions = {
             --{ MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH1 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
@@ -1090,7 +1182,9 @@ BuilderGroup {
         Priority = 1900,
         BuilderConditions = {
             --{ MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
@@ -1105,7 +1199,9 @@ BuilderGroup {
         Priority = 2400,
         BuilderConditions = {
             --{ MIBC, 'TransportNeedGreater', { 7 } },
+            --{ MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS' } },
+            { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ MIBC, 'GreaterThanGameTime', { 2000 } },
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.05 }},
