@@ -381,7 +381,7 @@ Platoon = Class(OldPlatoonClass) {
         end
         if eng then
             eng.UnitBeingBuilt = eng
-            SwarmUtils.ReclaimAIThreadSorian(self,eng,aiBrain)
+            SUtils.ReclaimAIThreadSorian(self,eng,aiBrain)
             eng.UnitBeingBuilt = nil
         end
         self:PlatoonDisband()

@@ -1981,7 +1981,7 @@ BuilderGroup {
         BuilderName = 'Sorian Mass 30',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1260,
-        InstanceCount = 4,
+        InstanceCount = 2,
         DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 30, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -1994,6 +1994,7 @@ BuilderGroup {
                 ThreatMin = 0,
                 ThreatMax = 5,
                 ThreatRings = 1,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -2004,7 +2005,7 @@ BuilderGroup {
         BuilderName = 'Sorian Mass 60',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1250,
-        InstanceCount = 4,
+        InstanceCount = 2,
         DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 60, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -2017,6 +2018,7 @@ BuilderGroup {
                 ThreatMin = 0,
                 ThreatMax = 5,
                 ThreatRings = 1,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
