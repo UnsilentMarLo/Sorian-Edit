@@ -1820,6 +1820,19 @@ function CompareBody(numOne, numTwo, compareType)
     return false
 end
 
+function StartMoveDestination(self,destination)
+    local NowPosition = self:GetPosition()
+    local x, z, y = unpack(self:GetPosition())
+    local count = 0
+    IssueClearCommands({self})
+    while x == NowPosition[1] and y == NowPosition[3] and count < 20 do
+        count = count + 1
+        IssueClearCommands({self})
+        IssueMove( {self}, destination )
+        coroutine.yield(10)
+    end
+end
+
 local PropBlacklist = {}
 function ReclaimAIThreadSorian(platoon,self,aiBrain)
     local scanrange = 25
