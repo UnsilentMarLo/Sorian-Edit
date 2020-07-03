@@ -89,6 +89,7 @@ BaseBuilderTemplate {
 
         -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuilders',
+        'SorianEditNavalExpansionBuildersFast',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
@@ -166,8 +167,8 @@ BaseBuilderTemplate {
         'SorianEditNukeRush',
         'SorianEditT3FBRush',
         'SorianEditT2ACUSnipe',
-        'SorianEditParagonStrategy',
-        'SorianEditParagonStrategyExp',
+        -- 'SorianEditParagonStrategy',
+        -- 'SorianEditParagonStrategyExp',
         'SorianEdit Tele SCU Strategy',
         --'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',

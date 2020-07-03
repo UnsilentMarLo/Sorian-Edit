@@ -682,6 +682,29 @@ BuilderGroup {
             }
         }
     },
+
+    Builder {    
+        BuilderName = 'SorianEdit CDR T1 Power - Overbuild',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 875,
+        BuilderConditions = {
+            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
+            { EBC, 'LessThanEconTrend', { 10000.0, 75.0 }},
+            --{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3'}},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                --AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+
     Builder {
         BuilderName = 'SorianEdit CDR Base D',
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
@@ -1171,7 +1194,7 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
-                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.TECH2 * categories.ENERGYPRODUCTION}},
+                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 1, categories.TECH3 * categories.ENERGYPRODUCTION}},
             },
         BuilderData = {
             Location = 'LocationType',
@@ -2137,7 +2160,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Power Engineer - Overbuild',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1175,
-        InstanceCount = 2,
+        InstanceCount = 4,
         BuilderConditions = {
             { EBC, 'LessThanEconTrend', { 10000.0, 75.0 }},
             { UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
@@ -2161,7 +2184,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Power Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 950,
+        Priority = 1250,
         InstanceCount = 1,
         BuilderConditions = {
             --{ UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'TECH3 ENGINEER' }},
@@ -2187,7 +2210,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Power Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 1200,
+        Priority = 1350,
         InstanceCount = 1,
         BuilderType = 'Any',
         BuilderConditions = {

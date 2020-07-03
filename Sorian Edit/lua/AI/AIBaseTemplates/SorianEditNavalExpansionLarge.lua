@@ -72,10 +72,10 @@ BaseBuilderTemplate {
     },
     BaseSettings = {
         EngineerCount = {
-            Tech1 = 10,
-            Tech2 = 9,
-            Tech3 = 6,
-            SCU = 0,
+            Tech1 = 13,
+            Tech2 = 7,
+            Tech3 = 5,
+            SCU = 1,
         },
         FactoryCount = {
             Land = 0,

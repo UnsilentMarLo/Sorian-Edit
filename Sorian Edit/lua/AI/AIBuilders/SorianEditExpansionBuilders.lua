@@ -228,8 +228,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - drop',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 950,
-        InstanceCount = 5,
+        Priority = 1000,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -271,8 +271,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - drop',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 950,
-        InstanceCount = 5,
+        Priority = 1000,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 1, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -317,8 +317,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2VacantStartingAreaEngineer - drop',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 980,
-        InstanceCount = 5,
+        Priority = 1000,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -366,8 +366,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3VacantStartingAreaEngineer - drop',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 922,
-        InstanceCount = 2,
+        Priority = 1000,
+        InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -557,7 +557,7 @@ BuilderGroup {
                 BaseTemplate = ExBaseTmpl,
                 ExpansionBase = true,
                 ExpansionRadius = 200,
-                NearMarkerType = 'Expansion Area',
+                NearMarkerType = 'Defensive Point',
                 LocationRadius = 1000,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
