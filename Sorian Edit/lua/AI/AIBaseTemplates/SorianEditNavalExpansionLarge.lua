@@ -21,7 +21,7 @@ BaseBuilderTemplate {
         --'Engineer Transfers',
 
         -- Engineer Builders
-        'SorianEditEngineerFactoryBuilders',
+        'SorianEditEngineerNavalFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',

@@ -22,7 +22,7 @@ PlatoonTemplate {
 }
 PlatoonTemplate {
     Name = 'LandAttackLargeSorianEdit - amphib',
-    Plan = 'AttackForceAISorian',
+    Plan = 'AmphibiousHuntAISorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND * (categories.HOVER + categories.AMPHIBIOUS) - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 35, 80, 'Attack', 'none' }
     },

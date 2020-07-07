@@ -241,6 +241,64 @@ Platoon = Class(OldPlatoonClass) {
             WaitSeconds(10)
         end
     end,
+	
+
+    GuardBaseSorianEdit = function(self)
+        self:Stop()
+        local aiBrain = self:GetBrain()
+        local armyIndex = aiBrain:GetArmyIndex()
+        local target = false
+        local basePosition = false
+        local radius = self.PlatoonData.Radius or 50000
+        local patrolling = false
+
+        if self.PlatoonData.LocationType and self.PlatoonData.LocationType != 'NOTMAIN' then
+            basePosition = aiBrain.BuilderManagers[self.PlatoonData.LocationType].Position
+        else
+            local platoonPosition = self:GetPlatoonPosition()
+            if platoonPosition then
+                basePosition = aiBrain:FindClosestBuilderManagerPosition(self:GetPlatoonPosition())
+        end
+        end
+
+        if not basePosition then
+            return
+        end
+
+        local mapSizeX, mapSizeZ = GetMapSize()
+        local T4Radius = math.sqrt((mapSizeX * mapSizeX) + (mapSizeZ * mapSizeZ)) / 2
+        local guardRadius = self.PlatoonData.GuardRadius or math.sqrt((mapSizeX * mapSizeX) + (mapSizeZ * mapSizeZ)) / 2
+
+        while aiBrain:PlatoonExists(self) do
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL)
+            local newtarget = false
+            if aiBrain.T4ThreatFound['Air'] then
+                newtarget = self:FindClosestUnit('Attack', 'Enemy', true, categories.EXPERIMENTAL * categories.AIR)
+                if newtarget then
+                    target = newtarget
+                end
+            end
+            if target and newtarget and not target.Dead and target:GetFractionComplete() == 1
+            and SUtils.XZDistanceTwoVectorsSq(target:GetPosition(), basePosition) < T4Radius * T4Radius then
+                blip = target:GetBlip(armyIndex)
+                self:Stop()
+                self:AttackTarget(target)
+                patrolling = false
+            elseif target and not target.Dead and SUtils.XZDistanceTwoVectorsSq(target:GetPosition(), basePosition) < guardRadius * guardRadius then
+                self:Stop()
+                self:AggressiveMoveToLocation(target:GetPosition())
+                patrolling = false
+            elseif not patrolling then
+                local position = AIUtils.RandomLocation(basePosition[1],basePosition[3])
+                self:MoveToLocation(position, false)
+                for k,v in AIUtils.GetBasePatrolPoints(aiBrain, basePosition, radius, 'Air') do
+                    self:Patrol(v)
+                end
+                patrolling = true
+            end
+            WaitSeconds(5)
+        end
+    end,
 
     AmphibiousHuntAISorianEdit = function(self)
 	
@@ -264,6 +322,8 @@ Platoon = Class(OldPlatoonClass) {
                 self:Stop()
                 if not inWater then
                     IssueAggressiveMove(platoonUnits, target:GetPosition())
+                else
+                    IssueMove(platoonUnits, target:GetPosition())
                 end
             end
             WaitSeconds(10)
@@ -305,7 +365,7 @@ Platoon = Class(OldPlatoonClass) {
                     if not SUtils.ExtractorPauseSorian( self, aiBrain, MassExtractorUnitList, ratio, 'TECH1') then
                         -- We have nothing to pause or unpause, lets upgrade more extractors
                         -- if we have 10% TECH1 extractors left (and 90% TECH2), then upgrade TECH2 to TECH3
-                        if SUtils.HaveUnitRatio( aiBrain, 0.90, categories.MASSEXTRACTION * categories.TECH1, '<=', categories.MASSEXTRACTION * categories.TECH2 ) then
+                        if SUtils.HaveUnitRatio( aiBrain, 0.70, categories.MASSEXTRACTION * categories.TECH1, '<=', categories.MASSEXTRACTION * categories.TECH2 ) then
                             -- Try to upgrade a TECH2 extractor.
                             if not SUtils.ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, 'TECH2', UnitUpgradeTemplates, StructureUpgradeTemplates) then
                                 -- We can't upgrade a TECH2 extractor. Try to upgrade from TECH1 to TECH2

@@ -77,7 +77,9 @@ BuilderGroup {
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY NAVAL'}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -117,7 +119,9 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -157,7 +161,9 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -202,7 +208,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -241,7 +249,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -280,7 +290,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
             { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -326,7 +338,9 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -354,7 +368,9 @@ BuilderGroup {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
@@ -380,7 +396,9 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
             { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
