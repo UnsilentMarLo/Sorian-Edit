@@ -140,7 +140,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalLandSorianEdit',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'HuntAISorian',
     GlobalSquads = {
         { categories.EXPERIMENTAL * categories.LAND * categories.MOBILE - categories.url0401, 1, 10, 'attack', 'none' }
     },
@@ -148,7 +148,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalScathisSorianEdit',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'HuntAISorian',
     GlobalSquads = {
         { categories.url0401, 1, 1, 'attack', 'none' }
     },
@@ -156,7 +156,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalLandLate',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'HuntAISorian',
     GlobalSquads = {
         { categories.EXPERIMENTAL * categories.LAND * categories.MOBILE - categories.url0401, 2, 5, 'attack', 'GrowthFormation' }
     },

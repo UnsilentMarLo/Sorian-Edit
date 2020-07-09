@@ -178,7 +178,7 @@ BuilderGroup {
                 { EBC, 'GreaterThanEconIncome',  { 10, 35}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -200,7 +200,7 @@ BuilderGroup {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -218,11 +218,10 @@ BuilderGroup {
         Priority = 1300,
         InstanceCount = 2,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.LAND * categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH1 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                { EBC, 'GreaterThanEconIncome',  { 3, 25}},
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { IBC, 'BrainNotLowMassMode', {} },
             },
@@ -232,12 +231,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 120,
+        Priority = 1200,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, 'FACTORY TECH2, FACTORY TECH3' } },
@@ -254,7 +253,7 @@ BuilderGroup {
         Priority = 1300,
         InstanceCount = 2,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
                 ----{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
@@ -262,7 +261,7 @@ BuilderGroup {
                 { EBC, 'GreaterThanEconIncome',  { 40, 75}},
                 --{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -275,7 +274,7 @@ BuilderGroup {
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
                 ----{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
@@ -283,7 +282,7 @@ BuilderGroup {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     }, ]]--
@@ -306,7 +305,7 @@ BuilderGroup {
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -326,7 +325,7 @@ BuilderGroup {
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     }, ]]--
@@ -338,7 +337,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION * categories.TECH3 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { IBC, 'BrainNotLowMassMode', {} },
@@ -352,8 +351,8 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION * categories.TECH3 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH3 RESEARCH'}},
                 { UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { IBC, 'BrainNotLowMassMode', {} },
@@ -378,7 +377,7 @@ BuilderGroup {
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -400,7 +399,7 @@ BuilderGroup {
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -422,7 +421,7 @@ BuilderGroup {
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -441,7 +440,7 @@ BuilderGroup {
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     }, ]]--
@@ -502,12 +501,12 @@ BuilderGroup {
         Priority = 1600,
         InstanceCount = 1,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY NAVAL TECH3 RESEARCH'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { IBC, 'BrainNotLowMassMode', {} },
             },
@@ -561,7 +560,7 @@ BuilderGroup {
                 --{ UCBC, 'FactoryLessAtLocation', { 'MAIN', 1, 'FACTORY TECH1' } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -580,7 +579,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -596,7 +595,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -618,7 +617,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -635,7 +634,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -652,7 +651,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -671,8 +670,8 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.LAND * categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH3'}},
                 --{ UCBC, 'FactoryLessAtLocation', { 'MAIN', 1, 'FACTORY TECH1' } },
@@ -681,7 +680,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -695,8 +694,8 @@ BuilderGroup {
         FormDebugFunction = nil,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.AIR * categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH3'}},
                 --{ UCBC, 'FactoryLessAtLocation', { 'MAIN', 1, 'FACTORY TECH1' } },
@@ -706,7 +705,7 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -722,15 +721,15 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY LAND TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH3 RESEARCH'}},
                 -- { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -741,15 +740,15 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3 RESEARCH'}},
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH3 RESEARCH'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -762,7 +761,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Support Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 750,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9501', 'zab9501', 'zrb9501', 'zsb9501', 'znb9501' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -774,7 +773,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * ( categories.TECH2 + categories.TECH3 ) - categories.SUPPORTFACTORY } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH1 }},
         },
@@ -784,7 +783,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 1',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade1',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -798,7 +797,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -808,7 +807,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 2',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade2',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -821,7 +820,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -831,7 +830,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 3',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade3',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -844,7 +843,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -854,7 +853,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 4',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade4',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -867,7 +866,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -877,7 +876,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 5',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade5',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -890,7 +889,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.LAND - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -901,7 +900,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Support Factory Upgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 750,
+        Priority = 850,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9502', 'zab9502', 'zrb9502', 'zsb9502', 'znb9502' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -913,7 +912,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.AIR * ( categories.TECH2 + categories.TECH3 ) - categories.SUPPORTFACTORY } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH1 }},
         },
@@ -923,7 +922,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 1',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade1',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -936,7 +935,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -946,7 +945,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 2',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade2',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -959,7 +958,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -969,7 +968,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 3',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade3',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -982,7 +981,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -992,7 +991,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 4',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade4',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1005,7 +1004,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -1015,7 +1014,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 5',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade5',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1028,7 +1027,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.AIR - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
@@ -1054,7 +1053,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.NAVAL * ( categories.TECH2 + categories.TECH3 ) - categories.SUPPORTFACTORY } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.STRUCTURE * categories.FACTORY * categories.TECH1 }},
@@ -1074,7 +1073,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
@@ -1085,7 +1084,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 1',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade1',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1095,7 +1094,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY} },
@@ -1107,7 +1106,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 2',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade2',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1118,7 +1117,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY} },
@@ -1130,7 +1129,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 3',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade3',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1141,7 +1140,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY} },
@@ -1153,7 +1152,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 4',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade4',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1164,7 +1163,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY} },
@@ -1176,7 +1175,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 5',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade5',
-        Priority = 900,
+        Priority = 1200,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1187,7 +1186,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },

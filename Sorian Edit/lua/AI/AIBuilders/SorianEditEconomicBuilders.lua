@@ -1285,7 +1285,6 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 3000,
         BuilderConditions = {
-                { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'HYDROCARBON'}},
                 { SBC, 'CanBuildOnHydroLessThanDistance', { 'LocationType', 200, -500, 0, 0, 'AntiSurface', 1 }},
                 --{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 200}},
             },
@@ -1304,11 +1303,8 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 980,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENGINEER * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION } },
-                --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'HYDROCARBON'}},
                 { SBC, 'CanBuildOnHydroLessThanDistance', { 'LocationType', 600, -500, 0, 0, 'AntiSurface', 1 }},
-                --{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 200}},
             },
         BuilderType = 'Any',
         BuilderData = {
@@ -1328,7 +1324,6 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderConditions = {
                 --{ MIBC, 'ReclaimablesInArea', { 'LocationType', }},
-
                 { EBC, 'LessThanEconStorageRatio', { 0.95, 1}},
             },
         BuilderData = {
@@ -1345,7 +1340,6 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
                 --{ MIBC, 'ReclaimablesInArea', { 'LocationType', }},
-
                 { EBC, 'LessThanEconStorageRatio', { 0.5, 1}},
             },
         BuilderData = {
@@ -1453,18 +1447,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Energy Storage Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = -1,
+        Priority = 2000,
         BuilderConditions = {
-            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH1' }},
+            { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION HYDROCARBON' }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH1', 100, 'ueb1105' } },
+           -- { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION HYDROCARBON', 100, 'ueb1102' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH1',
+                AdjacencyCategory = 'HYDROCARBON',
                 AdjacencyDistance = 100,
                 BuildClose = false,
                 BuildStructures = {
@@ -1746,18 +1740,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Energy Storage Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = -1,
+        Priority = 1000,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH2' }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH2', 100, 'ueb1105' } },
+           -- { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION HYDROCARBON', 100, 'ueb1102' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH2',
+                AdjacencyCategory = 'HYDROCARBON',
                 AdjacencyDistance = 100,
                 BuildClose = false,
                 BuildStructures = {
@@ -1962,18 +1956,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Energy Storage Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = -1,
+        Priority = 1000,
         BuilderConditions = {
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, 'ENERGYPRODUCTION TECH3' }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION TECH3', 100, 'ueb1105' } },
+           -- { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION HYDROCARBON', 100, 'ueb1102' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
+                AdjacencyCategory = 'HYDROCARBON',
                 AdjacencyDistance = 100,
                 BuildClose = false,
                 BuildStructures = {

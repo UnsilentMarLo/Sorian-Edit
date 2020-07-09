@@ -138,7 +138,7 @@ Platoon = Class(OldPlatoonClass) {
 
             -- if we're on our final push through to the destination, and we find a unit close to our destination
             --local closestTarget = self:FindClosestUnit('attack', 'enemy', true, categories.ALLUNITS)
-            local closestTarget = SUtils.FindClosestUnitPosToAttack(aiBrain, self, 'attack', maxRange + 20, categories.ALLUNITS - categories.AIR - categories.NAVAL - categories.SCOUT, selectedWeaponArc, turretPitch)
+            local closestTarget = SUtils.FindClosestUnitPosToAttack(aiBrain, self, 'attack', maxRange + 30, categories.ALLUNITS - categories.AIR - categories.NAVAL - categories.SCOUT, selectedWeaponArc, turretPitch)
             local nearDest = false
             local oldPathSize = table.getn(self.LastAttackDestination)
             if self.LastAttackDestination then
