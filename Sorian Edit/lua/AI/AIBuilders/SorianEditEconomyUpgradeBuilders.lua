@@ -40,7 +40,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian Extractor upgrade',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoon',
-        Priority = 18400,
+        Priority = 40000,
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
@@ -56,7 +56,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian Extractor upgrade - Multiple',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoon',
-        Priority = 18400,
+        Priority = 40000,
         InstanceCount = 4,
         FormRadius = 10000,
         BuilderConditions = {
@@ -73,7 +73,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'Sorian Extractor upgrade - Multiple2',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoon',
-        Priority = 18400,
+        Priority = 40000,
         InstanceCount = 4,
         FormRadius = 10000,
         BuilderConditions = {
@@ -97,7 +97,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Emergency T1 Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1400,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
@@ -112,13 +112,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Emergency T2 Factory Upgrade',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1600,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3'} },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.RESEARCH * categories.TECH2 } },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 0, 'MOBILE TECH3, FACTORY TECH3', 'Enemy'}},
 				{ EBC, 'GreaterThanEconIncome',  { 20, 50 } },
             },
@@ -135,7 +135,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
@@ -150,7 +150,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit RushT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
@@ -166,7 +166,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
@@ -186,7 +186,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit RushT1AirFactoryUpgrade',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
@@ -215,15 +215,15 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Initial',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1300,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH1 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
@@ -231,7 +231,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgradeInitial',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
@@ -241,8 +241,8 @@ BuilderGroup {
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, 'FACTORY TECH2, FACTORY TECH3' } },
                 { EBC, 'GreaterThanEconIncome',  { 3, 25}},
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
@@ -250,7 +250,7 @@ BuilderGroup {
     --[[ Builder {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1300,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
@@ -295,13 +295,13 @@ BuilderGroup {
     --[[ Builder {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade - T3',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1000,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY LAND TECH3 RESEARCH'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH3'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -313,14 +313,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade - T3',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1000,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3 RESEARCH'}},
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH3'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -333,29 +333,29 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade - initial',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1400,
+        Priority = 4000,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION * categories.TECH3 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
     Builder {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade - initial',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1400,
+        Priority = 4000,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.MASSEXTRACTION * categories.TECH3 } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH3 RESEARCH'}},
-                { UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
@@ -372,7 +372,7 @@ BuilderGroup {
                 -- { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 --{ SBC, 'AIType', {'sorianrush', false }},
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -394,7 +394,7 @@ BuilderGroup {
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 --{ SBC, 'AIType', {'sorianrush', false }},
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -416,7 +416,7 @@ BuilderGroup {
                 -- { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 --{ SBC, 'AIType', {'sorianrush', true }},
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -435,7 +435,7 @@ BuilderGroup {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3 RESEARCH'}},
                 { EBC, 'GreaterThanEconIncome',  { 14, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 --{ SBC, 'AIType', {'sorianrush', true }},
                 ----CanBuildFirebase { 1000, 1000 }},
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -458,16 +458,16 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Naval T1 Naval Factory Upgrade Initial',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 1400,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY NAVAL TECH2 RESEARCH'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
@@ -477,7 +477,7 @@ BuilderGroup {
      Builder {
         BuilderName = 'SorianEdit Naval T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
@@ -485,7 +485,7 @@ BuilderGroup {
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'NAVAL' } },
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.2} },
             },
         BuilderType = 'Any',
@@ -498,7 +498,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Naval T2 Sea Factory Upgrade init',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
-        Priority = 1600,
+        Priority = 4000,
         InstanceCount = 1,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
@@ -507,8 +507,8 @@ BuilderGroup {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
             },
         BuilderType = 'Any',
     },
@@ -516,14 +516,14 @@ BuilderGroup {
     --[[ Builder {
         BuilderName = 'SorianEdit Naval T2 Sea Factory Upgrade',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
-        Priority = 1520,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY NAVAL TECH3 RESEARCH'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3'} },
                 { EBC, 'GreaterThanEconIncome',  { 20, 10}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -531,7 +531,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Naval T1 Sea Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
@@ -551,7 +551,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Fast T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
@@ -568,7 +568,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit FastT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
@@ -586,7 +586,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Fast T1 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY NAVAL TECH2 RESEARCH, FACTORY NAVAL TECH3 RESEARCH'}},
@@ -607,14 +607,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Fast T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1201,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY LAND TECH3 RESEARCH'}},
                 -- { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
@@ -624,14 +624,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Fast T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1201,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3 RESEARCH'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
@@ -641,14 +641,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Fast T2 Sea Factory Upgrade Expansion',
         PlatoonTemplate = 'T2SeaFactoryUpgrade',
-        Priority = 1201,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY NAVAL TECH3 RESEARCH'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 20}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
@@ -666,10 +666,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY LAND TECH2 RESEARCH, FACTORY LAND TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
@@ -689,11 +689,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade Expansion',
         PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 1100,
+        Priority = 4000,
         InstanceCount = 2,
         FormDebugFunction = nil,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'FACTORY AIR TECH2 RESEARCH, FACTORY AIR TECH3 RESEARCH'}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 2, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
@@ -717,7 +717,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Balanced T2 Land Factory Upgrade Expansion',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
-        Priority = 1201,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
@@ -726,7 +726,7 @@ BuilderGroup {
                 -- { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
@@ -736,7 +736,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Balanced T2 Air Factory Upgrade Expansion',
         PlatoonTemplate = 'T2AirFactoryUpgrade',
-        Priority = 1201,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, categories.MASSEXTRACTION * categories.TECH3 } },
@@ -745,7 +745,7 @@ BuilderGroup {
                 --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
                 { EBC, 'GreaterThanEconIncome',  { 11, 1.80}},
                 { IBC, 'BrainNotLowPowerMode', {} },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 800 } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
                 { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
@@ -761,15 +761,15 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Support Factory Upgrade',
         PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9501', 'zab9501', 'zrb9501', 'zsb9501', 'znb9501' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -783,7 +783,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 1',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade1',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -791,15 +791,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- Have we the eco to build it ?
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -807,7 +806,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 2',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade2',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -815,14 +814,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -830,7 +829,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 3',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade3',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -838,14 +837,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -853,7 +852,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 4',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade4',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -861,14 +860,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.SUPPORTFACTORY * categories.LAND * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -876,7 +875,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Land Support Factory Upgrade 5',
         PlatoonTemplate = 'T2LandSupFactoryUpgrade5',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9601', 'zab9601', 'zrb9601', 'zsb9601', 'znb9601' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -884,14 +883,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.LAND - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.LAND - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -907,8 +906,8 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -922,7 +921,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 1',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade1',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -930,14 +929,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.UEF * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -945,7 +944,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 2',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade2',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -953,14 +952,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.AEON * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -968,7 +967,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 3',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade3',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -976,14 +975,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.CYBRAN * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -991,7 +990,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 4',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade4',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -999,14 +998,14 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SERAPHIM * categories.AIR * categories.SUPPORTFACTORY * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -1014,7 +1013,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Support Factory Upgrade 5',
         PlatoonTemplate = 'T2AirSupFactoryUpgrade5',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9602', 'zab9602', 'zrb9602', 'zsb9602', 'znb9602' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1022,15 +1021,15 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 +  categories.TECH3) } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.AIR - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SUPPORTFACTORY * categories.TECH2 * categories.AIR - categories.SERAPHIM - categories.CYBRAN - categories.AEON - categories.UEF }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.STRUCTURE * categories.FACTORY * categories.TECH2 }},
         },
         BuilderType = 'Any',
@@ -1043,7 +1042,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Navy Support Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 1000,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9503', 'zab9503', 'zrb9503', 'zsb9503', 'znb9503' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1063,7 +1062,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade',
         PlatoonTemplate = 'T1SeaFactoryUpgrade',
-        Priority = 2000,
+        Priority = 4000,
         InstanceCount = 4,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9503', 'zab9503', 'zrb9503', 'zsb9503', 'znb9503' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1084,7 +1083,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 1',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade1',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
@@ -1106,14 +1105,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 2',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade2',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -1129,14 +1128,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 3',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade3',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -1152,14 +1151,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 4',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade4',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 2,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -1175,14 +1174,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Navy Support Factory Upgrade 5',
         PlatoonTemplate = 'T2SeaSupFactoryUpgrade5',
-        Priority = 1200,
+        Priority = 4000,
         InstanceCount = 3,
         BuilderData = {
             OverideUpgradeBlueprint = { 'zeb9603', 'zab9603', 'zrb9603', 'zsb9603', 'znb9603' }, -- overides Upgrade blueprint for all 5 factions. Used for support factories
         },
         BuilderConditions = {
-                { IBC, 'BrainNotLowPowerMode', {} },
-                { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
+            { IBC, 'BrainNotLowMassMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },

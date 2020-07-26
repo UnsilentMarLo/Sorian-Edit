@@ -71,12 +71,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Sub',
         PlatoonTemplate = 'T1SeaSub',
         Priority = 600,
-		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
-            { UCBC, 'HaveUnitRatio', { 0.55, categories.NAVAL * categories.TECH1 * categories.FRIGATE * categories.MOBILE, '<=', categories.NAVAL * categories.TECH1 * categories.MOBILE * categories.SUBMERSIBLE}},
+            { UCBC, 'HaveUnitRatio', { 0.4, categories.NAVAL * categories.TECH1 * categories.DIRECTFIRE, '<=', categories.NAVAL * categories.TECH1 * categories.SUBMERSIBLE }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.NAVAL * categories.FACTORY * categories.TECH1 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -88,7 +87,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Frigate',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 500,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -105,7 +103,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Frigate - ratio to T2',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 800,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -144,7 +141,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer Landattack',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
@@ -161,7 +157,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 800,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -178,7 +173,6 @@ BuilderGroup {
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 700,
-		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -195,7 +189,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2SubKiller',
         PlatoonTemplate = 'T2SubKiller',
         Priority = 600,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -211,7 +204,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2ShieldBoat',
         PlatoonTemplate = 'T2ShieldBoat',
         Priority = 600,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'SHIELD NAVAL MOBILE' } },
@@ -228,7 +220,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2CounterIntelBoat',
         PlatoonTemplate = 'T2CounterIntelBoat',
         Priority = 500,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'COUNTERINTELLIGENCE NAVAL MOBILE' } },
@@ -250,7 +241,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 600,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -268,7 +258,6 @@ BuilderGroup {
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 600,
-		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -290,7 +279,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 1000,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -307,7 +295,6 @@ BuilderGroup {
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
-		InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -323,7 +310,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
         Priority = 1000,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -355,7 +341,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
         Priority = 900,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -372,7 +357,6 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
         Priority = 1000,
-		InstanceCount = 2,
         BuilderType = 'Sea',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },

@@ -37,7 +37,7 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -49,7 +49,31 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T3Artillery',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit T3 Artillery Engineer - Overflow',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        Priority = 1000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+            { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 5,
+            Construction = {
+				RepeatBuild = true,
+                BuildClose = false,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3Artillery',
@@ -67,7 +91,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.TECH3 * categories.ARTILLERY}},
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             ----CanBuildFirebase { 500, 500 }},
@@ -80,7 +104,7 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3Artillery',
@@ -98,7 +122,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.TECH3 * categories.ARTILLERY}},
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             ----CanBuildFirebase { 500, 500 }},
@@ -112,7 +136,7 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3Artillery',
@@ -129,8 +153,8 @@ BuilderGroup {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.PRODUCTSC1}},
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE * categories.PRODUCTSC1}},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
@@ -143,7 +167,31 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
+                --T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T3RapidArtillery',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit Rapid T3 Artillery Engineer - Overflow',
+        PlatoonTemplate = 'AeonT3EngineerBuilderSorianEdit',
+        Priority = 1250,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 5,
+            Construction = {
+				RepeatBuild = true,
+                BuildClose = false,
                 --T4 = true,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
@@ -199,7 +247,7 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3Artillery',
@@ -222,25 +270,50 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.STRUCTURE}},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.STRUCTURE * categories.ARTILLERY}},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE}},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, categories.EXPERIMENTAL * categories.STRUCTURE}},
+            -- { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.STRUCTURE * categories.ARTILLERY}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
             --CanBuildFirebase { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SIBC, 'T4BuildingCheck', {} },
-            { MIBC, 'FactionIndex', {1,4} },
             --{ UCBC, 'CheckUnitRange', { 'LocationType', 'T4Artillery', categories.STRUCTURE } },
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
+                --T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4Artillery',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit T4 Artillery Engineer - Overflow',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        --PlatoonAddPlans = {'NameUnitsSorian'},
+        Priority = 949,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 5,
+            Construction = {
+				RepeatBuild = true,
+                BuildClose = false,
                 --T4 = true,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
@@ -262,7 +335,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ARTILLERY * categories.OVERLAYINDIRECTFIRE}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.ARTILLERY * categories.OVERLAYINDIRECTFIRE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             { SIBC, 'GreaterThanEconEfficiency', { 0.9, 1.2}},
@@ -276,7 +349,7 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true, --false
+                BuildClose = false, --false
                 --T4 = true,
                 --BaseTemplate = ExBaseTmpl,
                 --NearMarkerType = 'Rally Point',
@@ -349,16 +422,16 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE}},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.NUKE * categories.STRUCTURE * categories.TECH3}},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.STRUCTURE * categories.NUKE}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
+            -- { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.EXPERIMENTAL * categories.STRUCTURE * categories.NUKE}},
+            -- { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
+            -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             --{ EBC, 'GreaterThanEconIncome', {15, 750}},
             --CanBuildFirebase { 1000, 1000 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.04 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -368,7 +441,32 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
+                --T4 = true,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T4Artillery',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit Seraphim Exp Nuke Engineer - Overflow',
+        PlatoonTemplate = 'SeraphimT3EngineerBuilderSorianEdit',
+        Priority = 1200,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+                RepeatBuild = true,
+                BuildClose = false,
                 --T4 = true,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
@@ -382,17 +480,15 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Nuke Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
-        InstanceCount = 1,
+        InstanceCount = 5,
         BuilderConditions = {
             --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.TECH3 * categories.ANTIMISSILE}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.NUKE * categories.STRUCTURE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.MASSPRODUCTION * categories.TECH3 } },
             ----{ EBC, 'GreaterThanEconIncome', {15, 750}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.02 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
             --CanBuildFirebase { 1000, 1000 }},
             { IBC, 'BrainNotLowPowerMode', {} },
         },
@@ -400,7 +496,31 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
+                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildStructures = {
+                    'T3StrategicMissile',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit T3 Nuke Engineer - Overflow',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        Priority = 1200,
+        InstanceCount = 2,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            MinNumAssistees = 2,
+            Construction = {
+                BuildClose = false,
+                RepeatBuild = true,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3StrategicMissile',
@@ -432,7 +552,7 @@ BuilderGroup {
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3StrategicMissile',
@@ -495,15 +615,29 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Nuke Silo',
         PlatoonTemplate = 'T3NukeSorianEdit',
-        Priority = 1,
+        Priority = 4000,
         InstanceCount = 10,
+        FormRadius = 10000,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.STRUCTURE * categories.NUKE * (categories.TECH2 + categories.TECH3 - categories.EXPERIMENTAL) } },
+        },
+        BuilderData = {
+            AIPlan = 'NukePlatoonAI',
+        },
         BuilderType = 'Any',
     },
     Builder {
         BuilderName = 'SorianEdit T4 Nuke Silo',
         PlatoonTemplate = 'T4NukeSorianEdit',
-        Priority = 1,
+        Priority = 4000,
         InstanceCount = 10,
+        FormRadius = 10000,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.STRUCTURE * categories.NUKE * categories.EXPERIMENTAL } },
+        },
+        BuilderData = {
+            AIPlan = 'NukePlatoonAI',
+        },
         BuilderType = 'Any',
     },
 }

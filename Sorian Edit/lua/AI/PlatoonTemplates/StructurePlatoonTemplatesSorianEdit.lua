@@ -59,7 +59,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3NukeSorianEdit',
-    Plan = 'NukeAI',
+    Plan = 'NukePlatoonAI',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.TECH3, 1, 1, 'attack', 'none' },
     }
@@ -67,7 +67,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4NukeSorianEdit',
-    Plan = 'NukeAISAI',
+    Plan = 'NukePlatoonAI',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'attack', 'none' },
     }

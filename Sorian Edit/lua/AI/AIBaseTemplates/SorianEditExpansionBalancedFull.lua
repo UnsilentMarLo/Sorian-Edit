@@ -34,7 +34,7 @@ BaseBuilderTemplate {
         'SorianEditSCUUpgrades',
 
         -- Engineer Support buildings
-        'SorianEditEngineeringSupportBuilder',
+        -- 'SorianEditEngineeringSupportBuilder',
 
         -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
@@ -42,6 +42,8 @@ BaseBuilderTemplate {
         -- Build Mass high pri at this base
         'Sorian Mass Builders', 
 
+        -- Extractors
+        'SorianEditTime Exempt Extractor Upgrades',
         -- ACU Builders
         'SorianEdit Initial ACU Builders',
         'SorianEditACUBuilders',
@@ -52,7 +54,8 @@ BaseBuilderTemplate {
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
-        'SorianEditT3ACUNukeDefenses',
+        -- 'SorianEditT3ACUNukeDefenses',
+        'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
@@ -89,7 +92,7 @@ BaseBuilderTemplate {
         'SorianEditNavalExpansionBuildersFast',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
-        'SorianEditT1LandFactoryBuilders',									 
+        'SorianEditT1LandFactoryBuilders',
         'SorianEditT1Land - water map',
         'SorianEditT2LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders - water map',
@@ -102,7 +105,7 @@ BaseBuilderTemplate {
 
         'SorianEditT1LandAA',
         'SorianEditT2LandAA',
-        'SorianEditT3LandResponseBuilders',
+        'SorianEditT3LandAA',
 
         'SorianEditT1ReactionDF',
         'SorianEditT2ReactionDF',
@@ -140,8 +143,8 @@ BaseBuilderTemplate {
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        --'SorianEditMobileNavalExperimentalEngineers',
-        --'SorianEditMobileNavalExperimentalForm',
+        'SorianEditMobileNavalExperimentalEngineers',
+        'SorianEditMobileNavalExperimentalForm',
 
         'SorianEditEconomicExperimentalEngineers',
         'SorianEditMobileExperimentalEngineersGroup',
@@ -167,7 +170,7 @@ BaseBuilderTemplate {
         -- 'SorianEditParagonStrategy',
         -- 'SorianEditParagonStrategyExp',
         'SorianEdit Tele SCU Strategy',
-        'SorianEditWaterMapLowLand',
+        -- 'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
         'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',
@@ -190,6 +193,7 @@ BaseBuilderTemplate {
         'SorianEditT3ArtyBuildersHighPrio',
         'SorianEditT2FirebaseBuildersHighPrio',
         'SorianEditT3FBBuildersHighPrio',
+        'SorianEdit Extractor Upgrades Strategy',
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
         'SorianEditEngineerExpansionBuildersStrategy',
         'SorianEditACUUpgrades - Rush',

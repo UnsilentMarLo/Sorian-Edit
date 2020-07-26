@@ -1969,7 +1969,7 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
         else
             --LOG('Storage Full')
             local HomeDist = VDist2(SelfPos[1], SelfPos[3], basePosition[1], basePosition[3])
-            if HomeDist > 36 then
+            if HomeDist > 50 then
                 --LOG('full, moving home')
                 StartMoveDestination(self, {basePosition[1], basePosition[2], basePosition[3]})
                 coroutine.yield(10)

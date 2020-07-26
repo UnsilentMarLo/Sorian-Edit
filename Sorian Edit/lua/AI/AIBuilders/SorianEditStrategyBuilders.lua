@@ -1576,7 +1576,7 @@ BuilderGroup {
             LOG('*AI DEBUG: --------------  SorianEditParagonStrategy Activated by '..aiBrain.Nickname..'!')
         end,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
@@ -1639,7 +1639,7 @@ BuilderGroup {
             LOG('*AI DEBUG: --------------  SorianEditParagonStrategyExp Activated by '..aiBrain.Nickname..'!')
         end,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'PRODUCTSORIAN EXPERIMENTAL STRUCTURE' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {

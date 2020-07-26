@@ -63,8 +63,8 @@ BaseBuilderTemplate {
         'SorianEditNavalExpansionBuilders',
 
         -- ==== EXPERIMENTALS ==== --
-        --'SorianEditMobileNavalExperimentalEngineers',
-        --'SorianEditMobileNavalExperimentalForm',
+        'SorianEditMobileNavalExperimentalEngineers',
+        'SorianEditMobileNavalExperimentalForm',
     },
     NonCheatBuilders = {
         'SorianEditSonarEngineerBuilders',

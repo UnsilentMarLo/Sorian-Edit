@@ -106,17 +106,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -143,16 +138,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -184,18 +175,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --CanBuildFirebase { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -222,20 +207,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --CanBuildFirebase { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            { MIBC, 'FactionIndex', {1, 2, 4} },
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -262,18 +239,12 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --CanBuildFirebase { 1000, 1000 }},
-            --{ SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -301,11 +272,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Land',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
-        InstanceCount = 12,
+        InstanceCount = 45,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -326,7 +296,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Land',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
-        InstanceCount = 7,
+        InstanceCount = 30,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
             { IBC, 'BrainNotLowMassMode', {} },
@@ -362,7 +332,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 750,
-        InstanceCount = 3,
+        InstanceCount = 10,
         BuilderType = 'Any',
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
@@ -376,7 +346,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
         -- BuilderData = {
             -- ThreatSupport = 750,
@@ -406,7 +376,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalScathisSorian',
         Priority = 10000,
         FormRadius = 450,
-        InstanceCount = 1,
+        InstanceCount = 10,
         BuilderType = 'Any',
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
@@ -420,7 +390,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
     },
     Builder {
@@ -429,7 +399,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalLandSorianEdit',
         Priority = 10000,
         FormRadius = 450,
-        InstanceCount = 3,
+        InstanceCount = 10,
         BuilderType = 'Any',
         BuilderConditions = {
             --{ SIBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3, 'EXPERIMENTAL MOBILE LAND, EXPERIMENTAL MOBILE AIR'}},
@@ -443,7 +413,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'PRODUCTSORIAN', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL LAND', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'MASSFABRICATION', 'ENERGYPRODUCTION', 'STRUCTURE STRATEGIC', 'STRUCTURE DEFENSE ANTIAIR', 'STRUCTURE DEFENSE DIRECTFIRE', 'FACTORY AIR', 'FACTORY LAND' }, -- list in order
         },
     },
 }
@@ -457,18 +427,14 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 950,
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --CanBuildFirebase { 1000, 1000 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -492,18 +458,14 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 949,
         BuilderConditions = {
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
-            --{ SBC, 'MapLessThan', { 1000, 1000 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -525,7 +487,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Air',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
-        InstanceCount = 5,
+        InstanceCount = 25,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
@@ -551,7 +513,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Air',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
-        InstanceCount = 5,
+        InstanceCount = 35,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
             { IBC, 'BrainNotLowMassMode', {} },
@@ -583,7 +545,7 @@ BuilderGroup {
         PlatoonTemplate = 'T4ExperimentalAirSorianEdit',
         PlatoonAddPlans = {'NameUnitsSorian'},
         Priority = 800,
-        InstanceCount = 3,
+        InstanceCount = 10,
         FormRadius = 450,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -598,7 +560,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'PRODUCTSORIAN', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'ENERGYPRODUCTION', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
         },
     },
     Builder {
@@ -621,7 +583,7 @@ BuilderGroup {
                 TargetThreatType = 'Commander',
             },
             UseMoveOrder = true,
-            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'PRODUCTSORIAN', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
+            PrioritizedCategories = { 'EXPERIMENTAL', 'COMMAND', 'STRUCTURE ARTILLERY EXPERIMENTAL', 'TECH3 STRATEGIC STRUCTURE', 'ENERGYPRODUCTION', 'MASSFABRICATION', 'STRUCTURE' }, -- list in order
         },
     },
 }
@@ -634,16 +596,14 @@ BuilderGroup {
         PlatoonTemplate = 'T3EngineerBuilder',
         Priority = 949,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH3}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, categories.EXPERIMENTAL * categories.NAVAL}},
-            { MABC, 'MarkerLessThanDistance',  { 'Naval Area', 400}},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+            { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -665,7 +625,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Naval',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 799,
-        InstanceCount = 5,
+        InstanceCount = 15,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
@@ -688,7 +648,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Experimental Mobile Naval',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 849,
-        InstanceCount = 5,
+        InstanceCount = 15,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
@@ -723,7 +683,7 @@ BuilderGroup {
             --{ SBC, 'NoRushTimeCheck', { 0 }},
         },
         FormRadius = 450,
-        InstanceCount = 3,
+        InstanceCount = 10,
         BuilderType = 'Any',
         BuilderData = {
             ThreatSupport = 600,
@@ -854,18 +814,14 @@ BuilderGroup {
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
-        { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-        --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSPRODUCTION * categories.TECH3}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.EXPERIMENTAL * categories.ECONOMIC }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
+            { UCBC, 'CheckBuildPlattonDelay', { 'Experimental' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { IBC, 'BrainNotLowMassMode', {} },
- 
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-            --{ SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 2000, 'AntiSurface', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -887,7 +843,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Economic',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
         Priority = 800,
-        InstanceCount = 5,
+        InstanceCount = 25,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -909,7 +865,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Engineer Assist Experimental Economic',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
         Priority = 951,
-        InstanceCount = 5,
+        InstanceCount = 25,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.ECONOMIC }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },

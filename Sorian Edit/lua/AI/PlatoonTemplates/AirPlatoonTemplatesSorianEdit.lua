@@ -10,7 +10,7 @@ PlatoonTemplate {
     Name = 'BomberAttackSorianEdit',
     Plan = 'AirHuntAI',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.BOMBER * categories.TECH1 - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.BOMBER - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 10, 'Attack', 'none' },
     }
 }
 
@@ -147,7 +147,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalAirSorianEdit',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'HuntAISorian',
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 1, 5, 'attack', 'none' },
     },
@@ -155,7 +155,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalAirLateSorianEdit',
-    Plan = 'ExperimentalAIHubSorian',
+    Plan = 'HuntAISorian',
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 2, 5, 'attack', 'none' },
     },

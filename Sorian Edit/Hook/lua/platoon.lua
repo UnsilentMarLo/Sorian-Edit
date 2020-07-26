@@ -197,10 +197,10 @@ Platoon = Class(OldPlatoonClass) {
             self.LastPosition = pos
 
             if table.getn(cmdQ) == 0 then
-                -- we have nothing to do, so find the nearest base and disband
+                -- we have nothing to do, so find the nearest target and engage
                 if not self.PlatoonData.NeverMerge then
-				LOG('---------------------  nothing to do, returning to base')
-                    return self:ReturnToBaseAI()
+				LOG('---------------------  nothing to do, Hunting for Enemies')
+                    return self:HuntAISorianEdit()
                 end
                 WaitSeconds(5)
             else
@@ -210,6 +210,61 @@ Platoon = Class(OldPlatoonClass) {
             end
         end
 		LOG('---------------------  We have tried everything, its all over now')
+    end,
+	
+    ReturnToBaseAISorian = function(self)
+        local aiBrain = self:GetBrain()
+
+        if not aiBrain:PlatoonExists(self) or not self:GetPlatoonPosition() then
+            return
+        end
+
+        local bestBase = false
+        local bestBaseName = ""
+        local bestDistSq = 999999999
+        local platPos = self:GetPlatoonPosition()
+
+        for baseName, base in aiBrain.BuilderManagers do
+            local distSq = VDist2Sq(platPos[1], platPos[3], base.Position[1], base.Position[3])
+
+            if distSq < bestDistSq then
+                bestBase = base
+                bestBaseName = baseName
+                bestDistSq = distSq
+            end
+        end
+
+        if bestBase then
+            AIAttackUtils.GetMostRestrictiveLayer(self)
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, self.MovementLayer, self:GetPlatoonPosition(), bestBase.Position, 200)
+            IssueClearCommands(self)
+
+            if path then
+                local pathLength = table.getn(path)
+                for i=1, pathLength-1 do
+                    self:MoveToLocation(path[i], false)
+                end
+            end
+            self:MoveToLocation(bestBase.Position, false)
+
+            local oldDistSq = 0
+            while aiBrain:PlatoonExists(self) do
+                platPos = self:GetPlatoonPosition()
+                local distSq = VDist2Sq(platPos[1], platPos[3], bestBase.Position[1], bestBase.Position[3])
+                if distSq < 5625 then -- 75 * 75
+                    self:PlatoonDisband()
+                    return
+                end
+                WaitSeconds(10)
+                -- if we haven't moved in 10 seconds... go back to attacking
+                if (distSq - oldDistSq) < 25 then -- 5 * 5
+                    break
+                end
+                oldDistSq = distSq
+            end
+        end
+        -- default to returning to attacking
+        return self:AttackForceAISorian()
     end,
 	
     HuntAISorianEdit = function(self)
@@ -428,7 +483,15 @@ Platoon = Class(OldPlatoonClass) {
         -- Disband this platoon, it's no longer needed.
         self:PlatoonDisbandNoAssign()
     end,
+	
+    SorianManagerEngineerAssistAI = function(self)
+        self:ManagerEngineerAssistAI()
+    end,
 
+    SorianEconAssistBody = function(self)
+        self:EconAssistBody()
+    end,
+	
     ReclaimAISorian = function(self)
         local aiBrain = self:GetBrain()
         local platoonUnits = self:GetPlatoonUnits()
@@ -443,6 +506,45 @@ Platoon = Class(OldPlatoonClass) {
             eng.UnitBeingBuilt = eng
             SUtils.ReclaimAIThreadSorian(self,eng,aiBrain)
             eng.UnitBeingBuilt = nil
+        end
+        self:PlatoonDisband()
+    end,
+	
+    NukeAISEAI = function(self)
+        self:Stop()
+        local aiBrain = self:GetBrain()
+        local platoonUnits = self:GetPlatoonUnits()
+        local unit
+        --GET THE Launcher OUT OF THIS PLATOON
+        for k, v in platoonUnits do
+            if EntityCategoryContains(categories.SILO * categories.NUKE, v) then
+                unit = v
+                break
+            end
+        end
+
+        if unit then
+            local bp = unit:GetBlueprint()
+            local weapon = bp.Weapon[1]
+            local maxRadius = weapon.MaxRadius
+            local nukePos, oldTargetLocation
+            unit:SetAutoMode(true)
+            while aiBrain:PlatoonExists(self) do
+                while unit:GetNukeSiloAmmoCount() < 1 do
+                    WaitSeconds(11)
+                    if not  aiBrain:PlatoonExists(self) then
+                        return
+                    end
+                end
+
+                nukePos = import('/lua/ai/aibehaviors.lua').GetHighestThreatClusterLocation(aiBrain, unit)
+                if nukePos then
+                    IssueNuke({unit}, nukePos)
+                    WaitSeconds(10)
+                    IssueClearCommands({unit})
+                end
+                WaitSeconds(1)
+            end
         end
         self:PlatoonDisband()
     end,

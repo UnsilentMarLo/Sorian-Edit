@@ -15,6 +15,8 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1BalancedUpgradeBuilders',
         'SorianEditT2BalancedUpgradeBuilders',
+        --'SorianEditT1FastUpgradeBuildersExpansion',
+        --'SorianEditT2FastUpgradeBuildersExpansion',
         --'SorianEditT1RushUpgradeBuilders',
         --'SorianEditEmergencyUpgradeBuilders',
         --'SorianEditTime Exempt Extractor Upgrades - Rush',
@@ -34,7 +36,7 @@ BaseBuilderTemplate {
         'SorianEditSCUUpgrades',
 
         -- Engineer Support buildings
-        'SorianEditEngineeringSupportBuilder',
+        -- 'SorianEditEngineeringSupportBuilder',
 
         -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
@@ -55,7 +57,8 @@ BaseBuilderTemplate {
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
-        'SorianEditT3ACUNukeDefenses',
+        -- 'SorianEditT3ACUNukeDefenses',
+        'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
@@ -105,7 +108,7 @@ BaseBuilderTemplate {
 
         'SorianEditT1LandAA',
         'SorianEditT2LandAA',
-        'SorianEditT3LandResponseBuilders',
+        'SorianEditT3LandAA',
 
         'SorianEditT1ReactionDF',
         'SorianEditT2ReactionDF',
@@ -143,8 +146,8 @@ BaseBuilderTemplate {
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        --'SorianEditMobileNavalExperimentalEngineers',
-        --'SorianEditMobileNavalExperimentalForm',
+        'SorianEditMobileNavalExperimentalEngineers',
+        'SorianEditMobileNavalExperimentalForm',
 
         'SorianEditEconomicExperimentalEngineers',
         'SorianEditMobileExperimentalEngineersGroup',
@@ -164,7 +167,7 @@ BaseBuilderTemplate {
         'SorianEditHeavyAirStrategy',
         'SorianEditBigAirGroup',
         'SorianEditJesterRush',
-        'SorianEditNukeRush',
+        -- 'SorianEditNukeRush',
         'SorianEditT3FBRush',
         'SorianEditT2ACUSnipe',
         -- 'SorianEditParagonStrategy',
@@ -172,7 +175,7 @@ BaseBuilderTemplate {
         'SorianEdit Tele SCU Strategy',
         --'SorianEditWaterMapLowLand',
         'SorianEdit PD Creep Strategy',
-        'SorianEditStopNukes',
+        -- 'SorianEditStopNukes',
         'SorianEditEnemyTurtle - In Range',
         'SorianEditEnemyTurtle - Out of Range',
         'SorianEdit Excess Mass Strategy', 
