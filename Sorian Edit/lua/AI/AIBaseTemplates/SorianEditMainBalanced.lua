@@ -40,6 +40,7 @@ BaseBuilderTemplate {
 
         -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
+        'SorianEditEngineerEnergyBuildersExpansions',
 
         -- Build Mass high pri at this base
         'Sorian Mass Builders', 
@@ -79,6 +80,11 @@ BaseBuilderTemplate {
         'SorianEditT1DefensivePoints Turtle',
         'SorianEditT2DefensivePoints Turtle',
         'SorianEditT3DefensivePoints Turtle',
+		'SorianEditT1LightDefenses',
+		'SorianEditT2LightDefenses',
+		'SorianEditT3LightDefenses',
+		
+		'SorianEditAirStagingExpansion',
 
         'SorianEditT2ArtilleryFormBuilders',
         'SorianEditT3ArtilleryFormBuilders',
@@ -115,8 +121,10 @@ BaseBuilderTemplate {
         'SorianEditT3ReactionDF',
 
         'SorianEditT2Shields',
+        'SorianEditT2ShieldsExpansion',
         'SorianEditShieldUpgrades',
         'SorianEditT3Shields',
+        'SorianEditT3ShieldsExpansion',
         'SorianEditEngineeringUpgrades',
 
         -- ==== AIR UNIT BUILDERS ==== --

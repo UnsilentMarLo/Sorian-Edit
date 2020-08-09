@@ -27,11 +27,11 @@ BuffBlueprint {
     Duration = -1,
     Affects = {
         EnergyProduction = {
-            Add = 0,
+            Add = 3,
             Mult = 2.0,
         },
         MassProduction = {
-            Add = 0,
+            Add = 1,
             Mult = 2.0,
         },
     },
@@ -57,7 +57,7 @@ BuffBlueprint {
             Mult = 1.0,
         },
         MassProduction = {
-            Add = 10,
+            Add = 13,
             Mult = 1.0,
         },
         BuildRate = {

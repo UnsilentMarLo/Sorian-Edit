@@ -263,13 +263,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Scout Ratio Build',
         PlatoonTemplate = 'T1LandScout',
-        Priority = 827,
+        Priority = 850,
         BuilderConditions = {
-            { UCBC, 'HaveUnitRatio', { 0.10, categories.LAND * categories.SCOUT, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER }},
+            { UCBC, 'HaveUnitRatio', { 0.1, categories.LAND * categories.SCOUT, '<=', categories.LAND * categories.MOBILE - categories.ENGINEER }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.LAND } },
             { IBC, 'BrainNotLowPowerMode', {} },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
-            { SBC, 'IsIslandMap', { false } },
+            { UCBC, 'LessThanGameTimeSeconds', { 500 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},

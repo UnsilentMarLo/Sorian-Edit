@@ -72,6 +72,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1SeaSub',
         Priority = 600,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -89,6 +90,7 @@ BuilderGroup {
         Priority = 500,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -105,6 +107,7 @@ BuilderGroup {
         Priority = 800,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -120,6 +123,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1SeaAntiAir',
         Priority = 400,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -143,6 +147,7 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
             { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
             { IBC, 'BrainNotLowMassMode', {} },
@@ -159,6 +164,7 @@ BuilderGroup {
         Priority = 800,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -174,6 +180,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 700,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -191,6 +198,7 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -206,6 +214,7 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'SHIELD NAVAL MOBILE' } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -222,6 +231,7 @@ BuilderGroup {
         Priority = 500,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'COUNTERINTELLIGENCE NAVAL MOBILE' } },
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -243,6 +253,7 @@ BuilderGroup {
         Priority = 600,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -259,6 +270,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 600,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -281,6 +293,7 @@ BuilderGroup {
         Priority = 1000,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -296,6 +309,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1000,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -312,6 +326,7 @@ BuilderGroup {
         Priority = 1000,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -319,14 +334,15 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.0 }},
-            { UCBC, 'HaveUnitRatio', { 0.1, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { UCBC, 'HaveUnitRatio', { 0.2, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T3 Naval Nuke Sub',
         PlatoonTemplate = 'T3SeaNukeSub',
-        Priority = 0, --700,
+        Priority = 800, --700,
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -343,6 +359,7 @@ BuilderGroup {
         Priority = 900,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -350,7 +367,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.0 }},
-            { UCBC, 'HaveUnitRatio', { 0.1, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { UCBC, 'HaveUnitRatio', { 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
     Builder {
@@ -359,6 +376,7 @@ BuilderGroup {
         Priority = 1000,
         BuilderType = 'Sea',
         BuilderConditions = {
+			{ UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.STRUCTURE * categories.FACTORY }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             --{ SBC, 'NoRushTimeCheck', { 600 }},
@@ -366,7 +384,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.95, 1.0 }},
-            { UCBC, 'HaveUnitRatio', { 0.1, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { UCBC, 'HaveUnitRatio', { 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
 }

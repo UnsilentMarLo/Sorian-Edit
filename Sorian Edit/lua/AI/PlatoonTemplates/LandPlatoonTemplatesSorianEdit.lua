@@ -126,7 +126,7 @@ PlatoonTemplate {
     Name = 'MassHuntersCategorySorianEditSmall',
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 5, 10, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.ENGINEER - categories.xsl0402, 5, 10, 'Attack', 'none' }
     }
 }
 
@@ -134,7 +134,7 @@ PlatoonTemplate {
     Name = 'MassHuntersCategorySorianEditLarge',
     Plan = 'GuardMarkerSorian',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 10, 25, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.ENGINEER - categories.xsl0402, 10, 25, 'Attack', 'none' }
     }
 }
 

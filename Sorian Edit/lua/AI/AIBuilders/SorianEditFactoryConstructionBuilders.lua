@@ -62,7 +62,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Land Factory Builder Higher Pri',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 750,
+        Priority = 1250,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -87,6 +87,87 @@ BuilderGroup {
             }
         }
     },
+
+    Builder {
+        BuilderName = 'SorianEdit T1 Factory Engineer - Overbuild',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        Priority = 1500,
+        InstanceCount = 4,
+        BuilderConditions = {
+            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
+            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1LandFactory',
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit T2 Factory Engineer - Overbuild',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
+        Priority = 2500,
+        InstanceCount = 4,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T2SupportLandFactory',
+                    'T2SupportAirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit T3 Factory Engineer - Overbuild',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        Priority = 3500,
+        InstanceCount = 4,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
+            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+            { IBC, 'BrainNotLowMassMode', {} },
+            --{ SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T3SupportLandFactory',
+                    'T3SupportAirFactory',
+                },
+            }
+        }
+    },
+	
     Builder {
         BuilderName = 'SorianEditT3 Land Factory Builder Higher Pri',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',

@@ -175,7 +175,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 25, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         },
         BuilderType = 'Air',
     },
@@ -318,7 +318,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber init2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1500,
+        Priority = 1700,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -328,28 +328,27 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 900,
+        Priority = 1800,
         BuilderType = 'Air',
         BuilderConditions = {
+            { UCBC, 'HaveUnitRatio', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 800,
+        Priority = 1500,
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -365,8 +364,8 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Stomp Enemy',
-        PlatoonTemplate = 'T2FighterBomber',
-        Priority = 900,
+        PlatoonTemplate = 'T2AirGunship',
+        Priority = 1800,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -376,13 +375,12 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveUnitRatio', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, 'FACTORY TECH3' }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1300,
+        Priority = 1700,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -398,7 +396,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber Init',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1400,
+        Priority = 1800,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -414,7 +412,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Fighter - T2',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 600,
+        Priority = 1300,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.AIR * categories.ANTIAIR } },
@@ -432,9 +430,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship2',
         PlatoonTemplate = 'T2AirGunship',
-        Priority = 800,
+        Priority = 1700,
         BuilderType = 'Air',
         BuilderConditions = {
+            { UCBC, 'HaveUnitRatio', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -448,7 +447,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 900,
+        Priority = 1600,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -464,7 +463,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1200,
+        Priority = 1600,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -481,7 +480,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response 2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 1200,
+        Priority = 1600,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -499,7 +498,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2 Torpedo Bomber',
         PlatoonTemplate = 'T2AirTorpedoBomber',
-        Priority = 1200,
+        Priority = 1600,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -521,7 +520,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes Initial Higher Pri',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 700,
+        Priority = 1700,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -537,7 +536,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 800,
+        Priority = 1700,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -555,7 +554,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 700, --660,
+        Priority = 1700, --660,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -573,7 +572,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 700, --660,
+        Priority = 1700, --660,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -593,7 +592,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter init',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1800,
+        Priority = 2500,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -609,7 +608,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter spam',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1500,
+        Priority = 2500,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -625,9 +624,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1400,
+        Priority = 2600,
         BuilderType = 'Air',
         BuilderConditions = {
+            { UCBC, 'HaveUnitRatio', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -638,9 +638,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1400,
+        Priority = 2500,
         BuilderType = 'Air',
         BuilderConditions = {
+            { UCBC, 'HaveUnitRatio', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -651,10 +652,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1700,
+        Priority = 2600,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.AIR * categories.BOMBER * categories.TECH3 } },
+            { UCBC, 'HaveUnitRatio', { 0.3, categories.BOMBER * categories.AIR * categories.TECH3, '<=', categories.ANTIAIR * categories.AIR * categories.TECH3}},
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -667,7 +668,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Exp Response',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1300,
+        Priority = 2400,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.TECH3 * categories.AIR * categories.BOMBER } },
@@ -685,7 +686,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1400,
+        Priority = 2400,
         BuilderType = 'Air',
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -699,7 +700,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship2',
         PlatoonTemplate = 'T3AirGunship',
-        Priority = 1300,
+        Priority = 2300,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -714,7 +715,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber2',
         PlatoonTemplate = 'T3AirBomber',
-        Priority = 1300,
+        Priority = 2300,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -729,7 +730,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Air Fighter',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1500,
+        Priority = 2500,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -744,7 +745,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3 Torpedo Bomber',
         PlatoonTemplate = 'T3TorpedoBomber',
-        Priority = 1300,
+        Priority = 2300,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -765,7 +766,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes Initial',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1600,
+        Priority = 2600,
         InstanceCount = 2,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
@@ -781,7 +782,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1000,
+        Priority = 2300,
         BuilderConditions = {
             { IBC, 'BrainNotLowMassMode', {} },
             { IBC, 'BrainNotLowPowerMode', {} },
@@ -797,7 +798,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 700, --760,
+        Priority = 2200, --760,
         BuilderConditions = {
             { IBC, 'BrainNotLowPowerMode', {} },
 											   
@@ -816,7 +817,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 700, --760,
+        Priority = 2200, --760,
         BuilderConditions = {
 
 											   
@@ -838,7 +839,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT3AntiAirPlanes - Exp Response',
         PlatoonTemplate = 'T3AirFighter',
-        Priority = 1000,
+        Priority = 2700,
         BuilderConditions = {
 																								  
 																																						 
@@ -1549,7 +1550,7 @@ BuilderGroup {
         PlatoonTemplate = 'GunshipAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 100,
+        Priority = 600,
         InstanceCount = 19,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1713,7 +1714,7 @@ BuilderGroup {
         PlatoonTemplate = 'GunshipAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 100,
+        Priority = 800,
         InstanceCount = 8,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -1829,8 +1830,8 @@ BuilderGroup {
         PlatoonTemplate = 'GunshipAttackSorianEdit',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
-        Priority = 100,
-        InstanceCount = 14,
+        Priority = 700,
+        InstanceCount = 50,
         BuilderType = 'Any',
         BuilderConditions = {
             --{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, 'AIR MOBILE GROUNDATTACK TECH3' } },
@@ -2020,7 +2021,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 995,
-        InstanceCount = 3,
+        InstanceCount = 50,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 10000,
@@ -2058,7 +2059,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 995,
-        InstanceCount = 8,
+        InstanceCount = 50,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 10000,
@@ -2156,7 +2157,7 @@ BuilderGroup {
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle' },
         Priority = 105,
-        InstanceCount = 3,
+        InstanceCount = 50,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 10000,
@@ -2322,7 +2323,7 @@ BuilderGroup {
         PlatoonTemplate = 'GunshipBaseGuard',
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle' },
-        Priority = 700, --10
+        Priority = 500, --10
 						  
         BuilderType = 'Any',
         BuilderData = {

@@ -38,6 +38,7 @@ BaseBuilderTemplate {
 
         -- Build energy at this base
         'SorianEditEngineerEnergyBuilders',
+        'SorianEditEngineerEnergyBuildersExpansions',
 
         -- Build Mass high pri at this base
         'Sorian Mass Builders', 
@@ -114,6 +115,7 @@ BaseBuilderTemplate {
         'SorianEditT2Shields',
         'SorianEditShieldUpgrades',
         'SorianEditT3Shields',
+        'SorianEditT3ShieldsExpansion',
         'SorianEditEngineeringUpgrades',
 
         -- ==== AIR UNIT BUILDERS ==== --
