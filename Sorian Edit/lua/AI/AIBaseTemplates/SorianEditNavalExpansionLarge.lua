@@ -27,10 +27,12 @@ BaseBuilderTemplate {
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
+        'SorianEditEngineerNavalFactoryBuilders',
         'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
+        'SorianEditEngineerNavalFactoryBuilder',
         'SorianEditEngineerFactoryConstruction Balance',
 		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
