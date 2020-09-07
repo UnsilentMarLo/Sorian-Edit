@@ -15,25 +15,152 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1NavalUpgradeBuilders',
         'SorianEditT2NavalUpgradeBuilders',
+        'SorianEditT1BalancedUpgradeBuilders',
+        'SorianEditT2BalancedUpgradeBuilders',
+        --'SorianEditT1FastUpgradeBuildersExpansion',
+        --'SorianEditT2FastUpgradeBuildersExpansion',
+        --'SorianEditT1RushUpgradeBuilders',
+        'SorianEditEmergencyUpgradeBuilders',
+        --'SorianEditTime Exempt Extractor Upgrades - Rush',
+        'SorianEditSupportFactoryUpgrades',
+        'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
-        -- Pass engineers to main as needed
-        --'Engineer Transfers',
-
         -- Engineer Builders
-        'SorianEditEngineerNavalFactoryBuilders',
+        'SorianEditEngineerFactoryBuilders',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
-        'SorianEditEngineerNavalFactoryBuilder',
+        'SorianEditEngineerFactoryConstruction Balance',
+		'SorianEditEngineerFactoryConstructionLandHigherPriority',
+        'SorianEditEngineerFactoryConstruction',
 
-        -- Mass
-        'Sorian Mass Builders', 
+        -- SCU Upgrades
+        'SorianEditSCUUpgrades',
+		
+        -- Scouts
+        'SorianEditAirScoutFactoryBuilders',
+        'SorianEditAirScoutFormBuilders',
+
+        'SorianEditLandScoutFactoryBuilders',
+        'SorianEditLandScoutFormBuilders',
+
+        'SorianEditRadarEngineerBuilders',
+        'SorianEditRadarUpgradeBuildersMain',
+
+        'SorianEditCounterIntelBuilders',
+
+        -- Build Mass high pri at this base
+        'Sorianedit Mass Builders', 
+
+        -- Extractors
+        'SorianEditTime Exempt Extractor Upgrades',
+
+        -- 'SorianEditT1ACUDefenses',
+        'SorianEditT2ACUDefenses',
+        'SorianEditT2ACUShields',
+        'SorianEditT3ACUShields',
+        -- 'SorianEditT3ACUNukeDefenses',
+        'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersFulldrop',
+        'SorianEditEngineerFirebaseBuilders',
 
+        -- ==== DEFENSES ==== --
+        -- 'SorianEditT1BaseDefenses',
+        'SorianEditT2BaseDefenses',
+        'SorianEditT3BaseDefenses',
+        'SorianEditT2BaseDefenses - Emerg',
+        'SorianEditT3BaseDefenses - Emerg',
+		
+        'SorianEditT2PerimeterDefenses',
+        'SorianEditT3PerimeterDefenses',
+
+        -- 'SorianEditT1DefensivePoints Turtle',
+        'SorianEditT2DefensivePoints Turtle',
+        'SorianEditT3DefensivePoints Turtle',
+		-- 'SorianEditT1LightDefenses',
+		'SorianEditT2LightDefenses',
+		'SorianEditT3LightDefenses',
+		
+		'SorianEditAirStagingExpansion',
+
+        'SorianEditT2ArtilleryFormBuilders',
+        'SorianEditT3ArtilleryFormBuilders',
+        'SorianEditT4ArtilleryFormBuilders',
+        'SorianEditT2MissileDefenses',
+        'SorianEditT3NukeDefenses',
+        'SorianEditT3NukeDefenseBehaviors',
+        'SorianEditMiscDefensesEngineerBuilders',
+
+        'SorianEditMassAdjacencyDefenses',
+
+        -- ==== NAVAL EXPANSION ==== --
+        'SorianEditNavalExpansionBuilders',
+        'SorianEditNavalExpansionBuildersFast',
+
+        -- ==== LAND UNIT BUILDERS ==== --											 
+        'SorianEditT1LandFactoryBuilders',
+        'SorianEditT1Land - water map',
+        'SorianEditT2LandFactoryBuilders',
+        'SorianEditT2LandFactoryBuilders - water map',
+        'SorianEditT3LandFactoryBuilders',
+
+        'SorianEditFrequentLandAttackFormBuilders',
+        'SorianEditMassHunterLandFormBuilders',
+        'SorianEditMiscLandFormBuilders',
+        'SorianEditUnitCapLandAttackFormBuilders',
+
+        'SorianEditT1LandAA',
+        'SorianEditT2LandAA',
+        'SorianEditT3LandAA',
+
+        'SorianEditT1ReactionDF',
+        'SorianEditT2ReactionDF',
+        'SorianEditT3ReactionDF',
+
+        'SorianEditT2Shields',
+        'SorianEditT2ShieldsExpansion',
+        'SorianEditShieldUpgrades',
+        'SorianEditT3Shields',
+        'SorianEditT3ShieldsExpansion',
+        'SorianEditEngineeringUpgrades',
+
+        -- ==== AIR UNIT BUILDERS ==== --
+        'SorianEditT1AirFactoryBuilders',
+        'SorianEditT2AirFactoryBuilders',
+        'SorianEditT3AirFactoryBuilders',
+        'SorianEditFrequentAirAttackFormBuilders',
+        'SorianEditMassHunterAirFormBuilders',
+
+        'SorianEditUnitCapAirAttackFormBuilders',
+        'SorianEditACUHunterAirFormBuilders',
+
+        'SorianEditTransportFactoryBuilders',
+        'SorianEditTransportFactoryBuilders - Rush',
+		
+        'SorianEditExpResponseFormBuilders',
+
+        'SorianEditT1AntiAirBuilders',
+        'SorianEditT2AntiAirBuilders',
+        'SorianEditT3AntiAirBuilders',
+        'SorianEditBaseGuardAirFormBuilders',
+
+        -- ==== EXPERIMENTALS ==== --
+        'SorianEditMobileLandExperimentalEngineers',
+        'SorianEditMobileLandExperimentalForm',
+
+        'SorianEditMobileAirExperimentalEngineers',
+        'SorianEditMobileAirExperimentalForm',
+
+        'SorianEditMobileNavalExperimentalEngineers',
+        'SorianEditMobileNavalExperimentalForm',
+
+        'SorianEditEconomicExperimentalEngineers',
+        'SorianEditMobileExperimentalEngineersGroup',
+		
         -- ==== DEFENSES ==== --
         'SorianEditT1NavalDefenses',
         'SorianEditT2NavalDefenses',
@@ -50,10 +177,6 @@ BaseBuilderTemplate {
         'SorianEditBigSeaAttackFormBuilders',
         'SorianEditMassHunterSeaFormBuilders',
 
-        -- ===== STRATEGIES ====== --
-
-
-
         -- == STRATEGY PLATOONS == --
 
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
@@ -65,11 +188,12 @@ BaseBuilderTemplate {
         -- ==== EXPERIMENTALS ==== --
         'SorianEditMobileNavalExperimentalEngineers',
         'SorianEditMobileNavalExperimentalForm',
-    },
-    NonCheatBuilders = {
+		
+        -- ==== Intel ==== --
         'SorianEditSonarEngineerBuilders',
         'SorianEditSonarUpgradeBuilders',
     },
+    NonCheatBuilders = {},
     BaseSettings = {
         EngineerCount = {
             Tech1 = 13,

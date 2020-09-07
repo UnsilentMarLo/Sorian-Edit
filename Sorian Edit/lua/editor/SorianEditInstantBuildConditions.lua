@@ -497,36 +497,36 @@ function EngineerNeedsAssistance(aiBrain, doesbool, locationType, category)
     return false
 end
 
-function LessThanExpansionBases(aiBrain)
-    local expBaseCount = 0
-    local numberofAIs = SUtils.GetNumberOfAIs(aiBrain)
-    local startX, startZ = aiBrain:GetArmyStartPos()
-    local isWaterMap = false
-    local checkNum = tonumber(ScenarioInfo.Options.LandExpansionsAllowed) or 5
-    local navalMarker = AIUtils.AIGetClosestMarkerLocation(aiBrain, 'Naval Area', startX, startZ)
-    if navalMarker then
-        isWaterMap = true
-    end
-    expBaseCount = aiBrain:GetManagerCount('Start Location')
-    expBaseCount = expBaseCount + aiBrain:GetManagerCount('Expansion Area')
-    checkNum = checkNum - numberofAIs
-    if isWaterMap and expBaseCount < checkNum then
-        return true
-    elseif not isWaterMap and expBaseCount < checkNum + 1 then
-        return true
-    end
-    return false
-end
+-- function LessThanExpansionBases(aiBrain)
+    -- local expBaseCount = 0
+    -- local numberofAIs = SUtils.GetNumberOfAIs(aiBrain)
+    -- local startX, startZ = aiBrain:GetArmyStartPos()
+    -- local isWaterMap = false
+    -- local checkNum = tonumber(ScenarioInfo.Options.LandExpansionsAllowed) or 5
+    -- local navalMarker = AIUtils.AIGetClosestMarkerLocation(aiBrain, 'Naval Area', startX, startZ)
+    -- if navalMarker then
+        -- isWaterMap = true
+    -- end
+    -- expBaseCount = aiBrain:SEGetManagerCount('Start Location')
+    -- expBaseCount = expBaseCount + aiBrain:SEGetManagerCount('Expansion Area')
+    -- checkNum = checkNum - numberofAIs
+    -- if isWaterMap and expBaseCount < checkNum then
+        -- return true
+    -- elseif not isWaterMap and expBaseCount < checkNum + 1 then
+        -- return true
+    -- end
+    -- return false
+-- end
 
-function GreaterThanExpansionBases(aiBrain)
-    return not LessThanExpansionBases(aiBrain)
-end
+-- function GreaterThanExpansionBases(aiBrain)
+    -- return not LessThanExpansionBases(aiBrain)
+-- end
 
 function LessThanNavalBases(aiBrain)
     local expBaseCount = 0
     local checkNum = tonumber(ScenarioInfo.Options.NavalExpansionsAllowed) or 4
     local isIsland = import('/mods/Sorian edit/lua/editor/SorianEditBuildConditions.lua').IsIslandMap(aiBrain)
-    expBaseCount = aiBrain:GetManagerCount('Naval Area')
+    expBaseCount = aiBrain:SEGetManagerCount('Naval Area')
     #LOG('*AI DEBUG: '.. aiBrain.Nickname ..' LessThanNavalBases Total = '..expBaseCount)
     if isIsland and expBaseCount < checkNum then
         return true

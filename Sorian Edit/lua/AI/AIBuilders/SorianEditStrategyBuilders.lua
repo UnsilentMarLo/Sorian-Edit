@@ -31,6 +31,10 @@ local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureU
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 local econThread
 
+	do
+	LOG('--------------------- SorianEdit Strategy Builders loading')
+	end
+	
 function EconWatch(aiBrain)
     local factionIndex = aiBrain:GetFactionIndex()
     local cats = {
@@ -256,11 +260,11 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {2, 4}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'SUBCOMMANDER' }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.3}},
-            { EBC, 'GreaterThanEconIncome', {15, 1000}},
+            -- { EBC, 'GreaterThanEconIncome', {15, 1000}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {},
@@ -409,7 +413,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH1' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
@@ -483,7 +487,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'MapLessThan', { 1000, 1000 }},
         },
         BuilderType = 'Any',
@@ -514,39 +518,39 @@ BuilderGroup {
         BuilderType = 'Any',
         RemoveBuilders = {
             FactoryManager = {
-                'SorianEdit T1 Bot - Early Game Rush',
-                'SorianEdit T1 Bot - Early Game',
-                'SorianEdit T1 Light Tank - Tech 1',
-                'SorianEdit T1 Light Tank - Tech 2',
-                'SorianEdit T1 Light Tank - Tech 3',
-                'SorianEdit T1 Mortar',
-                'SorianEdit T1 Mortar - Not T1',
-                'SorianEdit T1 Mortar - tough def',
-                'SorianEdit T1 Mobile AA',
-                'SorianEdit T1 Mobile AA - Response',
-                'SorianEdit T1 Tank Enemy Nearby',
-                'SorianEdit T2 Tank - Tech 2',
-                'SorianEdit T2 Tank 2 - Tech 3',
-                'SorianEdit T2 MML',
-                'SorianEditT2LandAA',
-                'SorianEditT1ReactionDF',
-                'SorianEdit T2MobileShields - T3 Factories',
-                'SorianEdit T2AttackTank - Tech 2',
-                'SorianEdit T2AttackTank2 - Tech 3',
-                'SorianEdit T2MobileShields',
-                'SorianEdit T2 Tank Enemy Nearby',
-                'SorianEdit T2 Mobile Flak',
-                'SorianEdit T2 Mobile Flak Response',
-                'SorianEdit T3 Siege Assault Bot',
-                'SorianEdit T3 Mobile Heavy Artillery',
-                'SorianEdit T3 Mobile Heavy Artillery - tough def',
-                'SorianEdit T3 Mobile Flak',
-                'SorianEdit T3SniperBots',
-                'SorianEdit T3MobileMissile',
-                'SorianEdit T3MobileShields',
-                'SorianEdit T3 Mobile AA Response',
-                'SorianEdit T3 Assault Enemy Nearby',
-                'SorianEdit T3 SiegeBot Enemy Nearby',
+                -- 'SorianEdit T1 Bot - Early Game Rush',
+                -- 'SorianEdit T1 Bot - Early Game',
+                -- 'SorianEdit T1 Light Tank - Tech 1',
+                -- 'SorianEdit T1 Light Tank - Tech 2',
+                -- 'SorianEdit T1 Light Tank - Tech 3',
+                -- 'SorianEdit T1 Mortar',
+                -- 'SorianEdit T1 Mortar - Not T1',
+                -- 'SorianEdit T1 Mortar - tough def',
+                -- 'SorianEdit T1 Mobile AA',
+                -- 'SorianEdit T1 Mobile AA - Response',
+                -- 'SorianEdit T1 Tank Enemy Nearby',
+                -- 'SorianEdit T2 Tank - Tech 2',
+                -- 'SorianEdit T2 Tank 2 - Tech 3',
+                -- 'SorianEdit T2 MML',
+                -- 'SorianEditT2LandAA',
+                -- 'SorianEditT1ReactionDF',
+                -- 'SorianEdit T2MobileShields - T3 Factories',
+                -- 'SorianEdit T2AttackTank - Tech 2',
+                -- 'SorianEdit T2AttackTank2 - Tech 3',
+                -- 'SorianEdit T2MobileShields',
+                -- 'SorianEdit T2 Tank Enemy Nearby',
+                -- 'SorianEdit T2 Mobile Flak',
+                -- 'SorianEdit T2 Mobile Flak Response',
+                -- 'SorianEdit T3 Siege Assault Bot',
+                -- 'SorianEdit T3 Mobile Heavy Artillery',
+                -- 'SorianEdit T3 Mobile Heavy Artillery - tough def',
+                -- 'SorianEdit T3 Mobile Flak',
+                -- 'SorianEdit T3SniperBots',
+                -- 'SorianEdit T3MobileMissile',
+                -- 'SorianEdit T3MobileShields',
+                -- 'SorianEdit T3 Mobile AA Response',
+                -- 'SorianEdit T3 Assault Enemy Nearby',
+                -- 'SorianEdit T3 SiegeBot Enemy Nearby',
             },
         },
         AddBuilders = {}
@@ -589,45 +593,45 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
-            --{ SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiAir', 55 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiAir', 55 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY AIR TECH2' }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                'SorianEdit T2 Air Gunship',
-                'SorianEdit T2 Air Gunship - Anti Navy',
-                'SorianEdit T2 Air Gunship - Stomp Enemy',
-                'SorianEdit T2FighterBomber',
-                'SorianEdit T2 Air Gunship2',
-                'SorianEdit T2FighterBomber2',
-                'SorianEdit T3 Air Gunship',
-                'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber',
-                'SorianEdit T3 Air Bomber - Stomp Enemy',
-                'SorianEdit T3 Air Gunship2',
-                'SorianEdit T3 Air Bomber2',
-            },
-            PlatoonFormManager = {
-                'SorianEdit BomberAttackT1Frequent',
-                'SorianEdit BomberAttackT1Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT2Frequent',
-                'SorianEdit BomberAttackT2Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT3Frequent',
-                'SorianEdit BomberAttackT3Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
-                'SorianEdit T1 Bomber Attack Weak Enemy Response',
-                --'SorianEdit BomberAttack Mass Hunter',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1Gunship',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+                -- 'SorianEdit T2 Air Gunship',
+                -- 'SorianEdit T2 Air Gunship - Anti Navy',
+                -- 'SorianEdit T2 Air Gunship - Stomp Enemy',
+                -- 'SorianEdit T2FighterBomber',
+                -- 'SorianEdit T2 Air Gunship2',
+                -- 'SorianEdit T2FighterBomber2',
+                -- 'SorianEdit T3 Air Gunship',
+                -- 'SorianEdit T3 Air Gunship - Anti Navy',
+                -- 'SorianEdit T3 Air Bomber',
+                -- 'SorianEdit T3 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T3 Air Gunship2',
+                -- 'SorianEdit T3 Air Bomber2',
+            -- },
+            -- PlatoonFormManager = {
+                -- 'SorianEdit BomberAttackT1Frequent',
+                -- 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT2Frequent',
+                -- 'SorianEdit BomberAttackT2Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT3Frequent',
+                -- 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
+                -- 'SorianEdit T1 Bomber Attack Weak Enemy Response',
+                -- --'SorianEdit BomberAttack Mass Hunter',
+            -- }
         },
         AddBuilders = {
             FactoryManager = {
@@ -684,52 +688,29 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
             { SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
-                'SorianEdit T1 Air Fighter',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                --'SorianEdit T1 Interceptors',
-                --'SorianEdit T1 Interceptors - Enemy Air',
-                --'SorianEdit T1 Interceptors - Enemy Air Extra',
-                --'SorianEdit T1 Interceptors - Enemy Air Extra 2',
-                'SorianEdit T2 Air Gunship',
-                'SorianEdit T2 Air Gunship - Anti Navy',
-                'SorianEdit T2 Air Gunship - Stomp Enemy',
-                'SorianEdit T2FighterBomber',
-                'SorianEdit T1 Air Fighter - T2',
-                'SorianEdit T2 Air Gunship2',
-                'SorianEdit T2FighterBomber2',
-                --'SorianEdit T2AntiAirPlanes Initial Higher Pri',
-                --'SorianEdit T2AntiAirPlanes - Enemy Air',
-                --'SorianEdit T2AntiAirPlanes - Enemy Air Extra',
-                --'SorianEdit T2AntiAirPlanes - Enemy Air Extra 2',
-                'SorianEdit T3 Air Gunship',
-                'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber',
-                'SorianEdit T3 Air Bomber - Stomp Enemy',
-                'SorianEdit T3 Air Gunship2',
-                'SorianEdit T3 Air Bomber2',
-            },
-            PlatoonFormManager = {
-                'SorianEdit GunshipAttackT1Frequent',
-                'SorianEdit GunshipAttackT2Frequent',
-                'SorianEdit GunshipAttackT3Frequent',
-                'SorianEdit T1 GunShip Attack Weak Enemy Response',
-                'SorianEdit Mass Hunter Gunships',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1Gunship',
+                -- 'SorianEdit T1 Air Fighter',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+            -- },
+            -- PlatoonFormManager = {
+                -- 'SorianEdit GunshipAttackT1Frequent',
+                -- 'SorianEdit T1 GunShip Attack Weak Enemy Response',
+                -- 'SorianEdit Mass Hunter Gunships',
+            -- }
         },
         AddBuilders = {
             FactoryManager = {
@@ -854,10 +835,10 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { MIBC, 'FactionIndex', {1, 2, 3}},
             { SBC, 'MapLessThan', { 1000, 1000 }},
-            --{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
+            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
             { SBC, 'TargetHasLessThanUnitsWithCategory', { 3, categories.AIR * categories.FACTORY }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
@@ -911,17 +892,17 @@ BuilderGroup {
         BuilderConditions = {
             { SBC, 'IsIslandMap', { false } },
             { SBC, 'ClosestEnemyLessThan', { 750 } },
-            --{ SBC, 'NoRushTimeCheck', { 0 }},
-            --{ SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
+            -- { SBC, 'NoRushTimeCheck', { 0 }},
+            -- { SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
             { SBC, 'LessThanGameTime', { 420 } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            EngineerManager = {
-                'SorianEdit T1VacantStartingAreaEngineer - Rush',
-                'SorianEdit T1VacantStartingAreaEngineer',
-                'SorianEdit T1 Vacant Expansion Area EngineerFull Base',
-            },
+            -- EngineerManager = {
+                -- 'SorianEdit T1VacantStartingAreaEngineer - Rush',
+                -- 'SorianEdit T1VacantStartingAreaEngineer',
+                -- 'SorianEdit T1 Vacant Expansion Area EngineerFull Base',
+            -- },
         },
         AddBuilders = {
             EngineerManager = {
@@ -965,7 +946,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
@@ -973,7 +954,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
-            { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
+            -- { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
             -- CanBuildFirebase { 1000, 1000 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
         },
@@ -1027,24 +1008,22 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            PlatoonFormManager = {
-                'SorianEdit Frequent Land Attack T1',
-                'SorianEdit Frequent Land Attack T2',
-                'SorianEdit Frequent Land Attack T3',
-                'SorianEdit Start Location Attack',
-                'SorianEdit Early Attacks Small',
-                'SorianEdit Early Attacks Medium',
-                'SorianEdit T2/T3 Land Weak Enemy Response',
-                'SorianEdit T1 Land Weak Enemy Response',
-                'SorianEdit T1 Hunters',
-                'SorianEdit T2 Hunters',
-                'SorianEdit T4 Exp Land',
-            }
+            -- PlatoonFormManager = {
+                -- 'SorianEdit Frequent Land Attack T1',
+                -- 'SorianEdit Frequent Land Attack T2',
+                -- 'SorianEdit Start Location Attack',
+                -- 'SorianEdit Early Attacks Small',
+                -- 'SorianEdit Early Attacks Medium',
+                -- 'SorianEdit T2/T3 Land Weak Enemy Response',
+                -- 'SorianEdit T1 Land Weak Enemy Response',
+                -- 'SorianEdit T1 Hunters',
+                -- 'SorianEdit T2 Hunters',
+            -- }
         },
         AddBuilders = {
             EngineerManager = {
@@ -1091,24 +1070,22 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            PlatoonFormManager = {
-                'SorianEdit Frequent Land Attack T1',
-                'SorianEdit Frequent Land Attack T2',
-                'SorianEdit Frequent Land Attack T3',
-                'SorianEdit Start Location Attack',
-                'SorianEdit Early Attacks Small',
-                'SorianEdit Early Attacks Medium',
-                'SorianEdit T2/T3 Land Weak Enemy Response',
-                'SorianEdit T1 Land Weak Enemy Response',
-                'SorianEdit T1 Hunters',
-                'SorianEdit T2 Hunters',
-                'SorianEdit T4 Exp Land',
-            }
+            -- PlatoonFormManager = {
+                -- 'SorianEdit Frequent Land Attack T1',
+                -- 'SorianEdit Frequent Land Attack T2',
+                -- 'SorianEdit Start Location Attack',
+                -- 'SorianEdit Early Attacks Small',
+                -- 'SorianEdit Early Attacks Medium',
+                -- 'SorianEdit T2/T3 Land Weak Enemy Response',
+                -- 'SorianEdit T1 Land Weak Enemy Response',
+                -- 'SorianEdit T1 Hunters',
+                -- 'SorianEdit T2 Hunters',
+            -- }
         },
         AddBuilders = {
             EngineerManager = {
@@ -1167,7 +1144,7 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH3' }},
             { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'NUKE SILO STRUCTURE TECH3' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
@@ -1223,10 +1200,10 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            EngineerManager = {
-                'SorianEdit T3 Nuke Engineer',
-                'SorianEdit T3 Nuke Engineer - 10x10',
-            }
+            -- EngineerManager = {
+                -- 'SorianEdit T3 Nuke Engineer',
+                -- 'SorianEdit T3 Nuke Engineer - 10x10',
+            -- }
         },
         AddBuilders = {}
     },
@@ -1269,12 +1246,12 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH2' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
-            --{ SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
+            -- { SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
-            --{ MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
+            -- { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
@@ -1330,47 +1307,41 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 150 }},
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 150 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
-            --{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
+            -- { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH2, FACTORY AIR TECH3' }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH1' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                'SorianEdit T2 Air Gunship',
-                'SorianEdit T2 Air Gunship - Anti Navy',
-                'SorianEdit T2 Air Gunship - Stomp Enemy',
-                'SorianEdit T2FighterBomber',
-                'SorianEdit T2 Air Gunship2',
-                'SorianEdit T2FighterBomber2',
-                'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber - Stomp Enemy',
-                'SorianEdit T3 Air Gunship2',
-                'SorianEdit T3 Air Bomber2',
-            },
-            PlatoonFormManager = {
-                'SorianEdit BomberAttackT1Frequent',
-                'SorianEdit BomberAttackT1Frequent - Anti-Land',
-                'SorianEdit T1Gunship',
-                --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT2Frequent',
-                'SorianEdit BomberAttackT2Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT3Frequent',
-                'SorianEdit BomberAttackT3Frequent - Anti-Land',
-                'SorianEdit T3 Air Bomber',
-                'SorianEdit T3 Air Gunship',
-                --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
-                'SorianEdit T1 Bomber Attack Weak Enemy Response',
-                --'SorianEdit BomberAttack Mass Hunter',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+                -- 'SorianEdit T2 Air Gunship',
+                -- 'SorianEdit T2 Air Gunship - Anti Navy',
+                -- 'SorianEdit T2 Air Gunship - Stomp Enemy',
+                -- 'SorianEdit T2FighterBomber',
+            -- },
+            -- PlatoonFormManager = {
+                -- 'SorianEdit BomberAttackT1Frequent',
+                -- 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+                -- 'SorianEdit T1Gunship',
+                -- --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT2Frequent',
+                -- 'SorianEdit BomberAttackT2Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT3Frequent',
+                -- 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+                -- 'SorianEdit T3 Air Bomber',
+                -- 'SorianEdit T3 Air Gunship',
+                -- --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
+                -- 'SorianEdit T1 Bomber Attack Weak Enemy Response',
+                -- --'SorianEdit BomberAttack Mass Hunter',
+            -- }
         },
         AddBuilders = {
             FactoryManager = {
@@ -1421,8 +1392,8 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 19 }},
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 19 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY AIR TECH3' }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR TECH3' }},
@@ -1430,38 +1401,29 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                'SorianEdit T2 Air Gunship',
-                'SorianEdit T2 Air Gunship - Anti Navy',
-                'SorianEdit T2 Air Gunship - Stomp Enemy',
-                'SorianEdit T2FighterBomber',
-                'SorianEdit T2 Air Gunship2',
-                'SorianEdit T2FighterBomber2',
-                'SorianEdit T3 Air Gunship',
-                'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber',
-                'SorianEdit T3 Air Bomber - Stomp Enemy',
-                'SorianEdit T3 Air Gunship2',
-                'SorianEdit T3 Air Bomber2',
-            },
-            PlatoonFormManager = {
-                'SorianEdit BomberAttackT1Frequent',
-                'SorianEdit BomberAttackT1Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT2Frequent',
-                'SorianEdit BomberAttackT2Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT3Frequent',
-                'SorianEdit BomberAttackT3Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
-                'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
-                --'SorianEdit BomberAttack Mass Hunter',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1Gunship',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+                -- 'SorianEdit T2 Air Gunship',
+                -- 'SorianEdit T2 Air Gunship - Anti Navy',
+                -- 'SorianEdit T2 Air Gunship - Stomp Enemy',
+            -- },
+            -- PlatoonFormManager = {
+                -- 'SorianEdit BomberAttackT1Frequent',
+                -- 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT2Frequent',
+                -- 'SorianEdit BomberAttackT2Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT3Frequent',
+                -- 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
+                -- 'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
+                -- --'SorianEdit BomberAttack Mass Hunter',
+            -- }
         },
         AddBuilders = {
             FactoryManager = {
@@ -1511,45 +1473,36 @@ BuilderGroup {
             return returnval
         end,
         BuilderConditions = {
-            --{ SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
-            --{ SBC, 'NoRushTimeCheck', { 600 }},
+            -- { SBC, 'LessThanThreatAtEnemyBase', { 'AntiAir', 55 }},
+            -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 15, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3 - categories.BOMBER, 'Enemy'}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, 'FACTORY AIR TECH3' }},
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                'SorianEdit T2 Air Gunship',
-                'SorianEdit T2 Air Gunship - Anti Navy',
-                'SorianEdit T2 Air Gunship - Stomp Enemy',
-                'SorianEdit T2FighterBomber',
-                'SorianEdit T2 Air Gunship2',
-                'SorianEdit T2FighterBomber2',
-                'SorianEdit T3 Air Gunship',
-                'SorianEdit T3 Air Gunship - Anti Navy',
-                'SorianEdit T3 Air Bomber',
-                'SorianEdit T3 Air Bomber - Stomp Enemy',
-                'SorianEdit T3 Air Gunship2',
-                'SorianEdit T3 Air Bomber2',
-            },
-            PlatoonFormManager = {
-                'SorianEdit BomberAttackT1Frequent',
-                'SorianEdit BomberAttackT1Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT2Frequent',
-                'SorianEdit BomberAttackT2Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
-                'SorianEdit BomberAttackT3Frequent',
-                'SorianEdit BomberAttackT3Frequent - Anti-Land',
-                --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
-                'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
-                --'SorianEdit BomberAttack Mass Hunter',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1Gunship',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+                -- 'SorianEdit T2 Air Gunship',
+                -- 'SorianEdit T2 Air Gunship - Anti Navy',
+                -- 'SorianEdit T2 Air Gunship - Stomp Enemy',
+            -- },
+            -- PlatoonFormManager = {
+                -- 'SorianEdit BomberAttackT1Frequent',
+                -- 'SorianEdit BomberAttackT1Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT1Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT2Frequent',
+                -- 'SorianEdit BomberAttackT2Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT2Frequent - Anti-Resource',
+                -- 'SorianEdit BomberAttackT3Frequent',
+                -- 'SorianEdit BomberAttackT3Frequent - Anti-Land',
+                -- --'SorianEdit BomberAttackT3Frequent - Anti-Resource',
+                -- 'SorianEdit T2/T3 Bomber Attack Weak Enemy Response',
+                -- --'SorianEdit BomberAttack Mass Hunter',
+            -- }
         },
         AddBuilders = {
             FactoryManager = {
@@ -1693,23 +1646,23 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            FactoryManager = {
-                'SorianEdit T1 Air Bomber',
-                'SorianEdit T1 Air Bomber - Stomp Enemy',
-                'SorianEdit T1Gunship',
-                'SorianEdit T1 Air Fighter',
-                'SorianEdit T1 Air Bomber 2',
-                'SorianEdit T1Gunship2',
-                'SorianEdit T1 Bot - Early Game Rush',
-                'SorianEdit T1 Bot - Early Game',
-                'SorianEdit T1 Light Tank - Tech 1',
-                'SorianEdit T1 Mortar',
-                'SorianEdit T1 Mortar - tough def',
-            },
-            StrategyManager = {
-                'SorianEdit T1 Heavy Air Strategy',
-                'SorianEdit Jester Rush Strategy',
-            }
+            -- FactoryManager = {
+                -- 'SorianEdit T1 Air Bomber',
+                -- 'SorianEdit T1 Air Bomber - Stomp Enemy',
+                -- 'SorianEdit T1Gunship',
+                -- 'SorianEdit T1 Air Fighter',
+                -- 'SorianEdit T1 Air Bomber 2',
+                -- 'SorianEdit T1Gunship2',
+                -- 'SorianEdit T1 Bot - Early Game Rush',
+                -- 'SorianEdit T1 Bot - Early Game',
+                -- 'SorianEdit T1 Light Tank - Tech 1',
+                -- 'SorianEdit T1 Mortar',
+                -- 'SorianEdit T1 Mortar - tough def',
+            -- },
+            -- StrategyManager = {
+                -- 'SorianEdit T1 Heavy Air Strategy',
+                -- 'SorianEdit Jester Rush Strategy',
+            -- }
         },
         AddBuilders = {}
     },
@@ -1724,12 +1677,15 @@ BuilderGroup {
         },
         BuilderType = 'Any',
         RemoveBuilders = {
-            EngineerManager = {
-                'SorianEdit T1 Mass Adjacency Defense Engineer',
-                'SorianEdit T1 Base D Engineer - Perimeter',
-                'SorianEdit T1 Defensive Point Engineer',
-            }
+            -- EngineerManager = {
+                -- 'SorianEdit T1 Mass Adjacency Defense Engineer',
+                -- 'SorianEdit T1 Base D Engineer - Perimeter',
+                -- 'SorianEdit T1 Defensive Point Engineer',
+            -- }
         },
         AddBuilders = {}
     },
 }
+	do
+	LOG('--------------------- SorianEdit Strategy Builders loaded')
+	end

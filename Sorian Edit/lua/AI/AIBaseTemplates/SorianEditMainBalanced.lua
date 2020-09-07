@@ -18,9 +18,10 @@ BaseBuilderTemplate {
         --'SorianEditT1FastUpgradeBuildersExpansion',
         --'SorianEditT2FastUpgradeBuildersExpansion',
         --'SorianEditT1RushUpgradeBuilders',
-        --'SorianEditEmergencyUpgradeBuilders',
+        'SorianEditEmergencyUpgradeBuilders',
         --'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
+        'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
@@ -34,6 +35,18 @@ BaseBuilderTemplate {
 
         -- SCU Upgrades
         'SorianEditSCUUpgrades',
+		
+        -- Scouts
+        'SorianEditAirScoutFactoryBuilders',
+        'SorianEditAirScoutFormBuilders',
+
+        'SorianEditLandScoutFactoryBuilders',
+        'SorianEditLandScoutFormBuilders',
+
+        'SorianEditRadarEngineerBuilders',
+        'SorianEditRadarUpgradeBuildersMain',
+
+        'SorianEditCounterIntelBuilders',
 
         -- Engineer Support buildings
         -- 'SorianEditEngineeringSupportBuilder',
@@ -43,7 +56,9 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuildersExpansions',
 
         -- Build Mass high pri at this base
-        'Sorian Mass Builders', 
+        'Sorianedit Mass Builders', 
+        'Sorianedit Mass Builders Tech 2', 
+        'Sorianedit Mass Builders Tech 3', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
@@ -54,7 +69,7 @@ BaseBuilderTemplate {
         'SorianEditACUUpgrades',
 
         -- ACU Defense
-        'SorianEditT1ACUDefenses',
+        -- 'SorianEditT1ACUDefenses',
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
@@ -68,7 +83,7 @@ BaseBuilderTemplate {
 
 
         -- ==== DEFENSES ==== --
-        'SorianEditT1BaseDefenses',
+        -- 'SorianEditT1BaseDefenses',
         'SorianEditT2BaseDefenses',
         'SorianEditT3BaseDefenses',
         'SorianEditT2BaseDefenses - Emerg',
@@ -77,10 +92,10 @@ BaseBuilderTemplate {
         'SorianEditT2PerimeterDefenses',
         'SorianEditT3PerimeterDefenses',
 
-        'SorianEditT1DefensivePoints Turtle',
+        -- 'SorianEditT1DefensivePoints Turtle',
         'SorianEditT2DefensivePoints Turtle',
         'SorianEditT3DefensivePoints Turtle',
-		'SorianEditT1LightDefenses',
+		-- 'SorianEditT1LightDefenses',
 		'SorianEditT2LightDefenses',
 		'SorianEditT3LightDefenses',
 		
@@ -172,21 +187,19 @@ BaseBuilderTemplate {
         'SorianEditSatelliteExperimentalForm',
 
    -- ======== Strategies ======== --
-        'SorianEditHeavyAirStrategy',
-        'SorianEditBigAirGroup',
-        'SorianEditJesterRush',
+        -- 'SorianEditHeavyAirStrategy',
+        -- 'SorianEditBigAirGroup',
+        -- 'SorianEditJesterRush',
         -- 'SorianEditNukeRush',
-        'SorianEditT3FBRush',
-        'SorianEditT2ACUSnipe',
-        -- 'SorianEditParagonStrategy',
-        -- 'SorianEditParagonStrategyExp',
-        'SorianEdit Tele SCU Strategy',
-        --'SorianEditWaterMapLowLand',
-        'SorianEdit PD Creep Strategy',
+        -- 'SorianEditT3FBRush',
+        -- 'SorianEditT2ACUSnipe',
+        -- -- 'SorianEditParagonStrategy',
+        -- -- 'SorianEditParagonStrategyExp',
+        -- 'SorianEdit Tele SCU Strategy',
+        -- -- 'SorianEditWaterMapLowLand',
+        -- 'SorianEdit PD Creep Strategy',
         -- 'SorianEditStopNukes',
-        'SorianEditEnemyTurtle - In Range',
-        'SorianEditEnemyTurtle - Out of Range',
-        'SorianEdit Excess Mass Strategy', 
+        -- 'SorianEdit Excess Mass Strategy', 
 
         -- ===== Strategy Platoons ===== --
         'SorianEditT1BomberHighPrio',
@@ -194,7 +207,6 @@ BaseBuilderTemplate {
         'SorianEditT3BomberHighPrio',
         'SorianEditT3BomberSpecialHighPrio',
         'SorianEditT1GunshipHighPrio',
-        'SorianEditT1DefensivePoints - High Prio',
         'SorianEditT2DefensivePoints - High Prio',
 
         'SorianEditBomberLarge',
@@ -211,6 +223,7 @@ BaseBuilderTemplate {
         'SorianEditExcessMassBuilders',
     },
     NonCheatBuilders = {
+		
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
 
@@ -243,19 +256,19 @@ BaseBuilderTemplate {
     },
     ExpansionFunction = function(aiBrain, location, markerType)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Start Location')
-        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            LOG('--------------------- M-ExpansionFunction High Priority '..personality)
+        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
+        and personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
+            LOG('--------------------- M-ExpansionFunction Main Balanced High Priority '..personality)
             return 800, 'sorianeditadaptive'
         else
-        LOG('--------------------- M-ExpansionFunction low Priority '..personality)
+        LOG('--------------------- M-ExpansionFunction Main Balanced low Priority '..personality)
 		return 2
 		end
 	end,
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
-            LOG('------ M-FirstBaseFunction '..personality)
+        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
+            LOG('------ M-FirstBaseFunction Main Balanced '..personality)
             return 14000, 'sorianeditadaptive'
         end
     end,

@@ -194,9 +194,33 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
-    Name = 'EngineerBuilderSorianEditTECH1',
+    Name = 'EngineerBuilderSorianEditTECH1REC',
     Plan = 'ReclaimAISorian',
     GlobalSquads = {
         { categories.ENGINEER * categories.TECH1, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'EngineerBuilderSorianEditTECH1',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH1, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'EngineerBuilderSorianEditTECH2',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH2, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
+    Name = 'EngineerBuilderSorianEditTECH3',
+    Plan = 'EngineerBuildAISorian',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH3, 1, 1, 'support', 'None' }
     },
 }

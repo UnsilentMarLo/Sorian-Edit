@@ -25,6 +25,10 @@ local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 
+	do
+	LOG('--------------------- SorianEdit Naval Builders loading')
+	end
+	
 BuilderGroup {
     BuilderGroupName = 'SorianEditNavalExpansionBuildersFast',
     BuildersType = 'EngineerBuilder',
@@ -417,3 +421,6 @@ BuilderGroup {
         },
     },
 }
+	do
+	LOG('--------------------- SorianEdit Naval Builders loaded')
+	end

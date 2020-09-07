@@ -2,25 +2,21 @@
 
 local Buff = import('/lua/sim/Buff.lua')
 local HighestThreat = {}
-do
+
 -- This hook is for debug-option Platoon-Names. Hook for all AI's
-OlderOldExecutePlanFunctionUveso = ExecutePlan
+OlderOldExecutePlanFunctionSE = ExecutePlan
 function ExecutePlan(aiBrain)
-    if not aiBrain.Uveso then
-        -- Debug for Platoon names
-        if (aiBrain[ScenarioInfo.Options.AIPLatoonNameDebug] or ScenarioInfo.Options.AIPLatoonNameDebug == 'all') and not aiBrain.BuilderManagers.MAIN.FactoryManager:HasBuilderList() then
-            aiBrain:ForkThread(LocationRangeManagerThread, aiBrain)
-        end
+	if not aiBrain.sorianeditadaptivecheat and not aiBrain.sorianeditadaptive and not aiBrain.sorianedit then
         -- execute the original function
-        OlderOldExecutePlanFunctionUveso(aiBrain)
+			OlderOldExecutePlanFunctionSE(aiBrain)
         return
     end
     aiBrain:SetConstantEvaluate(false)
     local behaviors = import('/lua/ai/AIBehaviors.lua')
     coroutine.yield(10)
     if not aiBrain.BuilderManagers.MAIN.FactoryManager:HasBuilderList() then
-        -- we don't share resources with allies
-        aiBrain:SetResourceSharing(false)
+        -- we share resources with allies
+        aiBrain:SetResourceSharing(true)
         --aiBrain:SetupUnderEnergyStatTrigger(0.1)
         --aiBrain:SetupUnderMassStatTrigger(0.1)
         SetupMainBase(aiBrain)
@@ -34,11 +30,12 @@ function ExecutePlan(aiBrain)
                 mainManagers.FactoryManager:AddFactory(v)
             end
         end
-        aiBrain:ForkThread(LocationRangeManagerThread, aiBrain)
-        aiBrain:ForkThread(EcoManagerThread, aiBrain)
-        aiBrain:ForkThread(BaseTargetManagerThread, aiBrain)
-        aiBrain:ForkThread(MarkerGridThreatManagerThread, aiBrain)
-    end
+        aiBrain:ForkThread(SELocationRangeManagerThread, aiBrain)
+        aiBrain:ForkThread(SEEcoManagerThread, aiBrain)
+        aiBrain:ForkThread(SEBaseTargetManagerThread, aiBrain)
+        aiBrain:ForkThread(SEMarkerGridThreatManagerThread, aiBrain)
+        aiBrain:ForkThread(PriorityManagerThread, aiBrain)
+	end
     if aiBrain.PBM then
         aiBrain:PBMSetEnabled(false)
     end
@@ -74,7 +71,7 @@ function SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
     end
 end
 
-function EcoManagerThread(aiBrain)
+function SEEcoManagerThread(aiBrain)
     while GetGameTimeSeconds() < 15 + aiBrain:GetArmyIndex() do
         coroutine.yield(10)
     end
@@ -89,7 +86,7 @@ function EcoManagerThread(aiBrain)
         ScenarioInfo.Options.CheatMult = tostring(CheatMultOption)
         ScenarioInfo.Options.BuildMult = tostring(BuildMultOption)
     end
-    LOG('* AI-Uveso: Function EcoManagerThread() started! CheatFactor:('..repr(CheatMultOption)..') - BuildFactor:('..repr(BuildMultOption)..') ['..aiBrain.Nickname..']')
+    LOG('* AI-Uveso: Function SEEcoManagerThread() started! CheatFactor:('..repr(CheatMultOption)..') - BuildFactor:('..repr(BuildMultOption)..') ['..aiBrain.Nickname..']')
     local Engineers = {}
     local paragons = {}
     local Factories = {}
@@ -100,7 +97,7 @@ function EcoManagerThread(aiBrain)
     local MyArmyRatio
     local bussy
     while aiBrain.Result ~= "defeat" do
-        --LOG('* AI-Uveso: Function EcoManagerThread() beat. ['..aiBrain.Nickname..']')
+        --LOG('* AI-Uveso: Function SEEcoManagerThread() beat. ['..aiBrain.Nickname..']')
         coroutine.yield(5)
         Engineers = aiBrain:GetListOfUnits(categories.ENGINEER - categories.STATIONASSISTPOD - categories.COMMAND - categories.SUBCOMMANDER, false, false) -- also gets unbuilded units (planed to build)
         StationPods = aiBrain:GetListOfUnits(categories.STATIONASSISTPOD, false, false) -- also gets unbuilded units (planed to build)
@@ -119,7 +116,7 @@ function EcoManagerThread(aiBrain)
             aiBrain.HasParagon = false
         end
         -- Cheatbuffs
-        if personality == 'uvesooverwhelm' or 'sorianeditadaptivecheat' then
+        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
             -- Check every 30 seconds for new armyStats to change ECO
             if (GetGameTimeSeconds() > 60 * 1) and lastCall+10 < GetGameTimeSeconds() then
                 lastCall = GetGameTimeSeconds()
@@ -146,46 +143,62 @@ function EcoManagerThread(aiBrain)
                     MyArmyRatio = 100
                 end
 
-                -- Increase cheatfactor to +1.5 after 0.75 hour gametime
-                if GetGameTimeSeconds() > 60 * 40 then
+                if GetGameTimeSeconds() > 60 * 20 then
+                    CheatMult = CheatMult + 0.1
+                    BuildMult = BuildMult + 0.1
+                    if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
+                    if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
+                    if CheatMult > tonumber(CheatMultOption) + 1.0 then CheatMult = tonumber(CheatMultOption) + 1.0 end
+                    if BuildMult > tonumber(BuildMultOption) + 1.0 then BuildMult = tonumber(BuildMultOption) + 1.0 end
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
+                elseif GetGameTimeSeconds() > 60 * 15 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
                     if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
                     if CheatMult > tonumber(CheatMultOption) + 1.5 then CheatMult = tonumber(CheatMultOption) + 1.5 end
                     if BuildMult > tonumber(BuildMultOption) + 1.5 then BuildMult = tonumber(BuildMultOption) + 1.5 end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                -- Increase cheatfactor to +0.6 after 1 hour gametime
-                elseif GetGameTimeSeconds() > 60 * 20 then
+                elseif GetGameTimeSeconds() > 60 * 10 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
                     if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    if CheatMult > tonumber(CheatMultOption) + 0.6 then CheatMult = tonumber(CheatMultOption) + 0.6 end
-                    if BuildMult > tonumber(BuildMultOption) + 0.6 then BuildMult = tonumber(BuildMultOption) + 0.6 end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    if CheatMult > tonumber(CheatMultOption) + 1.0 then CheatMult = tonumber(CheatMultOption) + 1.0 end
+                    if BuildMult > tonumber(BuildMultOption) + 1.0 then BuildMult = tonumber(BuildMultOption) + 1.0 end
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
+                elseif GetGameTimeSeconds() > 60 * 5 then
+                    CheatMult = CheatMult + 0.1
+                    BuildMult = BuildMult + 0.1
+                    if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
+                    if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
+                    if CheatMult > tonumber(CheatMultOption) + 0.5 then CheatMult = tonumber(CheatMultOption) + 0.5 end
+                    if BuildMult > tonumber(BuildMultOption) + 0.5 then BuildMult = tonumber(BuildMultOption) + 0.5 end
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 -- Increase ECO if we have less than 40% of the enemy units
-                elseif MyArmyRatio < 35 then
+                elseif MyArmyRatio < 175 then
                     CheatMult = CheatMult + 0.4
                     BuildMult = BuildMult + 0.1
                     if CheatMult > tonumber(CheatMultOption) + 8 then CheatMult = tonumber(CheatMultOption) + 8 end
                     if BuildMult > tonumber(BuildMultOption) + 8 then BuildMult = tonumber(BuildMultOption) + 8 end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                elseif MyArmyRatio < 55 then
+                elseif MyArmyRatio < 225 then
                     CheatMult = CheatMult + 0.3
                     if CheatMult > tonumber(CheatMultOption) + 6 then CheatMult = tonumber(CheatMultOption) + 6 end
                     if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 -- Increase ECO if we have less than 85% of the enemy units
-                elseif MyArmyRatio < 75 then
+                elseif MyArmyRatio < 325 then
                     CheatMult = CheatMult + 0.2
                     if CheatMult > tonumber(CheatMultOption) + 4 then CheatMult = tonumber(CheatMultOption) + 4 end
                     if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 -- Normal ECO
                 else -- MyArmyRatio > 85  MyArmyRatio <= 100
@@ -203,10 +216,10 @@ function EcoManagerThread(aiBrain)
                         BuildMult = BuildMult + 0.1
                         if BuildMult > tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
                     end
-                    --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 end
-                --LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
             end
         end
 
@@ -651,8 +664,8 @@ function EnableUnits(aiBrain, Category, UnitType)
     return false
 end
 
-function LocationRangeManagerThread(aiBrain)
-    LOG('* AI-Uveso: Function LocationRangeManagerThread() started. ['..aiBrain.Nickname..']')
+function SELocationRangeManagerThread(aiBrain)
+    LOG('* AI-Uveso: Function SELocationRangeManagerThread() started. ['..aiBrain.Nickname..']')
     local unitcounterdelayer = 0
     local ArmyUnits = {}
     -- wait at start of the game for delayed AI message
@@ -664,9 +677,9 @@ function LocationRangeManagerThread(aiBrain)
     end
 
     while aiBrain.Result ~= "defeat" do
-        --LOG('* AI-Uveso: Function LocationRangeManagerThread() beat. ['..aiBrain.Nickname..']')
+        --LOG('* AI-Uveso: Function SELocationRangeManagerThread() beat. ['..aiBrain.Nickname..']')
         -- Check and set the location radius of our main base and expansions
-        local BasePositions = BaseRanger(aiBrain)
+        local BasePositions = BaseRangerSE(aiBrain)
         -- Check if we have units outside the range of any BaseManager
         -- Get all units from our ArmyPool. These are units without a special platoon or task. They have nothing to do.
         ArmyUnits = aiBrain:GetListOfUnits(categories.MOBILE - categories.MOBILESONAR, false, false) -- also gets unbuilded units (planed to build)
@@ -744,7 +757,7 @@ function LocationRangeManagerThread(aiBrain)
                         end
                         IssueClearCommands({unit})
                         IssueStop({unit})
-                        IssueMove({unit}, nearestbase.Pos)
+                        IssueMove({unit}, { nearestbase.Pos[1] + (Random(-10, 10)), nearestbase.Pos[2], nearestbase.Pos[3] + (Random(-10, 10)) })
                     end
                 end
             end
@@ -792,8 +805,8 @@ function LocationRangeManagerThread(aiBrain)
     end
 end
 
-function BaseRanger(aiBrain)
-    local BaseRanger = {}
+function BaseRangerSE(aiBrain)
+    local BaseRangerSE = {}
     if aiBrain.BuilderManagers then
         local BaseLocations = {
             [1] = 'MAIN',
@@ -869,34 +882,34 @@ function BaseRanger(aiBrain)
                 if v.StrategyManager then
                     v.StrategyManager.Radius = NewMax
                 end
-                -- Check if we have a terranhigh (or we can't draw the debug baseRanger)
+                -- Check if we have a terranhigh (or we can't draw the debug BaseRangerSE)
                 if StartPos[2] == 0 then
                     StartPos[2] = GetTerrainHeight(StartPos[1], StartPos[3])
                     -- store the TerranHeight inside Factorymanager
                     v.FactoryManager.Location = StartPos
                 end
-                -- Add the position and radius to the BaseRanger table
-                BaseRanger[k] = {Pos = StartPos, Rad = math.floor(NewMax), Type = BaseType}
+                -- Add the position and radius to the BaseRangerSE table
+                BaseRangerSE[k] = {Pos = StartPos, Rad = math.floor(NewMax), Type = BaseType}
             end
         end
         -- store all bases ang radii global inside Scenario.MasterChain
         -- Wee need this to draw the debug circles
-        if aiBrain.Uveso then
+        if aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive then
             if ScenarioInfo.Options.AIPathingDebug == 'pathlocation' then
-                Scenario.MasterChain._MASTERCHAIN_.BaseRanger = Scenario.MasterChain._MASTERCHAIN_.BaseRanger or {}
-                Scenario.MasterChain._MASTERCHAIN_.BaseRanger[aiBrain:GetArmyIndex()] = BaseRanger
+                Scenario.MasterChain._MASTERCHAIN_.BaseRangerSE = Scenario.MasterChain._MASTERCHAIN_.BaseRangerSE or {}
+                Scenario.MasterChain._MASTERCHAIN_.BaseRangerSE[aiBrain:GetArmyIndex()] = BaseRangerSE
             end
         end
     end
-    return BaseRanger
+    return BaseRangerSE
 end
 
-function BaseTargetManagerThread(aiBrain)
+function SEBaseTargetManagerThread(aiBrain)
 --        LOG('location manager '..repr(aiBrain.NukedArea))
     while GetGameTimeSeconds() < 25 + aiBrain:GetArmyIndex() do
         coroutine.yield(10)
     end
-    LOG('* AI-Uveso: Function BaseTargetManagerThread() started. ['..aiBrain.Nickname..']')
+    LOG('* AI-Uveso: Function SEBaseTargetManagerThread() started. ['..aiBrain.Nickname..']')
     local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii()
     local targets = {}
     local baseposition, radius
@@ -904,7 +917,7 @@ function BaseTargetManagerThread(aiBrain)
     local distance
     local armyIndex = aiBrain:GetArmyIndex()
     while aiBrain.Result ~= "defeat" do
-        --LOG('* AI-Uveso: Function BaseTargetManagerThread() beat. ['..aiBrain.Nickname..']')
+        --LOG('* AI-Uveso: Function SEBaseTargetManagerThread() beat. ['..aiBrain.Nickname..']')
         ClosestTarget = nil
         distance = 8192
         coroutine.yield(50)
@@ -1044,11 +1057,11 @@ end
 
 --OLD: - Highest:0.023910 - Average:0.017244
 --NEW: - Highest:0.002929 - Average:0.002018
-function MarkerGridThreatManagerThread(aiBrain)
+function SEMarkerGridThreatManagerThread(aiBrain)
     while GetGameTimeSeconds() < 30 + aiBrain:GetArmyIndex() do
         coroutine.yield(10)
     end
-    LOG('* AI-Uveso: Function MarkerGridThreatManagerThread() started. ['..aiBrain.Nickname..']')
+    LOG('* AI-Uveso: Function SEMarkerGridThreatManagerThread() started. ['..aiBrain.Nickname..']')
     local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
     local numTargetTECH123 = 0
     local numTargetTECH4 = 0
@@ -1057,14 +1070,14 @@ function MarkerGridThreatManagerThread(aiBrain)
     local PathGraphs = AIAttackUtils.GetPathGraphs()
     local vector
     if not (PathGraphs['Land'] or PathGraphs['Amphibious'] or PathGraphs['Air'] or PathGraphs['Water']) then
-        WARN('* AI-Uveso: Function MarkerGridThreatManagerThread() No AI path markers found on map. Threat handling diabled!  '..ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality)
+        WARN('* AI-Uveso: Function SEMarkerGridThreatManagerThread() No AI path markers found on map. Threat handling diabled!  '..ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality)
         -- end this forked thead
         return
     end
     while aiBrain.Result ~= "defeat" do
         HighestThreat[armyIndex] = HighestThreat[armyIndex] or {}
         HighestThreat[armyIndex].ThreatCount = 0
-        --LOG('* AI-Uveso: Function MarkerGridThreatManagerThread() beat. ['..aiBrain.Nickname..']')
+        --LOG('* AI-Uveso: Function SEMarkerGridThreatManagerThread() beat. ['..aiBrain.Nickname..']')
         for Layer, LayerMarkers in PathGraphs do
             for graph, GraphMarkers in LayerMarkers do
                 for nodename, markerInfo in GraphMarkers do
@@ -1098,7 +1111,7 @@ function MarkerGridThreatManagerThread(aiBrain)
                         Threat = aiBrain:GetThreatAtPosition(vector, 1, true, 'AntiAir')
                         Threat = Threat + aiBrain:GetThreatAtPosition(vector, 0, true, 'Structures')
                     end
-                    --LOG('* MarkerGridThreatManagerThread: 1='..numTargetTECH1..'  2='..numTargetTECH2..'  3='..numTargetTECH123..'  4='..numTargetTECH4..' - Threat='..Threat..'.' )
+                    --LOG('* SEMarkerGridThreatManagerThread: 1='..numTargetTECH1..'  2='..numTargetTECH2..'  3='..numTargetTECH123..'  4='..numTargetTECH4..' - Threat='..Threat..'.' )
                     Scenario.MasterChain._MASTERCHAIN_.Markers[nodename][armyIndex] = Threat
                     if Threat > HighestThreat[armyIndex].ThreatCount then
                         HighestThreat[armyIndex].ThreatCount = Threat
@@ -1114,5 +1127,4 @@ function MarkerGridThreatManagerThread(aiBrain)
             HighestThreat[armyIndex].TargetLocation = HighestThreat[armyIndex].Location
         end
     end
-end
 end

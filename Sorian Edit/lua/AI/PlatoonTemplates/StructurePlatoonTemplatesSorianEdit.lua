@@ -8,10 +8,10 @@
 #****************************************************************************
 
 PlatoonTemplate {
-    Name = 'AddToMassExtractorUpgradePlatoon',
+    Name = 'AddToMassExtractorUpgradePlatoonSE',
     Plan = 'SorianPlatoonMerger',
     GlobalSquads = {
-        { categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3) , 1, 800, 'support', 'none' }
+        { categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.MASSFABRICATION , 1, 300, 'support', 'none' }
     },
 }
 
@@ -19,7 +19,7 @@ PlatoonTemplate {
     Name = 'MassFabsSorianEdit',
     Plan = 'PauseAI',
     GlobalSquads = {
-        { categories.STRUCTURE * categories.MASSFABRICATION, 1, 1, 'support', 'none' },
+        { categories.STRUCTURE * categories.MASSFABRICATION - categories.MASSEXTRACTION, 1, 1, 'support', 'none' },
     }
 }
 

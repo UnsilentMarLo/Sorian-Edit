@@ -16,7 +16,7 @@ do
     function ModBlueprints(all_bps)
 	    oldModBlueprints(all_bps)
 
-        local CCdef = 0.25
+        local CCdef = 0.5
 
 
         --loop through the blueprints and adjust as desired.
