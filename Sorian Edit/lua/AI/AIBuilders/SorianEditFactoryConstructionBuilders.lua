@@ -95,15 +95,16 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Factory Engineer - Overbuild',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 1500,
+        Priority = 800,
         InstanceCount = 4,
         BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
             -- { IBC, 'BrainNotLowMassMode', {} },
-            { SIBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
         },
         --InstanceCount = 2,
@@ -122,9 +123,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Factory Engineer - Overbuild',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 2500,
+        Priority = 800,
         InstanceCount = 4,
         BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
@@ -148,9 +150,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Factory Engineer - Overbuild',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 3500,
+        Priority = 800,
         InstanceCount = 4,
         BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
             { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },

@@ -71,7 +71,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
             -- { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', true } },
         },
         BuilderType = 'Any',
@@ -79,8 +79,7 @@ BuilderGroup {
             MinNumAssistees = 5,
             Construction = {
 				RepeatBuild = true,
-                BuildClose = false,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
+                BuildClose = true,
                 BuildStructures = {
                     'T3Artillery',
                 },
@@ -196,16 +195,15 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 5,
             Construction = {
 				RepeatBuild = true,
-                BuildClose = false,
+                BuildClose = true,
                 --T4 = true,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3RapidArtillery',
                 },
@@ -326,16 +324,15 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.EXPERIMENTAL}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 5,
             Construction = {
 				RepeatBuild = true,
-                BuildClose = false,
+                BuildClose = true,
                 --T4 = true,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T4Artillery',
                 },
@@ -387,15 +384,14 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = false,
+                BuildClose = true,
                 BaseTemplate = ExBaseTmpl,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T4LandExperimental2',
                 },
@@ -503,16 +499,15 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
                 RepeatBuild = true,
-                BuildClose = false,
+                BuildClose = true,
                 --T4 = true,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T4Artillery',
                 },
@@ -557,15 +552,14 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.5, 1.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.25, 1.25 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 2,
             Construction = {
-                BuildClose = false,
+                BuildClose = true,
                 RepeatBuild = true,
-                AdjacencyCategory = 'SHIELD STRUCTURE',
                 BuildStructures = {
                     'T3StrategicMissile',
                 },

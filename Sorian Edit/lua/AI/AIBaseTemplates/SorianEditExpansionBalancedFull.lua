@@ -12,19 +12,12 @@ BaseBuilderTemplate {
     Builders = {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
-        'SorianEditT1BalancedUpgradeBuilders',
-        'SorianEditT2BalancedUpgradeBuilders',
-        --'SorianEditT1FastUpgradeBuildersExpansion',
-        --'SorianEditT2FastUpgradeBuildersExpansion',
-        --'SorianEditT1RushUpgradeBuilders',
-        'SorianEditEmergencyUpgradeBuilders',
-        --'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
-        'SorianEditEngineerFactoryBuilders',
+        'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
@@ -38,9 +31,6 @@ BaseBuilderTemplate {
         -- Scouts
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
-
-        'SorianEditLandScoutFactoryBuilders',
-        'SorianEditLandScoutFormBuilders',
 
         'SorianEditRadarEngineerBuilders',
         'SorianEditRadarUpgradeBuildersMain',
@@ -56,8 +46,8 @@ BaseBuilderTemplate {
 
         -- Build Mass high pri at this base
         'Sorianedit Mass Builders', 
-        'Sorianedit Mass Builders Tech 2', 
-        'Sorianedit Mass Builders Tech 3', 
+        -- 'Sorianedit Mass Builders Tech 2', 
+        -- 'Sorianedit Mass Builders Tech 3', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
@@ -231,7 +221,7 @@ BaseBuilderTemplate {
         'SorianEditLandScoutFormBuilders',
 
         'SorianEditRadarEngineerBuilders',
-        'SorianEditRadarUpgradeBuildersMain',
+        'SorianEditRadarUpgradeBuildersExpansion',
 
         'SorianEditCounterIntelBuilders',
     },

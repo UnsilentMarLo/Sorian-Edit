@@ -131,7 +131,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T1AirScoutFormSorianEdit',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAISorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.SCOUT * categories.TECH1, 1, 1, 'scout', 'None' },
     }
@@ -155,7 +155,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3AirScoutFormSorianEdit',
-    Plan = 'ScoutingAISorian',
+    Plan = 'ScoutingAISorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.INTELLIGENCE * categories.TECH3, 1, 1, 'scout', 'None' },
     }

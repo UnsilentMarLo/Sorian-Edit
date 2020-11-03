@@ -10,7 +10,7 @@
 # ==== Global Form platoons ==== #
 PlatoonTemplate {
     Name = 'SeaAttackSorianEdit',
-    Plan = 'NavalForceAISorian',
+    Plan = 'NavalHuntAI',
     GlobalSquads = {
         { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 100, 'Attack', 'GrowthFormation' }
     }

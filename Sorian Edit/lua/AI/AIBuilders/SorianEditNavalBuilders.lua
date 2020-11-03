@@ -105,6 +105,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T1NavalDefense',
                 'T1NavalDefense',
                 'T1NavalDefense',
@@ -147,6 +149,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T2NavalDefense',
                 'T2NavalDefense',
                 'T2NavalDefense',
@@ -187,6 +191,8 @@ BuilderGroup {
                 ExpansionBase = true,
                 ExpansionRadius = 50,
                 BuildStructures = {
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                     'T1SeaFactory',
                     'T1SeaFactory',
                 'T2NavalDefense',
@@ -236,6 +242,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T1NavalDefense',
                 'T1NavalDefense',
                 'T1NavalDefense',
@@ -275,6 +283,8 @@ BuilderGroup {
                 ExpansionBase = true,
                 ExpansionRadius = 50,
                 BuildStructures = {
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                     'T1SeaFactory',
                     'T1SeaFactory',
                 'T2NavalDefense',
@@ -317,6 +327,9 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T2NavalDefense',
                 'T2NavalDefense',
                 'T2NavalDefense',
@@ -356,6 +369,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T1NavalDefense',
                 'T1NavalDefense',
                 'T1AADefense',
@@ -386,6 +401,8 @@ BuilderGroup {
                 BuildStructures = {
                     'T1SeaFactory',
                     'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                 'T1NavalDefense',
                 'T1NavalDefense',
                 'T1AADefense',
@@ -412,6 +429,9 @@ BuilderGroup {
                 NearMarkerType = 'Naval Area',
                 BuildClose = true,
                 BuildStructures = {
+                    'T1SeaFactory',
+                    'T1SeaFactory',
+                    'T1SeaFactory',
                     'T1SeaFactory',
                 'T1NavalDefense',
                 'T1NavalDefense',

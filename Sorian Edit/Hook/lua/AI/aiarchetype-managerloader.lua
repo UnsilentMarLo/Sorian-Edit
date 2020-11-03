@@ -31,7 +31,7 @@ function ExecutePlan(aiBrain)
             end
         end
         aiBrain:ForkThread(SELocationRangeManagerThread, aiBrain)
-        aiBrain:ForkThread(SEEcoManagerThread, aiBrain)
+        -- aiBrain:ForkThread(SEEcoManagerThread, aiBrain)
         aiBrain:ForkThread(SEBaseTargetManagerThread, aiBrain)
         aiBrain:ForkThread(SEMarkerGridThreatManagerThread, aiBrain)
         aiBrain:ForkThread(PriorityManagerThread, aiBrain)
@@ -148,11 +148,11 @@ function SEEcoManagerThread(aiBrain)
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
                     if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    if CheatMult > tonumber(CheatMultOption) + 1.0 then CheatMult = tonumber(CheatMultOption) + 1.0 end
-                    if BuildMult > tonumber(BuildMultOption) + 1.0 then BuildMult = tonumber(BuildMultOption) + 1.0 end
+                    if CheatMult > tonumber(CheatMultOption) + 0.5 then CheatMult = tonumber(CheatMultOption) + 0.5 end
+                    if BuildMult > tonumber(BuildMultOption) + 0.5 then BuildMult = tonumber(BuildMultOption) + 0.5 end
                     LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                elseif GetGameTimeSeconds() > 60 * 15 then
+                elseif GetGameTimeSeconds() > 60 * 20 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
@@ -161,16 +161,16 @@ function SEEcoManagerThread(aiBrain)
                     if BuildMult > tonumber(BuildMultOption) + 1.5 then BuildMult = tonumber(BuildMultOption) + 1.5 end
                     LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                elseif GetGameTimeSeconds() > 60 * 10 then
+                elseif GetGameTimeSeconds() > 60 * 15 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
                     if BuildMult < tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    if CheatMult > tonumber(CheatMultOption) + 1.0 then CheatMult = tonumber(CheatMultOption) + 1.0 end
-                    if BuildMult > tonumber(BuildMultOption) + 1.0 then BuildMult = tonumber(BuildMultOption) + 1.0 end
+                    if CheatMult > tonumber(CheatMultOption) + 0.5 then CheatMult = tonumber(CheatMultOption) + 0.5 end
+                    if BuildMult > tonumber(BuildMultOption) + 0.5 then BuildMult = tonumber(BuildMultOption) + 0.5 end
                     LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                elseif GetGameTimeSeconds() > 60 * 5 then
+                elseif GetGameTimeSeconds() > 60 * 10 then
                     CheatMult = CheatMult + 0.1
                     BuildMult = BuildMult + 0.1
                     if CheatMult < tonumber(CheatMultOption) then CheatMult = tonumber(CheatMultOption) end
@@ -180,26 +180,26 @@ function SEEcoManagerThread(aiBrain)
                     LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
                     SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 -- Increase ECO if we have less than 40% of the enemy units
-                elseif MyArmyRatio < 175 then
-                    CheatMult = CheatMult + 0.4
-                    BuildMult = BuildMult + 0.1
-                    if CheatMult > tonumber(CheatMultOption) + 8 then CheatMult = tonumber(CheatMultOption) + 8 end
-                    if BuildMult > tonumber(BuildMultOption) + 8 then BuildMult = tonumber(BuildMultOption) + 8 end
-                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
-                    SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                elseif MyArmyRatio < 225 then
-                    CheatMult = CheatMult + 0.3
-                    if CheatMult > tonumber(CheatMultOption) + 6 then CheatMult = tonumber(CheatMultOption) + 6 end
-                    if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
-                    SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
-                -- Increase ECO if we have less than 85% of the enemy units
-                elseif MyArmyRatio < 325 then
-                    CheatMult = CheatMult + 0.2
-                    if CheatMult > tonumber(CheatMultOption) + 4 then CheatMult = tonumber(CheatMultOption) + 4 end
-                    if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
-                    LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
-                    SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
+                -- elseif MyArmyRatio < 150 then
+                    -- CheatMult = CheatMult + 0.3
+                    -- BuildMult = BuildMult + 0.1
+                    -- if CheatMult > tonumber(CheatMultOption) + 0.75 then CheatMult = tonumber(CheatMultOption) + 0.75 end
+                    -- if BuildMult > tonumber(BuildMultOption) + 0.75 then BuildMult = tonumber(BuildMultOption) + 0.75 end
+                    -- LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    -- SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
+                -- elseif MyArmyRatio < 200 then
+                    -- CheatMult = CheatMult + 0.2
+                    -- if CheatMult > tonumber(CheatMultOption) + 0.5 then CheatMult = tonumber(CheatMultOption) + 0.5 end
+                    -- if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
+                    -- LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    -- SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
+                -- -- Increase ECO if we have less than 85% of the enemy units
+                -- elseif MyArmyRatio < 250 then
+                    -- CheatMult = CheatMult + 0.1
+                    -- if CheatMult > tonumber(CheatMultOption) + 0.25 then CheatMult = tonumber(CheatMultOption) + 0.25 end
+                    -- if BuildMult ~= tonumber(BuildMultOption) then BuildMult = tonumber(BuildMultOption) end
+                    -- LOG('* ECO + ally('..allyScore..') enemy('..enemyScore..') - ArmyRatio: '..math.floor(MyArmyRatio)..'% - Build/CheatMult old: '..math.floor(tonumber(ScenarioInfo.Options.BuildMult)*10)..' '..math.floor(tonumber(ScenarioInfo.Options.CheatMult)*10)..' - new: '..math.floor(BuildMult*10)..' '..math.floor(CheatMult*10)..'')
+                    -- SetArmyPoolBuff(aiBrain, CheatMult, BuildMult)
                 -- Normal ECO
                 else -- MyArmyRatio > 85  MyArmyRatio <= 100
                     if CheatMult > CheatMultOption then

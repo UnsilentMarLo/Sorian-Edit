@@ -47,19 +47,15 @@ BuilderGroup {
             -- { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', {'EXPERIMENTAL', 'NUKE STRUCTURE', 'TECH3 ARTILLERY STRUCTURE'} }},
             { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuilt', { 0, 'EXPERIMENTAL LAND', 'LocationType', }},
             -- { IBC, 'BrainNotLowPowerMode', {} },
-            { SBC, 'MapLessThan', { 2000, 2000 }},
-            { SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            -- { SIBC, 'T4BuildingCheck', {} },
-            { SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 1, 'Air', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 6,
             Construction = {
-                BuildClose = false,
+                BuildClose = true,
                 --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                NearMarkerType = 'Rally Point',
+                -- BaseTemplate = ExBaseTmpl,
+                -- NearMarkerType = 'Rally Point',
                 BuildStructures = {
                     'T4LandExperimental1',
                 },
@@ -84,18 +80,15 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuilt', { 0, 'EXPERIMENTAL LAND', 'LocationType', }},
             -- { IBC, 'BrainNotLowPowerMode', {} },
             --CanBuildFirebase { 2000, 2000 }},
-            { SBC, 'MarkerLessThan', { 'LocationType', {'Amphibious Path Node', 'Land Path Node'}, 100, true } },
-            -- { SIBC, 'T4BuildingCheck', {} },
-            { SBC, 'EnemyThreatLessThanValueAtBase', { 'LocationType', 1, 'Air', 2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
             MinNumAssistees = 6,
             Construction = {
-                BuildClose = false,
+                BuildClose = true,
                 --T4 = true,
-                BaseTemplate = ExBaseTmpl,
-                NearMarkerType = 'Rally Point',
+                -- BaseTemplate = ExBaseTmpl,
+                -- NearMarkerType = 'Rally Point',
                 BuildStructures = {
                     'T4LandExperimental1',
                 },
@@ -1149,7 +1142,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' } },
-                { SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY LAND TECH2', 'FACTORY AIR TECH2', 'FACTORY AIR TECH1'}},
+                --{ SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY LAND TECH2', 'FACTORY AIR TECH2', 'FACTORY AIR TECH1'}},
                 -- { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -1164,7 +1157,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH2, FACTORY TECH3' } },
-                { SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY AIR TECH2', 'FACTORY LAND TECH2', 'FACTORY LAND TECH1'}},
+                --{ SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY AIR TECH2', 'FACTORY LAND TECH2', 'FACTORY LAND TECH1'}},
                 -- { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',
@@ -1191,7 +1184,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH3' } },
-                { SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY LAND TECH3', 'FACTORY AIR TECH3', 'FACTORY AIR TECH2'}},
+                --{ SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY LAND TECH3', 'FACTORY AIR TECH3', 'FACTORY AIR TECH2'}},
                 { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 7, 'MOBILE LAND'}},
                 -- { IBC, 'BrainNotLowPowerMode', {} },
             },
@@ -1206,7 +1199,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'MASSEXTRACTION TECH3'}},
                 { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'FACTORY TECH3' } },
-                { SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY AIR TECH3', 'FACTORY LAND TECH3', 'FACTORY LAND TECH2'}},
+                --{ SIBC, 'FactoryRatioLessOrEqual', { 'LocationType', 1.0, 'FACTORY AIR TECH3', 'FACTORY LAND TECH3', 'FACTORY LAND TECH2'}},
                 -- { IBC, 'BrainNotLowPowerMode', {} },
             },
         BuilderType = 'Any',

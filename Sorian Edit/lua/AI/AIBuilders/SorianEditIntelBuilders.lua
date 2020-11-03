@@ -451,6 +451,30 @@ BuilderGroup {
 }
 
 BuilderGroup {
+    BuilderGroupName = 'SorianEditRadarUpgradeBuildersExpansion',
+    BuildersType = 'PlatoonFormBuilder',
+    Builder {
+        BuilderName = 'SorianEdit T1 Radar Upgrade',
+        PlatoonTemplate = 'T1RadarUpgrade',
+        Priority = 200,
+        BuilderConditions = {
+            -- { EBC, 'GreaterThanEconIncome',  { 2, 100 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2, 'RADAR STRUCTURE' }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 } },
+            -- { IBC, 'BrainNotLowPowerMode', {} },
+        },
+        BuilderType = 'Any',
+        FormDebugFunction = function()
+            local test = false
+        end,
+    },
+}
+
+BuilderGroup {
     BuilderGroupName = 'SorianEditSonarEngineerBuilders',
     BuildersType = 'EngineerBuilder',
     Builder {
