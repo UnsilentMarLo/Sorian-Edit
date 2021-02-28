@@ -7,6 +7,9 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
     if not aiBrain.sorianeditadaptivecheat and not aiBrain.sorianeditadaptive and not aiBrain.sorianedit then
         return SorianAIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder, relative, buildingTemplate, baseTemplate, reference, NearMarkerType)
     end
+	-- if 1 == 1 then
+	-- LOG('*------------------------------- Sorian Printing Brain:', repr(aiBrain)) -- never uncomment will crash game
+	-- end
     local factionIndex = aiBrain:GetFactionIndex()
     local whatToBuild = aiBrain:DecideWhatToBuild(builder, buildingType, buildingTemplate)
     local FactionIndexToName = {[1] = 'UEF', [2] = 'AEON', [3] = 'CYBRAN', [4] = 'SERAPHIM', [5] = 'NOMADS' }

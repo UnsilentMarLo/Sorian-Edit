@@ -1,20 +1,19 @@
 
-OlderOldUvesoAIBrainClass = AIBrain
-AIBrain = Class(OlderOldUvesoAIBrainClass) {
+OlderOldSorianEditAIBrainClass = AIBrain
+AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 
     -- For AI Patch V8 (Patched) add BaseType for function SEGetManagerCount
-    -- Hook AI-Uveso. Removing the StrategyManager
+    -- Hook AI-SorianEdit. Removing the StrategyManager
     AddBuilderManagers = function(self, position, radius, baseName, useCenter)
-       -- Only use this with AI-Uveso
+       -- Only use this with AI-SorianEdit
         if not self.sorianedit and not self.sorianeditadaptivecheat and not self.sorianeditadaptive then
-            return OlderOldUvesoAIBrainClass.AddBuilderManagers(self, position, radius, baseName, useCenter)
+            return OlderOldSorianEditAIBrainClass.AddBuilderManagers(self, position, radius, baseName, useCenter)
         end
         self.BuilderManagers[baseName] = {
             FactoryManager = FactoryManager.CreateFactoryBuilderManager(self, baseName, position, radius, useCenter),
             PlatoonFormManager = PlatoonFormManager.CreatePlatoonFormManager(self, baseName, position, radius, useCenter),
             EngineerManager = EngineerManager.CreateEngineerManager(self, baseName, position, radius),
-            -- Only sorianeditadaptivecheat is using the StrategyManager
-            --StrategyManager = StratManager.CreateStrategyManager(self, baseName, position, radius),
+            StrategyManager = StratManager.CreateStrategyManager(self, baseName, position, radius),
 
             -- Table to track consumption
             MassConsumption = {
@@ -58,20 +57,20 @@ AIBrain = Class(OlderOldUvesoAIBrainClass) {
         return count
     end,
 
-    -- Hook AI-Uveso, set self.Uveso = true
+    -- Hook AI-SorianEdit, set self.SorianEdit = true
     OnCreateAI = function(self, planName)
-        OlderOldUvesoAIBrainClass.OnCreateAI(self, planName)
+        OlderOldSorianEditAIBrainClass.OnCreateAI(self, planName)
         local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
-        if string.find(per, 'sorianedit') then
-            LOG('* AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') ')
+        if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
+            LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') ')
             self.sorianedit = true
         end
     end,
 	
     SEBaseMonitorThread = function(self)
-       -- Only use this with AI-Uveso
+       -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEBaseMonitorThread(self)
+            return OlderOldSorianEditAIBrainClass.SEBaseMonitorThread(self)
         end
         coroutine.yield(10)
         -- We are leaving this forked thread here because we don't need it.
@@ -79,9 +78,9 @@ AIBrain = Class(OlderOldUvesoAIBrainClass) {
     end,
 
     SEEconomyMonitor = function(self)
-        -- Only use this with AI-Uveso
+        -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEEconomyMonitor(self)
+            return OlderOldSorianEditAIBrainClass.SEEconomyMonitor(self)
         end
         coroutine.yield(10)
         -- We are leaving this forked thread here because we don't need it.
@@ -90,9 +89,9 @@ AIBrain = Class(OlderOldUvesoAIBrainClass) {
     end,
 
    SEExpansionHelpThread = function(self)
-       -- Only use this with AI-Uveso
+       -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEExpansionHelpThread(self)
+            return OlderOldSorianEditAIBrainClass.SEExpansionHelpThread(self)
         end
         coroutine.yield(10)
         -- We are leaving this forked thread here because we don't need it.
@@ -100,23 +99,23 @@ AIBrain = Class(OlderOldUvesoAIBrainClass) {
     end,
 
     SEInitializeEconomyState = function(self)
-        -- Only use this with AI-Uveso
+        -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEInitializeEconomyState(self)
+            return OlderOldSorianEditAIBrainClass.SEInitializeEconomyState(self)
         end
     end,
 
     SEOnIntelChange = function(self, blip, reconType, val)
-        -- Only use this with AI-Uveso
+        -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEOnIntelChange(self, blip, reconType, val)
+            return OlderOldSorianEditAIBrainClass.SEOnIntelChange(self, blip, reconType, val)
         end
     end,
 
     SESetupAttackVectorsThread = function(self)
-       -- Only use this with AI-Uveso
+       -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SESetupAttackVectorsThread(self)
+            return OlderOldSorianEditAIBrainClass.SESetupAttackVectorsThread(self)
         end
         coroutine.yield(10)
         -- We are leaving this forked thread here because we don't need it.
@@ -124,9 +123,9 @@ AIBrain = Class(OlderOldUvesoAIBrainClass) {
     end,
 
     SEParseIntelThread = function(self)
-       -- Only use this with AI-Uveso
+       -- Only use this with AI-SorianEdit
         if not self.sorianedit then
-            return OlderOldUvesoAIBrainClass.SEParseIntelThread(self)
+            return OlderOldSorianEditAIBrainClass.SEParseIntelThread(self)
         end
         coroutine.yield(10)
         -- We are leaving this forked thread here because we don't need it.

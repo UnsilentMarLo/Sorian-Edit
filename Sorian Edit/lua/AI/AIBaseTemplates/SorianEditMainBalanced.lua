@@ -18,10 +18,10 @@ BaseBuilderTemplate {
         --'SorianEditT1FastUpgradeBuildersExpansion',
         --'SorianEditT2FastUpgradeBuildersExpansion',
         --'SorianEditT1RushUpgradeBuilders',
-        'SorianEditEmergencyUpgradeBuilders',
+        -- 'SorianEditEmergencyUpgradeBuilders',
         -- 'SorianEditTime Exempt Extractor Upgrades - Rush',
         'SorianEditSupportFactoryUpgrades',
-        'SorianEditSupportFactoryUpgrades - Emergency',
+        -- 'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
@@ -32,6 +32,7 @@ BaseBuilderTemplate {
         'SorianEditEngineerFactoryConstruction Balance',
 		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
+        'SorianEdit T3 Sub Commander',
 
         -- SCU Upgrades
         'SorianEditSCUUpgrades',
@@ -58,7 +59,7 @@ BaseBuilderTemplate {
         -- Build Mass high pri at this base
         'Sorianedit Mass Builders', 
         -- 'Sorianedit Mass Builders Tech 2', 
-        -- 'Sorianedit Mass Builders Tech 3', 
+        'Sorianedit MassFab Builders', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
@@ -67,6 +68,8 @@ BaseBuilderTemplate {
         'SorianEdit Initial ACU Builders',
         'SorianEditACUBuilders',
         'SorianEditACUUpgrades',
+		
+        'SorianEditAcuAttackFormBuilders',
 
         -- ACU Defense
         -- 'SorianEditT1ACUDefenses',
@@ -92,6 +95,9 @@ BaseBuilderTemplate {
         'SorianEditT2PerimeterDefenses',
         'SorianEditT3PerimeterDefenses',
 
+        'SorianEditT1DefensivePoints',
+        'SorianEditT2DefensivePoints',
+        'SorianEditT3DefensivePoints',
         -- 'SorianEditT1DefensivePoints Turtle',
         'SorianEditT2DefensivePoints Turtle',
         'SorianEditT3DefensivePoints Turtle',
@@ -212,7 +218,7 @@ BaseBuilderTemplate {
         'SorianEditBomberLarge',
         'SorianEditBomberBig',
         'SorianEditGunShipLarge',
-        'SorianEditNukeBuildersHighPrio',
+        -- 'SorianEditNukeBuildersHighPrio',
         'SorianEditT3ArtyBuildersHighPrio',
         'SorianEditT2FirebaseBuildersHighPrio',
         'SorianEditT3FBBuildersHighPrio',
@@ -255,21 +261,21 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
-        and personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
-            LOG('--------------------- M-ExpansionFunction Main Balanced High Priority '..personality)
-            return 800, 'sorianeditadaptive'
-        else
-        LOG('--------------------- M-ExpansionFunction Main Balanced low Priority '..personality)
-		return 2
-		end
+        -- local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        -- if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
+        -- and personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
+            -- LOG('--------------------- M-ExpansionFunction Main Balanced High Priority '..personality)
+            -- return 800, 'sorianeditadaptive'
+        -- else
+        -- LOG('--------------------- M-ExpansionFunction Main Balanced low Priority '..personality)
+		return -1
+		-- end
 	end,
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
+        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit' then
             LOG('------ M-FirstBaseFunction Main Balanced '..personality)
-            return 14000, 'sorianeditadaptive'
+            return 15000, 'sorianedit'
         end
     end,
 }

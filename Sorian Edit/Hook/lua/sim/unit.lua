@@ -111,7 +111,7 @@ BuffBlueprint {
     Affects = {
         BuildRate = {
             Add = 0,
-            Mult = 1.2,
+            Mult = 1.1,
         },
     },
 }
@@ -125,7 +125,7 @@ BuffBlueprint {
     Affects = {
         BuildRate = {
             Add = 0,
-            Mult = 1.4,
+            Mult = 1.2,
         },
     },
 }
@@ -139,7 +139,7 @@ BuffBlueprint {
     Affects = {
         BuildRate = {
             Add = 0,
-            Mult = 1.6,
+            Mult = 1.3,
         },
     },
 }
@@ -153,7 +153,7 @@ BuffBlueprint {
     Affects = {
         BuildRate = {
             Add = 0,
-            Mult = 1.75,
+            Mult = 1.25,
         },
     },
 }
@@ -166,12 +166,12 @@ BuffBlueprint {
     Duration = -1,
     Affects = {
         EnergyProduction = {
-            Add = 2,
-            Mult = 1.3,
+            Add = 0,
+            Mult = 1.2,
         },
         MassProduction = {
-            Add = 1,
-            Mult = 1.3,
+            Add = 0,
+            Mult = 1.2,
         },
     },
 }
@@ -184,11 +184,11 @@ BuffBlueprint {
     Duration = -1,
     Affects = {
         VisionRadius = {
-            Add = 400,
+            Add = 200,
             Mult = 1.0,
         },
         RadarRadius = {
-            Add = 1000,
+            Add = 400,
             Mult = 1.0,
         },
     },
@@ -202,11 +202,15 @@ BuffBlueprint {
     Duration = -1,
     Affects = {
         VisionRadius = {
+            Add = 300,
+            Mult = 1.0,
+        },
+        RadarRadius = {
             Add = 400,
             Mult = 1.0,
         },
         OmniRadius = {
-            Add = 1000,
+            Add = 400,
             Mult = 1.0,
         },
     },
@@ -220,6 +224,30 @@ Unit = Class(SEUnitClass) {
 		local bp = self:GetBlueprint()
         local aiBrain = self:GetAIBrain()
 		local Buff = import('/lua/sim/Buff.lua')
+		
+		-- -- local factionIdx = aiBrain:GetFactionIndex()
+		-- if aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive or aiBrain.sorianedit then
+			-- -- for _, unit in aiBrain:GetListOfUnits(categories.COMMAND, false) do
+			-- if EntityCategoryContains(categories.COMMAND, self) then
+				-- if EntityCategoryContains(categories.AEON, self) then
+				-- self:CreateEnhancement(CrysalisBeam)
+				-- self:CreateEnhancement(HeatSink)
+				-- elseif EntityCategoryContains(categories.CYBRAN, self) then
+				-- self:CreateEnhancement(CoolingUpgrade)
+				-- elseif EntityCategoryContains(categories.UEF, self) then
+				-- self:CreateEnhancement(DamageStabilization)
+				-- self:CreateEnhancement(HeavyAntiMatterCannon)
+				-- elseif EntityCategoryContains(categories.SERAPHIM, self) then
+				-- self:CreateEnhancement(BlastAttack)
+				-- self:CreateEnhancement(RateOfFire)
+				-- elseif EntityCategoryContains(categories.NOMADS, self) then
+				-- self:CreateEnhancement(GunUpgrade)
+				-- self:CreateEnhancement(DoubleGuns)
+				-- self:CreateEnhancement(MovementSpeedIncrease)
+				-- end
+			-- end
+		-- end
+		
 		if aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive or aiBrain.sorianedit then
 		
 			if not self:GetBlueprint().Intel.RadarRadius >= '1' then
@@ -234,20 +262,18 @@ Unit = Class(SEUnitClass) {
 				Buff.ApplyBuff(self, 'MoveBuffAir')
 			end
 			
-			if self:GetBlueprint().General.Category == 'Factory' then
-				Buff.ApplyBuff(self, 'FactoryAssistReplace')
-			end
+			-- if self:GetBlueprint().General.Category == 'FACTORY' then
+				-- Buff.ApplyBuff(self, 'FactoryAssistReplace')
+			-- end
 			
-			local mapmapSizeX, mapmapSizeZ = GetMapSize()
-			if mapmapSizeX < 514 or mapmapSizeZ < 514 then
+			local mapSizeX, mapSizeZ = GetMapSize()
+			if mapSizeX < 514 or mapSizeZ < 514 then
 				-- LOG('------------AI DEBUG: Map is 10km or smaller ')
 				if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' or 'RULEUMT_Air' ) then
 					Buff.ApplyBuff(self, 'MoveBuff')
 				end
-				Buff.ApplyBuff(self, 'SECheatBuildRate')
 				Buff.ApplyBuff(self, 'VisBuff')
-				Buff.ApplyBuff(self, 'SECheatIncome')
-			elseif mapmapSizeX < (514 * 2) or mapmapSizeZ < (514 * 2) then
+			elseif mapSizeX < (514 * 2) or mapSizeZ < (514 * 2) then
 				-- LOG('------------AI DEBUG: Map is 20km')
 				if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' and 'RULEUMT_Air' ) then
 					Buff.ApplyBuff(self, 'MoveBuff2')

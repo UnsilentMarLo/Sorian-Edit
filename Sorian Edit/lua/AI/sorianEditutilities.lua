@@ -1529,7 +1529,6 @@ function MajorAirThreatExists(aiBrain)
     WARN('[sorianeditutilities.lua '..debug.getinfo(1).currentline..'] - Deprecated function MajorAirThreatExists() called.')
 end
 
-
 function ExtractorPauseSorian(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
     local UpgradingBuilding = nil
     local UpgradingBuildingNum = 0
@@ -1585,38 +1584,38 @@ function ExtractorPauseSorian(self, aiBrain, MassExtractorUnitList, ratio, techL
     --LOG('* ExtractorPauseSorian: Idle= '..UpgradingBuildingNum..'   Upgrading= '..UpgradingBuildingNum..'   Paused= '..PausedUpgradingBuildingNum..'   Disabled= '..DisabledBuildingNum..'   techLevel= '..techLevel)
     --Check for energy stall
     --if aiBrain:GetEconomyStoredRatio('ENERGY') < 0.50 and aiBrain:GetEconomyStoredRatio('MASS') > aiBrain:GetEconomyStoredRatio('ENERGY') then
-    if aiBrain:GetEconomyStoredRatio('MASS') -0.1 > aiBrain:GetEconomyStoredRatio('ENERGY') then
-        -- Have we a building that is actual upgrading
-        if UpgradingBuilding then
-            -- Its upgrading, now check fist if we only have 1 building that is upgrading
-            if UpgradingBuildingNum <= 1 and table.getn(MassExtractorUnitList) >= 6 then
-            else
-                -- we don't have the eco to upgrade the extractor. Pause it!
-                UpgradingBuilding:SetPaused( true )
-                --UpgradingBuilding:SetCustomName('Upgrading paused')
-                --LOG('Upgrading paused')
-                return true
-            end
-        end
-        -- All buildings that are doing nothing
-        if IdleBuilding then
-            if IdleBuildingNum <= 1 then
-            else
-                IdleBuilding:SetScriptBit('RULEUTC_ProductionToggle', true)
-                --IdleBuilding:SetCustomName('Production off')
-                --LOG('Production off')
-                return true
-            end
-        end
-    -- Do we produce more mass then we need ? Disable some for more energy    
-    else
-        if DisabledBuilding then
-            DisabledBuilding:SetScriptBit('RULEUTC_ProductionToggle', false)
-            --DisabledBuilding:SetCustomName('Production on')
-            --LOG('Production on')
-            return true
-        end
-    end
+    -- if aiBrain:GetEconomyStoredRatio('MASS') -0.1 > aiBrain:GetEconomyStoredRatio('ENERGY') then
+        -- -- Have we a building that is actual upgrading
+        -- if UpgradingBuilding then
+            -- -- Its upgrading, now check fist if we only have 1 building that is upgrading
+            -- if UpgradingBuildingNum <= 1 and table.getn(MassExtractorUnitList) >= 6 then
+            -- else
+                -- -- we don't have the eco to upgrade the extractor. Pause it!
+                -- UpgradingBuilding:SetPaused( true )
+                -- --UpgradingBuilding:SetCustomName('Upgrading paused')
+                -- --LOG('Upgrading paused')
+                -- return true
+            -- end
+        -- end
+        -- -- All buildings that are doing nothing
+        -- if IdleBuilding then
+            -- if IdleBuildingNum <= 1 then
+            -- else
+                -- IdleBuilding:SetScriptBit('RULEUTC_ProductionToggle', true)
+                -- --IdleBuilding:SetCustomName('Production off')
+                -- --LOG('Production off')
+                -- return true
+            -- end
+        -- end
+    -- -- Do we produce more mass then we need ? Disable some for more energy    
+    -- else
+        -- if DisabledBuilding then
+            -- DisabledBuilding:SetScriptBit('RULEUTC_ProductionToggle', false)
+            -- --DisabledBuilding:SetCustomName('Production on')
+            -- --LOG('Production on')
+            -- return true
+        -- end
+    -- end
     -- Check for positive Mass/Upgrade ratio
     local MassRatioCheckPositive = GlobalMassUpgradeCostVsGlobalMassIncomeRatioSorian( self, aiBrain, ratio, techLevel, '<' )
     -- Did we found a paused unit ?
@@ -1640,7 +1639,7 @@ function ExtractorPauseSorian(self, aiBrain, MassExtractorUnitList, ratio, techL
     if MassRatioCheckNegative then
         if UpgradingBuildingNum > 1 then
             -- we don't have the eco to upgrade the extractor. Pause it!
-            if aiBrain:GetEconomyTrend('MASS') <= 0 and aiBrain:GetEconomyStored('MASS') <= 0.80  then
+            if aiBrain:GetEconomyTrend('MASS') <= 0 and aiBrain:GetEconomyStored('MASS') <= 0.01  then
                 UpgradingBuilding:SetPaused( true )
                 --UpgradingBuilding:SetCustomName('UpgradingBuilding paused')
                 --LOG('UpgradingBuilding paused')
@@ -1648,17 +1647,17 @@ function ExtractorPauseSorian(self, aiBrain, MassExtractorUnitList, ratio, techL
                 return true
             end
         end
-        if PausedUpgradingBuilding then
-            -- if we stall mass, then cancel the upgrade
-            if aiBrain:GetEconomyTrend('MASS') <= 0 and aiBrain:GetEconomyStored('MASS') <= 0  then
-                IssueClearCommands({PausedUpgradingBuilding})
-                PausedUpgradingBuilding:SetPaused( false )
-                --PausedUpgradingBuilding:SetCustomName('Upgrade canceled')
-                --LOG('Upgrade canceled')
-                --LOG('* ExtractorPauseSorian: Cancel upgrading extractor')
-                return true
-            end 
-        end
+        -- if PausedUpgradingBuilding then
+            -- -- if we stall mass, then cancel the upgrade
+            -- if aiBrain:GetEconomyTrend('MASS') <= 0 and aiBrain:GetEconomyStored('MASS') <= 0  then
+                -- IssueClearCommands({PausedUpgradingBuilding})
+                -- PausedUpgradingBuilding:SetPaused( false )
+                -- --PausedUpgradingBuilding:SetCustomName('Upgrade canceled')
+                -- --LOG('Upgrade canceled')
+                -- --LOG('* ExtractorPauseSorian: Cancel upgrading extractor')
+                -- return true
+            -- end 
+        -- end
     end
     return false
 end
@@ -1743,7 +1742,7 @@ function ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, tec
     return false
 end
 
--- Helperfunction fro ExtractorUpgradeAISorian. 
+-- Helperfunction for ExtractorUpgradeAISorian. 
 function GlobalMassUpgradeCostVsGlobalMassIncomeRatioSorian(self, aiBrain, ratio, techLevel, compareType)
     local GlobalUpgradeCost = 0
     -- get all units matching 'category'
@@ -1964,8 +1963,8 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
                 scanrange = 25
             end
             IssueClearCommands({self})
-            IssueAggressiveMove({self}, self:GetPosition())
-            IssueAggressiveMove({self}, self:GetPosition())
+            IssuePatrol({self}, self:GetPosition())
+            -- IssuePatrol({self}, self:GetPosition())
         else
             --LOG('Storage Full')
             local HomeDist = VDist2(SelfPos[1], SelfPos[3], basePosition[1], basePosition[3])
@@ -2176,7 +2175,7 @@ function ExtractorUpgrade(self, aiBrain, MassExtractorUnitList, ratio, techLevel
     return false
 end
 
--- Helperfunction fro ExtractorUpgradeAI. 
+-- Helperfunction for ExtractorUpgradeAI. 
 function GlobalMassUpgradeCostVsGlobalMassIncomeRatio(self, aiBrain, ratio, techLevel, compareType)
     local GlobalUpgradeCost = 0
     -- get all units matching 'category'

@@ -754,3 +754,23 @@ function AIOutnumbered(aiBrain, bool)
     end
     return false
 end
+
+function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryTwo)
+    if type(categoryOne) == 'string' then
+        categoryOne = ParseEntityCategory(categoryOne)
+    end
+    if type(categoryTwo) == 'string' then
+        categoryTwo = ParseEntityCategory(categoryTwo)
+    end
+    local numOne = aiBrain:GetCurrentUnits(categoryOne)
+    local numTwo = aiBrain:GetCurrentUnits(categoryTwo)
+	if compareType == '<=' or '<' and numOne / numTwo <= ratio and numTwo < 2 then
+        return true
+    elseif compareType == '>=' or '>' and numOne / numTwo >= ratio and numOne < 2 then
+        return true
+    else
+        error('*AI ERROR: Invalid compare type: ' .. compareType)
+        return false
+    end
+    return false
+end

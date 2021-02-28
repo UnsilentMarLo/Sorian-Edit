@@ -30,6 +30,7 @@ local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemp
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 local econThread
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
 
 	do
 	LOG('--------------------- SorianEdit Strategy Builders loading')
@@ -117,7 +118,7 @@ BuilderGroup {
             { SBC, 'CategoriesNotRestricted', { {'T2', 'T3'} }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0}},
             { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.0 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {},
@@ -416,7 +417,7 @@ BuilderGroup {
             -- { SBC, 'NoRushTimeCheck', { 600 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'ENGINEER TECH1' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { SBC, 'MapLessThan', { 1000, 1000 }},
@@ -951,7 +952,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ARTILLERY STRUCTURE TECH3' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             -- { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
@@ -1252,7 +1253,7 @@ BuilderGroup {
             -- { SBC, 'TargetHasLessThanUnitsWithCategory', { 6, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.ANTIMISSILE * categories.TECH2 * categories.STRUCTURE, 'Enemy'}},
             -- { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             ----CanBuildFirebase { 500, 500 }},
@@ -1541,7 +1542,7 @@ BuilderGroup {
                 'SorianEdit T2 Mass Extractor Upgrade Timeless',
                 'SorianEdit T2 Mass Extractor Upgrade Timeless Multiple',
                 'SorianEdit Balanced T1 Land Factory Upgrade Initial',
-                'SorianEdit BalancedT1AirFactoryUpgradeInitial',
+                'SorianEdit BalancedT1AirFactoryUpgrade Initial',
                 'SorianEdit Balanced T1 Land Factory Upgrade',
                 'SorianEdit BalancedT1AirFactoryUpgrade',
                 'SorianEdit Balanced T1 Sea Factory Upgrade',

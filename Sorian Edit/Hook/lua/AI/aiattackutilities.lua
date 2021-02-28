@@ -5,9 +5,9 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
     local attackPos = GetBestThreatTarget(aiBrain, platoon)
     
     local bNeedTransports = false
-    # if no pathable attack spot found
+    -- if no pathable attack spot found
     if not attackPos then
-        # try skipping pathability
+        -- try skipping pathability
         attackPos = GetBestThreatTarget(aiBrain, platoon, true)
         bNeedTransports = true
         if not attackPos then
@@ -17,12 +17,12 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
     end
 
 
-    # avoid mountains by slowly moving away from higher areas
+    -- avoid mountains by slowly moving away from higher areas
     GetMostRestrictiveLayer(platoon)
     if platoon.MovementLayer == 'Land' then
         local bestPos = attackPos
         local attackPosHeight = GetTerrainHeight(attackPos[1], attackPos[3])
-        # if we're land
+        -- if we're land
         if attackPosHeight > GetSurfaceHeight(attackPos[1], attackPos[3]) then
             local lookAroundTable = {1,0,-2,-1,2}
             local squareRadius = (ScenarioInfo.size[1] / 16) / table.getn(lookAroundTable)
@@ -30,7 +30,7 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
                 for iz, offsetZ in lookAroundTable do
                     local surf = GetSurfaceHeight( bestPos[1]+offsetX, bestPos[3]+offsetZ )
                     local terr = GetTerrainHeight( bestPos[1]+offsetX, bestPos[3]+offsetZ )
-                    # is it lower land... make it our new position to continue searching around
+                    -- is it lower land... make it our new position to continue searching around
                     if terr >= surf and terr < attackPosHeight then
                         bestPos[1] = bestPos[1] + offsetX
                         bestPos[3] = bestPos[3] + offsetZ
@@ -44,25 +44,25 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
         
     local oldPathSize = table.getn(platoon.LastAttackDestination)
     
-    # if we don't have an old path or our old destination and new destination are different
+    -- if we don't have an old path or our old destination and new destination are different
     if oldPathSize == 0 or attackPos[1] != platoon.LastAttackDestination[oldPathSize][1] or
     attackPos[3] != platoon.LastAttackDestination[oldPathSize][3] then
         
         GetMostRestrictiveLayer(platoon)
-        # check if we can path to here safely... give a large threat weight to sort by threat first
+        -- check if we can path to here safely... give a large threat weight to sort by threat first
         local path, reason = PlatoonGenerateSafePathTo(aiBrain, platoon.MovementLayer, platoon:GetPlatoonPosition(), attackPos, platoon.PlatoonData.NodeWeight or 10 )
     
-        # clear command queue
+        -- clear command queue
         platoon:Stop()    
    
         local usedTransports = false
         local position = platoon:GetPlatoonPosition()
         if (not path and reason == 'NoPath') then
             usedTransports = SendPlatoonWithTransports(aiBrain, platoon, attackPos, true)
-        # Require transports over 500 away
+        -- Require transports over 500 away
         elseif VDist2Sq( position[1], position[3], attackPos[1], attackPos[3] ) > 1200*1200 then
             usedTransports = SendPlatoonWithTransports(aiBrain, platoon, attackPos, true)
-        # use if possible at 250
+        -- use if possible at 250
         else
             usedTransports = SendPlatoonWithTransports(aiBrain, platoon, attackPos, false)
         end
@@ -73,13 +73,13 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
                     --Couldn't find a valid pathing node. Just use shortest path.
                     platoon:AggressiveMoveToLocation(attackPos)
                 end
-                # force reevaluation
+                -- force reevaluation
                 platoon.LastAttackDestination = {attackPos}
             else
                 local pathSize = table.getn(path)
-                # store path
+                -- store path
                 platoon.LastAttackDestination = path
-                # move to new location
+                -- move to new location
                 for wpidx,waypointPath in path do
                     if wpidx == pathSize then
                         platoon:AggressiveMoveToLocation(waypointPath)
@@ -91,7 +91,7 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
         end
     end 
     
-    # return current command queue 
+    -- return current command queue 
     local cmd = {}
     for k,v in platoon:GetPlatoonUnits() do
         if not v:IsDead() then

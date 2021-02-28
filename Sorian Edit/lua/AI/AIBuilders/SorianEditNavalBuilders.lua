@@ -23,7 +23,7 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
 
 	do
 	LOG('--------------------- SorianEdit Naval Builders loading')
@@ -42,7 +42,6 @@ BuilderGroup {
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3'}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -78,14 +77,12 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY NAVAL'}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -123,13 +120,11 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -167,13 +162,11 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY NAVAL TECH2, FACTORY NAVAL TECH3' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -217,12 +210,10 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -260,12 +251,10 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -303,12 +292,10 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
-            { SIBC, 'LessThanNavalBases', { } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 600, -1000, 10, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -353,12 +340,10 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
-            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH2, ENGINEER TECH3' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -385,12 +370,10 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
-            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -416,11 +399,9 @@ BuilderGroup {
         Priority = 905,
         BuilderConditions = {
             { UCBC, 'NavalBaseCheck', { } }, -- related to ScenarioInfo.Options.NavalExpansionsAllowed
-            { UCBC, 'FactoryCapCheck', { 'LocationType', 'Sea' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.01 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.85 }},
-            { EBC, 'MassToFactoryRatioBaseCheck', { 'LocationType' } },
         },
         BuilderType = 'Any',
         BuilderData = {

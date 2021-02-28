@@ -11,7 +11,7 @@ PlatoonTemplate {
     Name = 'AddToMassExtractorUpgradePlatoonSE',
     Plan = 'SorianPlatoonMerger',
     GlobalSquads = {
-        { categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.MASSFABRICATION , 1, 300, 'support', 'none' }
+        { categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3), 1, 300, 'support', 'none' }
     },
 }
 
@@ -59,7 +59,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3NukeSorianEdit',
-    Plan = 'NukePlatoonAI',
+    Plan = 'NukePlatoonSorianEdit',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.TECH3, 1, 1, 'attack', 'none' },
     }
@@ -67,7 +67,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4NukeSorianEdit',
-    Plan = 'NukePlatoonAI',
+    Plan = 'NukePlatoonSorianEdit',
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'attack', 'none' },
     }

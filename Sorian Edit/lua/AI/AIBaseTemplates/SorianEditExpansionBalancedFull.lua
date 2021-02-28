@@ -14,28 +14,21 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditSupportFactoryUpgrades',
         'SorianEditSupportFactoryUpgrades - Emergency',
-        'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
-        'SorianEditEngineerFactoryConstruction Balance',
-		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
+        'SorianEdit T3 Sub Commander',
 
-        -- SCU Upgrades
-        'SorianEditSCUUpgrades',
-		
         -- Scouts
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
 
         'SorianEditRadarEngineerBuilders',
         'SorianEditRadarUpgradeBuildersMain',
-
-        'SorianEditCounterIntelBuilders',
 
         -- Engineer Support buildings
         -- 'SorianEditEngineeringSupportBuilder',
@@ -46,30 +39,16 @@ BaseBuilderTemplate {
 
         -- Build Mass high pri at this base
         'Sorianedit Mass Builders', 
-        -- 'Sorianedit Mass Builders Tech 2', 
-        -- 'Sorianedit Mass Builders Tech 3', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
 
-        -- ACU Builders
-        'SorianEdit Initial ACU Builders',
-        'SorianEditACUBuilders',
-        'SorianEditACUUpgrades',
-
-        -- ACU Defense
-        -- 'SorianEditT1ACUDefenses',
-        'SorianEditT2ACUDefenses',
-        'SorianEditT2ACUShields',
-        'SorianEditT3ACUShields',
-        -- 'SorianEditT3ACUNukeDefenses',
         'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersFulldrop',
         'SorianEditEngineerFirebaseBuilders',
-
 
         -- ==== DEFENSES ==== --
         -- 'SorianEditT1BaseDefenses',
@@ -81,6 +60,9 @@ BaseBuilderTemplate {
         'SorianEditT2PerimeterDefenses',
         'SorianEditT3PerimeterDefenses',
 
+        'SorianEditT1DefensivePoints',
+        'SorianEditT2DefensivePoints',
+        'SorianEditT3DefensivePoints',
         -- 'SorianEditT1DefensivePoints Turtle',
         'SorianEditT2DefensivePoints Turtle',
         'SorianEditT3DefensivePoints Turtle',
@@ -151,29 +133,8 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
-        -- ==== EXPERIMENTALS ==== --
-        'SorianEditMobileLandExperimentalEngineers',
-        'SorianEditMobileLandExperimentalForm',
-
-        'SorianEditMobileAirExperimentalEngineers',
-        'SorianEditMobileAirExperimentalForm',
-
-        'SorianEditMobileNavalExperimentalEngineers',
-        'SorianEditMobileNavalExperimentalForm',
-
-        'SorianEditEconomicExperimentalEngineers',
-        'SorianEditMobileExperimentalEngineersGroup',
-
         -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroup',
-
-        'SorianEditExperimentalArtillery',
-
-        'SorianEditNukeBuildersEngineerBuilders',
-        'SorianEditNukeFormBuilders',
-
-        'SorianEditSatelliteExperimentalEngineers',
-        'SorianEditSatelliteExperimentalForm',
 
    -- ======== Strategies ======== --
         -- 'SorianEditHeavyAirStrategy',
@@ -191,28 +152,27 @@ BaseBuilderTemplate {
         -- 'SorianEdit Excess Mass Strategy', 
 
         -- ===== Strategy Platoons ===== --
-        'SorianEditT1BomberHighPrio',
-        'SorianEditT2BomberHighPrio',
-        'SorianEditT3BomberHighPrio',
-        'SorianEditT3BomberSpecialHighPrio',
-        'SorianEditT1GunshipHighPrio',
-        'SorianEditT2DefensivePoints - High Prio',
+        -- 'SorianEditT1BomberHighPrio',
+        -- 'SorianEditT2BomberHighPrio',
+        -- 'SorianEditT3BomberHighPrio',
+        -- 'SorianEditT3BomberSpecialHighPrio',
+        -- 'SorianEditT1GunshipHighPrio',
+        -- 'SorianEditT2DefensivePoints - High Prio',
 
-        'SorianEditBomberLarge',
-        'SorianEditBomberBig',
-        'SorianEditGunShipLarge',
-        'SorianEditNukeBuildersHighPrio',
-        'SorianEditT3ArtyBuildersHighPrio',
-        'SorianEditT2FirebaseBuildersHighPrio',
-        'SorianEditT3FBBuildersHighPrio',
-        'SorianEdit Extractor Upgrades Strategy',
-        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
-        'SorianEditEngineerExpansionBuildersStrategy',
-        'SorianEditACUUpgrades - Rush',
-        'SorianEditExcessMassBuilders',
+        -- 'SorianEditBomberLarge',
+        -- 'SorianEditBomberBig',
+        -- 'SorianEditGunShipLarge',
+        -- 'SorianEditNukeBuildersHighPrio',
+        -- 'SorianEditT3ArtyBuildersHighPrio',
+        -- 'SorianEditT2FirebaseBuildersHighPrio',
+        -- 'SorianEditT3FBBuildersHighPrio',
+        -- 'SorianEdit Extractor Upgrades Strategy',
+        -- 'SorianEditBalancedUpgradeBuildersExpansionStrategy',
+        -- 'SorianEditEngineerExpansionBuildersStrategy',
+        -- 'SorianEditACUUpgrades - Rush',
+        -- 'SorianEditExcessMassBuilders',
     },
     NonCheatBuilders = {
-        'SorianEdit Initial ACU Builders Non cheat',
 		
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
@@ -247,12 +207,15 @@ BaseBuilderTemplate {
     ExpansionFunction = function(aiBrain, location, markerType)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
-        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat'  then
+        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat' or personality == 'sorianedit'  then
             LOG('--------------------- M-ExpansionFunction Expansion High Priority '..personality)
-            return 800, 'sorianeditadaptive'
+            return 15000, 'sorianedit'
         else
         LOG('--------------------- M-ExpansionFunction Expansion Balanced low Priority '..personality)
-		return 2
+		return -1
 		end
 	end,
+    FirstBaseFunction = function(aiBrain)
+       return -15000, 'sorianedit'
+    end,
 }

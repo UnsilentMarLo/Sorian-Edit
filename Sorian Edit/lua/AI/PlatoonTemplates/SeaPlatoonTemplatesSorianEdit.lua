@@ -10,15 +10,15 @@
 # ==== Global Form platoons ==== #
 PlatoonTemplate {
     Name = 'SeaAttackSorianEdit',
-    Plan = 'NavalHuntAI',
+    Plan = 'NavalHuntAISE',
     GlobalSquads = {
-        { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 100, 'Attack', 'GrowthFormation' }
+        { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 10, 'Attack', 'GrowthFormation' }
     }
 }
 	
 PlatoonTemplate {
     Name = 'SeaAttackLandSorianEdit',
-    Plan = 'StrikeForceAISorian',
+    Plan = 'NavalHuntAISE',
     GlobalSquads = {
         { categories.MOBILE * categories.NAVAL * categories.DESTROYER * categories.TECH2, 2, 5, 'attack', 'none' }
     },
@@ -26,17 +26,17 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'SeaHuntSorianEdit',
-    Plan = 'NavalHuntAI',
+    Plan = 'NavalHuntAISE',
     GlobalSquads = {
-        { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 100, 'Attack', 'GrowthFormation' }
+        { categories.MOBILE * categories.NAVAL - categories.EXPERIMENTAL - categories.CARRIER, 1, 10, 'Attack', 'GrowthFormation' }
     },
 }
 
 PlatoonTemplate {
     Name = 'SeaStrikeSorianEdit',
-    Plan = 'StrikeForceAISorian',
+    Plan = 'NavalHuntAISE',
     GlobalSquads = {
-        { categories.MOBILE * categories.NAVAL * categories.TECH2 - categories.EXPERIMENTAL - categories.CARRIER - categories.SUBMERSIBLE, 1, 100, 'Attack', 'GrowthFormation' }
+        { categories.MOBILE * categories.NAVAL * categories.TECH2 - categories.EXPERIMENTAL - categories.CARRIER, 1, 10, 'Attack', 'GrowthFormation' }
     },
 }
 
