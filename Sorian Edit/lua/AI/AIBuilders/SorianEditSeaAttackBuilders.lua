@@ -219,10 +219,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 2300,
+        Priority = 4300,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
@@ -232,7 +232,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 2300,
+        Priority = 4300,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -275,7 +275,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
-            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.INDIRECTFIRE, '>=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.INDIRECTFIRE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
     Builder {
@@ -288,7 +288,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
-            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP * categories.OVERLAYANTINAVY, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
 }
@@ -317,7 +317,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -351,7 +351,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.NAVAL + categories.HOVER - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -387,7 +387,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -423,7 +423,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -459,7 +459,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -501,7 +501,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.NAVAL + categories.HOVER - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -537,7 +537,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -573,7 +573,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -613,7 +613,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.NAVAL + categories.HOVER - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -649,7 +649,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
@@ -685,7 +685,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120,
             IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT,
+            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,

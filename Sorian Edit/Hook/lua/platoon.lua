@@ -25,7 +25,7 @@
 	
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
-local HERODEBUGSorianEdit = false
+local HERODEBUGSorianEdit = true
 
 
 
@@ -521,6 +521,9 @@ Platoon = Class(SorianEditPlatoonClass) {
                     if v:TestToggleCaps('RULEUTC_CloakToggle') then
                         v:SetScriptBit('RULEUTC_CloakToggle', false)
                     end
+                    if v:TestToggleCaps('RULEUTC_JammingToggle') then
+                        v:SetScriptBit('RULEUTC_JammingToggle', false)
+                    end
                     if EntityCategoryContains(categories.EXPERIMENTAL, v) then
                         ExperimentalInPlatoon = true
                     end
@@ -551,19 +554,18 @@ Platoon = Class(SorianEditPlatoonClass) {
         local aiBrain = self:GetBrain()
         local target
         local bAggroMove = self.PlatoonData.AggressiveMove
-        local WantsTransport = self.PlatoonData.RequireTransport
-        local maxRadius = self.PlatoonData.SearchRadius
+        local maxRadius = self.PlatoonData.SearchRadius or 250
         local PlatoonPos = self:GetPlatoonPosition()
         local LastTargetPos = PlatoonPos
         local DistanceToTarget = 0
-        local basePosition = aiBrain.BuilderManagers['MAIN'].Position
+        local basePosition = PlatoonPos   -- Platoons will be created near a base, so we can return to this position if we don't have targets.
         local losttargetnum = 0
         local TargetSearchCategory = self.PlatoonData.TargetSearchCategory or 'ALLUNITS'
         while aiBrain:PlatoonExists(self) do 
             PlatoonPos = self:GetPlatoonPosition()
             -- only get a new target and make a move command if the target is dead or after 10 seconds
             if not target or target.Dead then
-                UnitWithPath, UnitNoPath, path, reason = AIUtils.AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, self, 'Attack', PlatoonPos, maxRadius, MoveToCategories, TargetSearchCategory, false )
+                UnitWithPath, UnitNoPath, path, reason = AIUtils.AIFindNearestCategoryTargetInRange(aiBrain, self, 'Attack', PlatoonPos, maxRadius, MoveToCategories, TargetSearchCategory, false )
                 if UnitWithPath then
                     losttargetnum = 0
                     self:Stop()
@@ -577,10 +579,10 @@ Platoon = Class(SorianEditPlatoonClass) {
                             self:SetPlatoonFormationOverride('AttackFormation')
                             self:AttackTarget(UnitWithPath)
                         elseif path then
-                            self:MoveToLocationInclTransportSorianEdit(target, LastTargetPos, bAggroMove, WantsTransport, basePosition, ExperimentalInPlatoon)
+                            self:MovePath(aiBrain, path, bAggroMove, target)
                         -- if we dont have a path, but UnitWithPath is true, then we have no map markers but PathCanTo() found a direct path
                         else
-                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target)
+                            self:MoveDirect(aiBrain, bAggroMove, target)
                         end
                         -- We moved to the target, attack it now if its still exists
                         if aiBrain:PlatoonExists(self) and UnitWithPath and not UnitWithPath.Dead and not UnitWithPath:BeenDestroyed() then
@@ -588,16 +590,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                             self:SetPlatoonFormationOverride('AttackFormation')
                             self:AttackTarget(UnitWithPath)
                         end
-                    end
-                elseif UnitNoPath then
-                    losttargetnum = 0
-                    self:Stop()
-                    target = UnitNoPath
-                    self:MoveWithTransportSorianEditSorianEdit(aiBrain, bAggroMove, target, basePosition, ExperimentalInPlatoon)
-                    -- We moved to the target, attack it now if its still exists
-                    if aiBrain:PlatoonExists(self) and UnitNoPath and not UnitNoPath.Dead and not UnitNoPath:BeenDestroyed() then
-                        self:SetPlatoonFormationOverride('AttackFormation')
-                        self:AttackTarget(UnitNoPath)
                     end
                 else
                     -- we have no target return to main base
@@ -632,7 +624,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     coroutine.yield(20)
                 end
             end
-            WaitSeconds(1)
+            coroutine.yield(10)
         end
     end,
     
@@ -1143,6 +1135,10 @@ Platoon = Class(SorianEditPlatoonClass) {
     MoveToLocationInclTransportSorianEdit = function(self, target, TargetPosition, bAggroMove, WantsTransport, basePosition, ExperimentalInPlatoon, MaxPlatoonWeaponRange, EnemyThreatCategory)
         local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 30
         local EnemyThreatCategory = EnemyThreatCategory or categories.ALLUNITS
+        local MarkerSwitchDistance = MarkerSwitchDist
+        if ExperimentalInPlatoon then
+            MarkerSwitchDistance = MarkerSwitchDistEXP
+        end
         local platoonUnits = self:GetPlatoonUnits()
         self:SetPlatoonFormationOverride('NoFormation')
         if not TargetPosition then
@@ -1248,6 +1244,17 @@ Platoon = Class(SorianEditPlatoonClass) {
                             --LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: Lost target while moving to Waypoint. '..repr(path[i]))
                             self:Stop()
                             return
+                        end
+                        -- see if we are in danger, fight units that are close to the platoon
+                        if bAggroMove then
+                            numEnemyUnits = aiBrain:GetNumUnitsAroundPoint(EnemyThreatCategory, PlatoonPosition, MaxPlatoonWeaponRange + 30 , 'Enemy')
+                            if numEnemyUnits > 0 then
+                                if HERODEBUG then
+                                    self:RenamePlatoon('enemy nearby')
+                                    coroutine.yield(1)
+                                end
+                                return
+                            end
                         end
                         coroutine.yield(10)
                     end
@@ -1396,7 +1403,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         local count = 0
         repeat
-            WaitSeconds(2)
+            coroutine.yield(20)
             if not aiBrain:PlatoonExists(self) then
                 return
             end
@@ -2415,8 +2422,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                     for k, Assister in platoonUnits do
                         if not Assister.Dead and Assister ~= unit then
                             -- only assist if we have the energy for it
-                            if aiBrain:GetEconomyTrend('ENERGY')*10 > 5000 or aiBrain.HasParagon then
-                                --LOG('* AI-SorianEdit: * SACUTeleportSorianEdit: IssueGuard({Assister}, unit) ')
+                            if aiBrain:GetEconomyTrend('ENERGY')*10 > 5000 or aiBrain.PriorityManager.HasParagon then
+                                --LOG('* AI-Uveso: * SACUTeleportAI: IssueGuard({Assister}, unit) ')
                                 IssueGuard({Assister}, unit)
                             end
                         end
@@ -2474,7 +2481,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                     --IssueStop({unit})
                     coroutine.yield(2)
-                    IssueTeleport({unit}, SUtils.RandomizePosition(TargetPosition))
+                    IssueTeleport({unit}, UUtils.RandomizePosition(TargetPosition))
                 end
             end
         else
@@ -5710,7 +5717,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 target = nil
                 path = nil
                 if HERODEBUGSorianEdit then
-                    self:RenamePlatoon('target to far from base')
+                    self:RenamePlatoon('target too far from base')
                     coroutine.yield(1)
                 end
            end
@@ -5733,13 +5740,13 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('MovePath (Air)')
                                 coroutine.yield(1)
                             end
-                            self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory, ExperimentalInPlatoon)
                         elseif self.MovementLayer == 'Water' then
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('MovePath (Water)')
                                 coroutine.yield(1)
                             end
-                            self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory, ExperimentalInPlatoon)
                         else
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('MovePath with transporter layer('..self.MovementLayer..')')
@@ -5794,7 +5801,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 coroutine.yield(1)
                             end
                             --self:RenamePlatoon('MoveOnlyWithTransport')
-                            self:MoveWithTransportSorianEdit(aiBrain, bAggroMove, target, basePosition, ExperimentalInPlatoon, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveWithTransport(aiBrain, bAggroMove, target, basePosition, ExperimentalInPlatoon, MaxPlatoonWeaponRange, TargetSearchCategory)
                         end
                     end
                 end
@@ -6008,7 +6015,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                             end
                             -- if we need to get as close to the target as possible, then just run to the target position
                             if TargetHug then
-                                coroutine.yield(1)
                                 IssueMove({unit}, { LastTargetPos[1] + Random(-1, 1), LastTargetPos[2], LastTargetPos[3] + Random(-1, 1) } )
                             -- check if the move position is new or target has moved
                             -- if we don't have a rear weapon then attack (will move in circles otherwise)
@@ -6063,7 +6069,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                                     end
                                     unit.Blocked = false
                                     if not TargetInPlatoonRange.Dead then
-                                        IssueAttack({unit}, TargetInPlatoonRange)
+                                        -- set the target as focus, we are in range, the unit will shoot without attack command
+                                        unit:SetFocusEntity(TargetInPlatoonRange)
                                     end
                                 end
                             end
