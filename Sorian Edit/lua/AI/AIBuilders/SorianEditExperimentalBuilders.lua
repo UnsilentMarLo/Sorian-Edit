@@ -446,7 +446,7 @@ BuilderGroup {
             SearchRadius = 100000,
             GetTargetsFromBase = false,
             RequireTransport = false,
-            AggressiveMove = true,
+            AggressiveMove = false,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
             TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,

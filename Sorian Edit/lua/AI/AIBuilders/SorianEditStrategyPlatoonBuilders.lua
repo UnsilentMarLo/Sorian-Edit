@@ -275,7 +275,7 @@ BuilderGroup {
         ActivePriority = 1500,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.7 } },
-            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'AIR FACTORY' } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 3, 'AIR FACTORY' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',

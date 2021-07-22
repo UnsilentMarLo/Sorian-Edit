@@ -1,3 +1,5 @@
+local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
+local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
 OlderOldSorianEditAIBrainClass = AIBrain
 AIBrain = Class(OlderOldSorianEditAIBrainClass) {
@@ -63,7 +65,15 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
         if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
             LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') ')
+			
+            local iArmyNo = Utilities.GetAIBrainArmyNumber(self)
+            local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
+			
+            MapInfo.RecordResourceLocations()
+            MapInfo.RecordPlayerStartLocations()
+            MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 8 + 2)
             self.sorianedit = true
+            self:ForkThread(self.SEParseIntelThread)
         end
     end,
 	
@@ -123,13 +133,29 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
     end,
 
     SEParseIntelThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEParseIntelThread(self)
+        while self.sorianedit do
+            WaitTicks(120)
+            allyScore = 0
+            enemyScore = 0
+
+            for k, brain in ArmyBrains do
+                if ArmyIsCivilian(brain:GetArmyIndex()) then
+                elseif IsAlly( self:GetArmyIndex(), brain:GetArmyIndex() ) then
+                    allyScore = allyScore + table.getn(self:GetListOfUnits( categories.MOBILE * categories.AIR - categories.ENGINEER - categories.SCOUT, false, false))
+                elseif IsEnemy( self:GetArmyIndex(), brain:GetArmyIndex() ) then
+                    enemyScore = enemyScore + table.getn(brain:GetListOfUnits( categories.MOBILE * categories.AIR - categories.ENGINEER - categories.SCOUT, false, false))
+                end
+            end
+
+            if enemyScore ~= 0 then
+                if allyScore == 0 then
+                   allyScore = 1
+                end
+                self.MyAirRatio = allyScore / enemyScore
+            else
+                self.MyAirRatio = 0.01
+            end
         end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
     end,
 
 }

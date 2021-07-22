@@ -57,8 +57,9 @@ BaseBuilderTemplate {
         'SorianEditEngineerEnergyBuildersExpansions',
 
         -- Build Mass high pri at this base
-        'Sorianedit Mass Builders', 
-        -- 'Sorianedit Mass Builders Tech 2', 
+        'Sorianedit Mass Builders',
+        'Sorianedit Mass Builders Tech 2',
+        'Sorianedit Mass Builders Tech 3',
         'Sorianedit MassFab Builders', 
 
         -- Extractors

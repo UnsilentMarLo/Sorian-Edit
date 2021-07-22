@@ -24,15 +24,15 @@ end
 -- AI-SorianEdit: Target function
 function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain)
     if not maxRange then
-        --LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "maxRange"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "maxRange"' )
         return false, false, false, 'NoRange'
     end
     if not TargetSearchCategory then
-        --LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "TargetSearchCategory"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "TargetSearchCategory"' )
         return false, false, false, 'NoCat'
     end
     if not position then
-        --LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "position"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "position"' )
         return false, false, false, 'NoPos'
     end
     if not platoon then
@@ -87,14 +87,14 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
     local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, success, bestGoalPos, canAttack
     for _, range in RangeList do
         TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, range, 'Enemy')
-        --DrawCircle(position, range, '0000FF')
+        -- DrawCircle(position, range, '0000FF')
         for _, v in MoveToCategories do
             category = v
             if type(category) == 'string' then
                 category = ParseEntityCategory(category)
             end
             distance = maxRange
-            --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: numTargets '..table.getn(TargetsInRange)..'  ')
+            -- LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: numTargets '..table.getn(TargetsInRange)..'  ')
             for num, Target in TargetsInRange do
                 if Target.Dead or Target:BeenDestroyed() then
                     continue
@@ -138,8 +138,8 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
                         -- Only attack if we have a chance to win
                         if PlatoonStrength / 100 * AttackEnemyStrength < EnemyStrength then continue end
                         --coroutine.yield(1)
-                        --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: PlatoonGenerateSafePathTo ')
-                        path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, platoon.MovementLayer, position, TargetPosition, platoon.PlatoonData.NodeWeight or 10 )
+                        -- LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: PlatoonGenerateSafePathTo ')
+                        path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, platoon.MovementLayer, position, TargetPosition, platoon.PlatoonData.NodeWeight or 10 )
                         -- Check if we found a path with markers
                         if path then
                             UnitWithPath = Target

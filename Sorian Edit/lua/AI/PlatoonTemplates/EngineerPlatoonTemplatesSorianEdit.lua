@@ -194,6 +194,14 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'EngineerBuilderSorianEditTECH1REC',
+    Plan = 'ReclaimSorianEdit',
+    GlobalSquads = {
+        { categories.ENGINEER * categories.TECH1, 1, 2, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'EngineerBuilderSorianEditTECH12REC',
     Plan = 'ReclaimSorianEdit',
     GlobalSquads = {

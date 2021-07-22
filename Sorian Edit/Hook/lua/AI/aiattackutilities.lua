@@ -1,4 +1,151 @@
+
 do
+
+function PlatoonGenerateSafePathToSorianEdit(aiBrain, platoonLayer, startPos, endPos, optThreatWeight, optMaxMarkerDist, testPathDist)
+    -- Only use this with SorianEdit
+    if not GetPathGraphs()[platoonLayer] then
+        return false, 'NoGraph'
+    end
+
+    --Get the closest path node at the platoon's position
+    optMaxMarkerDist = optMaxMarkerDist or 250
+    optThreatWeight = optThreatWeight or 1
+    local startNode
+    startNode = GetClosestPathNodeInRadiusByLayer(startPos, optMaxMarkerDist, platoonLayer)
+    if not startNode then return false, 'NoStartNode' end
+
+    --Get the matching path node at the destiantion
+    local endNode = GetClosestPathNodeInRadiusByGraph(endPos, optMaxMarkerDist, startNode.graphName)
+    if not endNode then return false, 'NoEndNode' end
+
+    --Generate the safest path between the start and destination
+    local path = GeneratePathSorianEdit(aiBrain, startNode, endNode, ThreatTable[platoonLayer], optThreatWeight, endPos, startPos)
+    if not path then return false, 'NoPath' end
+
+    -- Insert the path nodes (minus the start node and end nodes, which are close enough to our start and destination) into our command queue.
+    -- delete the first and last node only if they are very near (under 30 map units) to the start or end destination.
+    local finalPath = {}
+    local NodeCount = table.getn(path.path)
+    for i,node in path.path do
+        -- IF this is the first AND not the only waypoint AND its nearer 30 THEN continue and don't add it to the finalpath
+        if i == 1 and NodeCount > 1 and VDist2(startPos[1], startPos[3], node.position[1], node.position[3]) < 30 then  
+            continue
+        end
+        -- IF this is the last AND not the only waypoint AND its nearer 20 THEN continue and don't add it to the finalpath
+        if i == NodeCount and NodeCount > 1 and VDist2(endPos[1], endPos[3], node.position[1], node.position[3]) < 20 then  
+            continue
+        end
+        table.insert(finalPath, node.position)
+    end
+    -- in case we have a path with only 2 waypoints and skipped both:
+    if not finalPath[1] then
+        table.insert(finalPath, table.copy(endPos))
+    end
+    -- return the path
+    return finalPath, 'PathOK'
+end
+
+function GeneratePathSorianEdit(aiBrain, startNode, endNode, threatType, threatWeight, destination, location)
+    if not aiBrain.PathCache then
+        aiBrain.PathCache = {}
+    end
+    -- create a new path
+    aiBrain.PathCache[startNode.name] = aiBrain.PathCache[startNode.name] or {}
+    aiBrain.PathCache[startNode.name][endNode.name] = aiBrain.PathCache[startNode.name][endNode.name] or {}
+    aiBrain.PathCache[startNode.name][endNode.name].settime = aiBrain.PathCache[startNode.name][endNode.name].settime or GetGameTimeSeconds()
+
+    if aiBrain.PathCache[startNode.name][endNode.name].path and aiBrain.PathCache[startNode.name][endNode.name].path != 'bad'
+    and aiBrain.PathCache[startNode.name][endNode.name].settime + 60 > GetGameTimeSeconds() then
+        return aiBrain.PathCache[startNode.name][endNode.name].path
+    end
+
+    -- Uveso - Clean path cache. Loop over all paths's and remove old ones
+    if aiBrain.PathCache then
+        local GameTime = GetGameTimeSeconds()
+        for StartNode, EndNodeCache in aiBrain.PathCache do
+            for EndNode, Path in EndNodeCache do
+                if Path.settime and Path.settime + 60 < GameTime then
+                    aiBrain.PathCache[StartNode][EndNode] = nil
+                end
+            end
+        end
+    end
+
+    threatWeight = threatWeight or 1
+
+    local graph = GetPathGraphs()[startNode.layer][startNode.graphName]
+
+    local closed = {}
+
+    local queue = {
+            path = {startNode, },
+    }
+
+    if VDist2Sq(location[1], location[3], startNode.position[1], startNode.position[3]) > 10000 and
+    SUtils.DestinationBetweenPoints(destination, location, startNode.position) then
+        local newPath = {
+                path = {newNode = {position = destination}, },
+        }
+        return newPath
+    end
+
+    local lastNode = startNode
+
+    repeat
+        if closed[lastNode] then
+            --aiBrain.PathCache[startNode.name][endNode.name] = { settime = 36000 , path = 'bad' }
+            return false
+        end
+
+        closed[lastNode] = true
+
+        local mapSizeX = ScenarioInfo.size[1]
+        local mapSizeZ = ScenarioInfo.size[2]
+
+        local lowCost = false
+        local bestNode = false
+
+        for i, adjacentNode in lastNode.adjacent do
+
+            local newNode = graph[adjacentNode]
+
+            if not newNode or closed[newNode] then
+                continue
+            end
+
+            if SUtils.DestinationBetweenPoints(destination, lastNode.position, newNode.position) then
+                aiBrain.PathCache[startNode.name][endNode.name] = { settime = GetGameTimeSeconds(), path = queue }
+                return queue
+            end
+
+            local dist = VDist2Sq(newNode.position[1], newNode.position[3], endNode.position[1], endNode.position[3])
+
+            dist = 100 * dist / (mapSizeX + mapSizeZ)
+
+            --get threat from current node to adjacent node
+            local threat = aiBrain:GetThreatBetweenPositions(newNode.position, lastNode.position, nil, threatType)
+
+            --update path stuff
+            local cost = dist + threat*threatWeight
+
+            if lowCost and cost >= lowCost then
+                continue
+            end
+
+            bestNode = newNode
+            lowCost = cost
+        end
+        if bestNode then
+            table.insert(queue.path,bestNode)
+            lastNode = bestNode
+        end
+    until lastNode == endNode
+
+    aiBrain.PathCache[startNode.name][endNode.name] = { settime = GetGameTimeSeconds(), path = queue }
+
+    return queue
+end
+
 function AIPlatoonSquadAttackVector( aiBrain, platoon )
 
     --Engine handles whether or not we can occupy our vector now, so this should always be a valid, occupiable spot.
@@ -104,4 +251,5 @@ function AIPlatoonSquadAttackVector( aiBrain, platoon )
     end
     return cmd
 end
+
 end

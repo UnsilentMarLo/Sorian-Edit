@@ -32,6 +32,23 @@ local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 	LOG('--------------------- SorianEdit Sea Attack Builders loading')
 	end
 
+local WaterPrio = function( self,aiBrain )
+	local ratio = aiBrain:GetMapWaterRatio() * 10
+	local Prio1 = self.Priority
+	local Prio2 = 0
+	
+	-- LOG('*AI DEBUG: --------------  Grabbing Water ratio, its: '..aiBrain:GetMapWaterRatio()..'!')
+	
+	if ratio < 0.1 then
+	-- LOG('*AI DEBUG: --------------  Water Prio Function returned false, 0')
+		return 0, false
+	else
+		Prio2 = Prio1 * ratio
+	-- LOG('*AI DEBUG: --------------  Water Prio returned true, its: '..Prio2..'!')
+		return Prio2,true
+	end
+end
+
 BuilderGroup {
     BuilderGroupName = 'SorianEditT1SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
@@ -39,11 +56,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Frigate Constant',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 3000,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
@@ -52,11 +70,13 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Sub',
         PlatoonTemplate = 'T1SeaSub',
         Priority = 2500,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
             { SBC, 'HaveUnitRatioSorian', { 0.4, categories.NAVAL * categories.TECH1 * categories.SUBMERSIBLE, '<=', categories.NAVAL * categories.TECH1 * categories.FRIGATE}},
         },
     },
@@ -64,11 +84,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Frigate',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 700,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
     },
@@ -76,11 +97,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Sea Frigate - ratio to T2',
         PlatoonTemplate = 'T1SeaFrigate',
         Priority = 3500,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.6, categories.NAVAL * categories.TECH1 * categories.MOBILE - categories.SUBMERSIBLE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH1}},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
@@ -90,10 +112,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Naval Anti-Air',
         PlatoonTemplate = 'T1SeaAntiAir',
         Priority = 700,
+        PriorityFunction = WaterPrio,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
         },
@@ -108,35 +131,38 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer Landattack',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 1300,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            -- { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
         },
     },
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 1400,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1300,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.DESTROYER - categories.CRUISER}},
         },
         BuilderType = 'Sea',
@@ -145,12 +171,15 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2SubKiller',
         PlatoonTemplate = 'T2SubKiller',
         Priority = 1200,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ MIBC, 'FactionIndex', { 2, 3 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			-- { MIBC, 'FactionIndex', { 2, 3 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.ANTINAVY - categories.DESTROYER - categories.SHIELD - categories.CRUISER } },
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
     },
@@ -158,12 +187,14 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2ShieldBoat',
         PlatoonTemplate = 'T2ShieldBoat',
         Priority = 1300,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ MIBC, 'FactionIndex', {1}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			-- { MIBC, 'FactionIndex', {1}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.SHIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.SHIELD } },
             { SBC, 'HaveUnitRatioSorian', { 0.25, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.SHIELD, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.SHIELD}},
         },
@@ -172,13 +203,15 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2CounterIntelBoat',
         PlatoonTemplate = 'T2CounterIntelBoat',
         Priority = 1200,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-			{ MIBC, 'FactionIndex', {3}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			-- { MIBC, 'FactionIndex', {3}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'COUNTERINTELLIGENCE NAVAL MOBILE' } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.STEALTHFIELD} },
+			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.COUNTERINTELLIGENCE } },
         },
     },
 }
@@ -190,23 +223,25 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Destroyer - SF',
         PlatoonTemplate = 'T2SeaDestroyer',
         Priority = 1300,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser - SF',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1300,
+        PriorityFunction = WaterPrio,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.95 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.CRUISER}},
         },
         BuilderType = 'Sea',
@@ -219,56 +254,70 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer - T3',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 4300,
+        Priority = 2300,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T2 Naval Cruiser - T3',
         PlatoonTemplate = 'T2SeaCruiser',
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 4300,
+        -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        Priority = 3300,
+        PriorityFunction = WaterPrio,
+        BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.CRUISER}},
         },
-        BuilderType = 'Sea',
     },
     Builder {
         BuilderName = 'SorianEdit T3 Naval Battleship',
         PlatoonTemplate = 'T3SeaBattleship',
-        Priority = 4500,
+        Priority = 3300,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
     Builder {
         BuilderName = 'SorianEdit T3 Naval Nuke Sub',
         PlatoonTemplate = 'T3SeaNukeSub',
-        Priority = 3250, --700,
+        Priority = 3450, --700,
+        PriorityFunction = WaterPrio,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
-            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.NAVAL * categories.MOBILE * categories.SILO * categories.NUKE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH3 - (categories.MOBILE * categories.SILO)}},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+            { SBC, 'HaveUnitRatioSorian', { 0.1, categories.NAVAL * categories.MOBILE * categories.SILO * categories.NUKE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH3 - categories.SILO}},
         },
         BuilderType = 'Sea',
     },
+    -- Builder {
+        -- BuilderName = 'SorianEdit T3Battlecruiser',
+        -- PlatoonTemplate = 'T3Battlecruiser',
+        -- Priority = 3600,
+        -- PriorityFunction = WaterPrio,
+        -- BuilderType = 'Sea',
+        -- BuilderConditions = {
+			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			-- { UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
+            -- { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307), '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+        -- },
+    -- },
     Builder {
         BuilderName = 'SorianEdit T3MissileBoat',
         PlatoonTemplate = 'T3MissileBoat',
         Priority = 3250,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ MIBC, 'FactionIndex', {2}},
@@ -282,13 +331,25 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3Battlecruiser',
         PlatoonTemplate = 'T3Battlecruiser',
         Priority = 4400,
+        PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ MIBC, 'FactionIndex', {1}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP * categories.OVERLAYANTINAVY, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+        },
+    },
+    Builder {
+        BuilderName = 'SorianEdit T3Subhunter',
+        PlatoonTemplate = 'T3SubKiller',
+        Priority = 3400,
+        PriorityFunction = WaterPrio,
+        BuilderType = 'Sea',
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+			{ UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },
+            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
         },
     },
 }
@@ -304,8 +365,9 @@ BuilderGroup {
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
         BuilderConditions = {
-            { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
             { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            -- { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'MOBILE TECH2 NAVAL' } },
             },
         InstanceCount = 4,
@@ -321,6 +383,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -355,6 +418,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -391,6 +455,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -427,6 +492,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -463,6 +529,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -505,6 +572,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -541,6 +609,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -577,6 +646,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -617,6 +687,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -653,6 +724,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {
@@ -689,6 +761,7 @@ BuilderGroup {
             MoveToCategories = {
                 categories.MOBILE * categories.NAVAL,
                 categories.COMMAND,
+                categories.MOBILE * categories.LAND,
                 categories.STRUCTURE,
             },
             WeaponTargetCategories = {

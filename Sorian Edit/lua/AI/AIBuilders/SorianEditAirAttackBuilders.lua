@@ -32,40 +32,39 @@ local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lu
 	do
 	LOG('--------------------- SorianEdit Air attack Builders loading')
 	end
+
+local AirAttackPrio = function( self, aiBrain )
+	local ratio = aiBrain.MyAirRatio
+	local Prio1 = self.Priority
+	local Prio2 = 0
 	
-function AirAttackCondition(aiBrain, locationType, targetNumber)
-    local UC = import('/lua/editor/UnitCountBuildConditions.lua')
-    local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
-    local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
-    if not engineerManager then
-        return true
-    end
-    if aiBrain:GetCurrentEnemy() then
-        local estartX, estartZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-        targetNumber = aiBrain:GetThreatAtPosition({estartX, 0, estartZ}, 1, true, 'AntiAir')
-    end
+	-- LOG('*AI DEBUG: --------------  Grabbing Air ratio, its: '..ratio..'!')
+	
+	if ratio < 1.3 then
+	-- LOG('*AI DEBUG: --------------  Air Attack Prio Function returned false, 0')
+		return 0, false
+	else
+		Prio2 = Prio1 * ratio
+	-- LOG('*AI DEBUG: --------------  Air Attack Prio returned true, its: '..Prio2..'!')
+		return Prio2, true
+	end
+end
 
-    local position = engineerManager:GetLocationCoords()
-    local radius = engineerManager.Radius
-
-    --local surfaceThreat = pool:GetPlatoonThreat('AntiSurface', categories.MOBILE * categories.AIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INTELLIGENCE, position, radius)
-    local surfaceThreat = pool:GetPlatoonThreat('AntiSurface', categories.MOBILE * categories.AIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INTELLIGENCE)
-    local airThreat = 0 --pool:GetPlatoonThreat('AntiAir', categories.MOBILE * categories.AIR - categories.EXPERIMENTAL - categories.SCOUT - categories.INTELLIGENCE, position, radius)
-    if (surfaceThreat + airThreat) >= targetNumber then
-        return true
-    elseif UC.UnitCapCheckGreater(aiBrain, .95) then
-        return true
-    elseif SUtils.ThreatBugcheck(aiBrain) then -- added to combat buggy inflated threat
-        return true
-    elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.GROUNDATTACK + categories.BOMBER)) and surfaceThreat > 120 then --8 Units x 15
-        return true
-    elseif UC.PoolGreaterAtLocation(aiBrain, locationType, 0, categories.MOBILE * categories.AIR * categories.TECH2 * (categories.GROUNDATTACK + categories.BOMBER))
-    and UC.PoolLessAtLocation(aiBrain, locationType, 1, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.GROUNDATTACK + categories.BOMBER)) and surfaceThreat > 25 then --5 Units x 5
-        return true
-    elseif UC.PoolLessAtLocation(aiBrain, locationType, 1, categories.MOBILE * categories.AIR * (categories.GROUNDATTACK + categories.BOMBER) - categories.TECH1) and surfaceThreat > 6 then --3 Units x 2
-        return true
-    end
-    return false
+local AirClaimPrio = function( self, aiBrain )
+	local ratio = aiBrain.MyAirRatio
+	local Prio1 = self.Priority
+	local Prio2 = 0
+	
+	-- LOG('*AI DEBUG: --------------  Grabbing Air ratio, its: '..ratio..'!')
+	
+	if ratio > 1.3 then
+	-- LOG('*AI DEBUG: --------------  Air Claim Prio Function returned false, We own the skies')
+		return 0, false
+	else
+		Prio2 = Prio1 * 20
+	-- LOG('*AI DEBUG: --------------  Air Claim Prio returned true, its: '..Prio2..', We really dont own the skies!')
+		return Prio2, true
+	end
 end
 
 BuilderGroup {
@@ -75,12 +74,11 @@ BuilderGroup {
 	BuilderName = 'SorianEditT1 Air Bomber Initial',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 2000,
+        PriorityFunction = AirAttackPrio,
         BuilderConditions = {
 			-- { UCBC, 'GreaterThanGameTimeSeconds', { 80 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'BOMBER' }},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'BOMBER' }},
         },
         BuilderType = 'Air',
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
@@ -89,13 +87,14 @@ BuilderGroup {
 	BuilderName = 'SorianEditT1 Air Bomber Land spam reaction',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1300,
+        PriorityFunction = AirAttackPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             -- -- { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 30, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 30, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
         },
         BuilderType = 'Air',
     },
@@ -103,6 +102,7 @@ BuilderGroup {
 	BuilderName = 'SorianEditT1 Air Bomber Land spam reaction 2',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1300,
+        PriorityFunction = AirAttackPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -110,7 +110,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 25, categories.AIR * categories.ANTIAIR} },
             -- -- { EBC, 'GreaterThanEconIncome', { 0.2, 2 } },
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 60, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 60, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
         },
         BuilderType = 'Air',
     },
@@ -118,6 +118,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1200,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -132,6 +133,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber4',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 900,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -146,6 +148,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 800,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -159,6 +162,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1Gunship',
         PlatoonTemplate = 'T1Gunship',
         Priority = 1100,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -173,6 +177,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Fighter init',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 2500,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -186,6 +191,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Fighter',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 1200,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -199,6 +205,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Fighter2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 1100,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -212,6 +219,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber 2',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 700,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -224,6 +232,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1Gunship2',
         PlatoonTemplate = 'T1Gunship',
         Priority = 700,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
@@ -243,6 +252,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Interceptors',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 900,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -256,6 +266,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 InterceptorsAdept',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 2900,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.AIR * categories.MOBILE, 'Enemy'}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -269,9 +280,10 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Interceptors - Enemy Air',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 1200,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.TECH1, categories.MOBILE - categories.SCOUT, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 2, categories.AIR * categories.TECH1, categories.MOBILE - categories.SCOUT, 'Enemy'}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
@@ -284,10 +296,11 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Interceptors - Enemy Air Extra',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 700, --560,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
@@ -299,6 +312,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Interceptors - Enemy Air Extra 2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 560,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 19, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
@@ -319,6 +333,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber init2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1700,
+        PriorityFunction = AirClaimPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             -- { IBC, 'BrainNotLowMassMode', {} },
@@ -334,19 +349,19 @@ BuilderGroup {
         BuilderName = 'SorianEditT2 Air Gunship',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 1800,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.2 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 1500,
+        PriorityFunction = AirAttackPrio,
 		InstanceCount = 2,
         BuilderType = 'Air',
         BuilderConditions = {
@@ -362,11 +377,10 @@ BuilderGroup {
         BuilderName = 'SorianEditT2 Air Gunship - Stomp Enemy',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 1800,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { SBC, 'HaveUnitRatioSorian', { 0.5, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
         },
@@ -375,6 +389,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 2700,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 40, categories.AIR * categories.ANTIAIR * categories.TECH2 } },
@@ -389,6 +404,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomberAdept',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 3700,
+        PriorityFunction = AirClaimPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.AIR * categories.MOBILE, 'Enemy'}},
@@ -402,6 +418,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber Init',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1800,
+        PriorityFunction = AirClaimPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -414,6 +431,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber Snipe',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 3600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ MIBC, 'FactionIndex', { 1, 3, 4, 5 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
@@ -430,9 +448,10 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Fighter - T2',
         PlatoonTemplate = 'T1AirFighter',
         Priority = 1300,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 30, categories.AIR * categories.ANTIAIR } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
@@ -445,21 +464,19 @@ BuilderGroup {
         BuilderName = 'SorianEditT2 Air Gunship2',
         PlatoonTemplate = 'T2AirGunship',
         Priority = 1700,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
-            --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
         },
     },
     Builder {
         BuilderName = 'SorianEditT2FighterBomber2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1600,
+        PriorityFunction = AirClaimPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -474,6 +491,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -489,6 +507,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2FighterBomber2 - Exp Response 2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             --{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.AIR * categories.TECH2 } },
@@ -497,7 +516,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
         },
     },
@@ -505,6 +524,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2 Torpedo Bomber',
         PlatoonTemplate = 'T2AirTorpedoBomber',
         Priority = 1600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -525,6 +545,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2AntiAirPlanes Initial Higher Pri',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1700,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -539,8 +560,9 @@ BuilderGroup {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1700,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 2, categories.AIR * categories.ANTIAIR, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 2, categories.AIR * categories.ANTIAIR, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
@@ -555,10 +577,11 @@ BuilderGroup {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1700, --660,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 14, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 30, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
@@ -571,6 +594,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT2AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T2FighterBomber',
         Priority = 1700, --660,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -589,6 +613,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Fighter init',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 3500,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.25 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -601,6 +626,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Fighter Adept',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 4500,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.AIR * categories.MOBILE, 'Enemy'}},
             { UCBC, 'UnitCapCheckLess', { 0.85 } },
@@ -611,6 +637,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Fighter spam',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2500,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 80, categories.AIR * categories.ANTIAIR * categories.TECH3 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -625,23 +652,24 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Gunship',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 2600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
+            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
         },
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Gunship - Anti Navy',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 2500,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { SBC, 'HaveUnitRatioSorian', { 0.35, categories.AIR * categories.GROUNDATTACK * categories.MOBILE * categories.TECH3 , '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE * categories.TECH3 }},
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.STRUCTURE * categories.DEFENSE * categories.ANTINAVY, 'Enemy'}},
         },
     },
@@ -649,6 +677,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Bomber Snipe',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 3600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 2, categories.STRUCTURE * categories.DEFENSE * categories.SHIELD * categories.TECH3, 'Enemy'}},
@@ -664,6 +693,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Bomber Snipe',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 3600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 10, categories.STRUCTURE * categories.DEFENSE * categories.SHIELD * categories.TECH3, 'Enemy'}},
@@ -679,29 +709,24 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Bomber',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 2600,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.BOMBER * categories.AIR * categories.TECH3, '<=', categories.ANTIAIR * categories.AIR * categories.TECH3}},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
-            -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.BOMBER * categories.AIR * categories.TECH3, '<=', categories.ANTIAIR * categories.AIR * categories.TECH3}},
         },
     },
     Builder {
         BuilderName = 'SorianEditT3 Air Bomber - Exp Response',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 2400,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.TECH3 * categories.AIR * categories.BOMBER } },
-            --{ UCBC, 'HaveLessThanUnitsWithCategory', { 50, categories.AIR * categories.BOMBER * categories.TECH3 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
-            -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.TECH3 * categories.AIR * categories.BOMBER } },
             { SBC, 'T4ThreatExists', {{'Land', 'Naval', 'Structure'}, (categories.LAND + categories.NAVAL + categories.STRUCTURE + categories.ARTILLERY)}},
         },
     },
@@ -709,6 +734,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Bomber - Stomp Enemy',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 2400,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -721,6 +747,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Gunship2',
         PlatoonTemplate = 'T3AirGunship',
         Priority = 2300,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -734,6 +761,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Bomber2',
         PlatoonTemplate = 'T3AirBomber',
         Priority = 2300,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -747,6 +775,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Air Fighter',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2500,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -760,6 +789,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3 Torpedo Bomber',
         PlatoonTemplate = 'T3TorpedoBomber',
         Priority = 2300,
+        PriorityFunction = AirAttackPrio,
         BuilderType = 'Air',
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -779,7 +809,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3AntiAirPlanes Initial',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2600,
-        InstanceCount = 2,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -793,13 +823,14 @@ BuilderGroup {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2300,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
         },
         BuilderType = 'Air',
     },
@@ -807,6 +838,7 @@ BuilderGroup {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2200, --760,
+        PriorityFunction = AirClaimPrio,
         BuilderConditions = {
             -- { IBC, 'BrainNotLowPowerMode', {} },
 											   
@@ -816,7 +848,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
         },
         BuilderType = 'Air',
     },
@@ -824,9 +856,8 @@ BuilderGroup {
         BuilderName = 'SorianEditT3AntiAirPlanes - Enemy Air Extra 2',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2200, --760,
-        BuilderConditions = {
-
-											   
+        PriorityFunction = AirClaimPrio,
+        BuilderConditions = {		   
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 19, categories.MOBILE * categories.AIR - categories.SCOUT, 'Enemy'}},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             -- -- { EBC, 'GreaterThanEconIncome', { 2, 20 } },
@@ -844,9 +875,8 @@ BuilderGroup {
         BuilderName = 'SorianEditT3AntiAirPlanes - Exp Response',
         PlatoonTemplate = 'T3AirFighter',
         Priority = 2700,
-        BuilderConditions = {
-																								  
-																																						 
+        PriorityFunction = AirClaimPrio,
+        BuilderConditions = {																														 
             { SBC, 'T4ThreatExists', {{'Air'}, categories.AIR}},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
@@ -871,7 +901,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             -- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },																												
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
@@ -890,7 +920,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             -- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -904,7 +934,7 @@ BuilderGroup {
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             -- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -919,7 +949,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
             ---- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -938,7 +968,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
             -- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -956,7 +986,7 @@ BuilderGroup {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
             -- { SBC, 'IsWaterMap', { true } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -977,7 +1007,7 @@ BuilderGroup {
         Priority = 700,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
 																																					
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'TRANSPORTFOCUS' } },
@@ -997,7 +1027,7 @@ BuilderGroup {
         Priority = 700,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'TRANSPORTFOCUS' } },
@@ -1017,7 +1047,7 @@ BuilderGroup {
         Priority = 700,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -1039,7 +1069,7 @@ BuilderGroup {
             { MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1053,7 +1083,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1067,7 +1097,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1082,7 +1112,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1100,7 +1130,7 @@ BuilderGroup {
         Priority = 1400,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR } },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK)} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 6, 'TRANSPORTFOCUS' } },
@@ -1120,7 +1150,7 @@ BuilderGroup {
         Priority = 1900,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR} },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * (categories.BOMBER + categories.GROUNDATTACK) - categories.TECH1} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 8, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -1140,7 +1170,7 @@ BuilderGroup {
         Priority = 2400,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH3} },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MOBILE * categories.AIR * categories.TECH3 * (categories.BOMBER + categories.GROUNDATTACK)} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 10, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
@@ -1162,7 +1192,7 @@ BuilderGroup {
             { MIBC, 'ArmyNeedsTransports', {} },
             { SBC, 'LessThanGameTime', { 600 } },
             -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.SCOUT}},
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1176,7 +1206,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1190,7 +1220,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH2, TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1205,7 +1235,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 2, 'TRANSPORTFOCUS TECH3' } },
             { MIBC, 'ArmyNeedsTransports', {} },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 2, 'TRANSPORTFOCUS' } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, 'TRANSPORTFOCUS' } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
@@ -1397,7 +1427,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 30, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 30, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
         },
     },
     Builder {
@@ -1528,7 +1558,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { true, 60, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
+            { SBC, 'HaveRatioUnitsWithCategoryAndAlliance', { false, 60, categories.AIR * categories.BOMBER, categories.LAND * categories.MOBILE, 'Enemy'}},
         },
     },
     Builder {

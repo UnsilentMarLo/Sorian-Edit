@@ -455,7 +455,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Nuke Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 950,
+        Priority = 9500,
         InstanceCount = 1,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },

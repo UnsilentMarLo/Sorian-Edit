@@ -36,7 +36,19 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditT1LandFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'SorianEdit T1 Light Tank - Tech 1',
+        BuilderName = 'SorianEdit T1 Tank - init',
+        PlatoonTemplate = 'T1LandDFTank',
+        Priority = 1825,
+        --Priority = 950,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 - categories.SCOUT }},
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'SorianEdit T1 Tank',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 825,
         --Priority = 950,
@@ -45,52 +57,24 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.55 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
         },
         BuilderType = 'Land',
     },
-    -- Priority of tanks at tech 2
-    Builder {
-        BuilderName = 'SorianEdit T1 Light Tank - Tech 2',
-        PlatoonTemplate = 'T1LandDFTank',
-        Priority = 500,
-        BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-            { UCBC, 'UnitCapCheckLess', { .7 } },
-        },
-        BuilderType = 'Land',
-    },
-    -- Priority of tanks at tech 3
-    Builder {
-        BuilderName = 'SorianEdit T1 Light Tank - Tech 3',
-        PlatoonTemplate = 'T1LandDFTank',
-        Priority = 400,
-        BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 60, categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER } },
-            { UCBC, 'UnitCapCheckLess', { .7 } },
-        },
-        BuilderType = 'Land',
-    },
-    -- T1 Artillery, built in a ratio to tanks before tech 3
+    -- T1 Artillery, built in a ratio to tanks before tech 2
     Builder {
         BuilderName = 'SorianEdit T1 Mortar',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 830,
+        Priority = 930,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.1 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { SBC, 'HaveUnitRatioSorian', { 0.4, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH1, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Land',
@@ -98,27 +82,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mortar - Not T1',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 500, --600,
+        Priority = 1300, --600,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { SBC, 'HaveUnitRatioSorian', { 0.4, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH1, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-        },
-        BuilderType = 'Land',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T1 Mortar - tough def',
-        PlatoonTemplate = 'T1LandArtillery',
-        Priority = 835,
-        BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.55 }},
-            { SBC, 'GreaterThanThreatAtEnemyBase', { 'AntiSurface', 50}},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH3' }},
+            { SBC, 'HaveUnitRatioSorian', { 0.4, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH1, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Land',
@@ -140,9 +111,9 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.LAND * categories.ANTIAIR * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Land',
@@ -151,10 +122,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Mobile AA - Response',
         PlatoonTemplate = 'T1LandAA',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 900,
+        Priority = 950,
         BuilderConditions = {
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { TBC, 'HaveLessThreatThanNearby', { 'LocationType', 'AntiAir', 'Air' } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
         },
         BuilderType = 'Land',
     },
@@ -177,6 +148,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
         },
         BuilderType = 'Land',
     },
@@ -184,36 +156,36 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Artillery - water map',
         PlatoonTemplate = 'T1LandArtillery',
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 800,
+        Priority = 1200,
         BuilderConditions = {
-			{ MIBC, 'FactionIndex', {4}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
         },
         BuilderType = 'Land',
     },
 }
 
-------------------------------------------
--- T1 Response Builder
--- Used to respond to the sight of tanks nearby
-------------------------------------------
+-- ------------------------------------------
+-- -- T1 Response Builder
+-- -- Used to respond to the sight of tanks nearby
+-- ------------------------------------------
 BuilderGroup {
     BuilderGroupName = 'SorianEditT1ReactionDF',
     BuildersType = 'FactoryBuilder',
-    Builder {
-        BuilderName = 'SorianEdit T1 Tank Enemy Nearby',
-        PlatoonTemplate = 'T1LandDFTank',
-        Priority = 900,
-        BuilderConditions = {
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-        },
-        BuilderType = 'Land',
-    },
+    -- Builder {
+        -- BuilderName = 'SorianEdit T1 Tank Enemy Nearby',
+        -- PlatoonTemplate = 'T1LandDFTank',
+        -- Priority = 900,
+        -- BuilderConditions = {
+			-- { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+            -- { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
+            -- -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        -- },
+        -- BuilderType = 'Land',
+    -- },
 }
 
 ------------------------------------------
@@ -233,7 +205,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     -- Tech 3 Priority
@@ -247,7 +219,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     -- MML's, built in a ratio to directfire units
@@ -262,7 +234,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     -- Tech 2 priority
@@ -276,7 +248,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     -- Tech 3 priority
@@ -290,7 +262,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     -- Tech 2 priority
@@ -306,7 +278,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.2, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     Builder {
@@ -319,7 +291,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { SBC, 'HaveUnitRatioSorian', { 0.2, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1}},
         },
     },
@@ -345,7 +317,7 @@ BuilderGroup {
         },
     },
     Builder {
-        BuilderName = 'SorianEdit T2 Tank Aeon - Tech 2 - water map',
+        BuilderName = 'SorianEdit T2 Tank - Tech 2 - water map',
         PlatoonTemplate = 'T2AttackTank',
         Priority = 1300,
         BuilderType = 'Land',
@@ -378,10 +350,10 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
-			{ MIBC, 'FactionIndex', {2}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
     },
@@ -395,6 +367,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
     -- Tech 2 priority
@@ -408,6 +381,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
     -- Tech 3 priority
@@ -418,10 +392,10 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-			{ MIBC, 'FactionIndex', { 1, 3, 4, 5 }},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
 }
@@ -443,7 +417,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 0, 'Land', 1 } },
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderType = 'Land',
     },
@@ -465,7 +439,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.2, categories.LAND * categories.ANTIAIR * categories.MOBILE - categories.TECH1, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderType = 'Land',
     },
@@ -526,7 +500,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.LAND * categories.ARTILLERY * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     Builder {
@@ -541,7 +515,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
             { SBC, 'HaveUnitRatioSorian', { 0.4, categories.LAND * categories.ARTILLERY * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     Builder {
@@ -554,7 +528,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
             { SBC, 'HaveUnitRatioSorian', { 0.4, categories.LAND * categories.ANTIAIR * categories.MOBILE * categories.TECH3, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderType = 'Land',
     },
@@ -578,7 +552,7 @@ BuilderGroup {
         BuilderType = 'Land',
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.ENGINEER }},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
@@ -615,7 +589,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.LAND * categories.ANTIAIR * categories.MOBILE - categories.TECH1 - categories.TECH2, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1 - categories.TECH2}},
-            -- --{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+            -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderType = 'Land',
     },
@@ -816,7 +790,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER } },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
 	
@@ -854,54 +828,54 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER } },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
 	
-Builder {
-        BuilderName = 'SorianEdit Amphibious Water Attack - Default',
-        PlatoonTemplate = 'LandAttackLargeSorianEdit amphib',
-        --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
-        PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 1200,
-        InstanceCount = 15,
-        BuilderType = 'Any',
-        BuilderData = {
-            SearchRadius = BaseEnemyZone, --  = 20000,
-            GetTargetsFromBase = false,
-            RequireTransport = false,
-            AggressiveMove = true,
-            AttackEnemyStrength = 120,
-            -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND,
-            MoveToCategories = {
-                categories.MOBILE * categories.LAND,
-                categories.COMMAND,
-                categories.STRUCTURE,
-            },
-            -- WeaponTargetCategories = {
-                -- categories.EXPERIMENTAL * categories.LAND,
-                -- categories.COMMAND,
-                -- categories.INDIRECTFIRE * categories.LAND * categories.TECH3,
-                -- categories.DIRECTFIRE * categories.LAND * categories.TECH3,
-                -- categories.INDIRECTFIRE * categories.LAND,
-                -- categories.DIRECTFIRE * categories.LAND,
-                -- categories.ANTIAIR * categories.LAND,
+-- Builder {
+        -- BuilderName = 'SorianEdit Amphibious Water Attack - Default',
+        -- PlatoonTemplate = 'LandAttackLargeSorianEdit amphib',
+        -- --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
+        -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
+        -- Priority = 1200,
+        -- InstanceCount = 15,
+        -- BuilderType = 'Any',
+        -- BuilderData = {
+            -- SearchRadius = BaseEnemyZone, --  = 20000,
+            -- GetTargetsFromBase = false,
+            -- RequireTransport = false,
+            -- AggressiveMove = true,
+            -- AttackEnemyStrength = 120,
+            -- -- IgnorePathing = false,
+            -- TargetSearchCategory = categories.ALLUNITS - categories.AIR,
+            -- MoveToCategories = {
                 -- categories.MOBILE * categories.LAND,
+                -- categories.COMMAND,
+                -- categories.STRUCTURE,
             -- },
-        },
-        BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER} },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-        },
-    },
+            -- -- WeaponTargetCategories = {
+                -- -- categories.EXPERIMENTAL * categories.LAND,
+                -- -- categories.COMMAND,
+                -- -- categories.INDIRECTFIRE * categories.LAND * categories.TECH3,
+                -- -- categories.DIRECTFIRE * categories.LAND * categories.TECH3,
+                -- -- categories.INDIRECTFIRE * categories.LAND,
+                -- -- categories.DIRECTFIRE * categories.LAND,
+                -- -- categories.ANTIAIR * categories.LAND,
+                -- -- categories.MOBILE * categories.LAND,
+            -- -- },
+        -- },
+        -- BuilderConditions = {
+            -- { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER} },
+			-- -- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        -- },
+    -- },
 	
     Builder {
         BuilderName = 'SorianEdit Frequent Land Attack - Medium',
         PlatoonTemplate = 'LandAttackMediumSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 1000,
+        Priority = 1300,
         InstanceCount = 10,
         BuilderType = 'Any',
         BuilderData = {
@@ -930,7 +904,7 @@ Builder {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 20, categories.MOBILE * categories.LAND - categories.ENGINEER} },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
     Builder {
@@ -938,7 +912,7 @@ Builder {
         PlatoonTemplate = 'LandAttackLargeSorianEdit',
         --PlatoonAddPlans = {'PlatoonCallForHelpAISorian', 'DistressResponseAISorian'},
         PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 1000,
+        Priority = 1400,
         InstanceCount = 50,
         BuilderType = 'Any',
         BuilderData = {
@@ -967,7 +941,7 @@ Builder {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 35, categories.MOBILE * categories.LAND - categories.ENGINEER} },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
     },
 }
@@ -1177,7 +1151,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'GreaterThanGameTimeSeconds', { 600 } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 15, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
-				--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+				---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,
@@ -1221,7 +1195,7 @@ BuilderGroup {
         BuilderConditions = {
                 -- --{ UCBC, 'LessThanGameTimeSeconds', { 720 } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
-				--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+				---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,
@@ -1260,7 +1234,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
-				--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+				---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,
@@ -1299,7 +1273,7 @@ BuilderGroup {
         BuilderConditions = {
                 { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 20, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
-				--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+				---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,
@@ -1340,7 +1314,7 @@ BuilderGroup {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND * (categories.TECH2 + categories.TECH3) - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 1000}},
             { UCBC, 'GreaterThanGameTimeSeconds', { 840 } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND * (categories.TECH2 + categories.TECH3)  - categories.ENGINEER } },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,
@@ -1379,7 +1353,7 @@ BuilderGroup {
             { SBC, 'PoolThreatGreaterThanEnemyBase', {'LocationType', categories.MOBILE * categories.LAND * categories.TECH1 - categories.SCOUT - categories.ENGINEER, 'AntiSurface', 'AntiSurface', 350}},
             { UCBC, 'GreaterThanGameTimeSeconds', { 420 } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND * categories.TECH1  - categories.ENGINEER } },
-			--{ MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			---- { MIBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
         BuilderData = {
             SearchRadius = BaseEnemyZone, --  = 20000,

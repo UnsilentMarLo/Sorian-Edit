@@ -11,7 +11,7 @@ local AIUtils = import('/lua/ai/aiutilities.lua')
 local ScenarioFramework = import('/lua/scenarioframework.lua')
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
 local Utils = import('/lua/utilities.lua')
-local SUtils = import('/lua/AI/sorianutilities.lua')
+local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 local MABC = import('/lua/editor/MarkerBuildConditions.lua')
 local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 
@@ -206,21 +206,21 @@ end
 -- parameter 1: string   locType     = "MAIN"
 --
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-function ReclaimablesInArea(aiBrain, locType, threatValue, threatType, rings)
-    if aiBrain:GetEconomyStoredRatio('MASS') > .5 and aiBrain:GetEconomyStoredRatio('ENERGY') > .5 then
+
+function ReclaimablesInArea(aiBrain, locType)
+    --DUNCAN - was .9. Reduced as dont need to reclaim yet if plenty of mass
+    if aiBrain:GetEconomyStoredRatio('MASS') > .8 then
         return false
     end
 
-    local testRings = rings or 0
+    --DUNCAN - who cares about energy for reclaming?
+    --if aiBrain:GetEconomyStoredRatio('ENERGY') > .9 then
+    --    return false
+    --end
 
-    local ents = AIUtils.AIGetReclaimablesAroundLocation(aiBrain, locType)
-    if not ents or table.getn(ents) == 0 then
-        return false
-    end
-    for k,v in ents do
-        if not aiBrain.BadReclaimables[v] and aiBrain:GetThreatAtPosition(v:GetPosition(), testRings, true, threatType or 'Overall') <= threatValue then
-            return true
-        end
+    local ents = SUtils.AIGetReclaimablesAroundLocationSorianEdit(aiBrain, locType)
+    if ents and table.getn(ents) > 0 then
+        return true
     end
 
     return false
@@ -756,6 +756,9 @@ function AIOutnumbered(aiBrain, bool)
 end
 
 function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryTwo)
+	-- LOG(repr(categoryOne))
+	-- LOG(repr(categoryTwo))
+
     if type(categoryOne) == 'string' then
         categoryOne = ParseEntityCategory(categoryOne)
     end
@@ -764,13 +767,18 @@ function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryT
     end
     local numOne = aiBrain:GetCurrentUnits(categoryOne)
     local numTwo = aiBrain:GetCurrentUnits(categoryTwo)
-	if compareType == '<=' or '<' and numOne / numTwo <= ratio and numTwo < 2 then
+    local numThree = (numOne / numTwo)
+	
+	if (compareType == '<=' or compareType == '<') and numThree <= ratio then
+	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian returned true')
+	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian 1:'..numOne..' ; 2:'..numTwo..' '..numThree..' '..compareType..' '..ratio..'  ')
         return true
-    elseif compareType == '>=' or '>' and numOne / numTwo >= ratio and numOne < 2 then
+    elseif (compareType == '>=' or compareType == '>') and numThree >= ratio then
+	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian returned true')
+	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian 1:'..numOne..' ; 2:'..numTwo..' '..numThree..' '..compareType..' '..ratio..'  ')
         return true
     else
-        error('*AI ERROR: Invalid compare type: ' .. compareType)
-        return false
+		-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian returned false')
+		return false
     end
-    return false
 end

@@ -39,7 +39,7 @@ PlatoonTemplate {
 }
 PlatoonTemplate {
     Name = 'LandAttackLargeSorianEdit amphib',
-    Plan = 'LandAttackSorianEdit',
+    Plan = 'LandAttackAIUveso',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND * (categories.HOVER + categories.AMPHIBIOUS) - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402, 8, 35, 'Attack', 'none' }
     },
@@ -110,7 +110,7 @@ PlatoonTemplate {
     Name = 'T1LandScoutFormSorianEdit',
     Plan = 'ScoutingSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND * categories.SCOUT * categories.TECH1, 1, 2, 'scout', 'none' }
+        { categories.MOBILE * categories.LAND * categories.SCOUT * categories.TECH1, 1, 1, 'scout', 'none' }
     }
 }
 

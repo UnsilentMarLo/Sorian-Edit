@@ -35,7 +35,7 @@ PlatoonTemplate {
 # ==== Artillery platoons ==== #
 PlatoonTemplate {
     Name = 'T2ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorian',
+    Plan = 'SorianEditT3ArtilleryAI',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH2, 1, 1, 'artillery', 'None' }
     }
@@ -43,7 +43,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T3ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorian',
+    Plan = 'SorianEditT3ArtilleryAI',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.TECH3, 1, 1, 'artillery', 'None' }
     }
@@ -51,7 +51,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ArtilleryStructureSorianEdit',
-    Plan = 'ArtilleryAISorian',
+    Plan = 'SorianEditT3ArtilleryAI',
     GlobalSquads = {
         { categories.ARTILLERY * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'artillery', 'None' }
     }

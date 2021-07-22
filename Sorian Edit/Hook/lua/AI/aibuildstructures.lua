@@ -1,6 +1,9 @@
 
 -- SorianEdit: Hook for Replace factory buildtemplate to find a better buildplace not too close to the center of the base
 local AntiSpamList = {}
+local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
+local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
+
 SorianAIExecuteBuildStructure = AIExecuteBuildStructure
 function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder, relative, buildingTemplate, baseTemplate, reference, NearMarkerType)
     -- Only use this with SorianEdit
@@ -47,6 +50,10 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
             NeedTech = 2
         elseif BBC.BUILTBYTIER3COMMANDER or BBC.BUILTBYTIER3ENGINEER then
             NeedTech = 3
+        elseif BBC.BUILTBYTIER1FACTORY or BBC.BUILTBYTIER2FACTORY or BBC.BUILTBYTIER3FACTORY  or BBC.BUILTBYQUANTUMGATE then
+            WARN('* AI-Uveso: AIExecuteBuildStructure: Unit is buildable by factory !!! BuildUnitWithID:'..repr(BuildUnitWithID))
+        else 
+            WARN('* AI-Uveso: AIExecuteBuildStructure: Unknown builder category for BuildUnitWithID:'..repr(BuildUnitWithID))
         end
         -- If we can't find a techlevel for the building we want to build, then return
         if not NeedTech then
@@ -57,6 +64,7 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
         end
         -- get the actual tech level from the builder
         local BC = builder:GetBlueprint().CategoriesHash
+		
         if BC.TECH1 or BC.COMMAND then
             HasTech = 1
         elseif BC.TECH2 then
@@ -64,6 +72,7 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
         elseif BC.TECH3 then
             HasTech = 3
         end
+		
         -- If we can't find a techlevel for the building we  want to build, return
         if not HasTech then
             WARN('*AIExecuteBuildStructure: Can\'t find techlevel for engineer: '..repr(builder:GetBlueprint().BlueprintId))
@@ -131,10 +140,59 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
     local buildingTypeReplace
     local whatToBuildReplace
 
-    -- if we wnat to build a factory use the Seraphim Awassa for a bigger build place
+	-- local BC = builder:GetBlueprint().CategoriesHash
+	-- local IsCommander = false
+	-- if BC.COMMAND then
+		-- IsCommander = true
+	-- end
+	
+    -- if we want to build a factory use the Seraphim Awassa for a bigger build place or if its early game, build the opener factory near a mex
     if buildingType == 'T1LandFactory' or buildingType == 'T1AirFactory' then
-        buildingTypeReplace = 'T4AirExperimental1'
-        whatToBuildReplace = 'xsa0402'
+		local time = GetGameTimeSeconds()
+		if 60 > time then
+            if Utilities.GetIsACU(builder:GetUnitId()) == true then
+				-- Check if the ACU is near the start position:
+				local builderPos = builder:GetPosition()
+				local iArmy = Utilities.GetAIBrainArmyNumber(aiBrain)
+				local distance = Utilities.GetDistanceBetweenPositions(builderPos, MapInfo.PlayerStartPoints[iArmy])
+				local iBuildDistance = builder:GetBlueprint().Economy.MaxBuildDistance
+				
+				if distance <= iBuildDistance * 2 then
+					bSpecialBehaviour = true
+					--First try and find a build location that benefits from mex adjacency:
+					local tBuildAdjacentTo = nil
+					local sBuildingTypeToBuildBy
+					
+					tBuildAdjacentTo = MapInfo.MassNearStart[iArmy]
+					sBuildingTypeToBuildBy = 'T1Resource'
+					
+					local NewLocations = nil
+					
+					if tBuildAdjacentTo == nil or tBuildAdjacentTo[1] == nil then
+						bSpecialBehaviour = false
+					else
+						NewLocations = Utilities.GetAdjacencyLocationForTarget(tBuildAdjacentTo, sBuildingTypeToBuildBy, buildingType, true, aiBrain, true, builderPos, iBuildDistance, false, true)
+						relativeLoc = NewLocations
+						--If can't find any adjacent locations then don't override the baseTemplate:
+						if NewLocations == nil or NewLocations[1] == nil then
+							--Do nothing
+							bSpecialBehaviour = false
+						else
+							local AltLocations = Utilities.ConvertAbsolutePositionToRelative(NewLocations, builderPos)
+							-- Utilities.DrawLocations(AltLocations, builderPos, 1)
+							baseTemplate = Utilities.ConvertLocationsToBuildTemplate({buildingType},AltLocations)
+						end
+					end
+				end
+			LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory position changed')
+			else
+				buildingTypeReplace = 'T4AirExperimental1'
+				whatToBuildReplace = 'xsa0402'
+			end
+		else
+			buildingTypeReplace = 'T4AirExperimental1'
+			whatToBuildReplace = 'xsa0402'
+		end
     elseif buildingType == 'T1SeaFactory' then
         buildingTypeReplace = 'T4SeaExperimental1'
         whatToBuildReplace = 'ues0401'

@@ -225,30 +225,7 @@ Unit = Class(SEUnitClass) {
         local aiBrain = self:GetAIBrain()
 		local Buff = import('/lua/sim/Buff.lua')
 		
-		-- -- local factionIdx = aiBrain:GetFactionIndex()
-		-- if aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive or aiBrain.sorianedit then
-			-- -- for _, unit in aiBrain:GetListOfUnits(categories.COMMAND, false) do
-			-- if EntityCategoryContains(categories.COMMAND, self) then
-				-- if EntityCategoryContains(categories.AEON, self) then
-				-- self:CreateEnhancement(CrysalisBeam)
-				-- self:CreateEnhancement(HeatSink)
-				-- elseif EntityCategoryContains(categories.CYBRAN, self) then
-				-- self:CreateEnhancement(CoolingUpgrade)
-				-- elseif EntityCategoryContains(categories.UEF, self) then
-				-- self:CreateEnhancement(DamageStabilization)
-				-- self:CreateEnhancement(HeavyAntiMatterCannon)
-				-- elseif EntityCategoryContains(categories.SERAPHIM, self) then
-				-- self:CreateEnhancement(BlastAttack)
-				-- self:CreateEnhancement(RateOfFire)
-				-- elseif EntityCategoryContains(categories.NOMADS, self) then
-				-- self:CreateEnhancement(GunUpgrade)
-				-- self:CreateEnhancement(DoubleGuns)
-				-- self:CreateEnhancement(MovementSpeedIncrease)
-				-- end
-			-- end
-		-- end
-		
-		if aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive or aiBrain.sorianedit then
+		if aiBrain.sorianeditadaptivecheat then
 		
 			if not self:GetBlueprint().Intel.RadarRadius >= '1' then
 				Buff.ApplyBuff(self, 'SEIntelCheat')
