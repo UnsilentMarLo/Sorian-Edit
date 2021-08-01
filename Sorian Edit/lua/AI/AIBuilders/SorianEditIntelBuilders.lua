@@ -174,15 +174,25 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditLandScoutFactoryBuilders',
     BuildersType = 'FactoryBuilder',
     Builder {
-        BuilderName = 'SorianEdit T1 Land Scout Initial',
+        BuilderName = 'SorianEdit T1 Land Scout Initial 1',
         PlatoonTemplate = 'T1LandScout',
-        Priority = 1875,
+        Priority = 2875,
+        BuilderConditions = {
+            { SBC, 'LessThanGameTime', { 150 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.LAND * categories.MOBILE * categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
+        BuilderName = 'SorianEdit T1 Land Scout Initial 2',
+        PlatoonTemplate = 'T1LandScout',
+        Priority = 2875,
         BuilderConditions = {
             { SBC, 'LessThanGameTime', { 300 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.LAND * categories.MOBILE - categories.SCOUT - categories.ENGINEER }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY - categories.TECH1 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.MOBILE - categories.SCOUT - categories.ENGINEER }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
         },
         BuilderType = 'Land',
@@ -190,7 +200,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Scout Initial - 10 x 10',
         PlatoonTemplate = 'T1LandScout',
-        Priority = 875,
+        Priority = 1875,
         BuilderConditions = {
             { SBC, 'MapLessThan', {1000, 1000} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -256,12 +266,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Land Scout Form init',
         BuilderConditions = {
             { SBC, 'LessThanGameTime', { 300 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND - categories.TECH1 }},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonTemplate = 'T1LandScoutFormSorianEdit',
-        Priority = 10000, --725,
-        InstanceCount = 30,
+        Priority = 100000, --725,
+        InstanceCount = 2,
         BuilderData = {
             UseCloak = true,
         },
@@ -272,11 +281,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Land Scout Form',
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY * categories.AIR * categories.TECH3 }},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
         PlatoonTemplate = 'T1LandScoutFormSorianEdit',
-        Priority = 10000, --725,
+        Priority = 100000, --725,
         InstanceCount = 30,
         BuilderData = {
             UseCloak = true,

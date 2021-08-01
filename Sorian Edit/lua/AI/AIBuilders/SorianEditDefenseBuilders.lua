@@ -2764,7 +2764,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T2 Air Staging Engineer',
-        PlatoonTemplate = 'T1EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 1500,
         BuilderConditions = {
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.AIRSTAGINGPLATFORM * categories.STRUCTURE}},

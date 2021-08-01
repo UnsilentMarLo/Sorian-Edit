@@ -47,12 +47,9 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 1,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -65,12 +62,9 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 2,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 220 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -83,9 +77,6 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 3,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 540 } },
@@ -103,12 +94,9 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 1,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.80, 0.90 } },
         },
         BuilderData = {
@@ -122,9 +110,6 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 3,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
@@ -141,9 +126,6 @@ BuilderGroup {
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
         InstanceCount = 6,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
@@ -184,6 +166,28 @@ BuilderGroup {
             },
         BuilderType = 'Any',
     },
+    Builder {
+        BuilderName = 'SorianEdit Emergency T1 Factory Upgrade Time',
+        PlatoonTemplate = 'T1LandFactoryUpgrade',
+        Priority = 15000,
+        InstanceCount = 1,
+        BuilderConditions = {
+				{ UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
+            },
+        BuilderType = 'Any',
+    },
+    Builder {
+        BuilderName = 'SorianEdit Emergency T2 Factory Upgrade Time',
+        PlatoonTemplate = 'T2LandFactoryUpgrade',
+        Priority = 15000,
+        InstanceCount = 1,
+        BuilderConditions = {
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH3 * categories.RESEARCH } },
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 1100 } },
+            },
+        BuilderType = 'Any',
+    },
 }
 
 -- ================================= --
@@ -198,7 +202,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 4,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
@@ -213,7 +217,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 4,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
@@ -228,7 +232,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 4,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
@@ -249,7 +253,7 @@ BuilderGroup {
         InstanceCount = 4,
         FormDebugFunction = nil,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
@@ -513,7 +517,7 @@ BuilderGroup {
         FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.RESEARCH - categories.TECH1 } },
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 6,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 200 } },
             },

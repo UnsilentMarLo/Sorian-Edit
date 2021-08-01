@@ -1851,7 +1851,7 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
         MassStorageRatio = aiBrain:GetEconomyStoredRatio('MASS')
         EnergyStorageRatio = aiBrain:GetEconomyStoredRatio('ENERGY')
         -- 1==1 is always true, i use this to clean up the base from wreckages even if we have full eco.
-        if (MassStorageRatio < 1.00 or EnergyStorageRatio < 1.00) and not aiBrain.HasParagon then
+        if (MassStorageRatio < 0.50 or EnergyStorageRatio < 1.00) and not aiBrain.HasParagon then
             --LOG('Searching for reclaimables')
             local x1 = SelfPos[1]-scanrange
             local y1 = SelfPos[3]-scanrange
@@ -3309,4 +3309,110 @@ function GetIsACU(UnitID)
     else
         return false
     end
+end
+
+function AIGetMassMarkerLocations(aiBrain, includeWater, waterOnly)
+    local markerList = {}
+        local markers = ScenarioUtils.GetMarkers()
+        if markers then
+            for k, v in markers do
+                if v.type == 'Mass' then
+                    if waterOnly then
+                        if PositionInWater(v.position) then
+                            table.insert(markerList, {Position = v.position, Name = k})
+                        end
+                    elseif includeWater then
+                        table.insert(markerList, {Position = v.position, Name = k})
+                    else
+                        if not PositionInWater(v.position) then
+                            table.insert(markerList, {Position = v.position, Name = k})
+                        end
+                    end
+                end
+            end
+        end
+    return markerList
+end
+
+-- This is Sproutos function 
+function PositionInWater(pos)
+	return GetTerrainHeight(pos[1], pos[3]) < GetSurfaceHeight(pos[1], pos[3])
+end
+
+function AIFindBrainTargetInCloseRangeRNG(aiBrain, platoon, position, squad, maxRange, targetQueryCategory, TargetSearchCategory, enemyBrain)
+    if type(TargetSearchCategory) == 'string' then
+        TargetSearchCategory = ParseEntityCategory(TargetSearchCategory)
+    end
+    local enemyIndex = false
+    local MyArmyIndex = aiBrain:GetArmyIndex()
+    if enemyBrain then
+        enemyIndex = enemyBrain:GetArmyIndex()
+    end
+    local RangeList = {
+        [1] = 10,
+        [2] = maxRange,
+        [3] = maxRange + 30,
+    }
+    local TargetUnit = false
+    local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, baseTargetRange, canAttack
+    for _, range in RangeList do
+        if not position then
+            WARN('* AI-Uveso: AIFindNearestCategoryTargetInCloseRange: position is empty')
+            return false
+        end
+        if not range then
+            WARN('* AI-Uveso: AIFindNearestCategoryTargetInCloseRange: range is empty')
+            return false
+        end
+        if not TargetSearchCategory then
+            WARN('* AI-Uveso: AIFindNearestCategoryTargetInCloseRange: TargetSearchCategory is empty')
+            return false
+        end
+        TargetsInRange = GetUnitsAroundPoint(aiBrain, targetQueryCategory, position, range, 'Enemy')
+        --DrawCircle(position, range, '0000FF')
+        for _, v in TargetSearchCategory do
+            category = v
+            if type(category) == 'string' then
+                category = ParseEntityCategory(category)
+            end
+            distance = maxRange
+            --LOG('* AIFindNearestCategoryTargetInRange: numTargets '..table.getn(TargetsInRange)..'  ')
+            for num, Target in TargetsInRange do
+                if Target.Dead or Target:BeenDestroyed() then
+                    continue
+                end
+                TargetPosition = Target:GetPosition()
+                EnemyStrength = 0
+                -- check if we have a special player as enemy
+                if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then continue end
+                -- check if the Target is still alive, matches our target priority and can be attacked from our platoon
+                if not Target.Dead and not Target.CaptureInProgress and EntityCategoryContains(category, Target) and platoon:CanAttackTarget(squad, Target) then
+                    -- yes... we need to check if we got friendly units with GetUnitsAroundPoint(_, _, _, 'Enemy')
+                    if not IsEnemy( MyArmyIndex, Target:GetAIBrain():GetArmyIndex() ) then continue end
+                    if Target.ReclaimInProgress then
+                        --WARN('* AIFindNearestCategoryTargetInRange: ReclaimInProgress !!! Ignoring the target.')
+                        continue
+                    end
+                    if Target.CaptureInProgress then
+                        --WARN('* AIFindNearestCategoryTargetInRange: CaptureInProgress !!! Ignoring the target.')
+                        continue
+                    end
+                    targetRange = VDist2(position[1],position[3],TargetPosition[1],TargetPosition[3])
+                    -- check if the target is in range of the unit and in range of the base
+                    if targetRange < distance then
+                        TargetUnit = Target
+                        distance = targetRange
+                    end
+                end
+            end
+            if TargetUnit then
+                --LOG('Target Found in target aquisition function')
+                return TargetUnit
+            end
+           coroutine.yield(10)
+        end
+        coroutine.yield(1)
+    end
+    --LOG('NO Target Found in target aquisition function')
+    return TargetUnit
 end

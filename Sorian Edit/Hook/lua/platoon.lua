@@ -25,7 +25,7 @@
 	
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
-local HERODEBUGSorianEdit = true
+local HERODEBUGSorianEdit = false
 
 
 
@@ -1162,10 +1162,10 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         -- don't use a transporter if we have a path and the target is closer then 100 map units
         if path and VDist2Sq( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) < 125000 then
-            LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: no trasnporter used for target distance '..VDist2( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) )
+            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: no trasnporter used for target distance '..VDist2( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) )
         -- use a transporter if we don't have a path, or if we want a transport
         elseif not ExperimentalInPlatoon and ((not path and reason ~= 'NoGraph') or WantsTransport)  then
-            LOG('* AI-SorianEdit: * MoveToLocationInclTransport: SendPlatoonWithTransportsNoCheck')
+            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransport: SendPlatoonWithTransportsNoCheck')
             if HERODEBUGSorianEdit then
                 self:RenamePlatoon('SendPlatoonWithTransportsNoCheck')
                 coroutine.yield(1)
@@ -6541,4 +6541,389 @@ Platoon = Class(SorianEditPlatoonClass) {
         self:ManagerEngineerAssistAI()
     end,
 	
+    MassRaidRNG = function(self)
+        local aiBrain = self:GetBrain()
+        --LOG('Platoon ID is : '..self:GetPlatoonUniqueName())
+        local platLoc = GetPlatoonPosition(self)
+
+        if not PlatoonExists(aiBrain, self) or not platLoc then
+            return
+        end
+
+        -----------------------------------------------------------------------
+        -- Platoon Data
+        -----------------------------------------------------------------------
+        -- Include mass markers that are under water
+        local includeWater = self.PlatoonData.IncludeWater or false
+
+        local waterOnly = self.PlatoonData.WaterOnly or false
+
+        -- Minimum distance when looking for closest
+        local avoidClosestRadius = self.PlatoonData.AvoidClosestRadius or 0
+
+        -- if true, look to guard highest threat, otherwise,
+        -- guard the lowest threat specified
+        local bFindHighestThreat = self.PlatoonData.FindHighestThreat or false
+
+        -- minimum threat to look for
+        local minThreatThreshold = self.PlatoonData.MinThreatThreshold or -1
+        -- maximum threat to look for
+        local maxThreatThreshold = self.PlatoonData.MaxThreatThreshold  or 99999999
+
+        -- Avoid bases (true or false)
+        local bAvoidBases = self.PlatoonData.AvoidBases or false
+
+        -- Radius around which to avoid the main base
+        local avoidBasesRadius = self.PlatoonData.AvoidBasesRadius or 0
+
+        -- Use Aggresive Moves Only
+        local bAggroMove = self.PlatoonData.AggressiveMove or false
+
+        local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
+
+        local maxPathDistance = self.PlatoonData.MaxPathDistance or 200
+
+        -----------------------------------------------------------------------
+        local markerLocations
+        local enemyRadius = 40
+        local MaxPlatoonWeaponRange
+        local atkPri = {}
+        local categoryList = {}
+
+        AIAttackUtils.GetMostRestrictiveLayer(self)
+        self:SetPlatoonFormationOverride(PlatoonFormation)
+        local platoonUnits = GetPlatoonUnits(self)
+        if platoonUnits > 0 then
+            for k, v in platoonUnits do
+                if not v.Dead then
+                    for _, weapon in v:GetBlueprint().Weapon or {} do
+                        -- unit can have MaxWeaponRange entry from the last platoon
+                        if not v.MaxWeaponRange or weapon.MaxRadius > v.MaxWeaponRange then
+                            -- save the weaponrange 
+                            v.MaxWeaponRange = weapon.MaxRadius * 0.9 -- maxrange minus 10%
+                            -- save the weapon balistic arc, we need this later to check if terrain is blocking the weapon line of sight
+                            if weapon.BallisticArc == 'RULEUBA_LowArc' then
+                                v.WeaponArc = 'low'
+                            elseif weapon.BallisticArc == 'RULEUBA_HighArc' then
+                                v.WeaponArc = 'high'
+                            else
+                                v.WeaponArc = 'none'
+                            end
+                        end
+                        if not MaxPlatoonWeaponRange or MaxPlatoonWeaponRange < v.MaxWeaponRange then
+                            MaxPlatoonWeaponRange = v.MaxWeaponRange
+                        end
+                    end
+                    if v:TestToggleCaps('RULEUTC_StealthToggle') then
+                        v:SetScriptBit('RULEUTC_StealthToggle', false)
+                    end
+                    if v:TestToggleCaps('RULEUTC_CloakToggle') then
+                        v:SetScriptBit('RULEUTC_CloakToggle', false)
+                    end
+                    -- prevent units from reclaiming while attack moving
+                    v:RemoveCommandCap('RULEUCC_Reclaim')
+                    v:RemoveCommandCap('RULEUCC_Repair')
+                    v.smartPos = {0,0,0}
+                    if not v.MaxWeaponRange then
+                        WARN('Scanning: unit ['..repr(v.UnitId)..'] has no MaxWeaponRange - '..repr(self.BuilderName))
+                    end
+                end
+            end
+        end
+
+        if self.PlatoonData.TargetSearchPriorities then
+            --LOG('TargetSearch present for '..self.BuilderName)
+            for k,v in self.PlatoonData.TargetSearchPriorities do
+                table.insert(atkPri, v)
+            end
+        else
+            if self.PlatoonData.PrioritizedCategories then
+                for k,v in self.PlatoonData.PrioritizedCategories do
+                    table.insert(atkPri, v)
+                end
+            end
+        end
+        if self.PlatoonData.PrioritizedCategories then
+            for k,v in self.PlatoonData.PrioritizedCategories do
+                table.insert(categoryList, v)
+            end
+        end
+
+        markerLocations = SUtils.AIGetMassMarkerLocations(aiBrain, includeWater, waterOnly)
+        
+        local bestMarker = false
+
+        if not self.LastMarker then
+            self.LastMarker = {nil,nil}
+        end
+
+        -- look for a random marker
+        --[[Marker table examples for better understanding what is happening below 
+        info: Marker Current{ Name="Mass7", Position={ 189.5, 24.240200042725, 319.5, type="VECTOR3" } }
+        info: Marker Last{ { 374.5, 20.650400161743, 154.5, type="VECTOR3" } }
+        ]] 
+
+        local bestMarkerThreat = 0
+        if not bFindHighestThreat then
+            bestMarkerThreat = 99999999
+        end
+
+        local bestDistSq = 99999999
+        -- find best threat at the closest distance
+        for _,marker in markerLocations do
+            local markerThreat
+            local enemyThreat
+            markerThreat = GetThreatAtPosition(aiBrain, marker.Position, 0, true, 'Economy')
+            if self.MovementLayer == 'Water' then
+                enemyThreat = GetThreatAtPosition(aiBrain, marker.Position, 1, true, 'AntiSub')
+            else
+                enemyThreat = GetThreatAtPosition(aiBrain, marker.Position, 1, true, 'AntiSurface')
+            end
+            --LOG('Best pre calculation marker threat is '..markerThreat..' at position'..repr(marker.Position))
+            --LOG('Surface Threat at marker is '..enemyThreat..' at position'..repr(marker.Position))
+            if enemyThreat > 1 and markerThreat then
+                markerThreat = markerThreat / enemyThreat
+            end
+            --LOG('Best marker threat is '..markerThreat..' at position'..repr(marker.Position))
+            local distSq = VDist2Sq(marker.Position[1], marker.Position[3], platLoc[1], platLoc[3])
+
+            if markerThreat >= minThreatThreshold and markerThreat <= maxThreatThreshold then
+                if self:AvoidsBases(marker.Position, bAvoidBases, avoidBasesRadius) then
+                    if self.IsBetterThreat(bFindHighestThreat, markerThreat, bestMarkerThreat) then
+                        bestDistSq = distSq
+                        bestMarker = marker
+                        bestMarkerThreat = markerThreat
+                    elseif markerThreat == bestMarkerThreat then
+                        if distSq < bestDistSq then
+                            bestDistSq = distSq
+                            bestMarker = marker
+                            bestMarkerThreat = markerThreat
+                        end
+                    end
+                end
+            end
+        end
+        --[[
+        if waterOnly then
+            if bestMarker then
+                LOG('Water based best marker is  '..repr(bestMarker))
+                LOG('Best marker threat is '..bestMarkerThreat)
+            else
+                LOG('Water based no best marker')
+            end
+        end]]
+
+        --LOG('* AI-RNG: Best Marker Selected is at position'..repr(bestMarker.Position))
+        
+        if bestMarker.Position == nil and GetGameTimeSeconds() > 900 and self.MovementLayer ~= 'Water' then
+            --LOG('Best Marker position was nil and game time greater than 15 mins, switch to hunt ai')
+            return self:HuntAIPATHRNG()
+        elseif bestMarker.Position == nil then
+            --LOG('Best Marker position was nil, select random')
+            if table.getn(markerLocations) <= 2 then
+                self.LastMarker[1] = nil
+                self.LastMarker[2] = nil
+            end
+            for _,marker in RandomIter(markerLocations) do
+                if table.getn(markerLocations) <= 2 then
+                    self.LastMarker[1] = nil
+                     self.LastMarker[2] = nil
+                end
+                if self:AvoidsBases(marker.Position, bAvoidBases, avoidBasesRadius) then
+                    if self.LastMarker[1] and marker.Position[1] == self.LastMarker[1][1] and marker.Position[3] == self.LastMarker[1][3] then
+                        continue
+                    end
+                    if self.LastMarker[2] and marker.Position[1] == self.LastMarker[2][1] and marker.Position[3] == self.LastMarker[2][3] then
+                        continue
+                    end
+                    bestMarker = marker
+                    break
+                end
+            end
+        end
+
+        local usedTransports = false
+
+        if bestMarker then
+            self.LastMarker[2] = self.LastMarker[1]
+            self.LastMarker[1] = bestMarker.Position
+            --LOG("GuardMarker: Attacking " .. bestMarker.Name)
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
+            local success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingEx(self, bestMarker.Position)
+            IssueClearCommands(GetPlatoonUnits(self))
+            if path then
+                local position = GetPlatoonPosition(self)
+                if not success or VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 512 then
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, true)
+                elseif VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 256 then
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, false)
+                end
+                if usedTransports then
+                    --LOG('usedTransports is true')
+                end
+                if not usedTransports then
+                    local pathLength = table.getn(path)
+                    for i=1, pathLength - 1 do
+                        --LOG('* AI-RNG: * MassRaidRNG: moving to destination. i: '..i..' coords '..repr(path[i]))
+                        if bAggroMove then
+                            self:AggressiveMoveToLocation(path[i])
+                        else
+                            self:MoveToLocation(path[i], false)
+                        end
+                        --LOG('* AI-RNG: * MassRaidRNG: moving to Waypoint')
+                        local PlatoonPosition
+                        local Lastdist
+                        local dist
+                        local Stuck = 0
+                        while PlatoonExists(aiBrain, self) do
+                            PlatoonPosition = GetPlatoonPosition(self) or nil
+                            if not PlatoonPosition then break end
+                            dist = VDist2Sq(path[i][1], path[i][3], PlatoonPosition[1], PlatoonPosition[3])
+                            -- are we closer then 15 units from the next marker ? Then break and move to the next marker
+                            if dist < 400 then
+                                -- If we don't stop the movement here, then we have heavy traffic on this Map marker with blocking units
+                                self:Stop()
+                                break
+                            end
+                            -- Do we move ?
+                            if Lastdist ~= dist then
+                                Stuck = 0
+                                Lastdist = dist
+                            -- No, we are not moving, wait 100 ticks then break and use the next weaypoint
+                            else
+                                Stuck = Stuck + 1
+                                if Stuck > 15 then
+                                    --LOG('* AI-RNG: * MassRaidRNG: Stucked while moving to Waypoint. Stuck='..Stuck..' - '..repr(path[i]))
+                                    self:Stop()
+                                    break
+                                end
+                            end
+                            if bAggroMove then
+                                local enemyUnitCount = GetNumUnitsAroundPoint(aiBrain, categories.MOBILE * categories.LAND - categories.SCOUT - categories.ENGINEER, PlatoonPosition, enemyRadius, 'Enemy')
+                                if enemyUnitCount > 0 then
+                                    -- local target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.NAVAL - categories.AIR - categories.SCOUT - categories.WALL)
+                                    local target = SUtils.AIFindBrainTargetInCloseRangeRNG(aiBrain, self, PlatoonPosition, 'Attack', enemyRadius, categories.ALLUNITS - categories.NAVAL - categories.AIR - categories.SCOUT - categories.WALL, atkPri, false)
+                                    local attackSquad = self:GetSquadUnits('Attack')
+                                    IssueClearCommands(attackSquad)
+                                    while PlatoonExists(aiBrain, self) do
+                                        if target and not target.Dead then
+                                            local targetPosition = target:GetPosition()
+                                            microCap = 50
+                                            for _, unit in attackSquad do
+                                                microCap = microCap - 1
+                                                if microCap <= 0 then break end
+                                                if unit.Dead then continue end
+                                                if not unit.MaxWeaponRange then
+                                                    continue
+                                                end
+                                                unitPos = unit:GetPosition()
+                                                alpha = math.atan2 (targetPosition[3] - unitPos[3] ,targetPosition[1] - unitPos[1])
+                                                x = targetPosition[1] - math.cos(alpha) * (unit.MaxWeaponRange or MaxPlatoonWeaponRange)
+                                                y = targetPosition[3] - math.sin(alpha) * (unit.MaxWeaponRangeor or MaxPlatoonWeaponRange)
+                                                smartPos = { x, GetTerrainHeight( x, y), y }
+                                                -- check if the move position is new or target has moved
+                                                if VDist2( smartPos[1], smartPos[3], unit.smartPos[1], unit.smartPos[3] ) > 0.7 or unit.TargetPos ~= targetPosition then
+                                                    -- clear move commands if we have queued more than 4
+                                                    if table.getn(unit:GetCommandQueue()) > 2 then
+                                                        IssueClearCommands({unit})
+                                                        coroutine.yield(3)
+                                                    end
+                                                    -- if our target is dead, jump out of the "for _, unit in self:GetPlatoonUnits() do" loop
+                                                    IssueMove({unit}, smartPos )
+                                                    if target.Dead then break end
+                                                    IssueAttack({unit}, target)
+                                                    --unit:SetCustomName('Fight micro moving')
+                                                    unit.smartPos = smartPos
+                                                    unit.TargetPos = targetPosition
+                                                -- in case we don't move, check if we can fire at the target
+                                                else
+                                                    local dist = VDist2( unit.smartPos[1], unit.smartPos[3], unit.TargetPos[1], unit.TargetPos[3] )
+                                                    if aiBrain:CheckBlockingTerrain(unitPos, targetPosition, unit.WeaponArc) then
+                                                        --unit:SetCustomName('Fight micro WEAPON BLOCKED!!! ['..repr(target.UnitId)..'] dist: '..dist)
+                                                        IssueMove({unit}, targetPosition )
+                                                    else
+                                                        --unit:SetCustomName('Fight micro SHOOTING ['..repr(target.UnitId)..'] dist: '..dist)
+                                                    end
+                                                end
+                                            end
+                                        else
+                                            break
+                                        end
+                                    WaitTicks(10)
+                                    end
+                                end
+                            end
+                            WaitTicks(15)
+                        end
+                    end
+                end
+            elseif (not path and reason == 'NoPath') then
+                --LOG('Guardmarker requesting transports')
+                usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, true)
+                --DUNCAN - if we need a transport and we cant get one the disband
+                if not usedTransports then
+                    --LOG('MASSRAID no transports')
+                    self:PlatoonDisband()
+                    return
+                end
+                --LOG('Guardmarker found transports')
+            else
+                --LOG('Path error in MASSRAID')
+                self:PlatoonDisband()
+                return
+            end
+            if usedTransports then
+                --LOG('usedTransports is true')
+            end
+
+            if (not path or not success) and not usedTransports then
+                --LOG('not path or not success or not usedTransports MASSRAID')
+                self:PlatoonDisband()
+                return
+            end
+            
+            if aiBrain:CheckBlockingTerrain(GetPlatoonPosition(self), bestMarker.Position, 'none') then
+                self:MoveToLocation(bestMarker.Position, false)
+            else
+                self:AggressiveMoveToLocation(bestMarker.Position)
+            end
+
+            -- wait till we get there
+            local oldPlatPos = GetPlatoonPosition(self)
+            local StuckCount = 0
+            repeat
+                WaitTicks(50)
+                platLoc = GetPlatoonPosition(self)
+                if VDist3(oldPlatPos, platLoc) < 1 then
+                    StuckCount = StuckCount + 1
+                else
+                    StuckCount = 0
+                end
+                if StuckCount > 5 then
+                    --LOG('MassRaidAI stuck count over 5, restarting')
+                    return self:MassRaidRNG()
+                end
+                oldPlatPos = platLoc
+            until VDist2Sq(platLoc[1], platLoc[3], bestMarker.Position[1], bestMarker.Position[3]) < 64 or not PlatoonExists(aiBrain, self)
+
+            -- we're there... wait here until we're done
+            local numGround = GetNumUnitsAroundPoint(aiBrain, (categories.LAND + categories.NAVAL + categories.STRUCTURE), bestMarker.Position, 15, 'Enemy')
+            while numGround > 0 and PlatoonExists(aiBrain, self) do
+                WaitTicks(Random(50,100))
+                --LOG('Still enemy stuff around marker position')
+                numGround = GetNumUnitsAroundPoint(aiBrain, (categories.LAND + categories.NAVAL + categories.STRUCTURE), bestMarker.Position, 15, 'Enemy')
+            end
+
+            if not PlatoonExists(aiBrain, self) then
+                return
+            end
+            --LOG('MassRaidAI restarting')
+            return self:MassRaidRNG()
+        else
+            -- no marker found, disband!
+            --LOG('no marker found, disband MASSRAID')
+            self:PlatoonDisband()
+        end
+    end,
+
 }
