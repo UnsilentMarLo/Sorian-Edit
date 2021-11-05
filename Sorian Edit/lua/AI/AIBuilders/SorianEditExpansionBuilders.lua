@@ -42,8 +42,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Rush',
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
-        Priority = 900,
-        InstanceCount = 1,
+        Priority = 1500,
+        InstanceCount = 2,
         BuilderConditions = {
             { SBC, 'LessThanGameTime', { 600 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },

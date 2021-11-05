@@ -30,6 +30,9 @@ BaseBuilderTemplate {
         -- -- Build Mass high pri at this base
         -- 'Sorianedit Mass Builders', 
 
+        -- -- Extractors
+        -- 'SorianEditTime Exempt Extractor Upgrades',
+
         -- 'SorianEditT3ACUNukeDefenses',
         'SorianEditT3NukeDefensesFormer',
 
@@ -100,7 +103,7 @@ BaseBuilderTemplate {
     },
     ExpansionFunction = function(aiBrain, location, markerType)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == 'Naval Area' and (personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit') then
+        if markerType == 'Naval Area' or 'Large Naval Area' and personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit' then
             LOG('--------------------- M-ExpansionFunction Naval Base '..personality)
             return 15000, 'sorianedit'
         else

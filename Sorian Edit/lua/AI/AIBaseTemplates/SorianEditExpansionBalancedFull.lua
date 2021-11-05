@@ -40,13 +40,18 @@ BaseBuilderTemplate {
         -- Build Mass high pri at this base
         'Sorianedit Mass Builders',
         'Sorianedit Mass Builders Tech 2',
-        -- 'Sorianedit Mass Builders Tech 3',
+        'Sorianedit Mass Builders Tech 3',
         'Sorianedit MassFab Builders',
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
 
         'SorianEditT3NukeDefensesFormer',
+
+        -- Build Mass high pri at this base
+        'Sorianedit Mass Builders',
+        'Sorianedit Mass Builders Tech 2',
+        'Sorianedit Mass Builders Tech 3',
 
         -- ==== EXPANSION ==== --
         'SorianEditEngineerExpansionBuildersFull',
@@ -169,6 +174,7 @@ BaseBuilderTemplate {
         -- 'SorianEditT3ArtyBuildersHighPrio',
         -- 'SorianEditT2FirebaseBuildersHighPrio',
         -- 'SorianEditT3FBBuildersHighPrio',
+        -- 'SorianEdit Extractor Upgrades Strategy',
         -- 'SorianEditBalancedUpgradeBuildersExpansionStrategy',
         -- 'SorianEditEngineerExpansionBuildersStrategy',
         -- 'SorianEditACUUpgrades - Rush',

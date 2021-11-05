@@ -778,7 +778,6 @@ function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryT
 	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian 1:'..numOne..' ; 2:'..numTwo..' '..numThree..' '..compareType..' '..ratio..'  ')
         return true
     else
-		-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian 1:'..numOne..' ; 2:'..numTwo..' '..numThree..' '..compareType..' '..ratio..'  ')
 		-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian returned false')
 		return false
     end
