@@ -581,7 +581,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.16, 0.16 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.2, 0.5 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2'}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2}},
 			-- { UCBC, 'HaveUnitRatioAtLocationRadiusVersusEnemy', { 0.6, 'LocationType', 100, categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE, '<=', categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -1706,7 +1706,7 @@ BuilderGroup {
         BuilderData = {
             NumAssistees = 5,
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH2',
+                AdjacencyCategory = categories.ENERGYPRODUCTION * categories.TECH2,
                 AdjacencyDistance = 100,
                 AvoidCategory = 'SHIELD STRUCTURE',
                 maxUnits = 2,
@@ -1735,7 +1735,7 @@ BuilderGroup {
         BuilderData = {
             NumAssistees = 5,
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH2',
+                AdjacencyCategory = categories.ENERGYPRODUCTION * categories.TECH2,
                 AdjacencyDistance = 100,
                 AvoidCategory = 'SHIELD STRUCTURE',
                 maxUnits = 2,
@@ -2066,7 +2066,7 @@ BuilderGroup {
         BuilderData = {
             NumAssistees = 5,
             Construction = {
-                AdjacencyCategory = 'ENERGYPRODUCTION TECH3',
+                AdjacencyCategory = categories.ENERGYPRODUCTION * categories.TECH3,
                 AdjacencyDistance = 100,
                 AvoidCategory = 'SHIELD STRUCTURE',
                 maxUnits = 1,
@@ -2518,7 +2518,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.16, 0.16 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 }},
 			-- { UCBC, 'HaveUnitRatioAtLocationRadiusVersusEnemy', { 0.6, 'LocationType', 100, categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE, '<=', categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE } },
         },
         BuilderType = 'Any',
@@ -2570,7 +2570,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.16, 0.16 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 }},
 			-- { UCBC, 'HaveUnitRatioAtLocationRadiusVersusEnemy', { 0.6, 'LocationType', 100, categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE, '<=', categories.MOBILE * categories.DIRECTFIRE + categories.INDIRECTFIRE } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -2879,7 +2879,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.16, 0.16 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH2' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 }},
         },
         BuilderType = 'Any',
         BuilderData = {

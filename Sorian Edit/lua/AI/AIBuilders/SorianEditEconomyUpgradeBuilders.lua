@@ -52,7 +52,8 @@ BuilderGroup {
         end,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.MASSEXTRACTION * categories.TECH1 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 80 } },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -70,25 +71,7 @@ BuilderGroup {
         end,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 220 } },
-        },
-        BuilderData = {
-            AIPlan = 'ExtractorUpgradeAISorian',
-        },
-        BuilderType = 'Any',
-    },
-	
-    Builder {
-        BuilderName = 'SorianEdit Extractor upgrade - Multiple2',
-        PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
-        Priority = 40000,
-        InstanceCount = 3,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
-        FormRadius = 10000,
-        BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 540 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 240 } },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -102,52 +85,15 @@ BuilderGroup {
         BuilderName = 'SorianEdit Extractor upgrade - Overflow',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
-        InstanceCount = 1,
+        InstanceCount = 4,
         FormDebugFunction = function()
             LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
         end,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+            { EBC, 'GreaterThanEconTrend', { 0.1, 0.1 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.80, 0.90 } },
-        },
-        BuilderData = {
-            AIPlan = 'ExtractorUpgradeAISorian',
-        },
-        BuilderType = 'Any',
-    },
-
-    Builder {
-        BuilderName = 'SorianEdit Extractor upgrade - Multiple - Overflow',
-        PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
-        Priority = 40000,
-        InstanceCount = 3,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
-        FormRadius = 10000,
-        BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.90, 1.00 } },
-        },
-        BuilderData = {
-            AIPlan = 'ExtractorUpgradeAISorian',
-        },
-        BuilderType = 'Any',
-    },
-	
-    Builder {
-        BuilderName = 'SorianEdit Extractor upgrade - Multiple2 - Overflow',
-        PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
-        Priority = 40000,
-        InstanceCount = 6,
-        FormDebugFunction = function()
-            LOG('* AI-SorianEdit: Extractor Upgrade Platoon formed' ) 
-        end,
-        FormRadius = 10000,
-        BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.99, 1.00 } },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',

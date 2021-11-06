@@ -219,57 +219,57 @@ end
 
 Unit = Class(SEUnitClass) {
 
-    OnStopBeingBuilt = function(self,builder,layer, ...)
-		SEUnitClass.OnStopBeingBuilt(self,builder,layer, unpack(arg))
-		local bp = self:GetBlueprint()
-        local aiBrain = self:GetAIBrain()
-		local Buff = import('/lua/sim/Buff.lua')
+    -- OnStopBeingBuilt = function(self,builder,layer, ...)
+		-- SEUnitClass.OnStopBeingBuilt(self,builder,layer, unpack(arg))
+		-- local bp = self:GetBlueprint()
+        -- local aiBrain = self:GetAIBrain()
+		-- local Buff = import('/lua/sim/Buff.lua')
 		
-		if aiBrain.sorianeditadaptivecheat then
+		-- if aiBrain.sorianeditadaptivecheat then
 		
-			if not self:GetBlueprint().Intel.RadarRadius >= '1' then
-				Buff.ApplyBuff(self, 'SEIntelCheat')
-			end
-			
-			if not self:GetBlueprint().Intel.OmniRadius >= '1' then
-				Buff.ApplyBuff(self, 'SEIntelCheat2')
-			end
-			
-			if self:GetBlueprint().Physics.MotionType == 'RULEUMT_Air' then
-				Buff.ApplyBuff(self, 'MoveBuffAir')
-			end
-			
-			-- if self:GetBlueprint().General.Category == 'FACTORY' then
-				-- Buff.ApplyBuff(self, 'FactoryAssistReplace')
+			-- if not self:GetBlueprint().Intel.RadarRadius >= '1' then
+				-- Buff.ApplyBuff(self, 'SEIntelCheat')
 			-- end
 			
-			local mapSizeX, mapSizeZ = GetMapSize()
-			if mapSizeX < 514 or mapSizeZ < 514 then
-				-- LOG('------------AI DEBUG: Map is 10km or smaller ')
-				if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' or 'RULEUMT_Air' ) then
-					Buff.ApplyBuff(self, 'MoveBuff')
-				end
-				Buff.ApplyBuff(self, 'VisBuff')
-			elseif mapSizeX < (514 * 2) or mapSizeZ < (514 * 2) then
-				-- LOG('------------AI DEBUG: Map is 20km')
-				if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' and 'RULEUMT_Air' ) then
-					Buff.ApplyBuff(self, 'MoveBuff2')
-				end
-				Buff.ApplyBuff(self, 'SECheatBuildRate2')
-				Buff.ApplyBuff(self, 'VisBuff2')
-				Buff.ApplyBuff(self, 'SECheatIncome')
-			else
-				-- LOG('------------AI DEBUG: Map is 40km or higher')
-				if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' and 'RULEUMT_Air' ) then
-					Buff.ApplyBuff(self, 'MoveBuff3')
-				end
-				Buff.ApplyBuff(self, 'SECheatBuildRate3')
-				Buff.ApplyBuff(self, 'VisBuff3')
-				Buff.ApplyBuff(self, 'SECheatIncome')
-			end
+			-- if not self:GetBlueprint().Intel.OmniRadius >= '1' then
+				-- Buff.ApplyBuff(self, 'SEIntelCheat2')
+			-- end
 			
-        end
-    end,
+			-- if self:GetBlueprint().Physics.MotionType == 'RULEUMT_Air' then
+				-- Buff.ApplyBuff(self, 'MoveBuffAir')
+			-- end
+			
+			-- -- if self:GetBlueprint().General.Category == 'FACTORY' then
+				-- -- Buff.ApplyBuff(self, 'FactoryAssistReplace')
+			-- -- end
+			
+			-- local mapSizeX, mapSizeZ = GetMapSize()
+			-- if mapSizeX < 514 or mapSizeZ < 514 then
+				-- -- LOG('------------AI DEBUG: Map is 10km or smaller ')
+				-- if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' or 'RULEUMT_Air' ) then
+					-- Buff.ApplyBuff(self, 'MoveBuff')
+				-- end
+				-- Buff.ApplyBuff(self, 'VisBuff')
+			-- elseif mapSizeX < (514 * 2) or mapSizeZ < (514 * 2) then
+				-- -- LOG('------------AI DEBUG: Map is 20km')
+				-- if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' and 'RULEUMT_Air' ) then
+					-- Buff.ApplyBuff(self, 'MoveBuff2')
+				-- end
+				-- Buff.ApplyBuff(self, 'SECheatBuildRate2')
+				-- Buff.ApplyBuff(self, 'VisBuff2')
+				-- Buff.ApplyBuff(self, 'SECheatIncome')
+			-- else
+				-- -- LOG('------------AI DEBUG: Map is 40km or higher')
+				-- if not self:GetBlueprint().Physics.MotionType == ( 'RULEUMT_None' and 'RULEUMT_Air' ) then
+					-- Buff.ApplyBuff(self, 'MoveBuff3')
+				-- end
+				-- Buff.ApplyBuff(self, 'SECheatBuildRate3')
+				-- Buff.ApplyBuff(self, 'VisBuff3')
+				-- Buff.ApplyBuff(self, 'SECheatIncome')
+			-- end
+			
+        -- end
+    -- end,
 
     OnStopBeingCaptured = function(self, captor)
         SEUnitClass.OnStopBeingCaptured(self, captor)

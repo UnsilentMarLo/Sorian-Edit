@@ -1162,10 +1162,10 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         -- don't use a transporter if we have a path and the target is closer then 100 map units
         if path and VDist2Sq( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) < 125000 then
-            LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: no trasnporter used for target distance '..VDist2( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) )
+            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: no trasnporter used for target distance '..VDist2( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) )
         -- use a transporter if we don't have a path, or if we want a transport
         elseif not ExperimentalInPlatoon and ((not path and reason ~= 'NoGraph') or WantsTransport)  then
-            LOG('* AI-SorianEdit: * MoveToLocationInclTransport: SendPlatoonWithTransportsNoCheck')
+            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: SendPlatoonWithTransportsNoCheck')
             if HERODEBUGSorianEdit then
                 self:RenamePlatoon('SendPlatoonWithTransportsNoCheck')
                 coroutine.yield(1)
@@ -1419,7 +1419,7 @@ Platoon = Class(SorianEditPlatoonClass) {
     end,
 	
     SorianPlatoonMerger = function(self)
-        LOG('*------------------------------ Sorian: * SorianPlatoonMerger: called from Builder: '..(self.BuilderName or 'Unknown'))
+        -- LOG('*------------------------------ Sorian: * SorianPlatoonMerger: called from Builder: '..(self.BuilderName or 'Unknown'))
         local aiBrain = self:GetBrain()
         local PlatoonPlan = self.PlatoonData.AIPlan
         -- LOG('* Sorian: * SorianPlatoonMerger: AIPlan: '..(PlatoonPlan or 'Unknown'))
