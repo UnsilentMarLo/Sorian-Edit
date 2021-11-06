@@ -17,11 +17,10 @@ BaseBuilderTemplate {
         'SorianEditT2BalancedUpgradeBuilders',
         --'SorianEditT1FastUpgradeBuildersExpansion',
         --'SorianEditT2FastUpgradeBuildersExpansion',
-        --'SorianEditT1RushUpgradeBuilders',
-        -- 'SorianEditEmergencyUpgradeBuilders',
-        -- 'SorianEditTime Exempt Extractor Upgrades - Rush',
+        'SorianEditT1RushUpgradeBuilders',
+        'SorianEditEmergencyUpgradeBuilders',
         'SorianEditSupportFactoryUpgrades',
-        -- 'SorianEditSupportFactoryUpgrades - Emergency',
+        'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
@@ -59,7 +58,7 @@ BaseBuilderTemplate {
         -- Build Mass high pri at this base
         'Sorianedit Mass Builders',
         'Sorianedit Mass Builders Tech 2',
-        'Sorianedit Mass Builders Tech 3',
+        -- 'Sorianedit Mass Builders Tech 3',
         'Sorianedit MassFab Builders', 
 
         -- Extractors
@@ -223,7 +222,6 @@ BaseBuilderTemplate {
         'SorianEditT3ArtyBuildersHighPrio',
         'SorianEditT2FirebaseBuildersHighPrio',
         'SorianEditT3FBBuildersHighPrio',
-        'SorianEdit Extractor Upgrades Strategy',
         'SorianEditBalancedUpgradeBuildersExpansionStrategy',
         'SorianEditEngineerExpansionBuildersStrategy',
         'SorianEditACUUpgrades - Rush',

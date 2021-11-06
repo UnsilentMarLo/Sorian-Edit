@@ -52,7 +52,7 @@ BuilderManager = Class(SorianEditBuilderManager) {
         local found = false
         local possibleBuilders = {}
         -- Print the whole builder table into the game.log. 
-        do -- if self.Brain[ScenarioInfo.Options.AIBuilderNameDebug] then
+        if self.Brain[ScenarioInfo.Options.AIBuilderNameDebug] then
             if not DEBUGBUILDER[ScenarioInfo.Options.AIBuilderNameDebug] then
                 DEBUGBUILDER[ScenarioInfo.Options.AIBuilderNameDebug] = true
                 for k,v in self.BuilderData[bType].Builders do

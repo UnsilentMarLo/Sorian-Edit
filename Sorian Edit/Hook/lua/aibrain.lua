@@ -1,3 +1,5 @@
+local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
+local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
 OlderOldSorianEditAIBrainClass = AIBrain
 AIBrain = Class(OlderOldSorianEditAIBrainClass) {
@@ -63,6 +65,13 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
         if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
             LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') ')
+			
+            local iArmyNo = Utilities.GetAIBrainArmyNumber(self)
+            local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
+			
+            MapInfo.RecordResourceLocations()
+            MapInfo.RecordPlayerStartLocations()
+            MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 8 + 2)
             self.sorianedit = true
             self:ForkThread(self.SEParseIntelThread)
         end
