@@ -503,11 +503,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Mobile Heavy Artillery',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 1800,
+        Priority = 1950,
         BuilderType = 'Land',
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.ENGINEER }},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.ENGINEER }},
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.ARTILLERY * categories.MOBILE * categories.TECH3 }},
@@ -518,7 +518,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Mobile Heavy Artillery - tough def',
         PlatoonTemplate = 'T3LandArtillery',
-        Priority = 1800,
+        Priority = 1950,
         BuilderType = 'Land',
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.ENGINEER }},
@@ -534,7 +534,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Mobile Flak',
         PlatoonTemplate = 'T3LandAA',
-        Priority = 1850,
+        Priority = 1950,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.ENGINEER }},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -1144,6 +1144,7 @@ BuilderGroup {
             AggressiveMove = false,
             AvoidClosestRadius = 100,
             UseFormation = 'None',
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
             TargetSearchPriorities = {
                 categories.MASSEXTRACTION,
                 categories.MASSFABRICATION,
@@ -1190,6 +1191,7 @@ BuilderGroup {
             AggressiveMove = false,
             AvoidClosestRadius = 100,
             UseFormation = 'None',
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
             TargetSearchPriorities = {
                 categories.MASSEXTRACTION,
                 categories.MASSFABRICATION,

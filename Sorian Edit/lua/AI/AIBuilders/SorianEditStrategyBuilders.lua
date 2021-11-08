@@ -387,7 +387,7 @@ BuilderGroup {
                 Builders[self.BuilderName].Done = true
                 return
             end
-            plat:EngineerBuildAISorianEdit()
+            plat:EngineerBuildAIEdit()
             Builders[self.BuilderName].Running = false
             Builders[self.BuilderName].Done = true
         end,

@@ -2427,7 +2427,24 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderType = 'Any',
         BuilderData = {
-            ThreatThreshold = 100,
+            SearchRadius = 3000,
+            GetTargetsFromBase = false,
+            RequireTransport = false,
+            AggressiveMove = false,
+            AttackEnemyStrength = 2500,
+            IgnorePathing = true,
+            AvoidBases = true,
+            AvoidBasesRadius = 300,
+            TargetSearchCategory = categories.AIR * categories.MOBILE,
+            MoveToCategories = {
+                categories.MOBILE,
+            },
+            WeaponTargetCategories = {
+                categories.EXPERIMENTAL,
+                categories.ANTIAIR,
+                categories.BOMBER,
+                categories.MOBILE,
+            },
         },
         BuilderConditions = {
             -- { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'AIR MOBILE BOMBER' } },

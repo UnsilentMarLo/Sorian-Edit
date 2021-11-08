@@ -741,7 +741,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Base D Engineer - Perimeter',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        DelayEqualBuildPlattons = {'DefenseBuildings', 4},
+        DelayEqualBuildPlatoons = {'DefenseBuildings', 4},
         Priority = 930,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } }, -- { 0.4, 0.8 } },

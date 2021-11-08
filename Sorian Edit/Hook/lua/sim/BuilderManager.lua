@@ -126,16 +126,16 @@ BuilderManager = Class(SorianEditBuilderManager) {
     end,
 
     -- Hook needed for vanilla game
-    SorianEditIsPlatoonBuildDelayed = function(self, DelayEqualBuildPlattons)
-        if DelayEqualBuildPlattons then
+    SorianEditIsPlatoonBuildDelayed = function(self, DelayEqualBuildPlatoons)
+        if DelayEqualBuildPlatoons then
             local CheckDelayTime = GetGameTimeSeconds()
-            local PlatoonName = DelayEqualBuildPlattons[1]
-            if not self.Brain.DelayEqualBuildPlattons[PlatoonName] or self.Brain.DelayEqualBuildPlattons[PlatoonName] < CheckDelayTime then
-                LOG('Setting '..DelayEqualBuildPlattons[2]..' sec. delaytime for builder ['..PlatoonName..']')
-                self.Brain.DelayEqualBuildPlattons[PlatoonName] = CheckDelayTime + DelayEqualBuildPlattons[2]
+            local PlatoonName = DelayEqualBuildPlatoons[1]
+            if not self.Brain.DelayEqualBuildPlatoons[PlatoonName] or self.Brain.DelayEqualBuildPlatoons[PlatoonName] < CheckDelayTime then
+                LOG('Setting '..DelayEqualBuildPlatoons[2]..' sec. delaytime for builder ['..PlatoonName..']')
+                self.Brain.DelayEqualBuildPlatoons[PlatoonName] = CheckDelayTime + DelayEqualBuildPlatoons[2]
                 return false
             else
-                LOG('Builder ['..PlatoonName..'] still delayed for '..(CheckDelayTime - self.Brain.DelayEqualBuildPlattons[PlatoonName])..' seconds.')
+                LOG('Builder ['..PlatoonName..'] still delayed for '..(CheckDelayTime - self.Brain.DelayEqualBuildPlatoons[PlatoonName])..' seconds.')
                 return true
             end
         end

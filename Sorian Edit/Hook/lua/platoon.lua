@@ -26,9 +26,12 @@
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
+local HERODEBUG = false
+local CHAMPIONDEBUG = false -- you need to fucus the AI army to see the debug drawing
+local NUKEDEBUG = false
 local HERODEBUGSorianEdit = false
-
-
+local MarkerSwitchDist = 20
+local MarkerSwitchDistEXP = 40
 
 local PlatoonExists = moho.aibrain_methods.PlatoonExists
 local GetPlatoonUnits = moho.platoon_methods.GetPlatoonUnits
@@ -128,7 +131,12 @@ Platoon = Class(SorianEditPlatoonClass) {
             return
         end
         if cons.NearUnitCategory then
-            self:SetPrioritizedTargetList('support', {ParseEntityCategory(cons.NearUnitCategory)})
+            local NearUnitCategories = cons.NearUnitCategory
+            -- convert text categories like 'MOBILE AIR' to 'categories.MOBILE * categories.AIR'
+            if type(NearUnitCategories) == 'string' then
+                NearUnitCategories = ParseEntityCategory(NearUnitCategories)
+            end
+            self:SetPrioritizedTargetList('support', {NearUnitCategories})
             local unitNearBy = self:FindPrioritizedUnit('support', 'Ally', false, self:GetPlatoonPosition(), cons.NearUnitRadius or 50)
             --LOG("ENGINEER BUILD: " .. cons.BuildStructures[1] .." attempt near: ", cons.NearUnitCategory)
             if unitNearBy then

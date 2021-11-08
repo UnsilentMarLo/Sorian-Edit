@@ -1290,11 +1290,14 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 12925,
         InstanceCount = 4,
+        DelayEqualBuildPlatoons = {'MASSSTORAGE', 3},
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.4 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.MASSSTORAGE }},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4,  categories.STRUCTURE * categories.MASSSTORAGE }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2,  categories.STRUCTURE * categories.MASSSTORAGE }},
+            { MABC, 'MarkerLessThanDistance',  { 'Mass', 450, -3, 0, 0}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
+            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 250, 'ueb1106' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1338,7 +1341,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEdit',
         Priority = 900,
         InstanceCount = 1,
-        DelayEqualBuildPlattons = {'CheapEnergyBuilding', 4},
+        DelayEqualBuildPlatoons = {'CheapEnergyBuilding', 4},
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { EBC, 'LessThanEconTrend', { 10000.0, 0.0 }},
@@ -1360,7 +1363,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Engineer Assist Engineer',
         PlatoonTemplate = 'EngineerAssistSorian',
         Priority = 500,
-        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
+        DelayEqualBuildPlatoons = {'EngineerAssistDelays', 4},
         InstanceCount = 8,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, categories.ALLUNITS } },
@@ -1461,11 +1464,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Adjacency Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 1850,
+        DelayEqualBuildPlatoons = {'MASSSTORAGE', 3},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { MABC, 'MarkerLessThanDistance',  { 'Mass', 450, -3, 0, 0}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4,  categories.STRUCTURE * categories.MASSSTORAGE }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2,  categories.STRUCTURE * categories.MASSSTORAGE }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
             { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 250, 'ueb1106' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -1473,12 +1477,9 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                AdjacencyCategory = categories.MASSEXTRACTION - categories.TECH1,
-                AdjacencyDistance = 250,
+                AdjacencyCategory = categories.MASSEXTRACTION * (categories.TECH3 + categories.TECH2),
+                AdjacencyDistance = 100,
                 BuildClose = false,
-                ThreatMin = -3,
-                ThreatMax = 1500,
-                ThreatRings = 0,
                 BuildStructures = {
                     'MassStorage',
                 }
@@ -1863,7 +1864,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Assist Engineer',
         PlatoonTemplate = 'T3EngineerAssistSorianEdit',
-        DelayEqualBuildPlattons = {'EngineerAssistDelays', 4},
+        DelayEqualBuildPlatoons = {'EngineerAssistDelays', 4},
         Priority = 700,
         InstanceCount = 5,
         BuilderConditions = {
@@ -1894,7 +1895,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 196000,
         InstanceCount = 3,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 30, -500, 1, 0, 'AntiSurface', 1 }}, 
 
@@ -1918,7 +1919,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 18700,
         InstanceCount = 6,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 60, -500, 1, 0, 'AntiSurface', 1 }}, 
         },
@@ -1939,7 +1940,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 3+',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 840,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 3,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -1964,7 +1965,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 6+',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 830,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 6,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -1989,7 +1990,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 10+',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 820,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 10,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }},
@@ -2020,7 +2021,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1860,
         InstanceCount = 2,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 30, -500, 1, 0, 'AntiSurface', 1 }}, 
 
@@ -2044,7 +2045,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1350,
         InstanceCount = 2,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 60, -500, 1, 0, 'AntiSurface', 1 }}, 
 
@@ -2067,7 +2068,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 6+ T2',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1340,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 1,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -2093,7 +2094,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 8+ T2',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1330,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 1,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -2125,7 +2126,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 18600,
         InstanceCount = 2,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 30, -500, 1, 0, 'AntiSurface', 1 }}, 
 
@@ -2149,7 +2150,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 18500,
         InstanceCount = 2,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 60, -500, 1, 0, 'AntiSurface', 1 }}, 
 
@@ -2172,7 +2173,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 6+ T3',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 1840,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 4,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -2198,7 +2199,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 8+ T3',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 1800,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 4,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }}, 
@@ -2224,7 +2225,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 10+ T3',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 1820,
-        -- DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         InstanceCount = 4,
         BuilderConditions = {
             { MABC, 'CanBuildOnMass', { 'LocationType', 1000, -500, 1, 0, 'AntiSurface', 1 }},
