@@ -16,7 +16,7 @@ function RecordPlayerStartLocations()
         local tempPos = ScenarioUtils.GetMarker('ARMY_'..i).position
         if tempPos ~= nil then
             PlayerStartPoints[i] = tempPos
-            LOG('* Micro27AI: Recording Player start point, ARMY_'..i..' x=' ..PlayerStartPoints[i][1]..';y='..PlayerStartPoints[i][2]..';z='..PlayerStartPoints[i][3])
+            -- LOG('* Micro27AI: Recording Player start point, ARMY_'..i..' x=' ..PlayerStartPoints[i][1]..';y='..PlayerStartPoints[i][2]..';z='..PlayerStartPoints[i][3])
         end
     end
 end
@@ -29,12 +29,12 @@ function RecordResourceLocations()
         if v.type == "Mass" then
             MassCount = MassCount + 1
             MassPoints[MassCount] = v.position
-            LOG('* Micro27AI: Recording masspoints: co-ordinates = ' ..MassPoints[MassCount][1].. ' - ' ..MassPoints[MassCount][2].. ' - ' ..MassPoints[MassCount][3])
+            -- LOG('* Micro27AI: Recording masspoints: co-ordinates = ' ..MassPoints[MassCount][1].. ' - ' ..MassPoints[MassCount][2].. ' - ' ..MassPoints[MassCount][3])
         end -- Mass
         if v.type == "Hydrocarbon" then
             HydroCount = HydroCount + 1
             HydroPoints[HydroCount] = v.position
-            LOG('* Micro27AI: Recording hydrocarbon points: co-ordinates = ' ..HydroPoints[HydroCount][1].. ' - ' ..HydroPoints[HydroCount][2].. ' - ' ..HydroPoints[HydroCount][3])
+            -- LOG('* Micro27AI: Recording hydrocarbon points: co-ordinates = ' ..HydroPoints[HydroCount][1].. ' - ' ..HydroPoints[HydroCount][2].. ' - ' ..HydroPoints[HydroCount][3])
         end -- Hydrocarbon
     end -- GetMarkers() loop
     -- MapMexCount = MassCount
@@ -51,11 +51,11 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
     MassNearStart[iArmy] = {}
     local AllMassPoints = {}
     if MassPoints[1] == nil then
-        LOG('RecordMexNearStartPosition is being called outside of normal approach')
+        -- LOG('RecordMexNearStartPosition is being called outside of normal approach')
         local iAllMexCount = 0
         --This is likely being run before main initialisation code
         if ScenarioUtils.GetMarkers() == nil then
-            LOG('ERROR: RecordMexNearStartPosition: ScenarioUtils.GetMarkers Is Nil')
+            -- LOG('ERROR: RecordMexNearStartPosition: ScenarioUtils.GetMarkers Is Nil')
         end
 
         for _2, v2 in ScenarioUtils.GetMarkers() do
@@ -73,7 +73,7 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
             iMexCount = iMexCount + 1
             MassNearStart[iArmy][iMexCount] = pMexPos
             -- NearbyMexPos[iMexCount] = pMexPos
-            --LOG('* Micro27AI: MapInfo.lua: Nearby mex found, iArmy='..iArmy..'; iMexCount=' ..iMexCount..'pMexPos[1-2-3]='..pMexPos[1]..'-'..pMexPos[2]..'-'..pMexPos[3])
+            ---- LOG('* Micro27AI: MapInfo.lua: Nearby mex found, iArmy='..iArmy..'; iMexCount=' ..iMexCount..'pMexPos[1-2-3]='..pMexPos[1]..'-'..pMexPos[2]..'-'..pMexPos[3])
         end
     end
     if bCountOnly == false then return NearbyMexPos

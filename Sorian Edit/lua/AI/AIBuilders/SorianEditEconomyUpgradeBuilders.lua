@@ -49,7 +49,8 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 100 } },
+            { EBC, 'GreaterThanEconIncome',  { 3.5, -0.0}},
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -58,13 +59,14 @@ BuilderGroup {
     },
 
     Builder {
-        BuilderName = 'SorianEdit Extractor upgrade - Multiple',
+        BuilderName = 'SorianEdit Extractor upgrade - 2',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
-        InstanceCount = 2,
+        InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 140 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY} },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -76,10 +78,11 @@ BuilderGroup {
         BuilderName = 'SorianEdit Extractor upgrade - Multiple2',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
-        InstanceCount = 3,
+        InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 540 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.MASSEXTRACTION} },
         },
         BuilderData = {
             AIPlan = 'ExtractorUpgradeAISorian',
@@ -96,7 +99,6 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.80, 0.90 } },
         },
         BuilderData = {
@@ -109,7 +111,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Extractor upgrade - Multiple - Overflow',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
-        InstanceCount = 3,
+        InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
@@ -125,7 +127,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Extractor upgrade - Multiple2 - Overflow',
         PlatoonTemplate = 'AddToMassExtractorUpgradePlatoonSE',
         Priority = 40000,
-        InstanceCount = 6,
+        InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
@@ -150,6 +152,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 1,
         BuilderConditions = {
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
                 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, 'MOBILE TECH2, FACTORY TECH2', 'Enemy'}},
             },
@@ -161,6 +164,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 1,
         BuilderConditions = {
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH3 * categories.RESEARCH } },
                 { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, 'MOBILE TECH3, FACTORY TECH3', 'Enemy'}},
             },
@@ -172,8 +176,9 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 1,
         BuilderConditions = {
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
             },
         BuilderType = 'Any',
     },
@@ -183,87 +188,9 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 1,
         BuilderConditions = {
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 920 } },
+                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH3 * categories.RESEARCH } },
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 1100 } },
-            },
-        BuilderType = 'Any',
-    },
-}
-
--- ================================= --
---     RUSH FACTORY UPGRADES
--- ================================= --
-BuilderGroup {
-    BuilderGroupName = 'SorianEditT1RushUpgradeBuilders',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade Initial',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 4,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 14, 30}},
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit RushT1AirFactoryUpgrade Initial',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 4,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 10, 35}},
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit Rush T1 Land Factory Upgrade',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 4,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
-                -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 10, 35}},
-                -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
-                -- { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit RushT1AirFactoryUpgrade',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 4,
-        FormDebugFunction = nil,
-        BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
-                -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 15, 35}},
-                -- { IBC, 'BrainNotLowPowerMode', {} },
-                { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },
@@ -293,56 +220,13 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFactoryUpgrade',
         Priority = 105000,
         InstanceCount = 1,
-        FormDebugFunction = nil,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                --{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, 'FACTORY TECH2, FACTORY TECH3' } },
-                -- { EBC, 'GreaterThanEconIncome',  { 3, 25}},
             },
         BuilderType = 'Any',
     },
-
-    --[[ Builder {
-        BuilderName = 'SorianEdit Balanced T1 Land Factory Upgrade',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 4,
-        BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
-                -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY LAND TECH2, FACTORY LAND TECH3'}},
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 40, 75}},
-                -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
-                -- { IBC, 'BrainNotLowPowerMode', {} },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit BalancedT1AirFactoryUpgrade',
-        PlatoonTemplate = 'T1AirFactoryUpgrade',
-        Priority = 120,
-        InstanceCount = 4,
-        FormDebugFunction = nil,
-        BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
-                -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY AIR TECH2, FACTORY AIR TECH3'}},
-                ---- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-                -- { EBC, 'GreaterThanEconIncome',  { 35, 75}},
-                -- { IBC, 'BrainNotLowPowerMode', {} },
-                { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.95 }},
-            },
-        BuilderType = 'Any',
-    }, ]]--
 }
 
 BuilderGroup {

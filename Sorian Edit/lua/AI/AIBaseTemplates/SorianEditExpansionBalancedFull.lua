@@ -136,9 +136,29 @@ BaseBuilderTemplate {
         'SorianEditT3AntiAirBuilders',
         'SorianEditBaseGuardAirFormBuilders',
 
+        -- ==== EXPERIMENTALS ==== --
+        'SorianEditMobileLandExperimentalEngineers',
+        'SorianEditMobileLandExperimentalForm',
+
+        'SorianEditMobileAirExperimentalEngineers',
+        'SorianEditMobileAirExperimentalForm',
+
+        'SorianEditMobileNavalExperimentalEngineers',
+        'SorianEditMobileNavalExperimentalForm',
+
+        'SorianEditEconomicExperimentalEngineers',
+        'SorianEditMobileExperimentalEngineersGroup',
+		
         -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroup',
 
+        'SorianEditExperimentalArtillery',
+
+        'SorianEditNukeBuildersEngineerBuilders',
+        'SorianEditNukeFormBuilders',
+
+        'SorianEditSatelliteExperimentalEngineers',
+        'SorianEditSatelliteExperimentalForm',
    -- ======== Strategies ======== --
         -- 'SorianEditHeavyAirStrategy',
         -- 'SorianEditBigAirGroup',
@@ -195,7 +215,7 @@ BaseBuilderTemplate {
             SCU = 8,
         },
         FactoryCount = {
-            Land = 8,
+            Land = 6,
             Air = 6,
             Sea = 0,
             Gate = 2,

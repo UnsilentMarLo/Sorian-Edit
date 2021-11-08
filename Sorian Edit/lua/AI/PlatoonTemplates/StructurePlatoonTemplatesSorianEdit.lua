@@ -26,7 +26,7 @@ PlatoonTemplate {
 # ==== Missile systems ==== #
 PlatoonTemplate {
     Name = 'T2TacticalLauncherSorianEdit',
-    Plan = 'TacticalAISorian',
+    Plan = 'TMLAISE',
     GlobalSquads = {
         { categories.STRUCTURE * categories.TACTICALMISSILEPLATFORM, 1, 1, 'attack', 'none' },
     }

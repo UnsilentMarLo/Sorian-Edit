@@ -117,7 +117,7 @@ PlatoonTemplate {
     Name = 'GunshipAttackSorianEdit',
     Plan = 'BomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 2, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 5, 10, 'Attack', 'none' },
     }
 }
 
@@ -125,7 +125,7 @@ PlatoonTemplate {
     Name = 'GunshipSFSorianEdit',
     Plan = 'BomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 3, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 6, 10, 'Attack', 'none' },
     }
 }
 
@@ -133,7 +133,7 @@ PlatoonTemplate {
     Name = 'GunshipSFSorianEditNoHero',
     Plan = 'BomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 3, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 5, 10, 'Attack', 'none' },
     }
 }
 
@@ -141,7 +141,7 @@ PlatoonTemplate {
     Name = 'GunshipMassHunterSorianEdit',
     Plan = 'BomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 2, 5, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 4, 5, 'Attack', 'none' },
     }
 }
 

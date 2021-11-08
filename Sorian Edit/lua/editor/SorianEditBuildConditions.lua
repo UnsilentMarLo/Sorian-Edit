@@ -209,17 +209,12 @@ end
 
 function ReclaimablesInArea(aiBrain, locType)
     --DUNCAN - was .9. Reduced as dont need to reclaim yet if plenty of mass
-    if aiBrain:GetEconomyStoredRatio('MASS') > .8 then
+    if aiBrain:GetEconomyStoredRatio('MASS') > .5 then
         return false
     end
 
-    --DUNCAN - who cares about energy for reclaming?
-    --if aiBrain:GetEconomyStoredRatio('ENERGY') > .9 then
-    --    return false
-    --end
-
     local ents = SUtils.AIGetReclaimablesAroundLocationSorianEdit(aiBrain, locType)
-    if ents and table.getn(ents) > 0 then
+    if ents and table.getn(ents) > 10 then
         return true
     end
 

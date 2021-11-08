@@ -149,7 +149,7 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
     -- if we want to build a factory use the Seraphim Awassa for a bigger build place or if its early game, build the opener factory near a mex
     if buildingType == 'T1LandFactory' or buildingType == 'T1AirFactory' then
 		local time = GetGameTimeSeconds()
-		if 60 > time then
+		if 180 > time then
             if Utilities.GetIsACU(builder:GetUnitId()) == true then
 				-- Check if the ACU is near the start position:
 				local builderPos = builder:GetPosition()

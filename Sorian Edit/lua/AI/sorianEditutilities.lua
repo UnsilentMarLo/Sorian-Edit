@@ -2428,6 +2428,8 @@ end
 --   Tactical Missile Launcher AI Thread   --
 ---------------------------------------------
 local MissileTimer = 0
+local EBC = '/lua/editor/EconomyBuildConditions.lua'
+
 function TMLAIThread(platoon,self,aiBrain)
     local bp = self:GetBlueprint()
     local weapon = bp.Weapon[1]
@@ -2442,6 +2444,13 @@ function TMLAIThread(platoon,self,aiBrain)
         end
         while self and not self.Dead and self:IsPaused() do
             coroutine.yield(10)
+        end
+        if not EBC.GreaterThanEconTrend( 0.4, 0.8 ) then
+			self:SetAutoMode(false)
+			IssueClearCommands({self})
+            coroutine.yield(10)
+		else
+			self:SetAutoMode(true)
         end
         while self and not self.Dead and self:GetTacticalSiloAmmoCount() > 1 and not target and not self:IsPaused() do
             target = false
@@ -2474,6 +2483,7 @@ function TMLAIThread(platoon,self,aiBrain)
         coroutine.yield(10)
     end
 end
+
 function FindTargetUnit(self, minRadius, maxRadius, MaxLoad)
     local position = self:GetPosition()
     local aiBrain = self:GetAIBrain()
@@ -2878,12 +2888,12 @@ function AIGetReclaimablesAroundLocationSorianEdit(aiBrain, locationType)
         for _, v in aiBrain.PBM.Locations do
             if v.LocationType == locationType then
                 position = v.Location
-                radius = 3000
+                radius = 500
                 break
             end
         end
     elseif aiBrain.BuilderManagers[locationType] then
-        radius = 3000
+        radius = 500
         position = aiBrain.BuilderManagers[locationType].FactoryManager:GetLocationCoords()
     end
 

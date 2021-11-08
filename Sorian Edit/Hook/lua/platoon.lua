@@ -25,6 +25,7 @@
 	
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
+local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
 local HERODEBUGSorianEdit = false
 
 
@@ -5602,7 +5603,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             self.LastMarker[2] = self.LastMarker[1]
             self.LastMarker[1] = bestMarker.Position
             --LOG("GuardMarker: Attacking " .. bestMarker.Name)
-            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEditSorianEdit(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
             local success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingEx(self, bestMarker.Position)
             IssueClearCommands(GetPlatoonUnits(self))
             if path then
@@ -5850,9 +5851,9 @@ Platoon = Class(SorianEditPlatoonClass) {
             -- get the maximum weapopn range of this unit
             for _, weapon in UnitBlueprint.Weapon or {} do
                 -- filter dummy weapons
-                if weapon.Damage == 0 then
-                    continue
-                end
+                -- if weapon.Damage == 0 then
+                    -- continue
+                -- end
                 if UnitBlueprint.CategoriesHash.EXPERIMENTAL and UnitBlueprint.Physics.StandUpright then
                     -- for Experiemtnals with 2 legs
                     unit.HasRearWeapon = false
@@ -5963,7 +5964,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             -- debug for modded units that have no weapon and no shield or stealth/cloak
             -- things like seraphim restauration field
             if not unit.MaxWeaponRange and not unit.IsShieldOnlyUnit then
-                WARN('* AI-Uveso: Scanning: unit ['..repr(unit.UnitId)..'] has no MaxWeaponRange and no stealth/cloak - '..repr(self.BuilderName))
+                WARN('* AI-Uveso: Scanning: unit ['..repr(unit.UnitId)..'] has no MaxWeaponRange and no stealth/cloak/shield - '..repr(self.BuilderName))
             end
             unit.IamLost = 0
         end
@@ -7268,4 +7269,17 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
     end,
 
+    TMLAISE = function(self)
+        local aiBrain = self:GetBrain()
+        local platoonUnits = self:GetPlatoonUnits()
+        local TML
+        for k, v in platoonUnits do
+            if not v.Dead and EntityCategoryContains(categories.STRUCTURE * categories.TACTICALMISSILEPLATFORM * categories.TECH2, v) then
+                TML = v
+                break
+            end
+        end
+        SUtils.TMLAIThread(self,TML,aiBrain)
+        self:PlatoonDisband()
+    end,
 }

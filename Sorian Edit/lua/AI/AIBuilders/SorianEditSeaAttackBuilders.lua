@@ -64,6 +64,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -78,6 +79,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
             { SBC, 'HaveUnitRatioSorian', { 0.4, categories.NAVAL * categories.TECH1 * categories.SUBMERSIBLE, '<=', categories.NAVAL * categories.TECH1 * categories.FRIGATE}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -91,6 +93,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -106,6 +109,7 @@ BuilderGroup {
             { SBC, 'HaveUnitRatioSorian', { 0.6, categories.NAVAL * categories.TECH1 * categories.MOBILE - categories.SUBMERSIBLE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH1}},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -119,6 +123,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
         BuilderType = 'Sea',
     },
@@ -139,6 +144,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -152,6 +158,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -164,6 +171,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.DESTROYER - categories.CRUISER}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
         BuilderType = 'Sea',
     },
@@ -181,6 +189,7 @@ BuilderGroup {
             { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.ANTINAVY - categories.DESTROYER - categories.SHIELD - categories.CRUISER } },
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -197,6 +206,7 @@ BuilderGroup {
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.SHIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.SHIELD } },
             { SBC, 'HaveUnitRatioSorian', { 0.25, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.SHIELD, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.SHIELD}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -212,6 +222,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.STEALTHFIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.COUNTERINTELLIGENCE } },
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
 }
@@ -230,6 +241,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -243,6 +255,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.CRUISER}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
         BuilderType = 'Sea',
     },
@@ -262,6 +275,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -276,6 +290,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER, '<=', categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.CRUISER}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -286,6 +301,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
             { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -298,6 +314,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { SBC, 'HaveUnitRatioSorian', { 0.1, categories.NAVAL * categories.MOBILE * categories.SILO * categories.NUKE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH3 - categories.SILO}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
         BuilderType = 'Sea',
     },
@@ -311,6 +328,7 @@ BuilderGroup {
 			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			-- { UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
             -- { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307), '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            -- { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         -- },
     -- },
     Builder {
@@ -325,6 +343,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.85, 0.8 }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.INDIRECTFIRE, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -337,6 +356,7 @@ BuilderGroup {
 			{ MIBC, 'FactionIndex', {1}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP * categories.OVERLAYANTINAVY, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
     Builder {
@@ -350,6 +370,7 @@ BuilderGroup {
             { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
 			{ UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },
             { SBC, 'HaveUnitRatioSorian', { 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO, '<=', categories.NAVAL * categories.MOBILE * categories.TECH2}},
+            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.NAVAL, '<=', categories.LAND}},
         },
     },
 }

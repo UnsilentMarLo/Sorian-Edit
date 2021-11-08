@@ -400,7 +400,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -449,7 +449,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -498,7 +498,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1 - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -710,7 +710,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.ALLUNITS - categories.SCOUT - categories.TECH1,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -753,7 +753,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.ALLUNITS - categories.SCOUT - categories.TECH1,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -888,7 +888,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1,
+            TargetSearchCategory = categories.MOBILE * (categories.NAVAL + categories.NAVAL) - categories.TECH1 - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.NAVAL,
