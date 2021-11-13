@@ -10,9 +10,9 @@ end
 			--{ UCBC, 'HaveForEach', { categories.FACTORY, 4, categories.ENERGYPRODUCTION * categories.TECH1 }},
 function HaveForEach(aiBrain, category, numunits, category2)
     -- get all units matching 'category'
-    local Cat1Num = aiBrain:GetListOfUnits(category, false)
-    local Cat2Num = aiBrain:GetListOfUnits(category2, false)
-
+    local Cat1Num = aiBrain:GetCurrentUnits(category)
+    local Cat2Num = aiBrain:GetCurrentUnits(category2)
+	-- LOG('*AI DEBUG: HaveForEach ' .. Cat2Num .. ' numunits is ' .. numunits 'This many' ..Cat1Num )
 	if Cat1Num > 0 and Cat2Num / Cat1Num < numunits then
 		return true
 	end

@@ -6857,7 +6857,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 				if EntityCategoryContains(categories.EXPERIMENTAL, v) then
 					ExperimentalInPlatoon = true
 				end
-				if EntityCategoryContains(categories.SILO * categories.NUKE, v) then
+				if EntityCategoryContains(categories.SILO * categories.NUKE - categories.BATTLESHIP, v) then
 					NukeUnit = v
 				end
 				-- prevent units from reclaiming while attack moving
