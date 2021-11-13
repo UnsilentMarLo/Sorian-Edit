@@ -381,7 +381,7 @@ BuilderGroup {
                 }
             }
             plat:SetPlatoonData(data)
-            local usedTransports = AIAttackUtils.SendPlatoonWithTransportsSorianEdit(aiBrain, plat, targetPos, true, true, true)
+            local usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, plat, targetPos, true, true, true)
             if not usedTransports then
                 Builders[self.BuilderName].Running = false
                 Builders[self.BuilderName].Done = true
@@ -419,7 +419,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { SBC, 'MapLessThan', { 1000, 1000 }},
         },
         BuilderType = 'Any',
@@ -534,7 +534,6 @@ BuilderGroup {
                 -- 'SorianEdit T2 Tank 2 - Tech 3',
                 -- 'SorianEdit T2 MML',
                 -- 'SorianEditT2LandAA',
-                -- 'SorianEditT1ReactionDF',
                 -- 'SorianEdit T2MobileShields - T3 Factories',
                 -- 'SorianEdit T2AttackTank - Tech 2',
                 -- 'SorianEdit T2AttackTank2 - Tech 3',
@@ -954,7 +953,7 @@ BuilderGroup {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { false, 6, categories.SHIELD * categories.TECH3 * categories.STRUCTURE, 'Enemy'}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             -- { EBC, 'GreaterThanEconIncome',  { 100, 3000}},
             -- CanBuildFirebase { 1000, 1000 }},
             { SBC, 'EnemyInT3ArtilleryRange', { 'LocationType', false } },
@@ -1255,7 +1254,7 @@ BuilderGroup {
             -- { MABC, 'CanBuildFirebase', { 'LocationType', 256, 'Expansion Area', -1000, 5, 1, 'AntiSurface', 1, 'STRATEGIC', 20} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             ----CanBuildFirebase { 500, 500 }},
         },
         BuilderType = 'Any',

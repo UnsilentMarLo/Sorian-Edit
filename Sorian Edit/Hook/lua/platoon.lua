@@ -408,17 +408,19 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
     end,
 
--- For AI Patch V8 (Patched) if eng:IsUnitState('BlockCommandQueue') then
+    -- Fixed a bug where the ACU stops working when build to close
     ProcessBuildCommand = function(eng, removeLastBuild)
         if not eng or eng.Dead or not eng.PlatoonHandle then
             return
         end
         local aiBrain = eng.PlatoonHandle:GetBrain()
+        if not aiBrain.SorianEdit then
+            return SorianEditPlatoonClass.ProcessBuildCommand(eng, removeLastBuild)
+        end
 
-        if not aiBrain or eng.Dead or not eng.EngineerBuildQueue or table.getn(eng.EngineerBuildQueue) == 0 then
+        if not aiBrain or eng.Dead or not eng.EngineerBuildQueue or table.empty(eng.EngineerBuildQueue) then
             if aiBrain:PlatoonExists(eng.PlatoonHandle) then
-                --LOG("* AI-DEBUG: ProcessBuildCommand: Disbanding Engineer Platoon in ProcessBuildCommand top " .. eng.Sync.id)
-                if not eng.AssistSet and not eng.AssistPlatoon and not eng.UnitBeingAssist then
+                if not eng.AssistSet and not eng.AssistPlatoon and not eng.UnitBeingAssist and not eng.UnitBeingBuiltBehavior then
                     eng.PlatoonHandle:PlatoonDisband()
                 end
             end
@@ -428,34 +430,66 @@ Platoon = Class(SorianEditPlatoonClass) {
 
         -- it wasn't a failed build, so we just finished something
         if removeLastBuild then
-            --LOG('* AI-DEBUG: ProcessBuildCommand: table.remove(eng.EngineerBuildQueue, 1) removeLastBuild')
             table.remove(eng.EngineerBuildQueue, 1)
         end
 
         eng.ProcessBuildDone = false
         IssueClearCommands({eng})
         local commandDone = false
-        while not eng.Dead and not commandDone and table.getn(eng.EngineerBuildQueue) > 0  do
+        local PlatoonPos
+        while not eng.Dead and not commandDone and not table.empty(eng.EngineerBuildQueue)  do
             local whatToBuild = eng.EngineerBuildQueue[1][1]
             local buildLocation = {eng.EngineerBuildQueue[1][2][1], 0, eng.EngineerBuildQueue[1][2][2]}
+            if GetTerrainHeight(buildLocation[1], buildLocation[3]) > GetSurfaceHeight(buildLocation[1], buildLocation[3]) then
+                --land
+                buildLocation[2] = GetTerrainHeight(buildLocation[1], buildLocation[3])
+            else
+                --water
+                buildLocation[2] = GetSurfaceHeight(buildLocation[1], buildLocation[3])
+            end
             local buildRelative = eng.EngineerBuildQueue[1][3]
-            --LOG('* AI-DEBUG: ProcessBuildCommand: whatToBuild = '..repr(whatToBuild))
             if not eng.NotBuildingThread then
                 eng.NotBuildingThread = eng:ForkThread(eng.PlatoonHandle.WatchForNotBuilding)
             end
             -- see if we can move there first
             if AIUtils.EngineerMoveWithSafePath(aiBrain, eng, buildLocation) then
                 if not eng or eng.Dead or not eng.PlatoonHandle or not aiBrain:PlatoonExists(eng.PlatoonHandle) then
+                    return
+                end
+                -- issue buildcommand to block other engineers from caping mex/hydros or to reserve the buildplace
+                PlatoonPos = eng:GetPosition()
+                if SUtils.GetIsACU(eng:GetUnitId()) and VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, buildLocation[1] or 0, buildLocation[3] or 0) >= 30 then -- fix, eng with more than 1 entry in the Buildstructures{} table will break
+                    aiBrain:BuildStructure(eng, whatToBuild, {buildLocation[1], buildLocation[3], 0}, buildRelative)
+                    coroutine.yield(3)
+                    -- wait until we are close to the buildplace so we have intel
+                    while not eng.Dead do
+                        PlatoonPos = eng:GetPosition()
+                        if VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, buildLocation[1] or 0, buildLocation[3] or 0) < 12 then
+                            break
+                        end
+                        -- check if we are already building in close range
+                        -- (ACU can build at higher range than engineers)
+                        if eng:IsUnitState("Building") then
+                            break
+                        end
+                        coroutine.yield(1)
+                    end
+                end
+                if not eng or eng.Dead or not eng.PlatoonHandle or not aiBrain:PlatoonExists(eng.PlatoonHandle) then
                     if eng then eng.ProcessBuild = nil end
                     return
                 end
-
-                -- check to see if we need to reclaim or capture...
-                AIUtils.EngineerTryReclaimCaptureArea(aiBrain, eng, buildLocation)
+                -- if we are already building then we don't need to reclaim, repair or issue the BuildStructure again
+                if not eng:IsUnitState("Building") then
+                    -- cancel all commands, also the buildcommand for blocking mex to check for reclaim or capture
+                    eng.PlatoonHandle:Stop()
+                    -- check to see if we need to reclaim or capture...
+                    AIUtils.EngineerTryReclaimCaptureArea(aiBrain, eng, buildLocation)
                     -- check to see if we can repair
-                AIUtils.EngineerTryRepair(aiBrain, eng, whatToBuild, buildLocation)
-                        -- otherwise, go ahead and build the next structure there
-                aiBrain:BuildStructure(eng, whatToBuild, {buildLocation[1], buildLocation[3], 0}, buildRelative)
+                    AIUtils.EngineerTryRepair(aiBrain, eng, whatToBuild, buildLocation)
+                    -- otherwise, go ahead and build the next structure there
+                    aiBrain:BuildStructure(eng, whatToBuild, {buildLocation[1], buildLocation[3], 0}, buildRelative)
+                end
                 if not eng.NotBuildingThread then
                     eng.NotBuildingThread = eng:ForkThread(eng.PlatoonHandle.WatchForNotBuilding)
                 end
@@ -467,15 +501,13 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
 
         -- final check for if we should disband
-        if not eng or eng.Dead or table.getn(eng.EngineerBuildQueue) <= 0 then
-            if eng.PlatoonHandle and aiBrain:PlatoonExists(eng.PlatoonHandle) then
+        if not eng or eng.Dead or table.empty(eng.EngineerBuildQueue) then
+            if eng.PlatoonHandle and aiBrain:PlatoonExists(eng.PlatoonHandle) and not eng.PlatoonHandle.UsingTransport then
                 eng.PlatoonHandle:PlatoonDisband()
             end
-            if eng then eng.ProcessBuild = nil end
-            return
         end
         if eng then eng.ProcessBuild = nil end
-    end,
+    end,    
 -- For AI Patch V8 (Patched) fixed issue with AI cdr not building at game start
     WatchForNotBuilding = function(eng)
         coroutine.yield(10)
@@ -3744,7 +3776,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 				-- try to use transports --
 				if (self.MovementLayer == 'Land' or self.MovementLayer == 'Amphibious') and not experimental then
 				
-					usedTransports = self:SendPlatoonWithTransportsSorianEdit( aiBrain, transportLocation, 4, false )
+					usedTransports = self:SendPlatoonWithTransportsNoCheck( aiBrain, transportLocation, 4, false )
 					
 				end
 				
@@ -3888,7 +3920,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 						-- thru this mechanism we only call for tranport every 4th loop (40 seconds)
 						if calltransport > 2 then
 
-							usedTransports = self:SendPlatoonWithTransportsSorianEdit( aiBrain, transportLocation, 1, false )
+							usedTransports = self:SendPlatoonWithTransportsNoCheck( aiBrain, transportLocation, 1, false )
 							
 							calltransport = 0
 							
@@ -4470,7 +4502,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 		
 	end,
 
-	SendPlatoonWithTransportsSorianEdit = function( self, aiBrain, destination, attempts, bSkipLastMove )
+	SendPlatoonWithTransportsNoCheck = function( self, aiBrain, destination, attempts, bSkipLastMove )
 
 		if self.MovementLayer == 'Land' or self.MovementLayer == 'Amphibious' then
 		
@@ -6163,7 +6195,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 coroutine.yield(1)
                             end
                             --self:RenamePlatoon('MoveOnlyWithTransport')
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            -- self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory) replace if transports break again
+                            self:MoveWithTransport(aiBrain, bAggroMove, target, basePosition, ExperimentalInPlatoon, MaxPlatoonWeaponRange, TargetSearchCategory)
                         end
                     end
                 end
@@ -7105,9 +7138,9 @@ Platoon = Class(SorianEditPlatoonClass) {
             if path then
                 local position = GetPlatoonPosition(self)
                 if not success or VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 512 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, true)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
                 elseif VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 256 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, false)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, false)
                 end
                 if usedTransports then
                     --LOG('usedTransports is true')
@@ -7210,7 +7243,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
             elseif (not path and reason == 'NoPath') then
                 --LOG('Guardmarker requesting transports')
-                usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckRNG(aiBrain, self, bestMarker.Position, true)
+                usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
                 --DUNCAN - if we need a transport and we cant get one the disband
                 if not usedTransports then
                     --LOG('MASSRAID no transports')

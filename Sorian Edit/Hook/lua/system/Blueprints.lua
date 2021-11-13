@@ -32,57 +32,16 @@ function ModBlueprints(all_blueprints)
     end
 	
 	
-	-- -- reduce lag
-	
-    -- local CCdef = 0.5
-    -- for _,unit in all_blueprints.Unit do
-		-- -- local aiBrain = self:GetAIBrain()
-        -- -- if unit.Categories and aiBrain.sorianeditadaptivecheat or aiBrain.sorianeditadaptive or aiBrain.sorianedit then
-        -- if unit.Categories and unit.Brain.sorianedit or unit.Brain.sorianeditadaptive or unit.Brain.sorianeditadaptivecheat then
-			-- for _, unit in aiBrain:GetListOfUnits(categories.COMMAND, false) do
-			-- unit:CreateEnhancement(enhancement)
-			-- end
-            -- -- this is a high impact change, both in simspeed and in game performance. Should be turned into a config option for MAXIMUM SIMSPEED
-            -- if unit.Weapon then
-                -- for _,wep in unit.Weapon do
-                    -- if wep.TargetCheckInterval <= 0.5 then
-                        -- wep.TargetCheckInterval = 0.5
-                    -- end
-                -- end
-            -- end
-			
-            -- if bp.General.CapCost then
-               -- bp.General.CapCost = bp.General.CapCost * CCdef
-            -- else bp.General.CapCost = CCdef
-            -- end
-			
-            -- if unit.Display then
-                -- unit.Display.Tarmacs = nil
-                -- unit.Display.BlinkingLights = nil
-                -- unit.Display.BlinkingLightsFx = nil
-                -- unit.Display.MovementEffects = nil
-                -- unit.Display.LayerChangeEffects = nil
-                -- unit.Display.IdleEffects = nil
-                -- if table.find(unit.Categories,'MASSEXTRACTION') or table.find(unit.Categories,'MASSFABRICATION') then
-                    -- unit.Display.AnimationOpen = nil
-                -- end
-            -- end
-
-            -- if unit.Audio then
-                -- unit.Audio.ActiveLoop = nil
-            -- end
-            
-            
-            -- if table.find(unit.Categories,'STRUCTURE') then
-                -- if table.find(unit.Categories,'ENGINEERSTATION') then
-                    -- if table.find(unit.Categories,'PODSTAGINGPLATFORM') then
-                        -- unit.AI.InitialAutoMode = false
-                        -- unit.Display.AnimationOpen = nil
-                    -- end
-                -- end
-            -- end
-        -- end
-    -- end
+	-- reduce lag
+    for _,unit in all_blueprints.Unit do
+		if unit.Weapon then
+			for _,wep in unit.Weapon do
+				if wep.TargetCheckInterval <= 1 then
+					wep.TargetCheckInterval = 1
+				end
+			end
+		end
+	end
 end
 
 -- For AI Patch V8 adding categories for preset SACUs

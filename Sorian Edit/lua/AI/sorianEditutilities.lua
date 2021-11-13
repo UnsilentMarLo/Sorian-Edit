@@ -2428,8 +2428,6 @@ end
 --   Tactical Missile Launcher AI Thread   --
 ---------------------------------------------
 local MissileTimer = 0
-local EBC = '/lua/editor/EconomyBuildConditions.lua'
-
 function TMLAIThread(platoon,self,aiBrain)
     local bp = self:GetBlueprint()
     local weapon = bp.Weapon[1]
@@ -2445,13 +2443,16 @@ function TMLAIThread(platoon,self,aiBrain)
         while self and not self.Dead and self:IsPaused() do
             coroutine.yield(10)
         end
-        if not EBC.GreaterThanEconTrend( 0.4, 0.8 ) then
-			self:SetAutoMode(false)
-			IssueClearCommands({self})
-            coroutine.yield(10)
-		else
-			self:SetAutoMode(true)
-        end
+		while self and not self.Dead do
+		local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
+			if (econ.MassTrend <= 0.4 and econ.EnergyTrend <= 0.8) then
+				self:SetAutoMode(false)
+				IssueClearCommands({self})
+				coroutine.yield(10)
+			else
+				self:SetAutoMode(true)
+			end
+		end
         while self and not self.Dead and self:GetTacticalSiloAmmoCount() > 1 and not target and not self:IsPaused() do
             target = false
             while self and not self.Dead and not target do

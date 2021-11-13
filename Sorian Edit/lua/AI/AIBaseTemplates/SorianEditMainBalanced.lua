@@ -17,9 +17,9 @@ BaseBuilderTemplate {
         'SorianEditT2BalancedUpgradeBuilders',
         --'SorianEditT1FastUpgradeBuildersExpansion',
         --'SorianEditT2FastUpgradeBuildersExpansion',
-        'SorianEditEmergencyUpgradeBuilders',
+        -- 'SorianEditEmergencyUpgradeBuilders',
         'SorianEditSupportFactoryUpgrades',
-        'SorianEditSupportFactoryUpgrades - Emergency',
+        -- 'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
@@ -80,6 +80,7 @@ BaseBuilderTemplate {
         'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
+        -- 'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersFulldrop',
         'SorianEditEngineerFirebaseBuilders',
@@ -137,7 +138,6 @@ BaseBuilderTemplate {
         'SorianEditT2LandAA',
         'SorianEditT3LandAA',
 
-        'SorianEditT1ReactionDF',
         'SorianEditT2ReactionDF',
         'SorianEditT3ReactionDF',
 
@@ -159,7 +159,6 @@ BaseBuilderTemplate {
         'SorianEditACUHunterAirFormBuilders',
 
         'SorianEditTransportFactoryBuilders',
-        'SorianEditTransportFactoryBuilders - Rush',
 		
         'SorianEditExpResponseFormBuilders',
 

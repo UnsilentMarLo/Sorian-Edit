@@ -41,7 +41,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSEXTRACTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -71,7 +71,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSEXTRACTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -101,7 +101,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
         },
         BuilderType = 'Any',
@@ -125,7 +125,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSEXTRACTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -155,7 +155,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.MASSEXTRACTION * categories.TECH3}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.FACTORY * categories.TECH3 } },
@@ -186,7 +186,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
         },
         BuilderType = 'Any',
@@ -214,7 +214,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3' }},
         },
     },
@@ -337,7 +337,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3' }},
         },
     },
@@ -355,7 +355,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
         },
     },
 }
@@ -372,7 +372,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
         },
     },
 }
@@ -389,7 +389,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'FACTORY AIR TECH3' }},
         },
     },
@@ -538,7 +538,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE, 'LocationType', }},
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.5 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -562,7 +562,7 @@ BuilderGroup {
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'STRUCTURE TECH3 ARTILLERY', 'LocationType', }},
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -590,7 +590,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -635,7 +635,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -679,7 +679,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -724,7 +724,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -768,7 +768,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -812,7 +812,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -856,7 +856,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -900,7 +900,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -949,7 +949,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -997,7 +997,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.02 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 1.0 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.MASSEXTRACTION * categories.TECH3 } },
         },
@@ -1022,7 +1022,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1045,7 +1045,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1073,7 +1073,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.4, 0.4 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         FormRadius = 10000,
         BuilderType = 'Any',
@@ -1087,7 +1087,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.4, 0.4 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         FormRadius = 10000,
         BuilderType = 'Any',
@@ -1187,7 +1187,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1227,7 +1227,7 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1265,7 +1265,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.60, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.60, 0.8 }},
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 350, -1000, 100, 0, 'StructuresNotMex' } },
             { UCBC, 'StartLocationsFull', { 'LocationType', 350, -1000, 100, 0, 'StructuresNotMex' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -1309,7 +1309,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 350, 'DEFENSE TECH1 STRUCTURE', 20,4,-10000,1,1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .75 } },
         },
@@ -1352,7 +1352,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .75 } },
@@ -1397,7 +1397,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .75 } },
@@ -1443,7 +1443,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { MIBC, 'FactionIndex', {2, 4}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 } },
             { SIBC, 'DefensivePointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH2 STRUCTURE, DEFENSE TECH3 STRUCTURE', 20, 4, -10000, 1, 1, 'AntiSurface' } },
             { UCBC, 'UnitCapCheckLess', { .75 } },
@@ -1490,7 +1490,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.9 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION' }},
                 { SBC, 'CmdrHasUpgrade', { 'HeavyAntiMatterCannon', false }},
@@ -1511,7 +1511,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
@@ -1533,7 +1533,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
@@ -1557,7 +1557,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.9 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION' }},
                 { SBC, 'CmdrHasUpgrade', { 'CrysalisBeam', false }},
@@ -1578,7 +1578,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
@@ -1600,7 +1600,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
@@ -1624,7 +1624,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.9 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION' }},
                 { SBC, 'CmdrHasUpgrade', { 'CoolingUpgrade', false }},
@@ -1645,7 +1645,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
@@ -1667,7 +1667,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
@@ -1690,7 +1690,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.9 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'FACTORY' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 6, 'MASSEXTRACTION' }},
                 { SBC, 'CmdrHasUpgrade', { 'RateOfFire', false }},
@@ -1711,7 +1711,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3' }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH2, ENERGYPRODUCTION TECH3' }},
@@ -1733,7 +1733,7 @@ BuilderGroup {
         BuilderConditions = {
                 { EBC, 'GreaterThanEconStorageRatio', { 0.13, 0.11 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'FACTORY TECH2, FACTORY TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'ENERGYPRODUCTION TECH3'}},
