@@ -1101,9 +1101,9 @@ BuilderGroup {
             IgnorePathing = true,
             AvoidBases = true,
             AvoidBasesRadius = 300,
-            TargetSearchCategory = categories.STRUCTURE * categories.MASSEXTRACTION,
+            TargetSearchCategory = (categories.MOBILE * categories.ENGINEER) + (categories.STRUCTURE * categories.MASSEXTRACTION),
             MoveToCategories = {
-                categories.MOBILE,
+                (categories.MOBILE * categories.ENGINEER) + (categories.STRUCTURE * categories.MASSEXTRACTION),
             },
             WeaponTargetCategories = {
                 categories.EXPERIMENTAL,
@@ -1139,9 +1139,9 @@ BuilderGroup {
             IgnorePathing = true,
             AvoidBases = true,
             AvoidBasesRadius = 400,
-            TargetSearchCategory = categories.MOBILE * categories.LAND,
+            TargetSearchCategory = categories.MOBILE * (categories.DIRECTFIRE * categories.INDIRECTFIRE),
             MoveToCategories = {
-                categories.MOBILE,
+                categories.MOBILE * (categories.DIRECTFIRE * categories.INDIRECTFIRE),
             },
             WeaponTargetCategories = {
                 categories.EXPERIMENTAL,
@@ -2389,8 +2389,24 @@ BuilderGroup {
         InstanceCount = 100,
         BuilderType = 'Any',
         BuilderData = {
-            Location = 'LocationType',
-            NeverGuardEngineers = true,
+            SearchRadius = 3000,
+            GetTargetsFromBase = false,
+            RequireTransport = false,
+            AggressiveMove = false,
+            AttackEnemyStrength = 2500,
+            IgnorePathing = true,
+            AvoidBases = true,
+            AvoidBasesRadius = 300,
+            TargetSearchCategory = categories.AIR * categories.MOBILE,
+            MoveToCategories = {
+                categories.MOBILE,
+            },
+            WeaponTargetCategories = {
+                categories.EXPERIMENTAL,
+                categories.ANTIAIR,
+                categories.BOMBER,
+                categories.MOBILE,
+            },
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
@@ -2405,7 +2421,24 @@ BuilderGroup {
         Priority = 1,
         InstanceCount = 10,
         BuilderData = {
-            NeverGuardEngineers = true,
+            SearchRadius = 3000,
+            GetTargetsFromBase = false,
+            RequireTransport = false,
+            AggressiveMove = false,
+            AttackEnemyStrength = 2500,
+            IgnorePathing = true,
+            AvoidBases = true,
+            AvoidBasesRadius = 300,
+            TargetSearchCategory = categories.AIR * categories.MOBILE,
+            MoveToCategories = {
+                categories.MOBILE,
+            },
+            WeaponTargetCategories = {
+                categories.EXPERIMENTAL,
+                categories.ANTIAIR,
+                categories.BOMBER,
+                categories.MOBILE,
+            },
         },
         BuilderType = 'Any',
         BuilderConditions = {

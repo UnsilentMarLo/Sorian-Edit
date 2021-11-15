@@ -107,6 +107,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 3200,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -137,6 +138,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 Group',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -167,6 +169,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 Group2',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2500,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -195,6 +198,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 Group2',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
@@ -587,6 +591,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -617,6 +622,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Small Map',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -790,6 +796,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T4 Sea Exp1 Engineer',
         PlatoonTemplate = 'T3EngineerBuilder',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
@@ -925,6 +932,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Satellite Exp Engineer',
         PlatoonTemplate = 'UEFT3EngineerBuilderSorianEdit',
         Priority = 2100,
+        InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
@@ -1031,11 +1039,11 @@ BuilderGroup {
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.6, 0.99 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'EXPERIMENTAL ENERGYPRODUCTION STRUCTURE' }},
         },
         BuilderType = 'Any',
         BuilderData = {

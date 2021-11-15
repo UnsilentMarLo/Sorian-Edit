@@ -459,6 +459,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 -- issue buildcommand to block other engineers from caping mex/hydros or to reserve the buildplace
                 PlatoonPos = eng:GetPosition()
                 if SUtils.GetIsACU(eng:GetUnitId()) and VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, buildLocation[1] or 0, buildLocation[3] or 0) >= 30 then -- fix, eng with more than 1 entry in the Buildstructures{} table will break
+                -- if VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, buildLocation[1] or 0, buildLocation[3] or 0) >= 30 then -- fix, eng with more than 1 entry in the Buildstructures{} table will break
                     aiBrain:BuildStructure(eng, whatToBuild, {buildLocation[1], buildLocation[3], 0}, buildRelative)
                     coroutine.yield(3)
                     -- wait until we are close to the buildplace so we have intel
@@ -480,6 +481,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     return
                 end
                 -- if we are already building then we don't need to reclaim, repair or issue the BuildStructure again
+				coroutine.yield(4)
                 if not eng:IsUnitState("Building") then
                     -- cancel all commands, also the buildcommand for blocking mex to check for reclaim or capture
                     eng.PlatoonHandle:Stop()
@@ -5728,7 +5730,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                     StuckCount = 0
                 end
                 if StuckCount > 5 then
-                    --LOG('MassRaidAI stuck count over 5, restarting')
+					WaitTicks(10)
+                    LOG('MassRaidAI stuck count over 5, restarting')
                     return self:MassRaidSorianEdit()
                 end
                 oldPlatPos = platLoc
@@ -5745,7 +5748,8 @@ Platoon = Class(SorianEditPlatoonClass) {
             if not aiBrain:PlatoonExists(self) then
                 return
             end
-            --LOG('MassRaidAI restarting')
+			WaitTicks(10)
+            LOG('MassRaidAI restarting')
             return self:MassRaidSorianEdit()
         else
             -- no marker found, disband!
@@ -7101,7 +7105,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         
         if bestMarker.Position == nil and GetGameTimeSeconds() > 900 and self.MovementLayer ~= 'Water' then
             --LOG('Best Marker position was nil and game time greater than 15 mins, switch to hunt ai')
-            return self:HuntAIPATHRNG()
+            return self:HuntAISorianEdit()
         elseif bestMarker.Position == nil then
             --LOG('Best Marker position was nil, select random')
             if table.getn(markerLocations) <= 2 then
@@ -7284,7 +7288,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                     StuckCount = 0
                 end
                 if StuckCount > 5 then
-                    --LOG('MassRaidAI stuck count over 5, restarting')
+                    LOG('MassRaidAI stuck count over 5, restarting')
+					WaitTicks(10)
                     return self:MassRaidRNG()
                 end
                 oldPlatPos = platLoc
@@ -7301,13 +7306,15 @@ Platoon = Class(SorianEditPlatoonClass) {
             if not PlatoonExists(aiBrain, self) then
                 return
             end
-            --LOG('MassRaidAI restarting')
+            LOG('MassRaidAI restarting')
+			WaitTicks(10)
             return self:MassRaidRNG()
         else
             -- no marker found, disband!
             --LOG('no marker found, disband MASSRAID')
             self:PlatoonDisband()
         end
+		WaitTicks(50)
     end,
 
     TMLAISE = function(self)

@@ -764,7 +764,9 @@ function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryT
     local numTwo = aiBrain:GetCurrentUnits(categoryTwo)
     local numThree = (numOne / numTwo)
 	
-	if (compareType == '<=' or compareType == '<') and numThree <= ratio then
+	if not numThree then
+        return false
+	elseif (compareType == '<=' or compareType == '<') and numThree <= ratio then
 	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian returned true')
 	-- LOG(' ---------- AI DEBUG: HaveUnitRatioSorian 1:'..numOne..' ; 2:'..numTwo..' '..numThree..' '..compareType..' '..ratio..'  ')
         return true

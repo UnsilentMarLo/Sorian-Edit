@@ -32,7 +32,7 @@ local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 	LOG('--------------------- SorianEdit Sea Attack Builders loading')
 	end
 
-local WaterPrio = function( self,aiBrain )
+local WaterPrio = function(self,aiBrain)
 	local ratio = aiBrain:GetMapWaterRatio() * 10
 	local Prio1 = self.Priority
 	local Prio2 = 0
@@ -49,6 +49,30 @@ local WaterPrio = function( self,aiBrain )
 	end
 end
 
+
+-- function WaterRatioCondition(aiBrain, techlevel)
+	-- local ratio = aiBrain:GetMapWaterRatio()
+	-- if ratio > 0.1 then
+		-- if techlevel = 1 then
+			-- if ratio > 0.2 then
+				-- return true
+			-- end
+		-- elseif techlevel = 2 then
+			-- if ratio > 0.3 then
+				-- return true
+			-- end
+		-- elseif techlevel = 3 then
+			-- if ratio > 0.4 then
+				-- return true
+			-- end
+		-- else
+			-- return false
+		-- end
+	-- else
+		-- return false
+	-- end
+-- end
+
 BuilderGroup {
     BuilderGroupName = 'SorianEditT1SeaFactoryBuilders',
     BuildersType = 'FactoryBuilder',
@@ -59,6 +83,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -75,6 +100,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -90,6 +116,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -104,6 +131,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -119,6 +147,7 @@ BuilderGroup {
         Priority = 700,
         PriorityFunction = WaterPrio,
         BuilderConditions = {
+			-- { WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -140,6 +169,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
             -- { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -155,6 +185,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -168,6 +199,7 @@ BuilderGroup {
         -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
         Priority = 1300,
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -183,6 +215,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', { 2, 3 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -200,6 +233,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', {1}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -217,6 +251,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', {3}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -238,6 +273,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -252,6 +288,7 @@ BuilderGroup {
         Priority = 1300,
         PriorityFunction = WaterPrio,
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -272,6 +309,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -287,6 +325,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -301,6 +340,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -314,6 +354,7 @@ BuilderGroup {
         Priority = 3450, --700,
         PriorityFunction = WaterPrio,
         BuilderConditions = {
+			-- { WaterRatioCondition, { 3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.40, 0.6 }},
@@ -329,6 +370,7 @@ BuilderGroup {
         -- PriorityFunction = WaterPrio,
         -- BuilderType = 'Sea',
         -- BuilderConditions = {
+			-- -- { WaterRatioCondition, { 3 } },
 			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			-- { UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
             -- { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307), }},
@@ -342,6 +384,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 3 } },
 			{ MIBC, 'FactionIndex', {2}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -357,6 +400,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 3 } },
 			{ MIBC, 'FactionIndex', {1}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP * categories.OVERLAYANTINAVY }},
@@ -370,6 +414,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
+			-- { WaterRatioCondition, { 3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
 			{ UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },

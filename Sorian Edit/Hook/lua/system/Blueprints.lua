@@ -29,19 +29,14 @@ function ModBlueprints(all_blueprints)
                 end
             end
         end
-    end
-	
-	
-	-- reduce lag
-    for _,unit in all_blueprints.Unit do
-		if unit.Weapon then
-			for _,wep in unit.Weapon do
-				if wep.TargetCheckInterval <= 1 then
+		if bp.Weapon then
+			for _,wep in bp.Weapon do
+				if wep.TargetCheckInterval < 1 then
 					wep.TargetCheckInterval = 1
 				end
 			end
 		end
-	end
+    end
 end
 
 -- For AI Patch V8 adding categories for preset SACUs
