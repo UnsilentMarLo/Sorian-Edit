@@ -19,3 +19,23 @@ function HaveForEach(aiBrain, category, numunits, category2)
 		
     return false
 end
+
+function HaveLessThanUnitsAroundMarkerCategory(aiBrain, markerType, markerRadius, locationType, locationRadius,
+    unitCount, unitCategory, threatMin, threatMax, threatRings, threatType)
+    local pos = aiBrain:PBMGetLocationCoords(locationType)
+    if not pos then
+        return false
+    end
+    if type(unitCategory) == 'string' then
+        unitCategory = ParseEntityCategory(unitCategory)
+    end
+    local positions = AIUtils.AIGetMarkersAroundLocation(aiBrain, markerType, pos, locationType, threatMin, threatMax, threatRings, threatType)
+    for k,v in positions do
+        local unitTotal = table.getn(AIUtils.GetOwnUnitsAroundPoint(aiBrain, unitCategory, v.Position, markerRadius, threatMin,
+            threatMax, threatRings, threatType))
+        if unitTotal < unitCount then
+            return true
+        end
+    end
+    return false
+end

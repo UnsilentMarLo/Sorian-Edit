@@ -2640,7 +2640,7 @@ BuilderGroup {
         Priority = 140000,
         InstanceCount = 1,
         BuilderData = {
-            SearchRadius = BaseEnemyZone,
+            SearchRadius = 20000,
             GetTargetsFromBase = true,
             RequireTransport = false,
             AttackEnemyStrength = 20000,
