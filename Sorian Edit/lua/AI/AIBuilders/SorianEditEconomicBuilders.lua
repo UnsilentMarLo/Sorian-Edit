@@ -51,8 +51,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Disband - Minimum',
         PlatoonTemplate = 'T1BuildEngineer',
-        Priority = 2000,
+        Priority = 4000,
         BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 12, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
             { UCBC, 'GreaterThanGameTimeSeconds', { 140 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
@@ -62,13 +64,14 @@ BuilderGroup {
         BuilderType = 'All',
     },
     Builder {
-        BuilderName = 'SorianEdit T1 Engineer Disband - Filler 1',
+        BuilderName = 'SorianEdit T1 Engineer Disband - Pool',
         PlatoonTemplate = 'T1BuildEngineer',
-        Priority = 425, --800,
+        Priority = 1125, --800,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.6, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.55 }},
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH1} },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH1 * categories.ENGINEER } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH1 } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
@@ -1063,7 +1066,7 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
-                { EBC, 'LessThanEconStorageRatio', { 0.4, 1}},
+                { EBC, 'LessThanEconStorageRatio', { 0.3, 1}},
                 { SBC, 'ReclaimablesInArea', { 'LocationType', }},
             },
         BuilderData = {
@@ -1076,10 +1079,10 @@ BuilderGroup {
         BuilderName = 'SorianEdit Engineer Reclaim - Low Mass',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
         Priority = 1000,
-        InstanceCount = 3,
+        InstanceCount = 2,
         BuilderConditions = {
                 { SBC, 'ReclaimablesInArea', { 'LocationType', }},
-                { EBC, 'LessThanEconStorageRatio', { 0.3, 1}},
+                { EBC, 'LessThanEconStorageRatio', { 0.2, 1}},
             },
         BuilderData = {
             LocationType = 'LocationType',
@@ -1091,7 +1094,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Engineer Reclaim - very Low Mass',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
         Priority = 1000,
-        InstanceCount = 3,
+        InstanceCount = 1,
         BuilderConditions = {
                 { SBC, 'ReclaimablesInArea', { 'LocationType', }},
                 { EBC, 'LessThanEconStorageRatio', { 0.15, 1}},

@@ -1,7 +1,7 @@
 
 PlatoonTemplate {
     Name = 'CDR Attack',
-    Plan = 'ACUChampionPlatoon',
+    Plan = 'ACUAttackSorianEdit',
     GlobalSquads = {
         { categories.COMMAND, 1, 1, 'Attack', 'none' }
     },

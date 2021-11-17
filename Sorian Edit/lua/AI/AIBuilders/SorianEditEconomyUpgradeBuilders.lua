@@ -49,7 +49,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 100 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
             { EBC, 'GreaterThanEconIncome',  { 3.5, -0.0}},
         },
         BuilderData = {
@@ -65,7 +65,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 140 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY} },
         },
         BuilderData = {
@@ -81,7 +81,7 @@ BuilderGroup {
         InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.MASSEXTRACTION} },
         },
         BuilderData = {
@@ -99,6 +99,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.80, 0.90 } },
         },
         BuilderData = {
@@ -114,7 +115,7 @@ BuilderGroup {
         InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.90, 1.00 } },
         },
         BuilderData = {
@@ -130,7 +131,7 @@ BuilderGroup {
         InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 120 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.99, 1.00 } },
         },
         BuilderData = {
