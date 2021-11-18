@@ -1045,65 +1045,65 @@ BuilderGroup {
         }
     },
 
-    Builder {
-        BuilderName = 'SorianEdit Engineer Reclaim Tech 1',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
-        Priority = 500,
-        InstanceCount = 2,
-        BuilderConditions = {
-                { EBC, 'LessThanEconStorageRatio', { 0.2, 1}},
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
-            },
-        BuilderData = {
-            LocationType = 'LocationType',
-        },
-        BuilderType = 'Any',
-    },
+    -- Builder {
+        -- BuilderName = 'SorianEdit Engineer Reclaim Tech 1',
+        -- PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
+        -- Priority = 500,
+        -- InstanceCount = 2,
+        -- BuilderConditions = {
+                -- { EBC, 'LessThanEconStorageRatio', { 0.2, 1}},
+                -- { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+            -- },
+        -- BuilderData = {
+            -- LocationType = 'LocationType',
+        -- },
+        -- BuilderType = 'Any',
+    -- },
 	
-    Builder {
-        BuilderName = 'SorianEdit Engineer Reclaim',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
-        Priority = 1000,
-        InstanceCount = 2,
-        BuilderConditions = {
-                { EBC, 'LessThanEconStorageRatio', { 0.3, 1}},
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
-            },
-        BuilderData = {
-            LocationType = 'LocationType',
-        },
-        BuilderType = 'Any',
-    },
+    -- Builder {
+        -- BuilderName = 'SorianEdit Engineer Reclaim',
+        -- PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
+        -- Priority = 1000,
+        -- InstanceCount = 2,
+        -- BuilderConditions = {
+                -- { EBC, 'LessThanEconStorageRatio', { 0.3, 1}},
+                -- { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+            -- },
+        -- BuilderData = {
+            -- LocationType = 'LocationType',
+        -- },
+        -- BuilderType = 'Any',
+    -- },
 	
-    Builder {
-        BuilderName = 'SorianEdit Engineer Reclaim - Low Mass',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
-        Priority = 1000,
-        InstanceCount = 2,
-        BuilderConditions = {
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
-                { EBC, 'LessThanEconStorageRatio', { 0.2, 1}},
-            },
-        BuilderData = {
-            LocationType = 'LocationType',
-        },
-        BuilderType = 'Any',
-    },
+    -- Builder {
+        -- BuilderName = 'SorianEdit Engineer Reclaim - Low Mass',
+        -- PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
+        -- Priority = 1000,
+        -- InstanceCount = 2,
+        -- BuilderConditions = {
+                -- { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+                -- { EBC, 'LessThanEconStorageRatio', { 0.2, 1}},
+            -- },
+        -- BuilderData = {
+            -- LocationType = 'LocationType',
+        -- },
+        -- BuilderType = 'Any',
+    -- },
 	
-    Builder {
-        BuilderName = 'SorianEdit Engineer Reclaim - very Low Mass',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
-        Priority = 1000,
-        InstanceCount = 1,
-        BuilderConditions = {
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
-                { EBC, 'LessThanEconStorageRatio', { 0.15, 1}},
-            },
-        BuilderData = {
-            LocationType = 'LocationType',
-        },
-        BuilderType = 'Any',
-    },
+    -- Builder {
+        -- BuilderName = 'SorianEdit Engineer Reclaim - very Low Mass',
+        -- PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
+        -- Priority = 1000,
+        -- InstanceCount = 1,
+        -- BuilderConditions = {
+                -- { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+                -- { EBC, 'LessThanEconStorageRatio', { 0.15, 1}},
+            -- },
+        -- BuilderData = {
+            -- LocationType = 'LocationType',
+        -- },
+        -- BuilderType = 'Any',
+    -- },
 
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Reclaim Old Pgens',

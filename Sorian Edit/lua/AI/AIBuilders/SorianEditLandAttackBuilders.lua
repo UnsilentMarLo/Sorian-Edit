@@ -758,7 +758,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -801,7 +801,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -882,7 +882,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -924,7 +924,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -971,7 +971,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -1003,7 +1003,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1035,7 +1035,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1066,7 +1066,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1113,7 +1113,7 @@ BuilderGroup {
             AggressiveMove = false,
             AvoidClosestRadius = 100,
             UseFormation = 'None',
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             TargetSearchPriorities = {
                 categories.MASSEXTRACTION,
                 categories.MASSFABRICATION,
@@ -1160,7 +1160,7 @@ BuilderGroup {
             AggressiveMove = false,
             AvoidClosestRadius = 100,
             UseFormation = 'None',
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             TargetSearchPriorities = {
                 categories.MASSEXTRACTION,
                 categories.MASSFABRICATION,
@@ -1201,7 +1201,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -1234,7 +1234,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -1267,7 +1267,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
@@ -1302,7 +1302,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1336,7 +1336,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1371,7 +1371,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1404,7 +1404,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1438,7 +1438,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1471,7 +1471,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
@@ -1504,7 +1504,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120,
             -- IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.SCOUT,
+            TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC),
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
                 categories.COMMAND,
