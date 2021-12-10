@@ -41,14 +41,15 @@ BuilderGroup {
     ------ Start the Factories in the expansion
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - Rush',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         InstanceCount = 1,
         BuilderConditions = {
             { EBC, 'GreaterThanEconIncome',  { 2.0, 16.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { SBC, 'LessThanGameTime', { 600 } },
-            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY } },
+            { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 10, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -59,7 +60,7 @@ BuilderGroup {
                 ExpansionBase = true,
                 ExpansionRadius = 200,
                 NearMarkerType = 'Start Location',
-                LocationRadius = 1000,
+                LocationRadius = 500,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 700,
@@ -87,6 +88,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -131,6 +133,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -174,12 +177,13 @@ BuilderGroup {
     ------ Start the Factories in the expansion
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - drop',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1000,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { EBC, 'GreaterThanEconIncome',  { 4.0, 25.0}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -220,6 +224,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -264,6 +269,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -306,13 +312,14 @@ BuilderGroup {
     --------------------------------------------------------------------------------
     Builder {
         BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Fire base)',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 850,
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { SIBC, 'ExpansionPointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH1 STRUCTURE', 20, 3, 0, 1, 2, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -352,6 +359,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             -- { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',

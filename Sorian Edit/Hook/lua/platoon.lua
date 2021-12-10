@@ -558,7 +558,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             if UCBC.HaveUnitRatioVersusCapSorianEdit(aiBrain, 0.10, '<', categories.STRUCTURE * categories.MASSEXTRACTION) then
                 -- only repeat if we have a free mass spot
                 local MABC = import('/lua/editor/MarkerBuildConditions.lua')
-                if MABC.CanBuildOnMassSorianEdit(aiBrain, 'MAIN', 1000, -500, 1, 0, 'AntiSurface', 1) then  -- LocationType, distance, threatMin, threatMax, threatRadius, threatType, maxNum
+                if MABC.CanBuildOnMassLessThanDistance(aiBrain, 'MAIN', 1000, -500, 1, 0, 'AntiSurface', 1) then  -- LocationType, distance, threatMin, threatMax, threatRadius, threatType, maxNum
                     self:SetAIPlan('EngineerBuildAI')
                     return
                 end
@@ -743,10 +743,6 @@ Platoon = Class(SorianEditPlatoonClass) {
     end,
 
     BomberGunshipSorianEdit = function(self)
-        if 1==1 then
-            self:HeroFightPlatoonSorianEdit()
-            return
-        end 
         AIAttackUtils.GetMostRestrictiveLayer(self) 
 
         local aiBrain = self:GetBrain()
@@ -793,7 +789,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         self:SetPrioritizedTargetList('Attack', WeaponTargetCategories)
         local target
-        local bAggroMove = self.PlatoonData.AggressiveMove
+        local bAggroMove = true --self.PlatoonData.AggressiveMove
         local path
         local reason
         local maxRadius = self.PlatoonData.SearchRadius or 100
@@ -1101,7 +1097,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 break
             end
             -- the maximum radis that the ACU can be away from base
-            maxRadius = (SUtils.ComHealth(cdr)-65)*7 -- If the comanders health is 100% then we have a maxtange of ~250 = (100-65)*7
+            maxRadius = (SUtils.ComHealth(cdr))*10 -- If the comanders health is 100% then we have a maxtange of ~250 = (100-65)*7
             maxTimeRadius = 240 - GetGameTimeSeconds()/60*6 -- reduce the radius by 6 map units per minute. After 30 minutes it's (240-180) = 60
             if maxRadius > maxTimeRadius then 
                 maxRadius = math.max( 60, maxTimeRadius ) -- IF maxTimeRadius < 60 THEN maxTimeRadius = 60
@@ -1118,7 +1114,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             ----------------------------------------------
             --- This is the start of the main ACU loop ---
             ----------------------------------------------
-            if aiBrain:GetEconomyStoredRatio('ENERGY') > 0.95 and SUtils.ComHealth(cdr) < 100 then
+            if aiBrain:GetEconomyStoredRatio('ENERGY') > 0.70 then
                 cdr:SetAutoOvercharge(true)
             else
                 cdr:SetAutoOvercharge(false)
@@ -1262,8 +1258,8 @@ Platoon = Class(SorianEditPlatoonClass) {
             WARN('* AI-SorianEdit: EcoGoodForUpgradeSorianEdit: Enhancement has no buildtime: '..repr(enhancement))
         end
         --LOG('* AI-SorianEdit: cdr:GetBuildRate() '..BuildRate..'')
-        local drainMass = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostMass
-        local drainEnergy = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostEnergy
+        local drainMass = (BuildRate / enhancement.BuildTime) * (enhancement.BuildCostMass * 3)
+        local drainEnergy = (BuildRate / enhancement.BuildTime) * (enhancement.BuildCostEnergy * 3)
         --LOG('* AI-SorianEdit: drain: m'..drainMass..'  e'..drainEnergy..'')
         --LOG('* AI-SorianEdit: Pump: m'..math.floor(aiBrain:GetEconomyTrend('MASS')*10)..'  e'..math.floor(aiBrain:GetEconomyTrend('ENERGY')*10)..'')
         if aiBrain.HasParagon then
@@ -2367,7 +2363,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             ---------------------------------------------------------------------------------------------------
             -- first try to target all targets that are not protected from enemy anti missile
             ---------------------------------------------------------------------------------------------------
-            EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE - categories.MASSEXTRACTION - categories.TECH1 - categories.TECH2 , Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ, 'Enemy')
+            EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE - categories.MASSEXTRACTION - categories.TECH1 - categories.COMMAND - categories.TECH2 , Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ, 'Enemy')
             EnemyTargetPositions = {}
             if NUKEDEBUG then
                 LOG('* AI-SorianEdit: * NukePlatoonSorianEdit: (Unprotected) EnemyUnits. Checking enemy units: '..table.getn(EnemyUnits))

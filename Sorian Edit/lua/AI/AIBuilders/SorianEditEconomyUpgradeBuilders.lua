@@ -49,7 +49,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
             { EBC, 'GreaterThanEconIncome',  { 3.5, -0.0}},
         },
         BuilderData = {
@@ -81,7 +81,7 @@ BuilderGroup {
         InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.MASSEXTRACTION} },
         },
         BuilderData = {
@@ -131,7 +131,7 @@ BuilderGroup {
         InstanceCount = 2,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 400 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 500 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.99, 1.00 } },
         },
         BuilderData = {
@@ -209,8 +209,8 @@ BuilderGroup {
         Priority = 150000,
         InstanceCount = 1,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
             },
         BuilderType = 'Any',
@@ -223,7 +223,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
             },
         BuilderType = 'Any',
@@ -401,7 +401,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormDebugFunction = nil,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 200 } },
@@ -487,7 +487,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 4,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 -- { UCBC, 'FactoryLessAtLocation', { 'MAIN', 1, 'FACTORY TECH1' } },
@@ -505,7 +505,7 @@ BuilderGroup {
         InstanceCount = 4,
         FormDebugFunction = nil,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 -- { IBC, 'BrainNotLowPowerMode', {} },
@@ -522,7 +522,7 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 4,
         BuilderConditions = {
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 4, categories.FACTORY * categories.NAVAL * categories.TECH1 } },
                 -- { IBC, 'BrainNotLowPowerMode', {} },
 				{ UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
@@ -603,7 +603,7 @@ BuilderGroup {
         InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH3'}},
@@ -627,7 +627,7 @@ BuilderGroup {
         FormDebugFunction = nil,
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 7,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'MASSEXTRACTION TECH2'}},
                 -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'FACTORY TECH3'}},

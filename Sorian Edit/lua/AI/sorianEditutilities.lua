@@ -2530,58 +2530,52 @@ function TMLAIThread(platoon,self,aiBrain)
     local maxRadius = weapon.MaxRadius or 256
     local minRadius = weapon.MinRadius or 15
     local MaxLoad = weapon.MaxProjectileStorage or 4
-    self:SetAutoMode(true)
+    self:SetAutoMode(false)
     while aiBrain:PlatoonExists(platoon) and self and not self.Dead do
-        local target = false
-        while self and not self.Dead and self:GetTacticalSiloAmmoCount() < 2 do
-            coroutine.yield(120)
-        end
-        while self and not self.Dead and self:IsPaused() do
-            coroutine.yield(120)
-        end
-		while self and not self.Dead do
 		local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
-			if (econ.MassTrend <= 0.4 and econ.EnergyTrend <= 0.8) then
-				self:SetAutoMode(false)
-				IssueClearCommands({self})
-				-- LOG('* TMLAIThread: Econ is bad.')
+		local target = false
+		if (econ.MassTrend <= 0.4 and econ.EnergyTrend <= 0.8) then
+			self:SetAutoMode(false)
+			IssueClearCommands({self})
+			coroutine.yield(40)
+		else
+			self:SetAutoMode(true)
+			while self and not self.Dead and self:GetTacticalSiloAmmoCount() < 2 do
 				coroutine.yield(10)
-			else
-				self:SetAutoMode(true)
-				-- LOG('* TMLAIThread: Econ is good.')
 			end
-			-- LOG('* TMLAIThread: Econ checking.')
-			coroutine.yield(120)
+			while self and not self.Dead and self:IsPaused() do
+				coroutine.yield(10)
+			end
+			while self and not self.Dead and self:GetTacticalSiloAmmoCount() > 1 and not target and not self:IsPaused() do
+				target = false
+				while self and not self.Dead and not target do
+					coroutine.yield(10)
+					while self and not self.Dead and not self:IsIdleState() do
+						coroutine.yield(10)
+					end
+					if self.Dead then return end
+					target = FindTargetUnit(self, minRadius, maxRadius, MaxLoad)
+				end
+			end
+			if self and not self.Dead and target and not target.Dead and MissileTimer < GetGameTimeSeconds() then
+				MissileTimer = GetGameTimeSeconds() + 1
+				if EntityCategoryContains(categories.STRUCTURE, target) then
+					if self:GetTacticalSiloAmmoCount() >= MaxLoad then
+						IssueTactical({self}, target)
+					end
+				else
+					targPos = LeadTarget(self, target)
+					if targPos and targPos[1] > 0 and targPos[3] > 0 then
+						if EntityCategoryContains(categories.EXPERIMENTAL - categories.AIR, target) or self:GetTacticalSiloAmmoCount() >= MaxLoad then
+							IssueTactical({self}, targPos)
+						end
+					else
+						target = false
+					end
+				end
+			end
+			coroutine.yield(20)
 		end
-        while self and not self.Dead and self:GetTacticalSiloAmmoCount() > 1 and not target and not self:IsPaused() do
-            target = false
-            while self and not self.Dead and not target do
-                coroutine.yield(30)
-                while self and not self.Dead and not self:IsIdleState() do
-                    coroutine.yield(30)
-                end
-                if self.Dead then return end
-                target = FindTargetUnit(self, minRadius, maxRadius, MaxLoad)
-            end
-        end
-        if self and not self.Dead and target and not target.Dead and MissileTimer < GetGameTimeSeconds() then
-            MissileTimer = GetGameTimeSeconds() + 1
-            if EntityCategoryContains(categories.STRUCTURE, target) then
-                if self:GetTacticalSiloAmmoCount() >= MaxLoad then
-                    IssueTactical({self}, target)
-                end
-            else
-                targPos = LeadTarget(self, target)
-                if targPos and targPos[1] > 0 and targPos[3] > 0 then
-                    if EntityCategoryContains(categories.EXPERIMENTAL - categories.AIR, target) or self:GetTacticalSiloAmmoCount() >= MaxLoad then
-                        IssueTactical({self}, targPos)
-                    end
-                else
-                    target = false
-                end
-            end
-        end
-        coroutine.yield(20)
     end
 end
 

@@ -34,7 +34,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 Naval Builder Fast - initial',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 12000,
         InstanceCount = 1,
         BuilderConditions = {
@@ -71,7 +71,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T1 Naval Builder Fast',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -120,7 +120,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 1200, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 - categories.COMMAND } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -161,7 +161,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 1200, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 - categories.COMMAND } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
@@ -200,7 +200,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 Naval Builder',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
@@ -327,14 +327,14 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 Naval Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 905,
         InstanceCount = 1,
         BuilderConditions = {
             { EBC, 'GreaterThanEconIncome',  { 4.0, 25.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.TECH1 } },
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.TECH1 - categories.COMMAND } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 5, categories.NAVAL } },
         },
         BuilderType = 'Any',

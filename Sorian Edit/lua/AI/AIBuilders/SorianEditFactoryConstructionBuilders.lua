@@ -40,7 +40,7 @@ BuilderGroup {
     -- =======================================
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Builder - Initial',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1000,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
@@ -86,13 +86,13 @@ BuilderGroup {
 
     Builder {
         BuilderName = 'SorianEdit T1 Factory Engineer - Overbuild',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1200,
         InstanceCount = 2,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
@@ -102,10 +102,9 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 BuildStructures = {
                     'T1LandFactory',
-                    'T1AirFactory',
                 },
             }
         }
@@ -127,9 +126,58 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 BuildStructures = {
                     'T2SupportLandFactory',
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit T1 Air Factory Engineer - Overbuild',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
+        Priority = 1200,
+        InstanceCount = 1,
+        BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
+            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
+            -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = false,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit T2 Air Factory Engineer - Overbuild',
+        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
+        Priority = 1300,
+        InstanceCount = 1,
+        BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = false,
+                BuildStructures = {
                     'T2SupportAirFactory',
                 },
             }
@@ -153,7 +201,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 BuildStructures = {
                     'T3SupportLandFactory',
                     'T3SupportAirFactory',
@@ -187,7 +235,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Higher Pri',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2475, --950,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.7 } },
@@ -209,14 +257,14 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Higher Pri',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 3975, --950,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.0 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 2, 'FACTORY LAND' }},
+            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY LAND' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
         },
@@ -239,12 +287,12 @@ BuilderGroup {
     -- =============================
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Builder Balance',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1105,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 1.0 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
         },
@@ -265,11 +313,11 @@ BuilderGroup {
     -- ============================
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Builder Balance',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1106,
         BuilderConditions = {
             -- { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -294,7 +342,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Builder - Air',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         BuilderConditions = {
             -- { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
@@ -325,7 +373,7 @@ BuilderGroup {
     -- =============================
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
@@ -374,10 +422,10 @@ BuilderGroup {
     -- ============================
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Builder',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.7 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -424,7 +472,7 @@ BuilderGroup {
     -- ====================================== --
     --[[ Builder {
         BuilderName = 'SorianEdit T1 Air Factory Transport Needed',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3, ENGINEER TECH2' } },

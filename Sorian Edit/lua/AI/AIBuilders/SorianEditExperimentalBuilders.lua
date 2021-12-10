@@ -110,7 +110,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -141,7 +141,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -172,7 +172,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
@@ -234,7 +234,7 @@ BuilderGroup {
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -266,7 +266,7 @@ BuilderGroup {
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -298,7 +298,7 @@ BuilderGroup {
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -404,7 +404,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -453,7 +453,7 @@ BuilderGroup {
             AggressiveMove = false,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -502,7 +502,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -552,7 +552,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1 - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.COMMAND, -- categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -594,7 +594,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
@@ -625,7 +625,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
@@ -716,7 +716,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -759,7 +759,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * categories.LAND - categories.TECH1 - categories.COMMAND - categories.NAVAL - categories.HOVER - categories.AMPHIBIOUS - categories.ANTIAIR - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.EXPERIMENTAL,
@@ -799,7 +799,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
@@ -895,7 +895,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * (categories.NAVAL + categories.NAVAL) - categories.TECH1 - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * (categories.NAVAL + categories.NAVAL) - categories.TECH1 - categories.COMMAND - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.NAVAL,
@@ -1038,7 +1038,7 @@ BuilderGroup {
         InstanceCount = 1,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
-            { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
+            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.6, 0.99 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},

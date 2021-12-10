@@ -251,7 +251,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Builder - High Prio',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = -1,
         ActivePriority = 1500,
         BuilderConditions = {
@@ -1178,7 +1178,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - HP Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         ActivePriority = 985,
         InstanceCount = 2,
@@ -1218,7 +1218,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         ActivePriority = 932,
         InstanceCount = 2,
@@ -1258,7 +1258,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEdit T1 Vacant Expansion Area Engineer(Full Base) - Strategy',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         ActivePriority = 922,
         InstanceCount = 2,
@@ -1303,7 +1303,7 @@ BuilderGroup {
     BuildersType = 'EngineerBuilder',
     Builder {
         BuilderName = 'SorianEdit T1 - High Prio Defensive Point Engineer',
-        PlatoonTemplate = 'EngineerBuilderSorianEdit',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 900,
         ActivePriority = 980,
         BuilderConditions = {

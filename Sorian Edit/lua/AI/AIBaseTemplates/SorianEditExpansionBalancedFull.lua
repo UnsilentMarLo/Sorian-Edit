@@ -98,8 +98,6 @@ BaseBuilderTemplate {
 
         'SorianEditFrequentLandAttackFormBuilders',
         'SorianEditMassHunterLandFormBuilders',
-        'SorianEditMiscLandFormBuilders',
-        'SorianEditUnitCapLandAttackFormBuilders',
 
         'SorianEditT1LandAA',
         'SorianEditT2LandAA',
@@ -122,7 +120,6 @@ BaseBuilderTemplate {
         'SorianEditFrequentAirAttackFormBuilders',
         'SorianEditMassHunterAirFormBuilders',
 
-        'SorianEditUnitCapAirAttackFormBuilders',
         'SorianEditACUHunterAirFormBuilders',
 
         'SorianEditTransportFactoryBuilders',
