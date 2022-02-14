@@ -22,21 +22,11 @@ BaseBuilderTemplate {
         -- Engineer Builders
         'SorianEditEngineerNavalFactoryBuilders',
         'SorianEditEngineerFactoryBuildersExpansion rush',
-        'SorianEditT1EngineerBuilders',
-        'SorianEditT2EngineerBuilders',
+        -- 'SorianEditT1EngineerBuilders',
+        -- 'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
-        'SorianEditEngineerNavalFactoryBuilder',
 
-        -- -- Build Mass high pri at this base
-        -- 'Sorianedit Mass Builders', 
-
-        -- 'SorianEditT3ACUNukeDefenses',
         'SorianEditT3NukeDefensesFormer',
-
-        -- ==== EXPANSION ==== --
-        'SorianEditEngineerExpansionBuildersFull',
-        'SorianEditEngineerExpansionBuildersFulldrop',
-        'SorianEditEngineerFirebaseBuilders',
 
         -- ==== EXPERIMENTALS ==== --
 		
@@ -62,21 +52,13 @@ BaseBuilderTemplate {
         'SorianEditBigSeaAttackFormBuilders',
         'SorianEditMassHunterSeaFormBuilders',
 
-        -- == STRATEGY PLATOONS == --
-
-        'SorianEditBalancedUpgradeBuildersExpansionStrategy',
-
-        -- ==== NAVAL EXPANSION ==== --
-        'SorianEditNavalExpansionBuildersFast',
-        'SorianEditNavalExpansionBuilders',
-
         -- ==== EXPERIMENTALS ==== --
         'SorianEditMobileNavalExperimentalEngineers',
         'SorianEditMobileNavalExperimentalForm',
 		
         -- ==== Intel ==== --
-        'SorianEditSonarEngineerBuilders',
-        'SorianEditSonarUpgradeBuilders',
+        -- 'SorianEditSonarEngineerBuilders',
+        -- 'SorianEditSonarUpgradeBuilders',
     },
     NonCheatBuilders = {},
     BaseSettings = {

@@ -39,14 +39,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Disband - Init',
         PlatoonTemplate = 'T1BuildEngineer',
-        Priority = 3900,
+        Priority = 59000,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH1 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.MOBILE * categories.ENGINEER } },
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 4, categories.ENGINEER * categories.TECH1 }},
             { UCBC, 'UnitCapCheckLess', { .6 } },
         },
-        BuilderType = 'All',
+        BuilderType = 'Land',
     },
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Disband - Minimum',
@@ -54,9 +52,9 @@ BuilderGroup {
         Priority = 2900,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 12, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
-            { UCBC, 'GreaterThanGameTimeSeconds', { 140 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.12 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
+            { UCBC, 'GreaterThanGameTimeSeconds', { 90 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH1 * categories.ENGINEER } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
@@ -96,7 +94,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Engineer Disband - Init',
         PlatoonTemplate = 'T2BuildEngineer',
-        Priority = 3525,
+        Priority = 4525,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.MOBILE * categories.TECH2 * categories.ENGINEER } },
@@ -108,10 +106,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Engineer Disband - Minimum',
         PlatoonTemplate = 'T2BuildEngineer',
-        Priority = 1500,
+        Priority = 4500,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.15 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.MOBILE * categories.ENGINEER * categories.TECH2 }},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH2 } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH2 * categories.ENGINEER } },
@@ -122,11 +120,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Engineer Disband - Filler 1',
         PlatoonTemplate = 'T2BuildEngineer',
-        Priority = 1400,
+        Priority = 4400,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.4, 0.4 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.55 }},
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.ENGINEER - categories.TECH1 - categories.COMMAND - categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH2 } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -140,7 +137,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Disband - Init',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 2250,
+        Priority = 12250,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.MOBILE * categories.TECH3 * categories.ENGINEER } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH3 * categories.ENGINEER } },
@@ -151,7 +148,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Disband - Minimum',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 2325,
+        Priority = 12325,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
@@ -164,7 +161,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Engineer Disband - Filler 1',
         PlatoonTemplate = 'T3BuildEngineer',
-        Priority = 4800,
+        Priority = 12800,
         BuilderConditions = {
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.ENGINEER - categories.TECH2 - categories.TECH1 - categories.COMMAND } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.5 } },
@@ -528,7 +525,7 @@ BuilderGroup {
         Priority = 40000,
         BuilderConditions = {
 				{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
-                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 40, -500, 0, 0, 'AntiSurface', 1 }},
 				{ UCBC, 'HaveLessThanUnitsWithCategory', {2, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
             },
         BuilderType = 'Any',
@@ -570,7 +567,7 @@ BuilderGroup {
         BuilderConditions = {
 				{ UCBC, 'LessThanGameTimeSeconds', { 120 } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
-                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 15, -500, 0, 0, 'AntiSurface', 1 }},
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 40, -500, 0, 0, 'AntiSurface', 1 }},
             },
         BuilderType = 'Any',
         BuilderData = {
@@ -638,6 +635,8 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                 },
             }
         }
@@ -649,7 +648,7 @@ BuilderGroup {
         Priority = 3800,
         BuilderConditions = {
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.4 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -658,6 +657,8 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
+                    'T1EnergyProduction',
+                    'T1EnergyProduction',
                 },
             }
         }
@@ -672,6 +673,7 @@ BuilderGroup {
             { UCBC, 'GreaterThanGameTimeSeconds', { 60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND - categories.HYDROCARBON } },
         },
         --InstanceCount = 2,
@@ -681,29 +683,6 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
-                },
-            }
-        }
-    },
-	
-    Builder {
-        BuilderName = 'SorianEdit T1 Air Factory ACU - Overbuild',
-        PlatoonTemplate = 'CommanderBuilderSorianEdit',
-        Priority = 1200,
-        BuilderConditions = {
-			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 60 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND - categories.HYDROCARBON } },
-        },
-        --InstanceCount = 2,
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                BuildClose = true,
-                BuildStructures = {
-                    'T1AirFactory',
                 },
             }
         }
@@ -730,6 +709,26 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T2SupportLandFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit CDR T1 Power - additional',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 3500,
+        BuilderConditions = {
+            { EBC, 'LessThanEconStorageRatio', { 1.0, 0.2 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
                 },
             }
         }
@@ -1019,7 +1018,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Seraphim CDR Upgrade AdvEng - Resource - Crysalis',
         PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
-                { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+                { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
                 { MIBC, 'FactionIndex', {4}},
@@ -1040,7 +1039,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit Seraphim CDR Upgrade T3 Eng - ResourceAdv - EnhSensor',
         PlatoonTemplate = 'CommanderEnhanceSorianEdit',
         BuilderConditions = {
-                { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+                { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.9 } },
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
                 { MIBC, 'FactionIndex', {4}},
@@ -1103,11 +1102,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Engineer Reclaim',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1REC',
-        Priority = 1000,
-        InstanceCount = 2,
+        Priority = 100000,
+        InstanceCount = 1,
         BuilderConditions = {
-                { EBC, 'LessThanEconStorageRatio', { 0.5, 1}},
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+                { EBC, 'LessThanEconStorageRatio', { 0.5, 2}},
+                { SBC, 'ReclaimablesInArea', { 'LocationType', 75 }},
             },
         BuilderData = {
             LocationType = 'LocationType',
@@ -1120,7 +1119,7 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 4,
         BuilderConditions = {
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+                { SBC, 'ReclaimablesInArea', { 'LocationType', 500 }},
                 { EBC, 'LessThanEconStorageRatio', { 0.3, 1}},
             },
         BuilderData = {
@@ -1134,7 +1133,7 @@ BuilderGroup {
         Priority = 2000,
         InstanceCount = 4,
         BuilderConditions = {
-                { SBC, 'ReclaimablesInArea', { 'LocationType', }},
+                { SBC, 'ReclaimablesInArea', { 'LocationType', 500 }},
                 { EBC, 'LessThanEconStorageRatio', { 0.15, 1}},
             },
         BuilderData = {
@@ -1149,7 +1148,7 @@ BuilderGroup {
         Priority = 1000,
         InstanceCount = 2,
         BuilderConditions = {
-                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 3, categories.ENERGYPRODUCTION * (categories.TECH2 + categories.TECH3) - categories.HYDROCARBON}},
+                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
                 { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ENERGYPRODUCTION * categories.TECH1 - categories.HYDROCARBON}},
             },
         BuilderData = {
@@ -1162,7 +1161,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Engineer Find Unfinished',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         PlatoonAIPlan = 'ManagerEngineerFindUnfinished',
-        Priority = 1800,
+        Priority = 800,
         InstanceCount = 2,
         BuilderConditions = {
                 { SBC, 'UnfinishedUnits', { 'LocationType', categories.STRUCTURE}},
@@ -1222,12 +1221,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Energy Storage Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 2000,
+        Priority = 800,
         BuilderConditions = {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 410 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.6, 1.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 12, categories.STRUCTURE * categories.ENERGYSTORAGE }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.ENERGYSTORAGE }},
             { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ENERGYPRODUCTION * categories.HYDROCARBON }},
             { UCBC, 'UnitCapCheckLess', { .7 } },
            -- { UCBC, 'AdjacencyCheck', { 'LocationType', 'ENERGYPRODUCTION HYDROCARBON', 100, 'ueb1102' } },
@@ -1250,7 +1249,7 @@ BuilderGroup {
         Priority = 2000,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconIncome', { 4, 50 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYSTORAGE }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.ENERGYSTORAGE }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1334,8 +1333,8 @@ BuilderGroup {
         InstanceCount = 8,
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, categories.ALLUNITS } },
-            -- { UCBC, 'CheckBuildPlatoonDelay', { 'EngineerAssistDelays' }},
-            -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { UCBC, 'CheckBuildPlatoonDelay', { 'EngineerAssistDelays' }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
         },
@@ -1356,7 +1355,7 @@ BuilderGroup {
        BuilderConditions = {
            { UCBC, 'BuildingGreaterAtLocation', { 'LocationType', 0, categories.MASSEXTRACTION * categories.TECH2 }},
            { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.MASSEXTRACTION - categories.TECH1 - categories.COMMAND } },
-           -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
            { SIBC, 'LessThanEconEfficiencyOverTime', { 1.5, 2.0 }},
@@ -1379,7 +1378,7 @@ BuilderGroup {
        BuilderConditions = {
            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH1}},
            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.FACTORY * categories.TECH2 }},
-           -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
        },
@@ -1403,7 +1402,7 @@ BuilderGroup {
            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH1}},
            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.FACTORY * categories.TECH3 }},
            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.TECH3 * categories.FACTORY } },
-           -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
        },
@@ -1486,7 +1485,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
                 { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON}},
+                { UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 0, categories.ENERGYPRODUCTION * categories.TECH1 - categories.HYDROCARBON}},
             },
         BuilderData = {
             Location = 'LocationType',
@@ -1525,6 +1524,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND } },
             { SIBC, 'LessThanEconEfficiencyOverTime', { 2.0, 1.5 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.5 } },
         },
         BuilderType = 'Any',
@@ -1548,6 +1548,7 @@ BuilderGroup {
             -- { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, 'MOBILE' } },
             -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.7 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
         },
         BuilderData = {
@@ -1570,7 +1571,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'ALLUNITS' } },
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'EngineerAssistDelays' }},
-            -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.7 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
         },
@@ -1591,7 +1592,8 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENGINEER * categories.TECH2}},
             { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.FACTORY * categories.TECH3 }},
-            -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 1.1 }},
+            -- { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 1.1 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
         },
         InstanceCount = 5,
         BuilderType = 'Any',
@@ -2071,24 +2073,21 @@ BuilderGroup {
         BuilderName = 'SorianEdit MassFab T2',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 15000,
-        InstanceCount = 4,
+        InstanceCount = 2,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'MASSFABRICATION TECH3' }},
-            { EBC, 'LessThanEconStorageRatio', { 0.75, 2 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.95}},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 }},
-            { SBC, 'HaveUnitRatioSorian', { 12.0, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 } },
+            { SBC, 'HaveUnitRatioSorian', { 6.0, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 } },
 
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
-                RepeatBuild = false,
                 BuildStructures = {
                     'T1MassCreation',
                 },
-                Location = 'LocationType',
             }
         }
     },
@@ -2096,10 +2095,9 @@ BuilderGroup {
         BuilderName = 'SorianEdit MassFab T3',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 15000,
-        InstanceCount = 4,
+        InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'LessThanEconStorageRatio', { 0.75, 2 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.05, 0.95}},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.45, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 } },
 
@@ -2108,11 +2106,9 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
-                RepeatBuild = false,
                 BuildStructures = {
                     'T3MassCreation',
                 },
-                Location = 'LocationType',
             }
         }
     },
@@ -2158,20 +2154,18 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Power Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 4250,
+        Priority = 2250,
         InstanceCount = 1,
         BuilderConditions = {
             -- { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, 'TECH3 ENGINEER' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2}},
             { EBC, 'LessThanEconTrend', { 10000.0, 1.1 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
-                AvoidCategory = 'ENERGYPRODUCTION TECH2',
-                maxUnits = 4,
-                maxRadius = 20,
                 BuildStructures = {
                     'T2EnergyProduction',
                 },
@@ -2181,10 +2175,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Power Engineer - Overbuild',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 1000,
+        Priority = 3000,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.0 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2}},
+            { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.0 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
             { EBC, 'LessThanEconTrend', { 10000.0, 1.5 }},
         },
         BuilderType = 'Any',
@@ -2192,6 +2188,7 @@ BuilderGroup {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
                 AvoidCategory = 'ENERGYPRODUCTION TECH2',
+                maxUnits = 1,
                 maxRadius = 20,
                 RepeatBuild = true,
                 BuildStructures = {
@@ -2204,8 +2201,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Power Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 5500,
-        InstanceCount = 4,
+        Priority = 55000,
+        InstanceCount = 2,
         BuilderType = 'Any',
         BuilderConditions = {
             { EBC, 'LessThanEconTrend', { 10000.0, 1.0 }},
@@ -2214,10 +2211,6 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
-                AvoidCategory = 'ENERGYPRODUCTION TECH3',
-                maxUnits = 4,
-                maxRadius = 20,
-                RepeatBuild = true,
                 BuildStructures = {
                     'T3EnergyProduction',
                 },
@@ -2228,7 +2221,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Power Engineer - init',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 12500,
+        Priority = 1250000,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2}},
@@ -2237,8 +2230,6 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY',
-                AvoidCategory = 'ENERGYPRODUCTION TECH2',
-                maxRadius = 20,
                 BuildStructures = {
                     'T2EnergyProduction',
                 },
@@ -2248,7 +2239,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Power Engineer - init',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 13500,
+        Priority = 1350000000,
         InstanceCount = 3,
         BuilderType = 'Any',
         BuilderConditions = {
@@ -2258,8 +2249,6 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 AdjacencyCategory = 'FACTORY AIR',
-                AvoidCategory = 'ENERGYPRODUCTION TECH2',
-                maxRadius = 10,
                 BuildStructures = {
                     'T3EnergyProduction',
                 },
@@ -2279,6 +2268,7 @@ BuilderGroup {
                 { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.ENERGYPRODUCTION * categories.TECH2 } },
                 -- { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'TECH3 ENGINEER' }},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3}},
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2}},
                 -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.1 }},
                 { EBC, 'LessThanEconTrend', { 10000.0, 0.0 }},
             },
@@ -2287,6 +2277,7 @@ BuilderGroup {
             Construction = {
                 AdjacencyCategory = categories.FACTORY,
                 AvoidCategory = 'ENERGYPRODUCTION TECH2',
+                maxUnits = 4,
                 maxRadius = 20,
                 BuildStructures = {
                     'T2EnergyProduction',

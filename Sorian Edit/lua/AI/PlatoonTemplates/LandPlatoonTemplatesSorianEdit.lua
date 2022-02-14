@@ -19,7 +19,7 @@ PlatoonTemplate {
     Name = 'LandAttackMediumSorianEdit',
     Plan = 'HeroFightPlatoonSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 3, 13, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 5, 13, 'Attack', 'none' }
     },
 }
 
@@ -27,7 +27,7 @@ PlatoonTemplate {
     Name = 'LandAttackLargeSorianEdit',
     Plan = 'HeroFightPlatoonSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 5, 40, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 12, 40, 'Attack', 'none' }
     },
 }
 

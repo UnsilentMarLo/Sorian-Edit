@@ -1,27 +1,3 @@
-    
-	
-	-- Old Platoon Ai used by SE, use for future regex operations
-	
-	-- AttackForceAISorian = function(self)
-    -- LandAttackAISE = function(self)
-    -- NavalAttackAISE = function(self)
-	-- AttackForceAISorianEXPBot = function(self)
-    -- ReturnToBaseAISorian = function(self)
-    -- HuntAISorianEdit = function(self) -- added back
-    -- GunshipHuntAI = function(self)
-    -- GuardBaseSorianEdit = function(self)
-    -- AmphibiousHuntAISorianEdit = function(self)
-    -- ExtractorUpgradeAISorian = function(self)
-    -- SorianPlatoonMerger = function(self)
-    -- SorianManagerEngineerAssistAI = function(self)
-    -- SorianEconAssistBody = function(self)
-    -- ReclaimAISorian = function(self)
-    -- NukeAISEAI = function(self)
-    -- NukeAISEAI = function(self)
-    -- HeroFightPlatoonSE = function(self)
-    -- LandScoutingSorianEdit = function(self)
-    -- AirScoutingSorianEdit = function(self)
-    -- ScoutingAISorianEdit = function(self)
 	
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
@@ -29,7 +5,7 @@ local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
 local HERODEBUG = false
 local CHAMPIONDEBUG = false -- you need to fucus the AI army to see the debug drawing
 local NUKEDEBUG = false
-local HERODEBUGSorianEdit = false
+local HERODEBUGSorianEdit = true
 local MarkerSwitchDist = 20
 local MarkerSwitchDistEXP = 40
 
@@ -181,11 +157,80 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
             -- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
             buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
+        elseif cons.PdCreep then
+            relative = false
+			-- Get a position where to start the creep; Get enemy position
+            local x,z = aiBrain:GetArmyStartPos()
+            local ex, ez = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+			-- DrawCircle({x,0,z}, 5, '19FF19')
+			-- DrawCircle({ex,0,ez}, 5, 'FF0119')
+			-- Generate a path to the enemy Base and filter all markers based on distance, ideally oldmarker to newmarker distance should be higher than half a T2 PDs range
+            local reference, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {x,0,z}, {ex,0,ez}, 1, 512)
+			-- Test Results: Pathnode: 1 at coords: { 133.5, 19.368370056152, 484.5, type="VECTOR3" }
+			if reason == 'PathOK' then
+			local referenceCount = table.getn(reference)
+			local referencefiltered = {}
+			local offset = 0
+			-- for i=1, referenceCount do
+			-- LOG('-------------- PathGen Pathnode: '..i..' at coords: '..repr(reference[i]))
+			-- end
+			for i = 1, referenceCount - 2 do 
+				-- format: { x, y, z }
+				local m0 = reference[i+offset]
+				local m1 = reference[i+1+offset]
+				local m2 = reference[i+2+offset]
+				-- LOG('-------------- CurrOffset: '..repr(offset))
+				-- LOG('-------------- Marker 1: '..repr(m0))
+				-- LOG('-------------- Marker 2: '..repr(m1))
+				-- LOG('-------------- Marker 3: '..repr(m2))
+				if m2 == nil then
+					break
+				end
+				-- Square of Distance between two 2d points (x1,y1,x2,y2)
+				local distSq = VDist2Sq(m0[1], m0[3], m1[1], m1[3])
+				local distSq2 = VDist2Sq(m0[1], m0[3], m2[1], m2[3])
+				-- make sure the distance between each marker is higher than 30, so that we keep a min distance between each PDgroup
+				if distSq < 30*30 then
+					-- if the distance to the next marker is too big for the previous PD to cover, we skip deleting this marker
+					if distSq2 > 50*50 then
+						local UnitCountMarker = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE * categories.DEFENSE, Vector(m1[1],0,m1[3]), 20, 'Ally')
+						if table.getn(UnitCountMarker) < 3 then
+							table.insert(referencefiltered, {m1[1],0,m1[3]})
+						end
+					else
+						local UnitCountMarker = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE * categories.DEFENSE, Vector(m2[1],0,m2[3]), 20, 'Ally')
+						offset = offset+1
+						if table.getn(UnitCountMarker) < 3 then
+							table.insert(referencefiltered, {m2[1],0,m2[3]})
+						end
+					end
+				else
+					local UnitCountMarker = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE * categories.DEFENSE, Vector(m1[1],0,m1[3]), 20, 'Ally')
+					if table.getn(UnitCountMarker) < 3 then
+						table.insert(referencefiltered, {m1[1],0,m1[3]})
+					end
+				end
+			end
+			local referencefilteredCount = table.getn(referencefiltered)
+			-- for i=1, referencefilteredCount do
+			-- LOG('-------------- Filtered Pathnode: '..i..' at coords: '..repr(referencefiltered[i]))
+			-- end
+			baseTmpl = baseTmplFile['ExpansionBaseTemplates'][factionIndex]
+			-- we need to insert the start and end position since its remove in PlatoonGenerateSafePathTo()
+			table.insert(baseTmplList, AIBuildStructures.AIBuildBaseTemplateFromLocation(baseTmpl, {x,0,z}))
+			for k,v in referencefiltered do
+				table.insert(baseTmplList, AIBuildStructures.AIBuildBaseTemplateFromLocation(baseTmpl, v))
+			end
+			table.insert(baseTmplList, AIBuildStructures.AIBuildBaseTemplateFromLocation(baseTmpl, {ex,0,ez}))
+			-- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
+			buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
+			else
+				-- WARN('-------------- PathGen Error '..repr(reason))
+				self:PlatoonDisband()
+			end
         elseif cons.FireBase and cons.FireBaseRange then
             --DUNCAN - pulled out and uses alt finder
-            reference, refName = AIUtils.AIFindFirebaseLocation(aiBrain, cons.LocationType, cons.FireBaseRange, cons.NearMarkerType,
-                                                cons.ThreatMin, cons.ThreatMax, cons.ThreatRings, cons.ThreatType,
-                                                cons.MarkerUnitCount, cons.MarkerUnitCategory, cons.MarkerRadius)
+            reference, refName = AIUtils.AIFindFirebaseLocation(aiBrain, cons.LocationType, cons.FireBaseRange, cons.NearMarkerType, cons.ThreatMin, cons.ThreatMax, cons.ThreatRings, cons.ThreatType,cons.MarkerUnitCount, cons.MarkerUnitCategory, cons.MarkerRadius)
             if not reference or not refName then
                 self:PlatoonDisband()
                 return
@@ -349,14 +394,12 @@ Platoon = Class(SorianEditPlatoonClass) {
                 cat = ParseEntityCategory(cat)
             end
             local radius = (cons.AdjacencyDistance or 50)
-            local radius = (cons.AdjacencyDistance or 50)
             if not pos or not pos then
                 coroutine.yield(1)
                 self:PlatoonDisband()
                 return
             end
-            reference  = AIUtils.GetOwnUnitsAroundPoint(aiBrain, cat, pos, radius, cons.ThreatMin,
-                                                        cons.ThreatMax, cons.ThreatRings)
+            reference  = AIUtils.GetOwnUnitsAroundPoint(aiBrain, cat, pos, radius, cons.ThreatMin, cons.ThreatMax, cons.ThreatRings)
             buildFunction = AIBuildStructures.AIBuildAdjacency
             table.insert(baseTmplList, baseTmpl)
         else
@@ -523,6 +566,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         if eng then eng.ProcessBuild = nil end
     end,    
+	
 -- For AI Patch V8 (Patched) fixed issue with AI cdr not building at game start
     WatchForNotBuilding = function(eng)
         coroutine.yield(10)
@@ -581,35 +625,25 @@ Platoon = Class(SorianEditPlatoonClass) {
          -- We are leaving this forked thread here because we don't need it.
          -- This shit is annoying!
          KillThread(CurrentThread())
-     end,
+    end,
 
-    InterceptorSorianEdit = function(self)
-        --if 1==1 then
-        --    self:HeroFightPlatoonSorianEdit()
-        --    return
-        --end 
+    InterceptorBomberGunshipSorianEdit = function(self)
         AIAttackUtils.GetMostRestrictiveLayer(self) 
-
         local aiBrain = self:GetBrain()
-
         local platoonUnits = self:GetPlatoonUnits()
-
         local PlatoonStrength = table.getn(platoonUnits)
 
         if platoonUnits and PlatoonStrength > 0 then
             for k, v in platoonUnits do
                 if not v.Dead then
-
                     if v:TestToggleCaps('RULEUTC_StealthToggle') then
                         
                         v:SetScriptBit('RULEUTC_StealthToggle', false)
                     end
-
                     if v:TestToggleCaps('RULEUTC_CloakToggle') then
                         
                         v:SetScriptBit('RULEUTC_CloakToggle', false)
                     end
-                    
                     v:RemoveCommandCap('RULEUCC_Reclaim')
                     v:RemoveCommandCap('RULEUCC_Repair')
                 end
@@ -624,6 +658,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         else
             LOG('* AI-SorianEdit: * InterceptorSorianEdit: MoveToCategories missing in platoon '..self.BuilderName)
         end
+		
         local WeaponTargetCategories = {}
         if self.PlatoonData.WeaponTargetCategories then
             for k,v in self.PlatoonData.WeaponTargetCategories do
@@ -632,18 +667,18 @@ Platoon = Class(SorianEditPlatoonClass) {
         elseif self.PlatoonData.MoveToCategories then
             WeaponTargetCategories = MoveToCategories
         end
+		
         self:SetPrioritizedTargetList('Attack', WeaponTargetCategories)
+		
         local target
         local bAggroMove = self.PlatoonData.AggressiveMove
         local path
         local reason
         local maxRadius = self.PlatoonData.SearchRadius or 100
-        --local maxRadius = math.max(maxRadius, (maxRadius * aiBrain.MyAirRatio) ) -- Whoops, this doesn't work :)
         local PlatoonPos = self:GetPlatoonPosition()
         local LastTargetPos = PlatoonPos
         local basePosition
         if self.MovementLayer == 'Water' then
-            -- we could search for the nearest naval base here, but buildposition is almost at the same location
             basePosition = PlatoonPos
         else
             -- land and air units are assigned to mainbase
@@ -720,161 +755,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                         end
                     end
                 end
-            -- targed exists and is not dead
-            end
-            coroutine.yield(1)
-            if aiBrain:PlatoonExists(self) and target and not target.Dead then
-                LastTargetPos = target:GetPosition()
-                -- check if we are still inside the attack radius and be sure the area is not a nuke blast area
-                if VDist2(basePosition[1] or 0, basePosition[3] or 0, LastTargetPos[1] or 0, LastTargetPos[3] or 0) < maxRadius then
-                    self:Stop()
-                    if self.PlatoonData.IgnorePathing or VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, LastTargetPos[1] or 0, LastTargetPos[3] or 0) < 60 then
-                        self:AttackTarget(target)
-                    else
-                        self:MoveToLocation(LastTargetPos, false)
-                    end
-                    coroutine.yield(10)
-                else
-                    target = nil
-                end
-            end
-            coroutine.yield(10)
-        end
-    end,
-
-    BomberGunshipSorianEdit = function(self)
-        AIAttackUtils.GetMostRestrictiveLayer(self) 
-
-        local aiBrain = self:GetBrain()
-
-        local platoonUnits = self:GetPlatoonUnits()
-
-        local PlatoonStrength = table.getn(platoonUnits)
-
-        if platoonUnits and PlatoonStrength > 0 then
-            for k, v in platoonUnits do
-                if not v.Dead then
-
-                    if v:TestToggleCaps('RULEUTC_StealthToggle') then
-                        
-                        v:SetScriptBit('RULEUTC_StealthToggle', false)
-                    end
-
-                    if v:TestToggleCaps('RULEUTC_CloakToggle') then
-                        
-                        v:SetScriptBit('RULEUTC_CloakToggle', false)
-                    end
-                    
-                    v:RemoveCommandCap('RULEUCC_Reclaim')
-                    v:RemoveCommandCap('RULEUCC_Repair')
-                end
-            end
-        end
-
-        local MoveToCategories = {}
-        if self.PlatoonData.MoveToCategories then
-            for k,v in self.PlatoonData.MoveToCategories do
-                table.insert(MoveToCategories, v )
-            end
-        else
-            LOG('* AI-SorianEdit: * InterceptorSorianEdit: MoveToCategories missing in platoon '..self.BuilderName)
-        end
-        local WeaponTargetCategories = {}
-        if self.PlatoonData.WeaponTargetCategories then
-            for k,v in self.PlatoonData.WeaponTargetCategories do
-                table.insert(WeaponTargetCategories, v )
-            end
-        elseif self.PlatoonData.MoveToCategories then
-            WeaponTargetCategories = MoveToCategories
-        end
-        self:SetPrioritizedTargetList('Attack', WeaponTargetCategories)
-        local target
-        local bAggroMove = true --self.PlatoonData.AggressiveMove
-        local path
-        local reason
-        local maxRadius = self.PlatoonData.SearchRadius or 100
-        local PlatoonPos = self:GetPlatoonPosition()
-        local LastTargetPos = PlatoonPos
-        local basePosition
-        if self.MovementLayer == 'Water' then
-            -- we could search for the nearest naval base here, but buildposition is almost at the same location
-            basePosition = PlatoonPos
-        else
-            -- land and air units are assigned to mainbase
-            basePosition = aiBrain.BuilderManagers['MAIN'].Position
-        end
-        local GetTargetsFromBase = self.PlatoonData.GetTargetsFromBase
-        local GetTargetsFrom = basePosition
-        local LastTargetCheck
-        local DistanceToBase = 0
-        local TargetSearchCategory = self.PlatoonData.TargetSearchCategory or 'ALLUNITS'
-        while aiBrain:PlatoonExists(self) do
-            PlatoonPos = self:GetPlatoonPosition()
-            if not GetTargetsFromBase then
-                GetTargetsFrom = PlatoonPos
-            else
-                DistanceToBase = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, basePosition[1] or 0, basePosition[3] or 0)
-                if DistanceToBase > maxRadius then
-                    target = nil
-                end
-            end
-            -- only get a new target and make a move command if the target is dead
-            if not target or target.Dead or target:BeenDestroyed() then
-                UnitWithPath, UnitNoPath, path, reason = AIUtils.AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, self, 'Attack', GetTargetsFrom, maxRadius, MoveToCategories, TargetSearchCategory, false )
-                if UnitWithPath then
-                    --LOG('* AI-SorianEdit: *InterceptorSorianEdit: found UnitWithPath')
-                    self:Stop()
-                    target = UnitWithPath
-                    if self.PlatoonData.IgnorePathing then
-                        self:AttackTarget(UnitWithPath)
-                    elseif path then
-                        self:MovePathSorianEdit(aiBrain, path, bAggroMove, UnitWithPath)
-                    -- if we dont have a path, but UnitWithPath is true, then we have no map markers but PathCanTo() found a direct path
-                    else
-                        self:MoveDirectSorianEdit(aiBrain, bAggroMove, UnitWithPath)
-                    end
-                    -- We moved to the target, attack it now if its still exists
-                    if aiBrain:PlatoonExists(self) and UnitWithPath and not UnitWithPath.Dead and not UnitWithPath:BeenDestroyed() then
-                        self:AttackTarget(UnitWithPath)
-                    end
-                elseif UnitNoPath then
-                    --LOG('* AI-SorianEdit: *InterceptorSorianEdit: found UnitNoPath')
-                    self:Stop()
-                    target = UnitNoPath
-                    self:Stop()
-                    if self.MovementLayer == 'Air' then
-                        self:AttackTarget(UnitNoPath)
-                    else
-                        self:SimpleReturnToBaseSorianEdit(basePosition)
-                    end
-                else
-                    --LOG('* AI-SorianEdit: *InterceptorSorianEdit: no target found '..repr(reason))
-                    -- we have no target return to main base
-                    self:Stop()
-                    if self.MovementLayer == 'Air' then
-                        if VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, basePosition[1] or 0, basePosition[3] or 0) > 30 then
-                            self:MoveToLocation(basePosition, false)
-                        else
-                            -- we are at home and we don't have a target. Disband!
-                            if aiBrain:PlatoonExists(self) then
-                                self:PlatoonDisband()
-                                return
-                            end
-                        end
-                    else
-                        if not self.SuicideMode then
-                            self.SuicideMode = true
-                            self.PlatoonData.AttackEnemyStrength = 1000
-                            self.PlatoonData.GetTargetsFromBase = false
-                            self.PlatoonData.MoveToCategories = { categories.EXPERIMENTAL, categories.TECH3, categories.TECH2, categories.ALLUNITS }
-                            self.PlatoonData.WeaponTargetCategories = { categories.EXPERIMENTAL, categories.TECH3, categories.TECH2, categories.ALLUNITS }
-                            self:InterceptorSorianEdit()
-                        else
-                            self:SimpleReturnToBaseSorianEdit(basePosition)
-                        end
-                    end
-                end
-            -- targed exists and is not dead
+            -- target exists and is not dead
             end
             coroutine.yield(1)
             if aiBrain:PlatoonExists(self) and target and not target.Dead then
@@ -1345,17 +1226,17 @@ Platoon = Class(SorianEditPlatoonClass) {
             local PlatoonPos = self:GetPlatoonPosition() or TargetPosition
             local DistanceToTarget = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, TargetPosition[1] or 0, TargetPosition[3] or 0)
             local DistanceToBase = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, basePosition[1] or 0, basePosition[3] or 0)
-            if DistanceToBase < DistanceToTarget or DistanceToTarget > 50 then
-                --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: base is nearer then distance to target or distance to target over 50. Return To base')
-                self:SimpleReturnToBaseSorianEdit(basePosition)
-            else
+            -- if DistanceToBase < DistanceToTarget or DistanceToTarget > 50 then
+                -- --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: base is nearer then distance to target or distance to target over 50. Return To base')
+                -- self:SimpleReturnToBaseSorianEdit(basePosition)
+            -- else
                 --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: Direct move to Target')
                 if bAggroMove then
                     self:AggressiveMoveToLocation(TargetPosition)
                 else
                     self:MoveToLocation(TargetPosition, false)
                 end
-            end
+            -- end
         else
             --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: We got a transport!!')
         end
@@ -3128,26 +3009,20 @@ Platoon = Class(SorianEditPlatoonClass) {
 
                 local mustScoutArea, mustScoutIndex = aiBrain:GetUntaggedMustScoutArea()
                 local unknownThreats = aiBrain:GetThreatsAroundPosition(scout:GetPosition(), 16, true, 'Unknown')
+				
                 if mustScoutArea then
                     mustScoutArea.TaggedBy = scout
                     targetArea = mustScoutArea.Position
-
                 elseif table.getn(unknownThreats) > 0 and unknownThreats[1][3] > 25 then
                     aiBrain:AddScoutArea({unknownThreats[1][1], 0, unknownThreats[1][2]})
-
                 elseif aiBrain.IntelData.AirHiPriScouts < aiBrain.NumOpponents and aiBrain.IntelData.AirLowPriScouts < 1
                 and table.getn(aiBrain.InterestList.HighPriority) > 0 then
                     aiBrain.IntelData.AirHiPriScouts = aiBrain.IntelData.AirHiPriScouts + 1
-
                     highPri = true
-
                     targetData = aiBrain.InterestList.HighPriority[1]
                     targetData.LastScouted = GetGameTimeSeconds()
                     targetArea = targetData.Position
-
                     aiBrain:SortScoutingAreas(aiBrain.InterestList.HighPriority)
-
-
                 elseif aiBrain.IntelData.AirLowPriScouts < 1 and table.getn(aiBrain.InterestList.LowPriority) > 0 then
                     aiBrain.IntelData.AirHiPriScouts = 0
                     aiBrain.IntelData.AirLowPriScouts = aiBrain.IntelData.AirLowPriScouts + 1
@@ -3158,23 +3033,17 @@ Platoon = Class(SorianEditPlatoonClass) {
 
                     aiBrain:SortScoutingAreas(aiBrain.InterestList.LowPriority)
                 else
-
                     aiBrain.IntelData.AirLowPriScouts = 0
                     aiBrain.IntelData.AirHiPriScouts = 0
                 end
-
-
+				
                 if targetArea then
                     self:Stop()
-
                     local vec = self:DoAirScoutVecs(scout, targetArea)
 
                     while not scout.Dead and not scout:IsIdleState() do
-
-
                         if VDist2Sq(vec[1], vec[3], scout:GetPosition()[1], scout:GetPosition()[3]) < 15625 then
                            if mustScoutArea then
-
                                 for idx,loc in aiBrain.InterestList.MustScout do
                                     if loc == mustScoutArea then
                                        table.remove(aiBrain.InterestList.MustScout, idx)
@@ -3182,19 +3051,17 @@ Platoon = Class(SorianEditPlatoonClass) {
                                     end
                                 end
                             end
-
                             break
                         end
-
                         if VDist3(scout:GetPosition(), targetArea) < 25 then
                             break
                         end
-
                         coroutine.yield(50)
                     end
                 else
                     coroutine.yield(10)
                 end
+				
                 coroutine.yield(1)
             end
         end
@@ -6504,11 +6371,11 @@ Platoon = Class(SorianEditPlatoonClass) {
                     self:RenamePlatoon('target to far from base')
                     coroutine.yield(1)
                 end
-           end
+            end
             -- check if the platoon died while the targetting function was searching for targets
             if not aiBrain:PlatoonExists(self) then
                 return
-            end
+			end
             -- move to the target
             if target and not target.Dead and not target:BeenDestroyed() then
                 LastTargetPos = table.copy(target:GetPosition())
@@ -6531,6 +6398,12 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 coroutine.yield(1)
                             end
                             self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory, ExperimentalInPlatoon)
+                        elseif self.MovementLayer == 'Amphibious' then
+                            if HERODEBUGSorianEdit then
+                                self:RenamePlatoon('MovePath (Amphibious)')
+                                coroutine.yield(1)
+                            end
+                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         else
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('MovePath with transporter layer('..self.MovementLayer..')')
@@ -6554,6 +6427,12 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 coroutine.yield(1)
                             end
                             self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                        elseif self.MovementLayer == 'Amphibious' then
+                            if HERODEBUGSorianEdit then
+                                self:RenamePlatoon('UWP MoveDirect (Amphibious)')
+                                coroutine.yield(1)
+                            end
+                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         else
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('UWP MoveDirect with transporter layer('..self.MovementLayer..')')
@@ -6563,7 +6442,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                         end
                     -- move to the target without waypoints using a transporter
                     elseif UnitNoPath then
-                        -- we have a target but no path, Air can flight to it
+                        -- we have a target but no path, Air can fly to it
                         if self.MovementLayer == 'Air' then
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('UNP MoveDirect (Air)')
@@ -6713,7 +6592,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     self:RenamePlatoon('microing in 5 ticks')
                 end
                 -- wait a bit here, so continue commands can't deadloop/freeze the game
-                coroutine.yield(10)
+                coroutine.yield(20)
                 --LOG('* AI-Uveso: * HeroFightPlatoon: Starting micro loop')
                 PlatoonCenterPosition = self:GetPlatoonPosition()
                 if not PlatoonCenterPosition then
@@ -6726,14 +6605,14 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                     return
                 end
+				
                 if HERODEBUGSorianEdit then
                     self:RenamePlatoon('AIFindNearestCategoryTargetInCloseRange')
                 end
+				
                 -- get a target on every loop, so we can see targets that are moving closer
                 if TargetHug then
                     TargetInPlatoonRange = self:FindClosestUnit('Attack', 'Enemy', true, TargetSearchCategory)
-									 
-																																																					  
                 else
                     TargetInPlatoonRange = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS)
                 end
@@ -6816,7 +6695,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                             unitPos = unit:GetPosition()
                             if unit.Blocked then
                                 -- Weapoon fire is blocked, move to the target as close as possible.
-                                smartPos = { LastTargetPos[1] + (Random(-5, 5)/10), LastTargetPos[2], LastTargetPos[3] + (Random(-5, 5)/10) }
+                                -- smartPos = { LastTargetPos[1] + (Random(-5, 5)/10), LastTargetPos[2], LastTargetPos[3] + (Random(-5, 5)/10) }
+								TargetHug = true
                             else
                                 alpha = math.atan2 (LastTargetPos[3] - unitPos[3] ,LastTargetPos[1] - unitPos[1])
                                 x = LastTargetPos[1] - math.cos(alpha) * (unit.MaxWeaponRange or MaxPlatoonWeaponRange)
@@ -6857,12 +6737,12 @@ Platoon = Class(SorianEditPlatoonClass) {
                                     WARN('* AI-SorianEdit: We have a LOST (stucked) unit. Killing it!!! Distance to platoon: '..math.floor(VDist2( unitPos[1], unitPos[3], PlatoonCenterPosition[1], PlatoonCenterPosition[3]))..' pos: ( '..math.floor(unitPos[1])..' , '..math.floor(unitPos[3])..' )' )
                                     -- stucked units can't be unstucked, even with a forked thread and hammering movement commands. Let's kill it !!!
                                     unit:Kill()
-                                end																		 
+                                end
                                 IssueMove({unit}, smartPos )
                                 if HERODEBUGSorianEdit then
                                     unit:SetCustomName('Fight micro moving')
                                     coroutine.yield(1)
-                                end								  
+                                end
                                 unit.smartPos = smartPos
                                 unit.TargetPos = LastTargetPos
                             -- in case we don't move, check if we can fire at the target
@@ -7219,6 +7099,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         local aiBrain = self:GetBrain()
         local armyIndex = aiBrain:GetArmyIndex()
         local target
+        local target2
         local blip
         local cmd = false
         local platoonUnits = self:GetPlatoonUnits()
@@ -7264,7 +7145,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         if NukeUnit then
             local bp = NukeUnit:GetBlueprint()
             local weapon = bp.Weapon[1]
-            local maxRadius = weapon.MaxRadius
+            local maxRadius = weapon.MaxRadius + 20
             local nukePos, oldTargetLocation
             NukeUnit:SetAutoMode(true)
             while aiBrain:PlatoonExists(self) do
@@ -7286,19 +7167,25 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         WaitSeconds(5)
         while aiBrain:PlatoonExists(self) do
-            target = AIUtils.AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, self, 'Attack', maxRadius, atkPri)
+			self:Stop()
+            target = AIUtils.AIFindNearestCategoryTargetInRange(aiBrain, self, 'Attack', maxRadius, atkPri)
             if target then
                 blip = target:GetBlip(armyIndex)
                 self:Stop()
                 cmd = self:AggressiveMoveToLocation(target:GetPosition())
             end
             WaitSeconds(1)
-            if (not cmd or not self:IsCommandsActive(cmd)) then
+            -- if (not cmd or not self:IsCommandsActive(cmd)) then
                 target = self:FindClosestUnit('Attack', 'Enemy', true, categories.MOBILE * categories.NAVAL - categories.WALL)
+                target2 = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL - categories.SCOUT - categories.AIR)
                 if target then
                     blip = target:GetBlip(armyIndex)
                     self:Stop()
                     cmd = self:AggressiveMoveToLocation(target:GetPosition())
+                elseif target2 then
+                    blip = target2:GetBlip(armyIndex)
+                    self:Stop()
+                    cmd = self:AggressiveMoveToLocation(target2:GetPosition())
                 else
                     local scoutPath = {}
                     scoutPath = AIUtils.AIGetSortedNavalLocations(self:GetBrain())
@@ -7306,7 +7193,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                         self:Patrol(v)
                     end
                 end
-            end
+            -- end
             WaitSeconds(17)
         end
     end,

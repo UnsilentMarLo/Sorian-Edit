@@ -98,6 +98,14 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'T2T3EngineerBuilderSorianEdit',
+    Plan = 'EngineerBuildAIEdit',
+    GlobalSquads = {
+        { categories.ENGINEER - categories.TECH1 - categories.COMMAND - categories.ENGINEERSTATION, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'UEFT2EngineerBuilderSorianEdit',
     Plan = 'EngineerBuildAIEdit',
     GlobalSquads = {

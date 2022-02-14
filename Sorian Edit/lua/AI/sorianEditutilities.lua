@@ -3005,6 +3005,83 @@ function AIGetReclaimablesAroundLocationSorianEdit(aiBrain, locationType)
     return GetReclaimablesInRect(rect)
 end
 
+function GetOwnGraphSizeRelative(aiBrain, locationType, GraphType) -- GraphType = String 'Land''Water''Air''Amphibious'
+    local position
+	local CacheTable = {}
+	local OwnGraph = nil
+	
+    if aiBrain.HasPlatoonList then
+        for _, v in aiBrain.PBM.Locations do
+            if v.LocationType == locationType then
+                position = v.Location
+                break
+            end
+        end
+    elseif aiBrain.BuilderManagers[locationType] then
+        position = aiBrain.BuilderManagers[locationType].FactoryManager:GetLocationCoords()
+    end
+	
+	if OwnGraph == nil then
+		LOG('*------------------------------- AI-sorianedit: GetOwnGraphSizeRelative: Got Markers, starting to get Graphsizes')
+		local GraphTable = AIAttackUtils.GetPathGraphs()[GraphType]
+		local AreaNode = AIAttackUtils.GetClosestPathNodeInRadiusByLayer(position, 30, GraphType)
+		
+		if GraphTable then
+			for name, graph in GraphTable do
+				for mn, markerInfo in graph do
+					if AreaNode == markerInfo then
+						LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found own Graph:'..repr(name))
+						OwnGraph = name
+						break
+					end
+				end
+			end
+		end
+	end
+	
+	if CacheTable[1] == nil then
+		local GraphTable = AIAttackUtils.GetPathGraphs()
+		
+		for name, graph in GraphTable do -- eg Air
+			for subname, subgraph in graph do -- eg DefaultAir
+				local CurrentTableSize = table.getn(subname)
+			end
+			CacheTable[name] = CurrentTableSize
+		end
+	end
+	
+    return CacheTable[OwnGraph] or nil
+end
+
+
+function AIGetReclaimablesAroundLocationSorianEditClose(aiBrain, locationType, range)
+    local position, radius
+    if aiBrain.HasPlatoonList then
+        for _, v in aiBrain.PBM.Locations do
+            if v.LocationType == locationType then
+                position = v.Location
+                radius = range
+                break
+            end
+        end
+    elseif aiBrain.BuilderManagers[locationType] then
+        radius = range
+        position = aiBrain.BuilderManagers[locationType].FactoryManager:GetLocationCoords()
+    end
+
+    if not position then
+        return false
+    end
+
+    local x1 = position[1] - radius
+    local x2 = position[1] + radius
+    local z1 = position[3] - radius
+    local z2 = position[3] + radius
+    local rect = Rect(x1, z1, x2, z2)
+
+    return GetReclaimablesInRect(rect)
+end
+
 function IsTableArray(tTable)
     if tTable[1] == nil then
         --LOG('tTable[1] is a nil value')

@@ -15,7 +15,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
             FactoryManager = FactoryManager.CreateFactoryBuilderManager(self, baseName, position, radius, useCenter),
             PlatoonFormManager = PlatoonFormManager.CreatePlatoonFormManager(self, baseName, position, radius, useCenter),
             EngineerManager = EngineerManager.CreateEngineerManager(self, baseName, position, radius),
-            -- StrategyManager = StratManager.CreateStrategyManager(self, baseName, position, radius),
+            StrategyManager = StratManager.CreateStrategyManager(self, baseName, position, radius),
 
             -- Table to track consumption
             MassConsumption = {
@@ -44,8 +44,9 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
             local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
 			
             MapInfo.RecordResourceLocations()
-            MapInfo.RecordPlayerStartLocations()
+            MapInfo.RecordPlayerStartLocations(self)
             MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 8 + 2)
+            MapInfo.EvaluateNavalAreas(iArmyNo)
             self.sorianedit = true
             self:ForkThread(self.SEParseIntelThread)
         end

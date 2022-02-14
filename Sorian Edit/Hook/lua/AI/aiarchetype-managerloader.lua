@@ -39,7 +39,7 @@ function ExecutePlan(aiBrain)
         aiBrain:ForkThread(MarkerGridThreatManagerThreadSorianEdit, aiBrain)  -- start after 10 seconds
         aiBrain:ForkThread(LocationRangeManagerThreadSorianEdit, aiBrain)     -- start after 30 seconds
         aiBrain:ForkThread(BaseTargetManagerThreadSorianEdit, aiBrain)        -- start after 50 seconds
-        aiBrain:ForkThread(PriorityManagerThread, aiBrain)          -- start after 1 minute 10 seconds
+        aiBrain:ForkThread(PriorityManagerThreadSE, aiBrain)          -- start after 1 minute 10 seconds
         aiBrain:ForkThread(EcoManagerThreadSorianEdit, aiBrain)               -- start after 4 minutes
     end
     if aiBrain.PBM then
@@ -1066,6 +1066,22 @@ function BaseTargetManagerThreadSorianEdit(aiBrain)
             end
             coroutine.yield(1)
         end
+        -- Search for experimentals in EnemyZone
+        if not ClosestTarget then
+            targets = aiBrain:GetUnitsAroundPoint(categories.EXPERIMENTAL - categories.AIR - categories.INSIGNIFICANTUNIT, baseposition, BaseEnemyZone, 'Enemy')
+            for _, unit in targets do
+                if not unit.Dead then
+                    if not IsEnemy( aiBrain:GetArmyIndex(), unit:GetAIBrain():GetArmyIndex() ) then continue end
+                    local TargetPosition = unit:GetPosition()
+                    local targetRange = VDist2(baseposition[1], baseposition[3], TargetPosition[1], TargetPosition[3])
+                    if targetRange < distance then
+                        distance = targetRange
+                        ClosestTarget = unit
+                    end
+                end
+            end
+            coroutine.yield(1)
+        end
         -- Search for High Threat Area
         if not ClosestTarget and HighestThreat[armyIndex].TargetLocation then
             -- search for any unit in this area
@@ -1081,38 +1097,6 @@ function BaseTargetManagerThreadSorianEdit(aiBrain)
                         -- we only need a single unit for targeting this area
                         --LOG('* AI-SorianEdit: High Threat Area: '.. repr(HighestThreat[armyIndex].TargetThreat)..' - '..repr(HighestThreat[armyIndex].TargetLocation))
                         break --for _, unit in targets do
-                    end
-                end
-            end
-            coroutine.yield(1)
-        end
-        -- Search for Shields in EnemyZone
-        if not ClosestTarget then
-            targets = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE * categories.SHIELD, baseposition, BaseEnemyZone, 'Enemy')
-            for _, unit in targets do
-                if not unit.Dead then
-                    if not IsEnemy( aiBrain:GetArmyIndex(), unit:GetAIBrain():GetArmyIndex() ) then continue end
-                    local TargetPosition = unit:GetPosition()
-                    local targetRange = VDist2(baseposition[1], baseposition[3], TargetPosition[1], TargetPosition[3])
-                    if targetRange < distance then
-                        distance = targetRange
-                        ClosestTarget = unit
-                    end
-                end
-            end
-            coroutine.yield(1)
-        end
-        -- Search for experimentals in EnemyZone
-        if not ClosestTarget then
-            targets = aiBrain:GetUnitsAroundPoint(categories.EXPERIMENTAL - categories.AIR - categories.INSIGNIFICANTUNIT, baseposition, BaseEnemyZone, 'Enemy')
-            for _, unit in targets do
-                if not unit.Dead then
-                    if not IsEnemy( aiBrain:GetArmyIndex(), unit:GetAIBrain():GetArmyIndex() ) then continue end
-                    local TargetPosition = unit:GetPosition()
-                    local targetRange = VDist2(baseposition[1], baseposition[3], TargetPosition[1], TargetPosition[3])
-                    if targetRange < distance then
-                        distance = targetRange
-                        ClosestTarget = unit
                     end
                 end
             end
@@ -1331,3 +1315,89 @@ function AddFactoryToClosestManagerSorianEdit(aiBrain, factory)
         import('/lua/ai/AIAddBuilderTable.lua').AddGlobalBaseTemplate(aiBrain, MarkerBaseName, pick)
     end
 end
+
+function PriorityManagerThreadSE(aiBrain)
+    local UCBC = import('/lua/editor/UnitCountBuildConditions.lua')
+    local MABC = import('/lua/editor/MarkerBuildConditions.lua')
+    local MIBC = import('/lua/editor/MiscBuildConditions.lua')
+    aiBrain.PriorityManager = {}
+    aiBrain.PriorityManager.NeedMass = true
+    aiBrain.PriorityManager.NeedMobileLand = true
+    aiBrain.PriorityManager.NeedMobileHover = true
+    aiBrain.PriorityManager.NeedMobileAmphibious = true
+    aiBrain.PriorityManager.NeedMobileAir = true
+    aiBrain.PriorityManager.NeedMobileNaval = true
+    while GetGameTimeSeconds() < 5 + aiBrain:GetArmyIndex() do
+        coroutine.yield(10)
+    end
+    SPEW('* AI-SorianEdit: Function PriorityManagerThread() started. ['..aiBrain.Nickname..']')
+    local LANDSTRUCTURE
+    local LANDMOBILE
+    local AIRSTRUCTURE
+    local AIRMOBILE
+    local NAVALSTRUCTURE
+    local NAVALMOBILE
+    while aiBrain.Result ~= "defeat" do
+        coroutine.yield(50)
+        -- Check for mass need. (EngineerBuilder)
+        -- Are less then 10% of all structures are extractors ? - Then we need more
+        if UCBC.HaveUnitRatioVersusCap(aiBrain, 0.10, '<', categories.STRUCTURE * categories.MASSEXTRACTION)
+        -- Do we have a free mass spot ? - Then we can more
+        and MABC.CanBuildOnMass(aiBrain, 'MAIN', 1000, -500, 1, 0, 'AntiSurface', 1) then
+            aiBrain.PriorityManager.NeedMass = true
+        else
+            aiBrain.PriorityManager.NeedMass = false
+        end
+        -- check for layer with least units
+        LANDFACTORY = aiBrain:GetCurrentUnits(categories.LAND * categories.FACTORY)
+        LANDMOBILE = aiBrain:GetCurrentUnits(categories.LAND * categories.MOBILE - categories.SCOUT - categories.ENGINEER)
+        AIRFACTORY = aiBrain:GetCurrentUnits(categories.AIR * categories.FACTORY)
+        AIRMOBILE = aiBrain:GetCurrentUnits(categories.AIR * categories.MOBILE - categories.SCOUT - categories.TRANSPORTFOCUS)
+        NAVALFACTORY = aiBrain:GetCurrentUnits(categories.NAVAL * categories.FACTORY)
+        NAVALMOBILE = aiBrain:GetCurrentUnits(categories.NAVAL * categories.MOBILE)
+        --LOG('* AI-SorianEdit:  '..LANDFACTORY..'/'..AIRFACTORY..'/'..NAVALFACTORY..' - LANDMOBILE: '..LANDMOBILE..' - AIRMOBILE: '..AIRMOBILE..' - NAVALMOBILE: '..NAVALMOBILE..'.')
+        -- can we build more units ?
+        if UCBC.HaveUnitRatioVersusCap(aiBrain, 0.45, '<', categories.MOBILE) then
+            if (LANDMOBILE >= AIRMOBILE) and (LANDMOBILE >= NAVALMOBILE) then
+                aiBrain.PriorityManager.NeedMobileLand = false
+                aiBrain.PriorityManager.NeedMobileHover = false
+                aiBrain.PriorityManager.NeedMobileAmphibious = false
+                if AIRFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileAir = true
+                end
+                if NAVALFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileNaval = true
+                end
+            elseif (AIRMOBILE >= LANDMOBILE) and (AIRMOBILE >= NAVALMOBILE) then
+                if LANDFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileLand = true
+                    aiBrain.PriorityManager.NeedMobileHover = true
+                    aiBrain.PriorityManager.NeedMobileAmphibious = true
+                end
+                aiBrain.PriorityManager.NeedMobileAir = false
+                if NAVALFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileNaval = true
+                end
+            elseif (NAVALMOBILE >= LANDMOBILE) and (NAVALMOBILE >= AIRMOBILE) then
+                if LANDFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileLand = true
+                    aiBrain.PriorityManager.NeedMobileHover = true
+                    aiBrain.PriorityManager.NeedMobileAmphibious = true
+                end
+                if AIRFACTORY > 0 then
+                    aiBrain.PriorityManager.NeedMobileAir = true
+                end
+                aiBrain.PriorityManager.NeedMobileNaval = false
+            else
+            end
+        -- we can't build more units because of unitcap
+        else
+            aiBrain.PriorityManager.NeedMobileLand = false
+            aiBrain.PriorityManager.NeedMobileHover = false
+            aiBrain.PriorityManager.NeedMobileAmphibious = false
+            aiBrain.PriorityManager.NeedMobileAir = false
+            aiBrain.PriorityManager.NeedMobileNaval = false
+        end
+    end
+end
+

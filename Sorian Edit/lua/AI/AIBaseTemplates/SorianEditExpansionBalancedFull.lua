@@ -13,20 +13,27 @@ BaseBuilderTemplate {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
         'SorianEditSupportFactoryUpgrades',
-        -- 'SorianEditSupportFactoryUpgrades - Emergency',
+        'SorianEditSupportFactoryUpgrades - Emergency',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
+        'SorianEditEngineerFactoryConstruction Balance',
+        'SorianEditLandInitialFactoryConstruction',
+		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
         'SorianEdit T3 Sub Commander',
 
+        -- SCU Upgrades
+        'SorianEditSCUUpgrades',
         -- Scouts
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
 
+        'SorianEditLandScoutFactoryBuilders',
+        'SorianEditLandScoutFormBuilders',
         'SorianEditRadarEngineerBuilders',
         'SorianEditRadarUpgradeBuildersMain',
 
@@ -84,10 +91,6 @@ BaseBuilderTemplate {
         'SorianEditMiscDefensesEngineerBuilders',
 
         'SorianEditMassAdjacencyDefenses',
-
-        -- ==== NAVAL EXPANSION ==== --
-        'SorianEditNavalExpansionBuilders',
-        'SorianEditNavalExpansionBuildersFast',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
@@ -154,13 +157,15 @@ BaseBuilderTemplate {
 
         'SorianEditSatelliteExperimentalEngineers',
         'SorianEditSatelliteExperimentalForm',
-   -- ======== Strategies ======== --
+		
+		-- ======== Strategies ======== --
         -- 'SorianEditHeavyAirStrategy',
         -- 'SorianEditBigAirGroup',
         -- 'SorianEditJesterRush',
         -- 'SorianEditNukeRush',
         -- 'SorianEditT3FBRush',
         -- 'SorianEditT2ACUSnipe',
+        -- 'SorianEditT3ACUSnipe',
         -- -- 'SorianEditParagonStrategy',
         -- -- 'SorianEditParagonStrategyExp',
         -- 'SorianEdit Tele SCU Strategy',
@@ -170,24 +175,8 @@ BaseBuilderTemplate {
         -- 'SorianEdit Excess Mass Strategy', 
 
         -- ===== Strategy Platoons ===== --
-        -- 'SorianEditT1BomberHighPrio',
-        -- 'SorianEditT2BomberHighPrio',
-        -- 'SorianEditT3BomberHighPrio',
-        -- 'SorianEditT3BomberSpecialHighPrio',
-        -- 'SorianEditT1GunshipHighPrio',
-        -- 'SorianEditT2DefensivePoints - High Prio',
-
-        -- 'SorianEditBomberLarge',
-        -- 'SorianEditBomberBig',
-        -- 'SorianEditGunShipLarge',
-        -- 'SorianEditNukeBuildersHighPrio',
-        -- 'SorianEditT3ArtyBuildersHighPrio',
-        -- 'SorianEditT2FirebaseBuildersHighPrio',
-        -- 'SorianEditT3FBBuildersHighPrio',
-        -- 'SorianEditBalancedUpgradeBuildersExpansionStrategy',
-        -- 'SorianEditEngineerExpansionBuildersStrategy',
-        -- 'SorianEditACUUpgrades - Rush',
-        -- 'SorianEditExcessMassBuilders',
+        -- 'SorianEditStrategyPlatoons',
+        -- 'SorianEditStrategyPlatoonFormers',
     },
     NonCheatBuilders = {
 		

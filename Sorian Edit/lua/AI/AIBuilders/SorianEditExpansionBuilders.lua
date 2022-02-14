@@ -47,7 +47,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconIncome',  { 2.0, 16.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { SBC, 'LessThanGameTime', { 600 } },
+            { UCBC, 'LessThanGameTimeSeconds', { 600 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 10, 1, 'StructuresNotMex' } },
         },
@@ -67,11 +67,8 @@ BuilderGroup {
                 ThreatRings = 0,
                 ThreatType = 'StructuresNotMex',
                 BuildStructures = {
-                    'T1GroundDefense',
                     'T1LandFactory',
                     'T1LandFactory',
-                    'T1AADefense',
-                    'T1Radar',
                     'T1AirFactory',
                 }
             },
@@ -85,7 +82,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
@@ -130,7 +127,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
@@ -221,7 +218,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
@@ -266,7 +263,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 10, 1, 'StructuresNotMex' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
@@ -317,7 +314,7 @@ BuilderGroup {
         InstanceCount = 3,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { SIBC, 'ExpansionPointNeedsStructure', { 'LocationType', 1000, 'DEFENSE TECH1 STRUCTURE', 20, 3, 0, 1, 2, 'StructuresNotMex' } },
@@ -355,7 +352,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .7 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'ExpansionAreaNeedsEngineer', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
             -- { UCBC, 'StartLocationsFull', { 'LocationType', 1000, -1000, 0, 2, 'StructuresNotMex' } },
@@ -403,7 +400,7 @@ BuilderGroup {
         Priority = 851,
         InstanceCount = 2,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
@@ -454,7 +451,7 @@ BuilderGroup {
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
@@ -512,7 +509,7 @@ BuilderGroup {
         Priority = 1200,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },

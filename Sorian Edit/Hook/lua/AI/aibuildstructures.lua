@@ -104,7 +104,7 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
             return false
         end
 
-        WARN('*AIExecuteBuildStructure: All checks passed, forcing enginner TECH'..HasTech..' '..HasFaction..' '..builder:GetBlueprint().BlueprintId..' to build TECH'..NeedTech..' '..buildingType..' '..BuildUnitWithID..'')
+        -- WARN('*AIExecuteBuildStructure: All checks passed, forcing enginner TECH'..HasTech..' '..HasFaction..' '..builder:GetBlueprint().BlueprintId..' to build TECH'..NeedTech..' '..buildingType..' '..BuildUnitWithID..'')
         whatToBuild = BuildUnitWithID
         --return false
     else
@@ -270,6 +270,13 @@ function AIExecuteBuildStructure(aiBrain, builder, buildingType, closeToBuilder,
     --WARN('*AIExecuteBuildStructure: c-function FindPlaceToBuild() failed! AI-faction: index('..factionIndex..') '..repr(AIFactionName)..', Building Type: '..repr(buildingType)..', engineer-faction: '..repr(builder.factionCategory))
     return false
 end
+
+
+
+
+
+ -- This ones used: ------------------------
+
 function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuilder, relative, buildingTemplate, baseTemplate, reference, NearMarkerType, cons)
     -- Only use this with SorianEdit
     if not aiBrain.sorianeditadaptivecheat and not aiBrain.sorianeditadaptive and not aiBrain.sorianedit then
@@ -294,7 +301,7 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
         end
     end
 	-- if 1 == 1 then
-	-- LOG('*------------------------------- Sorian Printing Brain:', repr(aiBrain)) -- never uncomment will crash game
+	-- LOG('*------------------------------- Sorian Printing Brain:', repr(aiBrain))
 	-- end
     local factionIndex = aiBrain:GetFactionIndex()
     local whatToBuild = aiBrain:DecideWhatToBuild(builder, buildingType, buildingTemplate)
@@ -387,7 +394,7 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
             return false
         end
 
-        WARN('*AIExecuteBuildStructure: All checks passed, forcing enginner TECH'..HasTech..' '..HasFaction..' '..builder:GetBlueprint().BlueprintId..' to build TECH'..NeedTech..' '..buildingType..' '..BuildUnitWithID..'')
+        -- WARN('*AIExecuteBuildStructure: All checks passed, forcing enginner TECH'..HasTech..' '..HasFaction..' '..builder:GetBlueprint().BlueprintId..' to build TECH'..NeedTech..' '..buildingType..' '..BuildUnitWithID..'')
         whatToBuild = BuildUnitWithID
         --return false
     else
@@ -478,7 +485,7 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
 		end
     elseif buildingType == 'T1SeaFactory' then
         buildingTypeReplace = 'T4SeaExperimental1'
-        whatToBuildReplace = 'ues0401'
+        whatToBuildReplace = 'UAA0310'
     end
 
     if IsResource(buildingType) then

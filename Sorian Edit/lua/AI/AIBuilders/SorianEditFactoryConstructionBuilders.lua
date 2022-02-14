@@ -41,9 +41,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Builder - Initial',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1000,
+        Priority = 5900000,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY LAND' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -51,6 +52,24 @@ BuilderGroup {
                 Location = 'LocationType',
                 BuildStructures = {
                     'T1LandFactory',
+                },
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit T1 Air Factory Builder - Initial',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
+        Priority = 5900000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY AIR' }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                Location = 'LocationType',
+                BuildStructures = {
+                    'T1AirFactory',
                 },
             }
         }
@@ -66,10 +85,10 @@ BuilderGroup {
         Priority = 2250,
         BuilderConditions = {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, 'ENGINEER TECH3' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.3 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.3, 0.35 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
@@ -95,6 +114,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
         },
@@ -117,10 +137,11 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
         },
         --InstanceCount = 2,
         BuilderType = 'Any',
@@ -145,6 +166,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
         },
@@ -167,10 +189,11 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY AIR' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
         },
         --InstanceCount = 2,
         BuilderType = 'Any',
