@@ -1,11 +1,11 @@
 name = "Marlo's Sorian AI edit"
-version = 96
+version = 99
 copyright = "Copyright © 2020, Electronic Farts co"
 description = "This mod aims at repairing the mess that is sorian, technically a new ai since it uses sorian as a base, requires Uveso"
 author = "Degulum"
 icon = "/mods/Sorian Edit/icon.bmp"
 url = ""
-uid = "e1cfc762-e31113f-6663-a6221465666645FAF"
+uid = "e1cfc762-e3s432f-2323-a6221465666645FAF"
 
 exclusive = false
 

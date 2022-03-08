@@ -67,7 +67,7 @@ BaseBuilderTemplate {
         -- ACU Builders
         'SorianEdit Initial ACU Builders',
         'SorianEditACUBuilders',
-        'SorianEditACUUpgrades',
+        -- 'SorianEditACUUpgrades',
 		
         'SorianEditAcuAttackFormBuilders',
 

@@ -36,21 +36,21 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Scout - Init',
         PlatoonTemplate = 'T1AirScout',
-        Priority = 170600,
+        Priority = 1700000,
         BuilderConditions = {
-            { UCBC, 'LessThanGameTimeSeconds', { 400 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SCOUT * categories.AIR}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
         },
         BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEdit T1 Air Scout',
         PlatoonTemplate = 'T1AirScout',
-        Priority = 1700, --700,
+        Priority = 3700, --700,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.SCOUT * categories.AIR}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.SCOUT * categories.AIR}},
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
         },
@@ -63,9 +63,9 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH2 } },
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
         },
         BuilderType = 'Air',
@@ -86,31 +86,13 @@ BuilderGroup {
         BuilderType = 'Air',
     },
     Builder {
-        BuilderName = 'SorianEdit T2 Air Scout - Lower Pri',
-        PlatoonTemplate = 'T2AirScout',
-        Priority = 1601, --500,
-        BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 15, categories.SCOUT * categories.AIR}}, --3
-            --CanBuildFirebase { 500, 500 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.TECH3 * categories.FACTORY * categories.AIR } },
-            { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH2 } },
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH3 } },
-            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
-        },
-        BuilderType = 'Air',
-    },
-    Builder {
         BuilderName = 'SorianEdit T3 Air Scout',
         PlatoonTemplate = 'T3AirScout',
-        Priority = 2900, --701,
+        Priority = 2900000, --701,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 12, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, --1
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.INTELLIGENCE * categories.AIR * categories.TECH3 }}, --1
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
         },
@@ -119,11 +101,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Air Scout - Lower Pri',
         PlatoonTemplate = 'T3AirScout',
-        Priority = 2701, --700,
+        Priority = 11000, --700,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.8 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
             --CanBuildFirebase { 500, 500 }},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
@@ -141,7 +123,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirScoutFormSorianEdit',
         Priority = 650,
         BuilderConditions = {
-            -- { SBC, 'NoRushTimeCheck', { 0 }},
+			{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'AIR MOBILE SCOUT TECH1' } },
         },
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
@@ -152,9 +134,8 @@ BuilderGroup {
         PlatoonTemplate = 'T3AirScoutFormSorianEdit',
         Priority = 750,
         BuilderConditions = {
-            -- { SBC, 'NoRushTimeCheck', { 0 }},
+			{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'AIR MOBILE SCOUT TECH3' } },
         },
-        --PlatoonAddPlans = { 'AirIntelToggle' },
         PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
         BuilderType = 'Any',
@@ -169,7 +150,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1LandScout',
         Priority = 155875,
         BuilderConditions = {
-            { UCBC, 'LessThanGameTimeSeconds', { 150 } },
+            { UCBC, 'LessThanGameTimeSeconds', { 450 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
         },
@@ -193,27 +174,12 @@ BuilderGroup {
     BuilderGroupName = 'SorianEditLandScoutFormBuilders',
     BuildersType = 'PlatoonFormBuilder',
     Builder {
-        BuilderName = 'SorianEdit T1 Land Scout Form init',
+        BuilderName = 'SorianEdit T1 Land Scout Form',
         BuilderConditions = {
-            { UCBC, 'LessThanGameTimeSeconds', { 300 } },
+			{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'LAND MOBILE SCOUT' } },
         },
         PlatoonTemplate = 'T1LandScoutFormSorianEdit',
         Priority = 100000,
-        InstanceCount = 2,
-        BuilderData = {
-            UseCloak = true,
-        },
-        LocationType = 'LocationType',
-        BuilderType = 'Any',
-    },
-    Builder {
-        BuilderName = 'SorianEdit T1 Land Scout Form',
-        BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 300 } },
-            -- { SBC, 'NoRushTimeCheck', { 0 }},
-        },
-        PlatoonTemplate = 'T1LandScoutFormSorianEdit',
-        Priority = 100000, --725,
         InstanceCount = 30,
         BuilderData = {
             UseCloak = true,

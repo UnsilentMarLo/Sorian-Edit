@@ -175,12 +175,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1VacantStartingAreaEngineer - drop',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1000,
+        Priority = 2000,
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { EBC, 'GreaterThanEconIncome',  { 4.0, 25.0}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.FACTORY } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -400,7 +398,7 @@ BuilderGroup {
         Priority = 851,
         InstanceCount = 2,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
@@ -451,7 +449,7 @@ BuilderGroup {
         Priority = 950,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
@@ -509,7 +507,7 @@ BuilderGroup {
         Priority = 1200,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.6 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.6 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
             { UCBC, 'UnitCapCheckLess', { .85 } },

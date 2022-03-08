@@ -43,8 +43,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 5900000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.24, 0.4 } },
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY LAND' }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'LAND FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -61,8 +62,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 5900000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY AIR' }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.24, 0.4 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -446,13 +448,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Builder',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 900,
+        Priority = 2000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
-            { UCBC, 'UnitCapCheckLess', { .8 } },
+			{ UCBC, 'HaveForEach', { categories.LAND * categories.FACTORY, 1, categories.AIR * categories.FACTORY}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
+            { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
         BuilderData = {

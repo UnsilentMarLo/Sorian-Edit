@@ -1,12 +1,12 @@
-#****************************************************************************
-#**
-#**  File     :  /lua/SorianInstantBuildConditions.lua
-#**  Author(s): Michael Robbins aka Sorian
-#**
-#**  Summary  : Generic AI Platoon Build Conditions
-#**             Build conditions always return true or false
-#**
-#****************************************************************************
+--****************************************************************************
+--**
+--**  File     :  /lua/SorianInstantBuildConditions.lua
+--**  Author(s): Michael Robbins aka Sorian
+--**
+--**  Summary  : Generic AI Platoon Build Conditions
+--**             Build conditions always return true or false
+--**
+--****************************************************************************
 local AIUtils = import('/lua/ai/aiutilities.lua')
 local ScenarioFramework = import('/lua/scenarioframework.lua')
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua')
@@ -39,16 +39,16 @@ function AIThreatExists(aiBrain, threatThreshold)
     return false
 end
 
-##############################################################################################################
-# function: FactoryRatioLessOrEqual = BuildCondition
-#
-# parameter 0: string   aiBrain		    = "default_brain"
-# parameter 1: string   locationType    = "location type"
-# parameter 2: expr     unitCategory    = "Unit Category"
-# parameter 2: expr     unitCategory2   = "Unit Category"
-# parameter 2: expr     unitCategory3   = "Unit Category"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: FactoryRatioLessOrEqual = BuildCondition
+--
+-- parameter 0: string   aiBrain		    = "default_brain"
+-- parameter 1: string   locationType    = "location type"
+-- parameter 2: expr     unitCategory    = "Unit Category"
+-- parameter 2: expr     unitCategory2   = "Unit Category"
+-- parameter 2: expr     unitCategory3   = "Unit Category"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function FactoryRatioLessOrEqual(aiBrain, locationType, num, unitCategory, unitCategory2, unitCategory3)
     local factoryManager = aiBrain.BuilderManagers[locationType].FactoryManager
     local testCat = unitCategory
@@ -81,14 +81,14 @@ function FactoryRatioLessOrEqual(aiBrain, locationType, num, unitCategory, unitC
     end
 end
 
-##############################################################################################################
-# function: CDRHealthGreaterThan = BuildCondition
-#
-# parameter 0: string   aiBrain		    = "default_brain"
-# parameter 1: int      health          = "minimum health %"
-# parameter 2: int      shield          = "minimum shield %"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: CDRHealthGreaterThan = BuildCondition
+--
+-- parameter 0: string   aiBrain		    = "default_brain"
+-- parameter 1: int      health          = "minimum health %"
+-- parameter 2: int      shield          = "minimum shield %"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function CDRHealthGreaterThan(aiBrain, health, shield)
     local cdr = aiBrain:GetListOfUnits(categories.COMMAND, false)[1]
     if not cdr then return false end
@@ -105,16 +105,16 @@ function CDRHealthGreaterThan(aiBrain, health, shield)
     return false
 end
 
-##############################################################################################################
-# function: HaveGreaterThanUnitsWithCategory = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string   aiBrain		    = "default_brain"
-# parameter 1: int      numReq     = 0					doc = "docs for param1"
-# parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
-# parameter 3: expr   idleReq       = false         doc = "docs for param3"
-# parameter 4: bool		special		= "Whether numReq varies depending on game time"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveGreaterThanUnitsWithCategory = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string   aiBrain		    = "default_brain"
+-- parameter 1: int      numReq     = 0					doc = "docs for param1"
+-- parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
+-- parameter 3: expr   idleReq       = false         doc = "docs for param3"
+-- parameter 4: bool		special		= "Whether numReq varies depending on game time"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function HaveGreaterThanUnitsWithCategory(aiBrain, numReq, category, idleReq)
     local numUnits
     local total = 0
@@ -141,15 +141,15 @@ function HaveGreaterThanUnitsWithCategory(aiBrain, numReq, category, idleReq)
 end
 
 
-##############################################################################################################
-# function: HaveLessThanUnitsWithCategory = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"
-# parameter 1: int	numReq          = 0				doc = "docs for param1"
-# parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
-# parameter 3: expr   idleReq       = false         doc = "docs for param3"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveLessThanUnitsWithCategory = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"
+-- parameter 1: int	numReq          = 0				doc = "docs for param1"
+-- parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
+-- parameter 3: expr   idleReq       = false         doc = "docs for param3"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function HaveLessThanUnitsWithCategory(aiBrain, numReq, category, idleReq)
     local numUnits
     local total = 0
@@ -175,15 +175,15 @@ function HaveLessThanUnitsWithCategory(aiBrain, numReq, category, idleReq)
     return true
 end
 
-##############################################################################################################
-# function: HaveLessThanUnitsForMapSize = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"
-# parameter 1: int	numReq          = 0				doc = "docs for param1"
-# parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
-# parameter 3: expr   idleReq       = false         doc = "docs for param3"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveLessThanUnitsForMapSize = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"
+-- parameter 1: int	numReq          = 0				doc = "docs for param1"
+-- parameter 2: expr   category        = categories.ALLUNITS		doc = "param2 docs"
+-- parameter 3: expr   idleReq       = false         doc = "docs for param3"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function HaveLessThanUnitsForMapSize(aiBrain, sizetable, category, idleReq)
     local numUnits
     local total = 0
@@ -206,14 +206,26 @@ function HaveLessThanUnitsForMapSize(aiBrain, sizetable, category, idleReq)
     return false
 end
 
-##############################################################################################################
-# function: HaveLessThanUnitsInCategoryBeingBuilt = BuildCondition
-#
-# parameter 0: string   aiBrain         = "default_brain"
-# parameter 1: integer  numunits        = "Number of units"
-# parameter 2: integer  radius          = "radius"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveLessThanMapSize = BuildCondition
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+function HaveLessThanMapSize(aiBrain, size)
+    local mapSizeX, mapSizeZ = GetMapSize()
+    if (size*size) > (mapSizeX*mapSizeZ) then
+        return true
+    end
+    return false
+end
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveLessThanUnitsInCategoryBeingBuilt = BuildCondition
+--
+-- parameter 0: string   aiBrain         = "default_brain"
+-- parameter 1: integer  numunits        = "Number of units"
+-- parameter 2: integer  radius          = "radius"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function HaveLessThanUnitsInCategoryBeingBuilt(aiBrain, numunits, category)
     if type(category) == 'string' then
         category = ParseEntityCategory(category)
@@ -238,14 +250,14 @@ function HaveLessThanUnitsInCategoryBeingBuilt(aiBrain, numunits, category)
     return false
 end
 
-##############################################################################################################
-# function: HaveGreaterThanUnitsInCategoryBeingBuilt = BuildCondition
-#
-# parameter 0: string   aiBrain         = "default_brain"
-# parameter 1: integer  numunits        = "Number of units"
-# parameter 2: integer  radius          = "radius"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: HaveGreaterThanUnitsInCategoryBeingBuilt = BuildCondition
+--
+-- parameter 0: string   aiBrain         = "default_brain"
+-- parameter 1: integer  numunits        = "Number of units"
+-- parameter 2: integer  radius          = "radius"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function HaveGreaterThanUnitsInCategoryBeingBuilt(aiBrain, numunits, category)
     if type(category) == 'string' then
         category = ParseEntityCategory(category)
@@ -267,17 +279,17 @@ function HaveGreaterThanUnitsInCategoryBeingBuilt(aiBrain, numunits, category)
     return false
 end
 
-##############################################################################################################
-# function: LessThanEconTrend = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"			doc = "docs for param1"
-# parameter 1: integer	mTrend	        = 0				doc = "docs for param1"
-# parameter 2: integer	eTrend	        = 0      			doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: LessThanEconTrend = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"			doc = "docs for param1"
+-- parameter 1: integer	mTrend	        = 0				doc = "docs for param1"
+-- parameter 2: integer	eTrend	        = 0      			doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function LessThanEconTrend(aiBrain, mTrend, eTrend)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return false
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -291,14 +303,14 @@ function LessThanEconTrend(aiBrain, mTrend, eTrend)
     end
 end
 
-##############################################################################################################
-# function: GreaterThanEconEfficiencyOverTimeExp = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
-# parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: GreaterThanEconEfficiencyOverTimeExp = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
+-- parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function GreaterThanEconEfficiencyOverTimeExp(aiBrain, MassEfficiency, EnergyEfficiency)
     local unitsBuilding = aiBrain:GetListOfUnits(categories.CONSTRUCTION, false)
     local numBuilding = 0
@@ -318,17 +330,17 @@ function GreaterThanEconEfficiencyOverTimeExp(aiBrain, MassEfficiency, EnergyEff
     return false
 end
 
-##############################################################################################################
-# function: GreaterThanEconIncome = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
-# parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: GreaterThanEconIncome = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
+-- parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function GreaterThanEconIncome(aiBrain, MassIncome, EnergyIncome)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return true
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -339,17 +351,17 @@ function GreaterThanEconIncome(aiBrain, MassIncome, EnergyIncome)
 end
 
 
-##############################################################################################################
-# function: LessThanEconIncome = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
-# parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: LessThanEconIncome = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
+-- parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function LessThanEconIncome(aiBrain, MassIncome, EnergyIncome)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return false
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -359,14 +371,14 @@ function LessThanEconIncome(aiBrain, MassIncome, EnergyIncome)
     return false
 end
 
-##############################################################################################################
-# function: GreaterThanEconIncomeOverTime = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
-# parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: GreaterThanEconIncomeOverTime = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
+-- parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function GreaterThanEconIncomeOverTime(aiBrain, MassIncome, EnergyIncome)
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
     if (econ.MassIncomeOverTime >= MassIncome and econ.EnergyIncomeOverTime >= EnergyIncome) then
@@ -375,17 +387,17 @@ function GreaterThanEconIncomeOverTime(aiBrain, MassIncome, EnergyIncome)
     return false
 end
 
-##############################################################################################################
-# function: GreaterThanEconEfficiency = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
-# parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: GreaterThanEconEfficiency = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
+-- parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function GreaterThanEconEfficiency(aiBrain, MassEfficiency, EnergyEfficiency)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return true
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -397,7 +409,7 @@ end
 
 function LessThanEconEfficiency(aiBrain, MassEfficiency, EnergyEfficiency)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return false
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -407,17 +419,17 @@ function LessThanEconEfficiency(aiBrain, MassEfficiency, EnergyEfficiency)
     return false
 end
 
-##############################################################################################################
-# function: GreaterThanEconEfficiencyOverTime = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
-# parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: GreaterThanEconEfficiencyOverTime = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassEfficiency	= 1             doc = "docs for param1"
+-- parameter 2: int	EnergyEfficiency	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function GreaterThanEconEfficiencyOverTime(aiBrain, MassEfficiency, EnergyEfficiency)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return true
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -429,7 +441,7 @@ end
 
 function LessThanEconEfficiencyOverTime(aiBrain, MassEfficiency, EnergyEfficiency)
     if HaveGreaterThanUnitsWithCategory(aiBrain, 0, 'ENERGYPRODUCTION EXPERIMENTAL STRUCTURE') then
-        #LOG('*AI DEBUG: Found Paragon')
+        --LOG('*AI DEBUG: Found Paragon')
         return false
     end
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
@@ -439,14 +451,14 @@ function LessThanEconEfficiencyOverTime(aiBrain, MassEfficiency, EnergyEfficienc
     return false
 end
 
-##############################################################################################################
-# function: LessThanEconIncomeOverTime = BuildCondition	doc = "Please work function docs."
-#
-# parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
-# parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
-# parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: LessThanEconIncomeOverTime = BuildCondition	doc = "Please work function docs."
+--
+-- parameter 0: string	aiBrain		= "default_brain"				doc = "docs for param1"
+-- parameter 1: int	MassIncome	= 0.1             doc = "docs for param1"
+-- parameter 2: int	EnergyIncome	= 1             doc = "param2 docs"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function LessThanEconIncomeOverTime(aiBrain, MassIncome, EnergyIncome)
     local econ = AIUtils.AIGetEconomyNumbers(aiBrain)
     if (econ.MassIncomeOverTime < MassIncome and econ.EnergyIncomeOverTime < EnergyIncome) then
@@ -455,15 +467,15 @@ function LessThanEconIncomeOverTime(aiBrain, MassIncome, EnergyIncome)
     return false
 end
 
-##############################################################################################################
-# function: EngineerNeedsAssistance = BuildCondition
-#
-# parameter 0: string   aiBrain         = "default_brain"
-# parameter 1: bool    doesbool        = "true: Engineer does need assistance false: Engineer does not need assistance"
-# parameter 2: string   LocationType   = "LocationType"
-# parameter 3: string   category        = "Being built category"
-#
-##############################################################################################################
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-- function: EngineerNeedsAssistance = BuildCondition
+--
+-- parameter 0: string   aiBrain         = "default_brain"
+-- parameter 1: bool    doesbool        = "true: Engineer does need assistance false: Engineer does not need assistance"
+-- parameter 2: string   LocationType   = "LocationType"
+-- parameter 3: string   category        = "Being built category"
+--
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 function EngineerNeedsAssistance(aiBrain, doesbool, locationType, category)
     local engineerManager = aiBrain.BuilderManagers[locationType].EngineerManager
     if not engineerManager then

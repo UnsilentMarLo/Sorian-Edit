@@ -39,9 +39,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Disband - Init',
         PlatoonTemplate = 'T1BuildEngineer',
-        Priority = 59000,
+        Priority = 59000000,
         BuilderConditions = {
-            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 4, categories.ENGINEER * categories.TECH1 }},
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 6, categories.ENGINEER * categories.TECH1 }},
             { UCBC, 'UnitCapCheckLess', { .6 } },
         },
         BuilderType = 'Land',
@@ -52,7 +52,6 @@ BuilderGroup {
         Priority = 2900,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.04, 0.12 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
             { UCBC, 'GreaterThanGameTimeSeconds', { 90 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
@@ -519,6 +518,28 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditACUBuilders',
     BuildersType = 'EngineerBuilder',
+	
+    Builder {
+        BuilderName = 'SorianEdit CDR T1 Power - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 41000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
     Builder {
         BuilderName = 'SorianEdit CDR Base Mex Init',
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
@@ -540,7 +561,7 @@ BuilderGroup {
     },
 	
     Builder {
-        BuilderName = 'SorianEdit CDR T1 Power - Init',
+        BuilderName = 'SorianEdit CDR T1 Power - Init 2nd',
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 20000,
         BuilderConditions = {
@@ -606,7 +627,7 @@ BuilderGroup {
         Priority = 4000,
         BuilderConditions = {
 			{ UCBC, 'LessThanGameTimeSeconds', { 250 } },
-			{ UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.ENERGYPRODUCTION * categories.TECH1 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -626,7 +647,9 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 3900,
         BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+			{ SIBC, 'HaveLessThanMapSize', { 1024 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -635,8 +658,26 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit CDR T1 Air - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 3899,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.22, 0.34 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
                 },
             }
         }
@@ -647,6 +688,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 3800,
         BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
@@ -657,8 +699,6 @@ BuilderGroup {
                 BuildClose = true,
                 BuildStructures = {
                     'T1LandFactory',
-                    'T1EnergyProduction',
-                    'T1EnergyProduction',
                 },
             }
         }
@@ -671,7 +711,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'GreaterThanGameTimeSeconds', { 60 }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.4 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.5 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND - categories.HYDROCARBON } },
@@ -733,33 +773,33 @@ BuilderGroup {
             }
         }
     },
-    -- -- -- CDR Assisting
-    -- Builder {
-        -- BuilderName = 'SorianEdit CDR Assist Hydrocarbon',
-        -- PlatoonTemplate = 'CommanderAssist',
-        -- Priority = 6550,
-        -- BuilderConditions = {
-            -- { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocation', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
-        -- },
-        -- BuilderType = 'Any',
-        -- BuilderData = {
-            -- Assist = {
-                -- AssistLocation = 'LocationType',
-                -- AssisteeType = 'Structure',
-                -- AssistRange = 60,
-                -- BeingBuiltCategories = {'STRUCTURE HYDROCARBON'},
-                -- AssistUntilFinished = true,
-            -- },
-        -- }
-    -- },
+    -- CDR Assisting
+    Builder {
+        BuilderName = 'SorianEdit CDR Assist Hydrocarbon',
+        PlatoonTemplate = 'CommanderAssist',
+        Priority = 3550,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocation', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Structure',
+                AssistRange = 60,
+                BeingBuiltCategories = {'STRUCTURE HYDROCARBON'},
+                AssistUntilFinished = true,
+            },
+        }
+    },
     -- CDR Assisting
     Builder {
         BuilderName = 'SorianEdit CDR Assist T4',
         PlatoonTemplate = 'CommanderAssistSorianEdit',
         Priority = 750,
         BuilderConditions = {
-            { UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'EXPERIMENTAL' }},
-            -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.2, 1.2 } },
+			{ UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'EXPERIMENTAL' }},
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.2, 1.2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -777,9 +817,12 @@ BuilderGroup {
        PlatoonTemplate = 'CommanderAssistSorianEdit',
        Priority = 6000,
        BuilderConditions = {
-           { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH2 * categories.FACTORY } },
-           { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY - categories.TECH1 - categories.COMMAND } },
-           -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.6 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
+			{ UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH2 * categories.FACTORY } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY - categories.TECH1 - categories.COMMAND } },
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
        },
        BuilderType = 'Any',
        BuilderData = {
@@ -797,6 +840,9 @@ BuilderGroup {
        PlatoonTemplate = 'CommanderAssistSorianEdit',
        Priority = 6000,
        BuilderConditions = {
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
            { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH3 * categories.FACTORY } },
            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH3 * categories.FACTORY } },
            -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
@@ -1839,7 +1885,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -1860,7 +1906,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -1874,14 +1920,14 @@ BuilderGroup {
         InstanceCount = 6,
         -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-            { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 1000, 0, 'AntiSurface', 1 }}, 
+            { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 1000, 0, 'AntiSurface', 1 }},
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -1905,7 +1951,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -1933,7 +1979,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T2Resource',
                 }
@@ -1956,7 +2002,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T2Resource',
                 }
@@ -1981,7 +2027,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T2Resource',
                 }
@@ -2009,7 +2055,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T3Resource',
                 }
@@ -2032,7 +2078,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T3Resource',
                 }
@@ -2057,7 +2103,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                -- RepeatBuild = true,
+                RepeatBuild = true,
                 BuildStructures = {
                     'T3Resource',
                 }

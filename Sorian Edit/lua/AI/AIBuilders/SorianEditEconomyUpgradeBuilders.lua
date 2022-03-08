@@ -172,18 +172,6 @@ BuilderGroup {
         BuilderType = 'Any',
     },
     Builder {
-        BuilderName = 'SorianEdit Emergency T1 Factory Upgrade Time',
-        PlatoonTemplate = 'T1LandFactoryUpgrade',
-        Priority = 15000,
-        InstanceCount = 1,
-        BuilderConditions = {
-				{ UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
-                { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
-				{ UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH2 * categories.RESEARCH } },
-            },
-        BuilderType = 'Any',
-    },
-    Builder {
         BuilderName = 'SorianEdit Emergency T2 Factory Upgrade Time',
         PlatoonTemplate = 'T2LandFactoryUpgrade',
         Priority = 15000,
@@ -209,9 +197,10 @@ BuilderGroup {
         Priority = 150000,
         InstanceCount = 1,
         BuilderConditions = {
-				{ EBC, 'GreaterThanEconIncome',  { 2.5, 30.0}},
+				{ UCBC, 'GreaterThanGameTimeSeconds', { 425 } },
+				{ EBC, 'GreaterThanEconIncome',  { 4.0, 30.0}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY TECH1'}},
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
             },
         BuilderType = 'Any',
@@ -281,7 +270,7 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconIncome',  { 16.0, 50.0}},
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
             },
         BuilderType = 'Any',
@@ -294,8 +283,8 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1,  categories.MASSEXTRACTION * categories.TECH3 } },
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.ENERGYPRODUCTION * categories.TECH3 } },
-                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.ENERGYPRODUCTION * categories.TECH2 } },
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.TECH3 - categories.SUPPORTFACTORY - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH2 } },
             },
         BuilderType = 'Any',
