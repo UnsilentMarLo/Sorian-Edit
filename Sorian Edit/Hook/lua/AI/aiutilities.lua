@@ -84,10 +84,11 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
     local UnitWithPath = false
     local UnitNoPath = false
     local count = 0
-    local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, success, bestGoalPos, canAttack
+    local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, success, bestGoalPos, canAttack, TTime
     for _, range in RangeList do
         TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, range, 'Enemy')
         -- DrawCircle(position, range, '0000FF')
+		TTime = GetGameTick()
         for _, v in MoveToCategories do
             category = v
             if type(category) == 'string' then
@@ -184,14 +185,19 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
                 --end
                 -- DEBUG; use the first target if we can path to it.
             end
+			TTime = (GetGameTick() - TTime)
             if UnitWithPath then
+				-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target and path, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
                 return UnitWithPath, UnitNoPath, path, reason
             end
         end
     end
+	TTime = (GetGameTick() - TTime)
     if UnitNoPath then
+		-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target but no path, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
         return UnitWithPath, UnitNoPath, path, reason
     end
+	-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target failed, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
     return false, false, false, 'NoUnitFound'
 end
 

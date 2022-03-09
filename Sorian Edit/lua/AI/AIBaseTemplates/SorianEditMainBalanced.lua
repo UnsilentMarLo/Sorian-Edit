@@ -76,7 +76,7 @@ BaseBuilderTemplate {
         'SorianEditT2ACUDefenses',
         'SorianEditT2ACUShields',
         'SorianEditT3ACUShields',
-        -- 'SorianEditT3ACUNukeDefenses',
+        -- 'SorianEditT3ACUNukeDefenses', -- commented
         'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --

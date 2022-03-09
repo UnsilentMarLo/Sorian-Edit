@@ -64,7 +64,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'MassHuntersCategorySorianEditLarge',
-    Plan = 'MassRaidSorianEdit',
+    Plan = 'StrikeForceAI',
     GlobalSquads = {
         { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 4, 8, 'Attack', 'none' }
     }

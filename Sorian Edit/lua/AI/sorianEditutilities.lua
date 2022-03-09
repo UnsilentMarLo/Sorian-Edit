@@ -539,6 +539,57 @@ function GetTemplateReplacement(aiBrain, building, faction, buildingTmpl)
     return retTemplate
 end
 
+-- SUtils.TrackPlatoon(target, path)
+
+function TrackPlatoon(self, target, path, MaxPlatoonWeaponRange)
+	local aiBrain = self:GetBrain()
+	local position = self:GetPlatoonPosition()
+	local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+	local PlatoonCount = table.getn(self:GetPlatoonUnits())
+	local numEnemyUnits = 1
+	local numEnemyUnits2 = {}
+	local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 15
+	local pos2 = nil
+	
+	while aiBrain:PlatoonExists(self) do
+		-- LOG('-------------- Own Platoon')
+		position = self:GetPlatoonPosition()
+		PlatoonCount = table.getn(self:GetPlatoonUnits())
+		-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
+		DrawCircle(position, PlatoonCount, '09FF00')
+		
+		if target and not (target.Dead or target:BeenDestroyed()) then
+			-- LOG('-------------- Enemy Platoon')
+			EPosition = target:GetPosition()
+			numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, 30, 'Enemy')) + 1
+			-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
+			DrawLine(position, EPosition, '00fBFF')
+			DrawCircle(EPosition, numEnemyUnits, 'FF0000')
+		end
+		
+		numEnemyUnits2 = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 30 , 'Enemy')
+		if numEnemyUnits2 > 0 then
+			for k, v in numEnemyUnits2 do
+				pos2 = v:GetPosition()
+				DrawLinePop(position, pos2, 'F2FF00')
+			end
+		end
+		
+		if path then
+			local pathCount = table.getn(path)
+			for i=1, pathCount do
+				local Marker = path[i]
+				local Marker2 = path[i+1]
+				if Marker2 == nil then
+					break
+				end
+				DrawLinePop({Marker[1], 0, Marker[3]}, {Marker2[1], 0, Marker2[3]}, '00fBFF')
+			end
+		end
+		coroutine.yield(1)
+	end
+end
+
 function GetEngineerFaction(engineer)
     if EntityCategoryContains(categories.UEF, engineer) then
         return 'UEF'

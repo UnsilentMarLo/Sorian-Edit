@@ -226,7 +226,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 			-- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
 			buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
 			else
-				-- WARN('-------------- PathGen Error '..repr(reason))
+				WARN('-------------- PathGen Error '..repr(reason))
 				self:PlatoonDisband()
 			end
         elseif cons.FireBase and cons.FireBaseRange then
@@ -569,7 +569,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         if eng then eng.ProcessBuild = nil end
     end,    
-	
+
 -- For AI Patch V8 (Patched) fixed issue with AI cdr not building at game start
     WatchForNotBuilding = function(eng)
         coroutine.yield(10)
@@ -579,6 +579,10 @@ Platoon = Class(SorianEditPlatoonClass) {
             coroutine.yield(30)
         end
 
+		-- if not eng.Dead and eng.PlatoonHandle and eng:IsIdleState() and (GetGameTimeSeconds() > 120) then
+			-- eng.PlatoonHandle:PlatoonDisband()
+		-- end
+
         eng.NotBuildingThread = nil
         if not eng.Dead and eng:IsIdleState() and table.getn(eng.EngineerBuildQueue) != 0 and eng.PlatoonHandle then
             eng.PlatoonHandle.SetupEngineerCallbacks(eng)
@@ -587,7 +591,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
         end
     end,
-    
+
 -- SorianEdit Stuff: ------------------------------------------------------------------------------------
 
     -- Hook for Mass RepeatBuild
@@ -631,44 +635,44 @@ Platoon = Class(SorianEditPlatoonClass) {
          KillThread(CurrentThread())
     end,
 	
-	TrackPlatoon = function(self, target, path)
-        local aiBrain = self:GetBrain()
-		local position = self:GetPlatoonPosition()
-		local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-		local PlatoonCount = table.getn(self:GetPlatoonUnits())
-		local numEnemyUnits = 1
+	-- TrackPlatoon = function(self, target, path)
+        -- local aiBrain = self:GetBrain()
+		-- local position = self:GetPlatoonPosition()
+		-- local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+		-- local PlatoonCount = table.getn(self:GetPlatoonUnits())
+		-- local numEnemyUnits = 1
 		
-		while aiBrain:PlatoonExists(self) do
-			-- LOG('-------------- Own Platoon')
-			position = self:GetPlatoonPosition()
-			PlatoonCount = table.getn(self:GetPlatoonUnits())
-			-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
-			DrawCircle(position, PlatoonCount, '09FF00')
+		-- while aiBrain:PlatoonExists(self) do
+			-- -- LOG('-------------- Own Platoon')
+			-- position = self:GetPlatoonPosition()
+			-- PlatoonCount = table.getn(self:GetPlatoonUnits())
+			-- -- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
+			-- DrawCircle(position, PlatoonCount, '09FF00')
 			
 			
-			if target and not (target.Dead or target:BeenDestroyed()) then
-				-- LOG('-------------- Enemy Platoon')
-				EPosition = target:GetPosition()
-				numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, 30, 'Enemy')) + 1
-				-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
-				DrawLine(position, EPosition, '00fBFF')
-				DrawCircle(EPosition, numEnemyUnits, 'FF0000')
-			end
+			-- if target and not (target.Dead or target:BeenDestroyed()) then
+				-- -- LOG('-------------- Enemy Platoon')
+				-- EPosition = target:GetPosition()
+				-- numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, 30, 'Enemy')) + 1
+				-- -- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
+				-- DrawLine(position, EPosition, '00fBFF')
+				-- DrawCircle(EPosition, numEnemyUnits, 'FF0000')
+			-- end
 			
-			if path then
-				local pathCount = table.getn(path)
-				for i=1, pathCount do
-					local Marker = path[i]
-					local Marker2 = path[i+1]
-					if Marker2 == nil then
-						break
-					end
-					DrawLinePop({Marker[1], 0, Marker[3]}, {Marker2[1], 0, Marker2[3]}, '00fBFF')
-				end
-			end
-            coroutine.yield(1)
-		end
-	end,
+			-- if path then
+				-- local pathCount = table.getn(path)
+				-- for i=1, pathCount do
+					-- local Marker = path[i]
+					-- local Marker2 = path[i+1]
+					-- if Marker2 == nil then
+						-- break
+					-- end
+					-- DrawLinePop({Marker[1], 0, Marker[3]}, {Marker2[1], 0, Marker2[3]}, '00fBFF')
+				-- end
+			-- end
+            -- coroutine.yield(1)
+		-- end
+	-- end,
 
     InterceptorBomberGunshipSorianEdit = function(self)
         AIAttackUtils.GetMostRestrictiveLayer(self) 
@@ -6039,7 +6043,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 				self:KillThread(TrackThread)
 			end
 			if ScenarioInfo.Options.SEPathing ~= 'No' then
-				self.TrackThread = self:ForkThread(self.TrackPlatoon, target, path)
+				self.TrackThread = self:ForkThread(SUtils.TrackPlatoon, target, path, MaxPlatoonWeaponRange)
 			end
             -- in case we are using a transporter, do nothing. Wait for the transport!
             if self.UsingTransport then
