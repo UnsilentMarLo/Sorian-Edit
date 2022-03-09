@@ -2,8 +2,8 @@
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local UUtils = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua')
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
+
 local HERODEBUG = false
-local CHAMPIONDEBUG = false -- you need to fucus the AI army to see the debug drawing
 local NUKEDEBUG = false
 local HERODEBUGSorianEdit = false
 local MarkerSwitchDist = 20
@@ -16,6 +16,7 @@ local AssignUnitsToPlatoon = moho.aibrain_methods.AssignUnitsToPlatoon
 local GetPlatoonPosition = moho.platoon_methods.GetPlatoonPosition
 local GetBrain = moho.platoon_methods.GetBrain
 local PlatoonCategoryCount = moho.platoon_methods.PlatoonCategoryCount
+
 local BaseRestrictedArea, BaseMilitaryArea, BaseEnemyArea = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
 local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
 
@@ -226,7 +227,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 			-- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
 			buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
 			else
-				WARN('-------------- PathGen Error '..repr(reason))
+				-- WARN('-------------- PathGen Error '..repr(reason))
 				self:PlatoonDisband()
 			end
         elseif cons.FireBase and cons.FireBaseRange then
@@ -540,7 +541,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     return
                 end
                 -- if we are already building then we don't need to reclaim, repair or issue the BuildStructure again
-				coroutine.yield(4)
+				-- coroutine.yield(4) --------------- dunno why I put this here 
                 if not eng:IsUnitState("Building") then
                     -- cancel all commands, also the buildcommand for blocking mex to check for reclaim or capture
                     eng.PlatoonHandle:Stop()
@@ -600,6 +601,10 @@ Platoon = Class(SorianEditPlatoonClass) {
         if not self.SorianEdit then
             return SorianEditPlatoonClass.PlatoonDisband(self)
         end
+		if self.TrackThread or self.TrackThread ~= false then
+			self:KillThread(TrackThread)
+			self.TrackThread = false
+		end
        -- LOG('* AI-SorianEdit: PlatoonDisband = '..repr(self.PlatoonData.Construction.BuildStructures))
        -- LOG('* AI-SorianEdit: PlatoonDisband = '..repr(self.PlatoonData.Construction))
         if self.PlatoonData.Construction.RepeatBuild then
@@ -970,6 +975,8 @@ Platoon = Class(SorianEditPlatoonClass) {
         local aiBrain = self:GetBrain()
         local PlatoonUnits = self:GetPlatoonUnits()
         local cdr = PlatoonUnits[1]
+		self.TrackThread = false
+        self.created = GetGameTimeSeconds()
         -- There should be only the commander inside this platoon. Check it.
         if not cdr then
             WARN('* ACUAttackSorianEdit: Platoon formed but Commander unit not found!')
@@ -990,6 +997,10 @@ Platoon = Class(SorianEditPlatoonClass) {
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         cdr.HealthOLD = 100
         cdr.CDRHome = aiBrain.BuilderManagers['MAIN'].Position
+        cdr.smartPos = cdr:GetPosition()
+        cdr.position = cdr.smartPos
+        cdr.LastDamaged = 0
+        cdr.LastMoved = GetGameTimeSeconds()
         local MoveToCategories = {}
         if self.PlatoonData.MoveToCategories then
             for k,v in self.PlatoonData.MoveToCategories do
@@ -1006,11 +1017,62 @@ Platoon = Class(SorianEditPlatoonClass) {
         elseif self.PlatoonData.MoveToCategories then
             WeaponTargetCategories = MoveToCategories
         end
+		
+        local UnitBlueprint = cdr:GetBlueprint()
+        for _, weapon in UnitBlueprint.Weapon or {} do
+            -- filter dummy weapons
+            if weapon.Damage == 0
+            or weapon.WeaponCategory == 'Missile'
+            or weapon.WeaponCategory == 'Anti Navy'
+            or weapon.WeaponCategory == 'Anti Air'
+            or weapon.WeaponCategory == 'Defense'
+            or weapon.WeaponCategory == 'Teleport' then
+                continue
+            end
+            -- check if the weapon is only enabled by an enhancment
+            if weapon.EnabledByEnhancement then
+                WeaponEnabled = false
+                -- check if we have the enhancement
+                for k, v in SimUnitEnhancements[cdr.EntityId] or {} do
+                    if v == weapon.EnabledByEnhancement then
+                        -- enhancement is installed, the weapon is valid
+                        WeaponEnabled = true
+                        --LOG('* AI-Uveso: * ACUChampionPlatoon: Weapon: '..weapon.EnabledByEnhancement..' - is installed by an enhancement!')
+                        -- no need to search for other enhancements
+                        break
+                    end
+                end
+                -- if the wepon is not installed, continue with the next weapon
+                if not WeaponEnabled then
+                    --LOG('* AI-Uveso: * ACUChampionPlatoon: Weapon: '..weapon.EnabledByEnhancement..' - is not installed.')
+                    continue
+                end
+            end
+            --WARN('* AI-Uveso: * ACUChampionPlatoon: Weapon: '..weapon.DisplayName..' - WeaponCategory: '..weapon.WeaponCategory..' - MaxRadius:'..weapon.MaxRadius..'')
+            if weapon.OverChargeWeapon then
+                OverchargeWeapon = weapon
+            end
+            if not cdr.MaxWeaponRange or cdr.MaxWeaponRange < weapon.MaxRadius then
+                cdr.MaxWeaponRange = weapon.MaxRadius
+            end
+        end
+		
+        UnitBlueprint = nil
+        --WARN('* AI-Uveso: * ACUChampionPlatoon: cdr.MaxWeaponRange: '..cdr.MaxWeaponRange)
+
+        -- set playablearea so we know where the map border is.
+        local playablearea
+        if ScenarioInfo.MapData.PlayableRect then
+            playablearea = ScenarioInfo.MapData.PlayableRect
+        else
+            playablearea = {0, 0, ScenarioInfo.size[1], ScenarioInfo.size[2]}
+        end
         self:SetPrioritizedTargetList('Attack', WeaponTargetCategories)
         -- prevent ACU from reclaiming while attack moving
         cdr:RemoveCommandCap('RULEUCC_Reclaim')
         cdr:RemoveCommandCap('RULEUCC_Repair')
         local TargetUnit, DistanceToTarget
+		self.TargetData = TargetUnit
         local PlatoonPos = self:GetPlatoonPosition()
         -- land and air units are assigned to mainbase
         local GetTargetsFromBase = self.PlatoonData.GetTargetsFromBase
@@ -1024,7 +1086,23 @@ Platoon = Class(SorianEditPlatoonClass) {
         local maxTimeRadius
         local SearchRadius = self.PlatoonData.SearchRadius or 250
         local TargetSearchCategory = self.PlatoonData.TargetSearchCategory or 'ALLUNITS'
+		
+        local MoveToTarget
+        local MoveToTargetPos
+        local FocusTarget
+        local FocusTargetPos
+        local smartPos = {}
+        local unitPos
+        local x
+        local y
+        local alpha
+        local NavigatorGoal
+        local UnderAttack
+        local CDRHealth
+        local InstalledEnhancementsCount = 0
+		
         while aiBrain:PlatoonExists(self) do
+		
             if cdr.Dead then break end
             cdr.position = self:GetPlatoonPosition()
             -- leave the loop and disband this Platoon in time
@@ -1033,25 +1111,32 @@ Platoon = Class(SorianEditPlatoonClass) {
                 SUtils.CDRParkingHome(self,cdr)
                 break
             end
-            -- the maximum radis that the ACU can be away from base
+			
+            -- the maximum radius that the ACU can be away from base
             maxRadius = (SUtils.ComHealth(cdr))*10 -- If the comanders health is 100% then we have a maxtange of ~250 = (100-65)*7
-            maxTimeRadius = 240 - GetGameTimeSeconds()/60*6 -- reduce the radius by 6 map units per minute. After 30 minutes it's (240-180) = 60
+            maxTimeRadius = 1024 - GetGameTimeSeconds()/60*25 -- reduce the radius by 25 map units per minute
+			
             if maxRadius > maxTimeRadius then 
                 maxRadius = math.max( 60, maxTimeRadius ) -- IF maxTimeRadius < 60 THEN maxTimeRadius = 60
             end
+			
             if maxRadius > SearchRadius then
                 maxRadius = SearchRadius
             end
+			
             UnitsInACUBaseRange = aiBrain:GetUnitsAroundPoint( TargetSearchCategory, cdr.CDRHome, maxRadius, 'Enemy')
+			
             -- get the position of this platoon (ACU)
             if not GetTargetsFromBase then
                 -- we don't get out targets relativ to base position. Use the ACU position
                 GetTargetsFrom = cdr.position
             end
+			
             ----------------------------------------------
             --- This is the start of the main ACU loop ---
             ----------------------------------------------
-            if aiBrain:GetEconomyStoredRatio('ENERGY') > 0.70 then
+			
+            if aiBrain:GetEconomyStoredRatio('ENERGY') > 0.40 then
                 cdr:SetAutoOvercharge(true)
             else
                 cdr:SetAutoOvercharge(false)
@@ -1063,9 +1148,9 @@ Platoon = Class(SorianEditPlatoonClass) {
                 self:PlatoonDisband()
                 return
             -- check if we are further away from base then the closest enemy
-            elseif SUtils.CDRRunHomeEnemyNearBase(self,cdr,UnitsInACUBaseRange) then
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: CDRRunHomeEnemyNearBase')
-                TargetUnit = false
+            -- elseif SUtils.CDRRunHomeEnemyNearBase(self,cdr,UnitsInACUBaseRange) then
+                -- --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: CDRRunHomeEnemyNearBase')
+                -- TargetUnit = false
             -- check if we get actual damage, then move home
             elseif SUtils.CDRRunHomeAtDamage(self,cdr) then
                 --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: CDRRunHomeAtDamage')
@@ -1074,33 +1159,125 @@ Platoon = Class(SorianEditPlatoonClass) {
             elseif SUtils.CDRRunHomeHealthRange(self,cdr,maxRadius) then
                 --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: CDRRunHomeHealthRange')
                 TargetUnit = false
-            -- can we upgrade ?
-            elseif table.getn(UnitsInACUBaseRange) <= 0 and VDist2(cdr.position[1], cdr.position[3], cdr.CDRHome[1], cdr.CDRHome[3]) < 60 and self:BuildACUEnhancementsSorianEdit(cdr) then
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit')
-                -- Do nothing if BuildACUEnhancementsSorianEdit is true. we are upgrading!
-            -- only get a new target and make a move command if the target is dead
             else
                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: ATTACK')
                 -- ToDo: scann for enemy COM and change target if needed
                 TargetUnit, _, _, _ = AIUtils.AIFindNearestCategoryTargetInRangeSorianEditCDRSorianEdit(aiBrain, GetTargetsFrom, maxRadius, MoveToCategories, TargetSearchCategory, false)
+				local EACUBRange = false
+				EACUBRange = aiBrain:GetUnitsAroundPoint( categories.COMMAND , GetTargetsFrom, maxRadius, 'Enemy')[1]
                 -- if we have a target, move to the target and attack
                 if TargetUnit then
+					self.TargetData = TargetUnit
+					
+					---------------
+					-- Targeting --
+					---------------
+					MoveToTarget = false
+					MoveToTargetPos = false
+
+					-- start micro only if the ACU is closer to our base than any other enemy unit
+					if TargetUnit then
+						MoveToTarget = TargetUnit
+						MoveToTargetPos = TargetUnit:GetPosition()
+					-- we don't have a dfocussed target, is there a enemy ACU in close range ? 
+					elseif EACUBRange then
+						MoveToTarget = EACUBRange
+						MoveToTargetPos = EACUBRange:GetPosition()
+					end
+					
+					FocusTarget = ( aiBrain:GetUnitsAroundPoint( ( categories.ALLUNITS - categories.WALL - (categories.AIR * categories.MOBILE) ) , MoveToTargetPos, 26, 'Enemy') )[1]
+					
+					if FocusTarget then
+						FocusTargetPos = FocusTarget:GetPosition()
+					elseif EACUBRange then
+						FocusTargetPos = EACUBRange
+					else
+						FocusTargetPos = false
+					end
+					
+					CDRHealth = SUtils.ComHealth(cdr)
+					
                     --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: ATTACK TargetUnit')
-                    if aiBrain:PlatoonExists(self) and TargetUnit and not TargetUnit.Dead and not TargetUnit:BeenDestroyed() then
-                        local targetPos = TargetUnit:GetPosition()
-                        local cdrNewPos = {}
-                        cdr:GetNavigator():AbortMove()
-                        cdrNewPos[1] = targetPos[1] + Random(-3, 3)
-                        cdrNewPos[2] = targetPos[2]
-                        cdrNewPos[3] = targetPos[3] + Random(-3, 3)
-                        self:MoveToLocation(cdrNewPos, false)
-                        coroutine.yield(1)
-                        if TargetUnit and not TargetUnit.Dead and not TargetUnit:BeenDestroyed() then
-                            self:AttackTarget(TargetUnit)
-                        end
-                    end
+				
+					if ScenarioInfo.Options.SEPathing ~= 'No' and not self.TrackThread then
+						self.TrackThread = self:ForkThread(SUtils.TrackPlatoon, MoveToTargetPos, false, -6)
+					end
+					
+					if not aiBrain:PlatoonExists(self) or cdr.Dead then
+						self:PlatoonDisband()
+						return
+					end
+					
+					NavigatorGoal = cdr:GetNavigator():GetGoalPos()
+					
+					if MoveToTargetPos then
+						-- if the target has moved or we got a new target, delete the Weapon Blocked flag.
+						if cdr.LastMoveToTargetPos ~= MoveToTargetPos then
+							cdr.WeaponBlocked = false
+							cdr.LastMoveToTargetPos = MoveToTargetPos
+						end
+						-- Set different move destination if weapon fire is blocked
+						if cdr.WeaponBlocked then
+							-- Weapoon fire is blocked, move to the target as close as possible.
+							smartPos = { MoveToTargetPos[1], MoveToTargetPos[2], MoveToTargetPos[3] }
+						else
+							-- go closeer to the target depending on ACU health
+							local RangeMod = CDRHealth/10
+							if RangeMod < 0 then RangeMod = 0 end
+							if RangeMod > 10 then RangeMod = 10 end
+							-- Weapoon fire is not blocked, move to the target at Max Weapon Range.
+							alpha = math.atan2 (MoveToTargetPos[3] - cdr.position[3] ,MoveToTargetPos[1] - cdr.position[1])
+							x = MoveToTargetPos[1] - math.cos(alpha) * (cdr.MaxWeaponRange * 0.9 - RangeMod)
+							y = MoveToTargetPos[3] - math.sin(alpha) * (cdr.MaxWeaponRange * 0.9 - RangeMod)
+							smartPos = { x, GetTerrainHeight( x, y), y }
+						end
+					end
+					
+					-- in case we are not moving for 4 seconds, force moving (maybe blocked line of sight)
+					if not cdr:IsUnitState("Moving") then
+						if cdr.LastMoved + 4 < GetGameTimeSeconds() then
+							smartPos = UUtils.RandomizePositionTML(smartPos)
+							cdr.LastMoved = GetGameTimeSeconds()
+						end
+					else
+						cdr.LastMoved = GetGameTimeSeconds()
+					end
+
+					-- check if we have already a move position
+					if not smartPos[1] then
+						smartPos = cdr.position
+					end
+					-- Validate move position, make sure it's not out of map
+					if smartPos[1] < playablearea[1] then
+						smartPos[1] = playablearea[1]
+					elseif smartPos[1] > playablearea[3] then
+						smartPos[1] = playablearea[3]
+					end
+					if smartPos[3] < playablearea[2] then
+						smartPos[3] = playablearea[2]
+					elseif smartPos[3] > playablearea[4] then
+						smartPos[3] = playablearea[4]
+					end
+					-- check if the move position is new, then issue a move command
+					-- ToDo in case we are under fire we should move in zig-zag to evade
+					if VDist2( smartPos[1], smartPos[3], NavigatorGoal[1], NavigatorGoal[3] ) > 0.7 then
+						IssueClearCommands({cdr})
+						IssueMove({cdr}, smartPos )
+					elseif VDist2( cdr.position[1], cdr.position[3], NavigatorGoal[1], NavigatorGoal[3] ) <= 0.7 then
+					end
+
+					-- fire primary weapon
+					if FocusTargetPos and aiBrain:CheckBlockingTerrain(cdr.position, FocusTargetPos, 'low') then
+						cdr.WeaponBlocked = true
+					else
+						cdr.WeaponBlocked = false
+					end
+					if not cdr.WeaponBlocked and FocusTarget and not FocusTarget.Dead and not FocusTarget:BeenDestroyed() then
+						IssueAttack({cdr}, FocusTarget)
+					end
+					
                 -- if we have no target, move to base. If we are at base, dance. (random moves)
-                elseif UUtils.CDRForceRunHome(self,cdr) then
+                elseif SUtils.CDRForceRunHome(self,cdr) then
                     --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: CDRForceRunHome true. we are running home')
                 -- we are at home, dance if we have nothing to do.
                 else
@@ -1111,17 +1288,91 @@ Platoon = Class(SorianEditPlatoonClass) {
                     return
                 end
             end
-            --DrawCircle(cdr.CDRHome, maxRadius, '00FFFF')
-            coroutine.yield(10)
+			
+            ------------------
+            -- Enhancements --
+            ------------------
+
+            -- check if we are close to Main base, then decide if we can enhance
+            if VDist2(cdr.position[1], cdr.position[3], cdr.CDRHome[1], cdr.CDRHome[3]) < 256 then
+                -- only upgrade if we are good at health
+                local check = true
+                if self.created + 10 > GetGameTimeSeconds() then
+                    check = false
+                else
+                end
+                if CDRHealth < 20 then
+                    check = false
+                end
+                if UnderAttack then
+                    check = false
+                end
+                -- Only upgrade with full Energy storage
+                if aiBrain:GetEconomyStoredRatio('ENERGY') < 1.00 then
+                    check = false
+                end
+                -- First enhancement needs at least +300 energy
+                if aiBrain:GetEconomyTrend('ENERGY')*10 < 300 then
+                    check = false
+                end
+                -- Enhancement 3 and all other should only be done if we have good eco. (Black Ops ACU!)
+                if InstalledEnhancementsCount >= 2 and (aiBrain:GetEconomyStoredRatio('MASS') < 0.40) then
+                    check = false
+                end
+                if check then
+                    -- in case we have engineers inside the platoon, let them assist the ACU
+                    for _, unit in self:GetPlatoonUnits() do
+                        if unit.Dead then continue end
+                        -- exclude the ACU
+                        if unit.CDRHome then
+                            continue
+                        end
+                        if EntityCategoryContains(categories.ENGINEER - categories.POD, unit) then
+                            --LOG('Engineer ASSIST ACU')
+                            -- NOT working for enhancements
+                            IssueGuard({unit}, cdr)
+                        end
+                        
+                    end
+                    -- will only start enhancing if ECO is good
+                    local InstalledEnhancement = self:BuildACUEnhancements(cdr, InstalledEnhancementsCount < 1)
+                    --local InstalledEnhancement = self:BuildACUEnhancements(cdr, false)
+                    -- do we have succesfull installed the enhancement ?
+                    if InstalledEnhancement then
+                        SPEW('* AI-Uveso: * ACUChampionPlatoon: enhancement '..InstalledEnhancement..' installed')
+                        -- count enhancements
+                        InstalledEnhancementsCount = 0
+                        for i, name in SimUnitEnhancements[cdr.EntityId] or {} do
+                            InstalledEnhancementsCount = InstalledEnhancementsCount + 1
+                            SPEW('* AI-Uveso: * ACUChampionPlatoon: Found enhancement: '..name..' - InstalledEnhancementsCount = '..InstalledEnhancementsCount..'')
+                        end
+                        -- check if we have installed a weapon
+                        local tempEnhanceBp = cdr:GetBlueprint().Enhancements[InstalledEnhancement]
+                        -- Is it a weapon with a new max range ?
+                        if tempEnhanceBp.NewMaxRadius then
+                            -- set the new max range
+                            if not cdr.MaxWeaponRange or cdr.MaxWeaponRange < tempEnhanceBp.NewMaxRadius then
+                                cdr.MaxWeaponRange = tempEnhanceBp.NewMaxRadius -- maxrange minus 10%
+                                SPEW('* AI-Uveso: * ACUChampionPlatoon: New cdr.MaxWeaponRange: '..cdr.MaxWeaponRange..' ['..InstalledEnhancement..']')
+                            end
+                        else
+                            --DebugArray(tempEnhanceBp)
+                        end
+                    end
+                end
+            end
+			
+            coroutine.yield(3)
             --------------------------------------------
             --- This is the end of the main ACU loop ---
             --------------------------------------------
+			
         end
         --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: END '..self.BuilderName)
         self:PlatoonDisband()
     end,
     
-    BuildACUEnhancementsSorianEdit = function(platoon,cdr)
+    BuildACUEnhancementsSorianEdit = function(platoon,cdr, force)
         local EnhancementsByUnitID = {
             -- UEF
             ['uel0001'] = {'HeavyAntiMatterCannon', 'DamageStabilization', 'Shield', 'ShieldGeneratorField'},
@@ -1151,37 +1402,43 @@ Platoon = Class(SorianEditPlatoonClass) {
         local HaveEcoForEnhancement = false
         for _,enhancement in ACUUpgradeList or {} do
             local wantedEnhancementBP = CRDBlueprint.Enhancements[enhancement]
-            --LOG('* AI-SorianEdit: wantedEnhancementBP '..repr(wantedEnhancementBP))
+            -- LOG('* AI-SorianEdit: wantedEnhancementBP '..repr(wantedEnhancementBP))
             if not wantedEnhancementBP then
                 SPEW('* AI-SorianEdit: ACUAttackSorianEdit: no enhancement found for  = '..repr(enhancement))
             elseif cdr:HasEnhancement(enhancement) then
                 NextEnhancement = false
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Enhancement is already installed: '..enhancement)
+                -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Enhancement is already installed: '..enhancement)
             elseif platoon:EcoGoodForUpgradeSorianEdit(cdr, wantedEnhancementBP) then
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Eco is good for '..enhancement)
+                -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Eco is good for '..enhancement)
                 if not NextEnhancement then
                     NextEnhancement = enhancement
                     HaveEcoForEnhancement = true
-                    --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: *** Set as Enhancememnt: '..NextEnhancement)
+                    -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: *** Set as Enhancememnt: '..NextEnhancement)
+                end
+            elseif force then
+                --LOG('* AI-SorianEdit: * ACUAttackAIUveso: BuildACUEnhancements: Eco is bad for '..enhancement..' - Ignoring eco requirement!')
+                if not NextEnhancement then
+                    NextEnhancement = enhancement
+                    HaveEcoForEnhancement = true
                 end
             else
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Eco is bad for '..enhancement)
+                -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit: Eco is bad for '..enhancement)
                 if not NextEnhancement then
                     NextEnhancement = enhancement
                     HaveEcoForEnhancement = false
                     -- if we don't have the eco for this ugrade, stop the search
-                    --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: canceled search. no eco available')
+                    LOG('* AI-SorianEdit: * ACUAttackSorianEdit: canceled search. no eco available')
                     break
                 end
             end
         end
         if NextEnhancement and HaveEcoForEnhancement then
-            --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit Building '..NextEnhancement)
+            -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit Building '..NextEnhancement)
             if platoon:BuildEnhancementSorianEdit(cdr, NextEnhancement) then
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit returned true'..NextEnhancement)
-                return true
+                -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit returned true'..NextEnhancement)
+                return NextEnhancement
             else
-                --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit returned false'..NextEnhancement)
+                -- LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildACUEnhancementsSorianEdit returned false'..NextEnhancement)
                 return false
             end
         end
@@ -1194,22 +1451,14 @@ Platoon = Class(SorianEditPlatoonClass) {
         if not enhancement.BuildTime then
             WARN('* AI-SorianEdit: EcoGoodForUpgradeSorianEdit: Enhancement has no buildtime: '..repr(enhancement))
         end
-        --LOG('* AI-SorianEdit: cdr:GetBuildRate() '..BuildRate..'')
-        local drainMass = (BuildRate / enhancement.BuildTime) * (enhancement.BuildCostMass * 3)
-        local drainEnergy = (BuildRate / enhancement.BuildTime) * (enhancement.BuildCostEnergy * 3)
-        --LOG('* AI-SorianEdit: drain: m'..drainMass..'  e'..drainEnergy..'')
-        --LOG('* AI-SorianEdit: Pump: m'..math.floor(aiBrain:GetEconomyTrend('MASS')*10)..'  e'..math.floor(aiBrain:GetEconomyTrend('ENERGY')*10)..'')
+        -- LOG('* AI-SorianEdit: cdr:GetBuildRate() '..BuildRate..'')
+        local drainMass = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostMass
+        local drainEnergy = (BuildRate / enhancement.BuildTime) * enhancement.BuildCostEnergy
+        -- LOG('* AI-SorianEdit: drain: m'..drainMass..'  e'..drainEnergy..'')
+        -- LOG('* AI-SorianEdit: Pump: m'..math.floor(aiBrain:GetEconomyTrend('MASS')*10)..'  e'..math.floor(aiBrain:GetEconomyTrend('ENERGY')*10)..'')
         if aiBrain.HasParagon then
             return true
-        elseif aiBrain:GetEconomyTrend('MASS')*10 >= drainMass and aiBrain:GetEconomyTrend('ENERGY')*10 >= drainEnergy
-        and aiBrain:GetEconomyStoredRatio('MASS') > 0.05 and aiBrain:GetEconomyStoredRatio('ENERGY') > 0.95 then
-            -- only RUSH AI; don't enhance if mass storage is lower than 90%
-            local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-            if personality == 'SorianEditxcheat' then
-                if aiBrain:GetEconomyStoredRatio('MASS') < 0.90 then
-                    return false
-                end
-            end
+        elseif aiBrain:GetEconomyTrend('MASS')*10 >= drainMass and aiBrain:GetEconomyTrend('ENERGY')*10 >= drainEnergy then
             return true
         end
         return false
@@ -1238,14 +1487,20 @@ Platoon = Class(SorianEditPlatoonClass) {
             local order = { TaskName = "EnhanceTask", Enhancement = enhancement }
             IssueScript({cdr}, order)
         end
-        while not cdr.Dead and not cdr:HasEnhancement(enhancement) do
-            if SUtils.ComHealth(cdr) < 60 then
+        while aiBrain:PlatoonExists(platoon) and not cdr.Dead and not cdr:HasEnhancement(enhancement) do
+            if UUtils.ComHealth(cdr) < 50 and UUtils.UnderAttack(cdr) and cdr.WorkProgress < 0.90 then
                 --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildEnhancementSorianEdit: '..platoon:GetBrain().Nickname..' Emergency!!! low health, canceling Enhancement '..enhancement)
                 IssueStop({cdr})
                 IssueClearCommands({cdr})
                 return false
             end
-            coroutine.yield(10)
+            if cdr.WorkProgress < 0.30 and UUtils.UnderAttack(cdr) then
+                SPEW('* AI-Uveso: BuildEnhancement: '..platoon:GetBrain().Nickname..' Emergency!!! WorkProgress < 30% and under attack, canceling Enhancement '..enhancement)
+                IssueStop({cdr})
+                IssueClearCommands({cdr})
+                return false
+            end
+            coroutine.yield(3)
         end
         --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: BuildEnhancementSorianEdit: '..platoon:GetBrain().Nickname..' Upgrade finished '..enhancement)
         return true
@@ -1754,7 +2009,7 @@ Platoon = Class(SorianEditPlatoonClass) {
     end,
 	
     SorianPlatoonMerger = function(self)
-        LOG('*------------------------------ Sorian: * SorianPlatoonMerger: called from Builder: '..(self.BuilderName or 'Unknown'))
+        -- LOG('*------------------------------ Sorian: * SorianPlatoonMerger: called from Builder: '..(self.BuilderName or 'Unknown'))
         local aiBrain = self:GetBrain()
         local PlatoonPlan = self.PlatoonData.AIPlan
         -- LOG('* Sorian: * SorianPlatoonMerger: AIPlan: '..(PlatoonPlan or 'Unknown'))
@@ -1788,49 +2043,67 @@ Platoon = Class(SorianEditPlatoonClass) {
     end,
 
     ExtractorUpgradeAISorian = function(self)
-        LOG('*------------------------------ Sorian: +++ ExtractorUpgradeAISorian: START')
+        -- LOG('*------------------------------ Sorian: +++ ExtractorUpgradeAISorian: START')
         local aiBrain = self:GetBrain()
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        local ratio = 0.0
+                          -- 0    6     10    15    20    25    30  >600  >1000
+                          -- 1    2     3     4     5     6     7     8     9
+        local RatioTable = {0.0, 0.10, 0.15, 0.20, 0.25, 0.30, 0.40, 0.50, 1.0}
+		
+        if personality == personality == 'sorianeditadaptive' or personality == 'sorianedit' then
+            RatioTable = {0.0, 0.00, 0.05, 0.10, 0.15, 0.20, 0.20, 0.50, 1.0}
+        end
+		
+        if personality == 'sorianeditadaptivecheat' then
+            RatioTable = {0.0, 0.00, 0.05, 0.15, 0.20, 0.25, 0.35, 0.65, 1.0}
+        end
+		
         while aiBrain:PlatoonExists(self) do
-            local ratio = 0.10
-            if aiBrain.HasParagon then
+            --LOG('* AI-Uveso: +++ ExtractorUpgradeAI: PULSE')
+            if aiBrain.PriorityManager.HasParagon then
                 -- if we have a paragon, upgrade mex as fast as possible. Mabye we lose the paragon and need mex again.
-                ratio = 1.0
-            elseif aiBrain:GetEconomyIncome('MASS') > 500 then
-                --LOG('* AI-SorianEdit: Mass over 500. Eco running with 50%')
-                ratio = 0.50
+                ratio = RatioTable[9]
+            elseif aiBrain:GetEconomyIncome('MASS') * 10 > 1000 then
+                --LOG('* AI-Uveso: Mass over 1000. Eco running with 50%')
+                ratio = RatioTable[9]
+            elseif aiBrain:GetEconomyIncome('MASS') * 10 > 600 then
+                --LOG('* AI-Uveso: Mass over 600. Eco running with 35%')
+                ratio = RatioTable[8]
             elseif GetGameTimeSeconds() > 1800 then -- 30 * 60
-                ratio = 0.35
+                ratio = RatioTable[7]
+            elseif GetGameTimeSeconds() > 1500 then -- 25 * 60
+                ratio = RatioTable[6]
             elseif GetGameTimeSeconds() > 1200 then -- 20 * 60
-                ratio = 0.25
+                ratio = RatioTable[5]
             elseif GetGameTimeSeconds() > 900 then -- 15 * 60
-                ratio = 0.20
+                ratio = RatioTable[4]
             elseif GetGameTimeSeconds() > 600 then -- 10 * 60
-                ratio = 0.15
-            elseif GetGameTimeSeconds() > 300 then -- 5 * 60
-                ratio = 0.10
-            elseif GetGameTimeSeconds() <= 300 then -- 5 * 50 run the first 5 minutes with 0% Eco and 100% Army
-                ratio = 0.00
+                ratio = RatioTable[3]
+            elseif GetGameTimeSeconds() > 360 then -- 6 * 60
+                ratio = RatioTable[2]
+            elseif GetGameTimeSeconds() <= 360 then -- 6 * 60 run the first 6 minutes with 0% Eco and 100% Army
+                ratio = RatioTable[1]
             end
             local platoonUnits = self:GetPlatoonUnits()
             local MassExtractorUnitList = aiBrain:GetListOfUnits(categories.MASSEXTRACTION * (categories.TECH1 + categories.TECH2 + categories.TECH3), false, false)
             -- Check if we can pause/unpause TECH3 Extractors (for more energy)
-            if not SUtils.ExtractorPauseSorian( self, aiBrain, MassExtractorUnitList, ratio, 'TECH3') then
+            if not UUtils.ExtractorPause( self, aiBrain, MassExtractorUnitList, ratio, 'TECH3') then
                 -- Check if we can pause/unpause TECH2 Extractors
-                if not SUtils.ExtractorPauseSorian( self, aiBrain, MassExtractorUnitList, ratio, 'TECH2') then
+                if not UUtils.ExtractorPause( self, aiBrain, MassExtractorUnitList, ratio, 'TECH2') then
                     -- Check if we can pause/unpause TECH1 Extractors
-                    if not SUtils.ExtractorPauseSorian( self, aiBrain, MassExtractorUnitList, ratio, 'TECH1') then
+                    if not UUtils.ExtractorPause( self, aiBrain, MassExtractorUnitList, ratio, 'TECH1') then
                         -- We have nothing to pause or unpause, lets upgrade more extractors
                         -- if we have 10% TECH1 extractors left (and 90% TECH2), then upgrade TECH2 to TECH3
-                        if SUtils.HaveUnitRatio( aiBrain, 0.90, categories.MASSEXTRACTION * categories.TECH1, '<=', categories.MASSEXTRACTION * categories.TECH2 ) then
+                        if UUtils.HaveUnitRatio( aiBrain, 0.90, categories.MASSEXTRACTION * categories.TECH1, '<=', categories.MASSEXTRACTION * categories.TECH2 ) then
                             -- Try to upgrade a TECH2 extractor.
-                            if not SUtils.ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, 'TECH2', UnitUpgradeTemplates, StructureUpgradeTemplates) then
+                            if not UUtils.ExtractorUpgrade(self, aiBrain, MassExtractorUnitList, ratio, 'TECH2', UnitUpgradeTemplates, StructureUpgradeTemplates) then
                                 -- We can't upgrade a TECH2 extractor. Try to upgrade from TECH1 to TECH2
-                                SUtils.ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, 'TECH1', UnitUpgradeTemplates, StructureUpgradeTemplates)
+                                UUtils.ExtractorUpgrade(self, aiBrain, MassExtractorUnitList, ratio, 'TECH1', UnitUpgradeTemplates, StructureUpgradeTemplates)
                             end
                         else
                             -- We have less than 90% TECH2 extractors compared to TECH1. Upgrade more TECH1
-                            SUtils.ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, 'TECH1', UnitUpgradeTemplates, StructureUpgradeTemplates)
+                            UUtils.ExtractorUpgrade(self, aiBrain, MassExtractorUnitList, ratio, 'TECH1', UnitUpgradeTemplates, StructureUpgradeTemplates)
                         end
                     end
                 end
@@ -5078,7 +5351,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                                 -- in case we don't move, check if we can fire at the target
                                                 else
                                                     local dist = VDist2( unit.smartPos[1], unit.smartPos[3], unit.TargetPos[1], unit.TargetPos[3] )
-                                                    if aiBrain:CheckBlockingTerrain(unitPos, targetPosition, unit.WeaponArc) then
+                                                    if targetPosition and aiBrain:CheckBlockingTerrain(unitPos, targetPosition, unit.WeaponArc) then
                                                         --unit:SetCustomName('Fight micro WEAPON BLOCKED!!! ['..repr(target.UnitId)..'] dist: '..dist)
                                                         IssueMove({unit}, targetPosition )
                                                     else
@@ -5741,6 +6014,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         local target
         local TargetPos
         local LastTargetPos
+		self.TargetData = target
         local UnitWithPath
         local UnitNoPath
         local path
@@ -5821,6 +6095,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             if not target or target.Dead or target:BeenDestroyed() then
                 UnitWithPath, UnitNoPath, path, reason = AIUtils.AIFindNearestCategoryTargetInRange(aiBrain, self, 'Attack', GetTargetsFrom, maxRadius, MoveToCategories, TargetSearchCategory, false ) -- note do not use SE version
                 target = UnitWithPath or UnitNoPath
+				self.TargetData = target
             end
             -- remove target, if we are out of base range
             DistanceToBase = VDist2(PlatoonCenterPosition[1] or 0, PlatoonCenterPosition[3] or 0, basePosition[1] or 0, basePosition[3] or 0)
@@ -5953,9 +6228,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                         end
                         if aiBrain:PlatoonExists(self) then
                             self:PlatoonDisband()
-							if self.TrackThread then
-								self:KillThread(TrackThread)
-							end
                         end
                         return
                     else
@@ -5965,9 +6237,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('PlatoonDisband 1')
                             end
                             self:PlatoonDisband()
-							if self.TrackThread then
-								self:KillThread(TrackThread)
-							end
                             return
                         end
                     end
@@ -5982,9 +6251,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                         self:ForceReturnToNearestBaseAIUveso()
                         if aiBrain:PlatoonExists(self) then
                             self:PlatoonDisband()
-							if self.TrackThread then
-								self:KillThread(TrackThread)
-							end
                         end
                         return
                     else
@@ -5994,9 +6260,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('PlatoonDisband 2')
                             end
                             self:PlatoonDisband()
-							if self.TrackThread then
-								self:KillThread(TrackThread)
-							end
                             return
                         end
                     end
@@ -6010,9 +6273,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                         self:ForceReturnToNearestBaseAIUveso()
                         if aiBrain:PlatoonExists(self) then
                             self:PlatoonDisband()
-							if self.TrackThread then
-								self:KillThread(TrackThread)
-							end
                         end
                         return
                     else
@@ -6039,10 +6299,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                 end
             end
-			if self.TrackThread then
-				self:KillThread(TrackThread)
-			end
-			if ScenarioInfo.Options.SEPathing ~= 'No' then
+			if ScenarioInfo.Options.SEPathing ~= 'No' and not self.TrackThread then
 				self.TrackThread = self:ForkThread(SUtils.TrackPlatoon, target, path, MaxPlatoonWeaponRange)
 			end
             -- in case we are using a transporter, do nothing. Wait for the transport!
@@ -6086,9 +6343,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                         if HERODEBUGSorianEdit then
                             self:RenamePlatoon('PlatoonDisband 3')
                         end
-						if self.TrackThread then
-							self:KillThread(TrackThread)
-						end
                         self:PlatoonDisband()
                     end
                     return
@@ -6235,7 +6489,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 unit.TargetPos = LastTargetPos
                             -- in case we don't move, check if we can fire at the target
 							else
-                                if aiBrain:CheckBlockingTerrain(unitPos, LastTargetPos, unit.WeaponArc) then
+                                if LastTargetPos and aiBrain:CheckBlockingTerrain(unitPos, LastTargetPos, unit.WeaponArc) then
                                     if HERODEBUGSorianEdit then
                                         unit:SetCustomName('WEAPON BLOCKED!!! ['..repr(TargetInPlatoonRange.UnitId)..']')
                                         coroutine.yield(1)
@@ -6264,9 +6518,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                                     self:RenamePlatoon('PlatoonDisband 4')
                                     coroutine.yield(1)
                                 end
-								if self.TrackThread then
-									self:KillThread(TrackThread)
-								end
                                 self:PlatoonDisband()
                             end
                             return
@@ -6311,8 +6562,6 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 IssueMove({unit}, smartPos )
 																		   
                                 unit.smartPos = smartPos
-								
-																					 
                             end
 
                         end
@@ -6327,8 +6576,10 @@ Platoon = Class(SorianEditPlatoonClass) {
                     -- break the fight loop and get new targets
                     break
                 end
-           end  -- fight end
+			end  -- fight end
         end
+		
+		
         if HERODEBUGSorianEdit then
             self:RenamePlatoon('PlatoonExists = false')
         end
@@ -6337,9 +6588,6 @@ Platoon = Class(SorianEditPlatoonClass) {
             if HERODEBUGSorianEdit then
                 self:RenamePlatoon('PlatoonDisband 5')
             end
-			if self.TrackThread then
-				self:KillThread(TrackThread)
-			end
             self:PlatoonDisband()
         end
     end,
@@ -6993,7 +7241,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                                 -- in case we don't move, check if we can fire at the target
                                                 else
                                                     local dist = VDist2( unit.smartPos[1], unit.smartPos[3], unit.TargetPos[1], unit.TargetPos[3] )
-                                                    if aiBrain:CheckBlockingTerrain(unitPos, targetPosition, unit.WeaponArc) then
+                                                    if targetPosition and aiBrain:CheckBlockingTerrain(unitPos, targetPosition, unit.WeaponArc) then
                                                         --unit:SetCustomName('Fight micro WEAPON BLOCKED!!! ['..repr(target.UnitId)..'] dist: '..dist)
                                                         IssueMove({unit}, targetPosition )
                                                     else

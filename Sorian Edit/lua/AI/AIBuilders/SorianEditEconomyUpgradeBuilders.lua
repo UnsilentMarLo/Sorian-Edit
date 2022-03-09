@@ -49,7 +49,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 250 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 180 } },
             { EBC, 'GreaterThanEconIncome',  { 3.5, -0.0}},
         },
         BuilderData = {
@@ -65,7 +65,7 @@ BuilderGroup {
         InstanceCount = 1,
         FormRadius = 10000,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 350 } },
+			{ UCBC, 'GreaterThanGameTimeSeconds', { 260 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY} },
         },
         BuilderData = {
@@ -209,8 +209,9 @@ BuilderGroup {
         Priority = 150000,
         InstanceCount = 1,
         BuilderConditions = {
-				{ EBC, 'GreaterThanEconIncome',  { 4.0, 30.0}},
+				{ EBC, 'GreaterThanEconIncome',  { 5.0, 30.0}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY TECH1'}},
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3,  categories.MASSEXTRACTION * categories.TECH2 }},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
             },
@@ -280,7 +281,8 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-				{ EBC, 'GreaterThanEconIncome',  { 16.0, 50.0}},
+				{ EBC, 'GreaterThanEconIncome',  { 18.0, 100.0}},
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1,  categories.MASSEXTRACTION * categories.TECH3 }},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
             },

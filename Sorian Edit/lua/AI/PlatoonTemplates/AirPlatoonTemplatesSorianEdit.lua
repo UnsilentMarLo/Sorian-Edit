@@ -10,7 +10,7 @@ PlatoonTemplate {
     Name = 'BomberAttackSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.BOMBER - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 5, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.BOMBER - categories.TECH3 - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 5, 'Attack', 'none' },
     }
 }
 
@@ -35,6 +35,14 @@ PlatoonTemplate {
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.BOMBER * categories.TECH3 - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 10, 'Attack', 'none' },
+    }
+}
+
+PlatoonTemplate {
+    Name = 'BomberAttackSorianEditT23',
+    Plan = 'InterceptorBomberGunshipSorianEdit',
+    GlobalSquads = {
+        { categories.MOBILE * categories.AIR * categories.BOMBER - categories.TECH1 - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 10, 'Attack', 'none' },
     }
 }
 

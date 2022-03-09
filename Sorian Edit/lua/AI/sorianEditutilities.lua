@@ -539,10 +539,9 @@ function GetTemplateReplacement(aiBrain, building, faction, buildingTmpl)
     return retTemplate
 end
 
--- SUtils.TrackPlatoon(target, path)
-
 function TrackPlatoon(self, target, path, MaxPlatoonWeaponRange)
 	local aiBrain = self:GetBrain()
+	local target = target
 	local position = self:GetPlatoonPosition()
 	local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
 	local PlatoonCount = table.getn(self:GetPlatoonUnits())
@@ -557,6 +556,10 @@ function TrackPlatoon(self, target, path, MaxPlatoonWeaponRange)
 		PlatoonCount = table.getn(self:GetPlatoonUnits())
 		-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
 		DrawCircle(position, PlatoonCount, '09FF00')
+		
+		if self.TargetData then
+			target = self.TargetData
+		end
 		
 		if target and not (target.Dead or target:BeenDestroyed()) then
 			-- LOG('-------------- Enemy Platoon')
@@ -583,7 +586,7 @@ function TrackPlatoon(self, target, path, MaxPlatoonWeaponRange)
 				if Marker2 == nil then
 					break
 				end
-				DrawLinePop({Marker[1], 0, Marker[3]}, {Marker2[1], 0, Marker2[3]}, '00fBFF')
+				DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
 			end
 		end
 		coroutine.yield(1)
@@ -3180,7 +3183,7 @@ function GetBuildingTypeInfo(BuildingType, iInfoWanted, sFaction)
 
     else
         --NOTE: Any additions to above should also be reflected in BlueprintToBuildingType
-        LOG('* ERROR: MICRO27AI: utilitites.lua: GetBuildingSize: NEED TO ADD IN SIZE FOR BuildingType='..BuildingType)
+        LOG('* ERROR: SorianEdit: utilitites.lua: GetBuildingSize: NEED TO ADD IN SIZE FOR BuildingType='..BuildingType)
     end
     if iInfoWanted == 1 then
         return SizeArray
@@ -3421,7 +3424,7 @@ function GetAdjacencyLocationForTarget(tablePosTarget, TargetBuildingType, NewBu
                             end
                         end
                         if bDebugMessages == true then if bReturnOnlyBestMatch == true then LOG('iPriority='..iPriority..'; iDistanceBetween='..iDistanceBetween) end end
-                        if bDebugMessages == true then LOG('*MICRO27AI: utilities.lua: GetAdjacencyLocationForTarget: iValidPosCount='..iValidPosCount..'; PossiblePositions[iValidPosCount][1-2-3]='..PossiblePositions[iValidPosCount][1]..'-'..PossiblePositions[iValidPosCount][2]..'-'..PossiblePositions[iValidPosCount][3]..'; bReturnOnlyBestMatch='..tostring(bReturnOnlyBestMatch)) end
+                        if bDebugMessages == true then LOG('*SorianEdit: utilities.lua: GetAdjacencyLocationForTarget: iValidPosCount='..iValidPosCount..'; PossiblePositions[iValidPosCount][1-2-3]='..PossiblePositions[iValidPosCount][1]..'-'..PossiblePositions[iValidPosCount][2]..'-'..PossiblePositions[iValidPosCount][3]..'; bReturnOnlyBestMatch='..tostring(bReturnOnlyBestMatch)) end
                     end
                 end
                 --end
@@ -3431,14 +3434,14 @@ function GetAdjacencyLocationForTarget(tablePosTarget, TargetBuildingType, NewBu
     end
     if iValidPosCount >= 1 then
         if bReturnOnlyBestMatch then
-            LOG('*MICRO27AI: utilities.lua: GetAdjacencyLocationForTarget: Returning best possible position; tBestPosition[1]='..tBestPosition[1]..'-'..tBestPosition[2]..'-'..tBestPosition[3]..'; iMaxPriority='..iMaxPriority)
+            -- LOG('*SorianEdit: utilities.lua: GetAdjacencyLocationForTarget: Returning best possible position; tBestPosition[1]='..tBestPosition[1]..'-'..tBestPosition[2]..'-'..tBestPosition[3]..'; iMaxPriority='..iMaxPriority)
             return tBestPosition
         else
-            LOG('*MICRO27AI: utilities.lua: GetAdjacencyLocationForTarget: Returning table of possible positions; PossiblePositions[1][1]='..PossiblePositions[1][1]..'-'..PossiblePositions[1][2]..'-'..PossiblePositions[1][3])
+            -- LOG('*SorianEdit: utilities.lua: GetAdjacencyLocationForTarget: Returning table of possible positions; PossiblePositions[1][1]='..PossiblePositions[1][1]..'-'..PossiblePositions[1][2]..'-'..PossiblePositions[1][3])
             return PossiblePositions
         end
     else
-            LOG('ERROR: *MICRO27AI: utilities.lua: GetAdjacencyLocationForTarget: No valid matches found. PosTarget='..PosTarget[1]..'-'..PosTarget[3])
+            -- LOG('ERROR: *SorianEdit: utilities.lua: GetAdjacencyLocationForTarget: No valid matches found. PosTarget='..PosTarget[1]..'-'..PosTarget[3])
             return nil
     end
 

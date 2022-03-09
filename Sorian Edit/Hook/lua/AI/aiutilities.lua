@@ -94,7 +94,7 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
             if type(category) == 'string' then
                 category = ParseEntityCategory(category)
             end
-            distance = maxRange
+            distance = maxRange * maxRange
             -- LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: numTargets '..table.getn(TargetsInRange)..'  ')
             for num, Target in TargetsInRange do
                 if Target.Dead or Target:BeenDestroyed() then
@@ -120,7 +120,7 @@ function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, p
                         --WARN('* AIFindNearestCategoryTargetInRangeSorianEdit: CaptureInProgress !!! Ignoring the target.')
                         continue
                     end
-                    targetRange = VDist2(position[1],position[3],TargetPosition[1],TargetPosition[3])
+                    targetRange = VDist2Sq(position[1],position[3],TargetPosition[1],TargetPosition[3])
                     --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: targetRange '..repr(targetRange))
                     if targetRange < distance then
                         if not aiBrain:PlatoonExists(platoon) then
@@ -210,12 +210,33 @@ function AIFindNearestCategoryTargetInRangeSorianEditCDRSorianEdit(aiBrain, posi
     if enemyBrain then
         enemyIndex = enemyBrain:GetArmyIndex()
     end
-    local RangeList = {
-        [1] = 30,
-        [1] = 64,
-        [2] = 128,
-        [4] = maxRange,
-    }
+    local RangeList = { [1] = maxRange }
+    if maxRange > 512 then
+        RangeList = {
+            [1] = 30,
+            [1] = 64,
+            [2] = 128,
+            [2] = 192,
+            [3] = 256,
+            [3] = 384,
+            [4] = 512,
+            [5] = maxRange,
+        }
+    elseif maxRange > 256 then
+        RangeList = {
+            [1] = 30,
+            [1] = 64,
+            [2] = 128,
+            [2] = 192,
+            [3] = 256,
+            [4] = maxRange,
+        }
+    elseif maxRange > 64 then
+        RangeList = {
+            [1] = 30,
+            [2] = maxRange,
+        }
+    end
     local TargetUnit = false
     local basePostition = aiBrain.BuilderManagers['MAIN'].Position
     local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, baseTargetRange, canAttack
@@ -252,7 +273,8 @@ function AIFindNearestCategoryTargetInRangeSorianEditCDRSorianEdit(aiBrain, posi
                     targetRange = VDist2(position[1],position[3],TargetPosition[1],TargetPosition[3])
                     baseTargetRange = VDist2(basePostition[1],basePostition[3],TargetPosition[1],TargetPosition[3])
                     -- check if the target is in range of the ACU and in range of the base
-                    if targetRange < distance and baseTargetRange < maxRange then
+                    -- if targetRange < distance and baseTargetRange < maxRange then
+                    if targetRange < distance then
                         TargetUnit = Target
                         distance = targetRange
                     end
