@@ -77,7 +77,7 @@ BuilderGroup {
         -- PriorityFunction = AirAttackPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 260 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'BOMBER' }},
         },
@@ -92,7 +92,7 @@ BuilderGroup {
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -108,7 +108,7 @@ BuilderGroup {
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -136,7 +136,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 4500,
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.AIR * categories.ANTIAIR} },
             { UCBC, 'UnitCapCheckLess', { 0.45 } },
