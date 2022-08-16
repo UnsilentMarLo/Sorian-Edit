@@ -403,23 +403,27 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
 					tBuildAdjacentTo = MapInfo.MassNearStart[iArmy]
 					sBuildingTypeToBuildBy = 'T1Resource'
 					
-					local NewLocations = nil
+					local NewLocations = {builderPos[1] + 5, builderPos[2], builderPos[3]}
+					NewLocations = aiBrain:FindPlaceToBuild(buildingType, whatToBuild, baseTemplate, relative, closeToBuilder, 'Enemy', builderPos[1] + 5, builderPos[2], builderPos[3])
+					
+					if Random(1,2) == 2 then
+						NewLocations = {builderPos[1] - 5, builderPos[2], builderPos[3]}
+						NewLocations = aiBrain:FindPlaceToBuild(buildingType, whatToBuild, baseTemplate, relative, closeToBuilder, 'Enemy', builderPos[1] - 5, builderPos[2], builderPos[3])
+					end
 					
 					if tBuildAdjacentTo == nil or tBuildAdjacentTo[1] == nil then
 						bSpecialBehaviour = false
 					else
 						NewLocations = Utilities.GetAdjacencyLocationForTarget(tBuildAdjacentTo, sBuildingTypeToBuildBy, buildingType, true, aiBrain, true, builderPos, iBuildDistance, false, true)
-						relativeLoc = NewLocations
 						--If can't find any adjacent locations then don't override the baseTemplate:
 						if NewLocations == nil or NewLocations[1] == nil then
 							--Do nothing
 							bSpecialBehaviour = false
-						else
-							local AltLocations = Utilities.ConvertAbsolutePositionToRelative(NewLocations, builderPos)
-							-- Utilities.DrawLocations(AltLocations, builderPos, 1)
-							baseTemplate = Utilities.ConvertLocationsToBuildTemplate({buildingType},AltLocations)
 						end
 					end
+					local AltLocations = Utilities.ConvertAbsolutePositionToRelative(NewLocations, builderPos)
+					baseTemplate = Utilities.ConvertLocationsToBuildTemplate({buildingType},AltLocations)
+					relativeLoc = NewLocations
 				end
 			LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory position changed')
 			else

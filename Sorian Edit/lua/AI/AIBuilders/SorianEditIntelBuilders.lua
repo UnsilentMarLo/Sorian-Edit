@@ -24,7 +24,7 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Intel Builders loading')
@@ -64,6 +64,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.SCOUT * categories.AIR}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.FACTORY * categories.TECH1 } },
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.SCOUT * categories.AIR } },
@@ -108,6 +109,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { SIBC, 'HaveLessThanUnitsForMapSize', { {[256] = 4, [512] = 6, [1024] = 8, [2048] = 10, [4096] = 12}, categories.INTELLIGENCE * categories.AIR * categories.TECH3}},
             --CanBuildFirebase { 500, 500 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 6, categories.SCOUT * categories.AIR}},
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.FACTORY * categories.TECH3 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.INTELLIGENCE * categories.AIR * categories.TECH3 } },
         },
@@ -196,12 +198,14 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Radar Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 960,
+        InstanceCount = 1,
 		DelayEqualBuildPlatoons = {'RADAR', 4},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			-- { UCBC, 'CheckBuildPlatoonDelay', { 'RADAR' }},
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.9, 1.25 }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.STRUCTURE * categories.HYDROCARBON }},
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER - categories.TECH1 - categories.COMMAND } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE}},
             -- { EBC, 'GreaterThanEconIncome',  { 0.5, 15 } },
@@ -220,6 +224,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Radar Engineer',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         Priority = 850,
+        InstanceCount = 1,
 		DelayEqualBuildPlatoons = {'RADAR', 4},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -246,6 +251,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Omni Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 850,
+        InstanceCount = 1,
 		DelayEqualBuildPlatoons = {'RADAR', 4},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },

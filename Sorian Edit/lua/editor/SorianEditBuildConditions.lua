@@ -875,3 +875,13 @@ function CanPathToCurrentEnemy(aiBrain, bool, LocationType)
     end
     return false
 end
+
+function HaveEnoughAir(aiBrain)
+	local EnemyAir = table.getn(aiBrain:GetCurrentEnemy():GetListOfUnits( categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, false))
+	local OwnAir = table.getn(aiBrain:GetListOfUnits( categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL, false))
+	ratio = OwnAir / EnemyAir
+	if ratio >= 1 then
+		return true
+	end
+    return false
+end

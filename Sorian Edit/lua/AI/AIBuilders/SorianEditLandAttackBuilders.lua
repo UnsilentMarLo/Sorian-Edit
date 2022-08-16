@@ -26,7 +26,7 @@ local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Land attack Builders loading')
@@ -40,8 +40,8 @@ local TurtleAttackPrio = function(self, aiBrain)
 	for k, brain in ArmyBrains do
 		if ArmyIsCivilian(brain:GetArmyIndex()) then
 		elseif IsEnemy( aiBrain:GetArmyIndex(), brain:GetArmyIndex() ) then
-			local EnemyLand = table.getn(brain:GetListOfUnits( categories.MOBILE * categories.LAND - categories.ENGINEER - categories.SCOUT, false, false))
-			local EnemyDefense = table.getn(brain:GetListOfUnits( categories.STRUCTURE * categories.DEFENSE, false, false)) * 4
+			local EnemyLand = table.getn(brain:GetListOfUnits( categories.MOBILE * categories.LAND - categories.ENGINEER - categories.SCOUT, false))
+			local EnemyDefense = table.getn(brain:GetListOfUnits( categories.STRUCTURE * categories.DEFENSE, false)) * 4
 			ratio = EnemyDefense / EnemyLand
 		end
 	end
@@ -76,12 +76,22 @@ BuilderGroup {
         -- BuilderType = 'Land',
     -- },
     Builder {
+        BuilderName = 'SorianEdit T1 Engineer Disband - Init',
+        PlatoonTemplate = 'T1BuildEngineer',
+        Priority = 59000000,
+        BuilderConditions = {
+            { UCBC, 'EngineerLessAtLocation', { 'LocationType', 3, categories.ENGINEER * categories.TECH1 }},
+            { UCBC, 'UnitCapCheckLess', { .6 } },
+        },
+        BuilderType = 'Land',
+    },
+    Builder {
         BuilderName = 'SorianEdit T1 Tank',
         PlatoonTemplate = 'T1LandDFTank',
         Priority = 2225,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.15 } },
-			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 4, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 }},
+			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .7 } },
@@ -95,7 +105,7 @@ BuilderGroup {
         Priority = 2225,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.15 } },
-			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 - categories.SCOUT }},
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 - categories.SCOUT }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH1 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
@@ -106,10 +116,9 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Mortar - Not T1',
         PlatoonTemplate = 'T1LandArtillery',
-        Priority = 1225, --600,
+        Priority = 2225, --600,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.15 } },
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH3' }},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH2 - categories.SCOUT }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.INDIRECTFIRE * categories.MOBILE * categories.TECH1 }},
@@ -131,14 +140,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Mobile AA',
         PlatoonTemplate = 'T1LandAA',
         -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 1225,
+        Priority = 2225,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.6 }},
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 - categories.SCOUT }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
-			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.ANTIAIR * categories.MOBILE }},
-            { SBC, 'HaveUnitRatioSorian', { 0.15, categories.LAND * categories.ANTIAIR * categories.MOBILE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.COMMAND}},
+			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.LAND * categories.ANTIAIR * categories.MOBILE }},
             { SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
@@ -749,7 +756,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 105,
+            AttackEnemyStrength = 85,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -778,7 +785,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 105,
+            AttackEnemyStrength = 85,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -806,7 +813,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 105,
+            AttackEnemyStrength = 85,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -833,7 +840,8 @@ BuilderGroup {
         PlatoonTemplate = 'MassHuntersCategorySorianEditSmall',
         Priority = 1600,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 440 } },
+				{ UCBC, 'LessThanGameTimeSeconds', { 140 } },
+				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
             },
         BuilderData = {
@@ -842,8 +850,11 @@ BuilderGroup {
             AggressiveMove = true,
             AvoidBases = true,
             AvoidBasesRadius = 150,
+            PrioritizedCategories = {
+                'STRUCTURE ECONOMIC',
+            },
         },
-        InstanceCount = 4,
+        InstanceCount = 2,
         BuilderType = 'Any',
     },
     Builder {
@@ -852,6 +863,7 @@ BuilderGroup {
         Priority = 1500,
         BuilderConditions = {
                 { UCBC, 'GreaterThanGameTimeSeconds', { 440 } },
+				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
@@ -860,8 +872,11 @@ BuilderGroup {
             AggressiveMove = true,
             AvoidBases = true,
             AvoidBasesRadius = 150,
+            PrioritizedCategories = {
+                'STRUCTURE ECONOMIC',
+            },
         },
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderType = 'Any',
     },
     Builder {

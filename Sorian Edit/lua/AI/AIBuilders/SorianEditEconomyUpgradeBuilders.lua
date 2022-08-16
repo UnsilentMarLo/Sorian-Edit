@@ -24,7 +24,7 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 -------------------------------------
 -- NEW EXTRACTOR UPGRADE FUNCTION AND THREAD --
@@ -211,7 +211,7 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconIncome',  { 5.0, 30.0}},
                 { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, 'FACTORY TECH1'}},
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3,  categories.MASSEXTRACTION * categories.TECH2 }},
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * categories.TECH2 }},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH1 } },
             },
@@ -226,7 +226,7 @@ BuilderGroup {
 				{ EBC, 'GreaterThanEconIncome',  { 4.0, 50.0}},
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH1 } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
             },
         BuilderType = 'Any',
     },

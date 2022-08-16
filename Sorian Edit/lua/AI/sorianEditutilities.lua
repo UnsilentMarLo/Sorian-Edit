@@ -539,58 +539,60 @@ function GetTemplateReplacement(aiBrain, building, faction, buildingTmpl)
     return retTemplate
 end
 
-function TrackPlatoon(self, target, path, MaxPlatoonWeaponRange)
-	local aiBrain = self:GetBrain()
-	local target = target
-	local position = self:GetPlatoonPosition()
-	local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-	local PlatoonCount = table.getn(self:GetPlatoonUnits())
-	local numEnemyUnits = 1
-	local numEnemyUnits2 = {}
-	local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 15
-	local pos2 = nil
-	
-	while aiBrain:PlatoonExists(self) do
-		-- LOG('-------------- Own Platoon')
-		position = self:GetPlatoonPosition()
-		PlatoonCount = table.getn(self:GetPlatoonUnits())
-		-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
-		DrawCircle(position, PlatoonCount, '09FF00')
+function TrackPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
+	if aiBrain:PlatoonExists(self) then
+		local target = target
+		local position = self:GetPlatoonPosition()
+		local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+		local PlatoonCount = table.getn(self:GetPlatoonUnits())
+		local numEnemyUnits = 1
+		local EnemyUnits = {}
+		local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 15
+		local pos2 = nil
 		
-		if self.TargetData then
-			target = self.TargetData
-		end
-		
-		if target and not (target.Dead or target:BeenDestroyed()) then
-			-- LOG('-------------- Enemy Platoon')
-			EPosition = target:GetPosition()
-			numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, 30, 'Enemy')) + 1
-			-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
-			DrawLine(position, EPosition, '00fBFF')
-			DrawCircle(EPosition, numEnemyUnits, 'FF0000')
-		end
-		
-		numEnemyUnits2 = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 30 , 'Enemy')
-		if numEnemyUnits2 > 0 then
-			for k, v in numEnemyUnits2 do
-				pos2 = v:GetPosition()
-				DrawLinePop(position, pos2, 'F2FF00')
+		while aiBrain:PlatoonExists(self) do
+			-- LOG('-------------- Own Platoon')
+			position = self:GetPlatoonPosition()
+			PlatoonCount = table.getn(self:GetPlatoonUnits())
+			-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
+			DrawCircle(position, PlatoonCount, '09FF00')
+			
+			if self.TargetData then
+				target = self.TargetData
 			end
-		end
-		
-		if path then
-			local pathCount = table.getn(path)
-			for i=1, pathCount do
-				local Marker = path[i]
-				local Marker2 = path[i+1]
-				if Marker2 == nil then
-					break
+			
+			if target and not (target.Dead or target:BeenDestroyed()) then
+				-- LOG('-------------- Enemy Platoon')
+				EPosition = target:GetPosition()
+				numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, EPosition, 30, 'Enemy')) + 1
+				-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
+				DrawLine(position, EPosition, '00fBFF')
+				DrawCircle(EPosition, numEnemyUnits, 'FF0000')
+			end
+			
+			EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 2 , 'Enemy')
+			if EnemyUnits > 0 then
+				for k, v in EnemyUnits do
+					pos2 = v:GetPosition()
+					DrawLinePop(position, pos2, 'F2FF00')
 				end
-				DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
 			end
+			
+			if path then
+				local pathCount = table.getn(path)
+				for i=1, pathCount do
+					local Marker = path[i]
+					local Marker2 = path[i+1]
+					if Marker2 == nil then
+						break
+					end
+					DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
+				end
+			end
+			coroutine.yield(1)
 		end
-		coroutine.yield(1)
 	end
+	coroutine.yield(1)
 end
 
 function GetEngineerFaction(engineer)
@@ -1026,6 +1028,8 @@ end
 -- -----------------------------------------------------
 function CheckBlockingTerrain(pos, targetPos, firingArc, turretPitch)
     -- High firing arc indicates Artillery unit
+	local turretPitch = turretPitch or 0
+	local firingArc = firingArc or 'low'
     if firingArc == 'high' then
         return false
     end
@@ -2001,7 +2005,7 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
         MassStorageRatio = aiBrain:GetEconomyStoredRatio('MASS')
         EnergyStorageRatio = aiBrain:GetEconomyStoredRatio('ENERGY')
         -- 1==1 is always true, i use this to clean up the base from wreckages even if we have full eco.
-        if (MassStorageRatio < 0.50 or EnergyStorageRatio < 1.00) and not aiBrain.HasParagon then
+        if (MassStorageRatio < 0.70 or EnergyStorageRatio < 1.00) then
             --LOG('Searching for reclaimables')
             local x1 = SelfPos[1]-scanrange
             local y1 = SelfPos[3]-scanrange
@@ -2034,8 +2038,8 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
                     if BPID == 'ueb5101' or BPID == 'uab5101' or BPID == 'urb5101' or BPID == 'xsb5101' then -- Walls will not be reclaimed on patrols
                         continue
                     end
-					-- reclaim mass if mass is lower than energy and reclaim energy if energy is lower than mass and gametime is higher then 4 minutes.
-                    if (MassStorageRatio <= EnergyStorageRatio and p.MaxMassReclaim and p.MaxMassReclaim > 1) or (GetGameTimeSeconds() > 240 and MassStorageRatio > EnergyStorageRatio and p.MaxEnergyReclaim and p.MaxEnergyReclaim > 1) then
+					-- reclaim mass first if mass
+                    if p.MaxMassReclaim and p.MaxMassReclaim > 5 then
                         --LOG('Found Wreckage no.('..WrackCount..') from '..BPID..'. - Distance:'..WreckDist..' - NearestWreckDist:'..NearestWreckDist..' '..repr(MassStorageRatio < EnergyStorageRatio)..' '..repr(p.MaxMassReclaim)..' '..repr(p.MaxEnergyReclaim))
                         WreckDist = VDist2(SelfPos[1], SelfPos[3], WreckPos[1], WreckPos[3])
                         WrackCount = WrackCount + 1

@@ -28,7 +28,7 @@ local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
 local AIAddBuilderTable = import('/lua/ai/AIAddBuilderTable.lua')
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Experimental Builders loading')

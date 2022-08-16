@@ -27,7 +27,7 @@ local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/lua/editor/SorianInstantBuildConditions.lua'
 
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Air attack Builders loading')
@@ -77,7 +77,7 @@ BuilderGroup {
         -- PriorityFunction = AirAttackPrio,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 260 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 380 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'BOMBER' }},
         },
@@ -88,17 +88,18 @@ BuilderGroup {
         BuilderName = 'SorianEditT1 Air Bomber',
         PlatoonTemplate = 'T1AirBomber',
         Priority = 1200,
-        PriorityFunction = AirAttackPrio,
-        BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 240 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 12, 'BOMBER' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 10, categories.AIR * categories.ANTIAIR} },
             --{ UCBC, 'HaveLessThanUnitsWithCategory', { 20, 'BOMBER TECH1' }},
         },
+        BuilderType = 'Air',
     },
     Builder {
         BuilderName = 'SorianEditT1 Air Bomber4',
@@ -108,7 +109,7 @@ BuilderGroup {
         BuilderType = 'Air',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -136,7 +137,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1AirFighter',
         Priority = 4500,
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 320 } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 180 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 5, categories.AIR * categories.ANTIAIR} },
             { UCBC, 'UnitCapCheckLess', { 0.45 } },
@@ -788,7 +789,7 @@ BuilderGroup {
     },
     Builder {
         BuilderName = 'SorianEditBomberAttackT2Frequent',
-        PlatoonTemplate = 'BomberAttackSorianEdit',
+        PlatoonTemplate = 'BomberAttackSorianEditT2',
         -- PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         --PlatoonAddPlans = { 'AirIntelToggle', 'DistressResponseAISorian' },
         Priority = 400,
@@ -806,6 +807,7 @@ BuilderGroup {
             TargetSearchCategory = categories.ALLUNITS,
             PrioritizedCategories = {
                 categories.MOBILE * categories.ANTIAIR,
+                categories.MOBILE * categories.AIR,
                 categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3),
                 categories.MASSEXTRACTION,
                 categories.ENGINEER * categories.TECH2,
@@ -1250,6 +1252,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
+            { SBC, 'HaveEnoughAir', {}},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
@@ -1298,6 +1301,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.AIR * categories.MOBILE * categories.ANTIAIR, 'Enemy'}},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
+            { SBC, 'HaveEnoughAir', {}},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
     },

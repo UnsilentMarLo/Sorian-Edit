@@ -30,7 +30,7 @@ local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemp
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 local econThread
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/uvesoutilities.lua').GetDangerZoneRadii(true)
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Strategy Builders loading')

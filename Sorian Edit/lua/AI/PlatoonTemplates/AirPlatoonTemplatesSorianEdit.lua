@@ -2,7 +2,7 @@ PlatoonTemplate {
     Name = 'AirAttackSorianSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTATION - categories.EXPERIMENTAL, 2, 10, 'Attack', 'none' },
+        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 2, 10, 'Attack', 'none' },
     },
 }
 
@@ -39,6 +39,14 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'BomberAttackSorianEditT2',
+    Plan = 'FighterBomberSelect',
+    GlobalSquads = {
+        { categories.MOBILE * categories.AIR * categories.BOMBER * categories.TECH2 - categories.EXPERIMENTAL - categories.ANTINAVY, 1, 10, 'Attack', 'none' },
+    }
+}
+
+PlatoonTemplate {
     Name = 'BomberAttackSorianEditT23',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
@@ -50,7 +58,7 @@ PlatoonTemplate {
     Name = 'T2FighterBomberSE',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.BOMBER * categories.TECH2 - categories.TRANSPORTATION - categories.EXPERIMENTAL, 3, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.BOMBER * categories.TECH2 - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 3, 10, 'Attack', 'none' },
     }
 }
 
@@ -84,7 +92,7 @@ PlatoonTemplate {
     Name = 'T1AirFighterSE',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH1 - categories.BOMBER - categories.TRANSPORTATION - categories.EXPERIMENTAL, 1, 30, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.ANTIAIR * categories.TECH1 - categories.BOMBER - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 1, 30, 'Attack', 'none' },
     }
 }
 
@@ -109,7 +117,7 @@ PlatoonTemplate {
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
         { categories.MOBILE * categories.AIR * categories.ANTINAVY - categories.EXPERIMENTAL, 2, 20, 'Attack', 'none' },
-        -- { categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.EXPERIMENTAL - categories.BOMBER - categories.TRANSPORTATION, 2, 5, 'Attack', 'none' },
+        -- { categories.MOBILE * categories.AIR * categories.ANTIAIR - categories.EXPERIMENTAL - categories.BOMBER - categories.CANTRANSPORTCOMMANDER, 2, 5, 'Attack', 'none' },
     }
 }
 
@@ -117,7 +125,7 @@ PlatoonTemplate {
     Name = 'AntiAirBaseGuardSorianEdit',
     Plan = 'GuardBaseSorianEdit',
     GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTATION - categories.EXPERIMENTAL, 1, 30, 'attack', 'none' },
+        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 1, 30, 'attack', 'none' },
     }
 }
 
@@ -125,7 +133,7 @@ PlatoonTemplate {
     Name = 'GunshipAttackSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 1, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.CANTRANSPORTCOMMANDER, 1, 10, 'Attack', 'none' },
     }
 }
 
@@ -133,7 +141,7 @@ PlatoonTemplate {
     Name = 'GunshipSFSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 1, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.CANTRANSPORTCOMMANDER, 1, 10, 'Attack', 'none' },
     }
 }
 
@@ -141,7 +149,7 @@ PlatoonTemplate {
     Name = 'GunshipSFSorianEditNoHero',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 1, 10, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.CANTRANSPORTCOMMANDER, 1, 10, 'Attack', 'none' },
     }
 }
 
@@ -149,7 +157,7 @@ PlatoonTemplate {
     Name = 'GunshipMassHunterSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit',
     GlobalSquads = {
-        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.TRANSPORTATION, 1, 5, 'Attack', 'none' },
+        { categories.MOBILE * categories.AIR * categories.GROUNDATTACK - categories.EXPERIMENTAL - categories.CANTRANSPORTCOMMANDER, 1, 5, 'Attack', 'none' },
     }
 }
 
@@ -165,7 +173,7 @@ PlatoonTemplate {
     Name = 'AntiAirHuntSorianEdit',
     Plan = 'InterceptorBomberGunshipSorianEdit', --'FighterHuntAI',
     GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTATION - categories.EXPERIMENTAL, 1, 5, 'attack', 'none' },
+        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 1, 5, 'attack', 'none' },
     }
 }
 
@@ -173,7 +181,7 @@ PlatoonTemplate {
     Name = 'AntiAirT4GuardSorianEdit',
     Plan = 'GuardExperimentalSorian',
     GlobalSquads = {
-        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTATION - categories.EXPERIMENTAL, 1, 5, 'attack', 'none' },
+        { categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.CANTRANSPORTCOMMANDER - categories.EXPERIMENTAL, 1, 5, 'attack', 'none' },
     }
 }
 

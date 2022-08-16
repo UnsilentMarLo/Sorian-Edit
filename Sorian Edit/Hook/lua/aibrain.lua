@@ -1,3 +1,5 @@
+WARN('[sorianeditutilities.lua ------------------------ '..debug.getinfo(1).currentline..'] ----------------------------- File Offset.')
+
 local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
 local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
@@ -45,7 +47,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 			
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
-            MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 8 + 2)
+            MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 2)
             MapInfo.EvaluateNavalAreas(iArmyNo)
             self.sorianedit = true
             self:ForkThread(self.SEParseIntelThread)
