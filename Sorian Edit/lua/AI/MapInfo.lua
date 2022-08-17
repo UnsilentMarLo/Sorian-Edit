@@ -101,43 +101,43 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
 end
 
 function EvaluateNavalAreas(iArmy)
-    local pStartPos =  PlayerStartPoints[iArmy]
-    AllFoundPoints[NavalAreaCount] = {}
-	-- LOG('*------------------------------- AI-sorianedit:'..repr(AIAttackUtils.GetPathGraphs()))
-	local NavalgraphTable = AIAttackUtils.GetPathGraphs()['Water']
-	local NavalgraphTablePosition = 0
+    -- local pStartPos =  PlayerStartPoints[iArmy]
+    -- AllFoundPoints[NavalAreaCount] = {}
+	-- -- LOG('*------------------------------- AI-sorianedit:'..repr(AIAttackUtils.GetPathGraphs()))
+	-- local NavalgraphTable = AIAttackUtils.GetPathGraphs()['Water']
+	-- local NavalgraphTablePosition = 0
 	
-	-- Count the amount of ponds with NavalAreas inside, the goal is to only have 1 active Naval Area per pond - also check if this NavalArea is relevant, ie able to send units to the enemy
-	-- single Naval Area per pond
-	-- make a list of all Naval Areas in 5km range of the Base - 256*256
+	-- -- Count the amount of ponds with NavalAreas inside, the goal is to only have 1 active Naval Area per pond - also check if this NavalArea is relevant, ie able to send units to the enemy
+	-- -- single Naval Area per pond
+	-- -- make a list of all Naval Areas in 5km range of the Base - 256*256
 	
-	for k, v in ScenarioUtils.GetMarkers() do
-		if v.type == "Naval Area" then
-			LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area')
-			local pMarkerPos = v.position
-			local Distance = Utilities.GetDistanceBetweenPositions(pStartPos, pMarkerPos)
-			if Distance <= 256 then
-				LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area Near Spawn')
-				local AreaNode = AIAttackUtils.GetClosestPathNodeInRadiusByLayer(pMarkerPos, 30, 'Water')
-				-- Loop through Graphs, see if the graph contains our Naval Area then remove the graph from our search table, locking any other Area in said graph from being found
-				if NavalgraphTable then
-					for name, graph in NavalgraphTable do
-						for mn, markerInfo in graph do
-							-- local dist = VDist2Sq(AreaNode.markerInfo[1], AreaNode.markerInfo[3], markerInfo.position[1], markerInfo.position[3])
-							if AreaNode == markerInfo then
-								table.remove(NavalgraphTable,NavalgraphTablePosition)
-								LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area in Graph')
-								break
-							end
-						end
-						NavalgraphTablePosition = NavalgraphTablePosition + 1
-					end
-				end
-				AllFoundPoints[NavalAreaCount] = v.position
-				NavalAreaCount = NavalAreaCount + 1
-			end
-		end
-	end
+	-- for k, v in ScenarioUtils.GetMarkers() do
+		-- if v.type == "Naval Area" then
+			-- LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area')
+			-- local pMarkerPos = v.position
+			-- local Distance = Utilities.GetDistanceBetweenPositions(pStartPos, pMarkerPos)
+			-- if Distance <= 256 then
+				-- LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area Near Spawn')
+				-- local AreaNode = AIAttackUtils.GetClosestPathNodeInRadiusByLayer(pMarkerPos, 30, 'Water')
+				-- -- Loop through Graphs, see if the graph contains our Naval Area then remove the graph from our search table, locking any other Area in said graph from being found
+				-- if NavalgraphTable then
+					-- for name, graph in NavalgraphTable do
+						-- for mn, markerInfo in graph do
+							-- -- local dist = VDist2Sq(AreaNode.markerInfo[1], AreaNode.markerInfo[3], markerInfo.position[1], markerInfo.position[3])
+							-- if AreaNode == markerInfo then
+								-- table.remove(NavalgraphTable,NavalgraphTablePosition)
+								-- LOG('*------------------------------- AI-sorianedit: EvaluateNavalAreas: Found Naval Area in Graph')
+								-- break
+							-- end
+						-- end
+						-- NavalgraphTablePosition = NavalgraphTablePosition + 1
+					-- end
+				-- end
+				-- AllFoundPoints[NavalAreaCount] = v.position
+				-- NavalAreaCount = NavalAreaCount + 1
+			-- end
+		-- end
+	-- end
 	
 	-- if not PondTable[1] == nil then
 		-- function CanGraphTo(unit, destPos, layer)

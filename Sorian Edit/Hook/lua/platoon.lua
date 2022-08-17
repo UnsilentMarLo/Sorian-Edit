@@ -713,7 +713,56 @@ Platoon = Class(SorianEditPlatoonClass) {
         local LastTargetCheck
         local DistanceToBase = 0
         local TargetSearchCategory = self.PlatoonData.TargetSearchCategory or 'ALLUNITS'
+        local armorPercent = nil
+        local fuelPercent = nil
+        local AirStaging = nil
+        local AirStagingPos = nil
+        local repairing = false
+        local UnitNeedsRefuelRepair = 0
         while aiBrain:PlatoonExists(self) do
+		
+			UnitNeedsRefuelRepair =  0
+			PlatoonUnits = self:GetPlatoonUnits()
+			for k, v in PlatoonUnits do
+				if not v.Dead then
+					armorPercent = 100 / v:GetMaxHealth() * v:GetHealth()
+					fuelPercent = v:GetFuelRatio() * 100
+					if (armorPercent <= 70) or (fuelPercent <= 50) then
+						UnitNeedsRefuelRepair = UnitNeedsRefuelRepair + 1
+					end
+				end
+			end
+			
+			-- LOG('* AI-SorianEdit: * InterceptorBomberGunshipSorianEdit: Platoon: '..self.BuilderName..' with'..repr(UnitNeedsRefuelRepair)..' damaged units')
+			
+			repairing = false
+			while PlatoonStrength / 3 < UnitNeedsRefuelRepair do
+				if not repairing then
+					-- LOG('* AI-SorianEdit: * InterceptorBomberGunshipSorianEdit: getting repairs for damaged units')
+					AirStaging = self:FindClosestUnit('Attack', 'Ally', false, (categories.AIRSTAGINGPLATFORM * categories.STRUCTURE))
+					if not AirStaging or AirStaging.Dead then
+						-- LOG('* AI-SorianEdit: * InterceptorBomberGunshipSorianEdit: could not find airstaging')
+						break
+					end
+					AirStagingPos = AirStaging:GetPosition()
+					self:Patrol(AirStagingPos)
+					-- LOG('* AI-SorianEdit: * InterceptorBomberGunshipSorianEdit: set patrol at Airstaging')
+					repairing = true
+				end
+				PlatoonUnits = self:GetPlatoonUnits()
+				for k, v in PlatoonUnits do
+					if not v.Dead then
+						armorPercent = 100 / v:GetMaxHealth() * v:GetHealth()
+						fuelPercent = v:GetFuelRatio() * 100
+						if (armorPercent >= 70) or (fuelPercent >= 50) then
+							UnitNeedsRefuelRepair = UnitNeedsRefuelRepair - 1
+							-- LOG('* AI-SorianEdit: * InterceptorBomberGunshipSorianEdit: unit repaired with '..repr(UnitNeedsRefuelRepair)..' damaged units left')
+						end
+					end
+				end
+				coroutine.yield(10)
+			end
+			
             PlatoonPos = self:GetPlatoonPosition()
             if not GetTargetsFromBase then
                 GetTargetsFrom = PlatoonPos
@@ -723,6 +772,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     target = nil
                 end
             end
+			
 			-- if self.TrackThread or self.TrackThread ~= false then
 				-- self:KillThread(TrackThread)
 				-- self.TrackThread = false
@@ -948,6 +998,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         local PlatoonUnits = self:GetPlatoonUnits()
         local cdr = PlatoonUnits[1]
 		self.TrackThread = false
+		self.maxRadius = false
         self.created = GetGameTimeSeconds()
         -- There should be only the commander inside this platoon. Check it.
         if not cdr then
@@ -1088,7 +1139,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
 			
             -- the maximum radius that the ACU can be away from base
-            maxRadius = (SUtils.ComHealth(cdr))*10 -- If the comanders health is 100% then we have a maxtange of ~250 = (100-65)*7
+            maxRadius = (SUtils.ComHealth(cdr)-30)*10
             maxTimeRadius = 1024 - GetGameTimeSeconds()/60*25 -- reduce the radius by 25 map units per minute
 			
             if maxRadius > maxTimeRadius then 
@@ -1099,6 +1150,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                 maxRadius = SearchRadius
             end
 			
+			self.maxRadius = maxRadius
+				
             UnitsInACUBaseRange = aiBrain:GetUnitsAroundPoint( TargetSearchCategory, cdr.CDRHome, maxRadius, 'Enemy')
 			
             -- get the position of this platoon (ACU)
@@ -1178,7 +1231,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     --LOG('* AI-SorianEdit: * ACUAttackSorianEdit: ATTACK TargetUnit')
 				
 					if ScenarioInfo.Options.SEPathing ~= 'No' and not self.TrackThread then
-						self.TrackThread = self:ForkThread(SUtils.TrackPlatoon, aiBrain, MoveToTargetPos, false, -6)
+						self.TrackThread = self:ForkThread(SUtils.TrackCDRPlatoon, aiBrain, MoveToTargetPos, false, -6)
 					end
 					
 					if not aiBrain:PlatoonExists(self) or cdr.Dead then

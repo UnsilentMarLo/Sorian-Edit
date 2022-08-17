@@ -342,7 +342,8 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.8 }},
-            { SBC, 'HaveUnitRatioSorian', { 0.5, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'AIR MOBILE GROUNDATTACK TECH3' } },
+            -- { SBC, 'HaveUnitRatioSorian', { 0.5, categories.AIR * categories.GROUNDATTACK * categories.MOBILE, '<=', categories.AIR * categories.ANTIAIR * categories.MOBILE}},
         },
     },
     Builder {
@@ -764,6 +765,7 @@ BuilderGroup {
             PrioritizedCategories = {
                 categories.NAVAL * categories.CRUISER,
                 categories.NAVAL - (categories.T1SUBMARINE + categories.T2SUBMARINE),
+                categories.NAVAL * (categories.T1SUBMARINE + categories.T2SUBMARINE),
                 categories.COMMAND,
             },
             MoveToCategories = {

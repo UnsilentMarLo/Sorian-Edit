@@ -756,7 +756,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 85,
+            AttackEnemyStrength = 95,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -785,7 +785,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 85,
+            AttackEnemyStrength = 95,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -813,7 +813,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 85,
+            AttackEnemyStrength = 95,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,

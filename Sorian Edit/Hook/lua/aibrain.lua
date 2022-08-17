@@ -48,7 +48,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
             MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 2)
-            MapInfo.EvaluateNavalAreas(iArmyNo)
+            -- MapInfo.EvaluateNavalAreas(iArmyNo)
             self.sorianedit = true
             self:ForkThread(self.SEParseIntelThread)
         end

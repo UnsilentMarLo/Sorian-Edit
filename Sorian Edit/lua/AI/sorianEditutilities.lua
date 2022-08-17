@@ -544,21 +544,101 @@ function TrackPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
 		local target = target
 		local position = self:GetPlatoonPosition()
 		local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
+		local PlatoonUnits = self:GetPlatoonUnits()
+		local PlatoonCount = table.getn(PlatoonUnits)
+		local numEnemyUnits = 1
+		local EnemyUnits = {}
+		local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 15
+		local pos2 = nil
+		local pos3 = nil
+		
+		while aiBrain:PlatoonExists(self) do
+			position = self:GetPlatoonPosition()
+			PlatoonUnits = self:GetPlatoonUnits()
+			PlatoonCount = table.getn(PlatoonUnits)
+			
+			if not position or PlatoonCount < 0 then
+				self:PlatoonDisband()
+				break
+			end
+			
+			DrawCircle(position, PlatoonCount, '09FF00')
+			
+			for k, v in PlatoonUnits do
+				if not v.Dead then
+					pos3 = v:GetPosition()
+					DrawLinePop(position, pos3, '09FF00')
+				end
+			end
+			
+			if self.TargetData then
+				target = self.TargetData
+			end
+			
+			if target and not (target.Dead or target:BeenDestroyed()) then
+				-- LOG('-------------- Enemy Platoon')
+				EPosition = target:GetPosition()
+				numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, EPosition, 30, 'Enemy')) + 1
+				-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
+				DrawLine(position, EPosition, '00fBFF')
+				DrawCircle(EPosition, numEnemyUnits, 'FF0000')
+			end
+			
+			EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 2 , 'Enemy')
+			if EnemyUnits > 0 then
+				for k, v in EnemyUnits do
+					pos2 = v:GetPosition()
+					DrawLinePop(position, pos2, 'F2FF00')
+				end
+			end
+			
+			if path then
+				local pathCount = table.getn(path)
+				for i=1, pathCount do
+					local Marker = path[i]
+					local Marker2 = path[i+1]
+					if Marker2 == nil then
+						break
+					end
+					DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
+				end
+			end
+			coroutine.yield(1)
+		end
+	end
+	coroutine.yield(1)
+end
+
+function TrackCDRPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
+	if aiBrain:PlatoonExists(self) then
+		local target = target
+		local position = self:GetPlatoonPosition()
+		local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
 		local PlatoonCount = table.getn(self:GetPlatoonUnits())
 		local numEnemyUnits = 1
 		local EnemyUnits = {}
 		local MaxPlatoonWeaponRange = MaxPlatoonWeaponRange or 15
 		local pos2 = nil
+		local Home = aiBrain.BuilderManagers['MAIN'].Position
 		
 		while aiBrain:PlatoonExists(self) do
 			-- LOG('-------------- Own Platoon')
 			position = self:GetPlatoonPosition()
 			PlatoonCount = table.getn(self:GetPlatoonUnits())
 			-- LOG('-------------- Own Platoon at: '..repr(position)..'with units: '..repr(PlatoonCount))
+			
+			if not position or PlatoonCount < 0 then
+				self:PlatoonDisband()
+			end
+			
 			DrawCircle(position, PlatoonCount, '09FF00')
 			
 			if self.TargetData then
 				target = self.TargetData
+			end
+			
+			if self.MaxRadius and Home then
+				DrawCircle(Home, self.MaxRadius, '09FF00')
 			end
 			
 			if target and not (target.Dead or target:BeenDestroyed()) then

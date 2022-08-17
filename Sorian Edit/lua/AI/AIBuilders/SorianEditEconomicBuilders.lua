@@ -2681,7 +2681,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderData = {
             SearchRadius = 512,
-            GetTargetsFromBase = false,
+            GetTargetsFromBase = true,
             RequireTransport = false,
             AttackEnemyStrength = 2000,
             IgnorePathing = true,
@@ -2720,7 +2720,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderData = {
             SearchRadius = 86,
-            GetTargetsFromBase = false,
+            GetTargetsFromBase = true,
             RequireTransport = false,
             AttackEnemyStrength = 2000,
             IgnorePathing = true,
