@@ -1595,12 +1595,12 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
         end
         self:SetPlatoonFormationOverride('NoFormation')
-        --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: CanPathTo() failed for '..repr(TargetPosition)..' forcing SendPlatoonWithTransportsNoCheck.')
+        --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: CanPathTo() failed for '..repr(TargetPosition)..' forcing SendPlatoonWithTransportsNoCheckSE.')
         if not ExperimentalInPlatoon and aiBrain:PlatoonExists(self) then
-            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, TargetPosition, true, false)
+            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, TargetPosition, true, false)
         end
         if not usedTransports then
-            --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: SendPlatoonWithTransportsNoCheck failed.')
+            --LOG('* AI-SorianEdit: * MoveWithTransportSorianEditSorianEdit: SendPlatoonWithTransportsNoCheckSE failed.')
             local PlatoonPos = self:GetPlatoonPosition() or TargetPosition
             local DistanceToTarget = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, TargetPosition[1] or 0, TargetPosition[3] or 0)
             local DistanceToBase = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, basePosition[1] or 0, basePosition[3] or 0)
@@ -1821,12 +1821,12 @@ Platoon = Class(SorianEditPlatoonClass) {
             -- LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: no trasnporter used for target distance '..VDist2( PlatoonPosition[1], PlatoonPosition[3], TargetPosition[1], TargetPosition[3] ) )
         -- use a transporter if we don't have a path, or if we want a transport
         elseif not ExperimentalInPlatoon and ((not path and reason ~= 'NoGraph') or WantsTransport)  then
-            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransport: SendPlatoonWithTransportsNoCheck')
+            -- LOG('* AI-SorianEdit: * MoveToLocationInclTransport: SendPlatoonWithTransportsNoCheckSE')
             if HERODEBUGSorianEdit then
-                self:RenamePlatoon('SendPlatoonWithTransportsNoCheck')
+                self:RenamePlatoon('SendPlatoonWithTransportsNoCheckSE')
                 coroutine.yield(1)
             end
-            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, TargetPosition, true, false)
+            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, TargetPosition, true, false)
 			LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: usedTransports == '..repr(usedTransports) )
         end
         -- if we don't got a transport, try to reach the destination by path or directly
@@ -1965,12 +1965,12 @@ Platoon = Class(SorianEditPlatoonClass) {
                             coroutine.yield(10)
                         end
                     else
-                        --LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: CanPathTo() failed for '..repr(TargetPosition)..' forcing SendPlatoonWithTransportsNoCheck.')
+                        --LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: CanPathTo() failed for '..repr(TargetPosition)..' forcing SendPlatoonWithTransportsNoCheckSE.')
                         if not ExperimentalInPlatoon then
-                            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, TargetPosition, true, false)
+                            usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, TargetPosition, true, false)
                         end
                         if not usedTransports then
-                            --LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: CanPathTo() and SendPlatoonWithTransportsNoCheck failed. SimpleReturnToBaseSorianEdit!')
+                            --LOG('* AI-SorianEdit: * MoveToLocationInclTransportSorianEdit: CanPathTo() and SendPlatoonWithTransportsNoCheckSE failed. SimpleReturnToBaseSorianEdit!')
                             local PlatoonPos = self:GetPlatoonPosition()
                             local DistanceToTarget = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, TargetPosition[1] or 0, TargetPosition[3] or 0)
                             local DistanceToBase = VDist2(PlatoonPos[1] or 0, PlatoonPos[3] or 0, basePosition[1] or 0, basePosition[3] or 0)
@@ -3451,6 +3451,10 @@ Platoon = Class(SorianEditPlatoonClass) {
             aiBrain:BuildScoutLocationsSorianEdit()
         end
 		
+		if not scout then
+			self:PlatoonDisband()
+		end
+		
         if scout:TestToggleCaps('RULEUTC_CloakToggle') then
             scout:SetScriptBit('RULEUTC_CloakToggle', false)
         end
@@ -3882,7 +3886,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 				local usedTransports = false
 				-- try to use transports --
 				if (self.MovementLayer == 'Land' or self.MovementLayer == 'Amphibious') and not experimental then
-					usedTransports = self:SendPlatoonWithTransportsNoCheck( aiBrain, transportLocation, 4, false )
+					usedTransports = self:SendPlatoonWithTransportsNoCheckSE( aiBrain, transportLocation, 4, false )
 				end
 				-- if no transport reply resubmit LAND platoons, others will set a direct path
 				if not usedTransports and PlatoonExists(aiBrain,self) then
@@ -3964,7 +3968,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 						-- if calltransport counter is 3 check for transport and reset the counter
 						-- thru this mechanism we only call for tranport every 4th loop (40 seconds)
 						if calltransport > 2 then
-							usedTransports = self:SendPlatoonWithTransportsNoCheck( aiBrain, transportLocation, 1, false )
+							usedTransports = self:SendPlatoonWithTransportsNoCheckSE( aiBrain, transportLocation, 1, false )
 							calltransport = 0
 							-- if we used tranports we need to update position and distance
 							if usedTransports then
@@ -4782,7 +4786,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                 end
                 self.UsingTransport = false
-                AIUtils.ReturnTransportsToPool(strayTransports, true)
+                AIUtils.ReturnTransportsToPoolSE(strayTransports, true)
                 platoonUnits = GetPlatoonUnits(self)
             end
 
@@ -5459,9 +5463,9 @@ Platoon = Class(SorianEditPlatoonClass) {
             if path then
                 local position = GetPlatoonPosition(self)
                 if not success or VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 512 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, true)
                 elseif VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 256 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, false)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, false)
                 end
                 if not usedTransports then
                     local pathLength = table.getn(path)
@@ -5506,7 +5510,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
             elseif (not path and reason == 'NoPath') then
                 --LOG('Guardmarker requesting transports')
-                local foundTransport = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
+                local foundTransport = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, true)
                 --DUNCAN - if we need a transport and we cant get one the disband
                 if not foundTransport then
                     --LOG('Guardmarker no transports')
@@ -7046,9 +7050,9 @@ Platoon = Class(SorianEditPlatoonClass) {
             if path then
                 local position = GetPlatoonPosition(self)
                 if not success or VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 512 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, true)
                 elseif VDist2(position[1], position[3], bestMarker.Position[1], bestMarker.Position[3]) > 256 then
-                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, false)
+                    usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, false)
                 end
                 if usedTransports then
                     --LOG('usedTransports is true')
@@ -7151,7 +7155,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
             elseif (not path and reason == 'NoPath') then
                 --LOG('Guardmarker requesting transports')
-                usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, self, bestMarker.Position, true)
+                usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, self, bestMarker.Position, true)
                 --DUNCAN - if we need a transport and we cant get one the disband
                 if not usedTransports then
                     --LOG('MASSRAID no transports')

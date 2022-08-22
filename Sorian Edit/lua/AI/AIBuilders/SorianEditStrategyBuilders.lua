@@ -467,7 +467,7 @@ BuilderGroup {
                 }
             }
             plat:SetPlatoonData(data)
-            local usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, plat, targetPos, true, true, true)
+            local usedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheckSE(aiBrain, plat, targetPos, true, true, true)
             if not usedTransports then
                 Builders[self.BuilderName].Running = false
                 Builders[self.BuilderName].Done = true
