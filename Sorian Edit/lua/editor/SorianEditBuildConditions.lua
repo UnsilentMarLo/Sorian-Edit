@@ -84,7 +84,7 @@ function IsIslandMap(aiBrain, bool)
     local navalMarker = AIUtils.AIGetClosestMarkerLocation(aiBrain, 'Island', startX, startZ)
     local path, reason = false
     if enemyX then
-        path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 10)
+        path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 10, 1000)
     end
     if (navalMarker and not path) and bool then
         return true
@@ -843,7 +843,7 @@ function CanPathToCurrentEnemy(aiBrain, bool, LocationType)
     end
 
     -- path wit AI markers from our base to the enemy base
-    local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 1024)
+    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 1, 1024)
     -- if we have a path generated with AI path markers then....
     if path then
         LOG('* AI-SorianEdit: CanPathToCurrentEnemy: Land path from '..LocationType..' to the enemy found! LAND map! - '..Nickname..' vs '..EnemyIndex..'')

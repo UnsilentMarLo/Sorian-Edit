@@ -760,10 +760,10 @@ BuilderGroup {
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
+                categories.STRUCTURE * categories.ECONOMIC,
                 categories.MOBILE * categories.LAND * categories.INDIRECTFIRE,
                 categories.MOBILE * categories.LAND * categories.DIRECTFIRE - categories.SCOUT,
                 categories.MOBILE * categories.LAND * categories.ANTIAIR,
-                categories.STRUCTURE * categories.ECONOMIC,
                 categories.COMMAND,
                 categories.STRUCTURE * categories.ANTIAIR,
                 categories.MOBILE * categories.LAND,
@@ -771,7 +771,7 @@ BuilderGroup {
         },
         BuilderConditions = {
 			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.MOBILE * categories.LAND - categories.ENGINEER } },
         },
     },
     Builder {

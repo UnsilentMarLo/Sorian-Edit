@@ -29,6 +29,15 @@ local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lu
 	LOG('--------------------- SorianEdit Naval Builders loading')
 	end
 	
+function WaterRatioCondition(aiBrain)
+	local ratio = aiBrain:GetMapWaterRatio()
+	if ratio > 0.45 then
+		return true
+	else
+		return false
+	end
+end
+	
 BuilderGroup {
     BuilderGroupName = 'SorianEditNavalExpansionBuildersFast',
     BuildersType = 'EngineerBuilder',
@@ -38,9 +47,9 @@ BuilderGroup {
         Priority = 12000,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 10.0, 45.0}},
+            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.6 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL } },
@@ -51,7 +60,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
+                LocationRadius = 400,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 4300, --1200,
@@ -62,6 +71,7 @@ BuilderGroup {
                 ExpansionBase = true,
                 ExpansionRadius = 50,
                 BuildStructures = {
+					'T1SeaFactory',
 					'T1SeaFactory',
 					'T1Sonar',
                 }
@@ -74,12 +84,12 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 10.0, 45.0}},
+			{ WaterRatioCondition, {} },
+            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.6 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY NAVAL'}},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY * categories.NAVAL } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL } },
@@ -113,10 +123,9 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 10.0, 45.0}},
+			{ WaterRatioCondition, {} },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.6 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 - categories.COMMAND } },
@@ -153,12 +162,12 @@ BuilderGroup {
         Priority = 922,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 10.0, 45.0}},
+			{ WaterRatioCondition, {} },
+            { EBC, 'GreaterThanEconIncome',  { 5.0, 45.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.6 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
+            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.COMMAND } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.COMMAND } },
             { UCBC, 'UnitCapCheckLess', { .8 } },

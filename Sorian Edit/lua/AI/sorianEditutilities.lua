@@ -542,6 +542,7 @@ end
 function TrackPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
 	if aiBrain:PlatoonExists(self) then
 		local target = target
+		local path = path
 		local position = self:GetPlatoonPosition()
 		local EPosition = aiBrain:GetCurrentEnemy():GetArmyStartPos()
 		local PlatoonUnits = self:GetPlatoonUnits()
@@ -573,6 +574,10 @@ function TrackPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
 			
 			if self.TargetData then
 				target = self.TargetData
+			end
+			
+			if self.PathData then
+				path = self.PathData
 			end
 			
 			if target and not (target.Dead or target:BeenDestroyed()) then

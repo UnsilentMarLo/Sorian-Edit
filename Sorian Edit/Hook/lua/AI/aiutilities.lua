@@ -1,4 +1,77 @@
 
+-- Hook For AI-SorianEdit.
+function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
+    -- Only use this with AI-SorianEdit
+    if not destination then
+        return false
+    end
+    local pos = unit:GetPosition()
+    -- don't check a path if we are in build range
+    if VDist2(pos[1], pos[3], destination[1], destination[3]) <= 12 then
+        return true
+    end
+
+    -- first try to find a path with markers.
+    local result, bestPos
+    local path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+    -- only use CanPathTo for distance closer then 200 and if we can't path with markers
+    if reason ~= 'PathOK' then
+        -- we will crash the game if we use CanPathTo() on all engineer movments on a map without markers. So we don't path at all.
+        if reason == 'NoGraph' then
+            result = true
+        -- if we have a Graph (AI markers) but not a path, then there is no path. We need a transporter.
+        elseif reason == 'NoPath' then
+            --AILog('* AI-SorianEdit: EngineerMoveWithSafePath(): No path found ('..math.floor(pos[1])..'/'..math.floor(pos[3])..') to ('..math.floor(destination[1])..'/'..math.floor(destination[3])..')')
+        elseif VDist2(pos[1], pos[3], destination[1], destination[3]) < 200 then
+            AIDebug('* AI-SorianEdit: EngineerMoveWithSafePath(): EngineerGenerateSafePathTo returned: ('..repr(reason)..') -> executing c-engine function CanPathTo().', true, SorianEditOffsetAiutilitiesLUA)
+            -- be really sure we don't try a pathing with a destroyed c-object
+            if unit.Dead or unit:BeenDestroyed() or IsDestroyed(unit) then
+                AIDebug('* AI-SorianEdit: Unit is death before calling CanPathTo()', true, SorianEditOffsetAiutilitiesLUA)
+                return false
+            end
+            result, bestPos = unit:CanPathTo(destination)
+        end
+    end
+    local bUsedTransports = false
+    -- Increase check to 300 for transports
+    if ((not result and reason ~= 'PathOK') or VDist2Sq(pos[1], pos[3], destination[1], destination[3]) > 40000) -- 200*200=40000
+    and unit.PlatoonHandle and not EntityCategoryContains(categories.COMMAND, unit) then
+        -- If we can't path to our destination, we need, rather than want, transports
+        local needTransports = not result and reason ~= 'PathOK'
+        if VDist2Sq(pos[1], pos[3], destination[1], destination[3]) > 40000 then -- 200*200=40000
+            needTransports = true
+        end
+
+        bUsedTransports = AIAttackUtils.SendPlatoonWithTransportsNoCheck(aiBrain, unit.PlatoonHandle, destination, needTransports, true, false)
+
+        if bUsedTransports then
+            return true
+        elseif VDist2Sq(pos[1], pos[3], destination[1], destination[3]) > 262144 then -- 515*515=262144
+            -- If over 512 and no transports dont try and walk!
+            return false
+        end
+    end
+
+    -- If we're here, we haven't used transports and we can path to the destination
+    if result or reason == 'PathOK' then
+        if reason ~= 'PathOK' then
+            path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+        end
+        if path then
+            local pathSize = table.getn(path)
+            -- Move to way points (but not to destination... leave that for the final command)
+            for widx, waypointPath in path do
+                IssueMove({unit}, waypointPath)
+            end
+            --IssueMove({unit}, destination)
+        else
+            IssueMove({unit}, destination)
+        end
+        return true
+    end
+    return false
+end
+
 -- AI-SorianEdit: Helper function for targeting
 function ValidateLayerSorianEdit(UnitPos,MovementLayer)
     -- Air can go everywhere

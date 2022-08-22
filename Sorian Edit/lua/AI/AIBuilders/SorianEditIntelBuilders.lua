@@ -127,7 +127,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'AIR MOBILE SCOUT TECH1' } },
         },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        -- PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },
@@ -138,7 +138,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'AIR MOBILE SCOUT TECH3' } },
         },
-        PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
+        -- PlatoonAddBehaviors = { 'AirUnitRefitSorian' },
         InstanceCount = 30,
         BuilderType = 'Any',
     },
@@ -158,18 +158,17 @@ BuilderGroup {
         },
         BuilderType = 'Land',
     },
-    -- Builder {
-        -- BuilderName = 'SorianEdit T1 Land Scout Initial 2',
-        -- PlatoonTemplate = 'T1LandScout',
-        -- Priority = 2875,
-        -- BuilderConditions = {
-            -- { UCBC, 'LessThanGameTimeSeconds', { 300 } },
-			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            -- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.LAND * categories.MOBILE - categories.SCOUT - categories.ENGINEER }},
-            -- { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
-        -- },
-        -- BuilderType = 'Land',
-    -- },
+    Builder {
+        BuilderName = 'SorianEdit T1 Land Scout',
+        PlatoonTemplate = 'T1LandScout',
+        Priority = 3875,
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 20, categories.LAND * categories.MOBILE - categories.SCOUT - categories.ENGINEER }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
+        },
+        BuilderType = 'Land',
+    },
 }
 
 BuilderGroup {

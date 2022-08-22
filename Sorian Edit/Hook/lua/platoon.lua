@@ -6,7 +6,8 @@ local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
 
 local HERODEBUG = false
 local NUKEDEBUG = false
-local HERODEBUGSorianEdit = false
+local HERODEBUGSorianEdit = true
+
 local MarkerSwitchDist = 20
 local MarkerSwitchDistEXP = 40
 
@@ -475,7 +476,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             return
         end
         local aiBrain = eng.PlatoonHandle:GetBrain()
-        if not aiBrain.SorianEdit then
+        if not aiBrain.sorianedit then
             return SorianEditPlatoonClass.ProcessBuildCommand(eng, removeLastBuild)
         end
 
@@ -494,10 +495,12 @@ Platoon = Class(SorianEditPlatoonClass) {
             table.remove(eng.EngineerBuildQueue, 1)
         end
 
+		-- eng.Stuck = false
         eng.ProcessBuildDone = false
         IssueClearCommands({eng})
         local commandDone = false
         local PlatoonPos
+		local basePosition = aiBrain.BuilderManagers['MAIN'].Position
         while not eng.Dead and not commandDone and not table.empty(eng.EngineerBuildQueue)  do
             local whatToBuild = eng.EngineerBuildQueue[1][1]
             local buildLocation = {eng.EngineerBuildQueue[1][2][1], 0, eng.EngineerBuildQueue[1][2][2]}
@@ -509,11 +512,17 @@ Platoon = Class(SorianEditPlatoonClass) {
                 buildLocation[2] = GetSurfaceHeight(buildLocation[1], buildLocation[3])
             end
             local buildRelative = eng.EngineerBuildQueue[1][3]
+			-- if eng.Stuck then
+				-- IssueClearCommands({eng})
+				-- eng.EngineerBuildQueue = {}
+				-- IssueMove({eng}, basePosition)
+				-- break
+			-- end
             if not eng.NotBuildingThread then
                 eng.NotBuildingThread = eng:ForkThread(eng.PlatoonHandle.WatchForNotBuilding)
             end
             -- see if we can move there first
-            if AIUtils.EngineerMoveWithSafePath(aiBrain, eng, buildLocation) then
+            if AIUtils.EngineerMoveWithSafePathSE(aiBrain, eng, buildLocation) then
                 if not eng or eng.Dead or not eng.PlatoonHandle or not aiBrain:PlatoonExists(eng.PlatoonHandle) then
                     return
                 end
@@ -556,6 +565,9 @@ Platoon = Class(SorianEditPlatoonClass) {
                 if not eng.NotBuildingThread then
                     eng.NotBuildingThread = eng:ForkThread(eng.PlatoonHandle.WatchForNotBuilding)
                 end
+                -- if not eng.EngineerStuckThread then
+                    -- eng.EngineerStuckThread = eng:ForkThread(eng.PlatoonHandle.EngineerStuck)
+                -- end
                 commandDone = true
             else
                 -- we can't move there, so remove it from our build queue
@@ -570,13 +582,39 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
         end
         if eng then eng.ProcessBuild = nil end
-    end,    
+    end,
 
--- For AI Patch V8 (Patched) fixed issue with AI cdr not building at game start
+    EngineerStuck = function(eng)
+		local lastpos
+		local StuckCount
+		local platPos
+		LOG(' -------------------------------- Engineer stuck function called')
+        while not eng.Dead and not eng:IsUnitState('Building') do
+			platPos = eng:GetPosition() or false
+			-- if haven't moved much -- 
+			if lastpos and VDist2Sq( lastpos[1],lastpos[3], platPos[1],platPos[3] ) < 0.15 then
+				StuckCount = StuckCount + 1
+			else
+				lastpos = SorianEditCOPY(platPos)
+				StuckCount = 0
+			end
+			StuckCount = StuckCount + 1
+			LOG(' -------------------------------- Engineerstuck function Engineer is not building at stuckcount: '..repr(StuckCount))
+			
+			if StuckCount > 10 then
+				LOG(' -------------------------------- Engineer is stuck, disbanding at stuckcount: '..repr(StuckCount))
+				eng:Kill()
+				break
+			end
+            coroutine.yield(100)
+        end
+	end,
+	
+	-- For AI Patch V8 (Patched) fixed issue with AI cdr not building at game start
     WatchForNotBuilding = function(eng)
         coroutine.yield(10)
         local aiBrain = eng:GetAIBrain()
-
+		
         while not eng.Dead and (eng.GoingHome or eng.UnitBeingBuiltBehavior or eng.ProcessBuild != nil or not eng:IsIdleState()) do
             coroutine.yield(30)
         end
@@ -632,7 +670,7 @@ Platoon = Class(SorianEditPlatoonClass) {
     BaseManagersDistressAI = function(self)
         -- Only use this with AI-SorianEdit
          local aiBrain = self:GetBrain()
-         if not aiBrain.SorianEdit then
+         if not aiBrain.sorianedit then
              return SorianEditPlatoonClass.BaseManagersDistressAI(self)
          end
          coroutine.yield(10)
@@ -840,7 +878,6 @@ Platoon = Class(SorianEditPlatoonClass) {
 				
             -- target exists and is not dead
             end
-            coroutine.yield(10)
             if aiBrain:PlatoonExists(self) and target and not target.Dead then
                 LastTargetPos = target:GetPosition()
                 -- check if we are still inside the attack radius and be sure the area is not a nuke blast area
@@ -851,12 +888,11 @@ Platoon = Class(SorianEditPlatoonClass) {
                     else
                         self:MoveToLocation(LastTargetPos, false)
                     end
-                    coroutine.yield(10)
                 else
                     target = nil
                 end
             end
-            coroutine.yield(400)
+            coroutine.yield(10)
         end
     end,
 
@@ -2055,13 +2091,13 @@ Platoon = Class(SorianEditPlatoonClass) {
         local PlatoonList = aiBrain:GetPlatoonsList()
         for _,Platoon in PlatoonList do
             if Platoon:GetPlan() == PlatoonPlan then
-                -- LOG('* Sorian: * SorianPlatoonMerger: Found Platton with plan '..PlatoonPlan)
+                -- LOG('* Sorian: * SorianPlatoonMerger: Found Platoon with plan '..PlatoonPlan)
                 AlreadyMergedPlatoon = Platoon
                 break
             end
             -- LOG('* Sorian: * SorianPlatoonMerger: Found '..repr(Platoon:GetPlan()))
         end
-        -- if we dont have already a platton for this AIPlan, create one.
+        -- if we dont have already a platoon for this AIPlan, create one.
         if not AlreadyMergedPlatoon then
             AlreadyMergedPlatoon = aiBrain:MakePlatoon( PlatoonPlan..'Platoon', PlatoonPlan )
             AlreadyMergedPlatoon.PlanName = PlatoonPlan
@@ -3308,7 +3344,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         if self.MovementLayer == 'Air' then
             return self:AirScoutingSorianEdit()
         else
-            return self:LandScoutingSorianEdit()
+            return self:LandScoutingSorianEdit(false)
         end
     end,
 	
@@ -3333,133 +3369,100 @@ Platoon = Class(SorianEditPlatoonClass) {
         local aiBrain = self:GetBrain()
 
         if not aiBrain.InterestList then
-            aiBrain:BuildScoutLocations()
+            aiBrain:BuildScoutLocationsSorianEdit()
         end
 
         if scout:TestToggleCaps('RULEUTC_CloakToggle') then
             scout:EnableUnitIntel('Toggle', 'Cloak')
         end
+		
+		while not scout.Dead do
+			local targetArea = false
+			local highPri = false
 
-        if patrol == true then
-            local patrolTime = self.PlatoonData.PatrolTime or 30
-            local estartX = nil
-            local estartZ = nil
-            local startX = nil
-            local startZ = nil
-            local patrolPositionX = nil
-            local patrolPositionZ = nil
-            while not scout.Dead do
-                if aiBrain:GetCurrentEnemy() then
-                    estartX, estartZ = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-                end
-                startX, startZ = aiBrain:GetArmyStartPos()
-                local rng = math.random(1,3)
-                if rng == 1 then
-                    patrolPositionX = (estartX + startX) / 2.2
-                    patrolPositionZ = (estartZ + startZ) / 2.2
-                elseif rng == 2 then
-                    patrolPositionX = (estartX + startX) / 2
-                    patrolPositionZ = (estartZ + startZ) / 2
-                    patrolPositionX = (patrolPositionX + startX) / 2
-                    patrolPositionZ = (patrolPositionZ + startZ) / 2
-                elseif rng == 3 then
-                    patrolPositionX = (estartX + startX) / 2
-                    patrolPositionZ = (estartZ + startZ) / 2
-                end
-                patrolLocation1 = AIUtils.RandomLocation(patrolPositionX, patrolPositionZ)
-                patrolLocation2 = AIUtils.RandomLocation(patrolPositionX, patrolPositionZ)
-                self:MoveToLocation({patrolPositionX, 0, patrolPositionZ}, false)
-                local patrolunits = self:GetPlatoonUnits()
-                IssuePatrol(patrolunits, AIUtils.RandomLocation(patrolPositionX, patrolPositionZ))
-                IssuePatrol(patrolunits, AIUtils.RandomLocation(patrolPositionX, patrolPositionZ))
-                IssuePatrol(patrolunits, AIUtils.RandomLocation(patrolPositionX, patrolPositionZ))
-                WaitSeconds(patrolTime)
-                self:MoveToLocation({startX, 0, startZ}, false)
-                self:PlatoonDisband()
-                return
-            end
-        else
-            while not scout.Dead do
-                local targetArea = false
-                local highPri = false
+			local mustScoutArea, mustScoutIndex = aiBrain:GetUntaggedMustScoutArea()
+			local unknownThreats = aiBrain:GetThreatsAroundPosition(scout:GetPosition(), 16, true, 'Unknown')
+			
+			if mustScoutArea then
+				mustScoutArea.TaggedBy = scout
+				targetArea = mustScoutArea.Position
+			elseif table.getn(unknownThreats) > 0 and unknownThreats[1][3] > 25 then
+				aiBrain:AddScoutArea({unknownThreats[1][1], 0, unknownThreats[1][2]})
+			elseif aiBrain.IntelData.AirHiPriScouts < aiBrain.NumOpponents and aiBrain.IntelData.AirLowPriScouts < 1
+			and table.getn(aiBrain.InterestList.HighPriority) > 0 then
+				aiBrain.IntelData.AirHiPriScouts = aiBrain.IntelData.AirHiPriScouts + 1
+				highPri = true
+				targetData = aiBrain.InterestList.HighPriority[1]
+				targetData.LastScouted = GetGameTimeSeconds()
+				targetArea = targetData.Position
+				aiBrain:SortScoutingAreas(aiBrain.InterestList.HighPriority)
+			elseif aiBrain.IntelData.AirLowPriScouts < 1 and table.getn(aiBrain.InterestList.LowPriority) > 0 then
+				aiBrain.IntelData.AirHiPriScouts = 0
+				aiBrain.IntelData.AirLowPriScouts = aiBrain.IntelData.AirLowPriScouts + 1
 
-                local mustScoutArea, mustScoutIndex = aiBrain:GetUntaggedMustScoutArea()
-                local unknownThreats = aiBrain:GetThreatsAroundPosition(scout:GetPosition(), 16, true, 'Unknown')
-				
-                if mustScoutArea then
-                    mustScoutArea.TaggedBy = scout
-                    targetArea = mustScoutArea.Position
-                elseif table.getn(unknownThreats) > 0 and unknownThreats[1][3] > 25 then
-                    aiBrain:AddScoutArea({unknownThreats[1][1], 0, unknownThreats[1][2]})
-                elseif aiBrain.IntelData.AirHiPriScouts < aiBrain.NumOpponents and aiBrain.IntelData.AirLowPriScouts < 1
-                and table.getn(aiBrain.InterestList.HighPriority) > 0 then
-                    aiBrain.IntelData.AirHiPriScouts = aiBrain.IntelData.AirHiPriScouts + 1
-                    highPri = true
-                    targetData = aiBrain.InterestList.HighPriority[1]
-                    targetData.LastScouted = GetGameTimeSeconds()
-                    targetArea = targetData.Position
-                    aiBrain:SortScoutingAreas(aiBrain.InterestList.HighPriority)
-                elseif aiBrain.IntelData.AirLowPriScouts < 1 and table.getn(aiBrain.InterestList.LowPriority) > 0 then
-                    aiBrain.IntelData.AirHiPriScouts = 0
-                    aiBrain.IntelData.AirLowPriScouts = aiBrain.IntelData.AirLowPriScouts + 1
+				targetData = aiBrain.InterestList.LowPriority[1]
+				targetData.LastScouted = GetGameTimeSeconds()
+				targetArea = targetData.Position
 
-                    targetData = aiBrain.InterestList.LowPriority[1]
-                    targetData.LastScouted = GetGameTimeSeconds()
-                    targetArea = targetData.Position
+				aiBrain:SortScoutingAreas(aiBrain.InterestList.LowPriority)
+			else
+				aiBrain.IntelData.AirLowPriScouts = 0
+				aiBrain.IntelData.AirHiPriScouts = 0
+			end
+			
+			if targetArea then
+				self:Stop()
+				local vec = self:DoAirScoutVecs(scout, targetArea)
 
-                    aiBrain:SortScoutingAreas(aiBrain.InterestList.LowPriority)
-                else
-                    aiBrain.IntelData.AirLowPriScouts = 0
-                    aiBrain.IntelData.AirHiPriScouts = 0
-                end
-				
-                if targetArea then
-                    self:Stop()
-                    local vec = self:DoAirScoutVecs(scout, targetArea)
-
-                    while not scout.Dead and not scout:IsIdleState() do
-                        if VDist2Sq(vec[1], vec[3], scout:GetPosition()[1], scout:GetPosition()[3]) < 15625 then
-                           if mustScoutArea then
-                                for idx,loc in aiBrain.InterestList.MustScout do
-                                    if loc == mustScoutArea then
-                                       table.remove(aiBrain.InterestList.MustScout, idx)
-                                       break
-                                    end
-                                end
-                            end
-                            break
-                        end
-                        if VDist3(scout:GetPosition(), targetArea) < 25 then
-                            break
-                        end
-                        coroutine.yield(50)
-                    end
-                else
-                    coroutine.yield(10)
-                end
-				
-                coroutine.yield(1)
-            end
-        end
+				while not scout.Dead and not scout:IsIdleState() do
+					if VDist2Sq(vec[1], vec[3], scout:GetPosition()[1], scout:GetPosition()[3]) < 15625 then
+					   if mustScoutArea then
+							for idx,loc in aiBrain.InterestList.MustScout do
+								if loc == mustScoutArea then
+								   table.remove(aiBrain.InterestList.MustScout, idx)
+								   break
+								end
+							end
+						end
+						break
+					end
+					if VDist3(scout:GetPosition(), targetArea) < 25 then
+						break
+					end
+					coroutine.yield(50)
+				end
+			else
+				coroutine.yield(10)
+			end
+			
+			coroutine.yield(1)
+		end
     end,
 
-    LandScoutingSorianEdit = function(self)
+    LandScoutingSorianEdit = function(self, timelimit)
         AIAttackUtils.GetMostRestrictiveLayer(self)
 
         local aiBrain = self:GetBrain()
         local scout = self:GetPlatoonUnits()[1]
-
+		local starttime = GetGameTimeSeconds()
+		local currenttime = GetGameTimeSeconds()
 
         if not aiBrain.InterestList then
-            aiBrain:BuildScoutLocations()
+            aiBrain:BuildScoutLocationsSorianEdit()
         end
-
-
+		
         if scout:TestToggleCaps('RULEUTC_CloakToggle') then
             scout:SetScriptBit('RULEUTC_CloakToggle', false)
         end
 
-        while not scout.Dead do
+        while aiBrain:PlatoonExists(self) do
+		
+			currenttime = GetGameTimeSeconds()
+			if timelimit and (currenttime > (starttime+timelimit)) then
+				-- LOG('-------------- CurrOffset: '..repr((starttime+timelimit))..' at time: '..repr(currenttime))
+				IssueClearCommands(self)
+				break
+			end
 
             local targetData = false
 
@@ -3482,7 +3485,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
 
             if targetData then
-                local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, scout:GetPosition(), targetData.Position, 400) --DUNCAN - Increase threatwieght from 100
+                local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, scout:GetPosition(), targetData.Position, 6, 1000)
                 IssueClearCommands(self)
 
                 if path then
@@ -3992,7 +3995,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 				if not count and ( lastpos and VDist2Sq( lastpos[1],lastpos[3], platPos[1],platPos[3] ) < 0.15 ) then
 					StuckCount = StuckCount + 1
 				else
-					lastpos = LOUDCOPY(platPos)
+					lastpos = SorianEditCOPY(platPos)
 					StuckCount = 0
 				end
 			end
@@ -4541,7 +4544,6 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
         end
 
-
         -- did we find a threat?
         local usedTransports = false
         if bestMarker then
@@ -4720,6 +4722,8 @@ Platoon = Class(SorianEditPlatoonClass) {
         --self:SetPlatoonFormationOverride('GrowthFormation')
         local PlatoonFormation = self.PlatoonData.UseFormation or 'NoFormation'
         self:SetPlatoonFormationOverride(PlatoonFormation)
+		
+		local OriginalSurfaceThreat = self:CalculatePlatoonThreat('AntiSurface', categories.ALLUNITS)
 
         while aiBrain:PlatoonExists(self) do
             local pos = GetPlatoonPosition(self) -- update positions; prev position done at end of loop so not done first time
@@ -4737,15 +4741,6 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
 
             self.MergeWithNearbyPlatoonsSorianEdit( self, aiBrain, 'AttackForceSorianEdit', 30, false, 100)
-
-
-            local OriginalSurfaceThreat = self:CalculatePlatoonThreat('AntiSurface', categories.ALLUNITS)
-            local mystrength = self:CalculatePlatoonThreat('AntiSurface', categories.ALLUNITS)
-
-            if mystrength <= (OriginalSurfaceThreat * .40) then
-					self.MergeIntoNearbyPlatoons( self, aiBrain, 'AttackForceSorianEdit', 100, false)
-					return self:SetAIPlan('ReturnToBaseSorianEdit',aiBrain)
-				end	
 
             -- rebuild formation
             platoonUnits = GetPlatoonUnits(self)
@@ -5458,7 +5453,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             self.LastMarker[2] = self.LastMarker[1]
             self.LastMarker[1] = bestMarker.Position
             --LOG("GuardMarker: Attacking " .. bestMarker.Name)
-            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100, maxPathDistance)
             local success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingEx(self, bestMarker.Position)
             IssueClearCommands(GetPlatoonUnits(self))
             if path then
@@ -5646,8 +5641,8 @@ Platoon = Class(SorianEditPlatoonClass) {
         local aiBrain = self:GetBrain()
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         local pool = aiBrain:GetPlatoonUniquelyNamed('ArmyPool')
+		
 		self.TrackThread = false
-
         -- this will set self.MovementLayer to the platoon
         AIAttackUtils.GetMostRestrictiveLayer(self)
 
@@ -5848,6 +5843,7 @@ Platoon = Class(SorianEditPlatoonClass) {
         local UnitWithPath
         local UnitNoPath
         local path
+        self.PathData = path
         local reason
         local unitPos
         local alpha
@@ -5866,6 +5862,8 @@ Platoon = Class(SorianEditPlatoonClass) {
         local PlatoonCenterPosition = self:GetPlatoonPosition()
         local bAggroMove = true -- Platoons will not react to nearby enemies if this is false
 		local mythreat = self:CalculatePlatoonThreat('Overall', categories.ALLUNITS)
+		local OriginalSurfaceThreat = self:CalculatePlatoonThreat('AntiSurface', categories.ALLUNITS)
+		local merged = false
         if TargetHug then
             bAggroMove = false
         end
@@ -5917,6 +5915,30 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
                 return
             end
+			
+			-- mythreat = self:CalculatePlatoonThreat('Overall', categories.ALLUNITS)
+            -- if mythreat <= (OriginalSurfaceThreat * 0.4) then
+				-- self.MergeIntoNearbyPlatoons( self, aiBrain, 'HeroFightPlatoonSorianEdit', 100, false)
+				-- if self.TrackThread or self.TrackThread ~= false then
+					-- self:KillThread(TrackThread)
+					-- self.TrackThread = false
+				-- end
+                -- target = nil
+                -- path = nil
+				-- return self:SetAIPlan('HeroFightPlatoonSorianEdit',aiBrain)
+			-- end
+			
+			-- merged = self.MergeWithNearbyPlatoonsSorianEdit( self, aiBrain, 'HeroFightPlatoonSorianEdit', 40, false, 100)
+			-- if merged then
+				-- if self.TrackThread or self.TrackThread ~= false then
+					-- self:KillThread(TrackThread)
+					-- self.TrackThread = false
+				-- end
+                -- target = nil
+                -- path = nil
+				-- return self:SetAIPlan('HeroFightPlatoonSorianEdit',aiBrain)
+			-- end
+			
             -- set target search center position
             if not GetTargetsFromBase then
                 GetTargetsFrom = PlatoonCenterPosition
@@ -5926,7 +5948,8 @@ Platoon = Class(SorianEditPlatoonClass) {
             if not target or target.Dead or target:BeenDestroyed() then
 				-- LOG('* AI-SorianEdit: * HeroFightPlatoonSorianEdit: Calling AIFindNearestCategoryTargetInRange: position: '..repr(GetTargetsFrom)..' PlatoonCenterPosition: '..repr(PlatoonCenterPosition)..' maxRange: '..repr(maxRadius)..' MoveToCategories: '..repr(MoveToCategories)..' TargetSearchCategory: '..repr(TargetSearchCategory))
                 UnitWithPath, UnitNoPath, path, reason = AIUtils.AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, self, 'Attack', GetTargetsFrom, maxRadius, MoveToCategories, TargetSearchCategory, false ) -- note do not use SE version
-                target = UnitWithPath or UnitNoPath
+                self.PathData = path
+				target = UnitWithPath or UnitNoPath
 				-- LOG('* AI-SorianEdit: * HeroFightPlatoonSorianEdit: AIFindNearestCategoryTargetInRange: path: '..repr(path)..' reason: '..repr(reason))
 				self.TargetData = target
             end
@@ -5948,7 +5971,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 			local SupportThreat = ((mythreat / 100) * ThreatWeight) * 2
 			-- local SupportThreat = 1000
             -- move to the target
-			
+	
             if target and not target.Dead and not target:BeenDestroyed() then
                 LastTargetPos = table.copy(target:GetPosition())
                 -- are we outside weaponrange ? then move to the target
@@ -6100,14 +6123,28 @@ Platoon = Class(SorianEditPlatoonClass) {
 					-- local x = PlatoonCenterPosition[1]
 					-- local z = PlatoonCenterPosition[3]
 					-- local ex, ez = aiBrain:GetCurrentEnemy():GetArmyStartPos()
-					-- DrawCircle({x,0,z}, 5, '19FF19')
-					-- DrawCircle({ex,0,ez}, 5, 'FF0119')
+					-- -- DrawCircle({x,0,z}, 5, '19FF19')
+					-- -- DrawCircle({ex,0,ez}, 5, 'FF0119')
 					-- local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {x,0,z}, {ex,0,ez}, 1, 1025)
 					-- if reason == 'PathOK' then
 						-- if HERODEBUGSorianEdit then
 							-- self:RenamePlatoon('scouting for targets')
 							-- coroutine.yield(1)
 						-- end
+						
+						-- for i = 1, 100 do
+							-- local pathCount = table.getn(path)
+							-- for i=1, pathCount do
+								-- local Marker = path[i]
+								-- local Marker2 = path[i+1]
+								-- if Marker2 == nil then
+									-- break
+								-- end
+								-- DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, 'FC03C6')
+							-- end
+							-- coroutine.yield(1)
+						-- end
+						
 						-- self:MovePath(aiBrain, path, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         -- if aiBrain:PlatoonExists(self) then
                             -- self:PlatoonDisband()
@@ -6131,7 +6168,9 @@ Platoon = Class(SorianEditPlatoonClass) {
                         end
                         -- no more targets found with platoonbuilder template settings. Set new targets to the platoon and continue
                         --self.PlatoonData.SearchRadius = 10000
-						self:LandScoutingSorianEdit()
+						
+						self:LandScoutingSorianEdit(200)
+						
                         maxRadius = 10000
                         self.PlatoonData.AttackEnemyStrength = 1000000
                         --self.PlatoonData.GetTargetsFromBase = false
@@ -6757,7 +6796,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 WaitSeconds(1)
             end
         end
-        WaitSeconds(5)
+        WaitSeconds(1)
         while aiBrain:PlatoonExists(self) do
 			self:Stop()
             target = AIUtils.AIFindNearestCategoryTargetInCloseRange( self, aiBrain, 'Attack', self:GetPlatoonPosition(), maxRadius, atkPriTable, (categories.ALLUNITS))
@@ -6786,7 +6825,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                 end
             -- end
-            WaitSeconds(17)
+            WaitSeconds(4)
         end
     end,
 	
@@ -7001,7 +7040,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             self.LastMarker[2] = self.LastMarker[1]
             self.LastMarker[1] = bestMarker.Position
             --LOG("GuardMarker: Attacking " .. bestMarker.Name)
-            local path, reason = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, self.MovementLayer, GetPlatoonPosition(self), bestMarker.Position, 100 , maxPathDistance)
             local success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingEx(self, bestMarker.Position)
             IssueClearCommands(GetPlatoonUnits(self))
             if path then

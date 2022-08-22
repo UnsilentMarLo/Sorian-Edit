@@ -66,11 +66,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Engineer Disband - Overflow',
         PlatoonTemplate = 'T1BuildEngineer',
-        Priority = 3125, --800,
+        Priority = 4125, --800,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.5 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 0.8 }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.0 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH1 } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
         },
@@ -1442,13 +1441,13 @@ BuilderGroup {
         BuilderName = 'SorianEdit T1 Energyratio',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 1200,
-        InstanceCount = 1,
+        InstanceCount = 2,
         DelayEqualBuildPlatoons = {'CheapEnergyBuilding', 4},
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND } },
-			{ UCBC, 'HaveForEach', { categories.FACTORY, 4, categories.ENERGYPRODUCTION}},
+			{ UCBC, 'HaveForEach', { categories.FACTORY, 10, categories.ENERGYPRODUCTION}},
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'CheapEnergyBuilding' }},
         },
         BuilderType = 'Any',
@@ -1983,7 +1982,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                RepeatBuild = true,
+                RepeatBuild = false,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -2005,7 +2004,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                RepeatBuild = true,
+                RepeatBuild = false,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -2038,7 +2037,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 250 low prio',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2470,
-        InstanceCount = 4,
+        InstanceCount = 6,
         -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 120 }},
@@ -2049,7 +2048,7 @@ BuilderGroup {
             Construction = {
 				NeedGuard = false,
 				DesiresAssist = false,
-                RepeatBuild = true,
+                RepeatBuild = false,
                 BuildStructures = {
                     'T1Resource',
                 }
@@ -2060,7 +2059,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 250',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 14700,
-        InstanceCount = 6,
+        InstanceCount = 2,
         -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 320 }},
@@ -2316,8 +2315,8 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Power Engineer',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 2000,
-        InstanceCount = 2,
+        Priority = 4000,
+        InstanceCount = 4,
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 150 } },
             { EBC, 'LessThanEconTrend', { 10000.0, 0.9 }},

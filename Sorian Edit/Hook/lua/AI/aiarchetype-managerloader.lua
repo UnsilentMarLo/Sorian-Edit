@@ -8,7 +8,7 @@ local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
 
 SorianEditExecutePlanFunction = ExecutePlan
 function ExecutePlan(aiBrain)
-    if not aiBrain.SorianEdit then
+    if not aiBrain.sorianedit then
         -- Debug for Platoon names
         if (aiBrain[ScenarioInfo.Options.AIPLatoonNameDebug] or ScenarioInfo.Options.AIPLatoonNameDebug == 'all') and not aiBrain.BuilderManagers.MAIN.FactoryManager:HasBuilderList() then
             aiBrain:ForkThread(LocationRangeManagerThreadSorianEdit, aiBrain)
@@ -929,7 +929,7 @@ function BaseRangerSorianEdit(aiBrain)
         end
         -- store all bases ang radii global inside Scenario.MasterChain
         -- Wee need this to draw the debug circles
-        if aiBrain.SorianEdit then
+        if aiBrain.sorianedit then
             if ScenarioInfo.Options.AIPathingDebug == 'pathlocation' then
                 Scenario.MasterChain._MASTERCHAIN_.BaseRangerSorianEdit = Scenario.MasterChain._MASTERCHAIN_.BaseRangerSorianEdit or {}
                 Scenario.MasterChain._MASTERCHAIN_.BaseRangerSorianEdit[aiBrain:GetArmyIndex()] = BaseRangerSorianEdit
@@ -944,7 +944,7 @@ function BaseTargetManagerThreadSorianEdit(aiBrain)
         coroutine.yield(10)
     end
     SPEW('* AI-SorianEdit: Function BaseTargetManagerThreadSorianEdit() started. ['..aiBrain.Nickname..']')
-    local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-SorianEdit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
+    local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
     local targets = {}
     local baseposition, radius
     local ClosestTarget

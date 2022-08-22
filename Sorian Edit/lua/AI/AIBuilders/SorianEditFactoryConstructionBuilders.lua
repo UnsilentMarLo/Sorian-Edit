@@ -286,11 +286,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Higher Pri',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 2475, --950,
+        Priority = 3475, --950,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.7 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.6 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.7 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.6 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { UCBC, 'GreaterThanGameTimeSeconds', { 135 } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
@@ -309,11 +309,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Higher Pri',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 3975, --950,
+        Priority = 3375, --950,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 1.0 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY LAND' }},

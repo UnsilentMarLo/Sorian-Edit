@@ -282,7 +282,6 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconIncome',  { 18.0, 100.0}},
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 1,  categories.MASSEXTRACTION * categories.TECH3 }},
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
             },
