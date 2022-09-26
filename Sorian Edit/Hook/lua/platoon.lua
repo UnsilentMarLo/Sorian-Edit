@@ -6785,31 +6785,28 @@ Platoon = Class(SorianEditPlatoonClass) {
             NukeUnit:SetAutoMode(true)
             while aiBrain:PlatoonExists(self) do
                 while NukeUnit:GetNukeSiloAmmoCount() < 1 do
-                    WaitSeconds(11)
                     if not  aiBrain:PlatoonExists(self) then
                         return
                     end
+                    coroutine.yield(10)
                 end
 
                 nukePos = import('/lua/ai/aibehaviors.lua').GetHighestThreatClusterLocation(aiBrain, NukeUnit)
                 if nukePos then
                     IssueNuke({NukeUnit}, nukePos)
-                    WaitSeconds(10)
                     IssueClearCommands({NukeUnit})
                 end
-                WaitSeconds(1)
+                coroutine.yield(10)
             end
         end
-        WaitSeconds(1)
         while aiBrain:PlatoonExists(self) do
 			self:Stop()
-            target = AIUtils.AIFindNearestCategoryTargetInCloseRange( self, aiBrain, 'Attack', self:GetPlatoonPosition(), maxRadius, atkPriTable, (categories.ALLUNITS))
+            target = AIUtils.AIFindNearestCategoryTargetInCloseRange( self, aiBrain, 'Attack', self:GetPlatoonPosition(), maxRadius, atkPriTable, categories.ALLUNITS)
             if target then
                 blip = target:GetBlip(armyIndex)
                 self:Stop()
                 cmd = self:AggressiveMoveToLocation(target:GetPosition())
             end
-            WaitSeconds(1)
             -- if (not cmd or not self:IsCommandsActive(cmd)) then
                 target = self:FindClosestUnit('Attack', 'Enemy', true, categories.MOBILE * categories.NAVAL - categories.WALL)
                 target2 = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL - categories.SCOUT - categories.AIR)
@@ -6828,8 +6825,13 @@ Platoon = Class(SorianEditPlatoonClass) {
                         self:Patrol(v)
                     end
                 end
-            -- end
-            WaitSeconds(4)
+			while target and not target.Dead do
+				coroutine.yield(10)
+			end
+			while target2 and not target2.Dead do
+				coroutine.yield(10)
+			end
+            coroutine.yield(10)
         end
     end,
 	

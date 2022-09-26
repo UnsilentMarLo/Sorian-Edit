@@ -22,6 +22,7 @@ BaseBuilderTemplate {
         -- Engineer Builders
         'SorianEditEngineerNavalFactoryBuilders',
         'SorianEditEngineerFactoryBuildersExpansion rush',
+        'SorianEditEngineerFactoryConstruction Sea',
         -- 'SorianEditT1EngineerBuilders',
         -- 'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',

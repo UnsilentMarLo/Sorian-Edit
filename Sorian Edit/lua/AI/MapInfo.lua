@@ -17,45 +17,47 @@ MassCount = 0 -- used as a way of checking if have the core markers needed
 HydroCount = 0
 
 function RecordPlayerStartLocations(self)
-    -- Updates PlayerStartPoints to Record all the possible player start points
-    for i = 1, 16 do
-        local tempPos = ScenarioUtils.GetMarker('ARMY_'..i).position
-        if tempPos ~= nil then
-            PlayerStartPoints[i] = tempPos
-            -- LOG('* SorianEdit: Recording Player start point, ARMY_'..i..' x=' ..PlayerStartPoints[i][1]..';y='..PlayerStartPoints[i][2]..';z='..PlayerStartPoints[i][3])
-        end
-    end
+	-- Updates PlayerStartPoints to Record all the possible player start points
+	for i = 1, 16 do
+		local tempPos = ScenarioUtils.GetMarker('ARMY_'..i).position
+		if tempPos ~= nil then
+			PlayerStartPoints[i] = tempPos
+			-- LOG('* SorianEdit: Recording Player start point, ARMY_'..i..' x=' ..PlayerStartPoints[i][1]..';y='..PlayerStartPoints[i][2]..';z='..PlayerStartPoints[i][3])
+		end
+	end
 	
-    local selfIndex = self:GetArmyIndex()
+	local selfIndex = self:GetArmyIndex()
 	for _, v in ArmyBrains do
-		local iArmy = v:GetArmyIndex()
-        local tempPos = ScenarioUtils.GetMarker('ARMY_'..iArmy).position
+		local iArmy = tonumber(string.sub(v.Name, 6 ))
+		local tempPos = ScenarioUtils.GetMarker('ARMY_'..iArmy).position
 		
 		if IsEnemy(selfIndex, v:GetArmyIndex()) then
 			EnemyTable[iArmy] = tempPos
 		elseif IsAlly(selfIndex, v:GetArmyIndex()) then
 			AllyTable[iArmy] = tempPos
 		end
-    end
+	end
 end
 
 function RecordResourceLocations()
-    MassCount = 0
-    HydroCount = 0
+    if MassPoints[1] == 0 then
+		MassCount = 0
+		HydroCount = 0
 
-    for _, v in ScenarioUtils.GetMarkers() do
-        if v.type == "Mass" then
-            MassCount = MassCount + 1
-            MassPoints[MassCount] = v.position
-            -- LOG('* SorianEdit: Recording masspoints: co-ordinates = ' ..MassPoints[MassCount][1].. ' - ' ..MassPoints[MassCount][2].. ' - ' ..MassPoints[MassCount][3])
-        end -- Mass
-        if v.type == "Hydrocarbon" then
-            HydroCount = HydroCount + 1
-            HydroPoints[HydroCount] = v.position
-            -- LOG('* SorianEdit: Recording hydrocarbon points: co-ordinates = ' ..HydroPoints[HydroCount][1].. ' - ' ..HydroPoints[HydroCount][2].. ' - ' ..HydroPoints[HydroCount][3])
-        end -- Hydrocarbon
-    end -- GetMarkers() loop
-    -- MapMexCount = MassCount
+		for _, v in ScenarioUtils.GetMarkers() do
+			if v.type == "Mass" then
+				MassCount = MassCount + 1
+				MassPoints[MassCount] = v.position
+				-- LOG('* SorianEdit: Recording masspoints: co-ordinates = ' ..MassPoints[MassCount][1].. ' - ' ..MassPoints[MassCount][2].. ' - ' ..MassPoints[MassCount][3])
+			end -- Mass
+			if v.type == "Hydrocarbon" then
+				HydroCount = HydroCount + 1
+				HydroPoints[HydroCount] = v.position
+				-- LOG('* SorianEdit: Recording hydrocarbon points: co-ordinates = ' ..HydroPoints[HydroCount][1].. ' - ' ..HydroPoints[HydroCount][2].. ' - ' ..HydroPoints[HydroCount][3])
+			end -- Hydrocarbon
+		end -- GetMarkers() loop
+		-- MapMexCount = MassCount
+	end
 end
 
 function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
@@ -66,6 +68,7 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
     local pStartPos =  PlayerStartPoints[iArmy]
     local NearbyMexPos = {}
     local iMexCount = 0
+	-- LOG('-------------------------------RecordMexNearStartPosition for IArmy == '..repr(iArmy))
     MassNearStart[iArmy] = {}
     local AllMassPoints = {}
     if MassPoints[1] == nil then

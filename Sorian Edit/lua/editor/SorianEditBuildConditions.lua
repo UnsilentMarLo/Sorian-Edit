@@ -805,6 +805,26 @@ function HaveUnitRatioSorian(aiBrain, ratio, categoryOne, compareType, categoryT
 		return false
     end
 end
+	
+function IsEnemyACUInWater(aiBrain)
+	for ka, va in ArmyBrains do
+		if IsEnemy(aiBrain:GetArmyIndex(), va:GetArmyIndex()) then
+			local EnemyLand = va:GetListOfUnits( categories.MOBILE * categories.COMMAND, false)
+			local pos
+			if EnemyLand[1] ~= nil then
+				-- LOG('* --------------- AI-SorianEdit: IsEnemyACUInWater: found enemy ACU/s ')
+				for k, v in EnemyLand do 
+					pos = v:GetPosition()
+					if SUtils.PositionInWater(pos) then 
+						-- LOG('* --------------- AI-SorianEdit: IsEnemyACUInWater: found enemy ACU/s in water ')
+						return true
+					end
+				end
+			end
+		end
+	end
+	return false
+end
 
 local CanPathToEnemy = {}
 function CanPathToCurrentEnemy(aiBrain, bool, LocationType)

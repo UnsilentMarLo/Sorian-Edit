@@ -267,6 +267,18 @@ BuilderGroup {
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 256, 'Naval' } },
         },
     },
+    Builder {
+        BuilderName = 'SorianEditT2 Torpedo Bomber ACUInWater',
+        PlatoonTemplate = 'T2AirTorpedoBomber',
+        Priority = 16000000,
+        BuilderType = 'Air',
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.6 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+			{ SBC, 'IsEnemyACUInWater', {} },
+        },
+    }
 }
 
 BuilderGroup {
@@ -426,6 +438,18 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 4, categories.MOBILE * categories.NAVAL * categories.SUBMERSIBLE, 'Enemy'}},
         },
+    },
+    Builder {
+        BuilderName = 'SorianEditT3 Torpedo Bomber ACUInWater',
+        PlatoonTemplate = 'T3TorpedoBomber',
+        Priority = 2300000000,
+        BuilderType = 'Air',
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.6 } },
+            { UCBC, 'UnitCapCheckLess', { 0.95 } },
+			{ SBC, 'IsEnemyACUInWater', {} },
+        },
     }
 }
 
@@ -470,11 +494,10 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.7 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-																		  
             { UCBC, 'UnitCapCheckLess', { .9 } },
         },
         BuilderType = 'Air',
-    },
+    }
 }
 
 BuilderGroup {

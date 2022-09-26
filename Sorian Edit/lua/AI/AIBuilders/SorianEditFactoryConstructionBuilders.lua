@@ -419,6 +419,61 @@ BuilderGroup {
 }
 
 BuilderGroup {
+    BuilderGroupName = 'SorianEditEngineerFactoryConstruction Sea',
+    BuildersType = 'EngineerBuilder',
+    -- ============================
+    --     Sea Factory Builders
+    -- ============================
+    Builder {
+        BuilderName = 'SorianEdit T1 Sea Factory Builder Balance',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
+        Priority = 1106,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'FactoryRatioLessAtLocation', { 'LocationType', 'NAVAL', 'LAND' } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL FACTORY', 'LocationType', }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1SeaFactory',
+                },
+                Location = 'LocationType',
+                --AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit T2 Sea Factory Builder - Sea',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
+        Priority = 900,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'ENERGYPRODUCTION TECH2' }},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL FACTORY', 'LocationType', }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T2SeaFactory',
+                },
+                Location = 'LocationType',
+                --AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+}
+
+BuilderGroup {
     BuilderGroupName = 'SorianEditEngineerFactoryConstruction',
     BuildersType = 'EngineerBuilder',
     -- =============================

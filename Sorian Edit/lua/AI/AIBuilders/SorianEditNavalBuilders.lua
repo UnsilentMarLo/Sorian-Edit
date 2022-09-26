@@ -73,7 +73,7 @@ BuilderGroup {
                 BuildStructures = {
 					'T1SeaFactory',
 					'T1SeaFactory',
-					'T1Sonar',
+					-- 'T1Sonar',
                 }
             }
         }
@@ -112,7 +112,7 @@ BuilderGroup {
                 BuildStructures = {
 					'T1SeaFactory',
 					'T1NavalDefense',
-					'T1Sonar',
+					-- 'T1Sonar',
                 }
             }
         }
@@ -151,7 +151,7 @@ BuilderGroup {
                     'T1SeaFactory',
 					'T2NavalDefense',
 					'T2AADefense',
-					'T2Sonar',
+					-- 'T2Sonar',
                 }
             }
         }
@@ -163,9 +163,8 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
 			{ WaterRatioCondition, {} },
-            { EBC, 'GreaterThanEconIncome',  { 5.0, 45.0}},
+            { EBC, 'GreaterThanEconIncome',  { 25.0, 45.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.COMMAND } },
@@ -190,8 +189,8 @@ BuilderGroup {
                     'T1SeaFactory',
                     'T1SeaFactory',
 					'T2NavalDefense',
-					'T3AADefense',
-					'T2Sonar',
+					-- 'T3AADefense',
+					-- 'T2Sonar',
                 }
             }
         }

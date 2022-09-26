@@ -2269,7 +2269,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 }},
             { SBC, 'HaveUnitRatioSorian', { 6.0, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 } },
-
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -2290,7 +2289,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.45, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 } },
-
         },
         BuilderType = 'Any',
         BuilderData = {

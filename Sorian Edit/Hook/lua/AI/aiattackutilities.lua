@@ -211,7 +211,7 @@ function GeneratePathSorianEdit(aiBrain, startNode, endNode, threatType, threatW
     }
     local table = table
     local unpack = unpack
-    local GetThreatFromHeatMap = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetThreatFromHeatMap
+    -- local GetThreatFromHeatMap = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetThreatFromHeatMap
     -- Now loop over all path's that are stored in queue. If we start, only the startNode is inside the queue
     -- (We are using here the "A*(Star) search algorithm". An extension of "Edsger Dijkstra's" pathfinding algorithm used by "Shakey the Robot" in 1959)
     while aiBrain.Result ~= "defeat" do

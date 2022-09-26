@@ -195,7 +195,7 @@ PlatoonTemplate {
 
 PlatoonTemplate {
     Name = 'T4ExperimentalAirSorianEdit',
-    Plan = 'InterceptorBomberGunshipSorianEdit',
+    Plan = 'HeroFightPlatoonSorianEdit',
     GlobalSquads = {
         { categories.AIR * categories.EXPERIMENTAL * categories.MOBILE - categories.SATELLITE, 1, 1, 'attack', 'none' },
     },

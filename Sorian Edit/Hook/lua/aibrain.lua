@@ -40,17 +40,18 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         OlderOldSorianEditAIBrainClass.OnCreateAI(self, planName)
         local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
         if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
-            LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') ')
 			
-            local iArmyNo = Utilities.GetAIBrainArmyNumber(self)
+            local iArmyNo = tonumber(string.sub(self.Name, 6 ))
             local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
+			
+            self.sorianedit = true
+            self:ForkThread(self.SEParseIntelThread)
 			
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
             MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 10)
             -- MapInfo.EvaluateNavalAreas(iArmyNo)
-            self.sorianedit = true
-            self:ForkThread(self.SEParseIntelThread)
+            LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') Army spawn: ('..repr(iArmyNo)..') ')
         end
     end,
 	

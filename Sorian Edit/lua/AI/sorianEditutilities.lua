@@ -3238,10 +3238,6 @@ function GetTableSize(tTable)
     return count
 end
 
-function GetAIBrainArmyNumber(aiBrain)
-    return tonumber(string.sub(aiBrain.Name, (string.len(aiBrain.Name)-7)))
-end
-
 function GetBuildingTypeInfo(BuildingType, iInfoWanted, sFaction)
     --iInfoWanted: 1 = Array with the building size, returnign X and Z size (doesnt return Y); 2 = Unit blueprint for sFaction; sFaction can be UEF, CYBRAN, AEON, SERAPHIM, or nil (will use UEF)
 

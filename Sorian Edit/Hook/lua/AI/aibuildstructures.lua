@@ -390,15 +390,16 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
             if Utilities.GetIsACU(builder:GetUnitId()) == true then
 				-- Check if the ACU is near the start position:
 				local builderPos = builder:GetPosition()
-				local iArmy = Utilities.GetAIBrainArmyNumber(aiBrain)
+				local iArmy = tonumber(string.sub(aiBrain.Name, 6 ))
 				local distance = Utilities.GetDistanceBetweenPositions(builderPos, MapInfo.PlayerStartPoints[iArmy])
 				local iBuildDistance = builder:GetBlueprint().Economy.MaxBuildDistance
+				local tBuildAdjacentTo = nil
+				local sBuildingTypeToBuildBy
 				
 				if distance <= iBuildDistance * 2 then
+				-- if 1 == 1 then
 					bSpecialBehaviour = true
 					--First try and find a build location that benefits from mex adjacency:
-					local tBuildAdjacentTo = nil
-					local sBuildingTypeToBuildBy
 					
 					tBuildAdjacentTo = MapInfo.MassNearStart[iArmy]
 					sBuildingTypeToBuildBy = 'T1Resource'
@@ -413,7 +414,9 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
 					
 					if tBuildAdjacentTo == nil or tBuildAdjacentTo[1] == nil then
 						bSpecialBehaviour = false
+						-- LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory No mexes recorded near start')
 					else
+						-- LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory position changed')
 						NewLocations = Utilities.GetAdjacencyLocationForTarget(tBuildAdjacentTo, sBuildingTypeToBuildBy, buildingType, true, aiBrain, true, builderPos, iBuildDistance, false, true)
 						--If can't find any adjacent locations then don't override the baseTemplate:
 						if NewLocations == nil or NewLocations[1] == nil then
@@ -425,7 +428,7 @@ function AIExecuteBuildStructureEdit(aiBrain, builder, buildingType, closeToBuil
 					baseTemplate = Utilities.ConvertLocationsToBuildTemplate({buildingType},AltLocations)
 					relativeLoc = NewLocations
 				end
-			LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory position changed')
+				-- LOG('--------------------- AIExecuteBuildStructure: SorianEdit ACU First factory position in range: '..repr(iArmy)..' with mexes '..repr(tBuildAdjacentTo)..' at distance '..repr(distance))
 			else
 				buildingTypeReplace = 'T4AirExperimental1'
 				whatToBuildReplace = 'xsa0402'
