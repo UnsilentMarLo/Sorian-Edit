@@ -5,6 +5,7 @@ local lastCall = GetGameTimeSeconds()
 local Buff = import('/lua/sim/Buff.lua')
 local HighestThreat = {}
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
+local CanGraphAreaTo = import("/mods/AI-Uveso/lua/AI/AIMarkerGenerator.lua").CanGraphAreaTo
 
 SorianEditExecutePlanFunction = ExecutePlan
 function ExecutePlan(aiBrain)
@@ -363,7 +364,7 @@ function EcoManagerThreadSorianEdit(aiBrain)
         EcoUnits = {}
         if aiBrain:GetEconomyStoredRatio('MASS') < 0.15 then
             --AllUnits = aiBrain:GetListOfUnits( (categories.FACTORY - categories.TECH1) + (categories.ENGINEER - categories.POD) + categories.RADAR + categories.OMNI + categories.OPTICS + categories.SONAR + categories.OVERLAYCOUNTERINTEL + categories.COUNTERINTELLIGENCE + categories.MASSFABRICATION + (categories.ENGINEERSTATION - categories.STATIONASSISTPOD) + ((categories.NUKE + categories.TACTICALMISSILEPLATFORM) * categories.SILO ) - categories.COMMAND , false, false) -- also gets unbuilded units (planed to build)
-            AllUnits = aiBrain:GetListOfUnits( (categories.ENGINEER - categories.POD) + categories.RADAR + categories.OMNI + categories.OPTICS + categories.SONAR + categories.OVERLAYCOUNTERINTEL + categories.COUNTERINTELLIGENCE + categories.MASSFABRICATION + (categories.ENGINEERSTATION - categories.STATIONASSISTPOD) + ((categories.NUKE + categories.TACTICALMISSILEPLATFORM) * categories.SILO ) - categories.COMMAND , false, false) -- also gets unbuilded units (planed to build)
+            AllUnits = aiBrain:GetListOfUnits( categories.RADAR + categories.OMNI + categories.OPTICS + categories.SONAR + categories.OVERLAYCOUNTERINTEL + categories.COUNTERINTELLIGENCE + categories.MASSFABRICATION + (categories.ENGINEERSTATION - categories.STATIONASSISTPOD) + ((categories.NUKE + categories.TACTICALMISSILEPLATFORM) * categories.SILO ) - categories.COMMAND , false, false) -- also gets unbuilded units (planed to build)
             if massTrend < 0 then
                 --AllUnits = aiBrain:GetListOfUnits(categories.ALLUNITS - categories.COMMAND - categories.SHIELD - categories.MASSEXTRACTION, false, false) -- also gets unbuilded units (planed to build)
                 for index, unit in AllUnits do
@@ -417,12 +418,13 @@ function EcoManagerThreadSorianEdit(aiBrain)
 --                        LOG('* AI-SorianEdit: ECO massTrend < 0  ('..massTrend..')')
                         busy = true
                         massTrend = massTrend + maxMassConsumption
-                        if EntityCategoryContains(categories.FACTORY + categories.ENGINEER + (categories.ENGINEERSTATION - categories.STATIONASSISTPOD + ((categories.NUKE + categories.TACTICALMISSILEPLATFORM) * categories.SILO)), EcoUnits[maxMassConsumptionUnitindex]) then
---                            LOG('* AI-SorianEdit: ECO ['..EcoUnits[maxMassConsumptionUnitindex].UnitId..'] ('..LOC(__blueprints[EcoUnits[maxMassConsumptionUnitindex].UnitId].Description)..') unit:SetPaused( true ) Saving ('..maxMassConsumption..') mass')
-                            EcoUnits[maxMassConsumptionUnitindex]:SetPaused( true )
-                            EcoUnits[maxMassConsumptionUnitindex].pausedMass = true
-                            EcoUnits[maxMassConsumptionUnitindex].managed = true
-                        elseif EntityCategoryContains(categories.RADAR + categories.OMNI + categories.OPTICS + categories.SONAR + categories.COUNTERINTELLIGENCE, EcoUnits[maxMassConsumptionUnitindex]) then
+                        -- if EntityCategoryContains(categories.FACTORY + categories.ENGINEER + (categories.ENGINEERSTATION - categories.STATIONASSISTPOD + ((categories.NUKE + categories.TACTICALMISSILEPLATFORM) * categories.SILO)), EcoUnits[maxMassConsumptionUnitindex]) then
+-- --                            LOG('* AI-SorianEdit: ECO ['..EcoUnits[maxMassConsumptionUnitindex].UnitId..'] ('..LOC(__blueprints[EcoUnits[maxMassConsumptionUnitindex].UnitId].Description)..') unit:SetPaused( true ) Saving ('..maxMassConsumption..') mass')
+                            -- EcoUnits[maxMassConsumptionUnitindex]:SetPaused( true )
+                            -- EcoUnits[maxMassConsumptionUnitindex].pausedMass = true
+                            -- EcoUnits[maxMassConsumptionUnitindex].managed = true
+                        -- else -- do not pause engies for fucks sake
+                        if EntityCategoryContains(categories.RADAR + categories.OMNI + categories.OPTICS + categories.SONAR + categories.COUNTERINTELLIGENCE, EcoUnits[maxMassConsumptionUnitindex]) then
 --                            LOG('* AI-SorianEdit: ECO ['..EcoUnits[maxMassConsumptionUnitindex].UnitId..'] ('..LOC(__blueprints[EcoUnits[maxMassConsumptionUnitindex].UnitId].Description)..') unit:SetScriptBit( IntelToggle, true ) Saving ('..maxMassConsumption..') mass')
                             EcoUnits[maxMassConsumptionUnitindex]:SetScriptBit('RULEUTC_IntelToggle', true)
                             EcoUnits[maxMassConsumptionUnitindex].pausedMass = true
@@ -1232,7 +1234,7 @@ function AddFactoryToClosestManagerSorianEdit(aiBrain, factory)
         WARN('ClosestMarkerBasePos = NIL')
     end
     
-    if dist > BaseRadius or (not ClosestMarkerBasePos) or (not AIAttackUtils.CanGraphAreaTo(FactoryPos, ClosestMarkerBasePos, layer)) then -- needs graph check for land and naval locations
+    if dist > BaseRadius or (not ClosestMarkerBasePos) or (not CanGraphAreaTo(FactoryPos, ClosestMarkerBasePos, layer)) then -- needs graph check for land and naval locations
         WARN('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: Found ['..MarkerBaseName..'] Baseradius('..math.floor(BaseRadius)..') but it\'s to not reachable: Distance to base: '..math.floor(dist)..' - Creating new location')
         if NavalFactory then
             MarkerBaseName = 'Naval Area '..Random(1000,5000)

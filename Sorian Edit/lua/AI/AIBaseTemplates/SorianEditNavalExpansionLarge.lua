@@ -15,17 +15,14 @@ BaseBuilderTemplate {
         -- Factory upgrades
         'SorianEditT1NavalUpgradeBuilders',
         'SorianEditT2NavalUpgradeBuilders',
-        'SorianEditSupportFactoryUpgrades',
-		-- 'SorianEditSupportFactoryUpgrades - Emergency',
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
-        'SorianEditEngineerNavalFactoryBuilders',
-        'SorianEditEngineerFactoryBuildersExpansion rush',
-        'SorianEditEngineerFactoryConstruction Sea',
         -- 'SorianEditT1EngineerBuilders',
         -- 'SorianEditT2EngineerBuilders',
-        'SorianEditT3EngineerBuilders',
+        -- 'SorianEditT3EngineerBuilders',
+        'SorianEditEngineerFactoryBuildersNavy',
+        'SorianeditAssistNavy',
 
         'SorianEditT3NukeDefensesFormer',
 
@@ -49,8 +46,8 @@ BaseBuilderTemplate {
 
         'SorianEditT2SeaStrikeForceBuilders',
 
-        'SorianEditSeaHunterFormBuilders',
-        'SorianEditBigSeaAttackFormBuilders',
+        -- 'SorianEditSeaHunterFormBuilders',
+        'SorianEditFrequentSeaAttackFormBuilders',
         'SorianEditMassHunterSeaFormBuilders',
 
         -- ==== EXPERIMENTALS ==== --

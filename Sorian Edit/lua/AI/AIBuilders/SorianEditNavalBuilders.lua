@@ -72,7 +72,6 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
 					'T1SeaFactory',
-					'T1SeaFactory',
 					-- 'T1Sonar',
                 }
             }
@@ -148,7 +147,6 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
                     'T1SeaFactory',
-                    'T1SeaFactory',
 					'T2NavalDefense',
 					'T2AADefense',
 					-- 'T2Sonar',
@@ -187,9 +185,8 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
                     'T1SeaFactory',
-                    'T1SeaFactory',
 					'T2NavalDefense',
-					-- 'T3AADefense',
+					'T3AADefense',
 					-- 'T2Sonar',
                 }
             }

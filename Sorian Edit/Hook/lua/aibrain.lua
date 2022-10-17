@@ -2,6 +2,8 @@ WARN('[sorianeditutilities.lua ------------------------ '..debug.getinfo(1).curr
 
 local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
 local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
+local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
+local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 
 OlderOldSorianEditAIBrainClass = AIBrain
 AIBrain = Class(OlderOldSorianEditAIBrainClass) {
@@ -46,6 +48,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 			
             self.sorianedit = true
             self:ForkThread(self.SEParseIntelThread)
+            self:ForkThread(self.TauntThread)
 			
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
@@ -146,10 +149,19 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         end
     end,
 	
+    TauntThread = function(self)
+        while self.sorianedit do
+            WaitSeconds(30+Random(-10, 50))
+			import('/lua/AI/sorianutilities.lua').AIRandomizeTaunt(self)
+            WaitTicks(8*10*(60+Random(-20, 20)))
+        end
+    end,
+	
     PickEnemySorianEdit = function(self)
+		-- LOG('* AI-SorianEdit: PickEnemySorianEdit: --------------- PickEnemySorianEdit Thread started')
         self.targetoveride = false
         while true do
-            self:PickEnemyLogicSorian(true)
+            self:PickEnemyLogicSorianEdit(true)
             WaitSeconds(120)
         end
     end,
@@ -276,7 +288,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
                     end
                 end
             end
-			
+
 			-- also scout Expansion points
 			local Expansionpointslarge = AIUtils.AIGetMarkerLocations(aiBrain, 'Large Expansion Area')
 			for _, loc in Expansionpointslarge do
@@ -312,6 +324,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
     end,
 
     PickEnemyLogicSorianEdit = function(self, brainbool)
+		-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- PickEnemyLogicSorianEdit called')
         local armyStrengthTable = {}
         local selfIndex = self:GetArmyIndex()
         for _, v in ArmyBrains do
@@ -334,7 +347,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         end
 
 		local findEnemy = false
-		if (not self:GetCurrentEnemy() or brainbool) and not self.targetoveride then
+		if ((not self:GetCurrentEnemy()) or brainbool) and not self.targetoveride then
 			findEnemy = true
 		elseif self:GetCurrentEnemy() then
 			local cIndex = self:GetCurrentEnemy():GetArmyIndex()
@@ -347,6 +360,8 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 		if findEnemy then
 			local enemyStrength = false
 			local enemy = false
+			
+			-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- findEnemy called: ')
 
 			for k, v in armyStrengthTable do
 				-- Dont' target self
@@ -359,18 +374,19 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 					continue
 				end
 
-				-- If we have a better candidate; ignore really weak enemies
-				if enemy and v.Strength < 20 then
-					continue
-				end
+				-- -- If we have a better candidate; ignore really weak enemies
+				-- if enemy and v.Strength < 20 then
+					-- continue
+				-- end
 
 				-- The closer targets are worth more because then we get their mass spots
 				local distanceWeight = 0.1
 				local distance = VDist3(self:GetStartVector3f(), v.Position)
 				local threatWeight = (1 / (distance * distanceWeight)) * v.Strength
 				if not enemy or (threatWeight > enemyStrength) then
-					if EvaluatePathForNewEnemy(v) then
-					enemyStrength = threatWeight * 3
+					if self:EvaluatePathForNewEnemy(v, v.Position) then
+					-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- EvaluatePathForNewEnemy returned true')
+					enemyStrength = threatWeight * 10
 					enemy = v.Brain
 					else
 					enemyStrength = threatWeight
@@ -381,29 +397,28 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 
 			if enemy then
 				if not self:GetCurrentEnemy() or self:GetCurrentEnemy() ~= enemy then
-					SUtils.AISendChat('allies', ArmyBrains[self:GetArmyIndex()].Nickname, 'targetchat', ArmyBrains[enemy:GetArmyIndex()].Nickname)
+					import('/lua/AI/sorianutilities.lua').AISendChat('allies', ArmyBrains[self:GetArmyIndex()].Nickname, 'targetchat', ArmyBrains[enemy:GetArmyIndex()].Nickname)
 				end
 				self:SetCurrentEnemy(enemy)
 			end
 		end
     end,
-	
-	EvaluatePathForNewEnemy = function(self, PotentialEnemy)
+
+	EvaluatePathForNewEnemy = function(self, PotentialEnemy, pos)
+	-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- EvaluatePathForNewEnemy called: ')
     -- We have no cached path. Searching now for a path.
-    local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
-    local startX, startZ = aiBrain:GetArmyStartPos()
-    local enemyX, enemyZ
-    enemyX, enemyZ = PotentialEnemy:GetArmyStartPos()
+    local startX, startZ = self:GetArmyStartPos()
 
     -- path wit AI markers from our base to the enemy base
-    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 1, 1000)
+	-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- EvaluatePathForNewEnemy calling: PlatoonGenerateSafePathToSorianEdit')
+    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(self, 'Land', {startX,0,startZ}, pos, 10, 10000)
+	-- LOG('* AI-SorianEdit: PickEnemyLogicSorianEdit: --------------- EvaluatePathForNewEnemy called: PlatoonGenerateSafePathToSorianEdit with reason:'..repr(reason))
     -- if we have a path generated with AI path markers then....
 		if path then
+            -- SUtils.VisualizeEnemy(self, path) does not work
 			return true
 		-- if we not have a path
-		else
-			return false
 		end
-    end,
-
+		return false
+    end
 }

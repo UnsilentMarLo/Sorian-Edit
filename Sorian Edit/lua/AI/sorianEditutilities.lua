@@ -680,6 +680,24 @@ function TrackCDRPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
 	coroutine.yield(1)
 end
 
+VisualizeEnemy = function(self, path)
+    LOG('* AI-SorianEdit: VisualizeEnemy: --------------- VisualizeEnemy Thread started')
+    for i=1, 200 do
+        if path then
+            local pathCount = table.getn(path)
+            for i=1, pathCount do
+                local Marker = path[i]
+                local Marker2 = path[i+1]
+                if Marker2 == nil then
+                    break
+                end
+                DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, 'A85032')
+            end
+        end
+    WaitTicks(1)
+    end
+end
+
 function GetEngineerFaction(engineer)
     if EntityCategoryContains(categories.UEF, engineer) then
         return 'UEF'
@@ -2073,7 +2091,7 @@ end
 
 local PropBlacklist = {}
 function ReclaimAIThreadSorian(platoon,self,aiBrain)
-    local scanrange = 25
+    local scanrange = 50
     local scanKM = 0
     local playablearea
     if ScenarioInfo.MapData.PlayableRect then
@@ -2148,7 +2166,6 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
                 scanrange = math.floor(scanrange + 100)
                 if scanrange > 512 then -- 5 Km
                     IssueClearCommands({self})
-                    scanrange = 25
                     local HomeDist = VDist2(SelfPos[1], SelfPos[3], basePosition[1], basePosition[3])
                     if HomeDist > 50 then
                         --LOG('noop returning home')
@@ -2159,9 +2176,6 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
                 --LOG('No Wreckage, expanding scanrange:'..scanrange..'.')
             elseif math.floor(NearestWreckDist) < scanrange then
                 scanrange = math.floor(NearestWreckDist)
-                if scanrange < 25 then
-                    scanrange = 25
-                end
                 --LOG('Adapting scanrange to nearest Object:'..scanrange..'.')
             end
             scanKM = math.floor(10000/512*NearestWreckDist)
@@ -2199,7 +2213,6 @@ function ReclaimAIThreadSorian(platoon,self,aiBrain)
                 while self and not self.Dead and self:IsUnitState("Moving") do
                     coroutine.yield(10)
                 end
-                scanrange = 25
             end
             IssueClearCommands({self})
             IssuePatrol({self}, self:GetPosition())

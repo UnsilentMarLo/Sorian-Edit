@@ -42,6 +42,14 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'EngineerAssistSorianEditALL',
+    Plan = 'SorianManagerEngineerAssistAI',
+    GlobalSquads = {
+        { categories.ENGINEER - categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'T3EngineerAssistSorianEdit',
     Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {

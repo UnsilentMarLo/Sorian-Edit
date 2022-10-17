@@ -742,7 +742,7 @@ BuilderGroup {
             AttackEnemyStrength = 125,
             IgnorePathing = true,
             AvoidBases = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.TRANSPORTFOCUS,
+            TargetSearchCategory = categories.ALLUNITS - categories.WALL - categories.TRANSPORTFOCUS,
             PrioritizedCategories = {
                 categories.MASSEXTRACTION,
                 categories.ENGINEER,
@@ -875,7 +875,7 @@ BuilderGroup {
             IgnorePathing = true,
             AvoidBases = true,
             AvoidBasesRadius = 400,
-            TargetSearchCategory = categories.ALLUNITS,
+            TargetSearchCategory = categories.ALLUNITS - categories.WALL,
             PrioritizedCategories = {
                 categories.MOBILE * categories.ANTIAIR,
                 categories.MOBILE * categories.AIR,
@@ -935,7 +935,7 @@ BuilderGroup {
             AttackEnemyStrength = 125,
             IgnorePathing = true,
             AvoidBases = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.TRANSPORTFOCUS,
+            TargetSearchCategory = categories.ALLUNITS - categories.WALL - categories.TRANSPORTFOCUS,
             PrioritizedCategories = {
                 categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3),
                 categories.MASSEXTRACTION,
@@ -1038,7 +1038,7 @@ BuilderGroup {
             AttackEnemyStrength = 250,
             IgnorePathing = true,
             AvoidBases = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.TRANSPORTFOCUS,
+            TargetSearchCategory = categories.ALLUNITS - categories.WALL - categories.WALL - categories.TRANSPORTFOCUS,
             PrioritizedCategories = {
                 categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3),
                 categories.MASSEXTRACTION,

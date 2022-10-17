@@ -1368,7 +1368,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                     check = false
                 else
                 end
-                if CDRHealth < 20 then
+                if CDRHealth < 60 then
                     check = false
                 end
                 if UnderAttack then
@@ -3351,9 +3351,44 @@ Platoon = Class(SorianEditPlatoonClass) {
     FighterBomberSelect = function(self)
         local aiBrain = self:GetBrain()
 		local pos = self:GetPlatoonPosition()
+		local EnemyACUs = {}
+		local SnipeTargets = {}
+		local Snipe = false
         local AirTarget = ( aiBrain:GetNumUnitsAroundPoint( (categories.MOBILE * categories.ANTIAIR), pos, 512, 'Enemy') )
+
+		for k, brain in ArmyBrains do
+			if IsEnemy(aiBrain:GetArmyIndex(), brain:GetArmyIndex()) then
+				local EACU = brain:GetListOfUnits( categories.COMMAND, false)
+				-- LOG('*AI --------------------------------------- FighterBomberSelect: GetListOfUnits: '..repr(EACU))
+				for ke, ve in EACU do
+					table.insert(EnemyACUs, ve)
+				end
+			end
+		end
 		
-        if AirTarget >= 10 then
+        -- LOG('*AI --------------------------------------- FighterBomberSelect: FighterBomberSelect ACU targets: '..repr(EnemyACUs))
+
+		for ka, va in EnemyACUs do
+			local ACUpos = va:GetPosition()
+			-- LOG('*AI --------------------------------------- FighterBomberSelect: ACU targets Acu position:'..repr(ACUpos))
+			local EnemyAA = aiBrain:GetNumUnitsAroundPoint((categories.LAND * categories.ANTIAIR - categories.TECH1), ACUpos, 60, 'Enemy')
+			
+			-- LOG('*AI --------------------------------------- FighterBomberSelect: ACU targets AA: '..repr(EnemyAA)..' Acu position:'..repr(ACUpos))
+			
+			if EnemyAA <= 4 then
+				table.insert(SnipeTargets, va)
+				Snipe = true
+			end
+		end
+
+		if Snipe then
+			for ks, vs in SnipeTargets do
+				self:AttackTarget(vs)
+				while not vs.Dead do
+					WaitSeconds(10)
+				end
+			end
+        elseif AirTarget >= 10 then
             return self:GuardBaseSorianEdit()
         else
             return self:InterceptorBomberGunshipSorianEdit()
@@ -6249,7 +6284,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 if TargetHug then
                     TargetInPlatoonRange = self:FindClosestUnit('Attack', 'Enemy', true, TargetSearchCategory)
                 else
-                    TargetInPlatoonRange = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS)
+                    TargetInPlatoonRange = self:FindClosestUnit('Attack', 'Enemy', true, (categories.ALLUNITS - categories.WALL))
                 end
 
                 -- check if the target is in range
@@ -6506,7 +6541,7 @@ Platoon = Class(SorianEditPlatoonClass) {
             local inWater = AIAttackUtils.InWaterCheck(self)
             local pos = self:GetPlatoonPosition()
             local threatatLocation = aiBrain:GetThreatAtPosition(pos, 1, true, 'AntiSurface')
-            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.AIR - categories.NAVAL - categories.SCOUT)
+            target = self:FindClosestUnit('Attack', 'Enemy', true, categories.ALLUNITS - categories.WALL - categories.AIR - categories.NAVAL - categories.SCOUT)
             if target then
                 blip = target:GetBlip(armyIndex)
                 self:Stop()
@@ -6814,23 +6849,20 @@ Platoon = Class(SorianEditPlatoonClass) {
                     blip = target:GetBlip(armyIndex)
                     self:Stop()
                     cmd = self:AggressiveMoveToLocation(target:GetPosition())
+                    coroutine.yield(250)
                 elseif target2 then
                     blip = target2:GetBlip(armyIndex)
                     self:Stop()
                     cmd = self:AggressiveMoveToLocation(target2:GetPosition())
+                    coroutine.yield(250)
                 else
                     local scoutPath = {}
                     scoutPath = AIUtils.AIGetSortedNavalLocations(self:GetBrain())
                     for k, v in scoutPath do
                         self:Patrol(v)
+						coroutine.yield(1200)
                     end
                 end
-			while target and not target.Dead do
-				coroutine.yield(10)
-			end
-			while target2 and not target2.Dead do
-				coroutine.yield(10)
-			end
             coroutine.yield(10)
         end
     end,

@@ -128,10 +128,17 @@ end
     -- return queue
 -- end
 
+-- local PathIterations = 0
+
 -- new function for pathing
 function GeneratePathSorianEdit(aiBrain, startNode, endNode, threatType, threatWeight, endPos, startPos)
     threatWeight = threatWeight or 1
-	
+    
+    -- PathIterations = PathIterations + 1
+    
+    -- local GameTime = GetGameTimeSeconds()
+    -- LOG('* --------------------------------------- AI-SorianEdit: GeneratePathSorianEdit() called: Gametime = '..GameTime..' Iteration = '..PathIterations)
+    
     if not aiBrain.PathCache then
         aiBrain.PathCache = {}
     end

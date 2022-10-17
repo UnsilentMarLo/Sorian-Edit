@@ -52,17 +52,18 @@ end
 
 function WaterRatioCondition(aiBrain, techlevel)
 	local ratio = aiBrain:GetMapWaterRatio()
+	-- LOG('*AI DEBUG: --------------  WaterRatioCondition, its: '..ratio..' for tech: '..techlevel..'!')
 	if ratio > 0.1 then
 		if techlevel == 1 then
-			if ratio > 0.2 then
+			if ratio > 0.05 then
 				return true
 			end
 		elseif techlevel == 2 then
-			if ratio > 0.3 then
+			if ratio > 0.09 then
 				return true
 			end
 		elseif techlevel == 3 then
-			if ratio > 0.4 then
+			if ratio > 0.15 then
 				return true
 			end
 		else
@@ -72,6 +73,54 @@ function WaterRatioCondition(aiBrain, techlevel)
 		return false
 	end
 end
+
+BuilderGroup {
+    BuilderGroupName = 'SorianEditEngineerFactoryBuildersNavy',
+    BuildersType = 'FactoryBuilder',
+    -- ============
+    --    TECH 1
+    -- ============
+    Builder {
+        BuilderName = 'SorianEdit T1 Engineer Disband - Navy',
+        PlatoonTemplate = 'T1BuildEngineer',
+        Priority = 2900,
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
+            { UCBC, 'UnitCapCheckLess', { .6 } },
+        },
+        BuilderType = 'All',
+    },
+    -- ============
+    --    TECH 2
+    -- ============
+    Builder {
+        BuilderName = 'SorianEdit T2 Engineer Disband - Navy',
+        PlatoonTemplate = 'T2BuildEngineer',
+        Priority = 4525,
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.MOBILE * categories.ENGINEER * categories.TECH2 } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH2 } },
+        },
+        BuilderType = 'All',
+    },
+    -- ============
+    --    TECH 3
+    -- ============
+    Builder {
+        BuilderName = 'SorianEdit T3 Engineer Disband - Navy',
+        PlatoonTemplate = 'T3BuildEngineer',
+        Priority = 12250,
+        BuilderConditions = {
+            { UCBC, 'UnitsLessAtLocation', { 'LocationType', 4, categories.MOBILE * categories.ENGINEER * categories.TECH2 } },
+            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH3 * categories.ENGINEER } },
+            { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 - categories.SUBCOMMANDER } },
+        },
+        BuilderType = 'All',
+    },
+}
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditT1SeaFactoryBuilders',
@@ -85,12 +134,11 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
-            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+            -- { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
         },
     },
     Builder {
@@ -179,7 +227,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Naval Destroyer',
         PlatoonTemplate = 'T2SeaDestroyer',
-        Priority = 3400,
+        Priority = 3800,
         PriorityFunction = WaterPrio,
         BuilderType = 'Sea',
         BuilderConditions = {
@@ -195,7 +243,8 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Naval Cruiser',
         PlatoonTemplate = 'T2SeaCruiser',
         -- PlatoonAddBehaviors = { 'AirLandToggleSorian' },
-        Priority = 3700,
+        Priority = 3800,
+        PriorityFunction = WaterPrio,
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -412,7 +461,6 @@ BuilderGroup {
         },
     },
 }
-
 
 BuilderGroup {
     BuilderGroupName = 'SorianEditSeaHunterFormBuilders',
@@ -646,6 +694,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'MOBILE TECH1 NAVAL' } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL, MOBILE TECH3 NAVAL' } },
         },
     },
@@ -683,6 +732,8 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'MOBILE NAVAL' } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL' } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH3 NAVAL' } },
         },
     },
@@ -720,123 +771,8 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-        },
-    },
-}
-
-BuilderGroup {
-    BuilderGroupName = 'SorianEditBigSeaAttackFormBuilders',
-    BuildersType = 'PlatoonFormBuilder',
-    Builder {
-        BuilderName = 'SorianEdit Big Sea Attack T1',
-        PlatoonTemplate = 'SeaAttackSorianEdit',
-        --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 10,
-        InstanceCount = 8,
-        BuilderType = 'Any',
-        BuilderData = {
-            SearchRadius = 20000,
-            GetTargetsFromBase = false,
-            RequireTransport = false,
-            AggressiveMove = true,
-            AttackEnemyStrength = 120,
-            IgnorePathing = false,
-            TargetSearchCategory = categories.MOBILE * categories.NAVAL + categories.HOVER - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
-            MoveToCategories = {
-                categories.MOBILE * categories.NAVAL,
-                categories.COMMAND,
-                categories.MOBILE * categories.LAND,
-                categories.STRUCTURE,
-            },
-            WeaponTargetCategories = {
-                categories.COMMAND,
-                categories.EXPERIMENTAL,
-                categories.DEFENSE,
-                categories.INDIRECTFIRE,
-                categories.ECONOMIC,
-                categories.DIRECTFIRE,
-                categories.MOBILE,
-                categories.ANTIAIR,
-            },
-        },
-        BuilderConditions = {
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL, MOBILE TECH3 NAVAL' } },
-        },
-    },
-    Builder {
-        BuilderName = 'SorianEdit Big Sea Attack T2',
-        PlatoonTemplate = 'SeaAttackSorianEdit',
-        --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 10,
-        InstanceCount = 8,
-        BuilderType = 'Any',
-        BuilderData = {
-            SearchRadius = 20000,
-            GetTargetsFromBase = false,
-            RequireTransport = false,
-            AggressiveMove = true,
-            AttackEnemyStrength = 120,
-            IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
-            MoveToCategories = {
-                categories.MOBILE * categories.NAVAL,
-                categories.COMMAND,
-                categories.MOBILE * categories.LAND,
-                categories.STRUCTURE,
-            },
-            WeaponTargetCategories = {
-                categories.COMMAND,
-                categories.EXPERIMENTAL,
-                categories.DEFENSE,
-                categories.INDIRECTFIRE,
-                categories.ECONOMIC,
-                categories.DIRECTFIRE,
-                categories.MOBILE,
-                categories.ANTIAIR,
-            },
-        },
-        BuilderConditions = {
-            { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH3 NAVAL' } },
-        },
-    },
-    Builder {
-        BuilderName = 'SorianEdit Big Sea Attack T3',
-        PlatoonTemplate = 'SeaAttackSorianEdit',
-        --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
-        PlatoonAddPlans = {'AirLandToggleSorian'},
-        Priority = 10,
-        InstanceCount = 8,
-        BuilderType = 'Any',
-        BuilderData = {
-            SearchRadius = 20000,
-            GetTargetsFromBase = false,
-            RequireTransport = false,
-            AggressiveMove = true,
-            AttackEnemyStrength = 120,
-            IgnorePathing = false,
-            TargetSearchCategory = categories.ALLUNITS - categories.SCOUT - categories.AIR - categories.T1SUBMARINE,
-            MoveToCategories = {
-                categories.MOBILE * categories.NAVAL,
-                categories.COMMAND,
-                categories.MOBILE * categories.LAND,
-                categories.STRUCTURE,
-            },
-            WeaponTargetCategories = {
-                categories.COMMAND,
-                categories.EXPERIMENTAL,
-                categories.DEFENSE,
-                categories.INDIRECTFIRE,
-                categories.ECONOMIC,
-                categories.DIRECTFIRE,
-                categories.MOBILE,
-                categories.ANTIAIR,
-            },
-        },
-        BuilderConditions = {
-            -- { SeaAttackCondition, { 'LocationType', 360 } },
-            -- { SBC, 'NoRushTimeCheck', { 0 }},
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 6, 'MOBILE NAVAL' } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'MOBILE TECH3 NAVAL' } },
         },
     },
 }

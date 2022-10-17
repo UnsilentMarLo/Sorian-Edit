@@ -200,7 +200,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Tank - Tech 2',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 2500,
+        Priority = 2600,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -214,7 +214,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Tank 2 - Tech 3',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 2500,
+        Priority = 2600,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -228,7 +228,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 MML',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 2500,
+        Priority = 2600,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -243,7 +243,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 MML Enemy Turtle',
         PlatoonTemplate = 'T2LandArtillery',
-        Priority = 2500,
+        Priority = 2600,
         PriorityFunction = TurtleAttackPrio,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -259,7 +259,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2AttackTank - Tech 2',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 2900,
+        Priority = 3100,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -273,7 +273,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2AttackTank2 - Tech 3',
         PlatoonTemplate = 'T2LandDFTank',
-        Priority = 2500,
+        Priority = 2600,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -287,7 +287,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2MobileShields',
         PlatoonTemplate = 'T2MobileShields',
-        Priority = 2500,
+        Priority = 2600,
         BuilderType = 'Land',
         BuilderConditions = {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH2 - categories.ENGINEER }},
@@ -304,7 +304,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2MobileShields Enemy Turtle',
         PlatoonTemplate = 'T2MobileShields',
-        Priority = 2500,
+        Priority = 2600,
         PriorityFunction = TurtleAttackPrio,
         BuilderType = 'Land',
         BuilderConditions = {
@@ -320,7 +320,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2MobileShields - T3 Factories',
         PlatoonTemplate = 'T2MobileShields',
-        Priority = 2925,
+        Priority = 3025,
         BuilderType = 'Land',
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
@@ -352,6 +352,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
         },
     },
     Builder {
@@ -363,6 +364,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
     },
@@ -377,6 +379,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.MOBILE * categories.HOVER * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
             { SBC, 'HaveUnitRatioSorian', { 0.3, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1 - categories.COMMAND - categories.COMMAND}},
@@ -392,6 +395,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
@@ -406,6 +410,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
@@ -419,6 +424,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
@@ -434,6 +440,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
+            { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
