@@ -226,21 +226,48 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditMobileLandExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
-    --Land T4 builders for 20x20 and larger maps
+
+    -- rush
     Builder {
-        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - Large Map',
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - rush',
+        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
+        Priority = 4200,
+        InstanceCount = 1,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.8 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
+			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+			NumAssistees = 6,
+            Construction = {
+                DesiresAssist = true,
+                BuildClose = true,
+                BuildStructures = {
+                    'T4LandExperimental1',
+                },
+                Location = 'LocationType',
+            }
+        }
+    },
+
+    --Land T4 builders - normal
+    Builder {
+        BuilderName = 'SorianEdit T3 Land Exp1 Engineer 1 - Large',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2200,
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE LAND EXPERIMENTAL' }},
+			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -260,19 +287,18 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 - Large Map',
+        BuilderName = 'SorianEdit T3 Land Exp2 Engineer 1 - Large',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE LAND EXPERIMENTAL' }},
+			{ EBC, 'GreaterThanEconIncome', { 12, 200 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -292,19 +318,18 @@ BuilderGroup {
         }
     },
     Builder {
-        BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1 - Large Map',
+        BuilderName = 'SorianEdit T3 Land Exp3 Engineer 1 - Large',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 2100,
         InstanceCount = 3,
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.5, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE LAND EXPERIMENTAL' }},
+			{ EBC, 'GreaterThanEconIncome', { 15, 200 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -324,10 +349,8 @@ BuilderGroup {
         }
     },
 	
-	
-	
-	
-	
+
+
     Builder {
         BuilderName = 'SorianEdit T2 Engineer Assist Experimental Mobile Land',
         PlatoonTemplate = 'T2EngineerAssistSorianEdit',
@@ -586,7 +609,6 @@ BuilderGroup {
 BuilderGroup {
     BuilderGroupName = 'SorianEditMobileAirExperimentalEngineers',
     BuildersType = 'EngineerBuilder',
-    --Air T4 builders for 20x20 and larger maps
     Builder {
         BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
@@ -598,38 +620,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            --MinNumAssistees = 3,
-			NumAssistees = 25,
-            Construction = {
-                DesiresAssist = true,
-                BuildClose = true,
-                --T4 = true,
-                --NearMarkerType = 'Protected Experimental Construction',
-                BuildStructures = {
-                    'T4AirExperimental1',
-                },
-                Location = 'LocationType',
-            }
-        }
-    },
-    --Air T4 builders for 10x10 and smaller maps
-    Builder {
-        BuilderName = 'SorianEdit T3 Air Exp1 Engineer 1 - Small Map',
-        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 2100,
-        InstanceCount = 1,
-        DelayEqualBuildPlatoons = {'SEExperimental', 10},
-        BuilderConditions = {
-            -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
+			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
         },
         BuilderType = 'Any',
@@ -659,7 +650,6 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -895,7 +885,7 @@ BuilderGroup {
             AggressiveMove = true,
             AttackEnemyStrength = 120000,
             IgnorePathing = true,
-            TargetSearchCategory = categories.MOBILE * (categories.NAVAL + categories.NAVAL) - categories.TECH1 - categories.COMMAND - categories.SCOUT,
+            TargetSearchCategory = categories.MOBILE * (categories.NAVAL) + categories.STRUCTURE - categories.TECH1 - categories.SCOUT,
             MoveToCategories = {
                 categories.STRUCTURE * categories.EXPERIMENTAL * categories.ECONOMIC,
                 categories.STRUCTURE * categories.NAVAL,

@@ -69,7 +69,7 @@ BuilderGroup {
         Priority = 4125, --800,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.0 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.45, 0.0 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH1 } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
         },
@@ -1373,7 +1373,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2000,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconIncome', { 4, 50 } },
+			{ EBC, 'GreaterThanEconIncome', { 3, 35 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.ENERGYSTORAGE }},
         },
         BuilderType = 'Any',
@@ -2322,10 +2322,10 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 2,
         BuilderConditions = {
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'MASSFABRICATION TECH3' }},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.95}},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'MASSFABRICATION TECH3' }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 }},
-            { SBC, 'HaveUnitRatioSorian', { 6.0, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2 } },
+			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH2, 4, categories.STRUCTURE * categories.MASSFABRICATION }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -2343,9 +2343,9 @@ BuilderGroup {
         Priority = 15000,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.45, 0.95}},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.95}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 }},
-            { SBC, 'HaveUnitRatioSorian', { 0.3, categories.STRUCTURE * categories.MASSFABRICATION, '>=',categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3 } },
+			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.ENERGYPRODUCTION * categories.TECH3, 2, categories.STRUCTURE * categories.MASSFABRICATION * categories.TECH3 }},
         },
         BuilderType = 'Any',
         BuilderData = {
