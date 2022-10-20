@@ -2447,7 +2447,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Power Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 55000,
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderType = 'Any',
         BuilderConditions = {
             { EBC, 'LessThanEconTrend', { 10000.0, 0.8 }},
@@ -2485,7 +2485,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Power Engineer - init',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 1350000000,
-        InstanceCount = 3,
+        InstanceCount = 1,
         BuilderType = 'Any',
         BuilderConditions = {
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
