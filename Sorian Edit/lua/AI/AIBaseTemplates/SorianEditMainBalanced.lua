@@ -32,7 +32,8 @@ BaseBuilderTemplate {
 		'SorianEditEngineerFactoryConstructionLandHigherPriority',
         'SorianEditEngineerFactoryConstruction',
         'SorianEdit T3 Sub Commander',
-
+        'SorianeditAssistFactoryPerm',
+        
         -- SCU Upgrades
         'SorianEditSCUUpgrades',
 		

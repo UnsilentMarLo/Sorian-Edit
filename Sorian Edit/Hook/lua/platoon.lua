@@ -2530,6 +2530,88 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
     end,
 
+    FactoryAssistSorianEdit = function(self)
+        local aiBrain = self:GetBrain()
+        local BuilderManager = aiBrain.BuilderManagers['MAIN']
+        local lastFAC = 0
+        local lastEngie = 0
+        local numEngie
+        local platoonUnits
+
+        while aiBrain:PlatoonExists(self) do
+            platoonUnits = self:GetPlatoonUnits()
+            numEngie = table.getn(platoonUnits) or 0
+            local Factories = AIUtils.GetOwnUnitsAroundPoint(aiBrain, categories.STRUCTURE * categories.FACTORY, BuilderManager.Position, 256)
+            local lasthighestHealth
+            local highestHealth
+            local numFactories = 0
+            for k,Factory in Factories do
+                if not Factory or Factory.Dead then continue end
+                numFactories = numFactories + 1
+            end
+            if (numEngie ~= lastEngie) or (numFactories ~= lastFAC) then
+                self:Stop()
+                -- Wait for stopping assist
+                coroutine.yield(1)
+                lastEngie = numEngie
+                lastFAC = numFactories
+                for i,unit in self:GetPlatoonUnits() do
+                    -- IssueClearCommands({unit})
+                    unit.AssistSet = nil
+                    unit.UnitBeingAssist = nil
+                end
+                while true do
+                    local numAssisters = nil
+                    local FactoryWithleastAssisters
+                    -- Fist check all Factories
+                    for k,Factory in Factories do
+                        if not Factory or Factory.Dead then continue end
+                        if not numAssisters or table.getn(Factory:GetGuards()) < numAssisters  then
+                            numAssisters = table.getn(Factory:GetGuards())
+                            -- set a maximum of 10 assisters per Factory
+                            if numAssisters < 10 then
+                                FactoryWithleastAssisters = Factory
+                            end
+                        end
+                    end
+                    
+                    if not FactoryWithleastAssisters then
+                        break
+                    end
+                    local FactoryPos = FactoryWithleastAssisters:GetPosition() or nil
+                    -- search for the closest idle unit
+                    local closest
+                    local bestUnit
+                    for i,unit in self:GetPlatoonUnits() do
+                        if not unit or unit.Dead or unit:BeenDestroyed() then
+                            self:PlatoonDisbandNoAssign()
+                            return
+                        end
+                        if unit.AssistSet then continue end
+                        local unitPos = unit:GetPosition() or nil
+                        if unitPos and FactoryPos then
+                            local dist = VDist2(FactoryPos[1], FactoryPos[3], FactoryPos[1], FactoryPos[3])
+                            if not closest or dist < closest then
+                                closest = dist
+                                bestUnit = unit
+                            end
+                        end
+                    end
+                    if not bestUnit then
+                        break
+                    end
+                    IssueClearCommands({bestUnit})
+                    coroutine.yield(1)
+                    IssueGuard({bestUnit}, FactoryWithleastAssisters)
+                    bestUnit.AssistSet = true
+                    bestUnit.UnitBeingAssist = FactoryWithleastAssisters
+                    coroutine.yield(600)
+                end
+            end
+            coroutine.yield(30)
+        end
+    end,
+
     NukePlatoonSorianEdit = function(self)
         local NUKEDEBUG = false
         local aiBrain = self:GetBrain()
@@ -6860,8 +6942,8 @@ Platoon = Class(SorianEditPlatoonClass) {
                     scoutPath = AIUtils.AIGetSortedNavalLocations(self:GetBrain())
                     for k, v in scoutPath do
                         self:Patrol(v)
-						coroutine.yield(1200)
                     end
+                    coroutine.yield(1200)
                 end
             coroutine.yield(10)
         end

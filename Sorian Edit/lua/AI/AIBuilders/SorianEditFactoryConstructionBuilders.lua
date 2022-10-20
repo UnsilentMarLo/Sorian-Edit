@@ -45,7 +45,7 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.34, 0.4 } },
 			{ UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 1, 'FACTORY' }},
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY' }},
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY', 'LocationType', }},
         },
@@ -65,7 +65,7 @@ BuilderGroup {
         Priority = 5900000,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.24, 0.4 } },
-			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.ENERGYPRODUCTION - categories.HYDROCARBON } },
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION - categories.HYDROCARBON } },
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY', 'LocationType', }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR' }},
         },
@@ -611,13 +611,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Gate Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 1550, --850,
+        Priority = 3550, --850,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.0 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'MASSEXTRACTION TECH3' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH3' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'GATE TECH3 STRUCTURE' }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
         },
