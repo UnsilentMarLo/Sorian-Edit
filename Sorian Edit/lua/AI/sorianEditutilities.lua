@@ -1687,7 +1687,7 @@ function DrawIntel(aiBrain)
                 end
             end
         end
-        WaitSeconds(2)
+        coroutine.yield(10)
     end
 end
 

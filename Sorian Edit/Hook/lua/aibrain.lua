@@ -70,67 +70,12 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 	
     -- SKIRMISH AI HELPER SYSTEMS
     InitializeSkirmishSystems = function(self)
-        OlderOldSorianEditAIBrainClass.InitializeSkirmishSystems(self)
+        if not self.sorianedit then
+            return OlderOldSorianEditAIBrainClass.InitializeSkirmishSystems(self)
+        end
         if self.sorianedit then
             self.EnemyPickerThread = self:ForkThread(self.PickEnemySorianEdit)
-        else
-            self.EnemyPickerThread = self:ForkThread(self.PickEnemy)
         end
-    end,
-	
-    SEBaseMonitorThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEBaseMonitorThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
-    end,
-
-    SEEconomyMonitor = function(self)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEEconomyMonitor(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(self.SEEconomyMonitorThread)
-        self.SEEconomyMonitorThread = nil
-    end,
-
-   SEExpansionHelpThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEExpansionHelpThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
-    end,
-
-    SEInitializeEconomyState = function(self)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEInitializeEconomyState(self)
-        end
-    end,
-
-    SEOnIntelChange = function(self, blip, reconType, val)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEOnIntelChange(self, blip, reconType, val)
-        end
-    end,
-
-    SESetupAttackVectorsThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SESetupAttackVectorsThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
     end,
 
     SEParseIntelThread = function(self)
@@ -156,6 +101,127 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
             else
                 self.MyAirRatio = 0.01
             end
+
+            if not self.InterestList or not self.InterestList.MustScout then
+                error('Scouting areas must be initialized before calling AIBrain:ParseIntelThread.', 2)
+            end
+            if not self.T4ThreatFound then
+                self.T4ThreatFound = {}
+            end
+            if not self.AttackPoints then
+                self.AttackPoints = {}
+            end
+            if not self.AirAttackPoints then
+                self.AirAttackPoints = {}
+            end
+            if not self.TacticalBases then
+                self.TacticalBases = {}
+            end
+    
+            local intelChecks = {
+                -- ThreatType    = {max dist to merge points, threat minimum, timeout (-1 = never timeout), try for exact pos, category to use for exact pos}
+                StructuresNotMex = {100, 0, 60, true, categories.STRUCTURE - categories.MASSEXTRACTION},
+                Commander = {50, 0, 120, true, categories.COMMAND},
+                Experimental = {50, 0, 120, true, categories.EXPERIMENTAL},
+                Artillery = {50, 1150, 120, true, categories.ARTILLERY * categories.TECH3},
+                Land = {100, 50, 120, false, nil},
+            }
+    
+            local numchecks = 0
+            local checkspertick = 5
+            local changed = false
+            for threatType, v in intelChecks do
+                local threats = self:GetThreatsAroundPosition(self.BuilderManagers.MAIN.Position, 16, true, threatType)
+                for _, threat in threats do
+                    local dupe = false
+                    local newPos = {threat[1], 0, threat[2]}
+                    numchecks = numchecks + 1
+                    for _, loc in self.InterestList.HighPriority do
+                        if loc.Type == threatType and VDist2Sq(newPos[1], newPos[3], loc.Position[1], loc.Position[3]) < v[1] * v[1] then
+                            dupe = true
+                            loc.LastUpdate = GetGameTimeSeconds()
+                            break
+                        end
+                    end
+
+                    if not dupe then
+                        -- Is it in the low priority list?
+                        for i = 1, table.getn(self.InterestList.LowPriority) do
+                            local loc = self.InterestList.LowPriority[i]
+                            if VDist2Sq(newPos[1], newPos[3], loc.Position[1], loc.Position[3]) < v[1] * v[1] and threat[3] > v[2] then
+                                -- Found it in the low pri list. Remove it so we can add it to the high priority list.
+                                table.remove(self.InterestList.LowPriority, i)
+                                break
+                            end
+                        end
+                        -- Check for exact position?
+                        if threat[3] > v[2] and v[4] and v[5] then
+                            local nearUnits = self:GetUnitsAroundPoint(v[5], newPos, v[1], 'Enemy')
+                            if not table.empty(nearUnits) then
+                                local unitPos = nearUnits[1]:GetPosition()
+                                if unitPos then
+                                    newPos = {unitPos[1], 0, unitPos[3]}
+                                end
+                            end
+                        end
+                        -- Threat high enough?
+                        if threat[3] > v[2] then
+                            changed = true
+                            table.insert(self.InterestList.HighPriority,
+                                {
+                                    Position = newPos,
+                                    Type = threatType,
+                                    Threat = threat[3],
+                                    LastUpdate = GetGameTimeSeconds(),
+                                    LastScouted = GetGameTimeSeconds(),
+                                }
+                            )
+                        end
+                    end
+                    -- Reduce load on game
+                    if numchecks > checkspertick then
+                        WaitTicks(1)
+                        numchecks = 0
+                    end
+                end
+            end
+            numchecks = 0
+
+            -- Get rid of outdated intel
+            for k, v in self.InterestList.HighPriority do
+                if not v.Permanent and intelChecks[v.Type][3] > 0 and v.LastUpdate + intelChecks[v.Type][3] < GetGameTimeSeconds() then
+                    self.InterestList.HighPriority[k] = nil
+                    changed = true
+                end
+            end
+
+            -- Rebuild intel table if there was a change
+            if changed then
+                self.InterestList.HighPriority = self:RebuildTable(self.InterestList.HighPriority)
+            end
+
+            -- Sort the list based on low long it has been since it was scouted
+            table.sort(self.InterestList.HighPriority, function(a, b)
+                if a.LastScouted == b.LastScouted then
+                    local MainPos = self.BuilderManagers.MAIN.Position
+                    local distA = VDist2(MainPos[1], MainPos[3], a.Position[1], a.Position[3])
+                    local distB = VDist2(MainPos[1], MainPos[3], b.Position[1], b.Position[3])
+
+                    return distA < distB
+                else
+                    return a.LastScouted < b.LastScouted
+                end
+            end)
+
+            -- Draw intel data on map
+            if not self.IntelDebugThread then
+              self.IntelDebugThread = self:ForkThread(SUtils.DrawIntel)
+            end
+            -- Handle intel data if there was a change
+            if changed then
+                SUtils.AIHandleIntelData(self)
+            end
+            -- SUtils.AICheckForWeakEnemyBase(self)
         end
     end,
 	
