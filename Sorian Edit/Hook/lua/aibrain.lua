@@ -60,65 +60,12 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 	
     -- SKIRMISH AI HELPER SYSTEMS
     InitializeSkirmishSystems = function(self)
-        OlderOldSorianEditAIBrainClass.InitializeSkirmishSystems(self)
+        if not self.sorianedit then
+            return OlderOldSorianEditAIBrainClass.InitializeSkirmishSystems(self)
+        end
         if self.sorianedit then
             self.EnemyPickerThread = self:ForkThread(self.PickEnemySorianEdit)
         end
-    end,
-	
-    SEBaseMonitorThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEBaseMonitorThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
-    end,
-
-    SEEconomyMonitor = function(self)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEEconomyMonitor(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(self.SEEconomyMonitorThread)
-        self.SEEconomyMonitorThread = nil
-    end,
-
-   SEExpansionHelpThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEExpansionHelpThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
-    end,
-
-    SEInitializeEconomyState = function(self)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEInitializeEconomyState(self)
-        end
-    end,
-
-    SEOnIntelChange = function(self, blip, reconType, val)
-        -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SEOnIntelChange(self, blip, reconType, val)
-        end
-    end,
-
-    SESetupAttackVectorsThread = function(self)
-       -- Only use this with AI-SorianEdit
-        if not self.sorianedit then
-            return OlderOldSorianEditAIBrainClass.SESetupAttackVectorsThread(self)
-        end
-        coroutine.yield(10)
-        -- We are leaving this forked thread here because we don't need it.
-        KillThread(CurrentThread())
     end,
 
     SEParseIntelThread = function(self)
