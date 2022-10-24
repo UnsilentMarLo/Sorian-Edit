@@ -39,7 +39,7 @@ local WaterPrio = function(self,aiBrain)
 	
 	-- LOG('*AI DEBUG: --------------  Grabbing Water ratio, its: '..aiBrain:GetMapWaterRatio()..'!')
 	
-	if ratio < 0.1 then
+	if ratio < 0.05 then
 	-- LOG('*AI DEBUG: --------------  Water Prio Function returned false, 0')
 		return 0, false
 	else
@@ -52,8 +52,8 @@ end
 
 function WaterRatioCondition(aiBrain, techlevel)
 	local ratio = aiBrain:GetMapWaterRatio()
-	-- LOG('*AI DEBUG: --------------  WaterRatioCondition, its: '..ratio..' for tech: '..techlevel..'!')
-	if ratio > 0.1 then
+	LOG('*AI DEBUG: --------------  WaterRatioCondition, its: '..ratio..' for tech: '..techlevel..'!')
+	if ratio > 0 then
 		if techlevel == 1 then
 			if ratio > 0.05 then
 				return true
@@ -134,7 +134,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.1, 0.5 }},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},

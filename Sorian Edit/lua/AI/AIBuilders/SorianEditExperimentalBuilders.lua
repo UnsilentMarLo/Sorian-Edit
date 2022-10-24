@@ -111,10 +111,11 @@ BuilderGroup {
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
         },
         BuilderType = 'Any',
@@ -142,10 +143,11 @@ BuilderGroup {
         DelayEqualBuildPlatoons = {'SEExperimental', 10},
         BuilderConditions = {
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'SEExperimental' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRATEGIC * categories.TECH3 * categories.STRUCTURE}},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
         },
         BuilderType = 'Any',
@@ -176,6 +178,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -204,6 +207,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -238,11 +242,11 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
 			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
-			NumAssistees = 6,
+			NumAssistees = 4,
             Construction = {
                 DesiresAssist = true,
                 BuildClose = true,
@@ -267,12 +271,12 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
 			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
             --MinNumAssistees = 3,
-			NumAssistees = 25,
+			NumAssistees = 4,
             Construction = {
                 DesiresAssist = true,
                 BuildClose = true,
@@ -298,12 +302,12 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
 			{ EBC, 'GreaterThanEconIncome', { 12, 200 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
             --MinNumAssistees = 3,
-			NumAssistees = 25,
+			NumAssistees = 4,
             Construction = {
                 DesiresAssist = true,
                 BuildClose = true,
@@ -329,12 +333,12 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
 			{ EBC, 'GreaterThanEconIncome', { 15, 200 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'MOBILE LAND EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
             --MinNumAssistees = 3,
-			NumAssistees = 25,
+			NumAssistees = 4,
             Construction = {
                 DesiresAssist = true,
                 BuildClose = true,
@@ -361,7 +365,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { true, 'LocationType', categories.EXPERIMENTAL}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -384,7 +388,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
-            { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.LAND * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { true, 'LocationType', categories.EXPERIMENTAL}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -622,6 +626,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
 			{ EBC, 'GreaterThanEconIncome', { 10, 200 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -650,6 +655,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { true, 'LocationType', categories.EXPERIMENTAL }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -673,6 +679,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.AIR * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { true, 'LocationType', categories.EXPERIMENTAL }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -795,6 +802,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -824,6 +832,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { true, 'LocationType', categories.EXPERIMENTAL }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -848,6 +857,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'LocationEngineersBuildingGreater', { 'LocationType', 0, categories.EXPERIMENTAL * categories.NAVAL * categories.MOBILE}},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL }},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -932,6 +942,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.EXPERIMENTAL}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2, 'MOBILE EXPERIMENTAL' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -1034,6 +1045,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.7, 0.8 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON}},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'EXPERIMENTAL ENERGYPRODUCTION STRUCTURE' }},
+            { SIBC, 'EngineerNeedsAssistance', { false, 'LocationType', categories.EXPERIMENTAL + (categories.NUKE * categories.STRUCTURE) + (categories.TECH3 * categories.ARTILLERY * categories.STRUCTURE)}},
         },
         BuilderType = 'Any',
         BuilderData = {

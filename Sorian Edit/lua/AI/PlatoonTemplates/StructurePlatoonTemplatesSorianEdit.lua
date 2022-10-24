@@ -74,6 +74,14 @@ PlatoonTemplate {
 }
 
 PlatoonTemplate {
+    Name = 'AddToAntiNukePlatoon',
+    Plan = 'SorianPlatoonMerger',
+    GlobalSquads = {
+        { categories.STRUCTURE * categories.DEFENSE * categories.ANTIMISSILE * categories.TECH3 , 1, 300, 'support', 'none' }
+    },
+}
+
+PlatoonTemplate {
     Name = 'T2Engineering',
     Plan = 'UnitUpgradeAI',
     FactionSquads = {

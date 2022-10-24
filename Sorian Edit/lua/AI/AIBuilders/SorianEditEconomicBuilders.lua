@@ -1325,18 +1325,19 @@ BuilderGroup {
 			{ UCBC, 'GreaterThanGameTimeSeconds', { 6*60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1,  categories.STRUCTURE * categories.MASSSTORAGE }},
-            { MABC, 'MarkerLessThanDistance',  { 'Mass', 40, -3, 0, 0}},
-			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 4, categories.STRUCTURE * categories.MASSSTORAGE }},
-			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
-            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 10, 'ueb1106' } },
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2,  categories.STRUCTURE * categories.MASSSTORAGE }},
+            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 256, 'ueb1106' } },
+            { MABC, 'MarkerLessThanDistance',  { 'Mass', 250, -3, 0, 0}},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = categories.MASSEXTRACTION * (categories.TECH3 + categories.TECH2),
-                AdjacencyDistance = 10,
+                AdjacencyDistance = 250,
                 BuildClose = false,
+                RepeatBuild = false,
                 BuildStructures = {
                     'MassStorage',
                 }
@@ -1595,13 +1596,13 @@ BuilderGroup {
             { MABC, 'MarkerLessThanDistance',  { 'Mass', 256, -3, 0, 0}},
 			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 4, categories.STRUCTURE * categories.MASSSTORAGE }},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
-            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 10, 'ueb1106' } },
+            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 256, 'ueb1106' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = categories.MASSEXTRACTION * (categories.TECH3 + categories.TECH2),
-                AdjacencyDistance = 10,
+                AdjacencyDistance = 250,
                 BuildClose = false,
                 BuildStructures = {
                     'MassStorage',
@@ -2048,6 +2049,27 @@ BuilderGroup {
         }
     },
     Builder {
+        BuilderName = 'Sorianedit Mass 128 low prio',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
+        Priority = 2470,
+        InstanceCount = 6,
+        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        BuilderConditions = {
+            { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 128, -500, 1000, 0, 'AntiSurface', 1 }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+				NeedGuard = false,
+				DesiresAssist = false,
+                RepeatBuild = true,
+                BuildStructures = {
+                    'T1Resource',
+                }
+            }
+        }
+    },
+    Builder {
         BuilderName = 'Sorianedit Mass 250 low prio',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2470,
@@ -2384,10 +2406,10 @@ BuilderGroup {
             NeedGuard = false,
             DesiresAssist = true,
             Construction = {
-                BuildClose = true,
+                BuildClose = false,
                 AdjacencyCategory = 'FACTORY',
                 AvoidCategory = 'ENERGYPRODUCTION',
-                AdjacencyDistance = 50,
+                AdjacencyDistance = 250,
                 maxUnits = 1,
                 maxRadius = 2.5,
                 BuildStructures = {
@@ -2451,6 +2473,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
             { EBC, 'LessThanEconTrend', { 10000.0, 0.8 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3}},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.2, 0.1 }},
         },
         BuilderData = {
@@ -2489,7 +2512,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 }},
         },
         BuilderData = {
             Construction = {
@@ -2692,7 +2715,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 300 }},
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
             { UCBC, 'EnemyUnitsGreaterAtLocationRadius', { 512, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
         },
         BuilderType = 'Any',
@@ -2730,7 +2753,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'GreaterThanGameTimeSeconds', { 300 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
             { UCBC, 'EnemyUnitsGreaterAtLocationRadius', { 86, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
         },
         BuilderType = 'Any',

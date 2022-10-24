@@ -763,7 +763,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 95,
+            AttackEnemyStrength = 75,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -777,8 +777,8 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 600 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			{ UCBC, 'LessThanGameTimeSeconds', { 400 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER } },
         },
     },
     Builder {
@@ -792,7 +792,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 95,
+            AttackEnemyStrength = 75,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -820,7 +820,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 95,
+            AttackEnemyStrength = 75,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -847,7 +847,7 @@ BuilderGroup {
         PlatoonTemplate = 'MassHuntersCategorySorianEditSmall',
         Priority = 1600,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 140 } },
+				{ UCBC, 'LessThanGameTimeSeconds', { 240 } },
 				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
             },
@@ -861,7 +861,7 @@ BuilderGroup {
                 'STRUCTURE ECONOMIC',
             },
         },
-        InstanceCount = 2,
+        InstanceCount = 4,
         BuilderType = 'Any',
     },
     Builder {
@@ -869,9 +869,9 @@ BuilderGroup {
         PlatoonTemplate = 'MassHuntersCategorySorianEditLarge',
         Priority = 1500,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 440 } },
+                { UCBC, 'GreaterThanGameTimeSeconds', { 240 } },
 				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             NeverGuardBases = true,
@@ -883,7 +883,7 @@ BuilderGroup {
                 'STRUCTURE ECONOMIC',
             },
         },
-        InstanceCount = 1,
+        InstanceCount = 5,
         BuilderType = 'Any',
     },
     Builder {

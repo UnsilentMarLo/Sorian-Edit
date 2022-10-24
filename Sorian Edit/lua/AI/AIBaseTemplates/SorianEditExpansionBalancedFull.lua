@@ -13,7 +13,7 @@ BaseBuilderTemplate {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
         'SorianEditSupportFactoryUpgrades',
-        'SorianEditSupportFactoryUpgrades - Emergency',
+        -- 'SorianEditSupportFactoryUpgrades - Emergency',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuildersExpansion rush',

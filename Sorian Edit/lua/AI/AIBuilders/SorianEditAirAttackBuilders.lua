@@ -78,8 +78,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ UCBC, 'LessThanGameTimeSeconds', { 380 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.6 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, 'BOMBER' }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.4 } },
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, 'BOMBER' }},
         },
         BuilderType = 'Air',
         PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
@@ -147,13 +147,24 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Fighter',
         PlatoonTemplate = 'T1AirFighter',
-        Priority = 1400,
+        Priority = 5500,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.6 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2' }},
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.4 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR' }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
+        BuilderName = 'SorianEditT1 Air Fighter',
+        PlatoonTemplate = 'T1AirFighter',
+        Priority = 550000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSeconds', { 280 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2 AIR' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
         },
         BuilderType = 'Air',
     },
@@ -188,7 +199,7 @@ BuilderGroup {
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 3, categories.ANTIAIR * categories.AIR - categories.BOMBER } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 2, 'FACTORY TECH2' }},
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.7 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -207,7 +218,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.6 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.4 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -506,7 +517,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT1 Air Transport - Air',
         PlatoonTemplate = 'T1AirTransport',
-        Priority = 22000,
+        Priority = 2200000000,
         BuilderConditions = {
             { MIBC, 'ArmyNeedsTransports', {} },
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
@@ -1323,7 +1334,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.AIR * categories.MOBILE * categories.ANTIAIR - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
-            { SBC, 'HaveEnoughAir', {}},
+            -- { SBC, 'HaveEnoughAir', {}},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
     },
@@ -1372,7 +1383,7 @@ BuilderGroup {
         BuilderConditions = {
             { UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.AIR * categories.MOBILE * categories.ANTIAIR, 'Enemy'}},
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.AIR * categories.MOBILE * categories.ANTIAIR * (categories.TECH1 + categories.TECH2 + categories.TECH3) - categories.BOMBER - categories.TRANSPORTFOCUS - categories.EXPERIMENTAL } },
-            { SBC, 'HaveEnoughAir', {}},
+            -- { SBC, 'HaveEnoughAir', {}},
             -- { SBC, 'NoRushTimeCheck', { 0 }},
         },
     },

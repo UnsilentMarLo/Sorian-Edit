@@ -161,6 +161,20 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
             -- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
             buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
+        elseif cons.BaseDefence then
+            relative = false
+            baseTmpl = baseTmplFile['ExpansionBaseTemplates'][factionIndex]
+            if aiBrain.WantedDefensivePoints[1] ~= nil then
+                for k, v in aiBrain.WantedDefensivePoints do
+                    local UnitCountMarker = aiBrain:GetUnitsAroundPoint(categories.STRUCTURE * categories.DEFENSE, Vector(v[1],0,v[3]), 10, 'Ally')
+                    if table.getn(UnitCountMarker) < 8 then
+                        table.insert(baseTmplList, AIBuildStructures.AIBuildBaseTemplateFromLocation(baseTmpl, v))
+                    end
+                end
+                buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
+            else
+                self:PlatoonDisband()
+            end
         elseif cons.PdCreep then
             relative = false
 			-- Get a position where to start the creep; Get enemy position
@@ -971,7 +985,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                             self:SetPlatoonFormationOverride('AttackFormation')
                             self:AttackTarget(UnitWithPath)
                         else
-                            self:MoveDirect(aiBrain, bAggroMove, target)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target)
                         end
                         -- We moved to the target, attack it now if its still exists
                         if aiBrain:PlatoonExists(self) and UnitWithPath and not UnitWithPath.Dead and not UnitWithPath:BeenDestroyed() then
@@ -1014,7 +1028,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 if aiBrain:PlatoonExists(self) and target and not target.Dead and not target:BeenDestroyed() then
                     LastTargetPos = target:GetPosition()
                     -- check if the target is not in a nuke blast area
-                    if AIUtils.IsNukeBlastArea(aiBrain, LastTargetPos) then
+                    if AIUtils.IsNukeBlastAreaSE(aiBrain, LastTargetPos) then
                         target = nil
                     else
                         self:SetPlatoonFormationOverride('AttackFormation')
@@ -3985,11 +3999,11 @@ Platoon = Class(SorianEditPlatoonClass) {
 			end
 			
             -- we use normal threat first
-            local path, reason = self.PlatoonGenerateSafePathToSorianEdit( aiBrain, self, self.MovementLayer, platPos, transportLocation, mythreat, markerradius )
+            local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit( aiBrain, self.MovementLayer, platPos, transportLocation, mythreat, markerradius )
 			-- then we'll try elevated threat
 			if not path then
 			-- we use an elevated threat value to help insure that we'll get a path
-				path, reason = self.PlatoonGenerateSafePathToSorianEdit( aiBrain, self, self.MovementLayer, platPos, transportLocation, mythreat * 3, markerradius )
+				path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit( aiBrain, self.MovementLayer, platPos, transportLocation, mythreat * 3, markerradius )
 			end
 			-- engineer teleportation
 			if engineer and engineer:HasEnhancement('Teleporter') then
@@ -4209,254 +4223,6 @@ Platoon = Class(SorianEditPlatoonClass) {
 			self:PlatoonDisband(aiBrain)
 		end
     end,
-
-    PlatoonGenerateSafePathToSorianEdit = function( aiBrain, platoon, platoonLayer, start, destination, threatallowed, MaxMarkerDist)
-		local GetUnitsAroundPoint = moho.aibrain_methods.GetUnitsAroundPoint
-		local GetThreatBetweenPositions = moho.aibrain_methods.GetThreatBetweenPositions
-		local VDist2Sq = VDist2Sq
-		local VDist2 = VDist2
-		-- types of threat to look at based on composition of platoon
-		local ThreatTable = { Land = 'AntiSurface', Water = 'AntiSurface', Amphibious = 'AntiSurface', Air = 'AntiAir', }
-		local threattype = ThreatTable[platoonLayer]
-		-- threatallowed controls how much threat is considered acceptable at any point
-		local threatallowed = threatallowed or 5
-		-- step size is used when making DestinationBetweenPoints checks
-		-- the value of 70 is relatively safe to use to avoid intervening terrain issues
-		local stepsize = 100
-		-- air platoons can look much further off the line since they generally ignore terrain anyway
-		-- this larger step makes looking for destination much less costly in processing
-		if platoonLayer == 'Air' then
-			stepsize = 240
-		end
-		
-		if start and destination then
-			local distance = VDist2( start[1],start[3], destination[1],destination[3] )
-			if distance <= stepsize then
-				return {destination}, 'Direct', distance
-			elseif platoonLayer == 'Amphibious' then
-				stepsize = 125
-				if distance <= stepsize then
-					return {destination}, 'Direct', distance
-				end
-			elseif platoonLayer == 'Water' then
-				stepsize = 175
-				if distance <= stepsize then
-					return {destination}, 'Direct', distance
-				end
-			elseif platoonLayer == 'Air' then
-				stepsize = 250
-				if distance <= stepsize or GetThreatBetweenPositions( aiBrain, start, destination, nil, threattype) < threatallowed then
-					return {destination}, 'Direct', distance
-				end
-			end
-		else
-			if not destination then
-				LOG("*AI DEBUG "..aiBrain.Nickname.." Generate Safe Path "..platoonLayer.." had a bad destination "..repr(destination))
-				return false, 'Badlocations', 0
-			else
-				LOG("*AI DEBUG "..aiBrain.Nickname.." "..repr(platoon.BuilderName).." Generate Safe Path "..platoonLayer.." had a bad start "..repr(start))
-				return {destination}, 'Direct', 9999
-			end
-		end
-		-- MaxMarkerDist controls the range we look for markers AND the range we use when making threat checks
-		local MaxMarkerDist = MaxMarkerDist or 160
-		local radiuscheck = MaxMarkerDist * MaxMarkerDist
-		local threatradius = MaxMarkerDist * .33
-		local stepcheck = stepsize * stepsize
-		-- get all the layer markers -- table format has 5 values (posX,posY,posZ, nodeName, graph)
-		local markerlist = ScenarioInfo.PathGraphs['RawPaths'][platoonLayer] or false
-		
-		--** A Whole set of localized function **--
-		-------------------------------------------
-		
-		local AIGetThreatLevelsAroundPoint = function( position, threatradius )
-			if threattype == 'AntiAir' then
-				return aiBrain:GetThreatAtPosition( position, 0, true, 'AntiAir')	--airthreat
-			elseif threattype == 'AntiSurface' then
-				return aiBrain:GetThreatAtPosition( position, 0, true, 'AntiSurface')	--surthreat
-			elseif threattype == 'AntiSub' then
-				return aiBrain:GetThreatAtPosition( position, 0, true, 'AntiSub')	--subthreat
-			elseif threattype == 'Economy' then
-				return aiBrain:GetThreatAtPosition( position, 0, true, 'Economy')	--ecothreat
-			else
-				return aiBrain:GetThreatAtPosition( position, 0, true, 'Overall')	--airthreat + ecothreat + surthreat + subthreat
-			end
-		end
-
-		-- checks if destination is somewhere between two points
-		local DestinationBetweenPoints = function( destination, start, finish )
-			-- using the distance between two nodes
-			-- calc how many steps there will be in the line
-			local steps = SorianEditFLOOR( VDist2(start[1], start[3], finish[1], finish[3]) / stepsize )
-			if steps > 0 then
-				-- and the size of each step
-				local xstep = (start[1] - finish[1]) / steps
-				local ystep = (start[3] - finish[3]) / steps
-				-- check the steps from start to one less than then destination
-				for i = 1, steps - 1 do
-					-- if we're within the stepcheck ogrids of the destination then we found it
-					if VDist2Sq(start[1] - (xstep * i), start[3] - (ystep * i), destination[1], destination[3]) < stepcheck then
-						return true
-						
-					end
-				end	
-			end
-			return false
-		end
-		-- this function will return a 3D position and a named marker
-		local GetClosestSafePathNodeInRadiusByLayer = function( location, seeksafest, goalseek, threatmodifier )
-			if markerlist then
-				local positions = {}
-				local counter = 0
-				local VDist3Sq = VDist3Sq
-				-- sort the table by closest to the given location
-				SorianEditSORT(markerlist, function(a,b) return VDist3Sq( a.position, location ) < VDist3Sq( b.position, location ) end)
-				-- traverse the list and make a new list of those with allowable threat and within range
-				-- since the source table is already sorted by range, the output table will be created in a sorted order
-				for nodename,v in markerlist do
-					-- process only those entries within the radius
-					if VDist3Sq( v.position, location ) <= radiuscheck then
-						-- add only those with acceptable threat to the new list
-						-- if seeksafest or goalseek flag is set we'll build a table of points with allowable threats
-						-- otherwise we'll just take the closest one
-						if AIGetThreatLevelsAroundPoint( v.position, threatradius) <= (threatallowed * threatmodifier) then
-							if seeksafest or goalseek then
-								positions[counter+1] = { AIGetThreatLevelsAroundPoint( v.position, threatradius), v.node, v.position }
-								counter = counter + 1
-							else
-								return ScenarioInfo.PathGraphs[platoonLayer][v.node], v.node or GetPathGraphs()[platoonLayer][v.node], v.node
-							end
-						end
-					end
-				end
-				-- resort positions to be closest to goalseek position
-				-- just a note here -- the goalseek position is often sent WITHOUT a vertical indication so I had to use VDIST2 rather than VDIST 3 to be sure
-				if goalseek then
-					SorianEditSORT(positions, function(a,b) return VDist2Sq( a[3][1],a[3][3], goalseek[1],goalseek[3] ) < VDist2Sq( b[3][1],b[3][3], goalseek[1],goalseek[3] ) end)
-				end
-				--LOG("*AI DEBUG Sorted positions for destination "..repr(goalseek).." are "..repr(positions))
-				local bestThreat = (threatallowed * threatmodifier)
-				local bestMarker = positions[1][2]	-- defalut to the one closest to goal 	--false
-				-- loop thru to find one with lowest threat	-- if all threats are equal we'll end up with the closest
-				if seeksafest then
-					for _,v in positions do
-						if v[1] < bestThreat then
-							bestThreat = v[1]
-							bestMarker = v[2]
-						end
-					end
-				end
-				if bestMarker then
-					return ScenarioInfo.PathGraphs[platoonLayer][bestMarker],bestMarker or GetPathGraphs()[platoonLayer][bestMarker],bestMarker
-				end
-			end
-			return false, false
-		end	
-
-		local AddBadPath = function( layer, startnode, endnode )
-			if not ScenarioInfo.BadPaths[layer][startnode] then
-				ScenarioInfo.BadPaths[layer][startnode] = {}
-			end
-
-			if not ScenarioInfo.BadPaths[layer][startnode][endnode] then
-				ScenarioInfo.BadPaths[layer][startnode][endnode] = {}
-				if not ScenarioInfo.BadPaths[layer][endnode] then
-					ScenarioInfo.BadPaths[layer][endnode] = {}
-				end
-				ScenarioInfo.BadPaths[layer][endnode][startnode] = {}
-			end
-		end
-		-- this flag is set but passed into the path generator
-		-- was originally used to allow the path generator to 'cut corners' on final step
-		local testPath = true
-		
-		if platoonLayer == 'Air' or platoonLayer == 'Amphibious' then
-			testPath = true
-		end
-		-- Get the closest safe node at platoon position which is closest to the destination
-		local startNode, startNodeName = GetClosestSafePathNodeInRadiusByLayer( start, false, destination, 2 )
-
-		if not startNode and platoonLayer == 'Amphibious' then
-			--LOG("*AI DEBUG "..aiBrain.Nickname.." GenerateSafePath "..platoon.BuilderName.." "..threatallowed.." fails no safe "..platoonLayer.." startnode within "..MaxMarkerDist.." of "..repr(start).." - trying Land")
-			platoonLayer = 'Land'
-			startNode, startNodeName = GetClosestSafePathNodeInRadiusByLayer( start, false, destination, 2 )
-		end
-	
-		if not startNode then
-			--LOG("*AI DEBUG "..aiBrain.Nickname.." GenerateSafePath "..repr(platoon.BuilderName).." "..threatallowed.." finds no safe "..platoonLayer.." startnode within "..MaxMarkerDist.." of "..repr(start).." - failing")
-			coroutine.yield(1)
-			return false, 'NoPath'
-		end
-		
-		if DestinationBetweenPoints( destination, start, startNode.position ) then
-			--LOG("*AI DEBUG "..aiBrain.Nickname.." "..repr(platoon.BuilderName).." finds destination between current position and startNode")
-			return {destination}, 'Direct', 0.9
-		end
-    
-		-- Get the closest safe node at the destination which is cloest to the start
-		local endNode, endNodeName = GetClosestSafePathNodeInRadiusByLayer( destination, true, false, 1 )
-		if not endNode then
-			--LOG("*AI DEBUG "..aiBrain.Nickname.." GenerateSafePath "..repr(platoon.BuilderName).." "..threatallowed.." finds no safe "..platoonLayer.." endnode within "..MaxMarkerDist.." of "..repr(destination).." - failing")
-			coroutine.yield(1)
-			return false, 'NoPath'
-		end
-		
-		if startNodeName == endNodeName then
-			--LOG("*AI DEBUG "..aiBrain.Nickname.." "..repr(platoon.BuilderName).." GenerateSafePath has same start and end node "..repr(startNodeName))
-			return {destination}, 'Direct', 1
-		end
-		
-		local path = false
-		local pathlength = VDist2(start[1],start[3],startNode.position[1],startNode.position[3])
-		local BadPath = ScenarioInfo.BadPaths[platoonLayer]
-		-- if the nodes are not in the bad path cache generate a path for them
-		-- Generate the safest path between the start and destination nodes
-		if not BadPath[startNodeName][endNodeName] then
-			-- add the platoons request for a path to the respective path generator for that layer
-			SorianEditINSERT(aiBrain.PathRequests[platoonLayer], {
-															Dest = destination,
-															EndNode = endNode,
-															Location = start,
-															Platoon = platoon, 
-															StartNode = startNode,
-															Stepsize = stepsize,
-															Testpath = testPath,
-															ThreatLayer = threattype,
-															ThreatWeight = threatallowed,
-			} )
-
-			aiBrain.PathRequests['Replies'][platoon] = false
-            local Replies = aiBrain.PathRequests['Replies']
-			local waitcount = 1
-			-- loop here until reply or 90 seconds
-			while waitcount < 100 do
-				coroutine.yield(3)
-				waitcount = waitcount + 1
-				if Replies[platoon].path then
-					break
-				end
-			end
-		
-			if waitcount < 100 then
-				path = Replies[platoon].path
-				pathlength = pathlength + Replies[platoon].length
-			else
-				Replies[platoon] = false
-				return false, 'NoResponse',0
-			end
-			Replies[platoon] = false
-		end
-
-		if not path or path == 'NoPath' then
-			-- if no path can be found (versus too much threat or no reply) then add to badpath cache
-			if path == 'NoPath' and not BadPath[startNodeName][endNodeName] then
-				ForkTo(AddBadPath, platoonLayer, startNodeName, endNodeName )
-			end
-			return false, 'NoPath', 0
-		end
-		path[table.getn(path)+1] = destination
-		return path, 'Pathing', pathlength
-	end,
 
 	--  Function: MergeIntoNearbyPlatoons
 	--  This is a variation of the MergeWithNearbyPlatoons 
@@ -5357,7 +5123,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
                 --LOG('MergeRequired, performing merge')
                 self:Stop()
-                self:MergeWithNearbyPlatoonsRNG('StrikeForceAIRNG', 60, 20, true)
+                self:MergeWithNearbyPlatoonsSorianEdit('StrikeForceAIRNG', 60, 20, true)
                 mergeRequired = false
             end
         end
@@ -6119,7 +5885,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('MovePath (Amphibious)')
                                 coroutine.yield(1)
                             end
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         else
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('MovePath with transporter layer('..self.MovementLayer..')')
@@ -6136,19 +5902,19 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('UWP MoveDirect (Air)')
                                 coroutine.yield(1)
                             end
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         elseif self.MovementLayer == 'Water' then
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('UWP MoveDirect (Water)')
                                 coroutine.yield(1)
                             end
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         elseif self.MovementLayer == 'Amphibious' then
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('UWP MoveDirect (Amphibious)')
                                 coroutine.yield(1)
                             end
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         else
                             if HERODEBUGSorianEdit then
                                 self:RenamePlatoon('UWP MoveDirect with transporter layer('..self.MovementLayer..')')
@@ -6164,7 +5930,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 self:RenamePlatoon('UNP MoveDirect (Air)')
                                 coroutine.yield(1)
                             end
-                            self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
+                            self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory)
                         -- we have a target but no path, Naval can never reach it
                         elseif self.MovementLayer == 'Water' then
                             if HERODEBUGSorianEdit then
@@ -6180,7 +5946,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                                 coroutine.yield(1)
                             end
                             --self:RenamePlatoon('MoveOnlyWithTransport')
-                            -- self:MoveDirect(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory) replace if transports break again
+                            -- self:MoveDirectSorianEdit(aiBrain, bAggroMove, target, MaxPlatoonWeaponRange, TargetSearchCategory) replace if transports break again
                             self:MoveWithTransportSorianEdit(aiBrain, bAggroMove, target, basePosition, ExperimentalInPlatoon, MaxPlatoonWeaponRange, TargetSearchCategory)
                         end
                     end
@@ -6399,7 +6165,7 @@ Platoon = Class(SorianEditPlatoonClass) {
 
                 if TargetInPlatoonRange and not TargetInPlatoonRange.Dead then
                     --LOG('* AI-Uveso: * HeroFightPlatoon: TargetInPlatoonRange: ['..repr(TargetInPlatoonRange.UnitId)..']')
-                    if AIUtils.IsNukeBlastArea(aiBrain, LastTargetPos) then
+                    if AIUtils.IsNukeBlastAreaSE(aiBrain, LastTargetPos) then
                         -- continue the "while aiBrain:PlatoonExists(self) do" loop
                         continue
                     end
@@ -7353,5 +7119,13 @@ Platoon = Class(SorianEditPlatoonClass) {
         end
         SUtils.TMLAIThread(self,TML,aiBrain)
         self:PlatoonDisband()
+    end,
+    
+    RenamePlatoon = function(self, text)
+        for k, v in self:GetPlatoonUnits() do
+            if v and not v.Dead then
+                v:SetCustomName(text..' '..math.floor(GetGameTimeSeconds()))
+            end
+        end
     end,
 }

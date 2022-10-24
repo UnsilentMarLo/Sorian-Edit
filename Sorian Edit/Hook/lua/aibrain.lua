@@ -4,6 +4,7 @@ local MapInfo = import('/mods/Sorian Edit/lua/AI/mapinfo.lua')
 local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local AIAttackUtils = import('/lua/AI/aiattackutilities.lua')
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
+local NavGenerator = import('/lua/sim/NavGenerator.lua')
 
 OlderOldSorianEditAIBrainClass = AIBrain
 AIBrain = Class(OlderOldSorianEditAIBrainClass) {
@@ -42,17 +43,26 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         OlderOldSorianEditAIBrainClass.OnCreateAI(self, planName)
         local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
         if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
+		
+			if not NavGenerator.IsGenerated() then
+				NavGenerator.Generate()
+			end
 			
             local iArmyNo = tonumber(string.sub(self.Name, 6 ))
             local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
 			
             self.sorianedit = true
+            self.WantedDefensivePoints = {},
             self:ForkThread(self.SEParseIntelThread)
             self:ForkThread(self.TauntThread)
 			
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
             MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 10)
+            MapInfo.RecordAttackVectorsStartPosition(self)
+            self:ForkThread(self.DefensivePointsThread)
+			
+            -- self:ForkThread(self.VisualThread)
             -- MapInfo.EvaluateNavalAreas(iArmyNo)
             LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') Army spawn: ('..repr(iArmyNo)..') ')
         end
@@ -125,7 +135,7 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
 
     SEParseIntelThread = function(self)
         while self.sorianedit do
-            WaitTicks(120)
+            WaitTicks(50)
             allyScore = 0
             enemyScore = 0
 
@@ -149,11 +159,37 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         end
     end,
 	
-    TauntThread = function(self)
+    DefensivePointsThread = function(self)
         while self.sorianedit do
-            WaitSeconds(30+Random(-10, 50))
-			import('/lua/AI/sorianutilities.lua').AIRandomizeTaunt(self)
-            WaitTicks(8*10*(60+Random(-20, 20)))
+			self.WantedDefensivePoints = {}
+			
+			if self:GetCurrentEnemy() then
+				local estartX, estartZ = self:GetCurrentEnemy():GetArmyStartPos()
+				local selfIndex = tonumber(string.sub(self.Name, 6 ))
+				local maxdist = VDist2Sq(estartX, estartZ, MapInfo.PlayerStartPoints[selfIndex][1], MapInfo.PlayerStartPoints[selfIndex][3])
+				for k, DefensivePoint in MapInfo.ArmyVectorPoints[selfIndex] do
+					if VDist2Sq(DefensivePoint[1], DefensivePoint[3], estartX, estartZ) <= maxdist then
+						self.WantedDefensivePoints[k] = DefensivePoint
+					end
+				end
+			end
+			coroutine.yield(60)
+        end
+    end,
+	
+    VisualThread = function(self)
+        while self.sorianedit do
+			for k, ArmyPoints in MapInfo.ArmyVectorPoints do
+				local pos = MapInfo.PlayerStartPoints[k]
+				for kp, vp in ArmyPoints do
+					DrawCircle(vp, 10, '09FF00')
+					DrawLinePop(vp, pos, '09FF00')
+				end
+			end
+			for kp, dp in self.WantedDefensivePoints do
+				DrawCircle(dp, 10, 'F54242')
+			end
+			coroutine.yield(1)
         end
     end,
 	

@@ -48,7 +48,7 @@ BuilderGroup {
             { EBC, 'GreaterThanEconIncome',  { 2.0, 16.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'LessThanGameTimeSeconds', { 600 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 10, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -72,7 +72,7 @@ BuilderGroup {
                     'T1AirFactory',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
     Builder {
@@ -117,7 +117,7 @@ BuilderGroup {
                     'T1LandFactory',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
     Builder {
@@ -159,7 +159,7 @@ BuilderGroup {
                     'T1EnergyProduction',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
 }
@@ -179,7 +179,6 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.MOBILE * categories.AIR * categories.TRANSPORTFOCUS - (categories.uea0203 + categories.EXPERIMENTAL)  }},
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -207,7 +206,7 @@ BuilderGroup {
                     'T1AirFactory',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
     Builder {
@@ -252,7 +251,7 @@ BuilderGroup {
                     'T1LandFactory',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
     Builder {
@@ -294,7 +293,7 @@ BuilderGroup {
                     'T1EnergyProduction',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
 }
@@ -341,7 +340,7 @@ BuilderGroup {
                     'T1AADefense',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
     Builder {
@@ -380,7 +379,7 @@ BuilderGroup {
                     'T2Radar',
                 }
             },
-            NeedGuard = true,
+            NeedGuard = false,
         }
     },
 }

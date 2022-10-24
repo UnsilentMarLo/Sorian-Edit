@@ -1,6 +1,7 @@
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua') -- located in the lua.nx2 part of the FAF gamedata
 local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
+local NavUtils = import('/lua/sim/NavUtils.lua')
 
 MassPoints = {} -- Stores position of each mass point (as a position value, i.e. a table with 3 values, x, y, z
 HydroPoints = {} -- Stores position values i.e. a table with 3 values, x, y, z
@@ -101,6 +102,48 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
         else return iMexCount
     end
 
+end
+
+AttackVectors = {}
+ArmyVectorPoints = {}
+
+function RecordAttackVectorsStartPosition(aiBrain)
+    -- create a table of ArmyPositions then populate it with pathable positions for possible attack vectors on each spawn
+    -- use this to create possible backdoors into the enemy Base
+    local mapSizeX, mapSizeZ = GetMapSize()
+    local radius = 50
+	
+	local selfIndex = tonumber(string.sub(aiBrain.Name, 6 ))
+    
+    if mapSizeX > 512 and mapSizeZ > 512 then
+        radius = 50 * (((mapSizeX+mapSizeZ)/2)/512)
+    end
+	
+    -- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: X:'..repr(mapSizeX)..' Z: '..repr(mapSizeZ))
+    -- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition:'..repr(radius))
+	
+    for kp, vp in PlayerStartPoints do
+		ArmyVectorPoints[kp] = {}
+        local x = vp[1]
+        local y = vp[3]
+        local z = vp[2]
+		local maxdist = VDist2Sq(x, y, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3])
+        for i = 1, 12 do
+            local angle = i * math.pi / 6
+            local ptx, pty = x + radius * math.cos( angle ), y + radius * math.sin( angle )
+			-- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: Vector at angle:'..repr(angle)..' Position: '..repr({ptx, z, pty}))
+			if NavUtils.CanPathTo('Land', {ptx, z, pty}, vp) then
+				if kp == selfIndex then
+					ArmyVectorPoints[kp][i] = {ptx, z, pty}
+					continue
+				end
+				-- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: Vector:'..repr(VDist2Sq(ptx, pty, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3]))..' vs Base: '..repr(maxdist))
+				if VDist2Sq(ptx, pty, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3]) <= maxdist then
+					ArmyVectorPoints[kp][i] = {ptx, z, pty}
+				end
+			end
+        end
+    end
 end
 
 function EvaluateNavalAreas(iArmy)

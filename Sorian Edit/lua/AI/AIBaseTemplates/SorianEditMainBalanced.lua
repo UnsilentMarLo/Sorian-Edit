@@ -19,7 +19,7 @@ BaseBuilderTemplate {
         --'SorianEditT2FastUpgradeBuildersExpansion',
         -- 'SorianEditEmergencyUpgradeBuilders',
         'SorianEditSupportFactoryUpgrades',
-        'SorianEditSupportFactoryUpgrades - Emergency',
+        -- 'SorianEditSupportFactoryUpgrades - Emergency',
 
         -- Engineer Builders
         'SorianEditEngineerFactoryBuilders',

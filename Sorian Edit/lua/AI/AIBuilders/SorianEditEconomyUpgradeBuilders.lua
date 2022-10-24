@@ -242,6 +242,7 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconIncome',  { 6.0, 10.0}},
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', {2, categories.FACTORY * categories.LAND * categories.TECH2 - categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.LAND * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.LAND * categories.TECH2 } },
             },
@@ -255,7 +256,7 @@ BuilderGroup {
         BuilderConditions = {
 				{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 				{ EBC, 'GreaterThanEconIncome',  { 6.0, 10.0}},
-                { UCBC, 'HaveGreaterThanUnitsWithCategory', {0, categories.FACTORY * categories.LAND * categories.TECH3 } },
+                { UCBC, 'HaveGreaterThanUnitsWithCategory', {2, categories.FACTORY * categories.AIR * categories.TECH2 - categories.RESEARCH } },
                 { UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.AIR * categories.RESEARCH * categories.TECH3 - categories.COMMAND } },
                 { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, categories.FACTORY * categories.AIR * categories.TECH2 } },
             },

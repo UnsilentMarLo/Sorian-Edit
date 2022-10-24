@@ -726,12 +726,12 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Base D Engineer - Perimeter',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
         DelayEqualBuildPlatoons = {'DefenseBuildings', 4},
-        Priority = 930,
+        Priority = 4430,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } }, -- { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.2, 0.5 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.8 }},
             -- { UCBC, 'CheckBuildPlatoonDelay', { 'DefenseBuildings' }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
             { UCBC, 'UnitCapCheckLess', { .8 } },
@@ -741,7 +741,7 @@ BuilderGroup {
             NumAssistees = 1,
             Construction = {
                 BuildClose = false,
-                NearBasePatrolPoints = true,
+                BaseDefence = true,
                 BuildStructures = {
                     'T2GroundDefense',
                     'T2AADefense',

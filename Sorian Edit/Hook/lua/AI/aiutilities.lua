@@ -13,7 +13,8 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
 
     -- first try to find a path with markers.
     local result, bestPos
-    local path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+    -- local path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Amphibious', pos, destination)
     -- only use CanPathTo for distance closer then 200 and if we can't path with markers
     if reason ~= 'PathOK' then
         -- we will crash the game if we use CanPathTo() on all engineer movments on a map without markers. So we don't path at all.
@@ -21,7 +22,7 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
             result = true
         -- if we have a Graph (AI markers) but not a path, then there is no path. We need a transporter.
         elseif reason == 'NoPath' then
-            --AILog('* AI-SorianEdit: EngineerMoveWithSafePath(): No path found ('..math.floor(pos[1])..'/'..math.floor(pos[3])..') to ('..math.floor(destination[1])..'/'..math.floor(destination[3])..')')
+            --LOG('* AI-SorianEdit: EngineerMoveWithSafePath(): No path found ('..math.floor(pos[1])..'/'..math.floor(pos[3])..') to ('..math.floor(destination[1])..'/'..math.floor(destination[3])..')')
         elseif VDist2(pos[1], pos[3], destination[1], destination[3]) < 200 then
             AIDebug('* AI-SorianEdit: EngineerMoveWithSafePath(): EngineerGenerateSafePathTo returned: ('..repr(reason)..') -> executing c-engine function CanPathTo().', true, SorianEditOffsetAiutilitiesLUA)
             -- be really sure we don't try a pathing with a destroyed c-object
@@ -55,7 +56,8 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
     -- If we're here, we haven't used transports and we can path to the destination
     if result or reason == 'PathOK' then
         if reason ~= 'PathOK' then
-            path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+            -- path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
+            path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Amphibious', pos, destination)
         end
         if path then
             local pathSize = table.getn(path)
@@ -229,7 +231,7 @@ function UseTransportsSE(units, transports, location, transportPlatoon)
             location = {location[1], GetSurfaceHeight(location[1],location[3]), location[3]}
 							-- #AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, platoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 ) New function
             -- local safePath = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Air', transports[1]:GetPosition(), location, 200)
-            local safePath = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, transportPlatoon, transportPlatoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 )
+            local safePath = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, transportPlatoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 )
             if safePath then
                 for _, p in safePath do
                     IssueMove(transports, p)
@@ -848,7 +850,7 @@ function AIFindNearestCategoryTargetInCloseRangeSorianEdit(aiBrain, position, ma
                 TargetPosition = Target:GetPosition()
                 EnemyStrength = 0
                 -- check if the target is inside a nuke blast radius
-                if IsNukeBlastArea(aiBrain, TargetPosition) then continue end
+                if IsNukeBlastAreaSE(aiBrain, TargetPosition) then continue end
                 -- check if we have a special player as enemy
                 if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then continue end
                 -- check if the Target is still alive, matches our target priority and can be attacked from our platoon
@@ -879,6 +881,20 @@ function AIFindNearestCategoryTargetInCloseRangeSorianEdit(aiBrain, position, ma
         coroutine.yield(1)
     end
     return TargetUnit
+end
+
+function IsNukeBlastAreaSE(aiBrain, TargetPosition)
+    -- check if the target is inside a nuke blast radius
+    if aiBrain.NukedArea then
+        for i, data in aiBrain.NukedArea or {} do
+            if data.NukeTime + 50 <  GetGameTimeSeconds() then
+                table.remove(aiBrain.NukedArea, i)
+            elseif VDist2(TargetPosition[1], TargetPosition[3], data.Location[1], data.Location[3]) < 40 then
+                return data.Location
+            end
+        end
+    end
+    return false
 end
 
 function points(original,radius,num)

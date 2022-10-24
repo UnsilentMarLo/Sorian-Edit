@@ -482,28 +482,25 @@ function EngineerNeedsAssistance(aiBrain, doesbool, locationType, category)
         return false
     end
     local numFound = 0
-    for _,cat in category do
-        local bCategory = ParseEntityCategory(cat)
 
-        local engs = engineerManager:GetEngineersBuildingCategory(bCategory, categories.ALLUNITS)
-        for k,v in engs do
-            if v.DesiresAssist == true then
-                if v.MinNumAssistees and SUtils.GetGuards(aiBrain, v) < v.MinNumAssistees then
-                    numFound = numFound + 1
-                end
+    local engs = engineerManager:GetEngineersBuildingCategory(category, categories.ALLUNITS)
+    for k,v in engs do
+        if v.DesiresAssist == true then
+            if v.MinNumAssistees and SUtils.GetGuards(aiBrain, v) < v.MinNumAssistees then
+                numFound = numFound + 1
             end
-            if numFound > 0 and doesbool then return true end
         end
+        if numFound > 0 and doesbool then return true end
+    end
 
-        engs = engineerManager:GetEngineersBuildQueue(cat)
-        for k,v in engs do
-            if v.DesiresAssist == true then
-                if v.MinNumAssistees and SUtils.GetGuards(aiBrain, v) < v.MinNumAssistees then
-                    numFound = numFound + 1
-                end
+    engs = engineerManager:GetEngineersBuildQueue(category)
+    for k,v in engs do
+        if v.DesiresAssist == true then
+            if v.MinNumAssistees and SUtils.GetGuards(aiBrain, v) < v.MinNumAssistees then
+                numFound = numFound + 1
             end
-            if numFound > 0 and doesbool then return true end
         end
+        if numFound > 0 and doesbool then return true end
     end
 
     if numFound == 0 and not doesbool then return true end

@@ -45,7 +45,7 @@ PlatoonTemplate {
     Name = 'EngineerAssistSorianEditALL',
     Plan = 'SorianManagerEngineerAssistAI',
     GlobalSquads = {
-        { categories.ENGINEER - categories.SUBCOMMANDER, 1, 1, 'support', 'None' }
+        { categories.ENGINEER - categories.SUBCOMMANDER - categories.COMMAND, 1, 1, 'support', 'None' }
     },
 }
 
@@ -53,7 +53,7 @@ PlatoonTemplate {
     Name = 'EngineerFactoryAssistSorianEditALL',
     Plan = 'FactoryAssistSorianEdit',
     GlobalSquads = {
-        { categories.ENGINEER - categories.SUBCOMMANDER - categories.TECH3, 1, 1, 'support', 'None' }
+        { categories.ENGINEER - categories.COMMAND - categories.SUBCOMMANDER - categories.TECH3, 1, 1, 'support', 'None' }
     },
 }
 
