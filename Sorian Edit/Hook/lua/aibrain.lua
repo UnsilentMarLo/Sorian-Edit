@@ -63,8 +63,6 @@ AIBrain = Class(OlderOldSorianEditAIBrainClass) {
         OlderOldSorianEditAIBrainClass.InitializeSkirmishSystems(self)
         if self.sorianedit then
             self.EnemyPickerThread = self:ForkThread(self.PickEnemySorianEdit)
-        else
-            self.EnemyPickerThread = self:ForkThread(self.PickEnemy)
         end
     end,
 	
