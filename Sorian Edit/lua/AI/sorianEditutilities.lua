@@ -37,7 +37,9 @@ local RNGFLOOR = math.floor
 local RNGCEIL = math.ceil
 local RNGPI = math.pi
 local RNGCAT = table.cat
+
 local AIChatText = import('/mods/Sorian edit/lua/AI/sorianeditlang.lua').AIChatText
+local SyncAIChat = import('/lua/simsyncutils.lua').SyncAIChat
 
 -- Table of AI taunts orginized by faction
 local AITaunts = {
@@ -811,9 +813,10 @@ function AISendChat(aigroup, ainickname, aiaction, targetnickname, extrachat)
             else
                 chattext = AIChatText[aiaction][ranchat]
             end
-            table.insert(Sync.AIChat, {group=aigroup, text=chattext, sender=ainickname})
+
+            SyncAIChat({group=aigroup, text=chattext, sender=ainickname})
         else
-            table.insert(Sync.AIChat, {group=aigroup, text=aiaction, sender=ainickname})
+            SyncAIChat({group=aigroup, text=aiaction, sender=ainickname})
         end
     end
 end
@@ -1669,6 +1672,7 @@ end
 
 -- Small function the draw intel points on the map for debugging
 function DrawIntel(aiBrain)
+	WARN('* AI-SorianEdit: DrawIntel: --------------------------------------------- DrawIntel Thread called')
     threatColor = {
         -- ThreatType = { ARGB value }
         StructuresNotMex = 'ff00ff00', -- Green
@@ -1677,17 +1681,42 @@ function DrawIntel(aiBrain)
         Artillery = 'ffffff00', -- Yellow
         Land = 'ffff9600', -- Orange
     }
+	
+	-- aiBrain.InterestList.HighPriority = {}
+	-- aiBrain.InterestList.LowPriority = {}
+	-- aiBrain.InterestList.MustScout = {}
+	
     while true do
         if aiBrain:GetArmyIndex() == GetFocusArmy() then
             for k, v in aiBrain.InterestList.HighPriority do
-                if threatColor[v.Type] then
-                    DrawCircle(v.Position, 1, threatColor[v.Type])
-                    DrawCircle(v.Position, 3, threatColor[v.Type])
-                    DrawCircle(v.Position, 5, threatColor[v.Type])
-                end
+				if threatColor[v.Type] then
+					DrawCircle(v.Position, 1, threatColor[v.Type])
+					DrawCircle(v.Position, 3, threatColor[v.Type])
+					DrawCircle(v.Position, 5, threatColor[v.Type])
+				end
+				DrawCircle(v.Position, 6, 'F2FF00')
+				DrawCircle(v.Position, 6.5, 'F2FF00')
+            end
+            for k, v in aiBrain.InterestList.LowPriority do
+				if threatColor[v.Type] then
+					DrawCircle(v.Position, 1, threatColor[v.Type])
+					DrawCircle(v.Position, 3, threatColor[v.Type])
+					DrawCircle(v.Position, 5, threatColor[v.Type])
+				end
+				DrawCircle(v.Position, 6, 'F2FF00')
+            end
+            for k, v in aiBrain.InterestList.MustScout do
+				if threatColor[v.Type] then
+					DrawCircle(v.Position, 1, threatColor[v.Type])
+					DrawCircle(v.Position, 3, threatColor[v.Type])
+					DrawCircle(v.Position, 5, threatColor[v.Type])
+				end
+				DrawCircle(v.Position, 6, 'F2FF00')
+				DrawCircle(v.Position, 6.5, 'F2FF00')
+				DrawCircle(v.Position, 7, 'F2FF00')
             end
         end
-        coroutine.yield(10)
+		coroutine.yield(1)
     end
 end
 
@@ -2246,7 +2275,7 @@ end
  -- Uveso Utilities -- Just to prevent Issues
 
 
-function ExtractorPause(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
+function ExtractorPauseSorian(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
     local UpgradingBuilding = nil
     local UpgradingBuildingNum = 0
     local PausedUpgradingBuilding = nil
@@ -2298,7 +2327,7 @@ function ExtractorPause(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
             end
         end
     end
-    --LOG('* ExtractorPause: Idle= '..UpgradingBuildingNum..'   Upgrading= '..UpgradingBuildingNum..'   Paused= '..PausedUpgradingBuildingNum..'   Disabled= '..DisabledBuildingNum..'   techLevel= '..techLevel)
+    --LOG('* ExtractorPauseSorian: Idle= '..UpgradingBuildingNum..'   Upgrading= '..UpgradingBuildingNum..'   Paused= '..PausedUpgradingBuildingNum..'   Disabled= '..DisabledBuildingNum..'   techLevel= '..techLevel)
     -- Check for positive Mass/Upgrade ratio
     local MassRatioCheckPositive = GlobalMassUpgradeCostVsGlobalMassIncomeRatio( self, aiBrain, ratio, techLevel, '<' )
     -- Did we found a paused unit ?
@@ -2318,7 +2347,7 @@ function ExtractorPause(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
     end
     -- Check for negative Mass/Upgrade ratio
     local MassRatioCheckNegative = GlobalMassUpgradeCostVsGlobalMassIncomeRatio( self, aiBrain, ratio, techLevel, '>=')
-    --LOG('* ExtractorPause 2 MassRatioCheckNegative >: '..repr(MassRatioCheckNegative)..' - IF this is true , we have bad eco and we should pause.')
+    --LOG('* ExtractorPauseSorian 2 MassRatioCheckNegative >: '..repr(MassRatioCheckNegative)..' - IF this is true , we have bad eco and we should pause.')
     if MassRatioCheckNegative then
         if UpgradingBuildingNum > 1 then
             -- we don't have the eco to upgrade the extractor. Pause it!
@@ -2326,7 +2355,7 @@ function ExtractorPause(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
                 UpgradingBuilding:SetPaused( true )
                 --UpgradingBuilding:SetCustomName('UpgradingBuilding paused')
                 --LOG('UpgradingBuilding paused')
-                --LOG('* ExtractorPause: Pausing upgrading extractor')
+                --LOG('* ExtractorPauseSorian: Pausing upgrading extractor')
                 return true
             end
         end
@@ -2337,92 +2366,10 @@ function ExtractorPause(self, aiBrain, MassExtractorUnitList, ratio, techLevel)
                 PausedUpgradingBuilding:SetPaused( false )
                 --PausedUpgradingBuilding:SetCustomName('Upgrade canceled')
                 --LOG('Upgrade canceled')
-                --LOG('* ExtractorPause: Cancel upgrading extractor')
+                --LOG('* ExtractorPauseSorian: Cancel upgrading extractor')
                 return true
             end 
         end
-    end
-    return false
-end
-
--- UnitUpgradeAIUveso is upgrading the nearest building to our own main base instead of a random building.
-function ExtractorUpgrade(self, aiBrain, MassExtractorUnitList, ratio, techLevel, UnitUpgradeTemplates, StructureUpgradeTemplates)
-    -- Do we have the eco to upgrade ?
-    local MassRatioCheckPositive = GlobalMassUpgradeCostVsGlobalMassIncomeRatio(self, aiBrain, ratio, techLevel, '<' )
-    local aiBrain = self:GetBrain()
-    -- search for the neares building to the base for upgrade.
-    local BasePosition = aiBrain.BuilderManagers['MAIN'].Position
-    local factionIndex = aiBrain:GetFactionIndex()
-    local UpgradingBuilding = 0
-    local DistanceToBase = nil
-    local LowestDistanceToBase = nil
-    local upgradeID = nil
-    local upgradeBuilding = nil
-    local UnitPos = nil
-    local FactionToIndex  = { UEF = 1, AEON = 2, CYBRAN = 3, SERAPHIM = 4, NOMADS = 5}
-    local UnitBeingUpgradeFactionIndex = nil
-    for k, v in MassExtractorUnitList do
-        local TempID
-        -- Check if we don't want to upgrade this unit
-        if not v
-            or v.Dead
-            or v:BeenDestroyed()
-            or v:IsPaused()
-            or not EntityCategoryContains(ParseEntityCategory(techLevel), v)
-            or v:GetFractionComplete() < 1
-        then
-            -- Skip this loop and continue with the next array
-            continue
-        end
-        if v:IsUnitState('Upgrading') then
-            UpgradingBuilding = UpgradingBuilding + 1
-            -- Skip this loop and continue with the next array
-            continue
-        end
-        -- Check for the nearest distance from mainbase
-        UnitPos = v:GetPosition()
-        DistanceToBase= VDist2(BasePosition[1] or 0, BasePosition[3] or 0, UnitPos[1] or 0, UnitPos[3] or 0)
-        if not LowestDistanceToBase or DistanceToBase < LowestDistanceToBase then
-            -- Get the factionindex from the unit to get the right update (in case we have captured this unit from another faction)
-            UnitBeingUpgradeFactionIndex = FactionToIndex[v.factionCategory] or factionIndex
-            -- see if we can find a upgrade
-            if EntityCategoryContains(categories.MOBILE, v) then
-                TempID = aiBrain:FindUpgradeBP(v:GetUnitId(), UnitUpgradeTemplates[UnitBeingUpgradeFactionIndex])
-                if not TempID then
-                    WARN('['..string.gsub(debug.getinfo(1).source, ".*\\(.*.lua)", "%1")..', line:'..debug.getinfo(1).currentline..'] *UnitUpgradeAI ERROR: Can\'t find UnitUpgradeTemplate for mobile unit: ' .. repr(v:GetUnitId()) )
-                end
-            else
-                TempID = aiBrain:FindUpgradeBP(v:GetUnitId(), StructureUpgradeTemplates[UnitBeingUpgradeFactionIndex])
-                if not TempID then
-                    WARN('['..string.gsub(debug.getinfo(1).source, ".*\\(.*.lua)", "%1")..', line:'..debug.getinfo(1).currentline..'] *UnitUpgradeAI ERROR: Can\'t find StructureUpgradeTemplate for structure: ' .. repr(v:GetUnitId()) )
-                end
-            end 
-            -- Check if we can build the upgrade
-            if TempID and EntityCategoryContains(categories.STRUCTURE, v) and not v:CanBuild(TempID) then
-                WARN('['..string.gsub(debug.getinfo(1).source, ".*\\(.*.lua)", "%1")..', line:'..debug.getinfo(1).currentline..'] *UnitUpgradeAI ERROR: Can\'t upgrade structure with StructureUpgradeTemplate: ' .. repr(v:GetUnitId()) )
-            elseif TempID then
-                upgradeID = TempID
-                upgradeBuilding = v
-                LowestDistanceToBase = DistanceToBase
-            end
-        end
-    end
-    -- If we have not the Eco then return false. Exept we have none extractor upgrading or 100% mass storrage
-    -- mass < 95 then return false
-    -- aiBrain:GetEconomyStoredRatio('MASS') < 0.95
-    if not MassRatioCheckPositive and aiBrain:GetEconomyStoredRatio('MASS') < 0.80 or aiBrain:GetEconomyStoredRatio('ENERGY') < 0.95 then
-        -- if we have at least 1 extractor upgrading or less then 4 extractors, then return false
-        if UpgradingBuilding > 0 or table.getn(MassExtractorUnitList) < 4 then
-            return false
-        end
-        -- Even if we don't have the Eco for it; If we have more then 4 Extractors, then upgrade at least one of them.
-    end
-    -- Have we found a unit that can upgrade ?
-    if upgradeID and upgradeBuilding then
-        --LOG('* UnitUpgradeAIUveso: Upgrading Building in DistanceToBase '..(LowestDistanceToBase or 'Unknown ???')..' '..techLevel..' - UnitId '..upgradeBuilding:GetUnitId()..' - upgradeID '..upgradeID..' - GlobalUpgrading '..techLevel..': '..(UpgradingBuilding + 1) )
-        IssueUpgrade({upgradeBuilding}, upgradeID)
-        coroutine.yield(10)
-        return true
     end
     return false
 end
@@ -2471,37 +2418,6 @@ function GlobalMassUpgradeCostVsGlobalMassIncomeRatio(self, aiBrain, ratio, tech
         return false
     end
     return CompareBody(GlobalUpgradeCost / MassIncome, ratio, compareType)
-end
-
-function HaveUnitRatio(aiBrain, ratio, categoryOne, compareType, categoryTwo)
-    local numOne = aiBrain:GetCurrentUnits(categoryOne)
-    local numTwo = aiBrain:GetCurrentUnits(categoryTwo)
-    --LOG(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOne..' '..compareType..' '..numTwo..' ) -- ['..ratio..'] -- return '..repr(CompareBody(numOne / numTwo, ratio, compareType)))
-    return CompareBody(numOne / numTwo, ratio, compareType)
-end
-
-function CompareBody(numOne, numTwo, compareType)
-    if compareType == '>' then
-        if numOne > numTwo then
-            return true
-        end
-    elseif compareType == '<' then
-        if numOne < numTwo then
-            return true
-        end
-    elseif compareType == '>=' then
-        if numOne >= numTwo then
-            return true
-        end
-    elseif compareType == '<=' then
-        if numOne <= numTwo then
-            return true
-        end
-    else
-       error('*AI ERROR: Invalid compare type: ' .. compareType)
-       return false
-    end
-    return false
 end
 
 local PropBlacklist = {}
@@ -2993,6 +2909,19 @@ function ComHealth(cdr)
     return ( armorPercent + shieldPercent ) / 2
 end
 
+function UnderAttack(cdr)
+    local CDRHealth = ComHealth(cdr)
+    if CDRHealth - (cdr.HealthOLD or CDRHealth) < -1 then
+        cdr.LastDamaged = GetGameTimeSeconds()
+    end
+    cdr.HealthOLD = CDRHealth
+    if cdr.LastDamaged and ( GetGameTimeSeconds() - cdr.LastDamaged < 4 ) then
+        return true
+    else
+        return false
+    end
+end
+
 function CDRRunHomeEnemyNearBase(platoon,cdr,UnitsInBasePanicZone)
     local minEnemyDist, EnemyPosition
     local enemyCount = 0
@@ -3111,6 +3040,31 @@ function RandomizePosition(position)
     return {X, Y, Z}
 end
 
+function RandomizePositionTML(position)
+    local Posx = position[1]
+    local Posz = position[3]
+    local X = -1
+    local Z = -1
+    local guard = 0
+    while X <= 0 or X >= ScenarioInfo.size[1] do
+        guard = guard + 1
+        if guard > 100 then break end
+        X = Posx + Random(-3, 3)
+    end
+    guard = 0
+    while Z <= 0 or Z >= ScenarioInfo.size[2] do
+        guard = guard + 1
+        if guard > 100 then break end
+        Z = Posz + Random(-3, 3)
+    end
+    local Y = GetTerrainHeight(X, Z)
+    if GetSurfaceHeight(X, Z) > Y then
+        Y = GetSurfaceHeight(X, Z)
+    end
+    return {X, Y, Z}
+end
+
+
 -- Please don't change any range here!!!
 -- Called from AIBuilders/*.*, simInit.lua, aiarchetype-managerloader.lua
 function GetDangerZoneRadii(bool)
@@ -3126,9 +3080,9 @@ function GetDangerZoneRadii(bool)
     local BaseEnemyZone = math.max( ScenarioInfo.size[1], ScenarioInfo.size[2] ) * 1.5
     -- "bool" is only true if called from "AIBuilders/Mobile Land.lua", so we only print this once.
     if bool then
-        LOG('* AI-Uveso: BasePanicZone= '..math.floor( BasePanicZone * 0.01953125 ) ..' Km - ('..BasePanicZone..' units)' )
-        LOG('* AI-Uveso: BaseMilitaryZone= '..math.floor( BaseMilitaryZone * 0.01953125 )..' Km - ('..BaseMilitaryZone..' units)' )
-        LOG('* AI-Uveso: BaseEnemyZone= '..math.floor( BaseEnemyZone * 0.01953125 )..' Km - ('..BaseEnemyZone..' units)' )
+        LOG('* SE: BasePanicZone= '..math.floor( BasePanicZone * 0.01953125 ) ..' Km - ('..BasePanicZone..' units)' )
+        LOG('* SE: BaseMilitaryZone= '..math.floor( BaseMilitaryZone * 0.01953125 )..' Km - ('..BaseMilitaryZone..' units)' )
+        LOG('* SE: BaseEnemyZone= '..math.floor( BaseEnemyZone * 0.01953125 )..' Km - ('..BaseEnemyZone..' units)' )
     end
     return BasePanicZone, BaseMilitaryZone, BaseEnemyZone
 end

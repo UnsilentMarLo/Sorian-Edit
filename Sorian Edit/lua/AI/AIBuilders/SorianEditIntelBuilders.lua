@@ -24,7 +24,7 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Intel Builders loading')
@@ -152,7 +152,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1LandScout',
         Priority = 155875,
         BuilderConditions = {
-            { UCBC, 'LessThanGameTimeSeconds', { 450 } },
+            { UCBC, 'LessThanGameTimeSecondsSE', { 450 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.LAND * categories.MOBILE * categories.SCOUT - categories.ENGINEER }},
         },
@@ -234,7 +234,7 @@ BuilderGroup {
             { UCBC, 'EngineerLessAtLocation', { 'LocationType', 1, categories.ENGINEER * categories.TECH3 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE}},
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
             -- { EBC, 'GreaterThanEconIncome',  { 7.5, 100}},
         },
         BuilderType = 'Any',
@@ -262,7 +262,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH3 }},
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH2 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH2 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -292,7 +292,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
 			{ UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH2 }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 }},
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
         },
         BuilderType = 'Any',
         FormDebugFunction = function()
@@ -313,7 +313,7 @@ BuilderGroup {
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.OMNI * categories.STRUCTURE } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.OMNI * categories.STRUCTURE } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE }},
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH2 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH2 } },
         },
         BuilderType = 'Any',
     },
@@ -335,7 +335,7 @@ BuilderGroup {
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH2 - categories.HYDROCARBON } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 }},
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 1, categories.RADAR * categories.STRUCTURE * categories.TECH2 } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, (categories.RADAR + categories.OMNI) * categories.STRUCTURE * categories.TECH1 } },
         },
         BuilderType = 'Any',
         FormDebugFunction = function()

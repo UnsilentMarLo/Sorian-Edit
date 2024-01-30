@@ -24,7 +24,7 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Artillery Builders loading')
@@ -590,7 +590,7 @@ BuilderGroup {
         InstanceCount = 10,
         FormRadius = 10000,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.STRUCTURE * categories.NUKE * (categories.TECH2 + categories.TECH3 - categories.EXPERIMENTAL) } },
+            { UCBC, 'PoolGreaterAtLocation', { 0, categories.STRUCTURE * categories.NUKE * (categories.TECH2 + categories.TECH3 - categories.EXPERIMENTAL) } },
         },
         BuilderData = {
             AIPlan = 'NukePlatoonSorianEdit',
@@ -604,7 +604,7 @@ BuilderGroup {
         InstanceCount = 10,
         FormRadius = 10000,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.STRUCTURE * categories.NUKE * categories.EXPERIMENTAL } },
+            { UCBC, 'PoolGreaterAtLocation', { 0, categories.STRUCTURE * categories.NUKE * categories.EXPERIMENTAL } },
         },
         BuilderData = {
             AIPlan = 'NukePlatoonSorianEdit',

@@ -24,7 +24,7 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 
@@ -39,7 +39,7 @@ local WaterPrio = function(self,aiBrain)
 	
 	-- LOG('*AI DEBUG: --------------  Grabbing Water ratio, its: '..aiBrain:GetMapWaterRatio()..'!')
 	
-	if ratio < 0.05 then
+	if ratio < 0.1 then
 	-- LOG('*AI DEBUG: --------------  Water Prio Function returned false, 0')
 		return 0, false
 	else
@@ -52,8 +52,8 @@ end
 
 function WaterRatioCondition(aiBrain, techlevel)
 	local ratio = aiBrain:GetMapWaterRatio()
-	LOG('*AI DEBUG: --------------  WaterRatioCondition, its: '..ratio..' for tech: '..techlevel..'!')
-	if ratio > 0 then
+	-- LOG('*AI DEBUG: --------------  WaterRatioCondition, its: '..ratio..' for tech: '..techlevel..'!')
+	if ratio > 0.1 then
 		if techlevel == 1 then
 			if ratio > 0.05 then
 				return true
@@ -134,11 +134,11 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.1, 0.5 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL TECH1 DIRECTFIRE' }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
-            -- { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+            -- { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
         },
     },
     Builder {
@@ -151,7 +151,7 @@ BuilderGroup {
 			{ WaterRatioCondition, { 1 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+            { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.TECH1 * categories.FRIGATE, 0.5, categories.NAVAL * categories.TECH1 * categories.SUBMERSIBLE}},
         },
     },
@@ -166,7 +166,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.NAVAL, 0.5, categories.LAND}},
         },
     },
@@ -183,7 +183,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.TECH2 * categories.MOBILE, 2, categories.NAVAL * categories.TECH1 * categories.MOBILE - categories.SUBMERSIBLE}},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 4, 'NAVAL TECH1 DIRECTFIRE' }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.NAVAL, 0.5, categories.LAND}},
         },
     },
@@ -197,7 +197,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { TBC, 'EnemyThreatGreaterThanValueAtBase', { 'LocationType', 10, 'Air' } },
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         },
@@ -220,7 +220,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         },
     },
@@ -235,7 +235,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         },
     },
@@ -266,10 +266,10 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
+            { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.DESTROYER - categories.CRUISER, 0.5, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.T2SUBMARINE}},
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.ANTINAVY - categories.DESTROYER - categories.SHIELD - categories.CRUISER } },
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.ANTINAVY - categories.DESTROYER - categories.SHIELD - categories.CRUISER } },
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
         },
     },
     Builder {
@@ -284,7 +284,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.SHIELD} },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.SHIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.SHIELD } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.COMMAND - categories.SHIELD, 0.25, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.SHIELD }},
         },
@@ -301,7 +301,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.STEALTHFIELD} },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.STEALTHFIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.COUNTERINTELLIGENCE } },
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         },
@@ -322,7 +322,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         },
     },
@@ -358,7 +358,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
-			-- { UCBC, 'CanPathNavalBaseToNavalTargets', { 'LocationType', categories.ALLUNITS }},
+			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
         },
     },
     Builder {
@@ -413,7 +413,7 @@ BuilderGroup {
         -- BuilderConditions = {
 			-- { WaterRatioCondition, { 3 } },
 			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			-- { UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
+			-- { UCBC, 'CanBuildCategorySE', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
             -- { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307), }},
             -- { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
         -- },
@@ -455,8 +455,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'UnitsGreaterAtEnemy', { 0 , categories.NAVAL } },
-			{ UCBC, 'CanBuildCategory', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },
+            { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
+			{ UCBC, 'CanBuildCategorySE', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO }},
         },
     },
@@ -472,9 +472,9 @@ BuilderGroup {
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 360 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 360 } },
             -- { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'MOBILE TECH2 NAVAL' } },
             },
         InstanceCount = 4,
@@ -694,7 +694,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, 'MOBILE TECH1 NAVAL' } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 2, 'MOBILE TECH1 NAVAL' } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL, MOBILE TECH3 NAVAL' } },
         },
     },
@@ -732,7 +732,6 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, 'MOBILE NAVAL' } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, 'MOBILE TECH2 NAVAL' } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, 'MOBILE TECH3 NAVAL' } },
         },
@@ -771,7 +770,6 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 6, 'MOBILE NAVAL' } },
             { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, 'MOBILE TECH3 NAVAL' } },
         },
     },

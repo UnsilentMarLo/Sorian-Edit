@@ -863,36 +863,38 @@ function CanPathToCurrentEnemy(aiBrain, bool, LocationType)
     end
 
     -- path wit AI markers from our base to the enemy base
-    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 1, 1024)
+    -- local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ}, 1, 1024)
+    local path, reason = AIAttackUtils.GeneratePathSimpleSorianEdit(aiBrain, 'Land', {startX,0,startZ}, {enemyX,0,enemyZ})
     -- if we have a path generated with AI path markers then....
     if path then
-        LOG('* AI-SorianEdit: CanPathToCurrentEnemy: Land path from '..LocationType..' to the enemy found! LAND map! - '..Nickname..' vs '..EnemyIndex..'')
+        -- LOG('* AI-SorianEdit: CanPathToCurrentEnemy: Land path from '..LocationType..' to the enemy found! LAND map! - '..Nickname..' vs '..EnemyIndex..'')
         CanPathToEnemy[Nickname][LocationType][EnemyIndex] = 'LAND'
         return true == bool
     -- if we not have a path
     else
         -- "NoPath" means we have AI markers but can't find a path to the enemy - There is no path!
         if reason == 'NoPath' then
-            LOG('* AI-SorianEdit: CanPathToCurrentEnemy: No land path from '..LocationType..' to the enemy found! WATER map! - '..Nickname..' vs '..EnemyIndex..'')
+            -- LOG('* AI-SorianEdit: CanPathToCurrentEnemy: No land path from '..LocationType..' to the enemy found! WATER map! - '..Nickname..' vs '..EnemyIndex..'')
             CanPathToEnemy[Nickname][LocationType][EnemyIndex] = 'WATER'
             return false == bool
         -- "NoGraph" means we have no AI markers and cant graph to the enemy. We can't search for a path - No markers
         elseif reason == 'NoGraph' then
-            LOG('* AI-SorianEdit: CanPathToCurrentEnemy: No AI markers found! Using land/water ratio instead')
-            -- Check if we have less then 50% water on the map
+            -- LOG('* AI-SorianEdit: CanPathToCurrentEnemy: No AI markers found! Using land/water ratio instead')
+            -- Check if we have less than 50% water on the map
             if aiBrain:GetMapWaterRatio() < 0.50 then
                 --lets asume we can move on land to the enemy
-                LOG(string.format('* AI-SorianEdit: CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming LAND map! - '..Nickname..' vs '..EnemyIndex..'',aiBrain:GetMapWaterRatio()*100 ))
+                -- LOG(string.format('* AI-SorianEdit: CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming LAND map! - '..Nickname..' vs '..EnemyIndex..'',aiBrain:GetMapWaterRatio()*100 ))
                 CanPathToEnemy[Nickname][LocationType][EnemyIndex] = 'LAND'
                 return true == bool
             else
                 -- we have more then 50% water on this map. Ity maybe a water map..
-                LOG(string.format('* AI-SorianEdit: CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming WATER map! - '..Nickname..' vs '..EnemyIndex..'',aiBrain:GetMapWaterRatio()*100 ))
+                -- LOG(string.format('* AI-SorianEdit: CanPathToCurrentEnemy: Water on map: %0.2f%%. Assuming WATER map! - '..Nickname..' vs '..EnemyIndex..'',aiBrain:GetMapWaterRatio()*100 ))
                 CanPathToEnemy[Nickname][LocationType][EnemyIndex] = 'WATER'
                 return false == bool
             end
         end
     end
+	-- LOG('* AI-SorianEdit: CanPathToCurrentEnemy: Pathing error at '..LocationType..' There is something wrong with the pathing function - '..Nickname..' vs '..EnemyIndex..'')
     return false
 end
 

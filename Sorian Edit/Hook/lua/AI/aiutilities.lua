@@ -1,3 +1,4 @@
+local NavUtils = import('/lua/sim/NavUtils.lua')
 
 -- Hook For AI-SorianEdit.
 function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
@@ -13,8 +14,7 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
 
     -- first try to find a path with markers.
     local result, bestPos
-    -- local path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
-    local path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Amphibious', pos, destination)
+    local path, reason = AIAttackUtils.EngineerGenerateSafePathToSorianEdit(aiBrain, 'Hover', pos, destination)
     -- only use CanPathTo for distance closer then 200 and if we can't path with markers
     if reason ~= 'PathOK' then
         -- we will crash the game if we use CanPathTo() on all engineer movments on a map without markers. So we don't path at all.
@@ -22,12 +22,12 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
             result = true
         -- if we have a Graph (AI markers) but not a path, then there is no path. We need a transporter.
         elseif reason == 'NoPath' then
-            --LOG('* AI-SorianEdit: EngineerMoveWithSafePath(): No path found ('..math.floor(pos[1])..'/'..math.floor(pos[3])..') to ('..math.floor(destination[1])..'/'..math.floor(destination[3])..')')
+            --AILog('* AI-SorianEdit: EngineerMoveWithSafePath(): No path found ('..math.floor(pos[1])..'/'..math.floor(pos[3])..') to ('..math.floor(destination[1])..'/'..math.floor(destination[3])..')')
         elseif VDist2(pos[1], pos[3], destination[1], destination[3]) < 200 then
-            AIDebug('* AI-SorianEdit: EngineerMoveWithSafePath(): EngineerGenerateSafePathTo returned: ('..repr(reason)..') -> executing c-engine function CanPathTo().', true, SorianEditOffsetAiutilitiesLUA)
+            -- AIDebug('* AI-SorianEdit: EngineerMoveWithSafePath(): EngineerGenerateSafePathToSorianEdit returned: ('..repr(reason)..') -> executing c-engine function CanPathTo().', true, SorianEditOffsetAiutilitiesLUA)
             -- be really sure we don't try a pathing with a destroyed c-object
             if unit.Dead or unit:BeenDestroyed() or IsDestroyed(unit) then
-                AIDebug('* AI-SorianEdit: Unit is death before calling CanPathTo()', true, SorianEditOffsetAiutilitiesLUA)
+                -- AIDebug('* AI-SorianEdit: Unit is death before calling CanPathTo()', true, SorianEditOffsetAiutilitiesLUA)
                 return false
             end
             result, bestPos = unit:CanPathTo(destination)
@@ -56,8 +56,7 @@ function EngineerMoveWithSafePathSE(aiBrain, unit, destination)
     -- If we're here, we haven't used transports and we can path to the destination
     if result or reason == 'PathOK' then
         if reason ~= 'PathOK' then
-            -- path, reason = AIAttackUtils.EngineerGenerateSafePathTo(aiBrain, 'Amphibious', pos, destination)
-            path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, 'Amphibious', pos, destination)
+            path, reason = AIAttackUtils.EngineerGenerateSafePathToSorianEdit(aiBrain, 'Hover', pos, destination)
         end
         if path then
             local pathSize = table.getn(path)
@@ -231,7 +230,7 @@ function UseTransportsSE(units, transports, location, transportPlatoon)
             location = {location[1], GetSurfaceHeight(location[1],location[3]), location[3]}
 							-- #AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, platoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 ) New function
             -- local safePath = AIAttackUtils.PlatoonGenerateSafePathTo(aiBrain, 'Air', transports[1]:GetPosition(), location, 200)
-            local safePath = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, transportPlatoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 )
+            local safePath = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, transportPlatoon, transportPlatoon.MovementLayer, transports[1]:GetPosition(), location, 10, 200 )
             if safePath then
                 for _, p in safePath do
                     IssueMove(transports, p)
@@ -441,8 +440,6 @@ function ReturnTransportsToPoolSE(units, move)
     end
 end
 
-
-
 -- AI-SorianEdit: Helper function for targeting
 function ValidateLayerSorianEdit(UnitPos,MovementLayer)
     -- Air can go everywhere
@@ -464,185 +461,166 @@ function ValidateLayerSorianEdit(UnitPos,MovementLayer)
 
     return false
 end
-
 -- AI-SorianEdit: Target function
-function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain)
+function AIFindNearestCategoryTargetInRangeSorianEdit(aiBrain, platoon, squad, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain, IgnoreThreat)
+    local EntityCategoryContains = EntityCategoryContains
+    local VDist2Sq = VDist2Sq
+    local ParseEntityCategory = ParseEntityCategory
+
+    -- Validation checks
     if not maxRange then
-        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "maxRange"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "maxRange"')
         return false, false, false, 'NoRange'
     end
     if not TargetSearchCategory then
-        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "TargetSearchCategory"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "TargetSearchCategory"')
         return false, false, false, 'NoCat'
     end
     if not position then
-        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "position"' )
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with empty "position"')
         return false, false, false, 'NoPos'
     end
     if not platoon then
-        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with no "platoon"' )
-        return false, false, false, 'NoPos'
+        LOG('* AI-SorianEdit: AIFindNearestCategoryTargetInRangeSorianEdit: function called with no "platoon"')
+        return false, false, false, 'NoPlatoon'
     end
-    local AttackEnemyStrength = platoon.PlatoonData.AttackEnemyStrength or 300
+
+    -- Default values
+    local AttackEnemyStrength = platoon.PlatoonData.AttackEnemyStrength or 100
     local platoonUnits = platoon:GetPlatoonUnits()
     local PlatoonStrength = table.getn(platoonUnits)
 
-    if type(TargetSearchCategory) == 'string' then
-        TargetSearchCategory = ParseEntityCategory(TargetSearchCategory)
-    end
-    local enemyIndex = false
-    local MyArmyIndex = aiBrain:GetArmyIndex()
-    if enemyBrain then
-        enemyIndex = enemyBrain:GetArmyIndex()
+    -- Strength calculation
+    for _, unit in ipairs(platoon:GetPlatoonUnits()) do
+        local unitCat = unit.Blueprint.CategoriesHash
+        if unitCat.TECH2 then
+            PlatoonStrength = PlatoonStrength + 3
+        elseif unitCat.TECH3 then
+            PlatoonStrength = PlatoonStrength + 13
+        elseif unitCat.EXPERIMENTAL then
+            PlatoonStrength = PlatoonStrength + 80
+        elseif unitCat.COMMAND then
+            PlatoonStrength = PlatoonStrength + 20
+        end
     end
 
-    local RangeList = { [1] = maxRange }
-    if maxRange > 512 then
-        RangeList = {
-            [1] = 30,
-            [1] = 64,
-            [2] = 128,
-            [2] = 192,
-            [3] = 256,
-            [3] = 384,
-            [4] = 512,
-            [5] = maxRange,
-        }
-    elseif maxRange > 256 then
-        RangeList = {
-            [1] = 30,
-            [1] = 64,
-            [2] = 128,
-            [2] = 192,
-            [3] = 256,
-            [4] = maxRange,
-        }
-    elseif maxRange > 64 then
-        RangeList = {
-            [1] = 30,
-            [2] = maxRange,
-        }
+    -- Minimum PlatoonStrength
+    PlatoonStrength = math.max(PlatoonStrength, 10)
+
+    local enemyIndex = enemyBrain and enemyBrain:GetArmyIndex() or false
+    local MyArmyIndex = aiBrain:GetArmyIndex()
+
+    local RangeList = { 30, 60, 100, 150, 210, 280, 360, 450, 600, 800, maxRange }
+    if maxRange <= 64 then
+        RangeList = { 30, 60, maxRange }
+    elseif maxRange <= 256 then
+        RangeList = { 30, 60, 100, 150, 210, maxRange }
+    elseif maxRange <= 512 then
+        RangeList = { 30, 60, 100, 150, 210, 280, 360, 450, maxRange }
     end
-    local path = false
-    local reason = false
-    local UnitWithPath = false
-    local UnitNoPath = false
+
+    local path, reason, UnitWithPath, UnitNoPath
     local count = 0
-    local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, success, bestGoalPos, canAttack, TTime
-    for _, range in RangeList do
-        TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, range, 'Enemy')
-        -- DrawCircle(position, range, '0000FF')
-		TTime = GetGameTick()
-        for _, v in MoveToCategories do
-            category = v
-            if type(category) == 'string' then
-                category = ParseEntityCategory(category)
-            end
-            distance = maxRange * maxRange
-            -- LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: numTargets '..table.getn(TargetsInRange)..'  ')
-            for num, Target in TargetsInRange do
+	local TTime = GetGameTick()
+	
+    for _, range in ipairs(RangeList) do
+        local TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, range, 'Enemy')
+        TTime = GetGameTick()
+
+        for _, v in ipairs(MoveToCategories) do
+            local category = type(v) == 'string' and ParseEntityCategory(v) or v
+            local distance = maxRange * maxRange
+
+            for _, Target in ipairs(TargetsInRange) do
                 if Target.Dead or Target:BeenDestroyed() then
                     continue
                 end
-                TargetPosition = Target:GetPosition()
-                EnemyStrength = 0
-                -- check if the target is on the same layer then the attacker
-                if not ValidateLayerSorianEdit(TargetPosition, platoon.MovementLayer) then continue end
-                -- check if we have a special player as enemy
-                if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then continue end
-                -- check if the Target is still alive, matches our target priority and can be attacked from our platoon
-                canAttack = platoon:CanAttackTarget(squad, Target) or false
-                --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: canAttack '..repr(canAttack))
+
+                local TargetPosition = Target:GetPosition()
+
+                if not ValidateLayerSorianEdit(TargetPosition, platoon.MovementLayer) then
+                    continue
+                end
+
+                -- if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then
+                    -- continue
+                -- end
+
+                local canAttack = platoon:CanAttackTarget(squad, Target) or false
+
                 if not Target.Dead and EntityCategoryContains(category, Target) and canAttack then
-                    -- yes... we need to check if we got friendly units with GetUnitsAroundPoint(_, _, _, 'Enemy')
-                    if not IsEnemy( MyArmyIndex, Target:GetAIBrain():GetArmyIndex() ) then continue end
-                    if Target.ReclaimInProgress then
-                        --WARN('* AIFindNearestCategoryTargetInRangeSorianEdit: ReclaimInProgress !!! Ignoring the target.')
+                    if not IsEnemy(MyArmyIndex, Target:GetAIBrain():GetArmyIndex()) then
                         continue
                     end
-                    if Target.CaptureInProgress then
-                        --WARN('* AIFindNearestCategoryTargetInRangeSorianEdit: CaptureInProgress !!! Ignoring the target.')
+
+                    if Target.ReclaimInProgress or Target.CaptureInProgress then
                         continue
                     end
-                    targetRange = VDist2Sq(position[1],position[3],TargetPosition[1],TargetPosition[3])
-                    --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: targetRange '..repr(targetRange))
+
+                    local targetRange = VDist2Sq(position[1], position[3], TargetPosition[1], TargetPosition[3])
+
                     if targetRange < distance then
-                        if not aiBrain:PlatoonExists(platoon) then
-                            return false, false, false, 'NoPlatoonExists'
+                        local EnemyStrength = GetEnemyStrength(aiBrain, platoon, platoon.MovementLayer, TargetPosition)
+
+                        if PlatoonStrength / 100 * AttackEnemyStrength < EnemyStrength and not IgnoreThreat then
+                            continue
                         end
-                        if platoon.MovementLayer == 'Land' then
-                            EnemyStrength = aiBrain:GetNumUnitsAroundPoint( (categories.STRUCTURE + categories.MOBILE) * (categories.DIRECTFIRE + categories.INDIRECTFIRE + categories.GROUNDATTACK) , TargetPosition, 50, 'Enemy' )
-                        elseif platoon.MovementLayer == 'Air' then
-                            EnemyStrength = aiBrain:GetNumUnitsAroundPoint( (categories.STRUCTURE + categories.MOBILE) * categories.ANTIAIR , TargetPosition, 60, 'Enemy' )
-                        elseif platoon.MovementLayer == 'Water' then
-                            EnemyStrength = aiBrain:GetNumUnitsAroundPoint( (categories.STRUCTURE + categories.MOBILE) * (categories.DIRECTFIRE + categories.INDIRECTFIRE + categories.GROUNDATTACK + categories.ANTINAVY) , TargetPosition, 50, 'Enemy' )
-                        elseif platoon.MovementLayer == 'Amphibious' then
-                            EnemyStrength = aiBrain:GetNumUnitsAroundPoint( (categories.STRUCTURE + categories.MOBILE) * (categories.DIRECTFIRE + categories.INDIRECTFIRE + categories.GROUNDATTACK + categories.ANTINAVY) , TargetPosition, 50, 'Enemy' )
-                        end
-                        --LOG('PlatoonStrength / 100 * AttackEnemyStrength <= '..(PlatoonStrength / 100 * AttackEnemyStrength)..' || EnemyStrength = '..EnemyStrength)
-                        -- Only attack if we have a chance to win
-                        if PlatoonStrength / 100 * AttackEnemyStrength < EnemyStrength then continue end
-                        --coroutine.yield(1)
-                        -- LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: PlatoonGenerateSafePathTo ')
-                        path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, platoon.MovementLayer, position, TargetPosition, platoon.PlatoonData.NodeWeight or 10 )
-                        -- Check if we found a path with markers
-                        if path then
+
+                        if NavUtils.CanPathTo(platoon.MovementLayer, position, TargetPosition) then
+                            path, reason = AIAttackUtils.PlatoonGenerateSafePathToSorianEdit(aiBrain, platoon.MovementLayer, position, TargetPosition, PlatoonStrength)
+
+                            if not path then
+                                path, reason = AIAttackUtils.GeneratePathSimpleSorianEdit(aiBrain, platoon.MovementLayer, position, TargetPosition)
+                            end
+
                             UnitWithPath = Target
                             distance = targetRange
-                            --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: Possible target with path. distance '..distance..'  ')
-                        -- We don't find a path with markers
                         else
-                            -- NoPath happens if we have markers, but can't find a way to the destination. (We need transport)
-                            if reason == 'NoPath' then
-                                UnitNoPath = Target
-                                distance = targetRange
-                                --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: Possible target no path. distance '..distance..'  ')
-                            -- NoGraph means we have no Map markers. Lets try to path with c-engine command CanPathTo()
-                            elseif reason == 'NoGraph' then
-                                --coroutine.yield(1)
-                                local success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingEx(platoon, TargetPosition)
-                                -- check if we found a path with c-engine command.
-                                if success then
-                                    UnitWithPath = Target
-                                    distance = targetRange
-                                    --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: Possible target with CanPathTo(). distance '..distance..'  ')
-                                    -- break out of the loop, so we don't use CanPathTo too often.
-                                    break
-                                -- There is no path to the target.
-                                else
-                                    UnitNoPath = Target
-                                    distance = targetRange
-                                    --LOG('* AIFindNearestCategoryTargetInRangeSorianEdit: Possible target failed CanPathTo(). distance '..distance..'  ')
-                                end
-                            end
+                            UnitNoPath = Target
+                            distance = targetRange
                         end
                     end
                 end
+
                 count = count + 1
-                if count > 300 then -- 300 
+
+                if count > 300 then
                     coroutine.yield(1)
                     count = 0
                 end
-                -- DEBUG; use the first target if we can path to it.
-                --if UnitWithPath then
-                --    return UnitWithPath, UnitNoPath, path, reason
-                --end
-                -- DEBUG; use the first target if we can path to it.
             end
-			TTime = (GetGameTick() - TTime)
+
             if UnitWithPath then
-				-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target and path, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
+                -- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target and path, took: '..(GetGameTick() - TTime)..' GameTicks, at: '..maxRange..' range ')
                 return UnitWithPath, UnitNoPath, path, reason
             end
         end
     end
-	TTime = (GetGameTick() - TTime)
+
     if UnitNoPath then
-		-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target but no path, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
+        -- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target found Target but no path, took: '..(GetGameTick() - TTime)..' GameTicks, at: '..maxRange..' range ')
         return UnitWithPath, UnitNoPath, path, reason
     end
-	-- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target failed, took: '..TTime..' GameTicks, at: '..maxRange..' range ')
+
+    -- LOG('*------------------------ AIFindNearestCategoryTargetInRangeSorianEdit: finding nearest Target failed, took: '..(GetGameTick() - TTime)..' GameTicks, at: '..maxRange..' range ')
     return false, false, false, 'NoUnitFound'
+end
+
+-- Helper function to get enemy strength around a position
+function GetEnemyStrength(aiBrain, platoon, movementLayer, position)
+    local categoriesToCheck
+
+    if movementLayer == 'Land' then
+        categoriesToCheck = categories.STRUCTURE + categories.MOBILE * (categories.DIRECTFIRE + categories.INDIRECTFIRE + categories.GROUNDATTACK)
+    elseif movementLayer == 'Air' then
+        categoriesToCheck = categories.STRUCTURE + categories.MOBILE * categories.ANTIAIR
+    elseif movementLayer == 'Water' or movementLayer == 'Amphibious' then
+        categoriesToCheck = categories.STRUCTURE + categories.MOBILE * (categories.DIRECTFIRE + categories.INDIRECTFIRE + categories.GROUNDATTACK + categories.ANTINAVY)
+    else
+        return 0
+    end
+
+    return aiBrain:GetNumUnitsAroundPoint(categoriesToCheck, position, 50, 'Enemy')
 end
 
 function AIFindNearestCategoryTargetInRangeSorianEditCDRSorianEdit(aiBrain, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain)
@@ -805,6 +783,21 @@ function AIFindNearestCategoryTeleportLocationSorianEdit(aiBrain, position, maxR
     return TargetUnit
 end
 
+-- Helper function for targeting
+function IsNukeBlastAreaSE(aiBrain, TargetPosition)
+    -- check if the target is inside a nuke blast radius
+    if aiBrain.NukedArea then
+        for i, data in aiBrain.NukedArea or {} do
+            if data.NukeTime + 50 <  GetGameTimeSeconds() then
+                table.remove(aiBrain.NukedArea, i)
+            elseif VDist2(TargetPosition[1], TargetPosition[3], data.Location[1], data.Location[3]) < 40 then
+                return data.Location
+            end
+        end
+    end
+    return false
+end
+
 function AIFindNearestCategoryTargetInCloseRangeSorianEdit(aiBrain, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain)
     if type(TargetSearchCategory) == 'string' then
         TargetSearchCategory = ParseEntityCategory(TargetSearchCategory)
@@ -815,9 +808,9 @@ function AIFindNearestCategoryTargetInCloseRangeSorianEdit(aiBrain, position, ma
         enemyIndex = enemyBrain:GetArmyIndex()
     end
     local RangeList = {
-        [1] = 10,
+        [1] = 20,
         [2] = maxRange,
-        [3] = maxRange + 80,
+        [3] = maxRange + 40,
     }
     local TargetUnit = false
     local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, baseTargetRange, canAttack
@@ -883,18 +876,165 @@ function AIFindNearestCategoryTargetInCloseRangeSorianEdit(aiBrain, position, ma
     return TargetUnit
 end
 
-function IsNukeBlastAreaSE(aiBrain, TargetPosition)
-    -- check if the target is inside a nuke blast radius
-    if aiBrain.NukedArea then
-        for i, data in aiBrain.NukedArea or {} do
-            if data.NukeTime + 50 <  GetGameTimeSeconds() then
-                table.remove(aiBrain.NukedArea, i)
-            elseif VDist2(TargetPosition[1], TargetPosition[3], data.Location[1], data.Location[3]) < 40 then
-                return data.Location
-            end
-        end
+function AIFindNearestCategoryTargetInLongRangeSorianEdit(aiBrain, platoon, position, maxRange, MoveToCategories, TargetSearchCategory, enemyBrain, DoCheckNavalPathing, maxWeaponRange, selectedWeaponArc)
+    if type(TargetSearchCategory) == 'string' then
+        TargetSearchCategory = ParseEntityCategory(TargetSearchCategory)
     end
-    return false
+    local enemyIndex = false
+    local MyArmyIndex = aiBrain:GetArmyIndex()
+	local NavalBombardPos
+    if enemyBrain then
+        enemyIndex = enemyBrain:GetArmyIndex()
+    end
+    local RangeList = {
+        [1] = maxRange,
+        [2] = maxRange + 32,
+        [3] = maxRange + 64,
+        [3] = maxRange + 128,
+        [3] = maxRange + 256,
+        [3] = maxRange + 512,
+        [3] = maxRange + 1024,
+    }
+    local TargetUnit = false
+    local TargetsInRange, EnemyStrength, TargetPosition, category, distance, targetRange, baseTargetRange, canAttack
+    for _, range in RangeList do
+        if not position then
+            --WARN('* AI-SorianEdit: AIFindNearestCategoryTargetInCloseRange: position is empty')
+            return false
+        end
+        if not range then
+            --WARN('* AI-SorianEdit: AIFindNearestCategoryTargetInCloseRange: range is empty')
+            return false
+        end
+        if not TargetSearchCategory then
+            --WARN('* AI-SorianEdit: AIFindNearestCategoryTargetInCloseRange: TargetSearchCategory is empty')
+            return false
+        end
+        TargetsInRange = aiBrain:GetUnitsAroundPoint(TargetSearchCategory, position, range, 'Enemy')
+        --DrawCircle(position, range, '0000FF')
+        for _, v in MoveToCategories do
+            category = v
+            if type(category) == 'string' then
+                category = ParseEntityCategory(category)
+            end
+            distance = maxRange
+            --LOG('* AIFindNearestCategoryTargetInRange: numTargets '..table.getn(TargetsInRange)..'  ')
+            for num, Target in TargetsInRange do
+                if Target.Dead or Target:BeenDestroyed() then
+                    continue
+                end
+                TargetPosition = Target:GetPosition()
+                EnemyStrength = 0
+                -- check if the target is inside a nuke blast radius
+                if IsNukeBlastAreaSE(aiBrain, TargetPosition) then continue end
+                -- check if we have a special player as enemy
+                if enemyBrain and enemyIndex and enemyBrain ~= enemyIndex then continue end
+                -- check if the Target is still alive, matches our target priority and can be attacked from our platoon
+                if not Target.Dead and EntityCategoryContains(category, Target) then
+                    -- yes... we need to check if we got friendly units with GetUnitsAroundPoint(_, _, _, 'Enemy')
+                    if not IsEnemy( MyArmyIndex, Target:GetAIBrain():GetArmyIndex() ) then continue end
+                    if Target.ReclaimInProgress then
+                        --WARN('* AIFindNearestCategoryTargetInRangeSorianEdit: ReclaimInProgress !!! Ignoring the target.')
+                        continue
+                    end
+                    if Target.CaptureInProgress then
+                        --WARN('* AIFindNearestCategoryTargetInRangeSorianEdit: CaptureInProgress !!! Ignoring the target.')
+                        continue
+                    end
+					if not DoCheckNavalPathing and not NavUtils.CanPathTo(platoon.MovementLayer, position, TargetPosition) then
+                        continue
+                    end
+					NavalBombardPos = CheckNavalPathingSE(aiBrain, platoon, TargetPosition, maxWeaponRange, selectedWeaponArc)
+					if DoCheckNavalPathing and not NavalBombardPos then
+                        continue
+                    end
+                    targetRange = VDist2(position[1],position[3],TargetPosition[1],TargetPosition[3])
+                    -- check if the target is in range of the unit and in range of the base
+                    if targetRange < distance then
+                        TargetUnit = Target
+                        distance = targetRange
+                    end
+                end
+            end
+            if TargetUnit then
+                return TargetUnit, NavalBombardPos
+            end
+           coroutine.yield(10)
+        end
+        coroutine.yield(1)
+    end
+    return TargetUnit, NavalBombardPos
+end
+
+function CheckNavalPathingSE(aiBrain, platoon, location, maxRange, selectedWeaponArc)
+	local platoonUnits = platoon:GetPlatoonUnits()
+	local platoonPosition = platoon:GetPlatoonPosition()
+	selectedWeaponArc = selectedWeaponArc or 'none'
+
+	local success, bestGoalPos
+	local threatTargetPos = location
+	local isTech1 = false
+
+	local inWater = GetTerrainHeight(location[1], location[3]) < GetSurfaceHeight(location[1], location[3]) - 2
+
+	--if this threat is in the water, see if we can get to it
+	if inWater then
+		success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingExSE(platoon, {location[1], 0, location[3]})
+	end
+
+	--if it is not in the water or we can't get to it, then see if there is water within weapon range that we can get to
+	if not success and maxRange then
+		--Check vectors in 8 directions around the threat location at maxRange to see if they are in water.
+		local rootSaver = maxRange / 1.4142135623 --For diagonals. X and Z components of the vector will have length maxRange / sqrt(2)
+		local vectors = {
+			{location[1],             0, location[3] + maxRange},   --up
+			{location[1],             0, location[3] - maxRange},   --down
+			{location[1] + maxRange,  0, location[3]},              --right
+			{location[1] - maxRange,  0, location[3]},              --left
+
+			{location[1] + rootSaver,  0, location[3] + rootSaver},   --right-up
+			{location[1] + rootSaver,  0, location[3] - rootSaver},   --right-down
+			{location[1] - rootSaver,  0, location[3] + rootSaver},   --left-up
+			{location[1] - rootSaver,  0, location[3] - rootSaver},   --left-down
+		}
+
+		--Sort the vectors by their distance to us.
+		table.sort(vectors, function(a,b)
+			local distA = VDist2Sq(platoonPosition[1], platoonPosition[3], a[1], a[3])
+			local distB = VDist2Sq(platoonPosition[1], platoonPosition[3], b[1], b[3])
+
+			return distA < distB
+		end)
+
+		--Iterate through the vector list and check if each is in the water. Use the first one in the water that has enemy structures in range.
+		for _,vec in vectors do
+			inWater = GetTerrainHeight(vec[1], vec[3]) < GetSurfaceHeight(vec[1], vec[3]) - 2
+
+			if inWater then
+				success, bestGoalPos = AIAttackUtils.CheckPlatoonPathingExSE(platoon, vec)
+			end
+
+			if success then
+				success = not aiBrain:CheckBlockingTerrain(bestGoalPos, threatTargetPos, selectedWeaponArc)
+			end
+
+			if success then
+				--I hate having to do this check, but the influence map doesn't have enough resolution and without it the boats
+				--will just get stuck on the shore. The code hits this case about once every 5-10 seconds on a large map with 4 naval AIs
+				local numUnits = aiBrain:GetNumUnitsAroundPoint(categories.NAVAL + categories.STRUCTURE, bestGoalPos, maxRange, 'Enemy')
+				if numUnits > 0 then
+					break
+				else
+					success = false
+				end
+			end
+		end
+	end
+
+	if not success then
+		bestGoalPos = false
+	end
+	return bestGoalPos
 end
 
 function points(original,radius,num)

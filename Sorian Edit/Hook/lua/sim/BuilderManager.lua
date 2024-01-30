@@ -4,6 +4,8 @@ local AntiSpamCounter = 0
 local LastBuilder = ''
 local DEBUGBUILDER = {}
 
+WARN('[sorianeditutilities.lua ------------------------ SorianEditBuilderManager.')
+
 -- Hook for debugging
 SorianEditBuilderManager = BuilderManager
 BuilderManager = Class(SorianEditBuilderManager) {
@@ -11,8 +13,10 @@ BuilderManager = Class(SorianEditBuilderManager) {
     SorianEditSortBuilderList = function(self, bType)
        -- Only use this with AI-SorianEdit
         if not self.Brain.sorianedit then
+			WARN('[sorianeditutilities.lua ------------------------ not sorianbrain loading default SortBuilderList.')
             return SorianEditBuilderManager.SorianEditSortBuilderList(self, bType)
         end
+		WARN('[sorianeditutilities.lua ------------------------ sorianbrain loading SorianEditSortBuilderList.')
         -- Make sure there is a type
         if not self.BuilderData[bType] then
             error('*BUILDMANAGER ERROR: Trying to sort platoons of invalid builder type - ' .. bType)
@@ -39,8 +43,10 @@ BuilderManager = Class(SorianEditBuilderManager) {
     SorianEditGetHighestBuilder = function(self,bType,factory)
        -- Only use this with AI-SorianEdit
         if not self.Brain.sorianedit then
+			WARN('[sorianeditutilities.lua ------------------------ not sorianbrain loading default GetHighestBuilder.')
             return SorianEditBuilderManager.SorianEditGetHighestBuilder(self,bType,factory)
         end
+		WARN('[sorianeditutilities.lua ------------------------ sorianbrain loading SorianEditGetHighestBuilder.')
         if not self.BuilderData[bType] then
             error('*BUILDERMANAGER ERROR: Invalid builder type - ' .. bType)
         end

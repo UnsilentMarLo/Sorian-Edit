@@ -24,7 +24,7 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 local ExtractorToFactoryRatio = 2.2
 
@@ -64,10 +64,30 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 5900000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.24, 0.4 } },
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.FACTORY * categories.LAND * categories.TECH1 - categories.COMMAND } },
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION - categories.HYDROCARBON } },
-			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY', 'LocationType', }},
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'FACTORY AIR', 'LocationType', }},
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR' }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                Location = 'LocationType',
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit T1 Air Factory Builder - Initial 2nd before Upgrade',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
+        Priority = 5900000,
+        BuilderConditions = {
+				{ EBC, 'GreaterThanEconIncome',  { 2.8, 28.0}},
+                { UCBC, 'HaveLessThanUnitsWithCategory', { 3,  categories.FACTORY * categories.AIR * categories.RESEARCH - categories.TECH1 - categories.COMMAND } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2,  categories.FACTORY * categories.AIR * categories.RESEARCH * categories.TECH1 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -136,7 +156,7 @@ BuilderGroup {
         InstanceCount = 2,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 200 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
@@ -185,15 +205,14 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Air Factory Engineer - Overbuild',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1200,
+        Priority = 120000,
         InstanceCount = 1,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 200 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 1.0, 1.0 }},
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY AIR' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 6, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3'}},
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
         },
@@ -212,7 +231,7 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Air Factory Engineer - Overbuild',
         PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 1300,
+        Priority = 130000,
         InstanceCount = 1,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
@@ -237,12 +256,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Factory Engineer - Overbuild',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 2500,
+        Priority = 250000,
         InstanceCount = 4,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH3 - categories.SUPPORTFACTORY} },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 200 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 200 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
@@ -286,13 +305,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Higher Pri',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 3475, --950,
+        Priority = 347500, --950,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.35, 0.7 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.6, 0.6 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 135 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 135 } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 4, 'FACTORY LAND' }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
@@ -312,11 +331,12 @@ BuilderGroup {
         Priority = 3375, --950,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'FactoryGreaterAtLocation', { 'LocationType', 3, 'FACTORY LAND' }},
-            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 3, 'FACTORY AIR' }},
+            { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY AIR' }},
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
@@ -339,11 +359,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Land Factory Builder Balance',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1105,
+        Priority = 1150,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.0 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'LAND FACTORY', 'LocationType', }},
@@ -369,9 +389,9 @@ BuilderGroup {
         Priority = 1106,
         BuilderConditions = {
             -- { UCBC, 'FactoryCapCheck', { 'LocationType', 'Air' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
             { UCBC, 'FactoryRatioLessAtLocation', { 'LocationType', 'AIR', 'LAND' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'AIR FACTORY', 'LocationType', }},

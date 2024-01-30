@@ -253,7 +253,7 @@ BaseBuilderTemplate {
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
         if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit' then
-            LOG('------ M-FirstBaseFunction Main Balanced '..personality)
+            -- LOG('------ M-FirstBaseFunction Main Balanced '..personality)
             return 15000, 'sorianedit'
         end
     end,

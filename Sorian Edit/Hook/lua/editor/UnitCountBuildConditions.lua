@@ -1,4 +1,8 @@
 
+local MAPBASEPOSTITIONSSE = {}
+local mapSizeX, mapSizeZ = GetMapSize()
+local NavUtils = import("/lua/sim/navutils.lua")
+
 -- Buildcondition to check if a platoon is still delayed
 function CheckBuildPlatoonDelay(aiBrain, PlatoonName)
     if aiBrain.DelayEqualBuildPlatoons[PlatoonName] and aiBrain.DelayEqualBuildPlatoons[PlatoonName] > GetGameTimeSeconds() then
@@ -17,6 +21,38 @@ function HaveForEach(aiBrain, category, numunits, category2)
 		return true
 	end
 		
+    return false
+end
+
+--{ UCBC, 'CanBuildCategorySE', { categories.RADAR * categories.TECH1 } },
+local FactionIndexToCategory = {[1] = categories.UEF, [2] = categories.AEON, [3] = categories.CYBRAN, [4] = categories.SERAPHIM, [5] = categories.NOMADS, [6] = categories.ARM, [7] = categories.CORE }
+function CanBuildCategorySE(aiBrain,category)
+    -- convert text categories like 'MOBILE AIR' to 'categories.MOBILE * categories.AIR'
+    local FactionCat = FactionIndexToCategory[aiBrain:GetFactionIndex()] or categories.ALLUNITS
+    local numBuildableUnits = table.getn(EntityCategoryGetUnitList(category * FactionCat)) or -1
+    --AILog('* CanBuildCategorySE: FactionIndex: ('..repr(aiBrain:GetFactionIndex())..') numBuildableUnits:'..numBuildableUnits..' - '..repr( EntityCategoryGetUnitList(category * FactionCat) ))
+    return numBuildableUnits > 0
+end
+
+--            { UCBC, 'HaveUnitRatioVersusCapSE', { 0.024, '<=', categories.STRUCTURE * categories.FACTORY * categories.LAND } }, -- Maximal 3 factories at 125 unitcap, 12 factories at 500 unitcap...
+function HaveUnitRatioVersusCapSE(aiBrain, ratio, compareType, categoryOwn)
+    local numOwnUnits = aiBrain:GetCurrentUnits(categoryOwn)
+    local cap = GetArmyUnitCap(aiBrain:GetArmyIndex())
+    --AILog(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..cap..' ) -- ['..ratio..'] -- '..repr(DEBUG)..' :: '..(numOwnUnits / cap)..' '..compareType..' '..cap..' return '..repr(CompareBody(numOwnUnits / cap, ratio, compareType)))
+    return CompareBody(numOwnUnits / cap, ratio, compareType)
+end
+
+function GreaterThanGameTimeSecondsSE(aiBrain, num)
+    if num < GetGameTimeSeconds() then
+        return true
+    end
+    return false
+end
+--            { UCBC, 'LessThanGameTimeSeconds', { 180 } },
+function LessThanGameTimeSecondsSE(aiBrain, num)
+    if num > GetGameTimeSeconds() then
+        return true
+    end
     return false
 end
 
@@ -40,96 +76,58 @@ function HaveLessThanUnitsAroundMarkerCategory(aiBrain, markerType, markerRadius
     return false
 end
 
-local MAPBASEPOSTITIONS = {}
-local mapSizeX, mapSizeZ = GetMapSize()
 
---{ UCBC, 'CanBuildCategory', { categories.RADAR * categories.TECH1 } },
-local FactionIndexToCategory = {[1] = categories.UEF, [2] = categories.AEON, [3] = categories.CYBRAN, [4] = categories.SERAPHIM, [5] = categories.NOMADS, [6] = categories.ARM, [7] = categories.CORE }
-function CanBuildCategory(aiBrain,category)
-    -- convert text categories like 'MOBILE AIR' to 'categories.MOBILE * categories.AIR'
-    local FactionCat = FactionIndexToCategory[aiBrain:GetFactionIndex()] or categories.ALLUNITS
-    local numBuildableUnits = table.getn(EntityCategoryGetUnitList(category * FactionCat)) or -1
-    --AILog('* CanBuildCategory: FactionIndex: ('..repr(aiBrain:GetFactionIndex())..') numBuildableUnits:'..numBuildableUnits..' - '..repr( EntityCategoryGetUnitList(category * FactionCat) ))
-    return numBuildableUnits > 0
-end
-
---            { UCBC, 'HaveLessThanUnitsInCategoryBeingUpgrade', { 1, categories.RADAR * categories.TECH1 }},
-function HaveUnitsInCategoryBeingUpgrade(aiBrain, numunits, category, compareType)
-    -- get all units matching 'category'
-    local unitsBuilding = aiBrain:GetListOfUnits(category, false)
-    local numBuilding = 0
-    -- own armyIndex
-    local armyIndex = aiBrain:GetArmyIndex()
-    -- loop over all units and search for upgrading units
-    for unitNum, unit in unitsBuilding do
-        if not unit.Dead and not unit:BeenDestroyed() and unit:IsUnitState('Upgrading') and unit:GetAIBrain():GetArmyIndex() == armyIndex then
-            numBuilding = numBuilding + 1
-        end
-    end
-    --AILog(aiBrain:GetArmyIndex()..' HaveUnitsInCategoryBeingUpgrade ( '..numBuilding..' '..compareType..' '..numunits..' ) --  return '..repr(CompareBody(numBuilding, numunits, compareType))..' ')
-    return CompareBody(numBuilding, numunits, compareType)
-end
-function HaveLessThanUnitsInCategoryBeingUpgrade(aiBrain, numunits, category)
-    return HaveUnitsInCategoryBeingUpgrade(aiBrain, numunits, category, '<')
-end
-function HaveGreaterThanUnitsInCategoryBeingUpgrade(aiBrain, numunits, category)
-    return HaveUnitsInCategoryBeingUpgrade(aiBrain, numunits, category, '>')
-end
-
--- function GreaterThanGameTime(aiBrain, num) is multiplying the time by 0.5, if we have an cheat AI. But i need the real time here.
---            { UCBC, 'GreaterThanGameTimeSeconds', { 180 } },
-function GreaterThanGameTimeSeconds(aiBrain, num)
-    if num < GetGameTimeSeconds() then
-        return true
-    end
-    return false
-end
---            { UCBC, 'LessThanGameTimeSeconds', { 180 } },
-function LessThanGameTimeSeconds(aiBrain, num)
-    if num > GetGameTimeSeconds() then
-        return true
-    end
-    return false
-end
-
---            { UCBC, 'HaveUnitRatioVersusCap', { 0.024, '<=', categories.STRUCTURE * categories.FACTORY * categories.LAND } }, -- Maximal 3 factories at 125 unitcap, 12 factories at 500 unitcap...
-function HaveUnitRatioVersusCap(aiBrain, ratio, compareType, categoryOwn)
-    local numOwnUnits = aiBrain:GetCurrentUnits(categoryOwn)
-    local cap = GetArmyUnitCap(aiBrain:GetArmyIndex())
-    --AILog(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..cap..' ) -- ['..ratio..'] -- '..repr(DEBUG)..' :: '..(numOwnUnits / cap)..' '..compareType..' '..cap..' return '..repr(CompareBody(numOwnUnits / cap, ratio, compareType)))
-    return CompareBody(numOwnUnits / cap, ratio, compareType)
-end
-
-function HaveUnitRatioVersusEnemy(aiBrain, ratio, categoryOwn, compareType, categoryEnemy)
-    if ScenarioInfo.Options.OmniCheat == "off" and aiBrain:GetCurrentUnits(categories.STRUCTURE * categories.OMNI) == 0 then
-        return true
-    end
-    local numOwnUnits = aiBrain:GetCurrentUnits(categoryOwn)
-    local numEnemyUnits = aiBrain:GetNumUnitsAroundPoint(categoryEnemy, Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ , 'Enemy')
-    --AILog(aiBrain:GetArmyIndex()..' CompareBody {World} ( '..numOwnUnits..' '..compareType..' '..numEnemyUnits..' ) -- ['..ratio..'] -- return '..repr(CompareBody(numOwnUnits / numEnemyUnits, ratio, compareType)))
-    return CompareBody(numOwnUnits / numEnemyUnits, ratio, compareType)
-end
-
--- 0.8 = 4:5
---{ UCBC, 'HaveUnitRatioAtLocationRadiusVersusEnemy', { 1.50, 'LocationType', 90, 'STRUCTURE DEFENSE ANTIMISSILE TECH3', '<','SILO NUKE TECH3' } },
-function HaveUnitRatioAtLocationRadiusVersusEnemy(aiBrain, ratio, locType, radius, categoryOwn, compareType, categoryEnemy)
+function HaveUnitRatioAtLocationSE(aiBrain, locType, ratio, categoryNeed, compareType, categoryHave)
     local AIName = ArmyBrains[aiBrain:GetArmyIndex()].Nickname
     local baseposition, radius
-    if MAPBASEPOSTITIONS[AIName][locType] then
-        baseposition = MAPBASEPOSTITIONS[AIName][locType].Pos
-        radius = MAPBASEPOSTITIONS[AIName][locType].Rad
+    if MAPBASEPOSTITIONSSE[AIName][locType] then
+        baseposition = MAPBASEPOSTITIONSSE[AIName][locType].Pos
+        radius = MAPBASEPOSTITIONSSE[AIName][locType].Rad
     elseif aiBrain.BuilderManagers[locType] then
         baseposition = aiBrain.BuilderManagers[locType].FactoryManager.Location
         radius = aiBrain.BuilderManagers[locType].FactoryManager:GetLocationRadius()
-        MAPBASEPOSTITIONS[AIName] = MAPBASEPOSTITIONS[AIName] or {} 
-        MAPBASEPOSTITIONS[AIName][locType] = {Pos=baseposition, Rad=radius}
+        MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+        MAPBASEPOSTITIONSSE[AIName][locType] = {Pos=baseposition, Rad=radius}
     elseif aiBrain:PBMHasPlatoonList() then
         for k,v in aiBrain.PBM.Locations do
             if v.LocationType == locType then
                 baseposition = v.Location
                 radius = v.Radius
-                MAPBASEPOSTITIONS[AIName] = MAPBASEPOSTITIONS[AIName] or {} 
-                MAPBASEPOSTITIONS[AIName][locType] = {baseposition, radius}
+                MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+                MAPBASEPOSTITIONSSE[AIName][locType] = {baseposition, radius}
+                break
+            end
+        end
+    end
+    if not baseposition then
+        return false
+    end
+    local numNeedUnits = aiBrain:GetNumUnitsAroundPoint(categoryNeed, baseposition, radius , 'Ally')
+    local numHaveUnits = aiBrain:GetNumUnitsAroundPoint(categoryHave, baseposition, radius , 'Ally')
+    --AILog(aiBrain:GetArmyIndex()..' CompareBody {'..locType..'} ( '..numNeedUnits..' '..compareType..' '..numHaveUnits..' ) -- ['..ratio..'] -- '..categoryNeed..' '..compareType..' '..categoryHave..' return '..repr(CompareBody(numNeedUnits / numHaveUnits, ratio, compareType)))
+    return CompareBody(numNeedUnits / numHaveUnits, ratio, compareType)
+end
+
+-- 0.8 = 4:5
+--{ UCBC, 'HaveUnitRatioAtLocationSERadiusVersusEnemy', { 1.50, 'LocationType', 90, 'STRUCTURE DEFENSE ANTIMISSILE TECH3', '<','SILO NUKE TECH3' } },
+function HaveUnitRatioAtLocationSERadiusVersusEnemy(aiBrain, ratio, locType, radius, categoryOwn, compareType, categoryEnemy)
+    local AIName = ArmyBrains[aiBrain:GetArmyIndex()].Nickname
+    local baseposition, radius
+    if MAPBASEPOSTITIONSSE[AIName][locType] then
+        baseposition = MAPBASEPOSTITIONSSE[AIName][locType].Pos
+        radius = MAPBASEPOSTITIONSSE[AIName][locType].Rad
+    elseif aiBrain.BuilderManagers[locType] then
+        baseposition = aiBrain.BuilderManagers[locType].FactoryManager.Location
+        radius = aiBrain.BuilderManagers[locType].FactoryManager:GetLocationRadius()
+        MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+        MAPBASEPOSTITIONSSE[AIName][locType] = {Pos=baseposition, Rad=radius}
+    elseif aiBrain:PBMHasPlatoonList() then
+        for k,v in aiBrain.PBM.Locations do
+            if v.LocationType == locType then
+                baseposition = v.Location
+                radius = v.Radius
+                MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+                MAPBASEPOSTITIONSSE[AIName][locType] = {baseposition, radius}
                 break
             end
         end
@@ -142,54 +140,47 @@ function HaveUnitRatioAtLocationRadiusVersusEnemy(aiBrain, ratio, locType, radiu
     return CompareBody(numNeedUnits / numEnemyUnits, ratio, compareType)
 end
 
-function HaveEnemyUnitAtLocation(aiBrain, radius, locationType, unitCount, categoryEnemy, compareType)
+function HaveEnemyUnitAtLocationSE(aiBrain, radius, locationType, unitCount, categoryEnemy, compareType)
     if not aiBrain.BuilderManagers[locationType] then
-        AIWarn('*AI WARNING: HaveEnemyUnitAtLocation - Invalid location - ' .. locationType)
+        AIWarn('*AI WARNING: HaveEnemyUnitAtLocationSE - Invalid location - ' .. locationType)
         return false
     elseif not aiBrain.BuilderManagers[locationType].Position then
-        AIWarn('*AI WARNING: HaveEnemyUnitAtLocation - Invalid position - ' .. locationType)
+        AIWarn('*AI WARNING: HaveEnemyUnitAtLocationSE - Invalid position - ' .. locationType)
         return false
     end
     local numEnemyUnits = aiBrain:GetNumUnitsAroundPoint(categoryEnemy, aiBrain.BuilderManagers[locationType].Position, radius , 'Enemy')
     --AILog(aiBrain:GetArmyIndex()..' CompareBody {World} radius:['..radius..'] '..repr(DEBUG)..' ['..numEnemyUnits..'] '..compareType..' ['..unitCount..'] return '..repr(CompareBody(numEnemyUnits, unitCount, compareType)))
     return CompareBody(numEnemyUnits, unitCount, compareType)
 end
---            { UCBC, 'EnemyUnitsGreaterAtLocationRadius', {  BasePanicZone, 'LocationType', 0, categories.MOBILE * categories.LAND }}, -- radius, LocationType, unitCount, categoryEnemy
-function EnemyUnitsGreaterAtLocationRadius(aiBrain, radius, locationType, unitCount, categoryEnemy)
-    return HaveEnemyUnitAtLocation(aiBrain, radius, locationType, unitCount, categoryEnemy, '>')
+--            { UCBC, 'EnemyUnitsGreaterAtLocationRadiusSE', {  BasePanicZone, 'LocationType', 0, categories.MOBILE * categories.LAND }}, -- radius, LocationType, unitCount, categoryEnemy
+function EnemyUnitsGreaterAtLocationRadiusSE(aiBrain, radius, locationType, unitCount, categoryEnemy)
+    return HaveEnemyUnitAtLocationSE(aiBrain, radius, locationType, unitCount, categoryEnemy, '>')
 end
---            { UCBC, 'EnemyUnitsLessAtLocationRadius', {  BasePanicZone, 'LocationType', 1, categories.MOBILE * categories.LAND }}, -- radius, LocationType, unitCount, categoryEnemy
-function EnemyUnitsLessAtLocationRadius(aiBrain, radius, locationType, unitCount, categoryEnemy)
-    return HaveEnemyUnitAtLocation(aiBrain, radius, locationType, unitCount, categoryEnemy, '<')
+--            { UCBC, 'EnemyUnitsLessAtLocationRadiusSE', {  BasePanicZone, 'LocationType', 1, categories.MOBILE * categories.LAND }}, -- radius, LocationType, unitCount, categoryEnemy
+function EnemyUnitsLessAtLocationRadiusSE(aiBrain, radius, locationType, unitCount, categoryEnemy)
+    return HaveEnemyUnitAtLocationSE(aiBrain, radius, locationType, unitCount, categoryEnemy, '<')
 end
 
---            { UCBC, 'UnitsLessAtEnemy', { 1 , 'MOBILE EXPERIMENTAL' } },
---            { UCBC, 'UnitsGreaterAtEnemy', { 1 , 'MOBILE EXPERIMENTAL' } },
-function GetEnemyUnits(aiBrain, unitCount, categoryEnemy, compareType)
+--            { UCBC, 'UnitsLessAtEnemySE', { 1 , 'MOBILE EXPERIMENTAL' } },
+--            { UCBC, 'UnitsGreaterAtEnemySE', { 1 , 'MOBILE EXPERIMENTAL' } },
+function GetEnemyUnitsSE(aiBrain, unitCount, categoryEnemy, compareType)
     local numEnemyUnits = aiBrain:GetNumUnitsAroundPoint(categoryEnemy, Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ , 'Enemy')
     --AILog(aiBrain:GetArmyIndex()..' CompareBody {World} '..categoryEnemy..' ['..numEnemyUnits..'] '..compareType..' ['..unitCount..'] return '..repr(CompareBody(numEnemyUnits, unitCount, compareType)))
     return CompareBody(numEnemyUnits, unitCount, compareType)
 end
-function UnitsLessAtEnemy(aiBrain, unitCount, categoryEnemy)
-    return GetEnemyUnits(aiBrain, unitCount, categoryEnemy, '<')
+function UnitsLessAtEnemySE(aiBrain, unitCount, categoryEnemy)
+    return GetEnemyUnitsSE(aiBrain, unitCount, categoryEnemy, '<')
 end
-function UnitsGreaterAtEnemy(aiBrain, unitCount, categoryEnemy)
-    return GetEnemyUnits(aiBrain, unitCount, categoryEnemy, '>')
-end
-
---            { UCBC, 'EngineerManagerUnitsAtLocation', { 'MAIN', '<=', 100,  'ENGINEER TECH3' } },
-function EngineerManagerUnitsAtLocation(aiBrain, LocationType, compareType, numUnits, category)
-    local numEngineers = aiBrain.BuilderManagers[LocationType].EngineerManager:GetNumCategoryUnits('Engineers', category)
-    --AILog('* EngineerManagerUnitsAtLocation: '..LocationType..' ( engineers: '..numEngineers..' '..compareType..' '..numUnits..' ) -- '..category..' return '..repr(CompareBody( numEngineers, numUnits, compareType )) )
-    return CompareBody( numEngineers, numUnits, compareType )
+function UnitsGreaterAtEnemySE(aiBrain, unitCount, categoryEnemy)
+    return GetEnemyUnitsSE(aiBrain, unitCount, categoryEnemy, '>')
 end
 
-function HaveGreaterThanUnitsInCategoryBeingBuiltAtLocation(aiBrain, locationType, numReq, category, constructionCat)
+function HaveGreaterThanUnitsInCategoryBeingBuiltAtLocationSE(aiBrain, locationType, numReq, category, constructionCat)
     local numUnits
     if constructionCat then
-        numUnits = table.getn( GetUnitsBeingBuiltLocation(aiBrain, locationType, category, category + (categories.ENGINEER * categories.MOBILE - categories.STATIONASSISTPOD - categories.POD) + constructionCat) or {} )
+        numUnits = table.getn( GetUnitsBeingBuiltLocationSE(aiBrain, locationType, category, category + (categories.ENGINEER * categories.MOBILE - categories.STATIONASSISTPOD - categories.POD) + constructionCat) or {} )
     else
-        numUnits = table.getn( GetUnitsBeingBuiltLocation(aiBrain,locationType, category, category + (categories.ENGINEER * categories.MOBILE - categories.STATIONASSISTPOD - categories.POD) ) or {} )
+        numUnits = table.getn( GetUnitsBeingBuiltLocationSE(aiBrain,locationType, category, category + (categories.ENGINEER * categories.MOBILE - categories.STATIONASSISTPOD - categories.POD) ) or {} )
     end
     if numUnits > numReq then
         return true
@@ -197,24 +188,24 @@ function HaveGreaterThanUnitsInCategoryBeingBuiltAtLocation(aiBrain, locationTyp
     return false
 end
 
-function GetUnitsBeingBuiltLocation(aiBrain, locType, buildingCategory, builderCategory)
+function GetUnitsBeingBuiltLocationSE(aiBrain, locType, buildingCategory, builderCategory)
     local AIName = ArmyBrains[aiBrain:GetArmyIndex()].Nickname
     local baseposition, radius
-    if MAPBASEPOSTITIONS[AIName][locType] then
-        baseposition = MAPBASEPOSTITIONS[AIName][locType].Pos
-        radius = MAPBASEPOSTITIONS[AIName][locType].Rad
+    if MAPBASEPOSTITIONSSE[AIName][locType] then
+        baseposition = MAPBASEPOSTITIONSSE[AIName][locType].Pos
+        radius = MAPBASEPOSTITIONSSE[AIName][locType].Rad
     elseif aiBrain.BuilderManagers[locType] then
         baseposition = aiBrain.BuilderManagers[locType].FactoryManager.Location
         radius = aiBrain.BuilderManagers[locType].FactoryManager:GetLocationRadius()
-        MAPBASEPOSTITIONS[AIName] = MAPBASEPOSTITIONS[AIName] or {} 
-        MAPBASEPOSTITIONS[AIName][locType] = {Pos=baseposition, Rad=radius}
+        MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+        MAPBASEPOSTITIONSSE[AIName][locType] = {Pos=baseposition, Rad=radius}
     elseif aiBrain:PBMHasPlatoonList() then
         for k,v in aiBrain.PBM.Locations do
             if v.LocationType == locType then
                 baseposition = v.Location
                 radius = v.Radius
-                MAPBASEPOSTITIONS[AIName] = MAPBASEPOSTITIONS[AIName] or {} 
-                MAPBASEPOSTITIONS[AIName][locType] = {baseposition, radius}
+                MAPBASEPOSTITIONSSE[AIName] = MAPBASEPOSTITIONSSE[AIName] or {} 
+                MAPBASEPOSTITIONSSE[AIName][locType] = {baseposition, radius}
                 break
             end
         end
@@ -222,7 +213,7 @@ function GetUnitsBeingBuiltLocation(aiBrain, locType, buildingCategory, builderC
     if not baseposition then
         return false
     end
-    local filterUnits = GetOwnUnitsAroundLocation(aiBrain, builderCategory, baseposition, radius)
+    local filterUnits = GetOwnUnitsAroundLocationSE(aiBrain, builderCategory, baseposition, radius)
     local retUnits = {}
     for k,v in filterUnits do
         -- Only assist if allowed
@@ -245,7 +236,7 @@ function GetUnitsBeingBuiltLocation(aiBrain, locType, buildingCategory, builderC
     return retUnits
 end
 
-function GetOwnUnitsAroundLocation(aiBrain, category, location, radius)
+function GetOwnUnitsAroundLocationSE(aiBrain, category, location, radius)
     local units = aiBrain:GetUnitsAroundPoint(category, location, radius, 'Ally')
     local index = aiBrain:GetArmyIndex()
     local retUnits = {}
@@ -255,4 +246,27 @@ function GetOwnUnitsAroundLocation(aiBrain, category, location, radius)
         end
     end
     return retUnits
+end
+
+--            { UCBC, 'CanPathNavalBaseToNavalTargetsSE', {  'LocationType', categories.STRUCTURE * categories.FACTORY * categories.NAVAL }}, -- LocationType, categoryUnits
+function CanPathNavalBaseToNavalTargetsSE(aiBrain, locationType, unitCategory)
+    local baseposition = aiBrain.BuilderManagers[locationType].FactoryManager.Location
+    local Factories = aiBrain.BuilderManagers[locationType].FactoryManager:GetFactories(categories.NAVAL)
+    if Factories[1] then
+        baseposition = Factories[1]:GetPosition()
+    end
+    --AILog('Searching water path from base ['..locationType..'] position '..repr(baseposition))
+    local EnemyNavalUnits = aiBrain:GetUnitsAroundPoint(unitCategory, Vector(mapSizeX/2,0,mapSizeZ/2), mapSizeX+mapSizeZ, 'Enemy')
+    for _, EnemyUnit in EnemyNavalUnits do
+        if not EnemyUnit.Dead then
+            --AILog('checking enemy factories '..repr(EnemyUnit:GetPosition()))
+            -- if CanGraphAreaTo(baseposition, EnemyUnit:GetPosition(), 'Water') then
+            if NavUtils.CanPathTo('Water', baseposition, EnemyUnit:GetPosition()) then
+                --AILog('Found a water path from base ['..locationType..'] to enemy position '..repr(EnemyUnit:GetPosition()))
+                return true
+            end
+        end
+    end
+    --AILog('Found no path to any target from naval base ['..locationType..']')
+    return false
 end

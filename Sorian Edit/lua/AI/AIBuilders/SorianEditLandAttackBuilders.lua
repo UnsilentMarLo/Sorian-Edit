@@ -26,7 +26,7 @@ local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 
 local SUtils = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Land attack Builders loading')
@@ -68,7 +68,7 @@ BuilderGroup {
         -- PlatoonTemplate = 'T1LandDFTank',
         -- Priority = 4125,
         -- BuilderConditions = {
-			-- { UCBC, 'LessThanGameTimeSeconds', { 140 } },
+			-- { UCBC, 'LessThanGameTimeSecondsSE', { 140 } },
 			-- { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.15 } },
 			-- { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.LAND * categories.SCOUT }},
 			-- { UCBC, 'PoolLessAtLocation', { 'LocationType', 3, categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH1 }},
@@ -183,7 +183,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.2 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY LAND TECH2, FACTORY LAND TECH3' }},
         },
         BuilderType = 'Land',
@@ -294,7 +294,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
-			{ UCBC, 'CanBuildCategory', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
+			{ UCBC, 'CanBuildCategorySE', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 4, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
             { UCBC, 'HaveForEach', { categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1 - categories.COMMAND - categories.COMMAND, 0.2, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON }},
@@ -312,7 +312,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
-			{ UCBC, 'CanBuildCategory', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
+			{ UCBC, 'CanBuildCategorySE', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 4, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
             { SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
         },
@@ -328,7 +328,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
             { SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-			{ UCBC, 'CanBuildCategory', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
+			{ UCBC, 'CanBuildCategorySE', { categories.LAND * categories.MOBILE * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 3, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
             { SBC, 'HaveUnitRatioSorian', { 0.2, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE - categories.TECH1 - categories.COMMAND - categories.COMMAND}},
         },
@@ -396,7 +396,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.ANTIAIR * (categories.HOVER + categories.AMPHIBIOUS) } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
     },
@@ -411,7 +411,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
     -- Tech 2 priority
@@ -426,7 +426,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
     -- Tech 3 priority
@@ -441,7 +441,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.9 }},
             { SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
-			{ UCBC, 'CanBuildCategory', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
+			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.LAND * categories.TECH2 * categories.DIRECTFIRE * (categories.HOVER + categories.AMPHIBIOUS) } },
         },
     },
 }
@@ -658,7 +658,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.65, 0.75 }},
-			{ UCBC, 'CanBuildCategory', { categories.LAND * categories.MOBILE * categories.TECH3 * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
+			{ UCBC, 'CanBuildCategorySE', { categories.LAND * categories.MOBILE * categories.TECH3 * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.MOBILE * categories.TECH3 * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
             { SBC, 'HaveUnitRatioSorian', { 0.2, categories.LAND * categories.MOBILE * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE, '<=', categories.LAND * categories.DIRECTFIRE * categories.MOBILE * categories.TECH3 - categories.COMMAND}},
         },
@@ -673,7 +673,7 @@ BuilderGroup {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.75 }},
-			{ UCBC, 'CanBuildCategory', { categories.LAND * categories.MOBILE * categories.TECH3 * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
+			{ UCBC, 'CanBuildCategorySE', { categories.LAND * categories.MOBILE * categories.TECH3 * categories.SHIELD * categories.DEFENSE - categories.DIRECTFIRE }},
 			{ UCBC, 'PoolLessAtLocation', { 'LocationType', 2, categories.LAND * categories.MOBILE * categories.TECH3 * (categories.COUNTERINTELLIGENCE + (categories.SHIELD * categories.DEFENSE)) - categories.DIRECTFIRE }},
         },
     },
@@ -763,7 +763,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 75,
+            AttackEnemyStrength = 65,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -777,8 +777,8 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 400 } },
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND - categories.ENGINEER } },
+			-- { UCBC, 'LessThanGameTimeSecondsSE', { 600 } },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, categories.MOBILE * categories.LAND - categories.ENGINEER } },
         },
     },
     Builder {
@@ -792,7 +792,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 75,
+            AttackEnemyStrength = 65,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -806,7 +806,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 5, categories.MOBILE * categories.LAND - categories.ENGINEER} },
+            { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 8, categories.MOBILE * categories.LAND - categories.ENGINEER} },
         },
     },
     Builder {
@@ -820,7 +820,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 75,
+            AttackEnemyStrength = 65,
             TargetSearchCategory = (categories.MOBILE * categories.LAND - categories.SCOUT) + (categories.STRUCTURE * categories.ECONOMIC) - categories.WALL,
             MoveToCategories = {
                 categories.EXPERIMENTAL * categories.LAND,
@@ -847,7 +847,7 @@ BuilderGroup {
         PlatoonTemplate = 'MassHuntersCategorySorianEditSmall',
         Priority = 1600,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 240 } },
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 180 } },
 				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 0, categories.MOBILE * categories.LAND - categories.ENGINEER } },
             },
@@ -869,9 +869,9 @@ BuilderGroup {
         PlatoonTemplate = 'MassHuntersCategorySorianEditLarge',
         Priority = 1500,
         BuilderConditions = {
-                { UCBC, 'GreaterThanGameTimeSeconds', { 240 } },
+                { UCBC, 'GreaterThanGameTimeSecondsSE', { 240 } },
 				{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 3, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
+                { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 4, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
             NeverGuardBases = true,
@@ -883,7 +883,7 @@ BuilderGroup {
                 'STRUCTURE ECONOMIC',
             },
         },
-        InstanceCount = 5,
+        InstanceCount = 6,
         BuilderType = 'Any',
     },
     Builder {
@@ -891,7 +891,7 @@ BuilderGroup {
         PlatoonTemplate = 'StartLocationAttackSorianEdit',
         Priority = 2000,
         BuilderConditions = {
-                { UCBC, 'LessThanGameTimeSeconds', { 220 } },
+                { UCBC, 'LessThanGameTimeSecondsSE', { 220 } },
                 { UCBC, 'PoolGreaterAtLocation', { 'LocationType', 1, categories.MOBILE * categories.LAND  - categories.ENGINEER } },
             },
         BuilderData = {
@@ -907,7 +907,7 @@ BuilderGroup {
             GuardTimer = 30,
             UseFormation = 'None',
         },
-        InstanceCount = 2,
+        InstanceCount = 6,
         BuilderType = 'Any',
     },
 }

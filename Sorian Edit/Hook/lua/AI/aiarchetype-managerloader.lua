@@ -5,7 +5,8 @@ local lastCall = GetGameTimeSeconds()
 local Buff = import('/lua/sim/Buff.lua')
 local HighestThreat = {}
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
-local CanGraphAreaTo = import("/mods/AI-Uveso/lua/AI/AIMarkerGenerator.lua").CanGraphAreaTo
+-- local CanGraphAreaTo = import("/mods/AI-Uveso/lua/AI/AIMarkerGenerator.lua").CanGraphAreaTo -- deprecated
+local NavUtils = import("/lua/sim/navutils.lua")
 
 SorianEditExecutePlanFunction = ExecutePlan
 function ExecutePlan(aiBrain)
@@ -18,6 +19,7 @@ function ExecutePlan(aiBrain)
         SorianEditExecutePlanFunction(aiBrain)
         return
     end
+	-- WARN('[aiarchetype-managerloader.lua ------------------------ SorianEditExecutePlanFunction.')
     aiBrain:SetConstantEvaluate(false)
     local behaviors = import('/lua/ai/AIBehaviors.lua')
     coroutine.yield(10)
@@ -37,10 +39,10 @@ function ExecutePlan(aiBrain)
                 mainManagers.FactoryManager:AddFactory(v)
             end
         end
-        aiBrain:ForkThread(MarkerGridThreatManagerThreadSorianEdit, aiBrain)  -- start after 10 seconds
+        -- aiBrain:ForkThread(MarkerGridThreatManagerThreadSorianEdit, aiBrain)  -- start after 10 seconds
         aiBrain:ForkThread(LocationRangeManagerThreadSorianEdit, aiBrain)     -- start after 30 seconds
         aiBrain:ForkThread(BaseTargetManagerThreadSorianEdit, aiBrain)        -- start after 50 seconds
-        aiBrain:ForkThread(PriorityManagerThreadSE, aiBrain)          -- start after 1 minute 10 seconds
+        -- aiBrain:ForkThread(PriorityManagerThreadSE, aiBrain)          -- start after 1 minute 10 seconds
         aiBrain:ForkThread(EcoManagerThreadSorianEdit, aiBrain)               -- start after 4 minutes
     end
     if aiBrain.PBM then
@@ -669,9 +671,9 @@ function LocationRangeManagerThreadSorianEdit(aiBrain)
     while GetGameTimeSeconds() < 15 + aiBrain:GetArmyIndex() do
         coroutine.yield(10)
     end
-    if not import('/lua/AI/sorianutilities.lua').CheckForMapMarkers(aiBrain) then
-        import('/lua/AI/sorianutilities.lua').AISendChat('all', ArmyBrains[aiBrain:GetArmyIndex()].Nickname, 'badmap')
-    end
+    -- if not import('/lua/AI/sorianutilities.lua').CheckForMapMarkers(aiBrain) then
+        -- import('/lua/AI/sorianutilities.lua').AISendChat('all', ArmyBrains[aiBrain:GetArmyIndex()].Nickname, 'badmap')
+    -- end
 
     while aiBrain.Result ~= "defeat" do
         coroutine.yield(50)
@@ -946,7 +948,7 @@ function BaseTargetManagerThreadSorianEdit(aiBrain)
         coroutine.yield(10)
     end
     SPEW('* AI-SorianEdit: Function BaseTargetManagerThreadSorianEdit() started. ['..aiBrain.Nickname..']')
-    local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+    local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
     local targets = {}
     local baseposition, radius
     local ClosestTarget
@@ -1234,7 +1236,8 @@ function AddFactoryToClosestManagerSorianEdit(aiBrain, factory)
         WARN('ClosestMarkerBasePos = NIL')
     end
     
-    if dist > BaseRadius or (not ClosestMarkerBasePos) or (not CanGraphAreaTo(FactoryPos, ClosestMarkerBasePos, layer)) then -- needs graph check for land and naval locations
+    -- if dist > BaseRadius or (not ClosestMarkerBasePos) or (not CanGraphAreaTo(FactoryPos, ClosestMarkerBasePos, layer)) then -- needs graph check for land and naval locations
+    if dist > BaseRadius or (not ClosestMarkerBasePos) or (not NavUtils.CanPathTo(layer, FactoryPos, ClosestMarkerBasePos)) then -- needs graph check for land and naval locations
         WARN('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: Found ['..MarkerBaseName..'] Baseradius('..math.floor(BaseRadius)..') but it\'s to not reachable: Distance to base: '..math.floor(dist)..' - Creating new location')
         if NavalFactory then
             MarkerBaseName = 'Naval Area '..Random(1000,5000)
@@ -1343,7 +1346,7 @@ function PriorityManagerThreadSE(aiBrain)
         coroutine.yield(50)
         -- Check for mass need. (EngineerBuilder)
         -- Are less then 10% of all structures are extractors ? - Then we need more
-        if UCBC.HaveUnitRatioVersusCap(aiBrain, 0.10, '<', categories.STRUCTURE * categories.MASSEXTRACTION)
+        if UCBC.HaveUnitRatioVersusCapSE(aiBrain, 0.10, '<', categories.STRUCTURE * categories.MASSEXTRACTION)
         -- Do we have a free mass spot ? - Then we can more
         and MABC.CanBuildOnMass(aiBrain, 'MAIN', 1000, -500, 1, 0, 'AntiSurface', 1) then
             aiBrain.PriorityManager.NeedMass = true
@@ -1359,7 +1362,7 @@ function PriorityManagerThreadSE(aiBrain)
         NAVALMOBILE = aiBrain:GetCurrentUnits(categories.NAVAL * categories.MOBILE)
         --LOG('* AI-SorianEdit:  '..LANDFACTORY..'/'..AIRFACTORY..'/'..NAVALFACTORY..' - LANDMOBILE: '..LANDMOBILE..' - AIRMOBILE: '..AIRMOBILE..' - NAVALMOBILE: '..NAVALMOBILE..'.')
         -- can we build more units ?
-        if UCBC.HaveUnitRatioVersusCap(aiBrain, 0.45, '<', categories.MOBILE) then
+        if UCBC.HaveUnitRatioVersusCapSE(aiBrain, 0.45, '<', categories.MOBILE) then
             if (LANDMOBILE >= AIRMOBILE) and (LANDMOBILE >= NAVALMOBILE) then
                 aiBrain.PriorityManager.NeedMobileLand = false
                 aiBrain.PriorityManager.NeedMobileHover = false

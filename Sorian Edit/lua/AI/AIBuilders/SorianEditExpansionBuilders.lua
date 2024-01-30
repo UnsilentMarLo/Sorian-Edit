@@ -23,7 +23,7 @@ local IBC = '/lua/editor/InstantBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 local ExtractorToFactoryRatio = 3
 
@@ -47,8 +47,8 @@ BuilderGroup {
         BuilderConditions = {
             { EBC, 'GreaterThanEconIncome',  { 2.0, 16.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'LessThanGameTimeSeconds', { 600 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY } },
+            { UCBC, 'LessThanGameTimeSecondsSE', { 600 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.FACTORY } },
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 500, -1000, 10, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -72,7 +72,7 @@ BuilderGroup {
                     'T1AirFactory',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
     Builder {
@@ -117,7 +117,7 @@ BuilderGroup {
                     'T1LandFactory',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
     Builder {
@@ -159,7 +159,7 @@ BuilderGroup {
                     'T1EnergyProduction',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
 }
@@ -179,6 +179,7 @@ BuilderGroup {
         InstanceCount = 1,
         BuilderConditions = {
             { UCBC, 'UnitCapCheckLess', { .8 } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.MOBILE * categories.AIR * categories.TRANSPORTFOCUS - (categories.uea0203 + categories.EXPERIMENTAL)  }},
             { UCBC, 'StartLocationNeedsEngineer', { 'LocationType', 1000, -1000, 100, 1, 'StructuresNotMex' } },
         },
         BuilderType = 'Any',
@@ -206,7 +207,7 @@ BuilderGroup {
                     'T1AirFactory',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
     Builder {
@@ -251,7 +252,7 @@ BuilderGroup {
                     'T1LandFactory',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
     Builder {
@@ -293,7 +294,7 @@ BuilderGroup {
                     'T1EnergyProduction',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
 }
@@ -340,7 +341,7 @@ BuilderGroup {
                     'T1AADefense',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
     Builder {
@@ -379,7 +380,7 @@ BuilderGroup {
                     'T2Radar',
                 }
             },
-            NeedGuard = false,
+            NeedGuard = true,
         }
     },
 }

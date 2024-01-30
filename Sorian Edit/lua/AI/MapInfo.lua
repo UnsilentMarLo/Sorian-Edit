@@ -1,9 +1,17 @@
 local ScenarioUtils = import('/lua/sim/ScenarioUtilities.lua') -- located in the lua.nx2 part of the FAF gamedata
 local Utilities = import('/mods/Sorian Edit/lua/AI/sorianeditutilities.lua')
 local AIAttackUtils = import('/lua/ai/aiattackutilities.lua')
-local NavUtils = import('/lua/sim/NavUtils.lua')
+local MathMax = math.max
 
 MassPoints = {} -- Stores position of each mass point (as a position value, i.e. a table with 3 values, x, y, z
+-- Group 1:
+-- Count: 3
+-- Center Position: x=3.3333333333333, y=3.3333333333333, z=0.0
+-- Positions:
+  -- x=0, y=0, z=0
+  -- x=10, y=0, z=0
+  -- x=0, y=10, z=0
+MassGroups = {} -- Stores groups with mass points
 HydroPoints = {} -- Stores position values i.e. a table with 3 values, x, y, z
 
 PlayerStartPoints = {} -- Stores position values i.e. a table with 3 values, x, y, z; item 1 = ARMY_1 etc.
@@ -16,6 +24,20 @@ NavalAreaCount = 0 -- Stores count of all Valid Naval Area
 
 MassCount = 0 -- used as a way of checking if have the core markers needed
 HydroCount = 0
+MapSizeNum = 0
+GroupSizeMult = 1
+
+function EstablishMapSize()
+	MapSize = MathMax(ScenarioInfo.size[1], ScenarioInfo.size[2])
+
+	if MapSizeNum >= 1024 then
+		GroupSizeMult = 2
+	end
+
+	if MapSizeNum >= 2048 then
+		GroupSizeMult = 4
+	end
+end
 
 function RecordPlayerStartLocations(self)
 	-- Updates PlayerStartPoints to Record all the possible player start points
@@ -41,7 +63,7 @@ function RecordPlayerStartLocations(self)
 end
 
 function RecordResourceLocations()
-    if MassPoints[1] == 0 then
+    if MassPoints[1] == nil then
 		MassCount = 0
 		HydroCount = 0
 
@@ -58,7 +80,14 @@ function RecordResourceLocations()
 			end -- Hydrocarbon
 		end -- GetMarkers() loop
 		-- MapMexCount = MassCount
+		EstablishMapSize()
+		RecordMexGroups((30*GroupSizeMult))
 	end
+end
+
+-- Function to calculate distance between two positions
+function GetDistanceBetweenPositions(Position1, Position2)
+	return VDist2(Position1[1], Position1[3], Position2[1], Position2[3])
 end
 
 function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
@@ -73,11 +102,11 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
     MassNearStart[iArmy] = {}
     local AllMassPoints = {}
     if MassPoints[1] == nil then
-        -- LOG('RecordMexNearStartPosition is being called outside of normal approach')
+        WARN('RecordMexNearStartPosition is being called outside of normal approach')
         local iAllMexCount = 0
         --This is likely being run before main initialisation code
         if ScenarioUtils.GetMarkers() == nil then
-            -- LOG('ERROR: RecordMexNearStartPosition: ScenarioUtils.GetMarkers Is Nil')
+            WARN('ERROR: RecordMexNearStartPosition: ScenarioUtils.GetMarkers Is Nil')
         end
 
         for _2, v2 in ScenarioUtils.GetMarkers() do
@@ -90,7 +119,7 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
         AllMassPoints = MassPoints
     end
     for key,pMexPos in AllMassPoints do
-        iDistance = Utilities.GetDistanceBetweenPositions(pStartPos, pMexPos)
+        iDistance = GetDistanceBetweenPositions(pStartPos, pMexPos)
         if iDistance <= iMaxDistance then
             iMexCount = iMexCount + 1
             MassNearStart[iArmy][iMexCount] = pMexPos
@@ -104,46 +133,107 @@ function RecordMexNearStartPosition(iArmy, iMaxDistance, bCountOnly)
 
 end
 
-AttackVectors = {}
-ArmyVectorPoints = {}
+function RecordMexGroups(MaxDistance)
+	local MexCluster = ClusterPositions(MassPoints, MaxDistance)
+	-- WARN(' --------------------------- SorianEdit: RecordMexGroups: Called')
+	if MexCluster[1] != nil  then
+		MassGroups = MexCluster
+		-- LogClusters(MexCluster)
+		-- local DrawThread = ForkThread(DrawClusters, MexCluster)
+	else
+		WARN(' --------------------------- SorianEdit: RecordMexGroups: ClusterPositions returned nil')
+	end
+end
 
-function RecordAttackVectorsStartPosition(aiBrain)
-    -- create a table of ArmyPositions then populate it with pathable positions for possible attack vectors on each spawn
-    -- use this to create possible backdoors into the enemy Base
-    local mapSizeX, mapSizeZ = GetMapSize()
-    local radius = 50
+-- Function to cluster positions into groups
+function ClusterPositions(positions, MaxDistance)
+    local groups = {}
+	local MaxDistance = MaxDistance or 20
 	
-	local selfIndex = tonumber(string.sub(aiBrain.Name, 6 ))
-    
-    if mapSizeX > 512 and mapSizeZ > 512 then
-        radius = 50 * (((mapSizeX+mapSizeZ)/2)/512)
+    -- Helper function to check if a position is already in any group
+    local function isPositionInAnyGroup(position)
+        for _, group in ipairs(groups) do
+            for _, existingPos in ipairs(group.positions) do
+                if existingPos == position then
+                    return true
+                end
+            end
+        end
+        return false
     end
-	
-    -- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: X:'..repr(mapSizeX)..' Z: '..repr(mapSizeZ))
-    -- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition:'..repr(radius))
-	
-    for kp, vp in PlayerStartPoints do
-		ArmyVectorPoints[kp] = {}
-        local x = vp[1]
-        local y = vp[3]
-        local z = vp[2]
-		local maxdist = VDist2Sq(x, y, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3])
-        for i = 1, 12 do
-            local angle = i * math.pi / 6
-            local ptx, pty = x + radius * math.cos( angle ), y + radius * math.sin( angle )
-			-- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: Vector at angle:'..repr(angle)..' Position: '..repr({ptx, z, pty}))
-			if NavUtils.CanPathTo('Land', {ptx, z, pty}, vp) then
-				if kp == selfIndex then
-					ArmyVectorPoints[kp][i] = {ptx, z, pty}
-					continue
-				end
-				-- LOG('*------------------------------- AI-sorianedit RecordAttackVectorsStartPosition: Vector:'..repr(VDist2Sq(ptx, pty, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3]))..' vs Base: '..repr(maxdist))
-				if VDist2Sq(ptx, pty, PlayerStartPoints[selfIndex][1], PlayerStartPoints[selfIndex][3]) <= maxdist then
-					ArmyVectorPoints[kp][i] = {ptx, z, pty}
-				end
-			end
+
+    -- Helper function to find a suitable group for a position
+    local function findSuitableGroup(position)
+        for _, group in ipairs(groups) do
+            local canAddToGroup = true
+            for _, existingPos in ipairs(group.positions) do
+                if GetDistanceBetweenPositions(existingPos, position) > MaxDistance then
+                    canAddToGroup = false
+                    break
+                end
+            end
+
+            if canAddToGroup then
+                return group
+            end
+        end
+
+        return nil
+    end
+
+    -- Main clustering logic
+    for _, position in ipairs(positions) do
+        if not isPositionInAnyGroup(position) then
+            local group = findSuitableGroup(position)
+            if not group then
+                group = {positions = {}, count = 0, center = {0,0,0}}
+                table.insert(groups, group)
+            end
+
+            table.insert(group.positions, position)
+            group.count = group.count + 1
+
+            -- Update the center position
+            group.center[1] = (group.center[1] * (group.count - 1) + position[1]) / group.count
+            group.center[2] = (group.center[2] * (group.count - 1) + position[2]) / group.count
+            group.center[3] = (group.center[3] * (group.count - 1) + position[3]) / group.count
         end
     end
+
+    return groups
+end
+
+function LogClusters(result)
+
+	-- LOG the result
+	for i, group in ipairs(result) do
+		LOG('Group ' .. i .. ':')
+		LOG('Count: ' .. group.count)
+		LOG('Center Position: x=' .. group.center[1] .. ', y=' .. group.center[3] .. ', z=' .. group.center[2])
+		LOG('Positions:')
+		for _, pos in ipairs(group.positions) do
+			LOG('  x=' .. pos[1] .. ', y=' .. pos[2] .. ', z=' .. pos[3])
+		end
+		LOG('\n')
+	end
+end
+
+function DrawClusters(result)
+	while true do
+		for i, group in ipairs(result) do
+			if group.count >= 2 then
+				DrawCircle(group.center, 30*GroupSizeMult, '09FF00')
+				for _, pos in ipairs(group.positions) do
+					local pos2 = group.positions[_+1]
+						if pos2 == nil then
+							break
+						end
+					DrawLinePop(pos, pos2, '09FF00')
+				end
+			end
+		end
+		coroutine.yield(1)
+	end
 end
 
 function EvaluateNavalAreas(iArmy)

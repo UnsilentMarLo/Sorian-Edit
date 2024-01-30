@@ -23,7 +23,7 @@ local SAI = '/lua/ScenarioPlatoonAI.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Strategy Platoons Builders loading')
@@ -102,7 +102,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 2500,
+            AttackEnemyStrength = 125,
             IgnorePathing = true,
             AvoidBases = true,
             AvoidBasesRadius = 300,
@@ -158,7 +158,7 @@ BuilderGroup {
             GetTargetsFromBase = false,
             RequireTransport = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 2500,
+            AttackEnemyStrength = 125,
             IgnorePathing = true,
             AvoidBases = true,
             AvoidBasesRadius = 300,

@@ -24,7 +24,7 @@ local TBC = '/lua/editor/ThreatBuildConditions.lua'
 local PlatoonFile = '/lua/platoon.lua'
 local SIBC = '/mods/Sorian Edit/lua/editor/SorianEditInstantBuildConditions.lua'
 local SBC = '/mods/Sorian Edit/lua/editor/SorianEditBuildConditions.lua'
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Eco Builders loading')
@@ -43,7 +43,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 }},
-            { UCBC, 'GreaterThanGameTimeSeconds', { 90 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 90 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH1 * categories.ENGINEER } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
@@ -81,7 +81,7 @@ BuilderGroup {
         Priority = 3900,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 260 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 260 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
             { UCBC, 'PoolLessAtLocation', { 'LocationType', 1, categories.MOBILE * categories.TECH1 * categories.ENGINEER } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
@@ -527,7 +527,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 4100000,
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH1 } },
         },
         BuilderType = 'Any',
@@ -548,7 +548,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 4000000,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
 				{ UCBC, 'HaveLessThanUnitsWithCategory', {2, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
             },
@@ -568,7 +568,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 2000000,
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 150 } },
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
         },
         BuilderType = 'Any',
@@ -589,7 +589,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 1000000,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 120 } },
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 120 } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', {3, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 15, -500, 0, 0, 'AntiSurface', 1 }},
             },
@@ -609,7 +609,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 555000,
         BuilderConditions = {
-				{ UCBC, 'LessThanGameTimeSeconds', { 140 } },
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 140 } },
 				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.HYDROCARBON } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
                 { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
@@ -630,7 +630,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderBuilderSorianEdit',
         Priority = 400000,
         BuilderConditions = {
-			{ UCBC, 'LessThanGameTimeSeconds', { 250 } },
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 250 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
         },
         BuilderType = 'Any',
@@ -785,7 +785,7 @@ BuilderGroup {
         Priority = 1200,
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 60 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.5 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
@@ -811,7 +811,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.STRUCTURE * categories.FACTORY * categories.LAND * categories.TECH2 - categories.SUPPORTFACTORY} },
-            { UCBC, 'GreaterThanGameTimeSeconds', { 400 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 400 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.8, 0.8 } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
@@ -857,7 +857,7 @@ BuilderGroup {
         PlatoonTemplate = 'CommanderAssist',
         Priority = 21000,
         BuilderConditions = {
-            { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocation', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
+            { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocationSE', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -1320,24 +1320,24 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 122500,
         InstanceCount = 1,
-        -- DelayEqualBuildPlatoons = {'MASSSTORAGE', 3},
+        DelayEqualBuildPlattons = {'MASSSTORAGE', 3},
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 6*60 }},
+			{ UCBC, 'GreaterThanGameTimeSecondsSE', { 6*60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.9 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 2,  categories.STRUCTURE * categories.MASSSTORAGE }},
-            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 256, 'ueb1106' } },
-            { MABC, 'MarkerLessThanDistance',  { 'Mass', 250, -3, 0, 0}},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH2, MASSEXTRACTION TECH3'}},
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1,  categories.STRUCTURE * categories.MASSSTORAGE }},
+            { MABC, 'MarkerLessThanDistance',  { 'Mass', 128, -3, 0, 0}},
+			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 4, categories.STRUCTURE * categories.MASSSTORAGE }},
+			{ UCBC, 'UnitsGreaterAtLocation', { 'LocationType', 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
+            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 4, 'ueb1106' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = categories.MASSEXTRACTION * (categories.TECH3 + categories.TECH2),
-                AdjacencyDistance = 250,
+                AdjacencyDistance = 10,
                 BuildClose = false,
-                RepeatBuild = false,
+                RepeatBuild = true,
                 BuildStructures = {
                     'MassStorage',
                 }
@@ -1349,7 +1349,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 800,
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 410 } },
+			{ UCBC, 'GreaterThanGameTimeSecondsSE', { 410 } },
             { EBC, 'GreaterThanEconStorageRatio', { 0.6, 1.2 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.ENERGYSTORAGE }},
@@ -1458,7 +1458,7 @@ BuilderGroup {
         InstanceCount = 2,
         DelayEqualBuildPlatoons = {'CheapEnergyBuilding', 4},
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 2*60 }},
+			{ UCBC, 'GreaterThanGameTimeSecondsSE', { 2*60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.0 } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND } },
@@ -1587,22 +1587,22 @@ BuilderGroup {
         BuilderName = 'SorianEdit T2 Mass Adjacency Engineer',
         PlatoonTemplate = 'AnyEngineerBuilderSorianEdit',
         Priority = 18050,
-        -- DelayEqualBuildPlatoons = {'MASSSTORAGE', 3},
+        DelayEqualBuildPlattons = {'MASSSTORAGE', 3},
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 6*60 }},
+			{ UCBC, 'GreaterThanGameTimeSecondsSE', { 6*60 }},
             { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 3,  categories.STRUCTURE * categories.MASSSTORAGE }},
             { MABC, 'MarkerLessThanDistance',  { 'Mass', 256, -3, 0, 0}},
 			{ UCBC, 'HaveForEach', { categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 4, categories.STRUCTURE * categories.MASSSTORAGE }},
 			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3) }},
-            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 256, 'ueb1106' } },
+            { UCBC, 'AdjacencyCheck', { 'LocationType', categories.STRUCTURE * categories.MASSEXTRACTION * (categories.TECH2 + categories.TECH3), 10, 'ueb1106' } },
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 AdjacencyCategory = categories.MASSEXTRACTION * (categories.TECH3 + categories.TECH2),
-                AdjacencyDistance = 250,
+                AdjacencyDistance = 10,
                 BuildClose = false,
                 BuildStructures = {
                     'MassStorage',
@@ -1985,9 +1985,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 196000,
         InstanceCount = 3,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-			-- { UCBC, 'GreaterThanGameTimeSeconds', { 100 } },
+			-- { UCBC, 'GreaterThanGameTimeSecondsSE', { 100 } },
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 30, -500, 1000, 0, 'AntiSurface', 1 }}, 
 
             -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
@@ -2009,9 +2009,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 18700,
         InstanceCount = 2,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-			{ UCBC, 'GreaterThanGameTimeSeconds', { 100 } },
+			{ UCBC, 'GreaterThanGameTimeSecondsSE', { 100 } },
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 60, -500, 1000, 0, 'AntiSurface', 1 }}, 
         },
         BuilderType = 'Any',
@@ -2031,9 +2031,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 18700,
         InstanceCount = 4,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 320 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 320 }},
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 60, -500, 1000, 0, 'AntiSurface', 1 }}, 
         },
         BuilderType = 'Any',
@@ -2053,7 +2053,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2470,
         InstanceCount = 6,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 128, -500, 1000, 0, 'AntiSurface', 1 }},
         },
@@ -2074,9 +2074,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 2470,
         InstanceCount = 6,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 120 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 120 }},
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 1000, 0, 'AntiSurface', 1 }},
         },
         BuilderType = 'Any',
@@ -2096,9 +2096,9 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 14700,
         InstanceCount = 2,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 320 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 320 }},
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 250, -500, 1000, 0, 'AntiSurface', 1 }},
         },
         BuilderType = 'Any',
@@ -2117,10 +2117,10 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 2',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
         Priority = 840,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         InstanceCount = 2,
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 320 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 320 }},
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1000, -500, 1000, 0, 'AntiSurface', 1 }}, 
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.ENGINEER * categories.TECH1 }},
 
@@ -2170,13 +2170,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit Engineer Assist Factory',
         PlatoonTemplate = 'EngineerFactoryAssistSorianEditALL',
-        Priority = 2000,
-        InstanceCount = 20,
+        Priority = 1000,
+        InstanceCount = 6,
         BuilderType = 'Any',
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 120 }},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.6, 0.9 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 180 }},
+			{ EBC, 'GreaterThanEconTrend', { 0.5, 0.8 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.FACTORY * categories.TECH1 }},
         },
         BuilderData = {}
@@ -2191,7 +2191,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1860,
         InstanceCount = 2,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 30, -500, 1000, 0, 'AntiSurface', 1 }}, 
 
@@ -2214,7 +2214,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1350,
         InstanceCount = 4,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 60, -500, 1000, 0, 'AntiSurface', 1 }}, 
 
@@ -2236,7 +2236,7 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 2+ T2',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
         Priority = 1340,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         InstanceCount = 2,
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1000, -500, 1000, 0, 'AntiSurface', 1 }}, 
@@ -2267,7 +2267,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 18600,
         InstanceCount = 2,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 30, -500, 1000, 0, 'AntiSurface', 1 }}, 
 
@@ -2290,7 +2290,7 @@ BuilderGroup {
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 18500,
         InstanceCount = 2,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 60, -500, 1000, 0, 'AntiSurface', 1 }}, 
 
@@ -2312,13 +2312,11 @@ BuilderGroup {
         BuilderName = 'Sorianedit Mass 1000 2+ T3',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
         Priority = 1840,
-        -- DelayEqualBuildPlatoons = {'MASSEXTRACTION', 3},
+        DelayEqualBuildPlattons = {'MASSEXTRACTION', 3},
         InstanceCount = 2,
         BuilderConditions = {
             { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 1000, -500, 1000, 0, 'AntiSurface', 1 }}, 
-
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 5, categories.ENGINEER * categories.TECH1 }},
-
             -- { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
@@ -2395,7 +2393,7 @@ BuilderGroup {
         Priority = 4000,
         InstanceCount = 4,
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 150 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 150 } },
             { EBC, 'LessThanEconTrend', { 10000.0, 0.9 }},
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND - categories.HYDROCARBON } },
             -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.8, 0.5 }},
@@ -2406,10 +2404,10 @@ BuilderGroup {
             NeedGuard = false,
             DesiresAssist = true,
             Construction = {
-                BuildClose = false,
+                BuildClose = true,
                 AdjacencyCategory = 'FACTORY',
                 AvoidCategory = 'ENERGYPRODUCTION',
-                AdjacencyDistance = 250,
+                AdjacencyDistance = 50,
                 maxUnits = 1,
                 maxRadius = 2.5,
                 BuildStructures = {
@@ -2512,7 +2510,7 @@ BuilderGroup {
         BuilderType = 'Any',
         BuilderConditions = {
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENERGYPRODUCTION * categories.TECH3 } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.ENERGYPRODUCTION * categories.TECH3 }},
         },
         BuilderData = {
             Construction = {
@@ -2678,6 +2676,7 @@ BuilderGroup {
     },
 }
 
+
 BuilderGroup {
     BuilderGroupName = 'SorianEditAcuAttackFormBuilders',
     BuildersType = 'EngineerBuilder',
@@ -2712,10 +2711,10 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 300 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 300 }},
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
-            { UCBC, 'EnemyUnitsGreaterAtLocationRadius', { 512, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
+            { UCBC, 'EnemyUnitsGreaterAtLocationRadiusSE', { 512, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
         },
         BuilderType = 'Any',
     },
@@ -2751,9 +2750,9 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 300 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
-            { UCBC, 'EnemyUnitsGreaterAtLocationRadius', { 86, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 300 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 4, categories.STRUCTURE * categories.FACTORY * categories.LAND - categories.SUPPORTFACTORY } },
+            { UCBC, 'EnemyUnitsGreaterAtLocationRadiusSE', { 86, 'LocationType', 0, categories.ALLUNITS - (categories.ENGINEER * categories.TECH1 * categories.TECH2) - categories.AIR - categories.SCOUT }},
         },
         BuilderType = 'Any',
     },
@@ -2787,7 +2786,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
-            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.SUBCOMMANDER} },
+            { UCBC, 'PoolGreaterAtLocation', { 0, categories.SUBCOMMANDER} },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.ALLUNITS, 'Enemy'}},
         },
         BuilderType = 'Any',
@@ -2822,7 +2821,7 @@ BuilderGroup {
         },
         BuilderConditions = {
             { MIBC, 'FactionIndex', { 2, 4 }},
-            { UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 0, categories.SUBCOMMANDER} },
+            { UCBC, 'PoolGreaterAtLocation', { 0, categories.SUBCOMMANDER} },
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 1, categories.ALLUNITS, 'Enemy'}},
         },
         BuilderType = 'Any',
@@ -2838,7 +2837,7 @@ BuilderGroup {
             SearchRadius = BaseEnemyZone,
             GetTargetsFromBase = false,
             AggressiveMove = false,
-            AttackEnemyStrength = 200,
+            AttackEnemyStrength = 100,
             IgnorePathing = false,
             TargetSearchCategory = categories.STRUCTURE - categories.NAVAL,
             MoveToCategories = {
@@ -2852,7 +2851,7 @@ BuilderGroup {
             },
         },
         BuilderConditions = {
-			{ UCBC, 'HaveGreaterThanArmyPoolWithCategory', { 3, categories.SUBCOMMANDER} },
+			{ UCBC, 'PoolGreaterAtLocation', { 3, categories.SUBCOMMANDER} },
         },
         BuilderType = 'Any',
     },

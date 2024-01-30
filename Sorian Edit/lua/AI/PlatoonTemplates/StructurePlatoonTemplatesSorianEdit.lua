@@ -23,6 +23,14 @@ PlatoonTemplate {
     }
 }
 
+PlatoonTemplate {
+    Name = 'AddToAntiNukePlatoonSorianEdit',
+    Plan = 'SorianPlatoonMerger',
+    GlobalSquads = {
+        { categories.STRUCTURE * categories.DEFENSE * categories.ANTIMISSILE * categories.TECH3 , 1, 300, 'support', 'none' }
+    },
+}
+
 # ==== Missile systems ==== #
 PlatoonTemplate {
     Name = 'T2TacticalLauncherSorianEdit',
@@ -71,14 +79,6 @@ PlatoonTemplate {
     GlobalSquads = {
         { categories.NUKE * categories.STRUCTURE * categories.EXPERIMENTAL, 1, 1, 'attack', 'none' },
     }
-}
-
-PlatoonTemplate {
-    Name = 'AddToAntiNukePlatoon',
-    Plan = 'SorianPlatoonMerger',
-    GlobalSquads = {
-        { categories.STRUCTURE * categories.DEFENSE * categories.ANTIMISSILE * categories.TECH3 , 1, 300, 'support', 'none' }
-    },
 }
 
 PlatoonTemplate {

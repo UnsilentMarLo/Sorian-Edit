@@ -30,7 +30,7 @@ local UnitUpgradeTemplates = import('/lua/upgradetemplates.lua').UnitUpgradeTemp
 local StructureUpgradeTemplates = import('/lua/upgradetemplates.lua').StructureUpgradeTemplates
 local SUtils = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua')
 local econThread
-local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/AI-Uveso/lua/AI/AITargetManager.lua').GetDangerZoneRadii()
+local BasePanicZone, BaseMilitaryZone, BaseEnemyZone = import('/mods/Sorian Edit/lua/AI/SorianEditutilities.lua').GetDangerZoneRadii()
 
 	do
 	LOG('--------------------- SorianEdit Strategy Builders loading')
@@ -200,7 +200,7 @@ BuilderGroup {
             end
         end,
         BuilderConditions = {
-            { UCBC, 'GreaterThanGameTimeSeconds', { 300 }},
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 300 }},
             { SBC, 'CategoriesNotRestricted', { {'T2', 'T3'} }},
             { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0}},
             { SIBC, 'GreaterThanEconEfficiency', { 1.0, 1.0 }},
@@ -911,7 +911,7 @@ BuilderGroup {
             { SBC, 'ClosestEnemyLessThan', { 750 } },
             -- { SBC, 'NoRushTimeCheck', { 0 }},
             -- { SBC, 'EnemyToAllyRatioLessOrEqual', { 1 } },
-            { UCBC, 'LessThanGameTimeSeconds', { 420 } },
+            { UCBC, 'LessThanGameTimeSecondsSE', { 420 } },
         },
         BuilderType = 'Any',
         RemoveBuilders = {
