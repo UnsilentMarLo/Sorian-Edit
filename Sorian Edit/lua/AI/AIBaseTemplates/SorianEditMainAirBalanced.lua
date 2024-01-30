@@ -1,6 +1,7 @@
 --***************************************************************************
 --*
---**  File     :  /lua/ai/aiattackutilities.lua
+--**  File     :  /mods/Sorian Edit/lua/ai/AIBaseTemplates/SorianEditMainBalanced.lua
+--**  Author(s): Michael Robbins aka SorianEdit
 --**
 --**  Summary  : Manage engineers for a location
 --**
@@ -8,34 +9,45 @@
 --****************************************************************************
 
 BaseBuilderTemplate {
-    BaseTemplateName = 'SorianEditExpansionBalancedFull',
+    BaseTemplateName = 'SorianEditMainAirBalanced',
     Builders = {
         -- ==== ECONOMY ==== --
         -- Factory upgrades
+        'SorianEditT1BalancedUpgradeBuilders',
+        'SorianEditT2BalancedUpgradeBuilders',
+        --'SorianEditT1FastUpgradeBuildersExpansion',
+        --'SorianEditT2FastUpgradeBuildersExpansion',
+        -- 'SorianEditEmergencyUpgradeBuilders',
         'SorianEditSupportFactoryUpgrades',
         -- 'SorianEditSupportFactoryUpgrades - Emergency',
 
         -- Engineer Builders
+        'SorianEditEngineerFactoryBuilders',
         'SorianEditEngineerFactoryBuildersExpansion rush',
         'SorianEditT1EngineerBuilders',
         'SorianEditT2EngineerBuilders',
         'SorianEditT3EngineerBuilders',
         'SorianEditEngineerFactoryConstruction Balance',
-        'SorianEditLandInitialFactoryConstruction',
-		'SorianEditEngineerFactoryConstructionLandHigherPriority',
-        'SorianEditEngineerFactoryConstruction',
+        'SorianEditAirInitialFactoryConstruction',
+		-- 'SorianEditEngineerFactoryConstructionLandHigherPriority',
+        'SorianEditEngineerFactoryConstruction Air',
         'SorianEdit T3 Sub Commander',
-
+        'SorianeditAssistFactoryPerm',
+        
         -- SCU Upgrades
         'SorianEditSCUUpgrades',
+		
         -- Scouts
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
 
-        'SorianEditLandScoutFactoryBuilders',
-        'SorianEditLandScoutFormBuilders',
-        'SorianEditRadarEngineerBuilders',
-        'SorianEditRadarUpgradeBuildersMain',
+        -- 'SorianEditLandScoutFactoryBuilders',
+        -- 'SorianEditLandScoutFormBuilders',
+
+        -- 'SorianEditRadarEngineerBuilders',
+        -- 'SorianEditRadarUpgradeBuildersMain',
+
+        'SorianEditCounterIntelBuilders',
 
         -- Engineer Support buildings
         -- 'SorianEditEngineeringSupportBuilder',
@@ -48,17 +60,32 @@ BaseBuilderTemplate {
         'Sorianedit Mass Builders',
         'Sorianedit Mass Builders Tech 2',
         -- 'Sorianedit Mass Builders Tech 3',
-        'Sorianedit MassFab Builders',
+        'Sorianedit MassFab Builders', 
 
         -- Extractors
         'SorianEditTime Exempt Extractor Upgrades',
 
+        -- ACU Builders
+        'SorianEdit Initial Air ACU Builders',
+        'SorianEditAirACUBuilders',
+        -- 'SorianEditACUUpgrades',
+		
+        -- 'SorianEditAcuAttackFormBuilders',
+
+        -- ACU Defense
+        -- 'SorianEditT1ACUDefenses',
+        'SorianEditT2ACUDefenses',
+        'SorianEditT2ACUShields',
+        'SorianEditT3ACUShields',
+        -- 'SorianEditT3ACUNukeDefenses', -- commented
         'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPANSION ==== --
+        -- 'SorianEditEngineerExpansionBuildersSmall',
         'SorianEditEngineerExpansionBuildersFull',
         'SorianEditEngineerExpansionBuildersFulldrop',
         'SorianEditEngineerFirebaseBuilders',
+
 
         -- ==== DEFENSES ==== --
         -- 'SorianEditT1BaseDefenses',
@@ -92,22 +119,25 @@ BaseBuilderTemplate {
 
         'SorianEditMassAdjacencyDefenses',
 
+        -- ==== NAVAL EXPANSION ==== --
+        'SorianEditNavalExpansionBuilders',
+
         -- ==== LAND UNIT BUILDERS ==== --											 
-        'SorianEditT1LandFactoryBuilders',
+        -- 'SorianEditT1LandFactoryBuilders',
         'SorianEditT1Land - water map',
-        'SorianEditT2LandFactoryBuilders',
+        -- 'SorianEditT2LandFactoryBuilders',
         'SorianEditT2LandFactoryBuilders - water map',
-        'SorianEditT3LandFactoryBuilders',
+        -- 'SorianEditT3LandFactoryBuilders',
 
         'SorianEditFrequentLandAttackFormBuilders',
         'SorianEditMassHunterLandFormBuilders',
 
-        'SorianEditT1LandAA',
-        'SorianEditT2LandAA',
-        'SorianEditT3LandAA',
+        -- 'SorianEditT1LandAA',
+        -- 'SorianEditT2LandAA',
+        -- 'SorianEditT3LandAA',
 
-        'SorianEditT2ReactionDF',
-        'SorianEditT3ReactionDF',
+        -- 'SorianEditT2ReactionDF',
+        -- 'SorianEditT3ReactionDF',
 
         'SorianEditT2Shields',
         'SorianEditT2ShieldsExpansion',
@@ -135,18 +165,18 @@ BaseBuilderTemplate {
         'SorianEditBaseGuardAirFormBuilders',
 
         -- ==== EXPERIMENTALS ==== --
-        'SorianEditMobileLandExperimentalEngineers',
-        'SorianEditMobileLandExperimentalForm',
+        -- 'SorianEditMobileLandExperimentalEngineers',
+        -- 'SorianEditMobileLandExperimentalForm',
 
         'SorianEditMobileAirExperimentalEngineers',
         'SorianEditMobileAirExperimentalForm',
 
-        'SorianEditMobileNavalExperimentalEngineers',
-        'SorianEditMobileNavalExperimentalForm',
+        -- 'SorianEditMobileNavalExperimentalEngineers',
+        -- 'SorianEditMobileNavalExperimentalForm',
 
         'SorianEditEconomicExperimentalEngineers',
         'SorianEditMobileExperimentalEngineersGroup',
-		
+
         -- ==== ARTILLERY BUILDERS ==== --
         'SorianEditT3ArtilleryGroup',
 
@@ -157,14 +187,13 @@ BaseBuilderTemplate {
 
         'SorianEditSatelliteExperimentalEngineers',
         'SorianEditSatelliteExperimentalForm',
-		
+
 		-- ======== Strategies ======== --
         -- 'SorianEditHeavyAirStrategy',
         -- 'SorianEditBigAirGroup',
         -- 'SorianEditJesterRush',
         -- 'SorianEditNukeRush',
         -- 'SorianEditT3FBRush',
-        -- 'SorianEditT2ACUSnipe',
         -- 'SorianEditT3ACUSnipe',
         -- -- 'SorianEditParagonStrategy',
         -- -- 'SorianEditParagonStrategyExp',
@@ -183,11 +212,11 @@ BaseBuilderTemplate {
         'SorianEditAirScoutFactoryBuilders',
         'SorianEditAirScoutFormBuilders',
 
-        'SorianEditLandScoutFactoryBuilders',
-        'SorianEditLandScoutFormBuilders',
+        -- 'SorianEditLandScoutFactoryBuilders',
+        -- 'SorianEditLandScoutFormBuilders',
 
         'SorianEditRadarEngineerBuilders',
-        'SorianEditRadarUpgradeBuildersExpansion',
+        'SorianEditRadarUpgradeBuildersMain',
 
         'SorianEditCounterIntelBuilders',
     },
@@ -199,7 +228,7 @@ BaseBuilderTemplate {
             SCU = 8,
         },
         FactoryCount = {
-            Land = 6,
+            Land = 7,
             Air = 6,
             Sea = 0,
             Gate = 2,
@@ -211,17 +240,13 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Start Location')
-        and (personality == 'sorianeditadaptivecheat' or personality == 'sorianeditnavycheat' or personality == 'sorianeditaircheat' or personality == 'sorianedit' or personality == 'sorianeditnavy' or personality == 'sorianeditair') then
-            -- LOG('--------------------- M-ExpansionFunction Expansion High Priority '..personality)
-            return 15000, 'sorianedit'
-        else
-        -- LOG('--------------------- M-ExpansionFunction Expansion Balanced low Priority '..personality)
 		return -1
-		end
 	end,
     FirstBaseFunction = function(aiBrain)
-       return -15000, 'sorianedit'
+        local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
+        if personality == 'sorianeditaircheat' or personality == 'sorianeditair' then
+            LOG('------ M-FirstBaseFunction Main Air Balanced '..personality)
+            return 15000, 'sorianedit'
+        end
     end,
 }

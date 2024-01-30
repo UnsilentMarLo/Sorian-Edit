@@ -85,7 +85,7 @@ BuilderGroup {
         PlatoonTemplate = 'T1BuildEngineer',
         Priority = 2900,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 8, categories.MOBILE * categories.ENGINEER * categories.TECH1 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER } },
             { UCBC, 'UnitCapCheckLess', { .6 } },
@@ -100,7 +100,7 @@ BuilderGroup {
         PlatoonTemplate = 'T2BuildEngineer',
         Priority = 4525,
         BuilderConditions = {
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
             { UCBC, 'UnitsLessAtLocation', { 'LocationType', 6, categories.MOBILE * categories.ENGINEER * categories.TECH2 } },
             { UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.ENGINEER * categories.TECH2 } },
         },
@@ -133,7 +133,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.2, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL TECH1 DIRECTFIRE' }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
@@ -149,7 +149,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.2, 0.3 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
             { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.TECH1 * categories.FRIGATE, 0.5, categories.NAVAL * categories.TECH1 * categories.SUBMERSIBLE}},
@@ -163,7 +163,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.2, 0.3 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
@@ -178,7 +178,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.2, 0.3 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.TECH2 * categories.MOBILE, 2, categories.NAVAL * categories.TECH1 * categories.MOBILE - categories.SUBMERSIBLE}},
@@ -194,7 +194,7 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderConditions = {
 			{ WaterRatioCondition, { 1 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
@@ -217,7 +217,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
             -- { MIBC, 'FactionIndex', { 3}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.AMPHIBIOUS * categories.DESTROYER * categories.NAVAL } },
@@ -232,8 +232,8 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.2, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
@@ -247,8 +247,8 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.3, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.DESTROYER - categories.CRUISER, 0.5, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER }},
         },
@@ -263,8 +263,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', { 2, 3 }}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.DESTROYER - categories.CRUISER, 0.5, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.T2SUBMARINE}},
@@ -281,8 +281,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', {1}}, -- 1: UEF, 2: Aeon, 3: Cybran, 4: Seraphim, 5: Nomads 
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.SHIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.SHIELD } },
@@ -298,8 +298,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
 			-- { MIBC, 'FactionIndex', {3}},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			{ UCBC, 'CanBuildCategorySE', { categories.MOBILE * categories.NAVAL * categories.TECH2 * categories.STEALTHFIELD} },
 			{ UCBC, 'LocationFactoriesBuildingLess', { 'LocationType', 1, categories.NAVAL * categories.COUNTERINTELLIGENCE } },
@@ -319,8 +319,8 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
@@ -334,8 +334,8 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE - categories.TECH1 - categories.COMMAND - categories.CRUISER, 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER }},
         },
@@ -354,8 +354,8 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
 			-- { UCBC, 'CanPathNavalBaseToNavalTargetsSE', { 'LocationType', categories.ALLUNITS }},
@@ -370,8 +370,8 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 2 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.DIRECTFIRE * categories.TECH3 - categories.CRUISER, 0.45, categories.NAVAL * categories.TECH2 * categories.MOBILE * categories.CRUISER }},
         },
@@ -384,8 +384,8 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP }},
         },
@@ -397,8 +397,8 @@ BuilderGroup {
         PriorityFunction = WaterPrio,
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.40, 0.6 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH3 - categories.SILO, 0.2, categories.NAVAL * categories.MOBILE * categories.SILO * categories.NUKE }},
         },
@@ -412,7 +412,7 @@ BuilderGroup {
         -- BuilderType = 'Sea',
         -- BuilderConditions = {
 			-- { WaterRatioCondition, { 3 } },
-			-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			-- { EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
 			-- { UCBC, 'CanBuildCategorySE', { categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307)} },
             -- { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * (categories.BATTLECRUISER + categories.XES0307), }},
             -- { UCBC, 'HaveForEach', { categories.LAND, 0.5, categories.NAVAL}},
@@ -427,8 +427,8 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
 			{ MIBC, 'FactionIndex', {2}},
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.3 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.85, 0.8 }},
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.3, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.INDIRECTFIRE }},
         },
@@ -442,7 +442,7 @@ BuilderGroup {
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
 			{ MIBC, 'FactionIndex', {1}},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.BATTLESHIP * categories.OVERLAYANTINAVY }},
         },
     },
@@ -454,7 +454,7 @@ BuilderGroup {
         BuilderType = 'Sea',
         BuilderConditions = {
 			{ WaterRatioCondition, { 3 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.3 } },
             { UCBC, 'UnitsGreaterAtEnemySE', { 0 , categories.NAVAL } },
 			{ UCBC, 'CanBuildCategorySE', { categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO} },
             { UCBC, 'HaveForEach', { categories.NAVAL * categories.MOBILE * categories.TECH2, 0.35, categories.NAVAL * categories.MOBILE * categories.TECH3 * categories.SUBMERSIBLE - categories.SILO }},
@@ -666,7 +666,7 @@ BuilderGroup {
         --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 7,
+        InstanceCount = 70,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 20000,
@@ -704,7 +704,7 @@ BuilderGroup {
         --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 6,
+        InstanceCount = 60,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 20000,
@@ -742,7 +742,7 @@ BuilderGroup {
         --PlatoonAddPlans = {'DistressResponseAISorian', 'PlatoonCallForHelpAISorian'},
         PlatoonAddPlans = {'AirLandToggleSorian'},
         Priority = 10,
-        InstanceCount = 8,
+        InstanceCount = 80,
         BuilderType = 'Any',
         BuilderData = {
             SearchRadius = 20000,

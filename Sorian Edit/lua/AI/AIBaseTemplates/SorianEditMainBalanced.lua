@@ -120,7 +120,7 @@ BaseBuilderTemplate {
         'SorianEditMassAdjacencyDefenses',
 
         -- ==== NAVAL EXPANSION ==== --
-        'SorianEditNavalExpansionBuildersFast',
+        'SorianEditNavalExpansionBuilders',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',
@@ -240,20 +240,12 @@ BaseBuilderTemplate {
         },
     },
     ExpansionFunction = function(aiBrain, location, markerType)
-        -- local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        -- if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
-        -- and personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
-            -- LOG('--------------------- M-ExpansionFunction Main Balanced High Priority '..personality)
-            -- return 800, 'sorianeditadaptive'
-        -- else
-        -- LOG('--------------------- M-ExpansionFunction Main Balanced low Priority '..personality)
 		return -1
-		-- end
 	end,
     FirstBaseFunction = function(aiBrain)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit' then
-            -- LOG('------ M-FirstBaseFunction Main Balanced '..personality)
+        if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' then
+            LOG('------ M-FirstBaseFunction Main Balanced '..personality)
             return 15000, 'sorianedit'
         end
     end,

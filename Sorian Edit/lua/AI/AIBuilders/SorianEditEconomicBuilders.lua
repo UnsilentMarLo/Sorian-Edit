@@ -519,6 +519,33 @@ BuilderGroup {
 }
 
 BuilderGroup {
+    BuilderGroupName = 'SorianEdit Initial Air ACU Builders',
+    BuildersType = 'EngineerBuilder',
+
+    -- Initial builder
+    Builder {
+        BuilderName = 'SorianEdit CDR Air Initial Balanced',
+        -- PlatoonAddBehaviors = { 'CommanderBehaviorSorian', },
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 20000000,
+        BuilderConditions = {
+		},
+        InstantCheck = true,
+        BuilderType = 'Any',
+        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
+        BuilderData = {
+            ScanWait = 60,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                }
+            }
+        }
+    },
+}
+
+BuilderGroup {
     BuilderGroupName = 'SorianEditACUBuilders',
     BuildersType = 'EngineerBuilder',
 	
@@ -719,7 +746,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
 			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -741,7 +767,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
 			{ SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -765,7 +790,6 @@ BuilderGroup {
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.HYDROCARBON } },
 			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
 			{ SBC, 'CanPathToCurrentEnemy', { false, 'LocationType' } },
-            { EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
         },
         BuilderType = 'Any',
         BuilderData = {
@@ -916,6 +940,738 @@ BuilderGroup {
     },
     Builder {
        BuilderName = 'SorianEdit CDR Assist Factory Upgrade Tech 3',
+       PlatoonTemplate = 'CommanderAssistSorianEdit',
+       Priority = 6000,
+       BuilderConditions = {
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
+           { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH3 * categories.FACTORY } },
+           { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH3 * categories.FACTORY } },
+           -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
+       },
+       BuilderType = 'Any',
+       BuilderData = {
+           Assist = {
+               AssistLocation = 'LocationType',
+               AssisteeType = 'Factory',
+               PermanentAssist = false,
+               BeingBuiltCategories = {'FACTORY TECH3',},
+               Time = 40,
+           },
+       }
+    },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'SorianEditAirACUBuilders',
+    BuildersType = 'EngineerBuilder',
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Power - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 4100000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR Base Mex Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 4000000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {2, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Power - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 2000000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR Base Mex 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 1000000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 120 } },
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {3, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 15, -500, 0, 0, 'AntiSurface', 1 }},
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit Air CDR Base Mex 2+ After Hydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 555000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 140 } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.HYDROCARBON } },
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Power - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 400000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 250 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Air - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 390000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.23, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+			{ SIBC, 'HaveLessThanMapSize', { 1025 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Air - Init 2nd aHydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 389900,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.22, 0.34 } },
+			{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 100}},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'HYDROCARBON',
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Air - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 389900,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.22, 0.34 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.HYDROCARBON } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Land - Init 4',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 380000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 4, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Land if Path - Init aHydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 380000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND } },
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'HYDROCARBON',
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Land if Path  - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 380000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.HYDROCARBON } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND } },
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air T1 Factory ACU - Overbuild',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 1200,
+        BuilderConditions = {
+			{ UCBC, 'UnitCapCheckLess', { .6 } },
+            { UCBC, 'GreaterThanGameTimeSecondsSE', { 60 }},
+            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.5 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 0.8 }},
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 8, 'FACTORY LAND' }},
+            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION - categories.TECH1 - categories.COMMAND - categories.HYDROCARBON } },
+        },
+        --InstanceCount = 2,
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Air CDR T1 Power - additional',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 3500,
+        BuilderConditions = {
+            { EBC, 'LessThanEconStorageRatio', { 1.0, 0.2 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENERGYPRODUCTION }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+    -- CDR Assisting
+    Builder {
+        BuilderName = 'SorianEdit Air CDR Assist Hydrocarbon',
+        PlatoonTemplate = 'CommanderAssist',
+        Priority = 21000,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocationSE', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.HYDROCARBON } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Structure',
+                AssistRange = 60,
+                BeingBuiltCategories = {'STRUCTURE HYDROCARBON'},
+                AssistUntilFinished = true,
+            },
+        }
+    },
+    -- CDR Assisting
+    Builder {
+        BuilderName = 'SorianEdit Air CDR Assist T4',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
+        Priority = 750,
+        BuilderConditions = {
+			{ UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'EXPERIMENTAL' }},
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.2, 1.2 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssisteeType = 'Engineer',
+                AssistLocation = 'LocationType',
+                AssistRange = 100,
+                BeingBuiltCategories = {'EXPERIMENTAL'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+       BuilderName = 'SorianEdit Air CDR Assist Factory Upgrade Tech 2',
+       PlatoonTemplate = 'CommanderAssistSorianEdit',
+       Priority = 6000,
+       BuilderConditions = {
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.6 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
+			{ UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH2 * categories.FACTORY } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY - categories.TECH1 - categories.COMMAND } },
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
+       },
+       BuilderType = 'Any',
+       BuilderData = {
+           Assist = {
+               AssistLocation = 'LocationType',
+               AssisteeType = 'Factory',
+               PermanentAssist = false,
+               BeingBuiltCategories = {'FACTORY TECH2',},
+               Time = 40,
+           },
+       }
+    },
+    Builder {
+       BuilderName = 'SorianEdit Air CDR Assist Factory Upgrade Tech 3',
+       PlatoonTemplate = 'CommanderAssistSorianEdit',
+       Priority = 6000,
+       BuilderConditions = {
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
+           { UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH3 * categories.FACTORY } },
+           { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.TECH3 * categories.FACTORY } },
+           -- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
+       },
+       BuilderType = 'Any',
+       BuilderData = {
+           Assist = {
+               AssistLocation = 'LocationType',
+               AssisteeType = 'Factory',
+               PermanentAssist = false,
+               BeingBuiltCategories = {'FACTORY TECH3',},
+               Time = 40,
+           },
+       }
+    },
+}
+
+BuilderGroup {
+    BuilderGroupName = 'SorianEditNavyACUBuilders',
+    BuildersType = 'EngineerBuilder',
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Power - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 4100000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR Base Mex Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 4000000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {2, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Power - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 2000000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 150 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR Base Mex 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 1000000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 120 } },
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {3, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 15, -500, 0, 0, 'AntiSurface', 1 }},
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR Base Mex 2+ After Hydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 555000,
+        BuilderConditions = {
+				{ UCBC, 'LessThanGameTimeSecondsSE', { 140 } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.HYDROCARBON } },
+				{ UCBC, 'HaveLessThanUnitsWithCategory', {4, categories.MASSEXTRACTION * categories.TECH1 - categories.COMMAND } },
+                { MABC, 'CanBuildOnMassLessThanDistance', { 'LocationType', 20, -500, 0, 0, 'AntiSurface', 1 }},
+            },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildStructures = {
+                    'T1Resource',
+                },
+            }
+        }
+    },
+
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Power - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 400000,
+        BuilderConditions = {
+			{ UCBC, 'LessThanGameTimeSecondsSE', { 250 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 3, categories.ENERGYPRODUCTION * categories.TECH1 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Air - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 390000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.23, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+			{ SIBC, 'HaveLessThanMapSize', { 1025 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Air - Init 2nd aHydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 389900,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.22, 0.34 } },
+			{ SBC, 'MarkerLessThanDistance',  { 'Hydrocarbon', 100}},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'HYDROCARBON',
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Air - Init 2nd',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 389900,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.22, 0.34 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.HYDROCARBON } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1AirFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Land if Path - Init aHydro',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 380000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND } },
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'HYDROCARBON',
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Land if Path  - Init',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 380000,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.3 } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.HYDROCARBON } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.LAND } },
+			{ SBC, 'CanPathToCurrentEnemy', { true, 'LocationType' } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                BuildStructures = {
+                    'T1LandFactory',
+                },
+            }
+        }
+    },
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR T1 Power - additional',
+        PlatoonTemplate = 'CommanderBuilderSorianEdit',
+        Priority = 3500,
+        BuilderConditions = {
+            { EBC, 'LessThanEconStorageRatio', { 1.0, 0.2 } },
+			{ UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.ENERGYPRODUCTION }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            DesiresAssist = false,
+            Construction = {
+                BuildClose = true,
+                AdjacencyCategory = 'FACTORY',
+                BuildStructures = {
+                    'T1EnergyProduction',
+                },
+            }
+        }
+    },
+    -- CDR Assisting
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR Assist Hydrocarbon',
+        PlatoonTemplate = 'CommanderAssist',
+        Priority = 21000,
+        BuilderConditions = {
+            { UCBC, 'HaveGreaterThanUnitsInCategoryBeingBuiltAtLocationSE', { 'LocationType', 0, categories.STRUCTURE * categories.HYDROCARBON }},
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.STRUCTURE * categories.HYDROCARBON } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssistLocation = 'LocationType',
+                AssisteeType = 'Structure',
+                AssistRange = 60,
+                BeingBuiltCategories = {'STRUCTURE HYDROCARBON'},
+                AssistUntilFinished = true,
+            },
+        }
+    },
+    -- CDR Assisting
+    Builder {
+        BuilderName = 'SorianEdit Navy CDR Assist T4',
+        PlatoonTemplate = 'CommanderAssistSorianEdit',
+        Priority = 750,
+        BuilderConditions = {
+			{ UCBC, 'LocationEngineersBuildingAssistanceGreater', { 'LocationType', 0, 'EXPERIMENTAL' }},
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 1.2, 1.2 } },
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Assist = {
+                AssisteeType = 'Engineer',
+                AssistLocation = 'LocationType',
+                AssistRange = 100,
+                BeingBuiltCategories = {'EXPERIMENTAL'},
+                Time = 60,
+            },
+        }
+    },
+    Builder {
+       BuilderName = 'SorianEdit Navy CDR Assist Factory Upgrade Tech 2',
+       PlatoonTemplate = 'CommanderAssistSorianEdit',
+       Priority = 6000,
+       BuilderConditions = {
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.6 } },
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.4, 0.9 }},
+			{ UCBC, 'LocationFactoriesBuildingGreater', { 'LocationType', 0, categories.TECH2 * categories.FACTORY } },
+			{ UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY - categories.TECH1 - categories.COMMAND } },
+			-- { SIBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.1 } },
+       },
+       BuilderType = 'Any',
+       BuilderData = {
+           Assist = {
+               AssistLocation = 'LocationType',
+               AssisteeType = 'Factory',
+               PermanentAssist = false,
+               BeingBuiltCategories = {'FACTORY TECH2',},
+               Time = 40,
+           },
+       }
+    },
+    Builder {
+       BuilderName = 'SorianEdit Navy CDR Assist Factory Upgrade Tech 3',
        PlatoonTemplate = 'CommanderAssistSorianEdit',
        Priority = 6000,
        BuilderConditions = {

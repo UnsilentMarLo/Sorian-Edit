@@ -416,7 +416,6 @@ BuilderGroup {
             { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.3 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.2, 1.25 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.NUKE * categories.STRUCTURE * categories.TECH3}},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
         },
         BuilderType = 'Any',
@@ -464,7 +463,7 @@ BuilderGroup {
         Priority = 9500,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.8 } },
+            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.2 }},
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
@@ -487,7 +486,7 @@ BuilderGroup {
         BuilderName = 'SorianEdit T3 Nuke Engineer - Overflow',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 3000,
-        InstanceCount = 2,
+        InstanceCount = 1,
         BuilderConditions = {
             { EBC, 'GreaterThanEconStorageRatio', { 0.6, 0.7 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.9, 0.9 } },
