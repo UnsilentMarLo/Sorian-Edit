@@ -212,8 +212,8 @@ BaseBuilderTemplate {
     },
     ExpansionFunction = function(aiBrain, location, markerType)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Start Location')
-        and (personality == 'sorianeditadaptivecheat' or personality == 'sorianeditnavycheat' or personality == 'sorianeditaircheat' or personality == 'sorianedit' or personality == 'sorianeditnavy' or personality == 'sorianeditair') then
+        if markerType == ('Large Expansion Area' or 'Blank Marker' or 'Expansion Area' or 'Start Location')
+        and personality == 'sorianeditadaptive' or personality == 'sorianeditadaptivecheat' or personality == 'sorianedit'  then
             -- LOG('--------------------- M-ExpansionFunction Expansion High Priority '..personality)
             return 15000, 'sorianedit'
         else

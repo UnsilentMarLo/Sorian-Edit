@@ -301,7 +301,10 @@ BuilderGroup {
         BuilderConditions = {
 				{ UCBC, 'HaveLessThanUnitsInCategoryBeingUpgraded', {1, categories.FACTORY * categories.NAVAL * categories.TECH2 * categories.RESEARCH } },
 				{ UCBC, 'HaveLessThanUnitsWithCategory', { 1,  categories.FACTORY * categories.NAVAL * categories.TECH3 * categories.RESEARCH } },
-				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, categories.MASSEXTRACTION * categories.TECH3 } },
+				{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, categories.MASSEXTRACTION * categories.TECH3 } },
+				{ EBC, 'GreaterThanEconStorageRatio', { 0.1, 0.3 } },
+				-- { EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+				{ EBC, 'GreaterThanEconEfficiencyOverTime', { 1.0, 1.0 }}, -- { 0.85, 0.95 }},
             },
         BuilderType = 'Any',
     },

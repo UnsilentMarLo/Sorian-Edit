@@ -100,8 +100,8 @@ AIBrain = Class(SEAIBrainClass) {
     -- Hook AI-SorianEdit, set self.SorianEdit = true
     OnCreateAI = function(self, planName)
         SEAIBrainClass.OnCreateAI(self, planName)
-        -- local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
-        -- if string.find(per, 'sorianedit') then
+        local per = ScenarioInfo.ArmySetup[self.Name].AIPersonality
+        if string.find(per, 'sorianedit') or string.find(per, 'sorianeditadaptive') or string.find(per, 'sorianeditadaptivecheat') then
 			
             local iArmyNo = tonumber(string.sub(self.Name, 6 ))
             local iBuildDistance = self:GetUnitBlueprint('UAL0001').Economy.MaxBuildDistance
@@ -124,7 +124,7 @@ AIBrain = Class(SEAIBrainClass) {
 				self:BuildScoutLocationsSorianEdit()
 			end
             LOG('*------------------------------- AI-sorian: OnCreateAI() found AI-sorian  Name: ('..self.Name..') - personality: ('..per..') Army spawn: ('..repr(iArmyNo)..') ')
-        -- end
+        end
     end,
 	
     ---@param self AIBrain

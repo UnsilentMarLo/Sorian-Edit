@@ -35,7 +35,7 @@ BaseBuilderTemplate {
         'SorianEditMobileNavalExperimentalForm',
 		
         -- ==== DEFENSES ==== --
-        -- 'SorianEditT1NavalDefenses',
+        'SorianEditT1NavalDefenses',
         'SorianEditT2NavalDefenses',
         'SorianEditT3NavalDefenses',
 
@@ -80,7 +80,7 @@ BaseBuilderTemplate {
     },
     ExpansionFunction = function(aiBrain, location, markerType)
         local personality = ScenarioInfo.ArmySetup[aiBrain.Name].AIPersonality
-        if markerType == 'Naval Area' and (personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianeditnavy') then
+        if markerType == 'Naval Area' and (personality == 'sorianeditadaptivecheat' or personality == 'sorianeditadaptive' or personality == 'sorianedit') then
             -- LOG('--------------------- M-ExpansionFunction Naval Base '..personality)
             return 15000, 'sorianedit'
         else

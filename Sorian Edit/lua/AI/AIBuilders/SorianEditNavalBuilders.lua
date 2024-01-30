@@ -44,9 +44,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Naval Builder Fast - initial',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1200000,
+        Priority = 12000,
         InstanceCount = 1,
         BuilderConditions = {
+            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
+			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
+			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL } },
@@ -54,7 +57,6 @@ BuilderGroup {
             { UCBC, 'UnitCapCheckLess', { .8 } },
         },
         BuilderType = 'Any',
-        PlatoonAddFunctions = { {SAI, 'BuildOnce'}, },
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
@@ -70,10 +72,7 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
 					'T1SeaFactory',
-					'T1SeaFactory',
-					'T1SeaFactory',
-					'T1SeaFactory',
-					'T1Sonar',
+					-- 'T1Sonar',
                 }
             }
         }
@@ -111,9 +110,8 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
 					'T1SeaFactory',
-					'T1SeaFactory',
 					'T1NavalDefense',
-					'T1Sonar',
+					-- 'T1Sonar',
                 }
             }
         }
@@ -151,169 +149,13 @@ BuilderGroup {
                     'T1SeaFactory',
 					'T2NavalDefense',
 					'T2AADefense',
-					'T2Sonar',
-                }
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'SorianEdit T3 Naval Builder Fast',
-        PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 922,
-        InstanceCount = 1,
-        BuilderConditions = {
-			{ WaterRatioCondition, {} },
-            { EBC, 'GreaterThanEconIncome',  { 25.0, 45.0}},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-            -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.COMMAND } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL * categories.TECH3 - categories.COMMAND } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 4300, --1200,
-                ThreatRings = 0,
-                ThreatType = 'AntiSurface',
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                ExpansionRadius = 50,
-                BuildStructures = {
-                    'T1SeaFactory',
-					'T2NavalDefense',
-					'T3AADefense',
-					'T2Sonar',
-                }
-            }
-        }
-    },
-}
-
-BuilderGroup {
-    BuilderGroupName = 'SorianEditNavalExpansionBuilders',
-    BuildersType = 'EngineerBuilder',
-    Builder {
-        BuilderName = 'SorianEdit T1 Naval Builder - initial',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 12000,
-        InstanceCount = 1,
-        BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
-            -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                NearMarkerType = 'Naval Area',
-                LocationRadius = 400,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 4300, --1200,
-                ThreatRings = 0,
-                ThreatType = 'AntiSurface',
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                ExpansionRadius = 50,
-                BuildStructures = {
-					'T1SeaFactory',
-					-- 'T1Sonar',
-                }
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'SorianEdit T1 Naval Builder',
-        PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 922,
-        InstanceCount = 1,
-        BuilderConditions = {
-			{ WaterRatioCondition, {} },
-            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.6 } },
-            -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY NAVAL'}},
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 2, categories.FACTORY * categories.NAVAL } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 4300, --1200,
-                ThreatRings = 0,
-                ThreatType = 'AntiSurface',
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                ExpansionRadius = 50,
-                BuildStructures = {
-					'T1SeaFactory',
-					'T1NavalDefense',
-					-- 'T1Sonar',
-                }
-            }
-        }
-    },
-    Builder {
-        BuilderName = 'SorianEdit T2 Naval Builder',
-        PlatoonTemplate = 'T2EngineerBuilderSorianEdit',
-        Priority = 922,
-        InstanceCount = 1,
-        BuilderConditions = {
-			{ WaterRatioCondition, {} },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
-            -- { SIBC, 'LessThanNavalBases', {} },
-            { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
-            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 - categories.COMMAND } },
-            { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL - categories.TECH1 - categories.COMMAND } },
-            { UCBC, 'UnitCapCheckLess', { .8 } },
-        },
-        BuilderType = 'Any',
-        BuilderData = {
-            Construction = {
-                NearMarkerType = 'Naval Area',
-                LocationRadius = 600,
-                LocationType = 'LocationType',
-                ThreatMin = -1000,
-                ThreatMax = 4300, --1200,
-                ThreatRings = 0,
-                ThreatType = 'AntiSurface',
-                BuildClose = false,
-                BaseTemplate = ExBaseTmpl,
-                ExpansionBase = true,
-                ExpansionRadius = 50,
-                BuildStructures = {
-                    'T1SeaFactory',
-					'T2NavalDefense',
-					'T2AADefense',
 					-- 'T2Sonar',
                 }
             }
         }
     },
     Builder {
-        BuilderName = 'SorianEdit T3 Naval Builder',
+        BuilderName = 'SorianEdit T3 Naval Builder Fast',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
         Priority = 922,
         InstanceCount = 1,

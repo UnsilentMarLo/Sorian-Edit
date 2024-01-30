@@ -1940,8 +1940,8 @@ function ExtractorUpgradeSorian(self, aiBrain, MassExtractorUnitList, ratio, tec
     end
     -- If we have not the Eco then return false. Exept we have none extractor upgrading or 100% mass storrage
     if not MassRatioCheckPositive and aiBrain:GetEconomyStoredRatio('MASS') < 1.00 then
-        -- if we have at least 2 extractor upgrading or less then 4 extractors, then return false
-        if UpgradingBuilding > 1 or table.getn(MassExtractorUnitList) < 4 then
+        -- if we have at least 1 extractor upgrading or less then 4 extractors, then return false
+        if UpgradingBuilding > 0 or table.getn(MassExtractorUnitList) < 4 then
             return false
         end
         -- Even if we don't have the Eco for it; If we have more then 4 Extractors, then upgrade at least one of them.
@@ -3217,13 +3217,6 @@ function GetBuildingTypeInfo(BuildingType, iInfoWanted, sFaction)
         elseif sFaction == 'CYBRAN' then UnitBlueprint = 'URB0101'
         elseif sFaction == 'SERAPHIM' then UnitBlueprint = 'XSB0101'
         else UnitBlueprint = 'UEB0101'
-        end
-    elseif BuildingType == 'T1AirFactory' then
-        SizeArray = {8, 8}
-        if sFaction == 'AEON' then UnitBlueprint = 'UAB0102'
-        elseif sFaction == 'CYBRAN' then UnitBlueprint = 'URB0102'
-        elseif sFaction == 'SERAPHIM' then UnitBlueprint = 'XSB0102'
-        else UnitBlueprint = 'UEB0102'
         end
     elseif BuildingType == 'T1Resource' then
         SizeArray = {2, 2}

@@ -2133,8 +2133,11 @@ Platoon = Class(SorianEditPlatoonClass) {
                           -- 1    2     3     4     5     6     7     8     9
         local RatioTable = {0.15, 0.20, 0.25, 0.3, 0.35, 0.40, 0.40, 0.50, 1.0}
 		
-		if string.find(personality, 'cheat') then
-        -- if personality == 'sorianeditadaptivecheat' or personality == 'sorianeditnavycheat' or personality == 'sorianeditaircheat' then
+        if personality == personality == 'sorianeditadaptive' or personality == 'sorianedit' then
+            RatioTable = {0.15, 0.20, 0.25, 0.3, 0.35, 0.40, 0.40, 0.50, 1.0}
+        end
+		
+        if personality == 'sorianeditadaptivecheat' then
             RatioTable = {0.2, 0.3, 0.4, 0.5, 0.5, 0.55, 0.55, 0.55, 1.0}
         end
 		
