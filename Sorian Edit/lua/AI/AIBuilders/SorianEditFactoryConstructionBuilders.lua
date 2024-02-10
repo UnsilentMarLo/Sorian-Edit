@@ -446,13 +446,13 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T1 Sea Factory Builder Balance',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH1',
-        Priority = 1106,
+        Priority = 3106,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.4, 0.9 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.5 } },
+			-- { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'FactoryRatioLessAtLocation', { 'LocationType', 'NAVAL', 'LAND' } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY NAVAL' }},
+            -- { UCBC, 'FactoryRatioLessAtLocation', { 'LocationType', 'NAVAL', 'LAND' } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
@@ -470,20 +470,44 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T2 Sea Factory Builder - Sea',
         PlatoonTemplate = 'EngineerBuilderSorianEditTECH2',
-        Priority = 900,
+        Priority = 3000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.3, 0.8 } },
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.25 }},
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.5 } },
+			-- { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
             { UCBC, 'UnitCapCheckLess', { .8 } },
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 2, 'ENERGYPRODUCTION TECH2' }},
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY NAVAL' }},
+			{ UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION - categories.TECH1 - categories.HYDROCARBON } },
             { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL FACTORY', 'LocationType', }},
         },
         BuilderType = 'Any',
         BuilderData = {
             Construction = {
                 BuildStructures = {
-                    'T2SeaFactory',
+                    'T1SeaFactory',
+                },
+                Location = 'LocationType',
+                --AdjacencyCategory = 'ENERGYPRODUCTION',
+            }
+        }
+    },
+	
+    Builder {
+        BuilderName = 'SorianEdit T3 Sea Factory Builder - Sea',
+        PlatoonTemplate = 'EngineerBuilderSorianEditTECH3',
+        Priority = 3000,
+        BuilderConditions = {
+			{ EBC, 'GreaterThanEconTrend', { 0.1, 0.5 } },
+			-- { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.7, 1.0 }},
+            { UCBC, 'UnitCapCheckLess', { .8 } },
+			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 4, 'FACTORY NAVAL' }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+            { UCBC, 'HaveLessThanUnitsInCategoryBeingBuilt', { 1, 'NAVAL FACTORY', 'LocationType', }},
+        },
+        BuilderType = 'Any',
+        BuilderData = {
+            Construction = {
+                BuildStructures = {
+                    'T1SeaFactory',
                 },
                 Location = 'LocationType',
                 --AdjacencyCategory = 'ENERGYPRODUCTION',
@@ -630,13 +654,12 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEdit T3 Gate Engineer',
         PlatoonTemplate = 'T3EngineerBuilderSorianEdit',
-        Priority = 3550, --850,
+        Priority = 35500, --850,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.2, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.0 }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'ENERGYPRODUCTION TECH3' }},
-            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 3, 'MASSEXTRACTION TECH3' }},
+			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.5, 1.0 }},
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, categories.ENERGYPRODUCTION * categories.TECH3 - categories.HYDROCARBON } },
+            { UCBC, 'HaveGreaterThanUnitsWithCategory', { 1, 'MASSEXTRACTION TECH3' }},
             { UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'GATE TECH3 STRUCTURE' }},
             { UCBC, 'UnitCapCheckLess', { .85 } },
         },

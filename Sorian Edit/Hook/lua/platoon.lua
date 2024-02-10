@@ -164,6 +164,18 @@ Platoon = Class(SorianEditPlatoonClass) {
             end
             -- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
             buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
+        elseif cons.NearInterestList then
+            relative = false
+			if not aiBrain.InterestList then
+				aiBrain:BuildScoutLocationsSorianEdit()
+			end
+            reference = SortToMAINDistance(aiBrain, aiBrain.InterestList.HighPriority)
+            baseTmpl = baseTmplFile['ExpansionBaseTemplates'][factionIndex]
+            for k,v in reference do
+                table.insert(baseTmplList, AIBuildStructures.AIBuildBaseTemplateFromLocation(baseTmpl, v))
+            end
+            -- Must use BuildBaseOrdered to start at the marker; otherwise it builds closest to the eng
+            buildFunction = AIBuildStructures.AIBuildBaseTemplateOrdered
         elseif cons.PdCreep then
             relative = false
 			-- Get a position where to start the creep; Get enemy position
@@ -428,7 +440,7 @@ Platoon = Class(SorianEditPlatoonClass) {
                 end
             end
 			-- LOG("*-----------AI DEBUG: Engineer building Mex" .. eng.Sync.id)
-            buildFunction = AIBuildStructures.AIExecuteBuildStructure
+            buildFunction = AIBuildStructures.AIExecuteBuildStructureEdit
         end
 
         --LOG("*AI DEBUG: Setting up Callbacks for " .. eng.Sync.id)
@@ -471,6 +483,16 @@ Platoon = Class(SorianEditPlatoonClass) {
         if not eng.Dead and not eng:IsUnitState('Building') then
             return self.ProcessBuildCommand(eng, false)
         end
+    end,
+	
+	SortToMAINDistance = function(self, list)
+        table.sort(list, function(a, b)
+			local MainPos = self.BuilderManagers.MAIN.Position
+			local distA = VDist2(MainPos[1], MainPos[3], a.Position[1], a.Position[3])
+			local distB = VDist2(MainPos[1], MainPos[3], b.Position[1], b.Position[3])
+
+			return distA < distB
+        end)
     end,
 
     -- Fixed a bug where the ACU stops working when build to close
@@ -6400,9 +6422,9 @@ Platoon = Class(SorianEditPlatoonClass) {
                     end
                 end
             end
-			if ScenarioInfo.Options.SEPathing ~= 'No' and not self.TrackThread then
+			-- if ScenarioInfo.Options.SEPathing ~= 'No' and not self.TrackThread then -- moved to context specific drawing
 				self.TrackThread = self:ForkThread(SUtils.TrackPlatoon, aiBrain, target, path, MaxPlatoonWeaponRange)
-			end
+			-- end
             -- in case we are using a transporter, do nothing. Wait for the transport!
             if self.UsingTransport then
                 if HERODEBUGSorianEdit then
@@ -7082,10 +7104,14 @@ Platoon = Class(SorianEditPlatoonClass) {
 			self:Stop()
 			-- patrol while we dont have a target
 			scoutPath = AIUtils.AIGetSortedNavalLocations(self:GetBrain())
+			local ScoutPathPathable = {}
 			for k, v in scoutPath do
 				if NavUtils.CanPathTo(self.MovementLayer, self:GetPlatoonPosition(), v) then
-					self:AggressiveMoveToLocation(v)
+					 table.insert(ScoutPathPathable, v)
 				end
+			end
+			if ScoutPathPathable[1] then
+				self:AggressiveMoveToLocation(ScoutPathPathable[Random(1, table.getn(ScoutPathPathable))])
 			end
 			-- look for a target
 			local target, NavalBombardPos

@@ -90,7 +90,7 @@ BaseBuilderTemplate {
         'SorianEditT3NukeDefenseBehaviors',
         'SorianEditMiscDefensesEngineerBuilders',
 
-        'SorianEditMassAdjacencyDefenses',
+        -- 'SorianEditMassAdjacencyDefenses',
 
         -- ==== LAND UNIT BUILDERS ==== --											 
         'SorianEditT1LandFactoryBuilders',

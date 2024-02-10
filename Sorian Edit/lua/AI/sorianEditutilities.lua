@@ -556,59 +556,62 @@ function TrackPlatoon(self, aiBrain, target, path, MaxPlatoonWeaponRange)
 		local pos3 = nil
 		
 		while aiBrain:PlatoonExists(self) do
-			position = self:GetPlatoonPosition()
-			PlatoonUnits = self:GetPlatoonUnits()
-			PlatoonCount = table.getn(PlatoonUnits)
-			
-			if not position or PlatoonCount < 0 then
-				self:PlatoonDisband()
-				break
-			end
-			
-			DrawCircle(position, PlatoonCount, '09FF00')
-			
-			for k, v in PlatoonUnits do
-				if not v.Dead then
-					pos3 = v:GetPosition()
-					DrawLinePop(position, pos3, '09FF00')
+			if aiBrain:GetArmyIndex() == GetFocusArmy() then
+				position = self:GetPlatoonPosition()
+				PlatoonUnits = self:GetPlatoonUnits()
+				PlatoonCount = table.getn(PlatoonUnits)
+				
+				if not position or PlatoonCount < 0 then
+					self:PlatoonDisband()
+					break
 				end
-			end
-			
-			if self.TargetData then
-				target = self.TargetData
-			end
-			
-			if self.PathData then
-				path = self.PathData
-			end
-			
-			if target and not (target.Dead or target:BeenDestroyed()) then
-				-- LOG('-------------- Enemy Platoon')
-				EPosition = target:GetPosition()
-				numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, EPosition, 30, 'Enemy')) + 1
-				-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
-				DrawLine(position, EPosition, '00fBFF')
-				DrawCircle(EPosition, numEnemyUnits, 'FF0000')
-			end
-			
-			EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 2 , 'Enemy')
-			if EnemyUnits > 0 then
-				for k, v in EnemyUnits do
-					pos2 = v:GetPosition()
-					DrawLinePop(position, pos2, 'F2FF00')
-				end
-			end
-			
-			if path then
-				local pathCount = table.getn(path)
-				for i=1, pathCount do
-					local Marker = path[i]
-					local Marker2 = path[i+1]
-					if Marker2 == nil then
-						break
+				
+				DrawCircle(position, PlatoonCount, '09FF00')
+				
+				for k, v in PlatoonUnits do
+					if not v.Dead then
+						pos3 = v:GetPosition()
+						DrawLinePop(position, pos3, '09FF00')
 					end
-					DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
 				end
+				
+				if self.TargetData then
+					target = self.TargetData
+				end
+				
+				if self.PathData then
+					path = self.PathData
+				end
+				
+				if target and not (target.Dead or target:BeenDestroyed()) then
+					-- LOG('-------------- Enemy Platoon')
+					EPosition = target:GetPosition()
+					numEnemyUnits = (aiBrain:GetNumUnitsAroundPoint(categories.ALLUNITS - categories.WALL, EPosition, 30, 'Enemy')) + 1
+					-- LOG('-------------- Enemy Platoon at: '..repr(EPosition)..'with units: '..repr(numEnemyUnits))
+					DrawLine(position, EPosition, '00fBFF')
+					DrawCircle(EPosition, numEnemyUnits, 'FF0000')
+				end
+				
+				EnemyUnits = aiBrain:GetUnitsAroundPoint(categories.ALLUNITS - categories.WALL, position, MaxPlatoonWeaponRange + 2 , 'Enemy')
+				if EnemyUnits > 0 then
+					for k, v in EnemyUnits do
+						pos2 = v:GetPosition()
+						DrawLinePop(position, pos2, 'F2FF00')
+					end
+				end
+				
+				if path then
+					local pathCount = table.getn(path)
+					for i=1, pathCount do
+						local Marker = path[i]
+						local Marker2 = path[i+1]
+						if Marker2 == nil then
+							break
+						end
+						DrawLinePop({Marker[1], Marker[2], Marker[3]}, {Marker2[1], Marker2[2], Marker2[3]}, '00fBFF')
+					end
+				end
+				-- coroutine.yield(1)
 			end
 			coroutine.yield(1)
 		end

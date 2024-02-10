@@ -117,7 +117,7 @@ BaseBuilderTemplate {
         'SorianEditT3NukeDefenseBehaviors',
         'SorianEditMiscDefensesEngineerBuilders',
 
-        'SorianEditMassAdjacencyDefenses',
+        -- 'SorianEditMassAdjacencyDefenses',
 
         -- ==== NAVAL EXPANSION ==== --
         'SorianEditNavalExpansionBuildersFast',

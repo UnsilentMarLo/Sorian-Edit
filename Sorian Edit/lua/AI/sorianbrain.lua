@@ -108,11 +108,10 @@ AIBrain = Class(SEAIBrainClass) {
 			
             self.sorianedit = true
             -- self:ForkThread(self.SEParseIntelThread)
-            self:ForkThread(self.TauntThread)
 			
-			while ScenarioUtils.GetMarkers() == nil do
-				coroutine.yield(10)
-			end
+			-- while ScenarioUtils.GetMarkers() == nil do
+				-- coroutine.yield(10)
+			-- end
 			
             MapInfo.RecordResourceLocations()
             MapInfo.RecordPlayerStartLocations(self)
@@ -120,6 +119,8 @@ AIBrain = Class(SEAIBrainClass) {
             MapInfo.RecordMexNearStartPosition(iArmyNo, iBuildDistance + 10)
             -- MapInfo.EvaluateNavalAreas(iArmyNo)
 			
+            self:ForkThread(self.TauntThread)
+            -- self:ForkThread(self.EconPrinter)
 			if not self.InterestList then
 				self:BuildScoutLocationsSorianEdit()
 			end
@@ -198,10 +199,19 @@ AIBrain = Class(SEAIBrainClass) {
 	
     TauntThread = function(self)
         LOG('*------------------------------- AI-sorian: TauntThread()')
+		WaitSeconds(50+Random(-40, 70))
         while self.sorianedit do
-            WaitSeconds(30+Random(-10, 50))
+            WaitSeconds(50+Random(-20, 80))
 			SUtils.AIRandomizeTaunt(self)
-            WaitTicks(8*10*(60+Random(-20, 20)))
+            WaitTicks(12*10*(60+Random(-30, 40)))
+        end
+    end,
+	
+    EconPrinter = function(self)
+        LOG('*------------------------------- AI-sorian: TauntThread()')
+        while self.sorianedit do
+            WaitSeconds(5)
+			LOG('*------------------------------- AI-sorian: EconPrinter() Recorded Economy:'..repr(self.EconomyOverTimeCurrent))
         end
     end,
 	

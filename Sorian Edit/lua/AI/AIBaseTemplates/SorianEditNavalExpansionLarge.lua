@@ -18,13 +18,17 @@ BaseBuilderTemplate {
         'SorianEditSupportFactoryUpgradesNAVY',
 
         -- Engineer Builders
+		
         -- 'SorianEditT1EngineerBuilders',
         -- 'SorianEditT2EngineerBuilders',
         -- 'SorianEditT3EngineerBuilders',
+		
         'SorianEditEngineerFactoryBuildersNavy',
         'SorianeditAssistNavy',
+		
+        'SorianEditEngineerFactoryConstruction Sea',
 
-        'SorianEditT3NukeDefensesFormer',
+        -- 'SorianEditT3NukeDefensesFormer',
 
         -- ==== EXPERIMENTALS ==== --
 		

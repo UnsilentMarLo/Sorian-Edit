@@ -47,9 +47,8 @@ BuilderGroup {
         Priority = 12000,
         InstanceCount = 1,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
+            { EBC, 'GreaterThanEconIncome',  { 4.0, 25.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.25, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 256, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 1, categories.FACTORY * categories.NAVAL } },
@@ -60,7 +59,7 @@ BuilderGroup {
         BuilderData = {
             Construction = {
                 NearMarkerType = 'Naval Area',
-                LocationRadius = 400,
+                LocationRadius = 256,
                 LocationType = 'LocationType',
                 ThreatMin = -1000,
                 ThreatMax = 4300, --1200,
@@ -86,7 +85,6 @@ BuilderGroup {
 			{ WaterRatioCondition, {} },
             { EBC, 'GreaterThanEconIncome',  { 5.0, 25.0}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.6 } },
             -- { SIBC, 'LessThanNavalBases', {} },
             { UCBC, 'NavalAreaNeedsEngineer', { 'LocationType', 512, -1000, 20000, 1, 'AntiSurface' } },
             { UCBC, 'HaveGreaterThanUnitsWithCategory', { 0, 'FACTORY NAVAL'}},
@@ -110,6 +108,7 @@ BuilderGroup {
                 ExpansionRadius = 50,
                 BuildStructures = {
 					'T1SeaFactory',
+					'T1NavalDefense',
 					'T1NavalDefense',
 					-- 'T1Sonar',
                 }

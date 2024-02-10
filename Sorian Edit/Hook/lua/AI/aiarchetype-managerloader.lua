@@ -24,10 +24,7 @@ function ExecutePlan(aiBrain)
     local behaviors = import('/lua/ai/AIBehaviors.lua')
     coroutine.yield(10)
     if not aiBrain.BuilderManagers.MAIN.FactoryManager or not aiBrain.BuilderManagers.MAIN.FactoryManager:HasBuilderList() then
-        -- "we don't share resources with allies" -SorianEdit 2020 aka a bad Teammate
         aiBrain:SetResourceSharing(true)
-        --aiBrain:SetupUnderEnergyStatTrigger(0.1)
-        --aiBrain:SetupUnderMassStatTrigger(0.1)
         SetupMainBase(aiBrain)
         -- Get units out of pool and assign them to the managers
         local mainManagers = aiBrain.BuilderManagers.MAIN
@@ -695,8 +692,8 @@ function LocationRangeManagerThreadSorianEdit(aiBrain)
                     local Plan = unit.PlatoonHandle.PlanName
                     local Builder = unit.PlatoonHandle.BuilderName
                     if Plan or Builder then
-                        --unit:SetCustomName(''..(Builder or 'Unknown')..' ('..(Plan or 'Unknown')..')')
-                        unit:SetCustomName(''..(Builder or 'Unknown'))
+                        unit:SetCustomName(''..(Builder or 'Unknown')..' ('..(Plan or 'Unknown')..')')
+                        -- unit:SetCustomName(''..(Builder or 'Unknown'))
                         unit.LastPlatoonHandle = {}
                         unit.LastPlatoonHandle.PlanName = unit.PlatoonHandle.PlanName
                         unit.LastPlatoonHandle.BuilderName = unit.PlatoonHandle.BuilderName
@@ -1272,9 +1269,9 @@ function AddFactoryToClosestManagerSorianEdit(aiBrain, factory)
         end
     -- This is only for debug in case map markers have wrong .type
     elseif LocationType ~= 'Naval Area' and LocationType ~= 'Expansion Area' and LocationType ~= 'Large Expansion Area' then
-        WARN('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: unknown LocationType '..LocationType..' !')
+        WARN('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: unknown LocationType '..tostring(LocationType)..' !')
     end
-    SPEW('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: Factory '..factory.UnitId..' is close ('..math.floor(dist)..') to MarkerBaseName '..MarkerBaseName..' ('..LocationType..')')
+    SPEW('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: Factory '..factory.UnitId..' is close ('..math.floor(dist)..') to MarkerBaseName '..MarkerBaseName..' ('..tostring(LocationType)..')')
     -- search for an manager on this location
     if aiBrain.BuilderManagers[MarkerBaseName] then
         SPEW('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: BuilderManagers for MarkerBaseName '..MarkerBaseName..' exist!')
@@ -1315,7 +1312,7 @@ function AddFactoryToClosestManagerSorianEdit(aiBrain, factory)
         end
         -- get a random name if we have more than one possible base template
         local pick = validNames[ Random(1, table.getn(validNames)) ]
-        SPEW('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: picked basetemplate '..pick..' for location '..MarkerBaseName..' ('..LocationType..')')
+        SPEW('* AI-SorianEdit: AddFactoryToClosestManagerSorianEdit: picked basetemplate '..pick..' for location '..MarkerBaseName..' ('..tostring(LocationType)..')')
         -- finaly loading the templates for the new base location. From now on the new factory can work for us :D
         import('/lua/ai/AIAddBuilderTable.lua').AddGlobalBaseTemplate(aiBrain, MarkerBaseName, pick)
     end

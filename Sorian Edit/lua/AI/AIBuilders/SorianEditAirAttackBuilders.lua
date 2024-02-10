@@ -150,10 +150,18 @@ BuilderGroup {
         Priority = 1400,
         BuilderConditions = {
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.6 } },
 			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH2' }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
             { UCBC, 'HaveLessThanUnitsWithCategory', { 20, categories.AIR * categories.ANTIAIR * categories.TECH1 } },
+        },
+        BuilderType = 'Air',
+    },
+    Builder {
+        BuilderName = 'SorianEditT1 Air Fighter - Constant',
+        PlatoonTemplate = 'T1AirFighter',
+        Priority = 1400,
+        BuilderConditions = {
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
         },
         BuilderType = 'Air',
     },
@@ -202,13 +210,10 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomber',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 55000000,
+        Priority = 550000,
         BuilderType = 'Air',
         BuilderConditions = {
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
-			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.08, 0.6 } },
-			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.75, 0.9 }},
+            { EBC, 'GreaterThanEconEfficiencyOverTime', { 0.9, 1.05 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
     },
@@ -228,13 +233,11 @@ BuilderGroup {
     Builder {
         BuilderName = 'SorianEditT2FighterBomberAdept',
         PlatoonTemplate = 'T2FighterBomber',
-        Priority = 55000000,
+        Priority = 550000,
         BuilderType = 'Air',
         BuilderConditions = {
 			{ UCBC, 'HaveUnitsWithCategoryAndAlliance', { true, 15, categories.AIR * categories.MOBILE, 'Enemy'}},
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
-			{ EBC, 'GreaterThanEconStorageRatio', { 0.06, 0.6 } },
-			{ UCBC, 'FactoryLessAtLocation', { 'LocationType', 1, 'FACTORY TECH3' }},
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.9 }},
             { UCBC, 'UnitCapCheckLess', { 0.95 } },
         },
@@ -326,7 +329,6 @@ BuilderGroup {
         PlatoonTemplate = 'T3AirFighter',
         Priority = 35000000,
         BuilderConditions = {
-            { EBC, 'GreaterThanEconStorageRatio', { 0.15, 0.8 } },
 			{ EBC, 'GreaterThanEconTrend', { 0.0, 0.0 } },
 			{ EBC, 'GreaterThanEconEfficiencyOverTime', { 0.65, 0.8 }},
             { UCBC, 'UnitCapCheckLess', { 0.85 } },

@@ -58,7 +58,7 @@ PlatoonTemplate {
     Name = 'MassHuntersCategorySorianEditSmall',
     Plan = 'StrikeForceAI',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.SCOUT - categories.ENGINEER - categories.xsl0402, 1, 2, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.SHIELD - categories.SCOUT - categories.ENGINEER - categories.xsl0402, 1, 2, 'Attack', 'none' }
     }
 }
 
@@ -66,7 +66,7 @@ PlatoonTemplate {
     Name = 'MassHuntersCategorySorianEditLarge',
     Plan = 'StrikeForceAI',
     GlobalSquads = {
-        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.ENGINEER - categories.xsl0402 - categories.SCOUT, 4, 8, 'Attack', 'none' }
+        { categories.MOBILE * categories.LAND - categories.EXPERIMENTAL - categories.TECH3 - categories.ENGINEER - categories.SHIELD - categories.xsl0402 - categories.SCOUT, 4, 8, 'Attack', 'none' }
     }
 }
 
